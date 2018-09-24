@@ -5,7 +5,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "student_")
-public class Student
+public class User
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,13 +16,13 @@ public class Student
     private String name;
 
     @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "sid")
-    private Set<StudentBook> studentBooks;
+    @JoinColumn(name = "uid")
+    private Set<UserBook> userBooks;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "student_role",
-            joinColumns = @JoinColumn(name = "sid"),
+            joinColumns = @JoinColumn(name = "uid"),
             inverseJoinColumns = @JoinColumn(name = "rid")
     )
     private Set<Role> roles;
@@ -68,14 +68,14 @@ public class Student
         this.name = name;
     }
 
-    public Set<StudentBook> getStudentBooks()
+    public Set<UserBook> getUserBooks()
     {
-        return studentBooks;
+        return userBooks;
     }
 
-    public void setStudentBooks(Set<StudentBook> studentBooks)
+    public void setUserBooks(Set<UserBook> userBooks)
     {
-        this.studentBooks = studentBooks;
+        this.userBooks = userBooks;
     }
 
     public Set<Role> getRoles()

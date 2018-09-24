@@ -17,7 +17,7 @@ public class Book
 
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "bid")
-    private Set<StudentBook> studentBooks;
+    private Set<UserBook> userBooks;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
@@ -61,14 +61,14 @@ public class Book
         this.publishDate = publishDate;
     }
 
-    public Set<StudentBook> getStudentBooks()
+    public Set<UserBook> getUserBooks()
     {
-        return studentBooks;
+        return userBooks;
     }
 
-    public void setStudentBooks(Set<StudentBook> studentBooks)
+    public void setUserBooks(Set<UserBook> userBooks)
     {
-        this.studentBooks = studentBooks;
+        this.userBooks = userBooks;
     }
 
     public Set<Author> getAuthors()

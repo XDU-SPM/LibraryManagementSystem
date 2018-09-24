@@ -1,12 +1,11 @@
 package com.example.library_management_system.service;
 
-import com.example.library_management_system.bean.Admin;
 import com.example.library_management_system.bean.Role;
-import com.example.library_management_system.dao.AdminDAO;
+import com.example.library_management_system.bean.User;
+import com.example.library_management_system.dao.UserDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -17,19 +16,19 @@ import java.util.List;
 import java.util.Set;
 
 @Service
-public class AdminUserService implements UserDetailsService
+public class CustomUserService implements UserDetailsService
 {
     @Autowired
-    private AdminDAO adminDAO;
+    private UserDAO userDAO;
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException
     {
-        Admin admin = adminDAO.findByUsername(s);
+        User user = userDAO.findByUsername(s);
         List<GrantedAuthority> authorities = new ArrayList<>();
-        Set<Role> roles = admin.getRoles();
-        for (Role role : roles)
+        Set<Role> roleSet = user.getRoles();
+        for (Role role : roleSet)
             authorities.add(new SimpleGrantedAuthority(role.getName()));
-        return new User(s, admin.getPassword(), authorities);
+        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);
     }
 }

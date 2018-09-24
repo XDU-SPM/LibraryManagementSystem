@@ -19,19 +19,10 @@ public class Role
     @JoinTable(
             name = "student_role",
             joinColumns = @JoinColumn(name = "rid"),
-            inverseJoinColumns = @JoinColumn(name = "sid")
+            inverseJoinColumns = @JoinColumn(name = "uid")
     )
     @JsonIgnore
-    private Set<Student> students;
-
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "admin_role",
-            joinColumns = @JoinColumn(name = "rid"),
-            inverseJoinColumns = @JoinColumn(name = "aid")
-    )
-    @JsonIgnore
-    private Set<Admin> admins;
+    private Set<User> users;
 
     public Role()
     {
@@ -62,23 +53,13 @@ public class Role
         this.name = name;
     }
 
-    public Set<Student> getStudents()
+    public Set<User> getUsers()
     {
-        return students;
+        return users;
     }
 
-    public void setStudents(Set<Student> students)
+    public void setUsers(Set<User> users)
     {
-        this.students = students;
-    }
-
-    public Set<Admin> getAdmins()
-    {
-        return admins;
-    }
-
-    public void setAdmins(Set<Admin> admins)
-    {
-        this.admins = admins;
+        this.users = users;
     }
 }

@@ -5,7 +5,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "student_book")
-public class StudentBook
+public class UserBook
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,8 +20,8 @@ public class StudentBook
     private Book book;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "sid")
-    private Student student;
+    @JoinColumn(name = "uid")
+    private User user;
 
     public int getId()
     {
@@ -63,13 +63,13 @@ public class StudentBook
         this.book = book;
     }
 
-    public Student getStudent()
+    public User getUser()
     {
-        return student;
+        return user;
     }
 
-    public void setStudent(Student student)
+    public void setUser(User user)
     {
-        this.student = student;
+        this.user = user;
     }
 }
