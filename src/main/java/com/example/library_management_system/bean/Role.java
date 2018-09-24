@@ -1,5 +1,7 @@
 package com.example.library_management_system.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -19,6 +21,7 @@ public class Role
             joinColumns = @JoinColumn(name = "rid"),
             inverseJoinColumns = @JoinColumn(name = "sid")
     )
+    @JsonIgnore
     private Set<Student> students;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -27,6 +30,7 @@ public class Role
             joinColumns = @JoinColumn(name = "rid"),
             inverseJoinColumns = @JoinColumn(name = "aid")
     )
+    @JsonIgnore
     private Set<Admin> admins;
 
     public int getId()
