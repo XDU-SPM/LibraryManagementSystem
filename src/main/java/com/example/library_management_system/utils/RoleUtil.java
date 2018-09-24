@@ -4,5 +4,7 @@ public class RoleUtil
 {
     public final static String
             STUDENT = "STUDENT",
-            ADMIN = "ADMIN";
+            ADMIN = "ADMIN",
+            ROLE_STUDENT = "ROLE_STUDENT",
+            ROLE_ADMIN = "ROLE_ADMIN";
 }
