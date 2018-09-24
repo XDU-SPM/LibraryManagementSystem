@@ -17,7 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class HttpSecurityConfig
 {
     @Configuration
-    @Order(2)
+    @Order(1)
     public static class StudentConfigurationAdapter extends WebSecurityConfigurerAdapter
     {
         @Autowired
@@ -59,7 +59,6 @@ public class HttpSecurityConfig
     }
 
     @Configuration
-    @Order(1)
     public static class AdminConfigurationAdapter extends WebSecurityConfigurerAdapter
     {
         @Autowired
@@ -88,7 +87,6 @@ public class HttpSecurityConfig
         protected void configure(HttpSecurity http) throws Exception
         {
             http.authorizeRequests()
-                    .antMatchers("/public/**").permitAll()
                     .antMatchers("/admin/register", "/admin/login").permitAll()
                     .antMatchers("/admin/**").hasRole(RoleUtil.ADMIN)
                     .and()

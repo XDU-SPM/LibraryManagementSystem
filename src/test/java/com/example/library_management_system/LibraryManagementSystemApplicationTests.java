@@ -13,7 +13,6 @@ public class LibraryManagementSystemApplicationTests
     @Test
     public void contextLoads()
     {
-
     }
 
 }
