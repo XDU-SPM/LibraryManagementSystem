@@ -27,6 +27,10 @@ public class Book
     )
     private Set<Author> authors;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "cid")
+    private Category category;
+
     public String getIsbn()
     {
         return isbn;
@@ -75,5 +79,15 @@ public class Book
     public void setAuthors(Set<Author> authors)
     {
         this.authors = authors;
+    }
+
+    public Category getCategory()
+    {
+        return category;
+    }
+
+    public void setCategory(Category category)
+    {
+        this.category = category;
     }
 }
