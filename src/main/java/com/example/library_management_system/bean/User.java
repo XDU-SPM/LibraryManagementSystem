@@ -4,8 +4,8 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "student_")
-public class Student
+@Table(name = "user")
+public class User
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,13 +16,13 @@ public class Student
     private String name;
 
     @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "sid")
-    private Set<StudentBook> studentBooks;
+    @JoinColumn(name = "uid")
+    private Set<UserBkunit> userBkunits;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "student_role",
-            joinColumns = @JoinColumn(name = "sid"),
+            joinColumns = @JoinColumn(name = "uid"),
             inverseJoinColumns = @JoinColumn(name = "rid")
     )
     private Set<Role> roles;
@@ -68,14 +68,14 @@ public class Student
         this.name = name;
     }
 
-    public Set<StudentBook> getStudentBooks()
+    public Set<UserBkunit> getUserBkunits()
     {
-        return studentBooks;
+        return userBkunits;
     }
 
-    public void setStudentBooks(Set<StudentBook> studentBooks)
+    public void setUserBkunits(Set<UserBkunit> userBkunits)
     {
-        this.studentBooks = studentBooks;
+        this.userBkunits = userBkunits;
     }
 
     public Set<Role> getRoles()
