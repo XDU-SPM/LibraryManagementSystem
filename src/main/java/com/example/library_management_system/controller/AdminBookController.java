@@ -48,6 +48,7 @@ public class AdminBookController {
     public Set<Book>  showBook(Model model)
    {
          model.addAttribute("books",adminbookservice.showBook());
-         return  "bookinfo";
+//         return  "bookinfo";
+       return null;
    }
 }

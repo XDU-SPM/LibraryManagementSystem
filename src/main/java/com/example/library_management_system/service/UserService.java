@@ -30,6 +30,7 @@ public class UserService
     public void registerService(User user, String roleName)
     {
         user.setPassword(MD5Util.encode(user.getPassword()));
+        user.setMoney(300);
         Role role = roleDAO.findByName(roleName);
         if (user.getRoles() == null)
             user.setRoles(new HashSet<>());

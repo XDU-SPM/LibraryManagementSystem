@@ -13,6 +13,8 @@ public class UserBkunit
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
+
+    private int days;
     private int state;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -71,5 +73,15 @@ public class UserBkunit
     public void setUser(User user)
     {
         this.user = user;
+    }
+
+    public int getDays()
+    {
+        return days;
+    }
+
+    public void setDays(int days)
+    {
+        this.days = days;
     }
 }

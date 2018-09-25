@@ -15,6 +15,8 @@ public class User
     private String password;
     private String name;
 
+    private double money;
+
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "uid")
     private Set<UserBkunit> userBkunits;
@@ -86,5 +88,15 @@ public class User
     public void setRoles(Set<Role> roles)
     {
         this.roles = roles;
+    }
+
+    public double getMoney()
+    {
+        return money;
+    }
+
+    public void setMoney(double money)
+    {
+        this.money = money;
     }
 }
