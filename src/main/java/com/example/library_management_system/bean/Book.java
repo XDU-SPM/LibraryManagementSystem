@@ -4,32 +4,34 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
 
+/**
+ * If we want to identify this table by id_name,
+ * we can use "bkid".
+ */
 @Entity
 @Table(name = "book_")
 public class Book
 {
     @Id
     private String isbn;
-    private String name;
+    private String title;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date publishDate;
 
     @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "bid")
-    private Set<StudentBook> studentBooks;
+    @JoinColumn(name = "bkid")
+    private Set<UserBkunit> userBkunits;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "author_book",
-            joinColumns = @JoinColumn(name = "bid"),
+            joinColumns = @JoinColumn(name = "bkid"),
             inverseJoinColumns = @JoinColumn(name = "aid")
     )
     private Set<Author> authors;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "cid")
-    private Category category;
+    private String category;
 
     public String getIsbn()
     {
@@ -41,14 +43,14 @@ public class Book
         this.isbn = isbn;
     }
 
-    public String getName()
+    public String getTitle()
     {
-        return name;
+        return title;
     }
 
-    public void setName(String name)
+    public void setTitle(String title)
     {
-        this.name = name;
+        this.title = title;
     }
 
     public Date getPublishDate()
@@ -61,14 +63,14 @@ public class Book
         this.publishDate = publishDate;
     }
 
-    public Set<StudentBook> getStudentBooks()
+    public Set<UserBkunit> getUserBkunits()
     {
-        return studentBooks;
+        return userBkunits;
     }
 
-    public void setStudentBooks(Set<StudentBook> studentBooks)
+    public void setUserBkunits(Set<UserBkunit> userBkunits)
     {
-        this.studentBooks = studentBooks;
+        this.userBkunits = userBkunits;
     }
 
     public Set<Author> getAuthors()
@@ -81,12 +83,12 @@ public class Book
         this.authors = authors;
     }
 
-    public Category getCategory()
+    public String getCategory()
     {
         return category;
     }
 
-    public void setCategory(Category category)
+    public void setCategory(String category)
     {
         this.category = category;
     }

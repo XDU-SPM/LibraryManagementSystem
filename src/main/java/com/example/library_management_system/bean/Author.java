@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "author")
+@Table(name = "author_")
 public class Author
 {
     @Id
@@ -17,7 +17,7 @@ public class Author
     @JoinTable(
             name = "author_book",
             joinColumns = @JoinColumn(name = "aid"),
-            inverseJoinColumns = @JoinColumn(name = "bid")
+            inverseJoinColumns = @JoinColumn(name = "bkid")
     )
     private Set<Book> books;
 
