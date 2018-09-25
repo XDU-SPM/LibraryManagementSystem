@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "student_")
+@Table(name = "user")
 public class User
 {
     @Id
@@ -17,7 +17,7 @@ public class User
 
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "uid")
-    private Set<UserBook> userBooks;
+    private Set<UserBkunit> userBkunits;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
@@ -68,14 +68,14 @@ public class User
         this.name = name;
     }
 
-    public Set<UserBook> getUserBooks()
+    public Set<UserBkunit> getUserBkunits()
     {
-        return userBooks;
+        return userBkunits;
     }
 
-    public void setUserBooks(Set<UserBook> userBooks)
+    public void setUserBkunits(Set<UserBkunit> userBkunits)
     {
-        this.userBooks = userBooks;
+        this.userBkunits = userBkunits;
     }
 
     public Set<Role> getRoles()

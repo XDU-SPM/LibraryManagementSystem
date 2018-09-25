@@ -4,8 +4,8 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "student_book")
-public class UserBook
+@Table(name = "user_bkunit")
+public class UserBkunit
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,7 +16,7 @@ public class UserBook
     private int state;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "bid")
+    @JoinColumn(name = "bkid")
     private Book book;
 
     @ManyToOne(fetch = FetchType.EAGER)

@@ -16,9 +16,11 @@ public class RoleService
     @Transactional
     public void addRoleService()
     {
-        Role studentRole = new Role(RoleUtil.ROLE_STUDENT);
-        roleDAO.save(studentRole);
+        Role readerRole = new Role(RoleUtil.ROLE_READER);
+        roleDAO.save(readerRole);
         Role adminRole = new Role(RoleUtil.ROLE_ADMIN);
         roleDAO.save(adminRole);
+        Role librarianRole = new Role(RoleUtil.ROLE_LIBRARIAN);
+        roleDAO.save(librarianRole);
     }
 }

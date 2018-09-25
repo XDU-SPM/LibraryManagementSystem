@@ -20,23 +20,24 @@ public class UserController
     @RequestMapping(value = {"/", "/login"}, method = {RequestMethod.POST, RequestMethod.GET})
     public String login()
     {
-        if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("anonymousUser"))
+        if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("anonymousUser"))  // Has logged
         {
             User user = userService.getUser();
             if (user.getRoles().contains(RoleUtil.ROLE_ADMIN))
                 return "redirect:admin/home";
+            else if (user.getRoles().contains(RoleUtil.ROLE_READER))
+                return "redirect:reader/home";
             else
-                return "redirect:student/home";
-
+                return "redirect:librarian/home";
         }
         return "login";
     }
 
-    @RequestMapping(value = "/student/home", method = RequestMethod.GET)
+    @RequestMapping(value = "/reader/home", method = RequestMethod.GET)
     @ResponseBody
-    public Message studentHome()
+    public Message readerHome()
     {
-        return new Message("student/home");
+        return new Message("reader/home");
     }
 
     @RequestMapping(value = "/admin/home", method = RequestMethod.GET)
@@ -46,19 +47,34 @@ public class UserController
         return new Message("admin/home");
     }
 
-    @RequestMapping(value = "/student/register", method = RequestMethod.POST)
+    @RequestMapping(value = "/librarian/home", method = RequestMethod.GET)
     @ResponseBody
-    public User studentRegister(User student)
+    public Message librarianHome()
     {
-        userService.registerService(student, RoleUtil.ROLE_STUDENT);
+        return new Message("librarian/home");
+    }
+
+    @RequestMapping(value = "/reader/register", method = RequestMethod.POST)
+    @ResponseBody
+    public User readerRegister(User student)
+    {
+        userService.registerService(student, RoleUtil.ROLE_READER);
         return student;
     }
 
     @RequestMapping(value = "/admin/register", method = RequestMethod.POST)
     @ResponseBody
-    public User register(User admin)
+    public User adminRegister(User admin)
     {
         userService.registerService(admin, RoleUtil.ROLE_ADMIN);
         return admin;
+    }
+
+    @RequestMapping(value = "/librarian/register", method = RequestMethod.POST)
+    @ResponseBody
+    public User librarianRegister(User librarian)
+    {
+        userService.registerService(librarian, RoleUtil.ROLE_ADMIN);
+        return librarian;
     }
 }
