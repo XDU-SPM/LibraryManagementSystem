@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.example.library_management_system.bean.Bkunit;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.data.domain.Page;
-import java.util.Set;
 
 @Controller
 public class LibrarianBookController {
@@ -38,5 +37,17 @@ public class LibrarianBookController {
        Page<Bkunit> page=librarianBookService.showBook(start,size);
        model.addAttribute("page",page);
        return "booksinfo";
+   }
+
+   @RequestMapping(path={"/ManagingBook/serchbyid"},method={RequestMethod.GET})
+    public Bkunit searchById(@RequestParam(value="id") String id)
+   {
+          return librarianBookService.searchbyid(id);
+   }
+
+   @RequestMapping(path={"/ManagingBook/changeinfo"},method={RequestMethod.POST})
+    public boolean changeinfo(Bkunit bkunit)
+   {
+       return librarianBookService.changeinfo(bkunit);
    }
 }

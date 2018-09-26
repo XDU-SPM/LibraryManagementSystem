@@ -35,4 +35,14 @@ public class LibrarianBookService {
         return page;
     }
 
+    public Bkunit searchbyid(String id)
+    {
+        return bkunitdao.findById(id).get();
+    }
+
+    public boolean changeinfo(Bkunit bkunit)
+    {
+        bkunitdao.save(bkunit);
+        return true;
+    }
 }
