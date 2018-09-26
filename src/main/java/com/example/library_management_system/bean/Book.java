@@ -19,10 +19,6 @@ public class Book
     @Temporal(TemporalType.TIMESTAMP)
     private Date publishDate;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "bkid")
-    private Set<UserBkunit> userBkunits;
-
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "author_book",
@@ -61,16 +57,6 @@ public class Book
     public void setPublishDate(Date publishDate)
     {
         this.publishDate = publishDate;
-    }
-
-    public Set<UserBkunit> getUserBkunits()
-    {
-        return userBkunits;
-    }
-
-    public void setUserBkunits(Set<UserBkunit> userBkunits)
-    {
-        this.userBkunits = userBkunits;
     }
 
     public Set<Author> getAuthors()

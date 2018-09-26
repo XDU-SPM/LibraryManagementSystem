@@ -1,14 +1,16 @@
 package com.example.library_management_system.controller;
 
 import com.example.library_management_system.bean.Book;
+import com.example.library_management_system.service.AdminBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import java.util.*;
-import com.example.library_management_system.service.AdminBookService;
+
+import java.util.Set;
+
 @Controller
 public class AdminBookController {
 
@@ -48,6 +50,7 @@ public class AdminBookController {
     public Set<Book>  showBook(Model model)
    {
          model.addAttribute("books",adminbookservice.showBook());
-         return  "bookinfo";
+//         return  "bookinfo";
+       return null;
    }
 }
