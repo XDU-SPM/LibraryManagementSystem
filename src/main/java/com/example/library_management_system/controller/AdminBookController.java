@@ -4,7 +4,6 @@ import com.example.library_management_system.bean.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -43,6 +42,7 @@ public class AdminBookController {
            return false;
        }
    }
+
    //返回给前端set类型,返回一个页面，分页
    @RequestMapping(path={"/ManagingBook/showbook"},method={RequestMethod.POST})
     public Set<Book>  showBook(Model model)
