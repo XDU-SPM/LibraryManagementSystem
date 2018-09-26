@@ -1,7 +1,6 @@
 package com.example.library_management_system.bean;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.Set;
 
 /**
@@ -16,22 +15,40 @@ public class Book
     private String isbn;
     private String title;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date publishDate;
+    private double score;
+//    private String brief;
+
+    private String publishDate;
+    private String publisher;
 
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "bkid")
     private Set<UserBkunit> userBkunits;
 
+    private String author;
+
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
-            name = "author_book",
+            name = "book_category",
             joinColumns = @JoinColumn(name = "bkid"),
-            inverseJoinColumns = @JoinColumn(name = "aid")
+            inverseJoinColumns = @JoinColumn(name = "cid")
     )
-    private Set<Author> authors;
+    private Set<Category> categories;
 
-    private String category;
+    public Book()
+    {
+    }
+
+    public Book(String isbn, String title, double score, String publishDate, String publisher, String author)
+    {
+        this.isbn = isbn;
+        this.title = title;
+        this.score = score;
+//        this.brief = brief;
+        this.publishDate = publishDate;
+        this.publisher = publisher;
+        this.author = author;
+    }
 
     public String getIsbn()
     {
@@ -53,12 +70,12 @@ public class Book
         this.title = title;
     }
 
-    public Date getPublishDate()
+    public String getPublishDate()
     {
         return publishDate;
     }
 
-    public void setPublishDate(Date publishDate)
+    public void setPublishDate(String publishDate)
     {
         this.publishDate = publishDate;
     }
@@ -73,23 +90,53 @@ public class Book
         this.userBkunits = userBkunits;
     }
 
-    public Set<Author> getAuthors()
+    public String getAuthor()
     {
-        return authors;
+        return author;
     }
 
-    public void setAuthors(Set<Author> authors)
+    public void setAuthor(String author)
     {
-        this.authors = authors;
+        this.author = author;
     }
 
-    public String getCategory()
+    public Set<Category> getCategories()
     {
-        return category;
+        return categories;
     }
 
-    public void setCategory(String category)
+    public void setCategories(Set<Category> categories)
     {
-        this.category = category;
+        this.categories = categories;
     }
+
+    public String getPublisher()
+    {
+        return publisher;
+    }
+
+    public void setPublisher(String publisher)
+    {
+        this.publisher = publisher;
+    }
+
+    public double getScore()
+    {
+        return score;
+    }
+
+    public void setScore(double score)
+    {
+        this.score = score;
+    }
+
+//    public String getBrief()
+//    {
+//        return brief;
+//    }
+//
+//    public void setBrief(String brief)
+//    {
+//        this.brief = brief;
+//    }
 }

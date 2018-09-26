@@ -14,6 +14,7 @@ public class User
     private String username;
     private String password;
     private String name;
+    private String email;
 
     private double money;
 
@@ -98,5 +99,15 @@ public class User
     public void setMoney(double money)
     {
         this.money = money;
+    }
+
+    public String getEmail()
+    {
+        return email;
+    }
+
+    public void setEmail(String email)
+    {
+        this.email = email;
     }
 }
