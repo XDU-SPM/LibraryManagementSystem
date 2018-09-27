@@ -7,9 +7,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
-public interface BkunitDAO extends JpaRepository<Bkunit, String> {
+public interface BkunitDAO extends JpaRepository<Bkunit, String>
+{
 
     Page<Bkunit> findAll(Pageable pageable);
+
     long countByBook(Book book);
-    long countAllByBookAndAndStatus(Book book,int status);
+
+    long countByBookAndStatus(Book book, int status);
 }

@@ -24,7 +24,8 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class ReaderFunctionService {
+public class ReaderFunctionService
+{
 
     @Autowired
     private UserService userService;
@@ -41,7 +42,8 @@ public class ReaderFunctionService {
     @Autowired
     private BookDAO bookDAO;
 
-    public Page<UserBkunit> queryborrowedBooks(int start, int size) {
+    public Page<UserBkunit> queryborrowedBooks(int start, int size)
+    {
         User reader = userService.getUser();
         start = start < 0 ? 0 : start;
         Sort sort = new Sort(Sort.Direction.DESC, "date");
@@ -50,7 +52,8 @@ public class ReaderFunctionService {
         return page;
     }
 
-    public Page<UserFavoriteBook> queryFavoriteBooks(int start, int size) {
+    public Page<UserFavoriteBook> queryFavoriteBooks(int start, int size)
+    {
         User reader = userService.getUser();
         start = start < 0 ? 0 : start;
         Sort sort = new Sort(Sort.Direction.DESC, "date");
@@ -60,23 +63,31 @@ public class ReaderFunctionService {
     }
 
 
-    public boolean addFavoriteBook(Book book) {
-        try {
+    public boolean addFavoriteBook(Book book)
+    {
+        try
+        {
             User reader = userService.getUser();
-            UserFavoriteBook fb = userFavoriteBookDAO.findByUserandAndBook(reader,book);
+            UserFavoriteBook fb = userFavoriteBookDAO.findByUserAndBook(reader, book);
             if (fb == null) userFavoriteBookDAO.save(fb);
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             return false;
         }
         return true;
     }
 
-    public boolean deleteFavoriteBook(Book book) {
-        try {
+    public boolean deleteFavoriteBook(Book book)
+    {
+        try
+        {
             User reader = userService.getUser();
-            UserFavoriteBook fb = userFavoriteBookDAO.findByUserandAndBook(reader,book);
+            UserFavoriteBook fb = userFavoriteBookDAO.findByUserAndBook(reader, book);
             if (fb != null) userFavoriteBookDAO.delete(fb);
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             return false;
         }
         return true;
@@ -90,7 +101,7 @@ public class ReaderFunctionService {
         // 判断图书状态，是否可借(除了预订中的书籍，图书数目是否还有余量)
         Book bk = bookDAO.findByIsbn(bookIsbn);
         long num = bkunitDAO.countByBook(bk);   // 统计该书在馆数量
-        long num1 = bkunitDAO.countAllByBookAndAndStatus(bk, BkunitUtil.RESERVATION);   // 统计该书的预约数量
+        long num1 = bkunitDAO.countByBookAndStatus(bk, BkunitUtil.RESERVATION);   // 统计该书的预约数量
 
         if (num - num1 <= 0) return 0;
 

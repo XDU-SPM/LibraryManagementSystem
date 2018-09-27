@@ -14,7 +14,7 @@ public class Bkunit
 {
     @Id
     private String id;
-    private String status;
+    private int status;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "bkid")
@@ -24,8 +24,9 @@ public class Bkunit
     @JoinColumn(name = "buid")
     private Set<UserBkunit> userBkunits;
 
-
-    public Bkunit(String id, String status, Book book, Set<UserBkunit> userBkunits) {
+    public Bkunit(String id, int status, Book book, Set<UserBkunit> userBkunits)
+    {
+        super();
         this.id = id;
         this.status = status;
         this.book = book;
@@ -47,11 +48,13 @@ public class Bkunit
         this.id = id;
     }
 
-    public String getStatus() {
+    public int getStatus()
+    {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status)
+    {
         this.status = status;
     }
 

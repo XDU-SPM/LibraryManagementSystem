@@ -18,7 +18,7 @@ public class Role
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
-            name = "student_role",
+            name = "user_role",
             joinColumns = @JoinColumn(name = "rid"),
             inverseJoinColumns = @JoinColumn(name = "uid")
     )
