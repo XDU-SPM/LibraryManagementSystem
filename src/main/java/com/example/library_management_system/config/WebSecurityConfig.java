@@ -46,6 +46,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
                 .antMatchers("/login").permitAll()
                 .antMatchers("/public/**").permitAll()
                 .antMatchers("/reader/register", "/admin/register", "/librarian/register").permitAll()
+                .antMatchers("/readerHome").hasRole(RoleUtil.READER_CHECK)
+                .antMatchers("/librarianHome").hasRole(RoleUtil.LIBRARIAN_CHECK)
                 .antMatchers("/reader/**").hasRole(RoleUtil.READER)
                 .antMatchers("/admin/**").hasRole(RoleUtil.ADMIN)
                 .antMatchers("/librarian/**").hasRole(RoleUtil.LIBRARIAN)

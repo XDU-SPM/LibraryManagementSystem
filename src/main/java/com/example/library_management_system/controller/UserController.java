@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 public class UserController
 {
@@ -24,16 +26,25 @@ public class UserController
         {
             User user = userService.getUser();
             if (user.getRoles().contains(RoleUtil.ROLE_ADMIN))
+            {
+                System.out.println("admin has logged in");
                 return "redirect:admin/home";
+            }
             else if (user.getRoles().contains(RoleUtil.ROLE_READER))
-                return "redirect:reader/home";
+            {
+                System.out.println("reader has logged in");
+                return "redirect:readerHome";
+            }
             else
-                return "redirect:librarian/home";
+            {
+                System.out.println("librarian has logged in");
+                return "redirect:librarianHome";
+            }
         }
         return "login";
     }
 
-    @RequestMapping(value = "/reader/home", method = RequestMethod.GET)
+    @RequestMapping(value = "/readerHome", method = RequestMethod.GET)
     @ResponseBody
     public Message readerHome()
     {
@@ -47,7 +58,7 @@ public class UserController
         return new Message("admin/home");
     }
 
-    @RequestMapping(value = "/librarian/home", method = RequestMethod.GET)
+    @RequestMapping(value = "/librarianHome", method = RequestMethod.GET)
     @ResponseBody
     public Message librarianHome()
     {
@@ -58,7 +69,7 @@ public class UserController
     @ResponseBody
     public User readerRegister(User student)
     {
-        userService.registerService(student, RoleUtil.ROLE_READER);
+        userService.registerService(student, RoleUtil.ROLE_READER_CHECK);
         return student;
     }
 
@@ -74,7 +85,29 @@ public class UserController
     @ResponseBody
     public User librarianRegister(User librarian)
     {
-        userService.registerService(librarian, RoleUtil.ROLE_ADMIN);
+        userService.registerService(librarian, RoleUtil.ROLE_LIBRARIAN_CHECK);
         return librarian;
+    }
+
+    @RequestMapping(value = "/accept", method = RequestMethod.GET)
+    public String accept()
+    {
+        String role = userService.accept();
+        if (RoleUtil.ROLE_READER_CHECK.equals(role))
+            return "redirect:/readerHome";
+        else if (RoleUtil.ROLE_LIBRARIAN_CHECK.equals(role))
+            return "redirect:/librarianHome";
+        return null;
+    }
+
+    //用户续借图书
+    @RequestMapping(value = "/renew",method = RequestMethod.GET)
+    @ResponseBody
+    public String renew(HttpServletRequest request){
+        int id=Integer.parseInt(request.getParameter("id"));
+        if(userService.renew(id)){
+            return "redirect:/readerquery";
+        }
+        return null;
     }
 }

@@ -14,6 +14,7 @@
   <meta name="apple-mobile-web-app-title" content="Amaze UI" />
   <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
   <link rel="stylesheet" href="assets/css/admin.css">
+  <link rel="stylesheet" href="dist/amazeui.datatables.css"/>
 </head>
 <body>
 <!--[if lte IE 9]>
@@ -94,27 +95,45 @@
 
       <hr>
 
-      <div class="am-g">
-        <div class="am-u-sm-12">
-          <h2 class="am-text-center am-text-xxxl am-margin-top-lg">404. Not Found</h2>
-          <p class="am-text-center">没有找到你要的页面</p>
-        <pre class="page-404">
-          .----.
-       _.'__    `.
-   .--($)($$)---/#\
- .' @          /###\
- :         ,   #####
-  `-..__.-' _.-\###/
-        `;_:    `"'
-      .'"""""`.
-     /,  ya ,\\
-    //  404!  \\
-    `-._______.-'
-    ___`. | .'___
-   (______|______)
-        </pre>
-        </div>
-      </div>
+      <table class="am-table am-table-striped am-table-bordered am-table-compact" id="example">
+        <thead>
+        <tr>
+          <th>Rendering engine</th>
+          <th>Browser</th>
+          <th>Platform(s)</th>
+          <th>Engine version</th>
+          <th>Grade</th>
+        </tr>
+        </thead>
+        <tfoot>
+        <tr>
+          <th>Rendering engine</th>
+          <th>Browser</th>
+          <th>Platform(s)</th>
+          <th>Engine version</th>
+          <th>Grade</th>
+        </tr>
+        </tfoot>
+        <tbody>
+        <tr class="odd gradeX">
+          <td>Trident</td>
+          <td>Internet
+            Explorer 4.0</td>
+          <td>Win 95+</td>
+          <td class="center"> 4</td>
+          <td class="center">X</td>
+        </tr>
+        <tr class="even gradeC">
+          <td>Trident</td>
+          <td>Internet
+            Explorer 5.0</td>
+          <td>Win 95+</td>
+          <td class="center">5</td>
+          <td class="center">C</td>
+        </tr>
+        <!-- more data -->
+        </tbody>
+      </table>
     </div>
 
     <footer class="admin-content-footer">
@@ -142,7 +161,13 @@
 <!--[if (gte IE 9)|!(IE)]><!-->
 <script src="assets/js/jquery.min.js"></script>
 <!--<![endif]-->
+<script>
+    $(function() {
+        $('#example').DataTable();
+    });
+</script>
 <script src="assets/js/amazeui.min.js"></script>
+<script src="dist/amazeui.datatables.min.js"></script>
 <script src="assets/js/app.js"></script>
 </body>
 </html>

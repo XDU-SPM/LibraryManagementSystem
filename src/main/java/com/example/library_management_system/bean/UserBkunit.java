@@ -12,12 +12,16 @@ public class UserBkunit
     private int id;
 
     @Temporal(TemporalType.TIMESTAMP)
-    private Date date;
+    private Date borrowDate;
+    private Date returnDate;
+
+
+    private int days;
     private int state;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "bkid")
-    private Book book;
+    @JoinColumn(name = "buid")
+    private Bkunit bkunit;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "uid")
@@ -33,14 +37,20 @@ public class UserBkunit
         this.id = id;
     }
 
-    public Date getDate()
-    {
-        return date;
+    public Date getBorrowDate() {
+        return borrowDate;
     }
 
-    public void setDate(Date date)
-    {
-        this.date = date;
+    public void setBorrowDate(Date borrowDate) {
+        this.borrowDate = borrowDate;
+    }
+
+    public Date getReturnDate() {
+        return returnDate;
+    }
+
+    public void setReturnDate(Date returnDate) {
+        this.returnDate = returnDate;
     }
 
     public int getState()
@@ -53,14 +63,12 @@ public class UserBkunit
         this.state = state;
     }
 
-    public Book getBook()
-    {
-        return book;
+    public Bkunit getBkunit() {
+        return bkunit;
     }
 
-    public void setBook(Book book)
-    {
-        this.book = book;
+    public void setBkunit(Bkunit bkunit) {
+        this.bkunit = bkunit;
     }
 
     public User getUser()
@@ -71,5 +79,15 @@ public class UserBkunit
     public void setUser(User user)
     {
         this.user = user;
+    }
+
+    public int getDays()
+    {
+        return days;
+    }
+
+    public void setDays(int days)
+    {
+        this.days = days;
     }
 }
