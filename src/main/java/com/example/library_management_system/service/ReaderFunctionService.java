@@ -1,9 +1,6 @@
 package com.example.library_management_system.service;
 
-import com.example.library_management_system.bean.Book;
-import com.example.library_management_system.bean.User;
-import com.example.library_management_system.bean.UserBkunit;
-import com.example.library_management_system.bean.UserFavoriteBook;
+import com.example.library_management_system.bean.*;
 import com.example.library_management_system.dao.BkunitDAO;
 import com.example.library_management_system.dao.BookDAO;
 import com.example.library_management_system.dao.UserBkunitDAO;
@@ -15,6 +12,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
 
 /**
  * @ author Captain
@@ -63,7 +62,7 @@ public class ReaderFunctionService {
     public boolean addFavoriteBook(Book book) {
         try {
             User reader = userService.getUser();
-            UserFavoriteBook fb = userFavoriteBookDAO.findByUserandAndBook(reader,book);
+            UserFavoriteBook fb = userFavoriteBookDAO.findByUserAndBook(reader,book);
             if (fb == null) userFavoriteBookDAO.save(fb);
         } catch (Exception e) {
             return false;
@@ -74,7 +73,7 @@ public class ReaderFunctionService {
     public boolean deleteFavoriteBook(Book book) {
         try {
             User reader = userService.getUser();
-            UserFavoriteBook fb = userFavoriteBookDAO.findByUserandAndBook(reader,book);
+            UserFavoriteBook fb = userFavoriteBookDAO.findByUserAndBook(reader,book);
             if (fb != null) userFavoriteBookDAO.delete(fb);
         } catch (Exception e) {
             return false;
@@ -87,18 +86,24 @@ public class ReaderFunctionService {
         // 判断传入的参数是否合法
         Book tmp = bookDAO.findByIsbn(bookIsbn);
         if (tmp == null) return 0;
+
         // 判断图书状态，是否可借(除了预订中的书籍，图书数目是否还有余量)
         Book bk = bookDAO.findByIsbn(bookIsbn);
-        long num = bkunitDAO.countByBook(bk);   // 统计该书在馆数量
-        long num1 = bkunitDAO.countAllByBookAndAndStatus(bk, BkunitUtil.RESERVATION);   // 统计该书的预约数量
+        long num = bkunitDAO.countAllByBookAndAndStatus(bk, BkunitUtil.NORMAL);   // 统计该书在馆且未被预约的数量
+        if (num <= 0) return 0;
 
-        if (num - num1 <= 0) return 0;
-
-        // 增加UserBkunit条目
-
+        // 添加UserBkunit条目
+        Bkunit bkunit = bkunitDAO.findByBook(bk);
+        User reader = userService.getUser();
+        UserBkunit userBkunit = new UserBkunit(new Date(),30,BkunitUtil.BORROWED,bkunit,reader);
+        userBkunitDAO.save(userBkunit);
+        reader.setBUL(reader.getBUL()-1);   // 修改用户可借图书上限
         return 1;
 
 
     }
+
+
+
 
 }

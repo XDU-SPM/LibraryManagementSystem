@@ -95,10 +95,6 @@ public class User
         return userBkunits;
     }
 
-    public void setUserBkunits(Set<UserBkunit> userBkunits)
-    {
-        this.userBkunits = userBkunits;
-    }
 
     public Set<Role> getRoles()
     {
@@ -138,10 +134,14 @@ public class User
         return userFavoriteBooks;
     }
 
+    public void setUserBkunits(Set<UserBkunit> userBkunits)
+    {
+        this.userBkunits = userBkunits;
+    }
+
     public void setBUL(int BUL) {
         this.BUL = BUL;
     }
-
 
 
     public void setUserFavoriteBooks(Set<UserFavoriteBook> userFavoriteBooks)
