@@ -16,17 +16,15 @@ public class LibrarianBookService
     @Autowired
     private BkunitDAO bkunitdao;
 
-    public boolean addBook(Bkunit bkunit)
+    public void addBook(Bkunit bkunit)
     {
         bkunitdao.save(bkunit);
-        return true;
+
     }
 
-    public boolean deleteBook(Bkunit bkunit)
+    public void deleteBook(Bkunit bkunit)
     {
         bkunitdao.deleteById(bkunit.getId());
-        return true;
-
     }
 
     public Page<Bkunit> showBook(int start, int size)

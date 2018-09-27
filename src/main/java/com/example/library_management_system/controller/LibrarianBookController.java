@@ -18,17 +18,17 @@ public class LibrarianBookController
     private LibrarianBookService librarianBookService;
 
     @RequestMapping(path = {"/ManagingBook/deletebook"}, method = {RequestMethod.POST})
-    public boolean deleteBook(Bkunit bkunit)
+    public String deleteBook(Bkunit bkunit)
     {
         librarianBookService.deleteBook(bkunit);
-        return true;
+        return "books";
     }
 
     @RequestMapping(path = {"/ManagingBook/addbook"}, method = {RequestMethod.POST})
-    public boolean addBook(Bkunit bkunit)
+    public String addBook(Bkunit bkunit)
     {
         librarianBookService.addBook(bkunit);
-        return true;
+        return "books";
     }
 
     //返回页面booksinfo
