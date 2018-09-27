@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BiblioSoft</title>
+    <link rel="icon" type="image/png" href="assets/i/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+    <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="assets/css/admin.css">
+    <link rel="stylesheet" href="dist/amazeui.datatables.min.css">
+    <style>
+        .am-table{
+
+        }
+        .am-topbar{
+            /*background-color: black;*/
+        }
+        .am-topbar .am-text-ir {
+            display: block;
+            margin-right: 10px;
+            height: 50px;
+            width: 125px;
+            background: url(assets/i/logo.jpg) no-repeat left center ;
+            -webkit-background-size: 125px 24px;
+            background-size: 125px 24px;
+        }
+    </style>
+</head>
+<body>
+<header class="am-topbar am-topbar-inverse admin-header">
+    <h1 class="am-topbar-brand " >
+        <a href="#" class="am-text-ir">BiblioSoft</a>
+    </h1>
+
+    <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#doc-topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+
+    <div class="am-collapse am-topbar-collapse" id="doc-topbar-collapse">
+        <ul class="am-nav am-nav-pills am-topbar-nav">
+            <li class="am-active"><a href="#">首页</a></li>
+            <li><a href="#">项目</a></li>
+            <li class="am-dropdown" data-am-dropdown>
+                <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+                    下拉 <span class="am-icon-caret-down"></span>
+                </a>
+                <ul class="am-dropdown-content">
+                    <li class="am-dropdown-header">标题</li>
+                    <li><a href="#">1. 去月球</a></li>
+                    <li class="am-active"><a href="#">2. 去火星</a></li>
+                    <li><a href="#">3. 还是回地球</a></li>
+                    <li class="am-disabled"><a href="#">4. 下地狱</a></li>
+                    <li class="am-divider"></li>
+                    <li><a href="#">5. 桥头一回首</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <form class="am-topbar-form am-topbar-left am-form-inline" role="search">
+            <div class="am-form-group">
+                <input type="text" class="am-form-field am-input-sm" placeholder="搜索">
+            </div>
+        </form>
+
+        <div class="am-topbar-right">
+            <div class="am-dropdown" data-am-dropdown="{boundary: '.am-topbar'}">
+                <button class="am-btn am-btn-secondary am-topbar-btn am-btn-sm am-dropdown-toggle" data-am-dropdown-toggle>Language <span class="am-icon-caret-down"></span></button>
+                <ul class="am-dropdown-content">
+                    <li><a href="#">中文</a></li>
+                    <li><a href="#">English</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="am-topbar-right">
+            <button class="am-btn am-btn-primary am-topbar-btn am-btn-sm">注销</button>
+        </div>
+    </div>
+</header>
+
+<div class="am-cf admin-main">
+    <!-- sidebar start -->
+    <div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
+        <div class="am-offcanvas-bar admin-offcanvas-bar">
+            <div class="user-info">
+                <img class="am-img-circle am-img-thumbnail am-center"  src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/200/h/200/q/80" alt=""/>
+                <p style="text-align: center">纯洁神王</p>
+            </div>
+
+            <ul class="am-list admin-sidebar-list">
+                <li><a href="admin-index.html"><span class="am-icon-home"></span> 首页</a></li>
+                <li><a href="admin-user.html" class="am-cf"><span class="am-icon-check"></span> 个人资料<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
+                <li class="admin-parent">
+                    <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-file"></span> 管理图书 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                    <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+                        <li><a href="admin-help.html"><span class="am-icon-leaf"></span> 借阅</a></li>
+                        <li><a href="admin-gallery.html"><span class="am-icon-mail-reply"></span> 归还</a></li>
+                        <li><a href="admin-log.html"><span class="am-icon-book"></span> 管理图书</a></li>
+                        <li><a href="admin-404.html"><span class="am-icon-calendar-check-o"></span> 预约记录</a></li>
+                    </ul>
+                </li>
+                <li><a href="#"><span class="am-icon-comment"></span> 发布公告</a></li>
+            </ul>
+
+            <div class="am-panel am-panel-default admin-sidebar-panel">
+                <div class="am-panel-bd">
+                    <p><span class="am-icon-bookmark"></span> 公告</p>
+                    <p>时光静好，与君语；细水流年，与君同。—— Amaze UI</p>
+                </div>
+            </div>
+
+            <div class="am-panel am-panel-default admin-sidebar-panel">
+                <div class="am-panel-bd">
+                    <p><span class="am-icon-tag"></span> wiki</p>
+                    <p>Welcome to the Amaze UI wiki!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- sidebar end -->
+    <div class="admin-content">
+        <div class="admin-content-body">
+            <div class="am-cf am-padding am-padding-bottom-0">
+                <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">书本清单</strong> / <small>BookList</small></div>
+            </div>
+
+            <hr>
+
+            <div class="am-g">
+                <div class="am-u-sm-12 am-u-md-6">
+                    <div class="am-btn-toolbar">
+                        <div class="am-btn-group am-btn-group-xs">
+                            <button type="button" class="am-btn am-btn-default"><span class="am-icon-plus"></span> 新增</button>
+                            <button type="button" class="am-btn am-btn-default"><span class="am-icon-trash-o"></span> 删除</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="am-u-sm-12 am-u-md-3">
+
+                </div>
+            </div>
+
+            <div class="am-g">
+                <div class="am-u-sm-12">
+
+                        <table class="am-table am-table-striped am-table-hover am-table-compact " id="booklist">
+                            <thead>
+                            <tr>
+                                <th class="table-id">编号</th>
+                                <th class="table-title">标题</th>
+                                <!--<th class="table-type">类别</th>-->
+                                <th class="table-type">
+                                    <select >
+                                        <option value="option1" >专业书</option>
+                                        <option value="option2">杂志</option>
+                                        <option value="option3">小说</option>
+                                        <option value="option3">文学书籍</option>
+                                        <option value="option3">历史</option>
+                                        <option value="option3">科普</option>
+                                        <option value="option3">故事会</option>
+                                    </select>
+                                </th>
+                                <th class="table-author am-hide-sm-only">作者</th>
+                                <th class="table-publisher">出版社</th>
+                                <th class="table-date am-hide-sm-only">出版日期</th>
+                                <th class="table-positon am-hide-sm-only">位置</th>
+                                <th class="table-set">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td><a href="#">纯洁神王是如何炼成的</a></td>
+                                <td>宗教类</td>
+                                <td class="am-hide-sm-only">唐少伟</td>
+                                <td class="am-hide-sm-only">西安电子科技大学出版社</td>
+                                <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
+                                <td >B-201</td>
+                                <td>
+                                    <div class="am-btn-toolbar">
+                                        <div class="am-btn-group am-btn-group-xs">
+                                            <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑</button>
+
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                </div>
+
+            </div>
+        </div>
+
+        <footer class="admin-content-footer">
+            <hr>
+            <p class="am-padding-left" style="text-align: center">© 2018 Biboliosoft Online Library System</p>
+        </footer>
+
+    </div>
+    <!-- content end -->
+</div>
+
+
+
+<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="assets/js/jquery.min.js"></script>
+<!--<![endif]-->
+<!--<script>-->
+    <!--$(function () {-->
+        <!--$('#booklist').DataTable(-->
+            <!--{-->
+                <!--"ordering":false,-->
+                <!--"bLengthChange":false,-->
+            <!--}-->
+        <!--);-->
+    <!--})-->
+<!--</script>-->
+
+<script src="dist/amazeui.datatables.min.js"></script>
+<script src="assets/js/amazeui.min.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
+
