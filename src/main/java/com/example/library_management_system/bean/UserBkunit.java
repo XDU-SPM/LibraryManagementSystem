@@ -18,8 +18,8 @@ public class UserBkunit
     private int state;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "bkid")
-    private Book book;
+    @JoinColumn(name = "buid")
+    private Bkunit bkunit;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "uid")
@@ -55,14 +55,12 @@ public class UserBkunit
         this.state = state;
     }
 
-    public Book getBook()
-    {
-        return book;
+    public Bkunit getBkunit() {
+        return bkunit;
     }
 
-    public void setBook(Book book)
-    {
-        this.book = book;
+    public void setBkunit(Bkunit bkunit) {
+        this.bkunit = bkunit;
     }
 
     public User getUser()

@@ -24,10 +24,6 @@ public class Book
     private String publishDate;
     private String publisher;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "bkid")
-    private Set<UserBkunit> userBkunits;
-
     private String author;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -41,7 +37,6 @@ public class Book
     public Book()
     {
         this.categories = new HashSet<>();
-        this.userBkunits = new HashSet<>();
     }
 
     public Book(String isbn)
@@ -95,16 +90,6 @@ public class Book
     public void setPublishDate(String publishDate)
     {
         this.publishDate = publishDate;
-    }
-
-    public Set<UserBkunit> getUserBkunits()
-    {
-        return userBkunits;
-    }
-
-    public void setUserBkunits(Set<UserBkunit> userBkunits)
-    {
-        this.userBkunits = userBkunits;
     }
 
     public String getAuthor()
