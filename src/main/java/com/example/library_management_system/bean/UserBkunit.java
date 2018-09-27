@@ -12,7 +12,9 @@ public class UserBkunit
     private int id;
 
     @Temporal(TemporalType.TIMESTAMP)
-    private Date date;
+    private Date borrowDate;
+    private Date returnDate;
+
 
     private int days;
     private int state;
@@ -35,14 +37,20 @@ public class UserBkunit
         this.id = id;
     }
 
-    public Date getDate()
-    {
-        return date;
+    public Date getBorrowDate() {
+        return borrowDate;
     }
 
-    public void setDate(Date date)
-    {
-        this.date = date;
+    public void setBorrowDate(Date borrowDate) {
+        this.borrowDate = borrowDate;
+    }
+
+    public Date getReturnDate() {
+        return returnDate;
+    }
+
+    public void setReturnDate(Date returnDate) {
+        this.returnDate = returnDate;
     }
 
     public int getState()

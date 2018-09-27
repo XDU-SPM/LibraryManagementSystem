@@ -31,6 +31,10 @@ public class User
     )
     private Set<Role> roles;
 
+
+    // 可借数目上限 (Borrow Upper limit)
+    private int BUL;
+
     public User()
     {
         this.userBkunits = new HashSet<>();
@@ -115,5 +119,13 @@ public class User
     public void setEmail(String email)
     {
         this.email = email;
+    }
+
+    public int getBUL() {
+        return BUL;
+    }
+
+    public void setBUL(int BUL) {
+        this.BUL = BUL;
     }
 }
