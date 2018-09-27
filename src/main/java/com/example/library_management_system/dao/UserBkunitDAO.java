@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 public interface UserBkunitDAO extends JpaRepository<UserBkunit, Integer>
 {
@@ -16,6 +17,8 @@ public interface UserBkunitDAO extends JpaRepository<UserBkunit, Integer>
     List<UserBkunit> findAllByState(int state);
 
     Page<UserBkunit> findAllByUser(User reader, Pageable pageable);
+
+    Set<UserBkunit> findByUserAndDateBetween(int uid,Date before,Date after);
 
     UserBkunit findById(int id);
 }
