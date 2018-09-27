@@ -83,7 +83,7 @@ public class ReaderFunctionService
         {
             User reader = userService.getUser();
             UserFavoriteBook fb = userFavoriteBookDAO.findByUserAndBook(reader, book);
-            if (fb != null) userFavoriteBookDAO.delete(fb);     //pa
+            if (fb != null) userFavoriteBookDAO.delete(fb);     //判断欲删除的图书是否已被收藏
         }
         catch (Exception e)
         {
