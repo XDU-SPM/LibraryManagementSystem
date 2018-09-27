@@ -1,10 +1,7 @@
 package com.example.library_management_system.service;
 
 import com.example.library_management_system.bean.*;
-import com.example.library_management_system.dao.BkunitDAO;
-import com.example.library_management_system.dao.BookDAO;
-import com.example.library_management_system.dao.UserBkunitDAO;
-import com.example.library_management_system.dao.UserFavoriteBookDAO;
+import com.example.library_management_system.dao.*;
 import com.example.library_management_system.utils.BkunitUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -14,6 +11,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.Set;
 
 /**
  * @ author Captain
@@ -39,6 +37,9 @@ public class ReaderFunctionService {
 
     @Autowired
     private BookDAO bookDAO;
+
+    @Autowired
+    private ReviewDAO reviewDAO;
 
     public Page<UserBkunit> queryborrowedBooks(int start, int size) {
         User reader = userService.getUser();
@@ -89,7 +90,7 @@ public class ReaderFunctionService {
 
         // 判断图书状态，是否可借(除了预订中的书籍，图书数目是否还有余量)
         Book bk = bookDAO.findByIsbn(bookIsbn);
-        long num = bkunitDAO.countAllByBookAndAndStatus(bk, BkunitUtil.NORMAL);   // 统计该书在馆且未被预约的数量
+        long num = bkunitDAO.countAllByBookAndStatus(bk, BkunitUtil.NORMAL);   // 统计该书在馆且未被预约的数量
         if (num <= 0) return 0;
 
         // 添加UserBkunit条目
@@ -100,9 +101,25 @@ public class ReaderFunctionService {
         reader.setBUL(reader.getBUL()-1);   // 修改用户可借图书上限
         return 1;
 
-
     }
 
+
+    public int writeReview(String Isbn,String review)
+    {
+        try {
+            Book bk = bookDAO.findByIsbn(Isbn);
+            Review rv = new Review(review,new Date(),bk,userService.getUser());
+            reviewDAO.save(rv);
+        }catch (Exception e){
+            return 0;
+        }
+        return 1;
+    }
+
+    public Set<Review> bookReview(Book book) {
+        Set<Review> set = reviewDAO.findAllByBook(book);
+        return set;
+    }
 
 
 

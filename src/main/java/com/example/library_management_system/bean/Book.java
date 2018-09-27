@@ -26,6 +26,7 @@ public class Book
 
     private String author;
 
+
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "book_category",
@@ -37,6 +38,10 @@ public class Book
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "isbn")
     private Set<UserFavoriteBook> userFavoriteBooks;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "review")
+    private Set<Review> reviews;
 
     public Book()
     {
@@ -165,5 +170,13 @@ public class Book
     public void setUserFavoriteBooks(Set<UserFavoriteBook> userFavoriteBooks)
     {
         this.userFavoriteBooks = userFavoriteBooks;
+    }
+
+    public Set<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(Set<Review> reviews) {
+        this.reviews = reviews;
     }
 }

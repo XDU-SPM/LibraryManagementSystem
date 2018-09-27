@@ -23,6 +23,10 @@ public class User
     @JoinColumn(name = "uid")
     private Set<UserBkunit> userBkunits;
 
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "rid")
+    private Set<Review> reviews;
+
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "student_role",
@@ -162,5 +166,13 @@ public class User
     public void setAccounts(Set<Account> accounts)
     {
         this.accounts = accounts;
+    }
+
+    public Set<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(Set<Review> reviews) {
+        this.reviews = reviews;
     }
 }

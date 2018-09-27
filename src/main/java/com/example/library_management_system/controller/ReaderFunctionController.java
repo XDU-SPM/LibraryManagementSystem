@@ -1,6 +1,7 @@
 package com.example.library_management_system.controller;
 
 import com.example.library_management_system.bean.Book;
+import com.example.library_management_system.bean.Review;
 import com.example.library_management_system.bean.UserBkunit;
 import com.example.library_management_system.bean.UserFavoriteBook;
 import com.example.library_management_system.service.ReaderFunctionService;
@@ -11,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.Set;
 
 /**
  * @ author Captain
@@ -62,10 +65,29 @@ public class ReaderFunctionController
         return "deleteFavoriteBook";
     }
 
+
     @RequestMapping(value = "/reader/lend",method = RequestMethod.POST)
-    public String lend(String BookIsbn)
+    public String lend(Model model,String BookIsbn)
     {
         int state = readerfunctionservice.lend(BookIsbn);
-        return "{\"state\": \"" + state + "\"}";
+        model.addAttribute("state",state);
+        return "lend";
     }
+
+    @RequestMapping(value = "/reader/writeReview",method = RequestMethod.POST)
+    public String writeReview(Model model,String Isbn,String review)
+    {
+        int state = readerfunctionservice.writeReview(Isbn,review);
+        model.addAttribute("status",state);
+        return "writeReview";
+    }
+
+    @RequestMapping(value = "/reader/BookReview",method = RequestMethod.GET)
+    public String BookReview(Model model,Book book){
+        Set<Review> set= readerfunctionservice.bookReview(book);
+        model.addAttribute("review",set);
+
+        return "BookReview";
+    }
+
 }
