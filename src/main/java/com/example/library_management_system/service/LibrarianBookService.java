@@ -1,4 +1,5 @@
 package com.example.library_management_system.service;
+
 import com.example.library_management_system.bean.*;
 import com.example.library_management_system.dao.BkunitDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,15 +10,16 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.PageRequest;
 
 @Service
-public class LibrarianBookService {
+public class LibrarianBookService
+{
 
     @Autowired
     private BkunitDAO bkunitdao;
 
     public boolean addBook(Bkunit bkunit)
     {
-         bkunitdao.save(bkunit);
-         return true;
+        bkunitdao.save(bkunit);
+        return true;
     }
 
     public boolean deleteBook(Bkunit bkunit)
@@ -26,7 +28,8 @@ public class LibrarianBookService {
         return true;
 
     }
-    public  Page<Bkunit> showBook(int start,int size)
+
+    public Page<Bkunit> showBook(int start, int size)
     {
         start = start < 0 ? 0 : start;
         Sort sort = new Sort(Sort.Direction.DESC, "id");

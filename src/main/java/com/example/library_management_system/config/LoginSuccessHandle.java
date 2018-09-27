@@ -22,9 +22,9 @@ public class LoginSuccessHandle implements AuthenticationSuccessHandler
         String basePath = httpServletRequest.getScheme() + "://" + httpServletRequest.getServerName() + ":" + httpServletRequest.getServerPort();
         if (roles.contains(RoleUtil.ROLE_ADMIN))
             httpServletResponse.sendRedirect(basePath + "/admin/home");
-        else if (roles.contains(RoleUtil.ROLE_LIBRARIAN))
-            httpServletResponse.sendRedirect(basePath + "/librarian/home");
-        else
-            httpServletResponse.sendRedirect(basePath + "/reader/home");
+        else if (roles.contains(RoleUtil.ROLE_LIBRARIAN_CHECK))
+            httpServletResponse.sendRedirect(basePath + "/librarianHome");
+        else if (roles.contains(RoleUtil.ROLE_READER_CHECK))
+            httpServletResponse.sendRedirect(basePath + "/readerHome");
     }
 }

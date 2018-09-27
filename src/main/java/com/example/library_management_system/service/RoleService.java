@@ -5,7 +5,6 @@ import com.example.library_management_system.dao.RoleDAO;
 import com.example.library_management_system.utils.RoleUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class RoleService
@@ -13,7 +12,6 @@ public class RoleService
     @Autowired
     private RoleDAO roleDAO;
 
-    @Transactional
     public void addRoleService()
     {
         Role readerRole = new Role(RoleUtil.ROLE_READER);
@@ -22,5 +20,9 @@ public class RoleService
         roleDAO.save(adminRole);
         Role librarianRole = new Role(RoleUtil.ROLE_LIBRARIAN);
         roleDAO.save(librarianRole);
+        Role readerCheckRole = new Role(RoleUtil.ROLE_READER_CHECK);
+        roleDAO.save(readerCheckRole);
+        Role librarianCheckRole = new Role(RoleUtil.ROLE_LIBRARIAN_CHECK);
+        roleDAO.save(librarianCheckRole);
     }
 }
