@@ -31,14 +31,23 @@ public class User
     )
     private Set<Role> roles;
 
-
     // 可借数目上限 (Borrow Upper limit)
     private int BUL;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "uid")
+    private Set<UserFavoriteBook> userFavoriteBooks;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "uid")
+    private Set<Account> accounts;
 
     public User()
     {
         this.userBkunits = new HashSet<>();
         this.roles = new HashSet<>();
+        this.userFavoriteBooks = new HashSet<>();
+        this.accounts = new HashSet<>();
     }
 
     public int getId()
@@ -125,7 +134,33 @@ public class User
         return BUL;
     }
 
+    public Set<UserFavoriteBook> getUserFavoriteBooks() {
+        return userFavoriteBooks;
+    }
+
     public void setBUL(int BUL) {
         this.BUL = BUL;
+    }
+
+
+
+    public void setUserFavoriteBooks(Set<UserFavoriteBook> userFavoriteBooks)
+    {
+        this.userFavoriteBooks = userFavoriteBooks;
+    }
+
+    public void deductMoney(int money)
+    {
+        this.money -= money;
+    }
+
+    public Set<Account> getAccounts()
+    {
+        return accounts;
+    }
+
+    public void setAccounts(Set<Account> accounts)
+    {
+        this.accounts = accounts;
     }
 }
