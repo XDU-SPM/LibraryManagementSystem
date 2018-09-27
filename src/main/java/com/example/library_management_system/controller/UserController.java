@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 public class UserController
 {
@@ -95,6 +97,17 @@ public class UserController
             return "redirect:/readerHome";
         else if (RoleUtil.ROLE_LIBRARIAN_CHECK.equals(role))
             return "redirect:/librarianHome";
+        return null;
+    }
+
+    //用户续借图书
+    @RequestMapping(value = "/renew",method = RequestMethod.GET)
+    @ResponseBody
+    public String renew(HttpServletRequest request){
+        int id=Integer.parseInt(request.getParameter("id"));
+        if(userService.renew(id)){
+            return "redirect:/readerquery";
+        }
         return null;
     }
 }

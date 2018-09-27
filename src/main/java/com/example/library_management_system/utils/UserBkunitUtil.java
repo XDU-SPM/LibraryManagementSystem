@@ -9,5 +9,6 @@ public class UserBkunitUtil
             LOST = 4,
             MILD_DAMAGE = 5,
             MODERATE_DAMAGE = 6,
-            MAJOR_DAMAGE = 7;
+            MAJOR_DAMAGE = 7,
+            RENEW=8;
 }
