@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @ author Captain
@@ -61,5 +60,12 @@ public class ReaderFunctionController
         else
             model.addAttribute("state", 1);
         return "deleteFavoriteBook";
+    }
+
+    @RequestMapping(value = "/reader/lend",method = RequestMethod.POST)
+    public String lend(String BookIsbn)
+    {
+        int state = readerfunctionservice.lend(BookIsbn);
+        return "{\"state\": \"" + state + "\"}";
     }
 }

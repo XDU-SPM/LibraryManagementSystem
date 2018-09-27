@@ -31,6 +31,9 @@ public class User
     )
     private Set<Role> roles;
 
+    // 可借数目上限 (Borrow Upper limit)
+    private int BUL;
+
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "uid")
     private Set<UserFavoriteBook> userFavoriteBooks;
@@ -127,10 +130,19 @@ public class User
         this.email = email;
     }
 
-    public Set<UserFavoriteBook> getUserFavoriteBooks()
-    {
+    public int getBUL() {
+        return BUL;
+    }
+
+    public Set<UserFavoriteBook> getUserFavoriteBooks() {
         return userFavoriteBooks;
     }
+
+    public void setBUL(int BUL) {
+        this.BUL = BUL;
+    }
+
+
 
     public void setUserFavoriteBooks(Set<UserFavoriteBook> userFavoriteBooks)
     {
