@@ -11,7 +11,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "user_favoriteBook")
-public class UserFavoriteBook {
+public class UserFavoriteBook
+{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -24,32 +25,43 @@ public class UserFavoriteBook {
     @JoinColumn(name = "uid")
     private User user;
 
-    public UserFavoriteBook(Book book, User user) {
+    public UserFavoriteBook()
+    {
+    }
+
+    public UserFavoriteBook(Book book, User user)
+    {
         this.book = book;
         this.user = user;
     }
 
-    public int getId() {
+    public int getId()
+    {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(int id)
+    {
         this.id = id;
     }
 
-    public Book getBook() {
+    public Book getBook()
+    {
         return book;
     }
 
-    public void setBook(Book book) {
+    public void setBook(Book book)
+    {
         this.book = book;
     }
 
-    public User getUser() {
+    public User getUser()
+    {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(User user)
+    {
         this.user = user;
     }
 }

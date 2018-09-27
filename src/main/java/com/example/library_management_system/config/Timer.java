@@ -5,9 +5,9 @@ import com.example.library_management_system.bean.User;
 import com.example.library_management_system.bean.UserBkunit;
 import com.example.library_management_system.dao.AccountDAO;
 import com.example.library_management_system.dao.UserBkunitDAO;
+import com.example.library_management_system.dao.UserDAO;
 import com.example.library_management_system.utils.AccountUtil;
 import com.example.library_management_system.utils.MailUtil;
-import com.example.library_management_system.utils.OneDayApart;
 import com.example.library_management_system.utils.UserBkunitUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -20,6 +20,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Component
 @EnableScheduling
@@ -30,6 +31,9 @@ public class Timer
 
     @Autowired
     private AccountDAO accountDAO;
+
+    @Autowired
+    private UserDAO userDAO;
 
     /**
      * Execute once every day at 0:00
@@ -50,23 +54,29 @@ public class Timer
         userBkunitDAO.saveAll(userBkunits);
     }
 
+    /**
+     * How to test:
+     * Two books borrowed by one reader have expired.
+     */
     @Transactional
     @Scheduled(cron = "0 0 1 * * ?")
     public void deduction()
     {
-        List<UserBkunit> userBkunits = userBkunitDAO.findAllByState(UserBkunitUtil.OVERDUE);
-        OneDayApart oneDayApart = new OneDayApart();
-        Account account = accountDAO.findByDateBetweenAndType(oneDayApart.getBefore(), oneDayApart.getAfter(), AccountUtil.OVERDUE);
-        if (account == null)
-            account = new Account(AccountUtil.OVERDUE, 0, new Date());
-        for (UserBkunit userBkunit : userBkunits)
+        List<User> users = userDAO.findAll();
+        for (User user : users)
         {
-            User user = userBkunit.getUser();
-            user.setMoney(user.getMoney() - 1);
-            account.addMoney(1);
+            int num = 0;
+            Set<UserBkunit> userBkunits = user.getUserBkunits();
+            for (UserBkunit userBkunit : userBkunits)
+            {
+                if (userBkunit.getState() == UserBkunitUtil.OVERDUE)
+                    num++;
+            }
+            Account account = new Account(AccountUtil.OVERDUE, num, new Date());
+            user.deductMoney(num);
+            user.getAccounts().add(account);
+            userDAO.save(user);
         }
-        userBkunitDAO.saveAll(userBkunits);
-        accountDAO.save(account);
     }
 
     @Scheduled(cron = "0 0 0 * * ?")

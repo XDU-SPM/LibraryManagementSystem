@@ -13,6 +13,10 @@ public class Account
     private int type;
     private double money;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "uid")
+    private User user;
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
 
@@ -67,8 +71,13 @@ public class Account
         this.date = date;
     }
 
-    public void addMoney(double money)
+    public User getUser()
     {
-        this.money += money;
+        return user;
+    }
+
+    public void setUser(User user)
+    {
+        this.user = user;
     }
 }

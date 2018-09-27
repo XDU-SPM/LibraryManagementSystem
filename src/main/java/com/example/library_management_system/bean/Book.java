@@ -34,9 +34,14 @@ public class Book
     )
     private Set<Category> categories;
 
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "isbn")
+    private Set<UserFavoriteBook> userFavoriteBooks;
+
     public Book()
     {
         this.categories = new HashSet<>();
+        this.userFavoriteBooks = new HashSet<>();
     }
 
     public Book(String isbn)
@@ -150,5 +155,15 @@ public class Book
     public void setHardCover(int hardCover)
     {
         this.hardCover = hardCover;
+    }
+
+    public Set<UserFavoriteBook> getUserFavoriteBooks()
+    {
+        return userFavoriteBooks;
+    }
+
+    public void setUserFavoriteBooks(Set<UserFavoriteBook> userFavoriteBooks)
+    {
+        this.userFavoriteBooks = userFavoriteBooks;
     }
 }
