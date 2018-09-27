@@ -89,7 +89,7 @@ public class UserController
         return librarian;
     }
 
-    @RequestMapping(value = "/accept", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/accept", method = RequestMethod.GET)
     public String accept(int id)
     {
         String role = userService.accept(id);
@@ -101,7 +101,7 @@ public class UserController
     }
 
     //用户续借图书
-    @RequestMapping(value = "/userrenew",method = RequestMethod.GET)
+    @RequestMapping(value = "/user/renew",method = RequestMethod.GET)
     public String renew(HttpServletRequest request){
         int id=Integer.parseInt(request.getParameter("id"));
         if(userService.renew(id)){
