@@ -5,9 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface BookDAO extends JpaRepository<Book, String>
 {
-<<<<<<< HEAD
+    Book findByName(String name);
     Book findByIsbn(String isbn);
-=======
-
->>>>>>> 260c39541dc44db52eed4f8d6eca71806b074a0a
 }
