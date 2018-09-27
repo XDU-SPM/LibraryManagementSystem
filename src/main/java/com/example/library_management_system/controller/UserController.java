@@ -88,9 +88,9 @@ public class UserController
     }
 
     @RequestMapping(value = "/accept", method = RequestMethod.GET)
-    public String accept()
+    public String accept(int id)
     {
-        String role = userService.accept();
+        String role = userService.accept(id);
         if (RoleUtil.ROLE_READER_CHECK.equals(role))
             return "redirect:/readerHome";
         else if (RoleUtil.ROLE_LIBRARIAN_CHECK.equals(role))

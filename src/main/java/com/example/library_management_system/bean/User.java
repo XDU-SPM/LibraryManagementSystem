@@ -25,7 +25,7 @@ public class User
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
-            name = "student_role",
+            name = "user_role",
             joinColumns = @JoinColumn(name = "uid"),
             inverseJoinColumns = @JoinColumn(name = "rid")
     )
@@ -35,7 +35,7 @@ public class User
     @JoinColumn(name = "uid")
     private Set<UserFavoriteBook> userFavoriteBooks;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "uid")
     private Set<Account> accounts;
 

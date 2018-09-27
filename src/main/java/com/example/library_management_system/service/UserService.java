@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 
@@ -34,16 +33,19 @@ public class UserService
     public void registerService(User user, String roleName)
     {
         user.setPassword(MD5Util.encode(user.getPassword()));
-        user.setMoney(AccountUtil.REGISTER_MONEY);
-        user.getAccounts().add(new Account(AccountUtil.REGISTER, AccountUtil.REGISTER_MONEY, new Date()));
+        if (RoleUtil.ROLE_READER_CHECK.equals(roleName))
+        {
+            user.setMoney(AccountUtil.REGISTER_MONEY);
+            user.getAccounts().add(new Account(AccountUtil.REGISTER, AccountUtil.REGISTER_MONEY, new Date()));
+        }
         Role role = roleDAO.findByName(roleName);
         user.getRoles().add(role);
         userDAO.save(user);
     }
 
-    public String accept()
+    public String accept(int id)
     {
-        User user = getUser();
+        User user = userDAO.getOne(id);
         if (user.getRoles().contains(roleDAO.findByName(RoleUtil.ROLE_READER_CHECK)))
         {
             user.getRoles().add(roleDAO.findByName(RoleUtil.ROLE_READER));
