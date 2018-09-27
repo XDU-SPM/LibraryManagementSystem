@@ -30,9 +30,7 @@ public class LibrarianBookController
         {
             librarianBookService.addBook(bkunit.getBook());
         }
-        else {
-            librarianBookService.addBkunit(bkunit);
-        }
+        librarianBookService.addBkunit(bkunit);
         return "books";
     }
 
