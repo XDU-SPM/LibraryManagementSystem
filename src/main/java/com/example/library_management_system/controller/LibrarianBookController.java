@@ -26,7 +26,8 @@ public class LibrarianBookController
     @RequestMapping(path = {"/ManagingBook/addbook"}, method = {RequestMethod.POST})
     public String addBkunit(Bkunit bkunit)
     {
-        if(librarianBookService.isexist(bkunit.getBook())==false)
+        bkunit.setId(String.valueOf(System.currentTimeMillis()));
+        if(!librarianBookService.isexist(bkunit.getBook()))
         {
             librarianBookService.addBook(bkunit.getBook());
         }
