@@ -16,14 +16,14 @@ public class LibrarianBookController
     @Autowired
     private LibrarianBookService librarianBookService;
 
-    @RequestMapping(path = {"/ManagingBook/deletebook"}, method = {RequestMethod.POST})
+    @RequestMapping(path = {"/librarian/deletebook"}, method = {RequestMethod.POST})
     public String deleteBkunit(Bkunit bkunit)
     {
         librarianBookService.deleteBkunit(bkunit);
         return "books";
     }
 
-    @RequestMapping(path = {"/ManagingBook/addbook"}, method = {RequestMethod.POST})
+    @RequestMapping(path = {"/librarian/addbook"}, method = {RequestMethod.POST})
     public String addBkunit(Bkunit bkunit)
     {
         if(librarianBookService.isexist(bkunit.getBook())==false)
@@ -35,7 +35,7 @@ public class LibrarianBookController
     }
 
     //返回页面booksinfo
-    @RequestMapping(path = {"/ManagingBook/showbook"}, method = {RequestMethod.GET})
+    @RequestMapping(path = {"/librarian/showbook"}, method = {RequestMethod.GET})
     public String showBook(Model model, @RequestParam(value = "start", defaultValue = "0") int start, @RequestParam(value = "size", defaultValue = "10") int size) throws Exception
     {
         Page<Bkunit> page = librarianBookService.showBook(start, size);
@@ -43,13 +43,13 @@ public class LibrarianBookController
         return "booksinfo";
     }
 
-    @RequestMapping(path = {"/ManagingBook/serchbyid"}, method = {RequestMethod.GET})
+    @RequestMapping(path = {"/librarian/serchbyid"}, method = {RequestMethod.GET})
     public Bkunit searchById(@RequestParam(value = "id") String id)
     {
         return librarianBookService.searchbyid(id);
     }
 
-    @RequestMapping(path = {"/ManagingBook/changeinfo"}, method = {RequestMethod.POST})
+    @RequestMapping(path = {"/librarian/changeinfo"}, method = {RequestMethod.POST})
     public String changeinfo(Bkunit bkunit)
     {
         librarianBookService.changeinfo(bkunit);

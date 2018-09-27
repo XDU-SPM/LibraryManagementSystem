@@ -46,7 +46,7 @@ public class Timer
         for (UserBkunit userBkunit : userBkunits)
         {
             Calendar overdue = Calendar.getInstance();
-            overdue.setTime(userBkunit.getDate());
+            overdue.setTime(userBkunit.getBorrowDate());
             overdue.add(Calendar.DATE, userBkunit.getDays());
             if (now.getTime().after(overdue.getTime()))
                 userBkunit.setState(UserBkunitUtil.OVERDUE);

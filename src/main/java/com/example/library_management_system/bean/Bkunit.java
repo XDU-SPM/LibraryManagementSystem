@@ -24,8 +24,9 @@ public class Bkunit
     @JoinColumn(name = "buid")
     private Set<UserBkunit> userBkunits;
 
-
-    public Bkunit(String id, int status, Book book, Set<UserBkunit> userBkunits) {
+    public Bkunit(String id, int status, Book book, Set<UserBkunit> userBkunits)
+    {
+        super();
         this.id = id;
         this.status = status;
         this.book = book;
@@ -47,11 +48,14 @@ public class Bkunit
         this.id = id;
     }
 
-    public int getStatus() {
+
+    public int getStatus()
+    {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(int status)
+    {
         this.status = status;
     }
 

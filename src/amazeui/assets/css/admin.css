@@ -221,6 +221,8 @@ ul {
     display: block;
     position: static;
     background: none;
+    width: 290px;
+    margin-top: 25px;
   }
 
   .admin-offcanvas-bar {

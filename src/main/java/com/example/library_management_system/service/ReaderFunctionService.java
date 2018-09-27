@@ -21,7 +21,8 @@ import java.util.Set;
 
 
 @Service
-public class ReaderFunctionService {
+public class ReaderFunctionService
+{
 
     @Autowired
     private UserService userService;
@@ -50,7 +51,8 @@ public class ReaderFunctionService {
         return page;
     }
 
-    public Page<UserFavoriteBook> queryFavoriteBooks(int start, int size) {
+    public Page<UserFavoriteBook> queryFavoriteBooks(int start, int size)
+    {
         User reader = userService.getUser();
         start = start < 0 ? 0 : start;
         Sort sort = new Sort(Sort.Direction.DESC, "date");
@@ -60,23 +62,31 @@ public class ReaderFunctionService {
     }
 
 
-    public boolean addFavoriteBook(Book book) {
-        try {
+    public boolean addFavoriteBook(Book book)
+    {
+        try
+        {
             User reader = userService.getUser();
-            UserFavoriteBook fb = userFavoriteBookDAO.findByUserAndBook(reader,book);
+            UserFavoriteBook fb = userFavoriteBookDAO.findByUserAndBook(reader, book);
             if (fb == null) userFavoriteBookDAO.save(fb);
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             return false;
         }
         return true;
     }
 
-    public boolean deleteFavoriteBook(Book book) {
-        try {
+    public boolean deleteFavoriteBook(Book book)
+    {
+        try
+        {
             User reader = userService.getUser();
-            UserFavoriteBook fb = userFavoriteBookDAO.findByUserAndBook(reader,book);
-            if (fb != null) userFavoriteBookDAO.delete(fb);
-        } catch (Exception e) {
+            UserFavoriteBook fb = userFavoriteBookDAO.findByUserAndBook(reader, book);
+            if (fb != null) userFavoriteBookDAO.delete(fb);     //pa
+        }
+        catch (Exception e)
+        {
             return false;
         }
         return true;
