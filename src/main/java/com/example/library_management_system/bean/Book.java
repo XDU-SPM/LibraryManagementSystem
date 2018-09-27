@@ -1,35 +1,71 @@
 package com.example.library_management_system.bean;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * If we want to identify this table by id_name,
+ * we can use "bkid".
+ */
 @Entity
 @Table(name = "book_")
 public class Book
 {
     @Id
     private String isbn;
-    private String name;
+    private String title;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date publishDate;
+    private double score;
+//    private String brief;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "bid")
-    private Set<StudentBook> studentBooks;
+    private int hardCover;  // pages
+
+    private String publishDate;
+    private String publisher;
+
+    private String author;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
-            name = "author_book",
-            joinColumns = @JoinColumn(name = "bid"),
-            inverseJoinColumns = @JoinColumn(name = "aid")
+            name = "book_category",
+            joinColumns = @JoinColumn(name = "bkid"),
+            inverseJoinColumns = @JoinColumn(name = "cid")
     )
-    private Set<Author> authors;
+    private Set<Category> categories;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "cid")
-    private Category category;
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "isbn")
+    private Set<UserFavoriteBook> userFavoriteBooks;
+
+    public Book()
+    {
+        this.categories = new HashSet<>();
+        this.userFavoriteBooks = new HashSet<>();
+    }
+
+    public Book(String isbn)
+    {
+        this();
+        this.isbn = isbn;
+    }
+
+    public Book(String isbn, String title, double score, String publishDate, String publisher, String author)
+    {
+        this(isbn, title, score, 0, publishDate, publisher, author);
+    }
+
+    public Book(String isbn, String title, double score, int hardCover, String publishDate, String publisher, String author)
+    {
+        this();
+        this.isbn = isbn;
+        this.title = title;
+        this.score = score;
+        this.hardCover = hardCover;
+        this.publishDate = publishDate;
+        this.publisher = publisher;
+        this.author = author;
+    }
 
     public String getIsbn()
     {
@@ -41,53 +77,93 @@ public class Book
         this.isbn = isbn;
     }
 
-    public String getName()
+    public String getTitle()
     {
-        return name;
+        return title;
     }
 
-    public void setName(String name)
+    public void setTitle(String title)
     {
-        this.name = name;
+        this.title = title;
     }
 
-    public Date getPublishDate()
+    public String getPublishDate()
     {
         return publishDate;
     }
 
-    public void setPublishDate(Date publishDate)
+    public void setPublishDate(String publishDate)
     {
         this.publishDate = publishDate;
     }
 
-    public Set<StudentBook> getStudentBooks()
+    public String getAuthor()
     {
-        return studentBooks;
+        return author;
     }
 
-    public void setStudentBooks(Set<StudentBook> studentBooks)
+    public void setAuthor(String author)
     {
-        this.studentBooks = studentBooks;
+        this.author = author;
     }
 
-    public Set<Author> getAuthors()
+    public Set<Category> getCategories()
     {
-        return authors;
+        return categories;
     }
 
-    public void setAuthors(Set<Author> authors)
+    public void setCategories(Set<Category> categories)
     {
-        this.authors = authors;
+        this.categories = categories;
     }
 
-    public Category getCategory()
+    public String getPublisher()
     {
-        return category;
+        return publisher;
     }
 
-    public void setCategory(Category category)
+    public void setPublisher(String publisher)
     {
-        this.category = category;
+        this.publisher = publisher;
+    }
+
+    public double getScore()
+    {
+        return score;
+    }
+
+    public void setScore(double score)
+    {
+        this.score = score;
+    }
+
+//    public String getBrief()
+//    {
+//        return brief;
+//    }
+//
+//    public void setBrief(String brief)
+//    {
+//        this.brief = brief;
+//    }
+
+    public int getHardCover()
+    {
+        return hardCover;
+    }
+
+    public void setHardCover(int hardCover)
+    {
+        this.hardCover = hardCover;
+    }
+
+    public Set<UserFavoriteBook> getUserFavoriteBooks()
+    {
+        return userFavoriteBooks;
+    }
+
+    public void setUserFavoriteBooks(Set<UserFavoriteBook> userFavoriteBooks)
+    {
+        this.userFavoriteBooks = userFavoriteBooks;
     }
 }

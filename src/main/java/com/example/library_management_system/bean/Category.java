@@ -1,6 +1,7 @@
 package com.example.library_management_system.bean;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -10,11 +11,27 @@ public class Category
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String name;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "cid")
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "book_category",
+            joinColumns = @JoinColumn(name = "cid"),
+            inverseJoinColumns = @JoinColumn(name = "bkid")
+    )
     private Set<Book> books;
+
+    public Category()
+    {
+        this.books = new HashSet<>();
+    }
+
+    public Category(String name)
+    {
+        this();
+        this.name = name;
+    }
 
     public int getId()
     {
