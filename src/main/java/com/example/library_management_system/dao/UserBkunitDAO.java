@@ -16,4 +16,6 @@ public interface UserBkunitDAO extends JpaRepository<UserBkunit, Integer>
     List<UserBkunit> findAllByState(int state);
 
     Page<UserBkunit> findAllByUser(User reader, Pageable pageable);
+
+    UserBkunit findById(int id);
 }
