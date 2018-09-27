@@ -1,11 +1,12 @@
 package com.example.library_management_system.bean;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "author_")
-public class Author
+@Table(name = "category_")
+public class Category
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,11 +16,22 @@ public class Author
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
-            name = "author_book",
-            joinColumns = @JoinColumn(name = "aid"),
+            name = "book_category",
+            joinColumns = @JoinColumn(name = "cid"),
             inverseJoinColumns = @JoinColumn(name = "bkid")
     )
     private Set<Book> books;
+
+    public Category()
+    {
+        this.books = new HashSet<>();
+    }
+
+    public Category(String name)
+    {
+        this();
+        this.name = name;
+    }
 
     public int getId()
     {

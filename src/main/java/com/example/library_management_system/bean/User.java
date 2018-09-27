@@ -1,6 +1,7 @@
 package com.example.library_management_system.bean;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -14,6 +15,9 @@ public class User
     private String username;
     private String password;
     private String name;
+    private String email;
+
+    private double money;
 
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "uid")
@@ -27,6 +31,11 @@ public class User
     )
     private Set<Role> roles;
 
+    public User()
+    {
+        this.userBkunits = new HashSet<>();
+        this.roles = new HashSet<>();
+    }
 
     public int getId()
     {
@@ -86,5 +95,25 @@ public class User
     public void setRoles(Set<Role> roles)
     {
         this.roles = roles;
+    }
+
+    public double getMoney()
+    {
+        return money;
+    }
+
+    public void setMoney(double money)
+    {
+        this.money = money;
+    }
+
+    public String getEmail()
+    {
+        return email;
+    }
+
+    public void setEmail(String email)
+    {
+        this.email = email;
     }
 }

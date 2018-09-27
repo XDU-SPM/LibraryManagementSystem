@@ -13,11 +13,13 @@ public class UserBkunit
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
+
+    private int days;
     private int state;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "bkid")
-    private Book book;
+    @JoinColumn(name = "buid")
+    private Bkunit bkunit;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "uid")
@@ -53,14 +55,12 @@ public class UserBkunit
         this.state = state;
     }
 
-    public Book getBook()
-    {
-        return book;
+    public Bkunit getBkunit() {
+        return bkunit;
     }
 
-    public void setBook(Book book)
-    {
-        this.book = book;
+    public void setBkunit(Bkunit bkunit) {
+        this.bkunit = bkunit;
     }
 
     public User getUser()
@@ -71,5 +71,15 @@ public class UserBkunit
     public void setUser(User user)
     {
         this.user = user;
+    }
+
+    public int getDays()
+    {
+        return days;
+    }
+
+    public void setDays(int days)
+    {
+        this.days = days;
     }
 }

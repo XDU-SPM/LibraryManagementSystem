@@ -1,7 +1,7 @@
 package com.example.library_management_system.bean;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -16,22 +16,51 @@ public class Book
     private String isbn;
     private String title;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date publishDate;
+    private double score;
+//    private String brief;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "bkid")
-    private Set<UserBkunit> userBkunits;
+    private int hardCover;  // pages
+
+    private String publishDate;
+    private String publisher;
+
+    private String author;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
-            name = "author_book",
+            name = "book_category",
             joinColumns = @JoinColumn(name = "bkid"),
-            inverseJoinColumns = @JoinColumn(name = "aid")
+            inverseJoinColumns = @JoinColumn(name = "cid")
     )
-    private Set<Author> authors;
+    private Set<Category> categories;
 
-    private String category;
+    public Book()
+    {
+        this.categories = new HashSet<>();
+    }
+
+    public Book(String isbn)
+    {
+        this();
+        this.isbn = isbn;
+    }
+
+    public Book(String isbn, String title, double score, String publishDate, String publisher, String author)
+    {
+        this(isbn, title, score, 0, publishDate, publisher, author);
+    }
+
+    public Book(String isbn, String title, double score, int hardCover, String publishDate, String publisher, String author)
+    {
+        this();
+        this.isbn = isbn;
+        this.title = title;
+        this.score = score;
+        this.hardCover = hardCover;
+        this.publishDate = publishDate;
+        this.publisher = publisher;
+        this.author = author;
+    }
 
     public String getIsbn()
     {
@@ -53,43 +82,73 @@ public class Book
         this.title = title;
     }
 
-    public Date getPublishDate()
+    public String getPublishDate()
     {
         return publishDate;
     }
 
-    public void setPublishDate(Date publishDate)
+    public void setPublishDate(String publishDate)
     {
         this.publishDate = publishDate;
     }
 
-    public Set<UserBkunit> getUserBkunits()
+    public String getAuthor()
     {
-        return userBkunits;
+        return author;
     }
 
-    public void setUserBkunits(Set<UserBkunit> userBkunits)
+    public void setAuthor(String author)
     {
-        this.userBkunits = userBkunits;
+        this.author = author;
     }
 
-    public Set<Author> getAuthors()
+    public Set<Category> getCategories()
     {
-        return authors;
+        return categories;
     }
 
-    public void setAuthors(Set<Author> authors)
+    public void setCategories(Set<Category> categories)
     {
-        this.authors = authors;
+        this.categories = categories;
     }
 
-    public String getCategory()
+    public String getPublisher()
     {
-        return category;
+        return publisher;
     }
 
-    public void setCategory(String category)
+    public void setPublisher(String publisher)
     {
-        this.category = category;
+        this.publisher = publisher;
+    }
+
+    public double getScore()
+    {
+        return score;
+    }
+
+    public void setScore(double score)
+    {
+        this.score = score;
+    }
+
+//    public String getBrief()
+//    {
+//        return brief;
+//    }
+//
+//    public void setBrief(String brief)
+//    {
+//        this.brief = brief;
+//    }
+
+    public int getHardCover()
+    {
+        return hardCover;
+    }
+
+    public void setHardCover(int hardCover)
+    {
+        this.hardCover = hardCover;
     }
 }
