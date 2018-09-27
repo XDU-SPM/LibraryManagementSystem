@@ -10,8 +10,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-
 @Service
 public class UserService
 {
@@ -32,8 +30,6 @@ public class UserService
         user.setPassword(MD5Util.encode(user.getPassword()));
         user.setMoney(300);
         Role role = roleDAO.findByName(roleName);
-        if (user.getRoles() == null)
-            user.setRoles(new HashSet<>());
         user.getRoles().add(role);
         userDAO.save(user);
     }

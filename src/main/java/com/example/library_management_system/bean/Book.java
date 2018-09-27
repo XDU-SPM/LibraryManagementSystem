@@ -1,6 +1,7 @@
 package com.example.library_management_system.bean;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -17,6 +18,8 @@ public class Book
 
     private double score;
 //    private String brief;
+
+    private int hardCover;  // pages
 
     private String publishDate;
     private String publisher;
@@ -37,14 +40,28 @@ public class Book
 
     public Book()
     {
+        this.categories = new HashSet<>();
+        this.userBkunits = new HashSet<>();
+    }
+
+    public Book(String isbn)
+    {
+        this();
+        this.isbn = isbn;
     }
 
     public Book(String isbn, String title, double score, String publishDate, String publisher, String author)
     {
+        this(isbn, title, score, 0, publishDate, publisher, author);
+    }
+
+    public Book(String isbn, String title, double score, int hardCover, String publishDate, String publisher, String author)
+    {
+        this();
         this.isbn = isbn;
         this.title = title;
         this.score = score;
-//        this.brief = brief;
+        this.hardCover = hardCover;
         this.publishDate = publishDate;
         this.publisher = publisher;
         this.author = author;
@@ -139,4 +156,14 @@ public class Book
 //    {
 //        this.brief = brief;
 //    }
+
+    public int getHardCover()
+    {
+        return hardCover;
+    }
+
+    public void setHardCover(int hardCover)
+    {
+        this.hardCover = hardCover;
+    }
 }

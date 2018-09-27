@@ -3,6 +3,7 @@ package com.example.library_management_system.bean;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -26,10 +27,12 @@ public class Role
 
     public Role()
     {
+        this.users = new HashSet<>();
     }
 
     public Role(String name)
     {
+        this();
         this.name = name;
     }
 

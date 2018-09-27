@@ -1,6 +1,7 @@
 package com.example.library_management_system.bean;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -20,6 +21,17 @@ public class Category
             inverseJoinColumns = @JoinColumn(name = "bkid")
     )
     private Set<Book> books;
+
+    public Category()
+    {
+        this.books = new HashSet<>();
+    }
+
+    public Category(String name)
+    {
+        this();
+        this.name = name;
+    }
 
     public int getId()
     {

@@ -1,6 +1,7 @@
 package com.example.library_management_system.bean;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -30,6 +31,11 @@ public class User
     )
     private Set<Role> roles;
 
+    public User()
+    {
+        this.userBkunits = new HashSet<>();
+        this.roles = new HashSet<>();
+    }
 
     public int getId()
     {
