@@ -13,21 +13,26 @@ import org.springframework.data.domain.Page;
 @Controller
 public class LibrarianBookController
 {
-
     @Autowired
     private LibrarianBookService librarianBookService;
 
     @RequestMapping(path = {"/ManagingBook/deletebook"}, method = {RequestMethod.POST})
-    public String deleteBook(Bkunit bkunit)
+    public String deleteBkunit(Bkunit bkunit)
     {
-        librarianBookService.deleteBook(bkunit);
+        librarianBookService.deleteBkunit(bkunit);
         return "books";
     }
 
     @RequestMapping(path = {"/ManagingBook/addbook"}, method = {RequestMethod.POST})
-    public String addBook(Bkunit bkunit)
+    public String addBkunit(Bkunit bkunit)
     {
-        librarianBookService.addBook(bkunit);
+        if(librarianBookService.isexist(bkunit.getBook())==false)
+        {
+            librarianBookService.addBook(bkunit.getBook());
+        }
+        else {
+            librarianBookService.addBkunit(bkunit);
+        }
         return "books";
     }
 
@@ -47,8 +52,10 @@ public class LibrarianBookController
     }
 
     @RequestMapping(path = {"/ManagingBook/changeinfo"}, method = {RequestMethod.POST})
-    public boolean changeinfo(Bkunit bkunit)
+    public String changeinfo(Bkunit bkunit)
     {
-        return librarianBookService.changeinfo(bkunit);
+        librarianBookService.changeinfo(bkunit);
+        return "booksinfo";
     }
+
 }

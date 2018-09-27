@@ -2,6 +2,7 @@ package com.example.library_management_system.service;
 
 import com.example.library_management_system.bean.*;
 import com.example.library_management_system.dao.BkunitDAO;
+import com.example.library_management_system.dao.BookDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
@@ -15,14 +16,16 @@ public class LibrarianBookService
 
     @Autowired
     private BkunitDAO bkunitdao;
+    @Autowired
+    private BookDAO bookdao;
 
-    public void addBook(Bkunit bkunit)
+    public void addBkunit(Bkunit bkunit)
     {
         bkunitdao.save(bkunit);
 
     }
 
-    public void deleteBook(Bkunit bkunit)
+    public void deleteBkunit(Bkunit bkunit)
     {
         bkunitdao.deleteById(bkunit.getId());
     }
@@ -41,9 +44,27 @@ public class LibrarianBookService
         return bkunitdao.findById(id).get();
     }
 
-    public boolean changeinfo(Bkunit bkunit)
+    public void changeinfo(Bkunit bkunit)
     {
         bkunitdao.save(bkunit);
-        return true;
     }
+
+   public void addBook(Book book)
+   {
+      bookdao.save(book);
+   }
+
+   public boolean isexist(Book book)
+   {
+       if(bookdao.existsById(book.getIsbn()))
+       {
+           return true;
+       }
+       else
+       {
+           return false;
+       }
+
+   }
+
 }
