@@ -23,6 +23,10 @@ public class User
     @JoinColumn(name = "uid")
     private Set<UserBkunit> userBkunits;
 
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "rid")
+    private Set<Review> reviews;
+
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_role",
@@ -95,10 +99,6 @@ public class User
         return userBkunits;
     }
 
-    public void setUserBkunits(Set<UserBkunit> userBkunits)
-    {
-        this.userBkunits = userBkunits;
-    }
 
     public Set<Role> getRoles()
     {
@@ -138,10 +138,14 @@ public class User
         return userFavoriteBooks;
     }
 
+    public void setUserBkunits(Set<UserBkunit> userBkunits)
+    {
+        this.userBkunits = userBkunits;
+    }
+
     public void setBUL(int BUL) {
         this.BUL = BUL;
     }
-
 
 
     public void setUserFavoriteBooks(Set<UserFavoriteBook> userFavoriteBooks)
@@ -162,5 +166,13 @@ public class User
     public void setAccounts(Set<Account> accounts)
     {
         this.accounts = accounts;
+    }
+
+    public Set<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(Set<Review> reviews) {
+        this.reviews = reviews;
     }
 }

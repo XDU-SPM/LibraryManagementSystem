@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Set;
 
 public interface UserBkunitDAO extends JpaRepository<UserBkunit, Integer>
 {
@@ -14,5 +15,8 @@ public interface UserBkunitDAO extends JpaRepository<UserBkunit, Integer>
 
     Page<UserBkunit> findAllByUser(User reader, Pageable pageable);
 
+    Set<UserBkunit> findByUserAndDateBetween(int uid,Date before,Date after);
+
     UserBkunit findById(int id);
+    UserBkunit findByUserAndBkunit(int uid,int buid);
 }

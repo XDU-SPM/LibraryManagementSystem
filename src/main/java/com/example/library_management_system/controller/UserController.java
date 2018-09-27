@@ -101,8 +101,7 @@ public class UserController
     }
 
     //用户续借图书
-    @RequestMapping(value = "/renew",method = RequestMethod.GET)
-    @ResponseBody
+    @RequestMapping(value = "/userrenew",method = RequestMethod.GET)
     public String renew(HttpServletRequest request){
         int id=Integer.parseInt(request.getParameter("id"));
         if(userService.renew(id)){
@@ -110,4 +109,6 @@ public class UserController
         }
         return null;
     }
+
+
 }
