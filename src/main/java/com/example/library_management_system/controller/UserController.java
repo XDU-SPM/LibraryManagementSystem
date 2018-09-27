@@ -90,9 +90,9 @@ public class UserController
     }
 
     @RequestMapping(value = "/accept", method = RequestMethod.GET)
-    public String accept()
+    public String accept(int id)
     {
-        String role = userService.accept();
+        String role = userService.accept(id);
         if (RoleUtil.ROLE_READER_CHECK.equals(role))
             return "redirect:/readerHome";
         else if (RoleUtil.ROLE_LIBRARIAN_CHECK.equals(role))
@@ -102,10 +102,20 @@ public class UserController
 
     //用户续借图书
     @RequestMapping(value = "/renew",method = RequestMethod.GET)
-    @ResponseBody
     public String renew(HttpServletRequest request){
         int id=Integer.parseInt(request.getParameter("id"));
         if(userService.renew(id)){
+            return "redirect:/readerquery";
+        }
+        return null;
+    }
+
+    //用户还书
+    @RequestMapping(value = "/returnbook",method = RequestMethod.GET)
+    public String returnbook(HttpServletRequest request){
+        int uid=Integer.parseInt(request.getParameter("username"));
+        int buid=Integer.parseInt(request.getParameter("buid"));
+        if (userService.returnbook(uid,buid)){
             return "redirect:/readerquery";
         }
         return null;
