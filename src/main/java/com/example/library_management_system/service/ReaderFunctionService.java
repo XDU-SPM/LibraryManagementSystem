@@ -11,7 +11,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.Set;
 
 /**
  * @ author Captain
@@ -107,7 +106,7 @@ public class ReaderFunctionService
         if(reader.getBUL() <= 0) return 0;
 
         // 添加UserBkunit条目
-        Bkunit bkunit = bkunitDAO.findByBook(bk);
+        Bkunit bkunit = bkunitDAO.findByBookAndStatus(bk,BkunitUtil.NORMAL);
         bkunit.setStatus(BkunitUtil.BORROWED);      // 相对应的Bkunit的状态
         UserBkunit userBkunit = new UserBkunit(new Date(),30,BkunitUtil.BORROWED,bkunit,reader);
         userBkunitDAO.save(userBkunit);
@@ -130,12 +129,27 @@ public class ReaderFunctionService
         return 1;
     }
 
-    public Set<Review> bookReview(Book book) {
-        Set<Review> set = reviewDAO.findAllByBook(book);    // 分页
-        return set;
+
+    public Page<Review> bookReview(int start, int size,String Isbn) {
+        Book book = bookDAO.findByIsbn(Isbn);
+        start = start < 0 ? 0 : start;
+        Sort sort = new Sort(Sort.Direction.DESC, "date");
+        Pageable pageable = PageRequest.of(start, size, sort);
+        Page<Review> page = reviewDAO.findAllByBook(book, pageable);
+        return page;
     }
 
 
-    // 删除评论
+    public boolean deleteReview(int rid)
+    {
+        try {
+            Review review = reviewDAO.findById(rid);
+            reviewDAO.delete(review);
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
 
 }

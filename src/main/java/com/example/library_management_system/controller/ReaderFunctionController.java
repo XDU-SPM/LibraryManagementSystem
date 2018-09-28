@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Set;
-
 /**
  * @ author Captain
  * @ date 2018/9/26
@@ -83,11 +81,20 @@ public class ReaderFunctionController
     }
 
     @RequestMapping(value = "/reader/BookReview",method = RequestMethod.GET)
-    public String BookReview(Model model,Book book){
-        Set<Review> set= readerfunctionservice.bookReview(book);
-        model.addAttribute("review",set);
+    public String BookReview(Model model, @RequestParam(value = "start", defaultValue = "0") int start,
+                             @RequestParam(value = "size", defaultValue = "10") int size,String Isbn){
+        Page<Review> page = readerfunctionservice.bookReview(start, size,Isbn);
+        model.addAttribute("page", page);
 
         return "BookReview";
     }
+
+    @RequestMapping(value = "/reader/deleteReview",method = RequestMethod.POST)
+    public String deleteReview(Model model,int rid){
+        boolean status = readerfunctionservice.deleteReview(rid);
+        model.addAttribute("status",status);
+        return "deleteReview";
+    }
+
 
 }
