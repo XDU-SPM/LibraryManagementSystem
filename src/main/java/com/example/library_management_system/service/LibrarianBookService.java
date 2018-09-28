@@ -49,22 +49,13 @@ public class LibrarianBookService
         bkunitdao.save(bkunit);
     }
 
-   public void addBook(Book book)
-   {
-      bookdao.save(book);
-   }
+    public void addBook(Book book)
+    {
+        bookdao.save(book);
+    }
 
-   public boolean isexist(Book book)
-   {
-       if(bookdao.existsById(book.getIsbn()))
-       {
-           return true;
-       }
-       else
-       {
-           return false;
-       }
-
-   }
-
+    public boolean isexist(Book book)
+    {
+        return bookdao.existsById(book.getIsbn());
+    }
 }

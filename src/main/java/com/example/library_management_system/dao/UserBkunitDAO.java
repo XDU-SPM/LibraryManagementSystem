@@ -1,5 +1,6 @@
 package com.example.library_management_system.dao;
 
+import com.example.library_management_system.bean.Bkunit;
 import com.example.library_management_system.bean.User;
 import com.example.library_management_system.bean.UserBkunit;
 import org.springframework.data.domain.Page;
@@ -16,8 +17,10 @@ public interface UserBkunitDAO extends JpaRepository<UserBkunit, Integer>
 
     Page<UserBkunit> findAllByUser(User reader, Pageable pageable);
 
-    Set<UserBkunit> findByUserAndDateBetween(int uid, Date before, Date after);
+    Set<UserBkunit> findByUserAndBorrowDateBetween(User user, Date before, Date after);
+
 
     UserBkunit findById(int id);
-    UserBkunit findByUserAndBkunit(int uid,int buid);
+
+    UserBkunit findByUserAndBkunit(User user, Bkunit bkunit);
 }

@@ -1,5 +1,7 @@
 package com.example.library_management_system.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -39,14 +41,21 @@ public class Book
     @JoinColumn(name = "isbn")
     private Set<UserFavoriteBook> userFavoriteBooks;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "review")
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "isbn")
     private Set<Review> reviews;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "bkid")
+    @JsonIgnore
+    private Set<Bkunit> bkunits;
 
     public Book()
     {
         this.categories = new HashSet<>();
         this.userFavoriteBooks = new HashSet<>();
+        this.reviews = new HashSet<>();
+        this.bkunits = new HashSet<>();
     }
 
     public Book(String isbn)
@@ -178,5 +187,15 @@ public class Book
 
     public void setReviews(Set<Review> reviews) {
         this.reviews = reviews;
+    }
+
+    public Set<Bkunit> getBkunits()
+    {
+        return bkunits;
+    }
+
+    public void setBkunits(Set<Bkunit> bkunits)
+    {
+        this.bkunits = bkunits;
     }
 }

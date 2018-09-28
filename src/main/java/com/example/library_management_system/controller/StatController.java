@@ -19,7 +19,7 @@ public class StatController {
     public String monthborrow(Model model, @RequestParam(value="uid") int uid)
      {
          int[] book_month=new int[12];
-         statService.monthborrow(book_month,uid);
+//         statService.monthborrow(book_month,uid);
          model.addAttribute("book_month",book_month);
          return "reader";
      }

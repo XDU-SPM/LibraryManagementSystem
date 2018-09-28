@@ -13,6 +13,8 @@ public class UserBkunit
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date borrowDate;
+
+    @Temporal(TemporalType.TIMESTAMP)
     private Date returnDate;
 
     private int days = 30;   // 可借图书时长

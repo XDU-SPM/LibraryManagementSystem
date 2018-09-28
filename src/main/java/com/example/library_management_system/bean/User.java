@@ -24,7 +24,7 @@ public class User
     private Set<UserBkunit> userBkunits;
 
     @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "rid")
+    @JoinColumn(name = "uid")
     private Set<Review> reviews;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -52,6 +52,7 @@ public class User
         this.roles = new HashSet<>();
         this.userFavoriteBooks = new HashSet<>();
         this.accounts = new HashSet<>();
+        this.reviews = new HashSet<>();
     }
 
     public int getId()

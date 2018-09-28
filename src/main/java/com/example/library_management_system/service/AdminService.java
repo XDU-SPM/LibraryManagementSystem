@@ -8,8 +8,10 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import com.example.library_management_system.dao.*;
 import com.example.library_management_system.bean.*;
+
 @Service
-public class AdminService {
+public class AdminService
+{
 
     @Autowired
     private UserDAO userdao;
@@ -18,14 +20,14 @@ public class AdminService {
     @Autowired
     private UserFavoriteBookDAO userfavoritebookdao;
 
-    public  void deleteuser(User user)
+    public void deleteuser(User user)
     {
         userdao.deleteById(user.getId());
         userbkunitdao.deleteById(user.getId());
         userfavoritebookdao.deleteById(user.getId());
     }
 
-    public Page<User> showallinfo(int start,int size)
+    public Page<User> showallinfo(int start, int size)
     {
         start = start < 0 ? 0 : start;
         Sort sort = new Sort(Sort.Direction.DESC, "id");
@@ -36,7 +38,7 @@ public class AdminService {
 
     public User showinfo(int id)
     {
-        return userdao.findById(id).get();
+        return userdao.findById(id);
     }
 
     public void changeinfo(User user)

@@ -9,18 +9,16 @@ import org.springframework.stereotype.Service;
 import java.util.Set;
 
 @Service
-public class StatService{
- @Autowired
+public class StatService
+{
+    @Autowired
     private UserBkunitDAO userBkunitDAO;
 
-    public int[] monthborrow(int[] book_month,int uid)
-   {
-        Set<UserBkunit> record1= userBkunitDAO.findByUserAndDateBetween();
-        return book_month;
-   }
-
-
-
+//    public int[] monthborrow(int[] book_month, int uid)
+//    {
+//        Set<UserBkunit> record1 = userBkunitDAO.findByUserAndDateBetween();
+//        return book_month;
+//    }
 
 
 }
