@@ -1,5 +1,6 @@
 package com.example.library_management_system.service;
 
+import com.example.library_management_system.utils.GlobalUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -44,5 +45,20 @@ public class AdminService
     public void changeinfo(User user)
     {
         userdao.save(user);
+    }
+
+    public void modifyRegisterMoney(double money)
+    {
+        GlobalUtil.REGISTER_MONEY = money;
+    }
+
+    public void modifyMaxBorrowDays(int days)
+    {
+        GlobalUtil.MAX_BORROW_DAYS = days;
+    }
+
+    public void modifyMaxBorrowNum(int num)
+    {
+        GlobalUtil.MAX_BORROW_NUM = num;
     }
 }

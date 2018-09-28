@@ -46,4 +46,22 @@ public class AdminController
         adminservice.changeinfo(user);
         return "userinfo";
     }
+
+    @RequestMapping(value = "/admin/modifyRegisterMoney", method = RequestMethod.GET)
+    public void modifyRegisterMoney(double money)
+    {
+        adminservice.modifyRegisterMoney(money);
+    }
+
+    @RequestMapping(value = "/admin/modifyMaxBorrowDays", method = RequestMethod.GET)
+    public void modifyMaxBorrowDays(int days)
+    {
+        adminservice.modifyMaxBorrowDays(days);
+    }
+
+    @RequestMapping(value = "/admin/modifyMaxBorrowNum", method = RequestMethod.GET)
+    public void modifyMaxBorrowNum(int num)
+    {
+        adminservice.modifyMaxBorrowNum(num);
+    }
 }

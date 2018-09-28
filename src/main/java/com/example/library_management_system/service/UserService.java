@@ -41,8 +41,9 @@ public class UserService
         user.setPassword(MD5Util.encode(user.getPassword()));
         if (RoleUtil.ROLE_READER_CHECK.equals(roleName))
         {
-            user.setMoney(AccountUtil.REGISTER_MONEY);
-            user.getAccounts().add(new Account(AccountUtil.REGISTER, AccountUtil.REGISTER_MONEY, new Date()));
+            user.setBUL(GlobalUtil.MAX_BORROW_NUM);
+            user.setMoney(GlobalUtil.REGISTER_MONEY);
+            user.getAccounts().add(new Account(AccountUtil.REGISTER, GlobalUtil.REGISTER_MONEY, new Date()));
         }
         Role role = roleDAO.findByName(roleName);
         user.getRoles().add(role);
@@ -74,7 +75,6 @@ public class UserService
         if (userBkunit.getState() == UserBkunitUtil.BORROWED)
         {
             //更新续借图书的状态和天数
-            userBkunit.setDays(userBkunit.getDays() + 30);
             userBkunit.setState(UserBkunitUtil.RENEW);
             userBkunitDAO.save(userBkunit);
             return true;

@@ -13,6 +13,8 @@ import java.util.Set;
 
 public interface UserBkunitDAO extends JpaRepository<UserBkunit, Integer>
 {
+    List<UserBkunit> findAllByStateOrState(int state1, int state2);
+
     List<UserBkunit> findAllByState(int state);
 
     Page<UserBkunit> findAllByUser(User reader, Pageable pageable);

@@ -110,7 +110,7 @@ public class ReaderFunctionService
         // 添加UserBkunit条目
         Bkunit bkunit = bkunitDAO.findByBookAndStatus(bk, BkunitUtil.NORMAL);
         bkunit.setStatus(BkunitUtil.BORROWED);      // 相对应的Bkunit的状态
-        UserBkunit userBkunit = new UserBkunit(new Date(), 30, BkunitUtil.BORROWED, bkunit, reader);
+        UserBkunit userBkunit = new UserBkunit(new Date(), BkunitUtil.BORROWED, bkunit, reader);
         userBkunitDAO.save(userBkunit);
         reader.setBUL(reader.getBUL() - 1);   // 修改用户可借图书上限
         return 1;
