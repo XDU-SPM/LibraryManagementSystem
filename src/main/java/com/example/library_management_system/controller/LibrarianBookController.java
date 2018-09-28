@@ -28,12 +28,12 @@ public class LibrarianBookController
     @ResponseBody
     public Bkunit addBkunit(Bkunit bkunit)
     {
-//        bkunit.setId(String.valueOf(System.currentTimeMillis()));
-//        if(!librarianBookService.isexist(bkunit.getBook()))
-//        {
-//            librarianBookService.addBook(bkunit.getBook());
-//        }
-//        librarianBookService.addBkunit(bkunit);
+        bkunit.setId(String.valueOf(System.currentTimeMillis()));
+        if(!librarianBookService.isexist(bkunit.getBook()))
+        {
+            librarianBookService.addBook(bkunit.getBook());
+        }
+        librarianBookService.addBkunit(bkunit);
         return bkunit;
     }
 

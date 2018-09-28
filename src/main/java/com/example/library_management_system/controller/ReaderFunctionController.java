@@ -66,26 +66,27 @@ public class ReaderFunctionController
     }
 
 
-    @RequestMapping(value = "/reader/lend",method = RequestMethod.POST)
-    public String lend(Model model,String BookIsbn)
+    @RequestMapping(value = "/reader/lend", method = RequestMethod.POST)
+    public String lend(Model model, String BookIsbn)
     {
         int state = readerfunctionservice.lend(BookIsbn);
-        model.addAttribute("state",state);
+        model.addAttribute("state", state);
         return "lend";
     }
 
-    @RequestMapping(value = "/reader/writeReview",method = RequestMethod.POST)
-    public String writeReview(Model model,String Isbn,String review)
+    @RequestMapping(value = "/reader/writeReview", method = RequestMethod.POST)
+    public String writeReview(Model model, String Isbn, String review)
     {
-        int state = readerfunctionservice.writeReview(Isbn,review);
-        model.addAttribute("status",state);
+        int state = readerfunctionservice.writeReview(Isbn, review);
+        model.addAttribute("status", state);
         return "writeReview";
     }
 
-    @RequestMapping(value = "/reader/BookReview",method = RequestMethod.GET)
-    public String BookReview(Model model,Book book){
-        Set<Review> set= readerfunctionservice.bookReview(book);
-        model.addAttribute("review",set);
+    @RequestMapping(value = "/reader/BookReview", method = RequestMethod.GET)
+    public String BookReview(Model model, Book book)
+    {
+        Set<Review> set = readerfunctionservice.bookReview(book);
+        model.addAttribute("review", set);
 
         return "BookReview";
     }

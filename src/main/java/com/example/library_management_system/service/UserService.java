@@ -55,11 +55,13 @@ public class UserService
         if (user.getRoles().contains(roleDAO.findByName(RoleUtil.ROLE_READER_CHECK)))
         {
             user.getRoles().add(roleDAO.findByName(RoleUtil.ROLE_READER));
+            userDAO.save(user);
             return RoleUtil.ROLE_READER_CHECK;
         }
         else if (user.getRoles().contains(roleDAO.findByName(RoleUtil.ROLE_LIBRARIAN_CHECK)))
         {
             user.getRoles().add(roleDAO.findByName(RoleUtil.ROLE_LIBRARIAN));
+            userDAO.save(user);
             return RoleUtil.ROLE_LIBRARIAN_CHECK;
         }
         return null;

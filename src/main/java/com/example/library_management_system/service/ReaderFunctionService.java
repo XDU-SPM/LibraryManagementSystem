@@ -42,7 +42,8 @@ public class ReaderFunctionService
     @Autowired
     private ReviewDAO reviewDAO;
 
-    public Page<UserBkunit> queryborrowedBooks(int start, int size) {
+    public Page<UserBkunit> queryborrowedBooks(int start, int size)
+    {
         User reader = userService.getUser();
         start = start < 0 ? 0 : start;
         Sort sort = new Sort(Sort.Direction.DESC, "date");
@@ -72,6 +73,7 @@ public class ReaderFunctionService
         }
         catch (Exception e)
         {
+            e.printStackTrace();
             return false;
         }
         return true;
@@ -106,31 +108,33 @@ public class ReaderFunctionService
         // 添加UserBkunit条目
         Bkunit bkunit = bkunitDAO.findByBook(bk);
         User reader = userService.getUser();
-        UserBkunit userBkunit = new UserBkunit(new Date(),30,BkunitUtil.BORROWED,bkunit,reader);
+        UserBkunit userBkunit = new UserBkunit(new Date(), 30, BkunitUtil.BORROWED, bkunit, reader);
         userBkunitDAO.save(userBkunit);
-        reader.setBUL(reader.getBUL()-1);   // 修改用户可借图书上限
+        reader.setBUL(reader.getBUL() - 1);   // 修改用户可借图书上限
         return 1;
-
     }
 
 
-    public int writeReview(String Isbn,String review)
+    public int writeReview(String Isbn, String review)
     {
-        try {
+        try
+        {
             Book bk = bookDAO.findByIsbn(Isbn);
-            Review rv = new Review(review,new Date(),bk,userService.getUser());
+            Review rv = new Review(review, new Date(), bk, userService.getUser());
             reviewDAO.save(rv);
-        }catch (Exception e){
+        }
+        catch (Exception e)
+        {
             return 0;
         }
         return 1;
     }
 
-    public Set<Review> bookReview(Book book) {
+    public Set<Review> bookReview(Book book)
+    {
         Set<Review> set = reviewDAO.findAllByBook(book);
         return set;
     }
-
 
 
 }
