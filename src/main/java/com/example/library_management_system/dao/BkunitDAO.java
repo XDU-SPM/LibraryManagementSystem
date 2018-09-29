@@ -12,7 +12,11 @@ public interface BkunitDAO extends JpaRepository<Bkunit, String>
 
     Page<Bkunit> findAll(Pageable pageable);
 
+    Bkunit findByBook(Book book);
+    Bkunit findByBookAndStatus(Book book,int status);
+    long countAllByBook(Book book);
+    long countAllByBookAndStatus(Book book,int status);
     long countByBook(Book book);
-
     long countByBookAndStatus(Book book, int status);
+
 }

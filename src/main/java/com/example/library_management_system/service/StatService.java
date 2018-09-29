@@ -11,11 +11,10 @@ import java.util.Date;
 import java.util.Set;
 
 @Service
-public class StatService{
- @Autowired
+public class StatService
+{
+    @Autowired
     private UserBkunitDAO userBkunitDAO;
-
-
     public int[] monthborrow(int[] book_month,int uid)
    {
        Calendar cal=Calendar.getInstance();
@@ -42,9 +41,6 @@ public class StatService{
          }
         return book_month;
    }
-
-
-
 
 
 }

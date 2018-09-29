@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.example.library_management_system.bean.Bkunit;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class LibrarianBookController
@@ -24,14 +25,16 @@ public class LibrarianBookController
     }
 
     @RequestMapping(path = {"/librarian/addbook"}, method = {RequestMethod.POST})
-    public String addBkunit(Bkunit bkunit)
+    @ResponseBody
+    public Bkunit addBkunit(Bkunit bkunit)
     {
-        if(librarianBookService.isexist(bkunit.getBook())==false)
+        bkunit.setId(String.valueOf(System.currentTimeMillis()));
+        if(!librarianBookService.isexist(bkunit.getBook()))
         {
             librarianBookService.addBook(bkunit.getBook());
         }
         librarianBookService.addBkunit(bkunit);
-        return "books";
+        return bkunit;
     }
 
     //返回页面booksinfo

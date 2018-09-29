@@ -10,6 +10,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.PageRequest;
 
+import java.util.Optional;
+
 @Service
 public class LibrarianBookService
 {
@@ -41,7 +43,10 @@ public class LibrarianBookService
 
     public Bkunit searchbyid(String id)
     {
-        return bkunitdao.findById(id).get();
+        Optional<Bkunit> bkunitOptional = bkunitdao.findById(id);
+        if (bkunitOptional.isPresent())
+            return bkunitdao.findById(id).get();
+        return null;
     }
 
     public void changeinfo(Bkunit bkunit)
@@ -49,22 +54,13 @@ public class LibrarianBookService
         bkunitdao.save(bkunit);
     }
 
-   public void addBook(Book book)
-   {
-      bookdao.save(book);
-   }
+    public void addBook(Book book)
+    {
+        bookdao.save(book);
+    }
 
-   public boolean isexist(Book book)
-   {
-       if(bookdao.existsById(book.getIsbn()))
-       {
-           return true;
-       }
-       else
-       {
-           return false;
-       }
-
-   }
-
+    public boolean isexist(Book book)
+    {
+        return bookdao.existsById(book.getIsbn());
+    }
 }
