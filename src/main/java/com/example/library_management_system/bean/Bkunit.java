@@ -16,17 +16,16 @@ public class Bkunit
     private String id;
     private int status;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "bkid")
     private Book book;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "buid")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "bkunit")
     private Set<UserBkunit> userBkunits;
 
     public Bkunit(String id, int status, Book book, Set<UserBkunit> userBkunits)
     {
-        super();
+        this();
         this.id = id;
         this.status = status;
         this.book = book;
@@ -47,7 +46,6 @@ public class Bkunit
     {
         this.id = id;
     }
-
 
     public int getStatus()
     {

@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "user")
+@Table(name = "user_")
 public class User
 {
     @Id
@@ -19,12 +19,10 @@ public class User
 
     private double money;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "uid")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
     private Set<UserBkunit> userBkunits;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "uid")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
     private Set<Review> reviews;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -38,12 +36,10 @@ public class User
     // 可借数目上限 (Borrow Upper limit)
     private int BUL;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "uid")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
     private Set<UserFavoriteBook> userFavoriteBooks;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "uid")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
     private Set<Account> accounts;
 
     public User()

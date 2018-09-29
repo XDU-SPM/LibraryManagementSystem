@@ -19,14 +19,17 @@ public class UserBkunit
 
     private int state;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "buid")
     private Bkunit bkunit;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "uid")
     private User user;
 
+    public UserBkunit()
+    {
+    }
 
     public UserBkunit(Date borrowDate, int state, Bkunit bkunit, User user)
     {

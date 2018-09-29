@@ -37,16 +37,13 @@ public class Book
     )
     private Set<Category> categories;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "isbn")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "book")
     private Set<UserFavoriteBook> userFavoriteBooks;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "isbn")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "book")
     private Set<Review> reviews;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "bkid")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "book")
     @JsonIgnore
     private Set<Bkunit> bkunits;
 

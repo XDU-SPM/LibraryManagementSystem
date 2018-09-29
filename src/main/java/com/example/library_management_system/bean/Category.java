@@ -14,12 +14,7 @@ public class Category
 
     private String name;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "book_category",
-            joinColumns = @JoinColumn(name = "cid"),
-            inverseJoinColumns = @JoinColumn(name = "bkid")
-    )
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "categories")
     private Set<Book> books;
 
     public Category()
