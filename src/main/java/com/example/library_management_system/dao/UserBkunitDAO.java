@@ -21,7 +21,11 @@ public interface UserBkunitDAO extends JpaRepository<UserBkunit, Integer>
 
     int countByUserAndBorrowDateBetween(User user,Date before,Date after);
 
+    int countByBorrowDate(Date date);
+
     UserBkunit findById(int id);
 
     UserBkunit findByUserAndBkunit(User user, Bkunit bkunit);
+
+    int countByReturnDate(Date date);
 }
