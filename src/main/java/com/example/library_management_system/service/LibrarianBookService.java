@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Optional;
 
@@ -27,18 +28,29 @@ public class LibrarianBookService
 
     }
 
-    public void deleteBkunit(Bkunit bkunit)
+    public void deleteBkunit(String id)
     {
-        bkunitdao.deleteById(bkunit.getId());
+        bkunitdao.deleteById(id);
     }
 
-    public Page<Bkunit> showBook(int start, int size)
+    public Page<Bkunit> showbkunit(int start, int size)
     {
         start = start < 0 ? 0 : start;
         Sort sort = new Sort(Sort.Direction.DESC, "id");
         Pageable pageable = PageRequest.of(start, size, sort);
         Page<Bkunit> page = bkunitdao.findAll(pageable);
         return page;
+    }
+
+    public Page<Book> showbook(int start,int size,String category)
+    {
+        Category c=new Category(category);
+        start = start < 0 ? 0 : start;
+        Sort sort = new Sort(Sort.Direction.DESC, "id");
+        Pageable pageable = PageRequest.of(start, size, sort);
+        Page<Book> page = bookdao.findByCategoriesContaining(c,pageable);
+        return page;
+
     }
 
     public Bkunit searchbyid(String id)

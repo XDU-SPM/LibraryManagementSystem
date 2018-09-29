@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.example.library_management_system.dao.*;
 import com.example.library_management_system.bean.*;
 
+
 @Service
 public class AdminService
 {
@@ -21,30 +22,25 @@ public class AdminService
     @Autowired
     private UserFavoriteBookDAO userfavoritebookdao;
 
-    public void deleteuser(User user)
+    public void deleteuser(int id)
     {
-        userdao.deleteById(user.getId());
-        userbkunitdao.deleteById(user.getId());
-        userfavoritebookdao.deleteById(user.getId());
+        //删除主表数据，也会删除从表数据
+        userdao.deleteById(id);
     }
 
-    public Page<User> showallinfo(int start, int size)
+    public Page<User> showallinfo(int start, int size,String role)
     {
         start = start < 0 ? 0 : start;
         Sort sort = new Sort(Sort.Direction.DESC, "id");
         Pageable pageable = PageRequest.of(start, size, sort);
-        Page<User> page = userdao.findAll(pageable);
+        Role r=new Role(role);
+        Page<User> page = userdao.findByRolesContaining(r,pageable);
         return page;
     }
 
     public User showinfo(int id)
     {
         return userdao.findById(id);
-    }
-
-    public void changeinfo(User user)
-    {
-        userdao.save(user);
     }
 
     public void modifyRegisterMoney(double money)
