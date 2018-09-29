@@ -62,10 +62,11 @@ public class ReaderFunctionService
     }
 
 
-    public boolean addFavoriteBook(Book book)
+    public boolean addFavoriteBook(String Isbn)
     {
         try
         {
+            Book book = bookDAO.findByIsbn(Isbn);
             User reader = userService.getUser();
             UserFavoriteBook fb = userFavoriteBookDAO.findByUserAndBook(reader, book);
             if (fb == null) userFavoriteBookDAO.save(fb);
@@ -78,13 +79,19 @@ public class ReaderFunctionService
         return true;
     }
 
-    public boolean deleteFavoriteBook(Book book)
+    public boolean deleteFavoriteBook(String Isbn)
     {
         try
         {
+            Book book = bookDAO.findByIsbn(Isbn);
             User reader = userService.getUser();
             UserFavoriteBook fb = userFavoriteBookDAO.findByUserAndBook(reader, book);
-            if (fb != null) userFavoriteBookDAO.delete(fb);     //判断欲删除的图书是否已被收藏
+            if (fb != null)
+            {
+                fb.setBook(null);
+                fb.setUser(null);
+                userFavoriteBookDAO.delete(fb);     //判断欲删除的图书是否已被收藏
+            }
         }
         catch (Exception e)
         {
@@ -148,6 +155,8 @@ public class ReaderFunctionService
         try
         {
             Review review = reviewDAO.findById(rid);
+            review.setBook(null);
+            review.setUser(null);
             reviewDAO.delete(review);
         }
         catch (Exception e)

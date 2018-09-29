@@ -1,6 +1,5 @@
 package com.example.library_management_system.controller;
 
-import com.example.library_management_system.bean.Book;
 import com.example.library_management_system.bean.Review;
 import com.example.library_management_system.bean.UserBkunit;
 import com.example.library_management_system.bean.UserFavoriteBook;
@@ -44,9 +43,9 @@ public class ReaderFunctionController
     }
 
     @RequestMapping(value = "/reader/addFavoriteBooks", method = RequestMethod.GET)
-    public String addFavoriteBook(Model model, Book book)
+    public String addFavoriteBook(Model model, String Isbn)
     {
-        if (!readerfunctionservice.addFavoriteBook(book))
+        if (!readerfunctionservice.addFavoriteBook(Isbn))
             model.addAttribute("state", 0);
         else
             model.addAttribute("state", 1);
@@ -54,9 +53,9 @@ public class ReaderFunctionController
     }
 
     @RequestMapping(value = "/reader/deleteFavoriteBooks", method = RequestMethod.GET)
-    public String deleteFavoriteBook(Model model, Book book)
+    public String deleteFavoriteBook(Model model, String Isbn)
     {
-        if (!readerfunctionservice.deleteFavoriteBook(book))
+        if (!readerfunctionservice.deleteFavoriteBook(Isbn))
             model.addAttribute("state", 0);
         else
             model.addAttribute("state", 1);
