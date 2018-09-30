@@ -9,11 +9,11 @@
     <meta name = "viewport" content = "width=device-width, initial-scale=1">
     <meta name = "renderer" content = "webkit">
     <meta http-equiv = "Cache-Control" content = "no-siteapp"/>
-    <link rel = "icon" type = "image/png" href = "../static/assets/i/favicon.png">
-    <link rel = "apple-touch-icon-precomposed" href = "../static/assets/i/app-icon72x72@2x.png">
+    <link rel = "icon" type = "image/png" href = "assets/i/favicon.png">
+    <link rel = "apple-touch-icon-precomposed" href = "assets/i/app-icon72x72@2x.png">
     <meta name = "apple-mobile-web-app-title" content = "Amaze UI"/>
-    <link rel = "stylesheet" href = "../static/assets/css/amazeui.min.css"/>
-    <link rel = "stylesheet" href = "../static/assets/css/admin.css">
+    <link rel = "stylesheet" href = "assets/css/amazeui.min.css"/>
+    <link rel = "stylesheet" href = "assets/css/admin.css">
     <script src = "https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
 </head>
 <body>
@@ -78,7 +78,7 @@
                         <div class = "am-form-group">
                             <label for = "user-name" class = "am-u-sm-3 am-form-label">用户名 / Username</label>
                             <div class = "am-u-sm-9">
-                                <input type = "text" id = "user-name" placeholder = "用户名 / Username">
+                                <input type = "text" id = "user-name" placeholder = "用户名 / Username" name="username">
                                 <small>输入你的名字，让我们记住你。</small>
                             </div>
                         </div>
@@ -86,29 +86,22 @@
                         <div class = "am-form-group">
                             <label for = "user-email" class = "am-u-sm-3 am-form-label">电子邮件 / Email</label>
                             <div class = "am-u-sm-9">
-                                <input type = "email" id = "user-email" placeholder = "输入你的电子邮件 / Email">
+                                <input type = "email" id = "user-email" placeholder = "输入你的电子邮件 / Email" name="email">
                                 <small>邮箱你懂得...</small>
                             </div>
                         </div>
 
                         <div class = "am-form-group">
-                            <label for = "user-phone" class = "am-u-sm-3 am-form-label">电话 / Telephone</label>
+                            <label for = "password" class = "am-u-sm-3 am-form-label">密码 / Password</label>
                             <div class = "am-u-sm-9">
-                                <input type = "tel" id = "user-phone" placeholder = "输入你的电话号码 / Telephone">
-                            </div>
-                        </div>
-
-                        <div class = "am-form-group">
-                            <label for = "password" class = "am-u-sm-3 am-form-label">密码 / Telephone</label>
-                            <div class = "am-u-sm-9">
-                                <input type = "tel" id = "password" placeholder = "输入你的密码 / Telephone">
+                                <input type = "password" id = "password" placeholder = "输入你的密码 / Password" name="password">
                             </div>
                         </div>
 
 
                         <div class = "am-form-group">
                             <div class = "am-u-sm-9 am-u-sm-push-3">
-                                <button type = "button" class = "am-btn am-btn-primary">注册</button>
+                                <input type = "submit" class = "am-btn am-btn-primary" value="注册">
                             </div>
                         </div>
                     </form>

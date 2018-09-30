@@ -37,52 +37,46 @@ public class UserController
             else if (user.getRoles().contains(RoleUtil.ROLE_READER))
             {
                 System.out.println("reader has logged in");
-                return "redirect:readerHome";
+                return "redirect:reader/home";
             }
             else
             {
                 System.out.println("librarian has logged in");
-                return "redirect:librarianHome";
+                return "redirect:librarian/home";
             }
         }
-        System.out.println("login");
         return "login";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String register()
     {
-        System.out.println("register");
         return "register";
     }
 
-    @RequestMapping(value = "/readerHome", method = RequestMethod.GET)
-    @ResponseBody
-    public Message readerHome()
+    @RequestMapping(value = "/reader/home", method = RequestMethod.GET)
+    public String readerHome()
     {
-        return new Message("reader/home");
+        return "reader/reader_condition";
     }
 
     @RequestMapping(value = "/admin/home", method = RequestMethod.GET)
-    @ResponseBody
-    public Message adminHome()
+    public String adminHome()
     {
-        return new Message("admin/home");
+        return "admin/admin-index";
     }
 
-    @RequestMapping(value = "/librarianHome", method = RequestMethod.GET)
-    @ResponseBody
-    public Message librarianHome()
+    @RequestMapping(value = "/librarian/home", method = RequestMethod.GET)
+    public String librarianHome()
     {
-        return new Message("librarian/home");
+        return "librarian/librarian_homepage";
     }
 
     @RequestMapping(value = "/reader/register", method = RequestMethod.POST)
-    @ResponseBody
-    public User readerRegister(User student)
+    public String readerRegister(User student)
     {
         userService.registerService(student, RoleUtil.ROLE_READER_CHECK);
-        return student;
+        return "login";
     }
 
     @RequestMapping(value = "/admin/register", method = RequestMethod.POST)

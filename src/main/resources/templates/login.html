@@ -8,8 +8,8 @@
     <meta name = "format-detection" content = "telephone=no">
     <meta name = "renderer" content = "webkit">
     <meta http-equiv = "Cache-Control" content = "no-siteapp"/>
-    <link rel = "alternate icon" type = "image/png" href = "../static/assets/i/favicon.png">
-    <link rel = "stylesheet" href = "../static/assets/css/amazeui.min.css"/>
+    <link rel = "alternate icon" type = "image/png" href = "assets/i/favicon.png">
+    <link rel = "stylesheet" href = "assets/css/amazeui.min.css"/>
     <script src = "https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
     <style>
         .header {
@@ -81,12 +81,12 @@
         <hr>
         <br>
 
-        <form method = "post" class = "am-form">
+        <form method = "post" class = "am-form" action="/login">
             <label for = "username">用户名:</label>
-            <input type = "email" name = "" id = "username" value = "">
+            <input name = "username" id = "username" value = "" >
             <br>
             <label for = "password">密码:</label>
-            <input type = "password" name = "" id = "password" value = "">
+            <input type = "password" name = "password" id = "password" value = "">
             <br>
             <label for = "remember-me">
                 <input id = "remember-me" type = "checkbox">
@@ -95,12 +95,12 @@
             <br/>
             <div class = "am-cf">
                 <input type = "submit" name = "" value = "登 录/login" class = "am-btn am-btn-primary am-btn-sm am-fl">
-                <input type = "submit" name = "" value = "注 册/register" class = "am-btn am-btn-primary am-btn-sm am-fl">
-                <button class = "am-btn am-btn-default am-btn-sm am-fr"><a href = "forgetPassword.html">忘记密码/forget
-                    password ^_^?</a></button>
 
             </div>
         </form>
+        <input type = "submit" name = "" value = "注 册/register" class = "am-btn am-btn-primary am-btn-sm am-fl">
+        <button class = "am-btn am-btn-default am-btn-sm am-fr"><a href = "forgetPassword.html">忘记密码/forget
+            password ^_^?</a></button>
         <hr>
         <p>© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
     </div>

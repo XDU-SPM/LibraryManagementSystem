@@ -1,236 +1,251 @@
 <!doctype html>
-<html class="no-js fixed-layout">
+<html class = "no-js fixed-layout" xmlns:th = "http://www.thymeleaf.org"
+      xmlns:sec = "http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Amaze UI Admin index Examples</title>
-  <meta name="description" content="这是一个 index 页面">
-  <meta name="keywords" content="index">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="renderer" content="webkit">
-  <meta http-equiv="Cache-Control" content="no-siteapp" />
-  <link rel="icon" type="image/png" href="assets/i/favicon.png">
-  <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
-  <meta name="apple-mobile-web-app-title" content="Amaze UI" />
-  <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
-  <link rel="stylesheet" href="assets/css/admin.css">
-  <style>
-    .am-form-group{
-      text-align: left;
-    }
-    .am-topbar{
-      /*background-color: black;*/
-    }
-    .am-topbar .am-text-ir {
-      display: block;
-      margin-right: 10px;
-      height: 50px;
-      width: 125px;
-      background: url(assets/i/logo.jpg) no-repeat left center;
-      -webkit-background-size: 125px 24px;
-      background-size: 125px 24px;
-    }
-  </style>
+    <meta charset = "utf-8">
+    <meta http-equiv = "X-UA-Compatible" content = "IE=edge">
+    <title>Amaze UI Admin index Examples</title>
+    <meta name = "description" content = "这是一个 index 页面">
+    <meta name = "keywords" content = "index">
+    <meta name = "viewport" content = "width=device-width, initial-scale=1">
+    <meta name = "renderer" content = "webkit">
+    <meta http-equiv = "Cache-Control" content = "no-siteapp"/>
+    <link rel = "icon" type = "image/png" href = "assets/i/favicon.png">
+    <link rel = "apple-touch-icon-precomposed" href = "assets/i/app-icon72x72@2x.png">
+    <meta name = "apple-mobile-web-app-title" content = "Amaze UI"/>
+    <link rel = "stylesheet" href = "assets/css/amazeui.min.css"/>
+    <link rel = "stylesheet" href = "assets/css/admin.css">
+    <style>
+        .am-form-group {
+            text-align: left;
+        }
+
+        .am-topbar {
+            /*background-color: black;*/
+        }
+
+        .am-topbar .am-text-ir {
+            display: block;
+            margin-right: 10px;
+            height: 50px;
+            width: 125px;
+            background: url(assets/i/logo.jpg) no-repeat left center;
+            -webkit-background-size: 125px 24px;
+            background-size: 125px 24px;
+        }
+    </style>
 </head>
 <body>
 <!--[if lte IE 9]>
-<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
-  以获得更好的体验！</p>
+<p class = "browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href = "http://browsehappy.com/"
+                                                                          target = "_blank">升级浏览器</a>
+    以获得更好的体验！</p>
 <![endif]-->
 
-<header class="am-topbar am-topbar-inverse admin-header">
-  <h1 class="am-topbar-brand " >
-    <a href="#" class="am-text-ir">BiblioSoft</a>
-  </h1>
+<header class = "am-topbar am-topbar-inverse admin-header">
+    <h1 class = "am-topbar-brand ">
+        <a href = "#" class = "am-text-ir">BiblioSoft</a>
+    </h1>
 
-  <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#doc-topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+    <button class = "am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only"
+            data-am-collapse = "{target: '#doc-topbar-collapse'}"><span class = "am-sr-only">导航切换</span> <span
+            class = "am-icon-bars"></span></button>
 
-  <div class="am-collapse am-topbar-collapse" id="doc-topbar-collapse">
-    <ul class="am-nav am-nav-pills am-topbar-nav">
-      <li class="am-active"><a href="#">首页</a></li>
-      <li><a href="#">项目</a></li>
-      <li class="am-dropdown" data-am-dropdown>
-        <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-          下拉 <span class="am-icon-caret-down"></span>
-        </a>
-        <ul class="am-dropdown-content">
-          <li class="am-dropdown-header">标题</li>
-          <li><a href="#">1. 去月球</a></li>
-          <li class="am-active"><a href="#">2. 去火星</a></li>
-          <li><a href="#">3. 还是回地球</a></li>
-          <li class="am-disabled"><a href="#">4. 下地狱</a></li>
-          <li class="am-divider"></li>
-          <li><a href="#">5. 桥头一回首</a></li>
+    <div class = "am-collapse am-topbar-collapse" id = "doc-topbar-collapse">
+        <ul class = "am-nav am-nav-pills am-topbar-nav">
+            <li class = "am-active"><a href = "#">首页</a></li>
+            <li><a href = "#">项目</a></li>
+            <li class = "am-dropdown" data-am-dropdown>
+                <a class = "am-dropdown-toggle" data-am-dropdown-toggle href = "javascript:;">
+                    下拉 <span class = "am-icon-caret-down"></span>
+                </a>
+                <ul class = "am-dropdown-content">
+                    <li class = "am-dropdown-header">标题</li>
+                    <li><a href = "#">1. 去月球</a></li>
+                    <li class = "am-active"><a href = "#">2. 去火星</a></li>
+                    <li><a href = "#">3. 还是回地球</a></li>
+                    <li class = "am-disabled"><a href = "#">4. 下地狱</a></li>
+                    <li class = "am-divider"></li>
+                    <li><a href = "#">5. 桥头一回首</a></li>
+                </ul>
+            </li>
         </ul>
-      </li>
-    </ul>
 
-    <form class="am-topbar-form am-topbar-left am-form-inline" role="search">
-      <div class="am-form-group">
-        <input type="text" class="am-form-field am-input-sm" placeholder="搜索">
-      </div>
-    </form>
+        <form class = "am-topbar-form am-topbar-left am-form-inline" role = "search">
+            <div class = "am-form-group">
+                <input type = "text" class = "am-form-field am-input-sm" placeholder = "搜索">
+            </div>
+        </form>
 
-    <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
+        <div class = "am-collapse am-topbar-collapse" id = "topbar-collapse">
 
-      <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
+            <ul class = "am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
 
-        <li><a href="javascript:;"> <button id="change" class="am-btn am-btn-primary am-btn-sm">中文/英文</button> </a></li>
+                <li><a href = "javascript:;">
+                    <button id = "change" class = "am-btn am-btn-primary am-btn-sm">中文/英文</button>
+                </a></li>
 
-        <li class="am-dropdown" data-am-dropdown>
-          <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-            <a href="logout.html">注销</a>
-          </a>
+                <li class = "am-dropdown" data-am-dropdown>
+                    <a class = "am-dropdown-toggle" data-am-dropdown-toggle href = "javascript:;">
+                        <a th:href = "@{/logout}">注销</a>
+                    </a>
 
-        </li>
+                </li>
 
-      </ul>
+            </ul>
+        </div>
+
     </div>
-
-  </div>
 </header>
 
-<div class="am-cf admin-main">
-  <!-- sidebar start -->
-  <div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
-    <div class="am-offcanvas-bar admin-offcanvas-bar">
-      <ul class="am-list admin-sidebar-list">
-        <li><a href="reader_condition.html"><span class="am-icon-bar-chart"></span> 借书信息统计</a></li>
-        <li><a href="reader_search.html"><span class="am-icon-search"></span> 搜索页面</a></li>
-        <li><a href="reader_information.html" class="am-cf"><span class="am-icon-check"></span> 个人资料<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
-        <li><a href="reader_message.html"><span class="am-icon-commenting-o"></span> 留言</a></li>
-      </ul>
+<div class = "am-cf admin-main">
+    <!-- sidebar start -->
+    <div class = "admin-sidebar am-offcanvas" id = "admin-offcanvas">
+        <div class = "am-offcanvas-bar admin-offcanvas-bar">
+            <ul class = "am-list admin-sidebar-list">
+                <li><a href = "reader_condition"><span class = "am-icon-bar-chart"></span> 借书信息统计</a></li>
+                <li><a href = "reader_search"><span class = "am-icon-search"></span> 搜索页面</a></li>
+                <li><a href = "reader_information" class = "am-cf"><span class = "am-icon-check"></span> 个人资料<span
+                        class = "am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
+                <li><a href = "reader_message"><span class = "am-icon-commenting-o"></span> 留言</a></li>
+            </ul>
 
-      <div class="am-panel am-panel-default admin-sidebar-panel">
-        <div class="am-panel-bd">
-          <p><span class="am-icon-bookmark"></span> 公告</p>
-          <p>时光静好，与君语；细水流年，与君同。—— Amaze UI</p>
-        </div>
-      </div>
-
-      <div class="am-panel am-panel-default admin-sidebar-panel">
-        <div class="am-panel-bd">
-          <p><span class="am-icon-tag"></span> wiki</p>
-          <p>Welcome to the Amaze UI wiki!</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- sidebar end -->
-
-  <!-- content start -->
-  <div class="admin-content">
-    <div class="admin-content-body">
-      <div class="am-cf am-padding">
-        <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">首页</strong> / <small>一些常用模块</small></div>
-      </div>
-
-      <div class="am-g am-center am-padding">
-        <ul data-am-widget="gallery" class="am-gallery am-avg-sm-2 am-gallery-default" data-am-gallery="{ pureview: true }" >
-          <li>
-            <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">借书统计</strong></div>
-            <div id="mountNode" class="am-u-sm-12 am-u-md-8"></div>
-          </li>
-          <li>
-            <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">借书历史统计</strong></div>
-            <div id="mountNode1" class="am-u-sm-12 am-u-md-12"></div>
-          </li>
-        </ul>
-      </div>
-
-      <div class="am-cf am-padding am-padding-bottom-0">
-        <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">借阅历史</strong></div>
-      </div>
-
-      <hr>
-
-
-        <div class="am-u-sm-12 am-u-md-3">
-
-        </div>
-      </div>
-
-      <div class="am-g">
-        <div class="am-u-sm-12">
-
-          <table class="am-table am-table-striped am-table-hover am-table-compact " id="booklist">
-            <thead>
-            <tr>
-              <th class="table-id">编号</th>
-              <th class="table-title">标题</th>
-              <!--<th class="table-type">类别</th>-->
-              <th class="table-type">
-                <select >
-                  <option value="option1" >专业书</option>
-                  <option value="option2">杂志</option>
-                  <option value="option3">小说</option>
-                  <option value="option3">文学书籍</option>
-                  <option value="option3">历史</option>
-                  <option value="option3">科普</option>
-                  <option value="option3">故事会</option>
-                </select>
-              </th>
-              <th class="table-author am-hide-sm-only">作者</th>
-              <th class="table-publisher">出版社</th>
-              <th class="table-date am-hide-sm-only">出版日期</th>
-              <th class="table-positon am-hide-sm-only">借书时间</th>
-              <th class="table-set">归还时间</th>
-              <th class="table-set">操作</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td>1</td>
-              <td><a href="book_details.html">纯洁神王是如何炼成的</a></td>
-              <td>宗教类</td>
-              <td class="am-hide-sm-only">唐少伟</td>
-              <td class="am-hide-sm-only">西安电子科技大学出版社</td>
-              <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
-              <td >2018.1.12</td>
-              <td >2018.2.1</td>
-              <td>
-                <div class="am-btn-toolbar">
-                  <div class="am-btn-group am-btn-group-xs">
-                    <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span><a href="reader_comment.html"> 评论</a></button>
-
-                  </div>
+            <div class = "am-panel am-panel-default admin-sidebar-panel">
+                <div class = "am-panel-bd">
+                    <p><span class = "am-icon-bookmark"></span> 公告</p>
+                    <p>时光静好，与君语；细水流年，与君同。—— Amaze UI</p>
                 </div>
-              </td>
-            </tr>
-            </tbody>
-          </table>
+            </div>
+
+            <div class = "am-panel am-panel-default admin-sidebar-panel">
+                <div class = "am-panel-bd">
+                    <p><span class = "am-icon-tag"></span> wiki</p>
+                    <p>Welcome to the Amaze UI wiki!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- sidebar end -->
+
+    <!-- content start -->
+    <div class = "admin-content">
+        <div class = "admin-content-body">
+            <div class = "am-cf am-padding">
+                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">首页</strong> /
+                    <small>一些常用模块</small>
+                </div>
+            </div>
+
+            <div class = "am-g am-center am-padding">
+                <ul data-am-widget = "gallery" class = "am-gallery am-avg-sm-2 am-gallery-default"
+                    data-am-gallery = "{ pureview: true }">
+                    <li>
+                        <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">借书统计</strong></div>
+                        <div id = "mountNode" class = "am-u-sm-12 am-u-md-8"></div>
+                    </li>
+                    <li>
+                        <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">借书历史统计</strong></div>
+                        <div id = "mountNode1" class = "am-u-sm-12 am-u-md-12"></div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class = "am-cf am-padding am-padding-bottom-0">
+                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">借阅历史</strong></div>
+            </div>
+
+            <hr>
+
+
+            <div class = "am-u-sm-12 am-u-md-3">
+
+            </div>
+        </div>
+
+        <div class = "am-g">
+            <div class = "am-u-sm-12">
+
+                <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "booklist">
+                    <thead>
+                    <tr>
+                        <th class = "table-id">编号</th>
+                        <th class = "table-title">标题</th>
+                        <!--<th class="table-type">类别</th>-->
+                        <th class = "table-type">
+                            <select>
+                                <option value = "option1">专业书</option>
+                                <option value = "option2">杂志</option>
+                                <option value = "option3">小说</option>
+                                <option value = "option3">文学书籍</option>
+                                <option value = "option3">历史</option>
+                                <option value = "option3">科普</option>
+                                <option value = "option3">故事会</option>
+                            </select>
+                        </th>
+                        <th class = "table-author am-hide-sm-only">作者</th>
+                        <th class = "table-publisher">出版社</th>
+                        <th class = "table-date am-hide-sm-only">出版日期</th>
+                        <th class = "table-positon am-hide-sm-only">借书时间</th>
+                        <th class = "table-set">归还时间</th>
+                        <th class = "table-set">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td><a href = "book_details.html">纯洁神王是如何炼成的</a></td>
+                        <td>宗教类</td>
+                        <td class = "am-hide-sm-only">唐少伟</td>
+                        <td class = "am-hide-sm-only">西安电子科技大学出版社</td>
+                        <td class = "am-hide-sm-only">2014年9月4日 7:28:47</td>
+                        <td>2018.1.12</td>
+                        <td>2018.2.1</td>
+                        <td>
+                            <div class = "am-btn-toolbar">
+                                <div class = "am-btn-group am-btn-group-xs">
+                                    <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><span
+                                            class = "am-icon-pencil-square-o"></span><a href = "reader_comment.html">
+                                        评论</a></button>
+
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
 
         </div>
 
-      </div>
-
-    <footer class="admin-content-footer">
-      <hr>
-      <p class="am-padding-left" style="text-align: center">© 2018 Biboliosoft Online Library System</p>
-    </footer>
-  </div>
-  <!-- content end -->
+        <footer class = "admin-content-footer">
+            <hr>
+            <p class = "am-padding-left" style = "text-align: center">© 2018 Biboliosoft Online Library System</p>
+        </footer>
+    </div>
+    <!-- content end -->
 
 </div>
 
-<a href="#" class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
+<a href = "#" class = "am-icon-btn am-icon-th-list am-show-sm-only admin-menu"
+   data-am-offcanvas = "{target: '#admin-offcanvas'}"></a>
 
 <!--[if lt IE 9]>
-<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
-<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
-<script src="assets/js/amazeui.ie8polyfill.min.js"></script>
+<script src = "http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src = "http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src = "assets/js/amazeui.ie8polyfill.min.js"></script>
 <![endif]-->
 
 <!--[if (gte IE 9)|!(IE)]><!-->
-<script src="assets/js/jquery.min.js"></script>
+<script src = "assets/js/jquery.min.js"></script>
 <!--<![endif]-->
-<script src="assets/js/amazeui.min.js"></script>
-<script src="assets/js/app.js"></script>
+<script src = "assets/js/amazeui.min.js"></script>
+<script src = "assets/js/app.js"></script>
 
-<script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.g2-3.2.8/dist/g2.min.js"></script>
-<script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.data-set-0.9.6/dist/data-set.min.js"></script>
-<script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
-<script type="text/javascript" src="assets/js/test.js"></script>
+<script src = "https://gw.alipayobjects.com/os/antv/pkg/_antv.g2-3.2.8/dist/g2.min.js"></script>
+<script src = "https://gw.alipayobjects.com/os/antv/pkg/_antv.data-set-0.9.6/dist/data-set.min.js"></script>
+<script src = "https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script type = "text/javascript" src = "assets/js/test.js"></script>
 <script>
     var data = [{
         year: '1991',
@@ -332,7 +347,7 @@
             shadowBlur: 2,
             shadowColor: 'rgba(0, 0, 0, .45)'
         }
-    }).tooltip('item*percent', function(item, percent) {
+    }).tooltip('item*percent', function (item, percent) {
         percent = percent * 100 + '%';
         return {
             name: item,
@@ -344,8 +359,8 @@
     });
     chart.render();
 </script>
-<script type="text/javascript" >
-    $("#change").click(function(){
+<script type = "text/javascript">
+    $("#change").click(function () {
         translate();
     })
 </script>
