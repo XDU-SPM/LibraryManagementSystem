@@ -9,6 +9,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.Optional;
 
 @Service
 public class LibrarianBookService
@@ -25,12 +28,12 @@ public class LibrarianBookService
 
     }
 
-    public void deleteBkunit(Bkunit bkunit)
+    public void deleteBkunit(String id)
     {
-        bkunitdao.deleteById(bkunit.getId());
+        bkunitdao.deleteById(id);
     }
 
-    public Page<Bkunit> showBook(int start, int size)
+    public Page<Bkunit> showbkunit(int start, int size)
     {
         start = start < 0 ? 0 : start;
         Sort sort = new Sort(Sort.Direction.DESC, "id");
@@ -39,9 +42,23 @@ public class LibrarianBookService
         return page;
     }
 
+    public Page<Book> showbook(int start,int size,String category)
+    {
+        Category c=new Category(category);
+        start = start < 0 ? 0 : start;
+        Sort sort = new Sort(Sort.Direction.DESC, "id");
+        Pageable pageable = PageRequest.of(start, size, sort);
+        Page<Book> page = bookdao.findByCategoriesContaining(c,pageable);
+        return page;
+
+    }
+
     public Bkunit searchbyid(String id)
     {
-        return bkunitdao.findById(id).get();
+        Optional<Bkunit> bkunitOptional = bkunitdao.findById(id);
+        if (bkunitOptional.isPresent())
+            return bkunitdao.findById(id).get();
+        return null;
     }
 
     public void changeinfo(Bkunit bkunit)
@@ -49,22 +66,13 @@ public class LibrarianBookService
         bkunitdao.save(bkunit);
     }
 
-   public void addBook(Book book)
-   {
-      bookdao.save(book);
-   }
+    public void addBook(Book book)
+    {
+        bookdao.save(book);
+    }
 
-   public boolean isexist(Book book)
-   {
-       if(bookdao.existsById(book.getIsbn()))
-       {
-           return true;
-       }
-       else
-       {
-           return false;
-       }
-
-   }
-
+    public boolean isexist(Book book)
+    {
+        return bookdao.existsById(book.getIsbn());
+    }
 }

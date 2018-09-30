@@ -13,16 +13,17 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
-public class BookController {
+public class BookController
+{
     @Autowired
     private BookService bookService;
 
     @ResponseBody
     @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public Book  search(HttpServletRequest request){
-        String bookname=request.getParameter("bookname" );
+    public Book search(HttpServletRequest request)
+    {
+        String bookname = request.getParameter("bookname");
         return bookService.search(bookname);
     }
-
 
 }

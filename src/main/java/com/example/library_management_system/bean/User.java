@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "user")
+@Table(name = "user_")
 public class User
 {
     @Id
@@ -19,13 +19,15 @@ public class User
 
     private double money;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "uid")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
     private Set<UserBkunit> userBkunits;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+    private Set<Review> reviews;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
-            name = "student_role",
+            name = "user_role",
             joinColumns = @JoinColumn(name = "uid"),
             inverseJoinColumns = @JoinColumn(name = "rid")
     )
@@ -34,12 +36,10 @@ public class User
     // 可借数目上限 (Borrow Upper limit)
     private int BUL;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "uid")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
     private Set<UserFavoriteBook> userFavoriteBooks;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "uid")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
     private Set<Account> accounts;
 
     public User()
@@ -48,6 +48,7 @@ public class User
         this.roles = new HashSet<>();
         this.userFavoriteBooks = new HashSet<>();
         this.accounts = new HashSet<>();
+        this.reviews = new HashSet<>();
     }
 
     public int getId()
@@ -95,10 +96,6 @@ public class User
         return userBkunits;
     }
 
-    public void setUserBkunits(Set<UserBkunit> userBkunits)
-    {
-        this.userBkunits = userBkunits;
-    }
 
     public Set<Role> getRoles()
     {
@@ -138,10 +135,14 @@ public class User
         return userFavoriteBooks;
     }
 
+    public void setUserBkunits(Set<UserBkunit> userBkunits)
+    {
+        this.userBkunits = userBkunits;
+    }
+
     public void setBUL(int BUL) {
         this.BUL = BUL;
     }
-
 
 
     public void setUserFavoriteBooks(Set<UserFavoriteBook> userFavoriteBooks)
@@ -162,5 +163,13 @@ public class User
     public void setAccounts(Set<Account> accounts)
     {
         this.accounts = accounts;
+    }
+
+    public Set<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(Set<Review> reviews) {
+        this.reviews = reviews;
     }
 }

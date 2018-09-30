@@ -1,6 +1,6 @@
 package com.example.library_management_system.controller;
 
-import com.example.library_management_system.bean.Book;
+import com.example.library_management_system.bean.Review;
 import com.example.library_management_system.bean.UserBkunit;
 import com.example.library_management_system.bean.UserFavoriteBook;
 import com.example.library_management_system.service.ReaderFunctionService;
@@ -43,9 +43,9 @@ public class ReaderFunctionController
     }
 
     @RequestMapping(value = "/reader/addFavoriteBooks", method = RequestMethod.GET)
-    public String addFavoriteBook(Model model, Book book)
+    public String addFavoriteBook(Model model, String Isbn)
     {
-        if (!readerfunctionservice.addFavoriteBook(book))
+        if (!readerfunctionservice.addFavoriteBook(Isbn))
             model.addAttribute("state", 0);
         else
             model.addAttribute("state", 1);
@@ -53,19 +53,47 @@ public class ReaderFunctionController
     }
 
     @RequestMapping(value = "/reader/deleteFavoriteBooks", method = RequestMethod.GET)
-    public String deleteFavoriteBook(Model model, Book book)
+    public String deleteFavoriteBook(Model model, String Isbn)
     {
-        if (!readerfunctionservice.deleteFavoriteBook(book))
+        if (!readerfunctionservice.deleteFavoriteBook(Isbn))
             model.addAttribute("state", 0);
         else
             model.addAttribute("state", 1);
         return "deleteFavoriteBook";
     }
 
-    @RequestMapping(value = "/reader/lend",method = RequestMethod.POST)
-    public String lend(String BookIsbn)
+
+    @RequestMapping(value = "/reader/lend", method = RequestMethod.POST)
+    public String lend(Model model, String BookIsbn)
     {
         int state = readerfunctionservice.lend(BookIsbn);
-        return "{\"state\": \"" + state + "\"}";
+        model.addAttribute("state", state);
+        return "lend";
     }
+
+    @RequestMapping(value = "/reader/writeReview", method = RequestMethod.POST)
+    public String writeReview(Model model, String Isbn, String review)
+    {
+        int state = readerfunctionservice.writeReview(Isbn, review);
+        model.addAttribute("status", state);
+        return "writeReview";
+    }
+
+    @RequestMapping(value = "/reader/BookReview",method = RequestMethod.GET)
+    public String BookReview(Model model, @RequestParam(value = "start", defaultValue = "0") int start,
+                             @RequestParam(value = "size", defaultValue = "10") int size,String Isbn){
+        Page<Review> page = readerfunctionservice.bookReview(start, size,Isbn);
+        model.addAttribute("page", page);
+
+        return "BookReview";
+    }
+
+    @RequestMapping(value = "/reader/deleteReview",method = RequestMethod.POST)
+    public String deleteReview(Model model,int rid){
+        boolean status = readerfunctionservice.deleteReview(rid);
+        model.addAttribute("status",status);
+        return "deleteReview";
+    }
+
+
 }

@@ -13,19 +13,31 @@ public class UserBkunit
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date borrowDate;
+
+    @Temporal(TemporalType.TIMESTAMP)
     private Date returnDate;
 
-
-    private int days;
     private int state;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "buid")
     private Bkunit bkunit;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "uid")
     private User user;
+
+    public UserBkunit()
+    {
+    }
+
+    public UserBkunit(Date borrowDate, int state, Bkunit bkunit, User user)
+    {
+        this.borrowDate = borrowDate;
+        this.state = state;
+        this.bkunit = bkunit;
+        this.user = user;
+    }
 
     public int getId()
     {
@@ -37,19 +49,23 @@ public class UserBkunit
         this.id = id;
     }
 
-    public Date getBorrowDate() {
+    public Date getBorrowDate()
+    {
         return borrowDate;
     }
 
-    public void setBorrowDate(Date borrowDate) {
+    public void setBorrowDate(Date borrowDate)
+    {
         this.borrowDate = borrowDate;
     }
 
-    public Date getReturnDate() {
+    public Date getReturnDate()
+    {
         return returnDate;
     }
 
-    public void setReturnDate(Date returnDate) {
+    public void setReturnDate(Date returnDate)
+    {
         this.returnDate = returnDate;
     }
 
@@ -63,11 +79,13 @@ public class UserBkunit
         this.state = state;
     }
 
-    public Bkunit getBkunit() {
+    public Bkunit getBkunit()
+    {
         return bkunit;
     }
 
-    public void setBkunit(Bkunit bkunit) {
+    public void setBkunit(Bkunit bkunit)
+    {
         this.bkunit = bkunit;
     }
 
@@ -79,15 +97,5 @@ public class UserBkunit
     public void setUser(User user)
     {
         this.user = user;
-    }
-
-    public int getDays()
-    {
-        return days;
-    }
-
-    public void setDays(int days)
-    {
-        this.days = days;
     }
 }

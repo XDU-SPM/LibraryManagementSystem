@@ -7,6 +7,7 @@ import com.example.library_management_system.dao.AccountDAO;
 import com.example.library_management_system.dao.UserBkunitDAO;
 import com.example.library_management_system.dao.UserDAO;
 import com.example.library_management_system.utils.AccountUtil;
+import com.example.library_management_system.utils.GlobalUtil;
 import com.example.library_management_system.utils.MailUtil;
 import com.example.library_management_system.utils.UserBkunitUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,13 +42,18 @@ public class Timer
     @Scheduled(cron = "0 0 0 * * ?")
     public void modifyUserBkunitState()
     {
-        List<UserBkunit> userBkunits = userBkunitDAO.findAllByState(UserBkunitUtil.BORROWED);
+        List<UserBkunit> userBkunits = userBkunitDAO.findAllByStateOrState(UserBkunitUtil.BORROWED, UserBkunitUtil.RENEW);
         Calendar now = Calendar.getInstance();
         for (UserBkunit userBkunit : userBkunits)
         {
             Calendar overdue = Calendar.getInstance();
-            overdue.setTime(userBkunit.getDate());
-            overdue.add(Calendar.DATE, userBkunit.getDays());
+            overdue.setTime(userBkunit.getBorrowDate());
+            int days;
+            if (userBkunit.getState() == UserBkunitUtil.BORROWED)
+                days = GlobalUtil.MAX_BORROW_DAYS;
+            else
+                days = GlobalUtil.MAX_BORROW_DAYS * 2;
+            overdue.add(Calendar.DATE, days);
             if (now.getTime().after(overdue.getTime()))
                 userBkunit.setState(UserBkunitUtil.OVERDUE);
         }

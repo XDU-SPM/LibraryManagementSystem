@@ -14,18 +14,18 @@ public class Bkunit
 {
     @Id
     private String id;
-    private String status;
+    private int status;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "bkid")
     private Book book;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "buid")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "bkunit")
     private Set<UserBkunit> userBkunits;
 
-
-    public Bkunit(String id, String status, Book book, Set<UserBkunit> userBkunits) {
+    public Bkunit(String id, int status, Book book, Set<UserBkunit> userBkunits)
+    {
+        this();
         this.id = id;
         this.status = status;
         this.book = book;
@@ -47,11 +47,13 @@ public class Bkunit
         this.id = id;
     }
 
-    public String getStatus() {
+    public int getStatus()
+    {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status)
+    {
         this.status = status;
     }
 

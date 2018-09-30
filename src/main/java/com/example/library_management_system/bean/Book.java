@@ -1,5 +1,7 @@
 package com.example.library_management_system.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -26,6 +28,7 @@ public class Book
 
     private String author;
 
+
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "book_category",
@@ -34,14 +37,22 @@ public class Book
     )
     private Set<Category> categories;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "isbn")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "book")
     private Set<UserFavoriteBook> userFavoriteBooks;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "book")
+    private Set<Review> reviews;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "book")
+    @JsonIgnore
+    private Set<Bkunit> bkunits;
 
     public Book()
     {
         this.categories = new HashSet<>();
         this.userFavoriteBooks = new HashSet<>();
+        this.reviews = new HashSet<>();
+        this.bkunits = new HashSet<>();
     }
 
     public Book(String isbn)
@@ -165,5 +176,23 @@ public class Book
     public void setUserFavoriteBooks(Set<UserFavoriteBook> userFavoriteBooks)
     {
         this.userFavoriteBooks = userFavoriteBooks;
+    }
+
+    public Set<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(Set<Review> reviews) {
+        this.reviews = reviews;
+    }
+
+    public Set<Bkunit> getBkunits()
+    {
+        return bkunits;
+    }
+
+    public void setBkunits(Set<Bkunit> bkunits)
+    {
+        this.bkunits = bkunits;
     }
 }

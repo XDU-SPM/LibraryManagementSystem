@@ -13,7 +13,7 @@ public class Account
     private int type;
     private double money;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "uid")
     private User user;
 

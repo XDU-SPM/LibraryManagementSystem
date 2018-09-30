@@ -1,5 +1,6 @@
 package com.example.library_management_system.dao;
 
+import com.example.library_management_system.bean.Bkunit;
 import com.example.library_management_system.bean.User;
 import com.example.library_management_system.bean.UserBkunit;
 import org.springframework.data.domain.Page;
@@ -8,14 +9,23 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 public interface UserBkunitDAO extends JpaRepository<UserBkunit, Integer>
 {
-    long countByDateBetweenAndState(Date before, Date after, int state);
-    long countByState(int state);
+    List<UserBkunit> findAllByStateOrState(int state1, int state2);
+
     List<UserBkunit> findAllByState(int state);
 
     Page<UserBkunit> findAllByUser(User reader, Pageable pageable);
 
+    int countByUserAndBorrowDateBetween(User user,Date before,Date after);
+
+    int countByBorrowDate(Date date);
+
     UserBkunit findById(int id);
+
+    UserBkunit findByUserAndBkunit(User user, Bkunit bkunit);
+
+    int countByReturnDate(Date date);
 }

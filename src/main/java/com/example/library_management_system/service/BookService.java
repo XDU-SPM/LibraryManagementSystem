@@ -6,11 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class BookService {
+public class BookService
+{
     @Autowired
     private BookDAO bookDAO;
 
-    public Book search(String name){
-        return bookDAO.findByName(name);
+    public Book search(String name)
+    {
+        return bookDAO.findByTitle(name);
     }
 }
