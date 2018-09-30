@@ -51,6 +51,13 @@ public class User
         this.reviews = new HashSet<>();
     }
 
+    public User(String username, String password)
+    {
+        this();
+        this.username = username;
+        this.password = password;
+    }
+
     public int getId()
     {
         return id;
