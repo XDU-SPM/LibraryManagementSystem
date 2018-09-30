@@ -138,67 +138,71 @@
         </ul>
       </div>
 
-      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">借阅历史</strong></div>
+      <div class="am-cf am-padding am-padding-bottom-0">
+        <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">借阅历史</strong></div>
+      </div>
+
+      <hr>
+
+
+        <div class="am-u-sm-12 am-u-md-3">
+
+        </div>
+      </div>
+
       <div class="am-g">
         <div class="am-u-sm-12">
-          <form class="am-form">
-            <ul data-am-widget="gallery" class="am-gallery am-avg-sm-2
-  am-avg-md-3 am-avg-lg-4 am-gallery-bordered" data-am-gallery="{  }" >
-              <li>
-                <div class="am-gallery-item">
-                  <a href="http://s.amazeui.org/media/i/demos/bing-1.jpg" class="">
-                    <img src="http://s.amazeui.org/media/i/demos/bing-1.jpg"  alt="远方 有一个地方 那里种有我们的梦想"/>
-                    <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
-                    <div class="am-gallery-desc">2375-09-26</div>
-                  </a>
+
+          <table class="am-table am-table-striped am-table-hover am-table-compact " id="booklist">
+            <thead>
+            <tr>
+              <th class="table-id">编号</th>
+              <th class="table-title">标题</th>
+              <!--<th class="table-type">类别</th>-->
+              <th class="table-type">
+                <select >
+                  <option value="option1" >专业书</option>
+                  <option value="option2">杂志</option>
+                  <option value="option3">小说</option>
+                  <option value="option3">文学书籍</option>
+                  <option value="option3">历史</option>
+                  <option value="option3">科普</option>
+                  <option value="option3">故事会</option>
+                </select>
+              </th>
+              <th class="table-author am-hide-sm-only">作者</th>
+              <th class="table-publisher">出版社</th>
+              <th class="table-date am-hide-sm-only">出版日期</th>
+              <th class="table-positon am-hide-sm-only">借书时间</th>
+              <th class="table-set">归还时间</th>
+              <th class="table-set">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>1</td>
+              <td><a href="book_details.html">纯洁神王是如何炼成的</a></td>
+              <td>宗教类</td>
+              <td class="am-hide-sm-only">唐少伟</td>
+              <td class="am-hide-sm-only">西安电子科技大学出版社</td>
+              <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
+              <td >2018.1.12</td>
+              <td >2018.2.1</td>
+              <td>
+                <div class="am-btn-toolbar">
+                  <div class="am-btn-group am-btn-group-xs">
+                    <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span><a href="reader_comment.html"> 评论</a></button>
+
+                  </div>
                 </div>
-              </li>
-              <li>
-                <div class="am-gallery-item">
-                  <a href="http://s.amazeui.org/media/i/demos/bing-2.jpg" class="">
-                    <img src="http://s.amazeui.org/media/i/demos/bing-2.jpg"  alt="某天 也许会相遇 相遇在这个好地方"/>
-                    <h3 class="am-gallery-title">某天 也许会相遇 相遇在这个好地方</h3>
-                    <div class="am-gallery-desc">2375-09-26</div>
-                  </a>
-                </div>
-              </li>
-              <li>
-                <div class="am-gallery-item">
-                  <a href="http://s.amazeui.org/media/i/demos/bing-3.jpg" class="">
-                    <img src="http://s.amazeui.org/media/i/demos/bing-3.jpg"  alt="不要太担心 只因为我相信"/>
-                    <h3 class="am-gallery-title">不要太担心 只因为我相信</h3>
-                    <div class="am-gallery-desc">2375-09-26</div>
-                  </a>
-                </div>
-              </li>
-              <li>
-                <div class="am-gallery-item">
-                  <a href="http://s.amazeui.org/media/i/demos/bing-4.jpg" class="">
-                    <img src="http://s.amazeui.org/media/i/demos/bing-4.jpg"  alt="终会走过这条遥远的道路"/>
-                    <h3 class="am-gallery-title">终会走过这条遥远的道路</h3>
-                    <div class="am-gallery-desc">2375-09-26</div>
-                  </a>
-                </div>
-              </li>
-            </ul>
-            <div class="am-cf">
-              共 15 条记录
-              <div class="am-fr">
-                <ul class="am-pagination">
-                  <li class="am-disabled"><a href="#">«</a></li>
-                  <li class="am-active"><a href="#">1</a></li>
-                  <li><a href="#">2</a></li>
-                  <li><a href="#">3</a></li>
-                  <li><a href="#">4</a></li>
-                  <li><a href="#">5</a></li>
-                  <li><a href="#">»</a></li>
-                </ul>
-              </div>
-            </div>
-            <hr />
-            <p>注：.....</p>
-          </form>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+
         </div>
+
+      </div>
 
       </div>
 
