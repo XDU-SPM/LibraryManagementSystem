@@ -29,7 +29,7 @@
 </head>
 <body>
 <header class="am-topbar am-topbar-inverse admin-header">
-    <h1 class="am-topbar-brand" >
+    <h1 class="am-topbar-brand " >
         <a href="#" class="am-text-ir">BiblioSoft</a>
     </h1>
 
@@ -61,19 +61,22 @@
             </div>
         </form>
 
-        <div class="am-topbar-right">
-            <div class="am-dropdown" data-am-dropdown="{boundary: '.am-topbar'}">
-                <button class="am-btn am-btn-secondary am-topbar-btn am-btn-sm am-dropdown-toggle" data-am-dropdown-toggle>Language <span class="am-icon-caret-down"></span></button>
-                <ul class="am-dropdown-content">
-                    <li><a href="#">中文</a></li>
-                    <li><a href="#">English</a></li>
-                </ul>
-            </div>
+        <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
+
+            <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
+
+                <li><a href="javascript:;"> <button id="change" class="am-btn am-btn-primary am-btn-sm">中文/英文</button> </a></li>
+
+                <li class="am-dropdown" data-am-dropdown>
+                    <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+                        <a href="logout.html">注销</a>
+                    </a>
+
+                </li>
+
+            </ul>
         </div>
 
-        <div class="am-topbar-right">
-            <button class="am-btn am-btn-primary am-topbar-btn am-btn-sm">注销</button>
-        </div>
     </div>
 </header>
 
@@ -132,32 +135,18 @@
 
                     <ul class="am-avg-sm-1 am-avg-md-4 am-margin am-padding am-text-center admin-content-list ">
                         <li><a href="#" class="am-text-success"><span class="am-icon-btn am-icon-book"></span><br/>今日借阅<br/>2300</a></li>
-                        <li><a href="#" class="am-text-warning"><span class="am-icon-btn am-icon-header"></span><br/>逾期人数<br/>308</a></li>
+                        <li><a href="#" class="am-text-warning"><span class="am-icon-btn am-icon-clock-o"></span><br/>逾期人数<br/>308</a></li>
                         <li><a href="#" class="am-text-danger"><span class="am-icon-btn am-icon-recycle"></span><br/>今日归还<br/>80082</a></li>
                         <li><a href="#" class="am-text-secondary"><span class="am-icon-btn am-icon-user-md"></span><br/>罚金收入<br/>3000</a></li>
                     </ul>
 
-                    <div class="am-g">
-                        <div class="am-u-md-6" >
-                            <!-- 折线图堆叠 -->
-                            <div class="card-box">
-                                <div  id="pie1" style="width: 100%;height: 400px;"></div>
-                            </div>
-                        </div>
 
-                        <div class="am-u-md-6">
-                            <!-- 堆叠区域图  -->
-                            <div class="card-box">
-                                <div  id="pie2" style="width: 100%;height: 400px;"></div>
-                            </div>
-                        </div>
-                    </div>
 
                     <div class="am-g">
                         <div class="am-u-md-6">
                             <!-- Step Line -->
                             <div class="card-box">
-                                <div  id="pie3" style="width: 100%;height: 400px;"></div>
+                                <div  id="pie1" style="width: 100%;height: 400px;"></div>
                             </div>
                         </div>
 
@@ -195,6 +184,11 @@
 <script src="assets/js/app.js"></script>
 <script type="text/javascript" src="assets/js/charts/echarts.min.js"></script>
 <script type="text/javascript" src="assets/js/charts/pieChart.js"></script>
-
+<script type="text/javascript" src="assets/js/test.js"></script>
+<script type="text/javascript" >
+    $("#change").click(function(){
+        translate();
+    })
+</script>
 </body>
 </html>

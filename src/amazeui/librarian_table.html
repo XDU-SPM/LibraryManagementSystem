@@ -60,19 +60,22 @@
             </div>
         </form>
 
-        <div class="am-topbar-right">
-            <div class="am-dropdown" data-am-dropdown="{boundary: '.am-topbar'}">
-                <button class="am-btn am-btn-secondary am-topbar-btn am-btn-sm am-dropdown-toggle" data-am-dropdown-toggle>Language <span class="am-icon-caret-down"></span></button>
-                <ul class="am-dropdown-content">
-                    <li><a href="#">中文</a></li>
-                    <li><a href="#">English</a></li>
-                </ul>
-            </div>
+        <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
+
+            <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
+
+                <li><a href="javascript:;"> <button id="change" class="am-btn am-btn-primary am-btn-sm">中文/英文</button> </a></li>
+
+                <li class="am-dropdown" data-am-dropdown>
+                    <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+                        <a href="logout.html">注销</a>
+                    </a>
+
+                </li>
+
+            </ul>
         </div>
 
-        <div class="am-topbar-right">
-            <button class="am-btn am-btn-primary am-topbar-btn am-btn-sm">注销</button>
-        </div>
     </div>
 </header>
 
@@ -279,6 +282,12 @@
             });
         });
     });
+</script>
+<script type="text/javascript" src="assets/js/test.js"></script>
+<script type="text/javascript" >
+    $("#change").click(function(){
+        translate();
+    })
 </script>
 </body>
 </html>
