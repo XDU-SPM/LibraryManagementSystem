@@ -204,13 +204,9 @@
 
       </div>
 
-      </div>
-
-    </div>
-
     <footer class="admin-content-footer">
       <hr>
-      <p class="am-padding-left">© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
+      <p class="am-padding-left" style="text-align: center">© 2018 Biboliosoft Online Library System</p>
     </footer>
   </div>
   <!-- content end -->
@@ -230,35 +226,39 @@
 <!--<![endif]-->
 <script src="assets/js/amazeui.min.js"></script>
 <script src="assets/js/app.js"></script>
+
 <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.g2-3.2.8/dist/g2.min.js"></script>
 <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.data-set-0.9.6/dist/data-set.min.js"></script>
 <script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
 <script type="text/javascript" src="assets/js/test.js"></script>
 <script>
     var data = [{
-        year: '1951 年',
-        sales: 38
+        year: '1991',
+        value: 3
     }, {
-        year: '1952 年',
-        sales: 52
+        year: '1992',
+        value: 4
     }, {
-        year: '1956 年',
-        sales: 61
+        year: '1993',
+        value: 3.5
     }, {
-        year: '1957 年',
-        sales: 145
+        year: '1994',
+        value: 5
     }, {
-        year: '1958 年',
-        sales: 48
+        year: '1995',
+        value: 4.9
     }, {
-        year: '1959 年',
-        sales: 38
+        year: '1996',
+        value: 6
     }, {
-        year: '1960 年',
-        sales: 38
+        year: '1997',
+        value: 7
     }, {
-        year: '1962 年',
-        sales: 38
+        year: '1998',
+        value: 9
+    }, {
+        year: '1999',
+        value: 13
     }];
     var chart = new G2.Chart({
         container: 'mountNode1',
@@ -266,10 +266,22 @@
         height: window.innerHeight
     });
     chart.source(data);
-    chart.scale('sales', {
-        tickInterval: 20
+    chart.scale('value', {
+        min: 0
     });
-    chart.interval().position('year*sales');
+    chart.scale('year', {
+        range: [0, 1]
+    });
+    chart.tooltip({
+        crosshairs: {
+            type: 'line'
+        }
+    });
+    chart.line().position('year*value');
+    chart.point().position('year*value').size(4).shape('circle').style({
+        stroke: '#fff',
+        lineWidth: 1
+    });
     chart.render();
 </script>
 <script>
