@@ -1,75 +1,83 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang = "en" xmlns:th = "http://www.thymeleaf.org"
+      xmlns:sec = "http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
-    <meta charset="UTF-8">
+    <meta charset = "UTF-8">
     <title>BiblioSoft</title>
-    <link rel="icon" type="image/png" href="assets/i/favicon.png">
-    <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
-    <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
-    <link rel="stylesheet" href="assets/css/admin.css">
+    <link rel = "icon" type = "image/png" href = "assets/i/favicon.png">
+    <link rel = "apple-touch-icon-precomposed" href = "assets/i/app-icon72x72@2x.png">
+    <link rel = "stylesheet" href = "assets/css/amazeui.min.css"/>
+    <link rel = "stylesheet" href = "assets/css/admin.css">
     <style>
-        .am-form-group{
+        .am-form-group {
             text-align: left;
         }
-        .am-topbar{
+
+        .am-topbar {
             /*background-color: black;*/
         }
+
         .am-topbar .am-text-ir {
             display: block;
             margin-right: 10px;
             height: 50px;
             width: 125px;
-            background: url(assets/i/logo.jpg) no-repeat left center ;
+            background: url(assets/i/logo.jpg) no-repeat left center;
             -webkit-background-size: 125px 24px;
             background-size: 125px 24px;
         }
-        .am-topbar-brand{
+
+        .am-topbar-brand {
         }
     </style>
 </head>
 <body>
-<header class="am-topbar am-topbar-inverse admin-header">
-    <h1 class="am-topbar-brand " >
-        <a href="#" class="am-text-ir">BiblioSoft</a>
+<header class = "am-topbar am-topbar-inverse admin-header">
+    <h1 class = "am-topbar-brand ">
+        <a href = "#" class = "am-text-ir">BiblioSoft</a>
     </h1>
 
-    <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#doc-topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+    <button class = "am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only"
+            data-am-collapse = "{target: '#doc-topbar-collapse'}"><span class = "am-sr-only">导航切换</span> <span
+            class = "am-icon-bars"></span></button>
 
-    <div class="am-collapse am-topbar-collapse" id="doc-topbar-collapse">
-        <ul class="am-nav am-nav-pills am-topbar-nav">
-            <li class="am-active"><a href="#">首页</a></li>
-            <li><a href="#">项目</a></li>
-            <li class="am-dropdown" data-am-dropdown>
-                <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-                    下拉 <span class="am-icon-caret-down"></span>
+    <div class = "am-collapse am-topbar-collapse" id = "doc-topbar-collapse">
+        <ul class = "am-nav am-nav-pills am-topbar-nav">
+            <li class = "am-active"><a href = "#">首页</a></li>
+            <li><a href = "#">项目</a></li>
+            <li class = "am-dropdown" data-am-dropdown>
+                <a class = "am-dropdown-toggle" data-am-dropdown-toggle href = "javascript:;">
+                    下拉 <span class = "am-icon-caret-down"></span>
                 </a>
-                <ul class="am-dropdown-content">
-                    <li class="am-dropdown-header">标题</li>
-                    <li><a href="#">1. 去月球</a></li>
-                    <li class="am-active"><a href="#">2. 去火星</a></li>
-                    <li><a href="#">3. 还是回地球</a></li>
-                    <li class="am-disabled"><a href="#">4. 下地狱</a></li>
-                    <li class="am-divider"></li>
-                    <li><a href="#">5. 桥头一回首</a></li>
+                <ul class = "am-dropdown-content">
+                    <li class = "am-dropdown-header">标题</li>
+                    <li><a href = "#">1. 去月球</a></li>
+                    <li class = "am-active"><a href = "#">2. 去火星</a></li>
+                    <li><a href = "#">3. 还是回地球</a></li>
+                    <li class = "am-disabled"><a href = "#">4. 下地狱</a></li>
+                    <li class = "am-divider"></li>
+                    <li><a href = "#">5. 桥头一回首</a></li>
                 </ul>
             </li>
         </ul>
 
-        <form class="am-topbar-form am-topbar-left am-form-inline" role="search">
-            <div class="am-form-group">
-                <input type="text" class="am-form-field am-input-sm" placeholder="搜索">
+        <form class = "am-topbar-form am-topbar-left am-form-inline" role = "search">
+            <div class = "am-form-group">
+                <input type = "text" class = "am-form-field am-input-sm" placeholder = "搜索">
             </div>
         </form>
 
-        <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
+        <div class = "am-collapse am-topbar-collapse" id = "topbar-collapse">
 
-            <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
+            <ul class = "am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
 
-                <li><a href="javascript:;"> <button id="change" class="am-btn am-btn-primary am-btn-sm">中文/英文</button> </a></li>
+                <li><a href = "javascript:;">
+                    <button id = "change" class = "am-btn am-btn-primary am-btn-sm">中文/英文</button>
+                </a></li>
 
-                <li class="am-dropdown" data-am-dropdown>
-                    <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-                        <a href="logout.html">注销</a>
+                <li class = "am-dropdown" data-am-dropdown>
+                    <a class = "am-dropdown-toggle" data-am-dropdown-toggle href = "javascript:;">
+                        <a th:href = "@{/logout}">注销</a>
                     </a>
 
                 </li>
@@ -80,40 +88,46 @@
     </div>
 </header>
 
-<div class="am-cf admin-main">
+<div class = "am-cf admin-main">
     <!-- sidebar start -->
-    <div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
-        <div class="am-offcanvas-bar admin-offcanvas-bar">
-            <div class="user-info">
-                <img class="am-img-circle am-img-thumbnail am-center"  src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/200/h/200/q/80" alt=""/>
-                <p style="text-align: center">纯洁神王</p>
+    <div class = "admin-sidebar am-offcanvas" id = "admin-offcanvas">
+        <div class = "am-offcanvas-bar admin-offcanvas-bar">
+            <div class = "user-info">
+                <img class = "am-img-circle am-img-thumbnail am-center"
+                     src = "http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/200/h/200/q/80"
+                     alt = ""/>
+                <p style = "text-align: center">纯洁神王</p>
             </div>
 
-            <ul class="am-list admin-sidebar-list">
-                <li><a href="librarian_homepage.html"><span class="am-icon-home"></span> 首页</a></li>
-                <li><a href="librarian_user.html" class="am-cf"><span class="am-icon-check"></span> 个人资料<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
-                <li class="admin-parent">
-                    <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-file"></span> 管理图书 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
-                    <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
-                        <li><a href="librarian_borrow.html"><span class="am-icon-leaf"></span> 借阅</a></li>
-                        <li><a href="librarian_return.html"><span class="am-icon-mail-reply"></span> 归还</a></li>
-                        <li><a href="librarian_table.html"><span class="am-icon-book"></span> 管理图书</a></li>
-                        <li><a href="librarian_record.html"><span class="am-icon-calendar-check-o"></span> 预约记录</a></li>
+            <ul class = "am-list admin-sidebar-list">
+                <li><a href = "librarian_homepage"><span class = "am-icon-home"></span> 首页</a></li>
+                <li><a href = "librarian_user" class = "am-cf"><span class = "am-icon-check"></span> 个人资料<span
+                        class = "am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
+                <li class = "admin-parent">
+                    <a class = "am-cf" data-am-collapse = "{target: '#collapse-nav'}"><span
+                            class = "am-icon-file"></span> 管理图书 <span
+                            class = "am-icon-angle-right am-fr am-margin-right"></span></a>
+                    <ul class = "am-list am-collapse admin-sidebar-sub am-in" id = "collapse-nav">
+                        <li><a href = "librarian_borrow"><span class = "am-icon-leaf"></span> 借阅</a></li>
+                        <li><a href = "librarian_return"><span class = "am-icon-mail-reply"></span> 归还</a></li>
+                        <li><a href = "librarian_table"><span class = "am-icon-book"></span> 管理图书</a></li>
+                        <li><a href = "librarian_record"><span class = "am-icon-calendar-check-o"></span> 预约记录</a>
+                        </li>
                     </ul>
                 </li>
-                <li><a href="#"><span class="am-icon-comment"></span> 发布公告</a></li>
+                <li><a href = "#"><span class = "am-icon-comment"></span> 发布公告</a></li>
             </ul>
 
-            <div class="am-panel am-panel-default admin-sidebar-panel">
-                <div class="am-panel-bd">
-                    <p><span class="am-icon-bookmark"></span> 公告</p>
+            <div class = "am-panel am-panel-default admin-sidebar-panel">
+                <div class = "am-panel-bd">
+                    <p><span class = "am-icon-bookmark"></span> 公告</p>
                     <p>时光静好，与君语；细水流年，与君同。—— Amaze UI</p>
                 </div>
             </div>
 
-            <div class="am-panel am-panel-default admin-sidebar-panel">
-                <div class="am-panel-bd">
-                    <p><span class="am-icon-tag"></span> wiki</p>
+            <div class = "am-panel am-panel-default admin-sidebar-panel">
+                <div class = "am-panel-bd">
+                    <p><span class = "am-icon-tag"></span> wiki</p>
                     <p>Welcome to the Amaze UI wiki!</p>
                 </div>
             </div>
@@ -121,29 +135,34 @@
     </div>
     <!-- sidebar end -->
     <!-- content start -->
-    <div class="admin-content">
-        <div class="admin-content-body">
-            <div class="am-cf am-padding am-padding-bottom-0">
-                <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">书本信息</strong> / <small>Book Information</small></div>
+    <div class = "admin-content">
+        <div class = "admin-content-body">
+            <div class = "am-cf am-padding am-padding-bottom-0">
+                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">书本信息</strong> /
+                    <small>Book Information</small>
+                </div>
             </div>
 
             <hr/>
 
-            <div class="am-g">
-                <div class="am-u-sm-12 am-u-md-4 am-u-md-push-8">
-                    <div class="am-panel am-panel-default">
-                        <div class="am-panel-bd">
-                            <div class="am-g">
-                                <div class="am-u-md-4">
-                                    <img class="am-img-circle am-img-thumbnail" src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/200/h/200/q/80" alt=""/>
+            <div class = "am-g">
+                <div class = "am-u-sm-12 am-u-md-4 am-u-md-push-8">
+                    <div class = "am-panel am-panel-default">
+                        <div class = "am-panel-bd">
+                            <div class = "am-g">
+                                <div class = "am-u-md-4">
+                                    <img class = "am-img-circle am-img-thumbnail"
+                                         src = "http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/200/h/200/q/80"
+                                         alt = ""/>
                                 </div>
-                                <div class="am-u-md-8">
-                                    <p>你可以使用<a href="#">gravatar.com</a>提供的头像或者使用本地上传头像。 </p>
-                                    <form class="am-form">
-                                        <div class="am-form-group">
-                                            <input type="file" id="user-pic">
-                                            <p class="am-form-help">请选择要上传的文件...</p>
-                                            <button type="button" class="am-btn am-btn-primary am-btn-xs">保存</button>
+                                <div class = "am-u-md-8">
+                                    <p>你可以使用<a href = "#">gravatar.com</a>提供的头像或者使用本地上传头像。 </p>
+                                    <form class = "am-form">
+                                        <div class = "am-form-group">
+                                            <input type = "file" id = "user-pic">
+                                            <p class = "am-form-help">请选择要上传的文件...</p>
+                                            <button type = "button" class = "am-btn am-btn-primary am-btn-xs">保存
+                                            </button>
                                         </div>
                                     </form>
                                 </div>
@@ -151,96 +170,97 @@
                         </div>
                     </div>
 
-                    <div class="am-panel am-panel-default">
-                        <div class="am-panel-bd">
-                            <div class="user-info">
+                    <div class = "am-panel am-panel-default">
+                        <div class = "am-panel-bd">
+                            <div class = "user-info">
                                 <p>等级信息</p>
-                                <div class="am-progress am-progress-sm">
-                                    <div class="am-progress-bar" style="width: 60%"></div>
+                                <div class = "am-progress am-progress-sm">
+                                    <div class = "am-progress-bar" style = "width: 60%"></div>
                                 </div>
-                                <p class="user-info-order">当前等级：<strong>LV8</strong> 活跃天数：<strong>587</strong> 距离下一级别：<strong>160</strong></p>
+                                <p class = "user-info-order">当前等级：<strong>LV8</strong> 活跃天数：<strong>587</strong> 距离下一级别：<strong>160</strong>
+                                </p>
                             </div>
-                            <div class="user-info">
+                            <div class = "user-info">
                                 <p>信用信息</p>
-                                <div class="am-progress am-progress-sm">
-                                    <div class="am-progress-bar am-progress-bar-success" style="width: 80%"></div>
+                                <div class = "am-progress am-progress-sm">
+                                    <div class = "am-progress-bar am-progress-bar-success" style = "width: 80%"></div>
                                 </div>
-                                <p class="user-info-order">信用等级：正常当前 信用积分：<strong>80</strong></p>
+                                <p class = "user-info-order">信用等级：正常当前 信用积分：<strong>80</strong></p>
                             </div>
                         </div>
                     </div>
 
                 </div>
 
-                <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4">
-                    <form class="am-form am-form-horizontal">
-                        <div class="am-form-group">
-                            <label for="book-name" class="am-u-sm-3 am-form-label">书名</label>
-                            <div class="am-u-sm-9">
-                                <input type="text" id="book-name" placeholder="书名 / Name">
+                <div class = "am-u-sm-12 am-u-md-8 am-u-md-pull-4">
+                    <form class = "am-form am-form-horizontal">
+                        <div class = "am-form-group">
+                            <label for = "book-name" class = "am-u-sm-3 am-form-label">书名</label>
+                            <div class = "am-u-sm-9">
+                                <input type = "text" id = "book-name" placeholder = "书名 / Name">
                             </div>
                         </div>
 
-                        <div class="am-form-group">
-                            <label for="author" class="am-u-sm-3 am-form-label" >作者</label>
-                            <div class="am-u-sm-9">
-                                <input type="text" id="author" placeholder="输入你的电子邮件 / Email">
+                        <div class = "am-form-group">
+                            <label for = "author" class = "am-u-sm-3 am-form-label">作者</label>
+                            <div class = "am-u-sm-9">
+                                <input type = "text" id = "author" placeholder = "输入你的电子邮件 / Email">
                             </div>
                         </div>
 
-                        <div class="am-form-group">
-                            <label for="ISBN" class="am-u-sm-3 am-form-label">ISBN</label>
-                            <div class="am-u-sm-9">
-                                <input type="text" id="ISBN" placeholder="输入你的电话号码 / Telephone">
+                        <div class = "am-form-group">
+                            <label for = "ISBN" class = "am-u-sm-3 am-form-label">ISBN</label>
+                            <div class = "am-u-sm-9">
+                                <input type = "text" id = "ISBN" placeholder = "输入你的电话号码 / Telephone">
                             </div>
                         </div>
 
-                        <div class="am-form-group">
-                            <label for="user-QQ" class="am-u-sm-3 am-form-label">种类</label>
-                            <div class="am-u-sm-9">
-                                <input type="number" pattern="[0-9]*" id="user-QQ" placeholder="输入你的QQ号码">
+                        <div class = "am-form-group">
+                            <label for = "user-QQ" class = "am-u-sm-3 am-form-label">种类</label>
+                            <div class = "am-u-sm-9">
+                                <input type = "number" pattern = "[0-9]*" id = "user-QQ" placeholder = "输入你的QQ号码">
                             </div>
                         </div>
 
-                        <div class="am-form-group">
-                            <label for="user-weibo" class="am-u-sm-3 am-form-label">出版社</label>
-                            <div class="am-u-sm-9">
-                                <input type="text" id="user-weibo" placeholder="输入你的工号">
+                        <div class = "am-form-group">
+                            <label for = "user-weibo" class = "am-u-sm-3 am-form-label">出版社</label>
+                            <div class = "am-u-sm-9">
+                                <input type = "text" id = "user-weibo" placeholder = "输入你的工号">
                             </div>
                         </div>
 
-                        <div class="am-form-group">
-                            <label for="book-num" class="am-u-sm-3 am-form-label">库存</label>
-                            <div class="am-u-sm-9">
-                                <input type="number" id="book-num" value="100" placeholder="库存">
+                        <div class = "am-form-group">
+                            <label for = "book-num" class = "am-u-sm-3 am-form-label">库存</label>
+                            <div class = "am-u-sm-9">
+                                <input type = "number" id = "book-num" value = "100" placeholder = "库存">
                             </div>
                         </div>
 
-                        <div class="am-form-group">
-                            <label for="publish-time" class="am-u-sm-3 am-form-label">出版时间</label>
-                            <div class="am-u-sm-9">
-                                <input type="text" id="publish-time" placeholder="出版时间">
+                        <div class = "am-form-group">
+                            <label for = "publish-time" class = "am-u-sm-3 am-form-label">出版时间</label>
+                            <div class = "am-u-sm-9">
+                                <input type = "text" id = "publish-time" placeholder = "出版时间">
                             </div>
                         </div>
 
-                        <div class="am-form-group">
-                            <label for="positon" class="am-u-sm-3 am-form-label">位置</label>
-                            <div class="am-u-sm-9">
-                                <input type="text" id="positon" placeholder="位置">
+                        <div class = "am-form-group">
+                            <label for = "positon" class = "am-u-sm-3 am-form-label">位置</label>
+                            <div class = "am-u-sm-9">
+                                <input type = "text" id = "positon" placeholder = "位置">
                             </div>
                         </div>
 
-                        <div class="am-form-group">
-                            <label for="user-intro" class="am-u-sm-3 am-form-label">简介</label>
-                            <div class="am-u-sm-9">
-                                <textarea class="" rows="5" id="user-intro" placeholder="输入个人简介"></textarea>
+                        <div class = "am-form-group">
+                            <label for = "user-intro" class = "am-u-sm-3 am-form-label">简介</label>
+                            <div class = "am-u-sm-9">
+                                <textarea class = "" rows = "5" id = "user-intro" placeholder = "输入个人简介"></textarea>
                                 <small>250字以内</small>
                             </div>
                         </div>
 
-                        <div class="am-form-group">
-                            <div class="am-u-sm-9 am-u-sm-push-3">
-                                <button type="button" class="am-btn am-btn-primary">保存修改</button>
+                        <div class = "am-form-group">
+                            <div class = "am-u-sm-9 am-u-sm-push-3">
+                                <button type = "button" class = "am-btn am-btn-primary">保存修改</button>
                             </div>
                         </div>
                     </form>
@@ -248,9 +268,9 @@
             </div>
         </div>
 
-        <footer class="admin-content-footer">
+        <footer class = "admin-content-footer">
             <hr>
-            <p class="am-padding-left" style="text-align: center">© 2018 Biboliosoft Online Library System</p>
+            <p class = "am-padding-left" style = "text-align: center">© 2018 Biboliosoft Online Library System</p>
         </footer>
 
     </div>
@@ -258,21 +278,21 @@
 
 </div>
 
-<script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
-<script type="text/javascript" src="assets/js/test.js"></script>
+<script src = "https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script type = "text/javascript" src = "assets/js/test.js"></script>
 
 <!--[if lt IE 9]>
-<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
-<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
-<script src="assets/js/amazeui.ie8polyfill.min.js"></script>
+<script src = "http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src = "http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src = "assets/js/amazeui.ie8polyfill.min.js"></script>
 <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!-->
-<script src="assets/js/jquery.min.js"></script>
+<script src = "assets/js/jquery.min.js"></script>
 <!--<![endif]-->
-<script src="assets/js/amazeui.min.js"></script>
-<script src="assets/js/app.js"></script>
-<script type="text/javascript" >
-    $("#change").click(function(){
+<script src = "assets/js/amazeui.min.js"></script>
+<script src = "assets/js/app.js"></script>
+<script type = "text/javascript">
+    $("#change").click(function () {
         translate();
     })
 </script>

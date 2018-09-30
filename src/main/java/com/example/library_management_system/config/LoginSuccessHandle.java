@@ -23,8 +23,8 @@ public class LoginSuccessHandle implements AuthenticationSuccessHandler
         if (roles.contains(RoleUtil.ROLE_ADMIN))
             httpServletResponse.sendRedirect(basePath + "/admin/home");
         else if (roles.contains(RoleUtil.ROLE_LIBRARIAN_CHECK))
-            httpServletResponse.sendRedirect(basePath + "/librarianHome");
+            httpServletResponse.sendRedirect(basePath + "/librarian/home");
         else if (roles.contains(RoleUtil.ROLE_READER_CHECK))
-            httpServletResponse.sendRedirect(basePath + "/readerHome");
+            httpServletResponse.sendRedirect(basePath + "/reader/home");
     }
 }
