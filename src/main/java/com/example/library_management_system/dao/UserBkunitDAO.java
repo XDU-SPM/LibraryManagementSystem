@@ -27,5 +27,4 @@ public interface UserBkunitDAO extends JpaRepository<UserBkunit, Integer>
 
     UserBkunit findByUserAndBkunit(User user, Bkunit bkunit);
 
-    int countByReturnDate(Date date);
 }

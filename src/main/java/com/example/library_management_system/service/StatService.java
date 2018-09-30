@@ -1,20 +1,21 @@
 package com.example.library_management_system.service;
 
+
+import com.example.library_management_system.bean.Bkunit;
 import com.example.library_management_system.bean.Category;
 import com.example.library_management_system.bean.User;
+
 import com.example.library_management_system.bean.UserBkunit;
 import com.example.library_management_system.dao.BkunitDAO;
+import com.example.library_management_system.dao.CategoryDAO;
 import com.example.library_management_system.dao.UserBkunitDAO;
 import com.example.library_management_system.dao.UserDAO;
 import com.example.library_management_system.utils.BkunitUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.jws.soap.SOAPBinding;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
+
 
 @Service
 public class StatService
@@ -27,6 +28,9 @@ public class StatService
 
     @Autowired
     private BkunitDAO bkunitDAO;
+
+    @Autowired
+    private CategoryDAO categoryDAO;
 
     public int[] monthborrow(int[] book_month, int uid)
     {
@@ -109,4 +113,24 @@ public class StatService
         return statusnum;
     }
 
+    public Map<String,Integer> categorynum()
+    {
+        Map<String,Integer> map=new TreeMap<>();
+       List<UserBkunit> bkunitList=userBkunitDAO.findAllByState(BkunitUtil.BORROWED);
+        List<Category> categoryies=categoryDAO.findAll();
+        for(Category c:categoryies)
+        {
+            map.put(c.getName(),0);
+        }
+        for(UserBkunit b:bkunitList)
+        {
+            for( Category i:b.getBkunit().getBook().getCategories())
+            {
+                String s=i.getName();
+                Integer value=map.get(s);
+                map.put(s,value++);
+            }
+        }
+        return map;
+    }
 }

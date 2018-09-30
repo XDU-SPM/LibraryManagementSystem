@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.*;
+
 @Controller
 public class StatController {
 
@@ -51,5 +53,36 @@ public class StatController {
         statusnum=statService.statusnum();
         model.addAttribute("statusnum",statusnum);
         return "index";
+    }
+
+    //有问题，UserBkunit是不是借阅历史？？？？？？？？？？？
+    @RequestMapping(path="/categorynum",method={RequestMethod.POST})
+    public String categorynum(Model model)
+    {
+        Map<String,Integer> map=statService.categorynum();
+        List<Map.Entry<String,Integer>> list = new ArrayList<Map.Entry<String,Integer>>(map.entrySet());
+        Collections.sort(list,new Comparator<Map.Entry<String,Integer>>() {
+            public int compare(Map.Entry<String, Integer> o1,
+                               Map.Entry<String, Integer> o2) {
+                return o2.getValue().compareTo(o1.getValue());
+            }
+
+        });
+        Map<String,Integer> map1=new HashMap<>();
+        int count=0;
+        for(Map.Entry<String,Integer> entry : map.entrySet())
+        {
+
+            String s=entry.getKey();
+            Integer i=entry.getValue();
+            map1.put(s,i);
+            if(count==7)
+            {
+                break;
+            }
+            count++;
+        }
+           model.addAttribute("map1",map1);
+           return "index";
     }
 }
