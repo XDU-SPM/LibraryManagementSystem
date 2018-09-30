@@ -20,7 +20,7 @@ public class LibrarianBookController
     private LibrarianBookService librarianBookService;
 
     @RequestMapping(path = {"/librarian/deletebook"}, method = {RequestMethod.POST})
-    public String deleteBkunit(@RequestParam(value="id") String id)
+    public String deleteBkunit(@RequestParam(value = "id") String id)
     {
         librarianBookService.deleteBkunit(id);
         return "books";
@@ -30,9 +30,9 @@ public class LibrarianBookController
     @ResponseBody
     public Bkunit addBkunit(Book book)
     {
-        Bkunit bkunit=new Bkunit();
+        Bkunit bkunit = new Bkunit();
         bkunit.setId(String.valueOf(System.currentTimeMillis()));
-        if(!librarianBookService.isexist(book))
+        if (!librarianBookService.isexist(book))
         {
             librarianBookService.addBook(book);
         }
@@ -51,12 +51,12 @@ public class LibrarianBookController
         return "bkunitsinfo";
     }
 
-    @RequestMapping(path={"/librarian/showbkunit"},method={RequestMethod.GET})
-    public String showBook(Model model, @RequestParam(value = "start", defaultValue = "0") int start, @RequestParam(value = "size", defaultValue = "10") int size,String category) throws Exception
+    @RequestMapping(path = {"/librarian/showbook"}, method = {RequestMethod.GET})
+    public String showBook(Model model, @RequestParam(value = "start", defaultValue = "0") int start, @RequestParam(value = "size", defaultValue = "10") int size, String category) throws Exception
     {
-            Page<Book> page=librarianBookService.showbook(start,size,category);
-            model.addAttribute("page",page);
-            return "booksinfo";
+        Page<Book> page = librarianBookService.showbook(start, size, category);
+        model.addAttribute("page", page);
+        return "booksinfo";
     }
 
     @RequestMapping(path = {"/librarian/serchbyid"}, method = {RequestMethod.GET})

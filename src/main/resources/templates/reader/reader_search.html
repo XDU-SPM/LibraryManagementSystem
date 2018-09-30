@@ -1,11 +1,11 @@
 <!doctype html>
-<html class="no-js fixed-layout">
+<html class="no-js">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Amaze UI Admin index Examples</title>
-  <meta name="description" content="这是一个 index 页面">
-  <meta name="keywords" content="index">
+  <title>Amaze UI Admin table Examples</title>
+  <meta name="description" content="这是一个 table 页面">
+  <meta name="keywords" content="table">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="renderer" content="webkit">
   <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -121,100 +121,94 @@
   <!-- content start -->
   <div class="admin-content">
     <div class="admin-content-body">
-      <div class="am-cf am-padding">
-        <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">首页</strong> / <small>一些常用模块</small></div>
-      </div>
 
       <div class="am-g am-center am-padding">
-        <ul data-am-widget="gallery" class="am-gallery am-avg-sm-2 am-gallery-default" data-am-gallery="{ pureview: true }" >
-          <li>
-            <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">借书统计</strong></div>
-            <div id="mountNode" class="am-u-sm-12 am-u-md-8"></div>
-          </li>
-          <li>
-            <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">借书历史统计</strong></div>
-            <div id="mountNode1" class="am-u-sm-12 am-u-md-12"></div>
-          </li>
-        </ul>
-      </div>
-
-      <div class="am-cf am-padding am-padding-bottom-0">
-        <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">借阅历史</strong></div>
-      </div>
-
-      <hr>
-
-
-        <div class="am-u-sm-12 am-u-md-3">
-
+        <div class="am-u-sm-12 am-u-md-6">
+          <form class="am-form">
+            <div class="am-input-group am-input-group-sm">
+              <input type="text" class="am-form-field am-radius">
+            <span class="am-input-group-btn">
+              <button class="am-btn am-btn-default am-icon-search am-radius" type="button">搜索</button>
+            </span>
+            </div>
+          </form>
         </div>
       </div>
 
       <div class="am-g">
         <div class="am-u-sm-12">
-
-          <table class="am-table am-table-striped am-table-hover am-table-compact " id="booklist">
-            <thead>
-            <tr>
-              <th class="table-id">编号</th>
-              <th class="table-title">标题</th>
-              <!--<th class="table-type">类别</th>-->
-              <th class="table-type">
-                <select >
-                  <option value="option1" >专业书</option>
-                  <option value="option2">杂志</option>
-                  <option value="option3">小说</option>
-                  <option value="option3">文学书籍</option>
-                  <option value="option3">历史</option>
-                  <option value="option3">科普</option>
-                  <option value="option3">故事会</option>
-                </select>
-              </th>
-              <th class="table-author am-hide-sm-only">作者</th>
-              <th class="table-publisher">出版社</th>
-              <th class="table-date am-hide-sm-only">出版日期</th>
-              <th class="table-positon am-hide-sm-only">借书时间</th>
-              <th class="table-set">归还时间</th>
-              <th class="table-set">操作</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td>1</td>
-              <td><a href="book_details.html">纯洁神王是如何炼成的</a></td>
-              <td>宗教类</td>
-              <td class="am-hide-sm-only">唐少伟</td>
-              <td class="am-hide-sm-only">西安电子科技大学出版社</td>
-              <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
-              <td >2018.1.12</td>
-              <td >2018.2.1</td>
-              <td>
-                <div class="am-btn-toolbar">
-                  <div class="am-btn-group am-btn-group-xs">
-                    <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span><a href="reader_comment.html"> 评论</a></button>
-
-                  </div>
+          <div class="am-cf am-padding">
+            <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">重磅推荐</strong></div>
+          </div>
+          <form class="am-form">
+            <ul data-am-widget="gallery" class="am-gallery am-avg-sm-2
+  am-avg-md-3 am-avg-lg-4 am-gallery-bordered" data-am-gallery="{  }" >
+              <li>
+                <div class="am-gallery-item">
+                  <a href="http://s.amazeui.org/media/i/demos/bing-1.jpg" class="">
+                    <img src="http://s.amazeui.org/media/i/demos/bing-1.jpg"  alt="远方 有一个地方 那里种有我们的梦想"/>
+                    <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
+                    <div class="am-gallery-desc">2375-09-26</div>
+                  </a>
                 </div>
-              </td>
-            </tr>
-            </tbody>
-          </table>
-
+              </li>
+              <li>
+                <div class="am-gallery-item">
+                  <a href="http://s.amazeui.org/media/i/demos/bing-2.jpg" class="">
+                    <img src="http://s.amazeui.org/media/i/demos/bing-2.jpg"  alt="某天 也许会相遇 相遇在这个好地方"/>
+                    <h3 class="am-gallery-title">某天 也许会相遇 相遇在这个好地方</h3>
+                    <div class="am-gallery-desc">2375-09-26</div>
+                  </a>
+                </div>
+              </li>
+              <li>
+                <div class="am-gallery-item">
+                  <a href="http://s.amazeui.org/media/i/demos/bing-3.jpg" class="">
+                    <img src="http://s.amazeui.org/media/i/demos/bing-3.jpg"  alt="不要太担心 只因为我相信"/>
+                    <h3 class="am-gallery-title">不要太担心 只因为我相信</h3>
+                    <div class="am-gallery-desc">2375-09-26</div>
+                  </a>
+                </div>
+              </li>
+              <li>
+                <div class="am-gallery-item">
+                  <a href="http://s.amazeui.org/media/i/demos/bing-4.jpg" class="">
+                    <img src="http://s.amazeui.org/media/i/demos/bing-4.jpg"  alt="终会走过这条遥远的道路"/>
+                    <h3 class="am-gallery-title">终会走过这条遥远的道路</h3>
+                    <div class="am-gallery-desc">2375-09-26</div>
+                  </a>
+                </div>
+              </li>
+            </ul>
+            <div class="am-cf">
+              共 15 条记录
+              <div class="am-fr">
+                <ul class="am-pagination">
+                  <li class="am-disabled"><a href="#">«</a></li>
+                  <li class="am-active"><a href="#">1</a></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li><a href="#">5</a></li>
+                  <li><a href="#">»</a></li>
+                </ul>
+              </div>
+            </div>
+            <hr />
+            <p>注：.....</p>
+          </form>
         </div>
 
       </div>
-
-      </div>
-
     </div>
 
-    <footer class="admin-content-footer">
+    <footer>
       <hr>
-      <p class="am-padding-left">© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
+      <p class="am-padding-left" style="text-align: center">© 2018 Biboliosoft Online Library System</p>
     </footer>
+
   </div>
   <!-- content end -->
-
 </div>
 
 <a href="#" class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
@@ -230,108 +224,8 @@
 <!--<![endif]-->
 <script src="assets/js/amazeui.min.js"></script>
 <script src="assets/js/app.js"></script>
-<script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.g2-3.2.8/dist/g2.min.js"></script>
-<script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.data-set-0.9.6/dist/data-set.min.js"></script>
 <script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
 <script type="text/javascript" src="assets/js/test.js"></script>
-<script>
-    var data = [{
-        year: '1951 年',
-        sales: 38
-    }, {
-        year: '1952 年',
-        sales: 52
-    }, {
-        year: '1956 年',
-        sales: 61
-    }, {
-        year: '1957 年',
-        sales: 145
-    }, {
-        year: '1958 年',
-        sales: 48
-    }, {
-        year: '1959 年',
-        sales: 38
-    }, {
-        year: '1960 年',
-        sales: 38
-    }, {
-        year: '1962 年',
-        sales: 38
-    }];
-    var chart = new G2.Chart({
-        container: 'mountNode1',
-        forceFit: true,
-        height: window.innerHeight
-    });
-    chart.source(data);
-    chart.scale('sales', {
-        tickInterval: 20
-    });
-    chart.interval().position('year*sales');
-    chart.render();
-</script>
-<script>
-    var data = [{
-        item: '事例一',
-        count: 40,
-        percent: 0.4
-    }, {
-        item: '事例二',
-        count: 21,
-        percent: 0.21
-    }, {
-        item: '事例三',
-        count: 17,
-        percent: 0.17
-    }, {
-        item: '事例四',
-        count: 13,
-        percent: 0.13
-    }, {
-        item: '事例五',
-        count: 9,
-        percent: 0.09
-    }];
-    var chart = new G2.Chart({
-        container: 'mountNode',
-        forceFit: true,
-        height: window.innerHeight
-    });
-    chart.source(data, {
-        percent: {
-            formatter: function formatter(val) {
-                val = val * 100 + '%';
-                return val;
-            }
-        }
-    });
-    chart.coord('theta');
-    chart.tooltip({
-        showTitle: false
-    });
-    chart.intervalStack().position('percent').color('item').label('percent', {
-        offset: -40,
-        // autoRotate: false,
-        textStyle: {
-            rotate: 0,
-            textAlign: 'center',
-            shadowBlur: 2,
-            shadowColor: 'rgba(0, 0, 0, .45)'
-        }
-    }).tooltip('item*percent', function(item, percent) {
-        percent = percent * 100 + '%';
-        return {
-            name: item,
-            value: percent
-        };
-    }).style({
-        lineWidth: 1,
-        stroke: '#fff'
-    });
-    chart.render();
-</script>
 <script type="text/javascript" >
     $("#change").click(function(){
         translate();
