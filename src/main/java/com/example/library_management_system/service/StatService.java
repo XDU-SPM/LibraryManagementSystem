@@ -1,5 +1,6 @@
 package com.example.library_management_system.service;
 
+import com.example.library_management_system.bean.Category;
 import com.example.library_management_system.bean.User;
 import com.example.library_management_system.bean.UserBkunit;
 import com.example.library_management_system.dao.BkunitDAO;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import javax.jws.soap.SOAPBinding;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Map;
 import java.util.Set;
 
 @Service
@@ -70,17 +72,29 @@ public class StatService
         return book_month;
    }
 
-   public int borrowbooknum()
+   public int borrowbooknum(int uid)
    {
-       Date today=new Date();
-       int number=userBkunitDAO.countByBorrowDate(today);
+
+       Date today2=new Date();
+       Date today1=new Date();
+       today1.setHours(0);
+       today1.setMinutes(0);
+       today1.setSeconds(0);
+       User user=userDAO.findById(uid);
+       int number=userBkunitDAO.countByUserAndBorrowDateBetween(user,today1,today2);
        return number;
    }
 
-   public int returnbooknum()
+   public int returnbooknum(int uid)
    {
-       Date today=new Date();
-       int number=userBkunitDAO.countByReturnDate(today);
+
+       Date today2=new Date();
+       Date today1=new Date();
+       today1.setHours(0);
+       today1.setMinutes(0);
+       today1.setSeconds(0);
+       User user=userDAO.findById(uid);
+       int number=userBkunitDAO.countByUserAndReturnDateBetween(user,today1,today2);
        return number;
    }
 

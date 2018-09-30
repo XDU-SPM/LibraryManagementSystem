@@ -26,9 +26,9 @@ public class StatController {
 
    //统计今日借阅多少本书,路径为商定
     @RequestMapping(path="/librarain/borrowbooknum",method={RequestMethod.POST})
-    public String borrowbooknum(Model model)
+    public String borrowbooknum(Model model,@RequestParam(value="uid") int uid)
     {
-        int num=statService.borrowbooknum();
+        int num=statService.borrowbooknum(uid);
         model.addAttribute("borrowbooknum",num);
         return "index";
     }
@@ -36,9 +36,9 @@ public class StatController {
 
     //统计今日归还多少本书
     @RequestMapping(path="/librarain/returnbooknum",method={RequestMethod.POST})
-    public String returnbooknum(Model model)
+    public String returnbooknum(Model model,@RequestParam(value="uid") int uid)
     {
-        int returnbooknum=statService.returnbooknum();
+        int returnbooknum=statService.returnbooknum(uid);
         model.addAttribute("returnbooknum",returnbooknum);
         return "index";
     }
