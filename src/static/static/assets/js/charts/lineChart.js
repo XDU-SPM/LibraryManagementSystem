@@ -6,7 +6,7 @@
 	
 	option = {
     title: {
-        text: '折线图堆叠'
+        text: '书籍出入统计'
     },
     tooltip: {
         trigger: 'axis'

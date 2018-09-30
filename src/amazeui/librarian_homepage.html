@@ -81,16 +81,21 @@
     <!-- sidebar start -->
     <div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
         <div class="am-offcanvas-bar admin-offcanvas-bar">
+            <div class="user-info">
+                <img class="am-img-circle am-img-thumbnail am-center"  src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/200/h/200/q/80" alt=""/>
+                <p style="text-align: center">纯洁神王</p>
+            </div>
+
             <ul class="am-list admin-sidebar-list">
-                <li><a href="admin-index.html"><span class="am-icon-home"></span> 首页</a></li>
-                <li><a href="admin-user.html" class="am-cf"><span class="am-icon-check"></span> 个人资料<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
+                <li><a href="librarian_homepage.html"><span class="am-icon-home"></span> 首页</a></li>
+                <li><a href="librarian_user.html" class="am-cf"><span class="am-icon-check"></span> 个人资料<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
                 <li class="admin-parent">
                     <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-file"></span> 管理图书 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
                     <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
-                        <li><a href="admin-help.html"><span class="am-icon-leaf"></span> 借阅</a></li>
-                        <li><a href="admin-gallery.html"><span class="am-icon-mail-reply"></span> 归还</a></li>
-                        <li><a href="admin-log.html"><span class="am-icon-book"></span> 管理图书</a></li>
-                        <li><a href="admin-404.html"><span class="am-icon-calendar-check-o"></span> 预约记录</a></li>
+                        <li><a href="librarian_borrow.html"><span class="am-icon-leaf"></span> 借阅</a></li>
+                        <li><a href="librarian_return.html"><span class="am-icon-mail-reply"></span> 归还</a></li>
+                        <li><a href="librarian_table.html"><span class="am-icon-book"></span> 管理图书</a></li>
+                        <li><a href="librarian_record.html"><span class="am-icon-calendar-check-o"></span> 预约记录</a></li>
                     </ul>
                 </li>
                 <li><a href="#"><span class="am-icon-comment"></span> 发布公告</a></li>
@@ -124,6 +129,14 @@
             <div class="content-page">
                 <!-- Start content -->
                 <div class="content">
+
+                    <ul class="am-avg-sm-1 am-avg-md-4 am-margin am-padding am-text-center admin-content-list ">
+                        <li><a href="#" class="am-text-success"><span class="am-icon-btn am-icon-book"></span><br/>今日借阅<br/>2300</a></li>
+                        <li><a href="#" class="am-text-warning"><span class="am-icon-btn am-icon-header"></span><br/>逾期人数<br/>308</a></li>
+                        <li><a href="#" class="am-text-danger"><span class="am-icon-btn am-icon-recycle"></span><br/>今日归还<br/>80082</a></li>
+                        <li><a href="#" class="am-text-secondary"><span class="am-icon-btn am-icon-user-md"></span><br/>罚金收入<br/>3000</a></li>
+                    </ul>
+
                     <div class="am-g">
                         <div class="am-u-md-6" >
                             <!-- 折线图堆叠 -->
@@ -155,19 +168,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="am-g">
-                        <div class="am-u-md-6 am-u-end">
-                            <div class="card-box">
-                                <div id="pie5" style="width: 100%;height: 400px">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>
 
-        <footer class="admin-content-footer">
+        <footer class="admin-content-footer am-footer-desktop am-footer-fixed">
             <hr>
             <p class="am-padding-left" style="text-align: center">© 2018 Biboliosoft Online Library System</p>
         </footer>

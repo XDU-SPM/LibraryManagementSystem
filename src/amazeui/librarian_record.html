@@ -116,90 +116,89 @@
         </div>
     </div>
     <!-- sidebar end -->
+
+	
     <div class="admin-content">
         <div class="admin-content-body">
+			
+			
+			
             <div class="am-cf am-padding am-padding-bottom-0">
-                <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">书本清单</strong> / <small>BookList</small></div>
+                <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">借阅记录</strong> / <small>BorrowRecord</small></div>
             </div>
 
             <hr>
 
-            <div class="am-g">
-                <div class="am-u-sm-12 am-u-md-6">
-                    <div class="am-btn-toolbar">
-                        <div class="am-btn-group am-btn-group-xs">
-                            <button type="button" class="am-btn am-btn-default" id="add-book"><span class="am-icon-plus"></span> 新增</button>
-                            <button type="button" class="am-btn am-btn-default"><span class="am-icon-trash-o"></span> 删除</button>
-                        </div>
-                    </div>
+     
+ 
+                            
+
+				<div class="am-g am-g-fixed">
+				<div class="am-u-sm-8 ">
+				  <div class="am-input-group am-input-group-sm">
+					<input type="text" class="am-form-field">
+					  <span class="am-input-group-btn">
+						<button class="am-btn am-btn-default" type="button">搜索</button>
+					  </span>
+				  </div>
+				</div>
+
+
                 </div>
 
-                <div class="am-u-sm-12 am-u-md-3">
-
-                </div>
-            </div>
+			<hr>
 
             <div class="am-g">
                 <div class="am-u-sm-12">
-
+                    <form class="am-form">
                         <table class="am-table am-table-striped am-table-hover am-table-compact " id="booklist">
                             <thead>
                             <tr>
                                 <th class="table-id">编号</th>
-                                <th class="table-title">标题</th>
+                                <th class="table-title">书名</th>
                                 <!--<th class="table-type">类别</th>-->
-                                <th class="table-type">
-                                    <select >
-                                        <option value="option1" >专业书</option>
-                                        <option value="option2">杂志</option>
-                                        <option value="option3">小说</option>
-                                        <option value="option3">文学书籍</option>
-                                        <option value="option3">历史</option>
-                                        <option value="option3">科普</option>
-                                        <option value="option3">故事会</option>
-                                    </select>
-                                </th>
-                                <th class="table-author am-hide-sm-only">作者</th>
-                                <th class="table-publisher">出版社</th>
-                                <th class="table-date am-hide-sm-only">出版日期</th>
-                                <th class="table-positon am-hide-sm-only">位置</th>
-                                <th class="table-set">操作</th>
+                                
+                                <th class="table-author am-hide-sm-only">学号</th>
+                                <th class="table-publisher">书的编号</th>
+                                <th class="table-date am-hide-sm-only">借书时间</th>
+                                <th class="table-positon am-hide-sm-only">还书时间</th>
+                                <th class="table-set">状态</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
                                 <td>1</td>
                                 <td><a href="#">纯洁神王是如何炼成的</a></td>
-                                <td>宗教类</td>
-                                <td class="am-hide-sm-only">唐少伟</td>
-                                <td class="am-hide-sm-only">西安电子科技大学出版社</td>
+                                <td>15130110044</td>
+                                <td class="am-hide-sm-only">1234567</td>
                                 <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
-                                <td >B-201</td>
+                                <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
+                                <td >未超期</td>
                                 <td>
                                     <div class="am-btn-toolbar">
                                         <div class="am-btn-group am-btn-group-xs">
-                                            <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span c6lass="am-icon-pencil-square-o"></span> 编辑</button>
-
+                                            <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑</button>
                                         </div>
                                     </div>
                                 </td>
                             </tr>
                             </tbody>
                         </table>
-                    <div class="am-cf">
-                        共 15 条记录
-                        <div class="am-fr">
-                            <ul class="am-pagination">
-                                <li class="am-disabled"><a href="#">«</a></li>
-                                <li class="am-active"><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
-                                <li><a href="#">»</a></li>
-                            </ul>
+                        <div class="am-cf">
+                            共 15 条记录
+                            <div class="am-fr">
+                                <ul class="am-pagination">
+                                    <li class="am-disabled"><a href="#">«</a></li>
+                                    <li class="am-active"><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>
+                                    <li><a href="#">»</a></li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
 
             </div>
@@ -210,35 +209,9 @@
             <p class="am-padding-left" style="text-align: center">© 2018 Biboliosoft Online Library System</p>
         </footer>
 
-            <div class="am-modal am-modal-prompt" tabindex="-1" id="my-prompt">
-            <div class="am-modal-dialog">
-                <div class="am-modal-hd">添加图书</div>
-                <div class="am-modal-bd">
-                    <p>书名</p>
-                    <input type="text" class="am-modal-prompt-input">
-                    <p>ISBN</p>
-                    <input type="text" class="am-modal-prompt-input">
-                    <p>作者</p>
-                    <input type="text" class="am-modal-prompt-input">
-                    <p>书类</p>
-                    <input type="text" class="am-modal-prompt-input">
-                    <p>位置</p>
-                    <input type="text" class="am-modal-prompt-input">
-                    <p>简介</p>
-                    <textarea class="" rows="2"  id="user-intro" placeholder="输入图书简介"></textarea>
-                    <div class="am-modal-footer">
-                        <span class="am-modal-btn" data-am-modal-cancel>取消</span>
-                        <span class="am-modal-btn" data-am-modal-confirm>提交</span>
-                    </div>
-                </div>
-            </div>
-            </div>
-
     </div>
     <!-- content end -->
-
 </div>
-
 
 
 
@@ -264,22 +237,6 @@
 <script src="dist/amazeui.datatables.min.js"></script>
 <script src="assets/js/amazeui.min.js"></script>
 <script src="assets/js/app.js"></script>
-
-<script>
-    $(function() {
-        $('#add-book').on('click', function() {
-            $('#my-prompt').modal({
-                relatedTarget: this,
-                onConfirm: function(e) {
-                    alert('你输入的是：' + e.data || '')
-                },
-                onCancel: function(e) {
-                    alert('不想说!');
-                }
-            });
-        });
-    });
-</script>
 </body>
 </html>
 

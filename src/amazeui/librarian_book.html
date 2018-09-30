@@ -121,126 +121,126 @@
     <div class="admin-content">
         <div class="admin-content-body">
             <div class="am-cf am-padding am-padding-bottom-0">
-                <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">归还书籍</strong> / <small>Return book</small></div>
+                <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">书本信息</strong> / <small>Book Information</small></div>
             </div>
 
             <hr/>
 
-            <div class="am-tabs am-margin" data-am-tabs>
-                <ul class="am-tabs-nav am-nav am-nav-tabs">
-                    <li class="am-active"><a href="#tab1">还书</a></li>
-                    <li><a href="#tab2">损坏登记</a></li>
-                    <li><a href="#tab3">丢失登记</a></li>
-                </ul>
-
-                <div class="am-tabs-bd">
-                    <div class="am-tab-panel am-fade am-in am-active" id="tab1">
-                        <div class="am-g am-margin-top">
-                            <div class="am-form am-form-horizontal">
-                                <div class="am-g am-margin-top">
-                                    <div class="am-u-sm-4 am-u-md-2 am-text-right">
-                                        书号
-                                    </div>
-                                    <div class="am-u-sm-8 am-u-md-4">
-                                        <input type="text" class="am-input-sm">
-                                    </div>
-                                    <div class="am-hide-sm-only am-u-md-6"></div>
+            <div class="am-g">
+                <div class="am-u-sm-12 am-u-md-4 am-u-md-push-8">
+                    <div class="am-panel am-panel-default">
+                        <div class="am-panel-bd">
+                            <div class="am-g">
+                                <div class="am-u-md-4">
+                                    <img class="am-img-circle am-img-thumbnail" src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/200/h/200/q/80" alt=""/>
                                 </div>
-
-                                <div class="am-g am-margin-top-sm">
-                                    <div class="am-u-sm-10 am-u-sm-push-2">
-                                        <button type="button" class="am-btn am-btn-primary ">提交</button>
-                                    </div>
+                                <div class="am-u-md-8">
+                                    <p>你可以使用<a href="#">gravatar.com</a>提供的头像或者使用本地上传头像。 </p>
+                                    <form class="am-form">
+                                        <div class="am-form-group">
+                                            <input type="file" id="user-pic">
+                                            <p class="am-form-help">请选择要上传的文件...</p>
+                                            <button type="button" class="am-btn am-btn-primary am-btn-xs">保存</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-
-                    <div class="am-tab-panel am-fade" id="tab2">
-                        <form class="am-form">
-                            <div class="am-g am-margin-top">
-                                <div class="am-u-sm-4 am-u-md-2 am-text-right">
-                                    书号
+                    <div class="am-panel am-panel-default">
+                        <div class="am-panel-bd">
+                            <div class="user-info">
+                                <p>等级信息</p>
+                                <div class="am-progress am-progress-sm">
+                                    <div class="am-progress-bar" style="width: 60%"></div>
                                 </div>
-                                <div class="am-u-sm-8 am-u-md-4">
-                                    <input type="text" class="am-input-sm">
-                                </div>
-                                <div class="am-hide-sm-only am-u-md-6"></div>
+                                <p class="user-info-order">当前等级：<strong>LV8</strong> 活跃天数：<strong>587</strong> 距离下一级别：<strong>160</strong></p>
                             </div>
-
-                            <div class="am-g am-margin-top">
-                                <div class="am-u-sm-4 am-u-md-2 am-text-right">
-                                    学号
+                            <div class="user-info">
+                                <p>信用信息</p>
+                                <div class="am-progress am-progress-sm">
+                                    <div class="am-progress-bar am-progress-bar-success" style="width: 80%"></div>
                                 </div>
-                                <div class="am-u-sm-8 am-u-md-4 am-u-end col-end">
-                                    <input type="text" class="am-input-sm">
-                                </div>
+                                <p class="user-info-order">信用等级：正常当前 信用积分：<strong>80</strong></p>
                             </div>
-
-                            <div class="am-g am-margin-top">
-                                <div class="am-u-sm-4 am-u-md-2 am-text-right">损坏程度</div>
-                                <div class="am-u-sm-8 am-u-md-10">
-                                    <div class="am-btn-group" data-am-button>
-                                        <label class="am-btn am-btn-default am-btn-xs">
-                                            <input type="radio" name="options" id="option1"> 轻微
-                                        </label>
-                                        <label class="am-btn am-btn-default am-btn-xs">
-                                            <input type="radio" name="options" id="option2"> 中度
-                                        </label>
-                                        <label class="am-btn am-btn-default am-btn-xs">
-                                            <input type="radio" name="options" id="option3"> 严重
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="am-g am-margin-top-sm">
-                                <div class="am-u-sm-12 am-u-md-2 am-text-right admin-form-text">
-                                    损坏详情描述
-                                </div>
-                                <div class="am-u-sm-12 am-u-md-10">
-                                    <textarea rows="10" placeholder="请使用富文本编辑插件"></textarea>
-                                </div>
-                            </div>
-
-                            <div class="am-g am-margin-top-sm">
-                                <div class="am-u-sm-10 am-u-sm-push-2">
-                                    <button type="button" class="am-btn am-btn-primary ">提交</button>
-                                </div>
-                            </div>
-
-                        </form>
+                        </div>
                     </div>
 
-                    <div class="am-tab-panel am-fade" id="tab3">
-                        <form class="am-form">
-                            <div class="am-g am-margin-top-sm">
-                                <div class="am-u-sm-4 am-u-md-2 am-text-right">
-                                    书号
-                                </div>
-                                <div class="am-u-sm-8 am-u-md-4 am-u-end">
-                                    <input type="text" class="am-input-sm">
-                                </div>
-                            </div>
+                </div>
 
-                            <div class="am-g am-margin-top-sm">
-                                <div class="am-u-sm-4 am-u-md-2 am-text-right">
-                                    学号
-                                </div>
-                                <div class="am-u-sm-8 am-u-md-4 am-u-end">
-                                    <input type="text" class="am-input-sm">
-                                </div>
+                <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4">
+                    <form class="am-form am-form-horizontal">
+                        <div class="am-form-group">
+                            <label for="book-name" class="am-u-sm-3 am-form-label">书名</label>
+                            <div class="am-u-sm-9">
+                                <input type="text" id="book-name" placeholder="书名 / Name">
                             </div>
+                        </div>
 
-                            <div class="am-g am-margin-top-sm">
-                                <div class="am-u-sm-10 am-u-sm-push-2">
-                                    <button type="button" class="am-btn am-btn-primary ">提交</button>
-                                </div>
+                        <div class="am-form-group">
+                            <label for="author" class="am-u-sm-3 am-form-label" >作者</label>
+                            <div class="am-u-sm-9">
+                                <input type="text" id="author" placeholder="输入你的电子邮件 / Email">
                             </div>
-                        </form>
-                    </div>
+                        </div>
 
+                        <div class="am-form-group">
+                            <label for="ISBN" class="am-u-sm-3 am-form-label">ISBN</label>
+                            <div class="am-u-sm-9">
+                                <input type="text" id="ISBN" placeholder="输入你的电话号码 / Telephone">
+                            </div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <label for="user-QQ" class="am-u-sm-3 am-form-label">种类</label>
+                            <div class="am-u-sm-9">
+                                <input type="number" pattern="[0-9]*" id="user-QQ" placeholder="输入你的QQ号码">
+                            </div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <label for="user-weibo" class="am-u-sm-3 am-form-label">出版社</label>
+                            <div class="am-u-sm-9">
+                                <input type="text" id="user-weibo" placeholder="输入你的工号">
+                            </div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <label for="book-num" class="am-u-sm-3 am-form-label">库存</label>
+                            <div class="am-u-sm-9">
+                                <input type="number" id="book-num" value="100" placeholder="库存">
+                            </div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <label for="publish-time" class="am-u-sm-3 am-form-label">出版时间</label>
+                            <div class="am-u-sm-9">
+                                <input type="text" id="publish-time" placeholder="出版时间">
+                            </div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <label for="positon" class="am-u-sm-3 am-form-label">位置</label>
+                            <div class="am-u-sm-9">
+                                <input type="text" id="positon" placeholder="位置">
+                            </div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <label for="user-intro" class="am-u-sm-3 am-form-label">简介</label>
+                            <div class="am-u-sm-9">
+                                <textarea class="" rows="5" id="user-intro" placeholder="输入个人简介"></textarea>
+                                <small>250字以内</small>
+                            </div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <div class="am-u-sm-9 am-u-sm-push-3">
+                                <button type="button" class="am-btn am-btn-primary">保存修改</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
