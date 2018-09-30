@@ -11,15 +11,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
-
 @Controller
 public class UserController
 {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = {"/", "/login"}, method = {RequestMethod.POST, RequestMethod.GET})
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String main()
+    {
+        return "visitor-main";
+    }
+
+    @RequestMapping(value = {"/login"}, method = {RequestMethod.POST, RequestMethod.GET})
     public String login()
     {
         if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("anonymousUser"))  // Has logged
@@ -41,7 +45,15 @@ public class UserController
                 return "redirect:librarianHome";
             }
         }
+        System.out.println("login");
         return "login";
+    }
+
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    public String register()
+    {
+        System.out.println("register");
+        return "register";
     }
 
     @RequestMapping(value = "/readerHome", method = RequestMethod.GET)

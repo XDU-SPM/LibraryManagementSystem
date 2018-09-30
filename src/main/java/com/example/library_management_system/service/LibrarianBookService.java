@@ -3,6 +3,7 @@ package com.example.library_management_system.service;
 import com.example.library_management_system.bean.*;
 import com.example.library_management_system.dao.BkunitDAO;
 import com.example.library_management_system.dao.BookDAO;
+import com.example.library_management_system.dao.CategoryDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
@@ -21,6 +22,8 @@ public class LibrarianBookService
     private BkunitDAO bkunitdao;
     @Autowired
     private BookDAO bookdao;
+    @Autowired
+    private CategoryDAO categoryDAO;
 
     public void addBkunit(Bkunit bkunit)
     {
@@ -42,15 +45,14 @@ public class LibrarianBookService
         return page;
     }
 
-    public Page<Book> showbook(int start,int size,String category)
+    public Page<Book> showbook(int start, int size, String category)
     {
-        Category c=new Category(category);
+        Category c = categoryDAO.findByName(category);
         start = start < 0 ? 0 : start;
         Sort sort = new Sort(Sort.Direction.DESC, "id");
         Pageable pageable = PageRequest.of(start, size, sort);
-        Page<Book> page = bookdao.findByCategoriesContaining(c,pageable);
+        Page<Book> page = bookdao.findByCategoriesContaining(c, pageable);
         return page;
-
     }
 
     public Bkunit searchbyid(String id)

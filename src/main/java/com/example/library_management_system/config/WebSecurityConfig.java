@@ -44,7 +44,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
     {
         http
                 .authorizeRequests()
-                .antMatchers("/login").permitAll()
+                .antMatchers("/").permitAll()
+                .antMatchers("/assets/**").permitAll()
+                .antMatchers("/dist/**").permitAll()
+                .antMatchers("/login", "/register").permitAll()
                 .antMatchers("/public/**").permitAll()
                 .antMatchers("/reader/register", "/admin/register", "/librarian/register").permitAll()
                 .antMatchers("/readerHome").hasRole(RoleUtil.READER_CHECK)
