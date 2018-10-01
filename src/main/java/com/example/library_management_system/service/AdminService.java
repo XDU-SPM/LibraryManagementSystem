@@ -10,31 +10,95 @@ import org.springframework.stereotype.Service;
 import com.example.library_management_system.dao.*;
 import com.example.library_management_system.bean.*;
 
+import java.util.Set;
+
 
 @Service
 public class AdminService
 {
-
     @Autowired
     private UserDAO userdao;
     @Autowired
     private UserBkunitDAO userbkunitdao;
     @Autowired
     private UserFavoriteBookDAO userfavoritebookdao;
+    @Autowired
+    private ReviewDAO reviewDAO;
+    @Autowired
+    private AccountDAO accountDAO;
 
     public void deleteuser(int id)
     {
-        //删除主表数据，也会删除从表数据
+        User user = userdao.findById(id);
+        deleteUserBkunits(user);
+        deleteReviews(user);
+        deleteUserFavoriteBooks(user);
+        deleteAccounts(user);
         userdao.deleteById(id);
     }
 
-    public Page<User> showallinfo(int start, int size,String role)
+    private void deleteUserBkunits(User user)
+    {
+        Set<UserBkunit> userBkunits = user.getUserBkunits();
+        if (userBkunits != null)
+        {
+            for (UserBkunit userBkunit : userBkunits)
+            {
+                userBkunit.setUser(null);
+                userBkunit.setBkunit(null);
+            }
+            userbkunitdao.saveAll(userBkunits);
+        }
+    }
+
+    private void deleteReviews(User user)
+    {
+        Set<Review> reviews = user.getReviews();
+        if (reviews != null)
+        {
+            for (Review review : reviews)
+            {
+                review.setUser(null);
+                review.setBook(null);
+            }
+            reviewDAO.saveAll(reviews);
+        }
+    }
+
+    private void deleteUserFavoriteBooks(User user)
+    {
+        Set<UserFavoriteBook> userFavoriteBooks = user.getUserFavoriteBooks();
+        if (userFavoriteBooks != null)
+        {
+            for (UserFavoriteBook userFavoriteBook : userFavoriteBooks)
+            {
+                userFavoriteBook.setUser(null);
+                userFavoriteBook.setBook(null);
+            }
+            userfavoritebookdao.saveAll(userFavoriteBooks);
+        }
+    }
+
+    private void deleteAccounts(User user)
+    {
+        Set<Account> accounts = user.getAccounts();
+        if (accounts != null)
+        {
+            for (Account account : accounts)
+            {
+                account.setUser(null);
+            }
+            accountDAO.saveAll(accounts);
+        }
+    }
+
+    public Page<User> showallinfo(int start, int size, String role)
     {
         start = start < 0 ? 0 : start;
         Sort sort = new Sort(Sort.Direction.DESC, "id");
         Pageable pageable = PageRequest.of(start, size, sort);
-        Role r=new Role(role);
-        Page<User> page = userdao.findByRolesContaining(r,pageable);
+        Role r = new Role(role);
+        Page<User> page = userdao.findByRolesContaining(r, pageable);
         return page;
     }
 
