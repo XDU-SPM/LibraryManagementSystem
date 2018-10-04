@@ -164,9 +164,6 @@
 
             </div>
 
-        < class = "am-g">
-            < class = "am-u-sm-12">
-
                 <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "booklist-1">
                     <thead>
                     <tr>
@@ -193,7 +190,7 @@
                     </tr>
                     </thead>
                     <tbody id="bk-table-1">
-                    
+
                     </tbody>
                 </table>
                 <br>
@@ -201,10 +198,10 @@
                 共 ${} 条记录
                 <div class = "am-fr">
                     <ul class = "am-pagination">
-                        <li><a th:href = "#">[首页]</a></li>
-                        <li><a th:href = "#">上一页</a></li>
-                        <li><a th:href = "#">下一页</a></li>
-                        <li><a th:href = "#">[末页]</a></li>
+                        <li><a href = "#">[首页]</a></li>
+                        <li><a href = "#">上一页</a></li>
+                        <li><a href = "#">下一页</a></li>
+                        <li><a href = "#">[末页]</a></li>
                     </ul>
                 </div>
             </div>
@@ -248,10 +245,10 @@
                 共 ${} 条记录
                 <div class = "am-fr">
                     <ul class = "am-pagination">
-                        <li><a th:href = "#">[首页]</a></li>
-                        <li><a th:href = "#">上一页</a></li>
-                        <li><a th:href = "#">下一页</a></li>
-                        <li><a th:href = "#">[末页]</a></li>
+                        <li><a href = "#">[首页]</a></li>
+                        <li><a href = "#">上一页</a></li>
+                        <li><a href = "#">下一页</a></li>
+                        <li><a href = "#">[末页]</a></li>
                     </ul>
                 </div>
             </div>
@@ -324,11 +321,56 @@
         });
     }
 </script>
-<script>
+<script th:inline="javascript">
     var data = [{
-        year: '1991',
-        value: 3
-    }, ];
+        time: '[${monthBorrows[0].date}]',
+        value: [${monthBorrows[0].num}]
+    },
+        {
+            time: '[${monthBorrows[1].date}]',
+            value: [${monthBorrows[1].num}]
+        },
+        {
+            time: '[${monthBorrows[2].date}]',
+            value: [${monthBorrows[2].num}]
+        },
+        {
+            time: '[${monthBorrows[3].date}]',
+            value: [${monthBorrows[3].num}]
+        },
+        {
+            time: '[${monthBorrows[4].date}]',
+            value: [${monthBorrows[4].num}]
+        },
+        {
+            time: '[${monthBorrows[5].date}]',
+            value: [${monthBorrows[5].num}]
+        },
+        {
+            time: '[${monthBorrows[6].date}]',
+            value: [${monthBorrows[6].num}]
+        },
+        {
+            time: '[${monthBorrows[7].date}]',
+            value: [${monthBorrows[7].num}]
+        },
+        {
+            time: '[${monthBorrows[8].date}]',
+            value: [${monthBorrows[8].num}]
+        },
+        {
+            time: '[${monthBorrows[9].date}]',
+            value: [${monthBorrows[9].num}]
+        },
+        {
+            time: '[${monthBorrows[10].date}]',
+            value: [${monthBorrows[10].num}]
+        },
+        {
+            time: '[${monthBorrows[11].date}]',
+            value: [${monthBorrows[11].num}]
+        }
+    ];
     var chart = new G2.Chart({
         container: 'mountNode1',
         forceFit: true,
@@ -338,7 +380,7 @@
     chart.scale('value', {
         min: 0
     });
-    chart.scale('year', {
+    chart.scale('time', {
         range: [0, 1]
     });
     chart.tooltip({
@@ -346,34 +388,22 @@
             type: 'line'
         }
     });
-    chart.line().position('year*value');
-    chart.point().position('year*value').size(4).shape('circle').style({
+    chart.line().position('time*value');
+    chart.point().position('time*value').size(4).shape('circle').style({
         stroke: '#fff',
         lineWidth: 1
     });
     chart.render();
 </script>
-<script>
+<script th:inline="javascript">
     var data = [{
-        item: '事例一',
-        count: 40,
-        percent: 0.4
+        item: 'BorrowedNumber',
+        count: [${borrowedNumber}],
+        percent: [${borrowedNumber}]/([${borrowedNumber}]+[${RemainNumber}])
     }, {
-        item: '事例二',
-        count: 21,
-        percent: 0.21
-    }, {
-        item: '事例三',
-        count: 17,
-        percent: 0.17
-    }, {
-        item: '事例四',
-        count: 13,
-        percent: 0.13
-    }, {
-        item: '事例五',
-        count: 9,
-        percent: 0.09
+        item: 'RemainNumber',
+        count: [${RemainNumber}],
+        percent: [${RemainNumber}]/([${borrowedNumber}]+[${RemainNumber}])
     }];
     var chart = new G2.Chart({
         container: 'mountNode',
