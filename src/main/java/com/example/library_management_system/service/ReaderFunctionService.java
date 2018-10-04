@@ -3,6 +3,7 @@ package com.example.library_management_system.service;
 import com.example.library_management_system.bean.*;
 import com.example.library_management_system.dao.*;
 import com.example.library_management_system.utils.BkunitUtil;
+import com.example.library_management_system.utils.UserBkunitUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -45,12 +46,21 @@ public class ReaderFunctionService
     @Autowired
     private BkunitOperatingHistoryDAO bkunitOperatingHistoryDAO;
 
-    public Page<UserBkunit> queryborrowedBooks(int start, int size)
+    public Page<UserBkunit> queryborrowedBooks(int start, int size, int status)
     {
         User reader = userService.getUser();
         start = start < 0 ? 0 : start;
         Sort sort = new Sort(Sort.Direction.ASC, "date");
         Pageable pageable = PageRequest.of(start, size, sort);
+        switch (status)
+        {
+            case 1:     // 预约
+                return userBkunitDAO.findAllByUserAndStatus(reader, UserBkunitUtil.RESERVATION, pageable);
+            case 2:     // 未还
+                return userBkunitDAO.findAllByUserAndStatusOrStatusOrStatus(reader, UserBkunitUtil.OVERDUE, UserBkunitUtil.RENEW, UserBkunitUtil.BORROWED, pageable);
+            case 3:     // 已还
+                return userBkunitDAO.findAllByUserAndStatus(reader, UserBkunitUtil.RETURNED, pageable);
+        }
         return userBkunitDAO.findAllByUser(reader, pageable);
     }
 

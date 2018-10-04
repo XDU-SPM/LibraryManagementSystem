@@ -72,10 +72,10 @@ public class UserService
     public boolean renew(int id)
     {
         UserBkunit userBkunit = userBkunitDAO.findById(id);
-        if (userBkunit.getState() == UserBkunitUtil.BORROWED)
+        if (userBkunit.getStatus() == UserBkunitUtil.BORROWED)
         {
             //更新续借图书的状态和天数
-            userBkunit.setState(UserBkunitUtil.RENEW);
+            userBkunit.setStatus(UserBkunitUtil.RENEW);
             userBkunitDAO.save(userBkunit);
             return true;
         }
@@ -88,11 +88,11 @@ public class UserService
         User user = userDAO.findById(uid);
         UserBkunit userBkunit = userBkunitDAO.findByUserAndBkunit(null, null);
         //只有在借书、续借、超期状态下才可以还书
-        if (userBkunit.getState() == UserBkunitUtil.BORROWED || userBkunit.getState() == UserBkunitUtil.OVERDUE ||
-                userBkunit.getState() == UserBkunitUtil.RENEW)
+        if (userBkunit.getStatus() == UserBkunitUtil.BORROWED || userBkunit.getStatus() == UserBkunitUtil.OVERDUE ||
+                userBkunit.getStatus() == UserBkunitUtil.RENEW)
         {
             //判断是否超期
-            if (userBkunit.getState() == UserBkunitUtil.OVERDUE)
+            if (userBkunit.getStatus() == UserBkunitUtil.OVERDUE)
             {
                 //需要交的钱
                 double money = OverduetimeUtil.getoverduetime(userBkunit.getBorrowDate(), userBkunit.getReturnDate()) * 1;
@@ -108,7 +108,7 @@ public class UserService
             user.setBUL(user.getBUL() + 1);
             userDAO.save(user);
             //修改借书状态
-            userBkunit.setState(UserBkunitUtil.RETURNED);
+            userBkunit.setStatus(UserBkunitUtil.RETURNED);
             userBkunitDAO.save(userBkunit);
             return true;
         }

@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @ author Captain
@@ -25,12 +26,11 @@ public class ReaderFunctionController
     private ReaderFunctionService readerfunctionservice;
 
     @RequestMapping(value = "/reader/borrowedBooks", method = RequestMethod.GET)
-    public String queryBorrowedBooks(Model model, @RequestParam(value = "start", defaultValue = "0") int start,
-                                     @RequestParam(value = "size", defaultValue = "10") int size)
+    @ResponseBody
+    public Page<UserBkunit> queryBorrowedBooks(@RequestParam(value = "start", defaultValue = "0") int start,
+                                     @RequestParam(value = "size", defaultValue = "10") int size, int status)
     {
-        Page<UserBkunit> page = readerfunctionservice.queryborrowedBooks(start, size);
-        model.addAttribute("page", page);
-        return "queryBorrowedBooks";
+        return readerfunctionservice.queryborrowedBooks(start, size, status);
     }
 
     @RequestMapping(value = "/reader/favoriteBooks", method = RequestMethod.GET)

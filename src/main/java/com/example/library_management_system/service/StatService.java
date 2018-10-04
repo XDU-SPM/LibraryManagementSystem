@@ -97,7 +97,7 @@ public class StatService
     public Map<String, Integer> categorynum()
     {
         Map<String, Integer> map = new TreeMap<>();
-        List<UserBkunit> bkunitList = userBkunitDAO.findAllByState(BkunitUtil.BORROWED);
+        List<UserBkunit> bkunitList = userBkunitDAO.findAllByStatus(BkunitUtil.BORROWED);
         List<Category> categoryies = categoryDAO.findAll();
         for (Category c : categoryies)
         {
