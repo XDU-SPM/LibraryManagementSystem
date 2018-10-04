@@ -40,21 +40,27 @@ public class AdminController
         return "userinfo";
     }
 
-    @RequestMapping(value = "/admin/modifyRegisterMoney", method = RequestMethod.GET)
-    public void modifyRegisterMoney(double money)
+    @RequestMapping(value = "/admin/modifyRegisterMoney", method = RequestMethod.POST)
+    public String modifyRegisterMoney(double money, Model model)
     {
         adminservice.modifyRegisterMoney(money);
+        model.addAttribute("status", true);
+        return "admin/permission_change";
     }
 
-    @RequestMapping(value = "/admin/modifyMaxBorrowDays", method = RequestMethod.GET)
-    public void modifyMaxBorrowDays(int days)
+    @RequestMapping(value = "/admin/modifyMaxBorrowDays", method = RequestMethod.POST)
+    public String modifyMaxBorrowDays(int days, Model model)
     {
         adminservice.modifyMaxBorrowDays(days);
+        model.addAttribute("status", true);
+        return "admin/permission_change";
     }
 
-    @RequestMapping(value = "/admin/modifyMaxBorrowNum", method = RequestMethod.GET)
-    public void modifyMaxBorrowNum(int num)
+    @RequestMapping(value = "/admin/modifyMaxBorrowNum", method = RequestMethod.POST)
+    public String modifyMaxBorrowNum(int num, Model model)
     {
         adminservice.modifyMaxBorrowNum(num);
+        model.addAttribute("status", true);
+        return "admin/permission_change";
     }
 }

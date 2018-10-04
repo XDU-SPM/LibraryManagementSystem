@@ -150,67 +150,76 @@
                 <div class = "am-tabs-bd">
                     <div class = "am-tab-panel am-fade am-in am-active" id = "tab1">
                         <div class = "am-g am-margin-top">
-                            <div class = "am-form am-form-horizontal">
-                                <div class = "am-g am-margin-top">
-                                    <div class = "am-u-sm-4 am-u-md-2 am-text-right">
-                                        借阅数目
+                            <form method = "post" action = "modifyMaxBorrowNum">
+                                <div class = "am-form am-form-horizontal">
+                                    <div class = "am-g am-margin-top">
+                                        <div class = "am-u-sm-4 am-u-md-2 am-text-right">
+                                            借阅数目
+                                        </div>
+                                        <div class = "am-u-sm-8 am-u-md-4">
+                                            <input type = "text" class = "am-input-sm" placeholder = "请输入每个读者最大借阅数目"
+                                                   name = "num">
+                                        </div>
+                                        <div class = "am-hide-sm-only am-u-md-6"></div>
                                     </div>
-                                    <div class = "am-u-sm-8 am-u-md-4">
-                                        <input type = "text" class = "am-input-sm" placeholder = "请输入每个读者最大借阅数目">
-                                    </div>
-                                    <div class = "am-hide-sm-only am-u-md-6"></div>
-                                </div>
 
-                                <div class = "am-g am-margin-top-sm">
-                                    <div class = "am-u-sm-10 am-u-sm-push-2">
-                                        <button type = "button" class = "am-btn am-btn-primary ">修改</button>
+                                    <div class = "am-g am-margin-top-sm">
+                                        <div class = "am-u-sm-10 am-u-sm-push-2">
+                                            <button type = "submit" class = "am-btn am-btn-primary ">修改</button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
 
                     <div class = "am-tab-panel am-fade am-in " id = "tab2">
                         <div class = "am-g am-margin-top">
-                            <div class = "am-form am-form-horizontal">
-                                <div class = "am-g am-margin-top">
-                                    <div class = "am-u-sm-4 am-u-md-2 am-text-right">
-                                        借阅时间
+                            <form action = "modifyMaxBorrowDays" method = "post">
+                                <div class = "am-form am-form-horizontal">
+                                    <div class = "am-g am-margin-top">
+                                        <div class = "am-u-sm-4 am-u-md-2 am-text-right">
+                                            借阅时间
+                                        </div>
+                                        <div class = "am-u-sm-8 am-u-md-4">
+                                            <input type = "text" class = "am-input-sm" placeholder = "请输入最大借阅天数"
+                                                   name = "days">
+                                        </div>
+                                        <div class = "am-hide-sm-only am-u-md-6"></div>
                                     </div>
-                                    <div class = "am-u-sm-8 am-u-md-4">
-                                        <input type = "text" class = "am-input-sm" placeholder = "请输入最大借阅天数">
-                                    </div>
-                                    <div class = "am-hide-sm-only am-u-md-6"></div>
-                                </div>
 
-                                <div class = "am-g am-margin-top-sm">
-                                    <div class = "am-u-sm-10 am-u-sm-push-2">
-                                        <button type = "button" class = "am-btn am-btn-primary ">修改</button>
+                                    <div class = "am-g am-margin-top-sm">
+                                        <div class = "am-u-sm-10 am-u-sm-push-2">
+                                            <button type = "submit" class = "am-btn am-btn-primary ">修改</button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
 
                     <div class = "am-tab-panel am-fade am-in " id = "tab3">
                         <div class = "am-g am-margin-top">
-                            <div class = "am-form am-form-horizontal">
-                                <div class = "am-g am-margin-top">
-                                    <div class = "am-u-sm-4 am-u-md-2 am-text-right">
-                                        押金金额
+                            <form action = "modifyRegisterMoney" method = "post">
+                                <div class = "am-form am-form-horizontal">
+                                    <div class = "am-g am-margin-top">
+                                        <div class = "am-u-sm-4 am-u-md-2 am-text-right">
+                                            押金金额
+                                        </div>
+                                        <div class = "am-u-sm-8 am-u-md-4">
+                                            <input type = "text" class = "am-input-sm" placeholder = "请输入押金金额"
+                                                   name = "money">
+                                        </div>
+                                        <div class = "am-hide-sm-only am-u-md-6"></div>
                                     </div>
-                                    <div class = "am-u-sm-8 am-u-md-4">
-                                        <input type = "text" class = "am-input-sm" placeholder = "请输入押金金额">
-                                    </div>
-                                    <div class = "am-hide-sm-only am-u-md-6"></div>
-                                </div>
 
-                                <div class = "am-g am-margin-top-sm">
-                                    <div class = "am-u-sm-10 am-u-sm-push-2">
-                                        <button type = "button" class = "am-btn am-btn-primary ">修改</button>
+                                    <div class = "am-g am-margin-top-sm">
+                                        <div class = "am-u-sm-10 am-u-sm-push-2">
+                                            <button type = "submit" class = "am-btn am-btn-primary ">修改</button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
 
@@ -243,10 +252,25 @@
 <script type = "text/javascript" src = "assets/js/charts/pieChart.js"></script>
 <script src = "assets/js/test.js">
 </script>
-<script type = "text/javascript">
+<script type = "text/javascript" th:inline = "javascript">
     $("#change").click(function () {
         translate();
-    })
+    });
+
+    var status = [[${status}]];
+
+    function isOk() {
+        if (status != 'null') {
+            if (status) {
+                alert("修改成功！");
+            }
+            else
+                alert("修改失败！");
+            status = null;
+        }
+    }
+
+    isOk();
 </script>
 </body>
 </html>

@@ -75,7 +75,7 @@ public class UserController
     @RequestMapping(value = "/admin/home", method = RequestMethod.GET)
     public String adminHome()
     {
-        return "admin/admin_homepage";
+        return "admin/permission_change";
     }
 
     @RequestMapping(value = "/librarian/home", method = RequestMethod.GET)
@@ -95,7 +95,7 @@ public class UserController
     public String adminReaderRegister(User reader, Model model)
     {
         userService.registerService(reader, RoleUtil.ROLE_READER_CHECK);
-        model.addAttribute("state", true);
+        model.addAttribute("status", true);
         return "admin/reader_create";
     }
 
