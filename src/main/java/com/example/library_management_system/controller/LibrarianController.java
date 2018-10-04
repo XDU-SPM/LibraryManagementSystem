@@ -16,7 +16,7 @@ public class LibrarianController
     @RequestMapping(value = "/librarian/librarian_return", method = RequestMethod.GET)
     public String librarian_librarian_return()
     {
-        return "librarian/librarian_borrow";
+        return "librarian/librarian_return";
     }
 
     @RequestMapping(value = "/librarian/librarian_table", method = RequestMethod.GET)
@@ -42,4 +42,7 @@ public class LibrarianController
     {
         return "librarian/librarian_user";
     }
+
+    @RequestMapping(value="/librarian/librarian_book",method = RequestMethod.GET)
+    public String librarian_librarian_book(){return "librarian/librarian_book";}
 }
