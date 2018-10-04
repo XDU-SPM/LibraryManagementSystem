@@ -99,16 +99,22 @@ public class AdminService
 
     public void modifyRegisterMoney(double money)
     {
-        globalUtilDAO.findById(1).get().setREGISTER_MONEY(money);
+        GlobalUtil globalUtil = globalUtilDAO.findById(1).get();
+        globalUtil.setREGISTER_MONEY(money);
+        globalUtilDAO.save(globalUtil);
     }
 
     public void modifyMaxBorrowDays(int days)
     {
-        globalUtilDAO.findById(1).get().setREGISTER_MONEY(days);
+        GlobalUtil globalUtil = globalUtilDAO.findById(1).get();
+        globalUtil.setMAX_BORROW_DAYS(days);
+        globalUtilDAO.save(globalUtil);
     }
 
     public void modifyMaxBorrowNum(int num)
     {
-        globalUtilDAO.findById(1).get().setREGISTER_MONEY(num);
+        GlobalUtil globalUtil = globalUtilDAO.findById(1).get();
+        globalUtil.setREGISTER_MONEY(num);
+        globalUtilDAO.save(globalUtil);
     }
 }
