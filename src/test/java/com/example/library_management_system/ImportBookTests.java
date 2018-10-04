@@ -67,7 +67,7 @@ public class ImportBookTests
 //                        book = bookOptional.get();
                     if (book == null)
                     {
-                        book = new Book(ISBN, title, score, time, publisher, author);
+                        book = new Book(ISBN, title, score, time, publisher, author, 0);
                         state1 = 0;
                     }
                     Category category = categoryDAO.findByName(categoryName);

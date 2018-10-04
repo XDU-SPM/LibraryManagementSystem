@@ -15,7 +15,7 @@
         legend: {
             orient: 'vertical',
             left: 'left',
-            data: ['在馆内','被预约','已借出']
+            data: ['在馆内','被预约','被借出']
         },
         series : [
             {
@@ -24,9 +24,12 @@
                 radius : '55%',
                 center: ['50%', '60%'],
                 data:[
-                    {value:335, name:'在馆内'},
-                    {value:310, name:'被预约'},
-                    {value:234, name:'已借出'},
+                    // {value:[${inLibraryNum}], name:'在馆内'},
+                    // {value:[${orderedNumber}], name:'被预约'},
+                    // {value:[${borrowedNumber}], name:'已借出'},
+                    {value:0,name:'在馆内'},
+                    {value:0,name:'被预约'},
+                    {value:0,name:'被借出'}
                 ],
                 itemStyle: {
                     emphasis: {
@@ -48,13 +51,13 @@
 
     option = {
         title: {
-            text: '折线图堆叠'
+            text: '图书出入情况'
         },
         tooltip: {
             trigger: 'axis'
         },
         legend: {
-            data:['邮件营销','联盟广告','视频广告','直接访问','搜索引擎']
+            data:['借阅','归还']
         },
         grid: {
             left: '3%',
@@ -77,34 +80,16 @@
         },
         series: [
             {
-                name:'邮件营销',
+                name:'借阅',
                 type:'line',
                 stack: '总量',
                 data:[120, 132, 101, 134, 90, 230, 210]
             },
             {
-                name:'联盟广告',
+                name:'归还',
                 type:'line',
                 stack: '总量',
                 data:[220, 182, 191, 234, 290, 330, 310]
-            },
-            {
-                name:'视频广告',
-                type:'line',
-                stack: '总量',
-                data:[150, 232, 201, 154, 190, 330, 410]
-            },
-            {
-                name:'直接访问',
-                type:'line',
-                stack: '总量',
-                data:[320, 332, 301, 334, 390, 330, 320]
-            },
-            {
-                name:'搜索引擎',
-                type:'line',
-                stack: '总量',
-                data:[820, 932, 901, 934, 1290, 1330, 1320]
             }
         ]
     };

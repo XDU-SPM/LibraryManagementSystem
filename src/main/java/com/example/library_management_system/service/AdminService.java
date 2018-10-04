@@ -1,6 +1,5 @@
 package com.example.library_management_system.service;
 
-import com.example.library_management_system.utils.GlobalUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -28,6 +27,8 @@ public class AdminService
     private AccountDAO accountDAO;
     @Autowired
     private RoleDAO roleDAO;
+    @Autowired
+    private GlobalUtilDAO globalUtilDAO;
 
     public void deleteuser(int id)
     {
@@ -98,16 +99,16 @@ public class AdminService
 
     public void modifyRegisterMoney(double money)
     {
-        GlobalUtil.REGISTER_MONEY = money;
+        globalUtilDAO.findById(1).get().setREGISTER_MONEY(money);
     }
 
     public void modifyMaxBorrowDays(int days)
     {
-        GlobalUtil.MAX_BORROW_DAYS = days;
+        globalUtilDAO.findById(1).get().setREGISTER_MONEY(days);
     }
 
     public void modifyMaxBorrowNum(int num)
     {
-        GlobalUtil.MAX_BORROW_NUM = num;
+        globalUtilDAO.findById(1).get().setREGISTER_MONEY(num);
     }
 }

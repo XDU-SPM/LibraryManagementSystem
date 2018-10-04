@@ -150,14 +150,30 @@
                 <div class = "content">
 
                     <ul class = "am-avg-sm-1 am-avg-md-4 am-margin am-padding am-text-center admin-content-list ">
-                        <li><a href = "#" class = "am-text-success"><span
-                                class = "am-icon-btn am-icon-book"></span><br/>今日借阅<br/>2300</a></li>
-                        <li><a href = "#" class = "am-text-warning"><span
-                                class = "am-icon-btn am-icon-clock-o"></span><br/>逾期人数<br/>308</a></li>
-                        <li><a href = "#" class = "am-text-danger"><span
-                                class = "am-icon-btn am-icon-recycle"></span><br/>今日归还<br/>80082</a></li>
-                        <li><a href = "#" class = "am-text-secondary"><span
-                                class = "am-icon-btn am-icon-user-md"></span><br/>罚金收入<br/>3000</a></li>
+                        <li>
+                            <a href = "#" class = "am-text-success"><span
+                                class = "am-icon-btn am-icon-book"></span><br/>今日借阅<br/>
+                            <span th:text="${borrow_num}">100</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href = "#" class = "am-text-warning"><span
+                                class = "am-icon-btn am-icon-clock-o"></span><br/>逾期人数<br/>
+                                <span th:text="${people_num}">100</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href = "#" class = "am-text-danger"><span
+                                class = "am-icon-btn am-icon-recycle"></span><br/>今日归还<br/>
+                            <span th:text="${return_num}">100</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href = "#" class = "am-text-secondary"><span
+                                class = "am-icon-btn am-icon-user-md"></span><br/>罚金收入<br/>
+                                <span th:text="${fine_num}">100</span>
+                            </a>
+                        </li>
                     </ul>
 
 
@@ -172,7 +188,7 @@
                         <div class = "am-u-md-6">
                             <!-- 大数据面积图  -->
                             <div class = "am-card">
-                                <div id = "pie4" style = "width: 100%;height: 400px;"></div>
+                                <div id = "Stack" style = "width: 100%;height: 400px;"></div>
                             </div>
                         </div>
                     </div>

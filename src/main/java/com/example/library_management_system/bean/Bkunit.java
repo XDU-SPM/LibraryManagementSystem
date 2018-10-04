@@ -1,5 +1,7 @@
 package com.example.library_management_system.bean;
 
+import com.example.library_management_system.utils.BkunitUtil;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,6 +18,8 @@ public class Bkunit
     private String id;
     private int status;
 
+    private int damageStatus;
+
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "bkid")
     private Book book;
@@ -23,13 +27,13 @@ public class Bkunit
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "bkunit")
     private Set<UserBkunit> userBkunits;
 
-    public Bkunit(String id, int status, Book book, Set<UserBkunit> userBkunits)
+    public Bkunit(String id, Book book)
     {
         this();
         this.id = id;
-        this.status = status;
+        this.status = BkunitUtil.NORMAL;
         this.book = book;
-        this.userBkunits = userBkunits;
+        this.damageStatus = BkunitUtil.NO_DAMAGE;
     }
 
     public Bkunit()
@@ -77,4 +81,13 @@ public class Bkunit
         this.userBkunits = userBkunits;
     }
 
+    public int getDamageStatus()
+    {
+        return damageStatus;
+    }
+
+    public void setDamageStatus(int damageStatus)
+    {
+        this.damageStatus = damageStatus;
+    }
 }

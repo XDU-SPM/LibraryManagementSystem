@@ -4,10 +4,7 @@ import com.example.library_management_system.bean.Account;
 import com.example.library_management_system.bean.Role;
 import com.example.library_management_system.bean.User;
 import com.example.library_management_system.bean.UserBkunit;
-import com.example.library_management_system.dao.AccountDAO;
-import com.example.library_management_system.dao.RoleDAO;
-import com.example.library_management_system.dao.UserBkunitDAO;
-import com.example.library_management_system.dao.UserDAO;
+import com.example.library_management_system.dao.*;
 import com.example.library_management_system.utils.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -27,8 +24,12 @@ public class UserService
 
     @Autowired
     UserBkunitDAO userBkunitDAO;
+
     @Autowired
     AccountDAO accountDAO;
+
+    @Autowired
+    GlobalUtilDAO globalUtilDAO;
 
     public User getUser()
     {
@@ -41,9 +42,9 @@ public class UserService
         user.setPassword(MD5Util.encode(user.getPassword()));
         if (RoleUtil.ROLE_READER_CHECK.equals(roleName))
         {
-            user.setBUL(GlobalUtil.MAX_BORROW_NUM);
-            user.setMoney(GlobalUtil.REGISTER_MONEY);
-            user.getAccounts().add(new Account(AccountUtil.REGISTER, GlobalUtil.REGISTER_MONEY, new Date()));
+            user.setBUL(globalUtilDAO.findById(1).get().getMAX_BORROW_NUM());
+            user.setMoney(globalUtilDAO.findById(1).get().getREGISTER_MONEY());
+            user.getAccounts().add(new Account(AccountUtil.REGISTER,globalUtilDAO.findById(1).get().getREGISTER_MONEY(), new Date()));
         }
         Role role = roleDAO.findByName(roleName);
         user.getRoles().add(role);
@@ -72,10 +73,10 @@ public class UserService
     public boolean renew(int id)
     {
         UserBkunit userBkunit = userBkunitDAO.findById(id);
-        if (userBkunit.getState() == UserBkunitUtil.BORROWED)
+        if (userBkunit.getStatus() == UserBkunitUtil.BORROWED)
         {
             //更新续借图书的状态和天数
-            userBkunit.setState(UserBkunitUtil.RENEW);
+            userBkunit.setStatus(UserBkunitUtil.RENEW);
             userBkunitDAO.save(userBkunit);
             return true;
         }
@@ -88,11 +89,11 @@ public class UserService
         User user = userDAO.findById(uid);
         UserBkunit userBkunit = userBkunitDAO.findByUserAndBkunit(null, null);
         //只有在借书、续借、超期状态下才可以还书
-        if (userBkunit.getState() == UserBkunitUtil.BORROWED || userBkunit.getState() == UserBkunitUtil.OVERDUE ||
-                userBkunit.getState() == UserBkunitUtil.RENEW)
+        if (userBkunit.getStatus() == UserBkunitUtil.BORROWED || userBkunit.getStatus() == UserBkunitUtil.OVERDUE ||
+                userBkunit.getStatus() == UserBkunitUtil.RENEW)
         {
             //判断是否超期
-            if (userBkunit.getState() == UserBkunitUtil.OVERDUE)
+            if (userBkunit.getStatus() == UserBkunitUtil.OVERDUE)
             {
                 //需要交的钱
                 double money = OverduetimeUtil.getoverduetime(userBkunit.getBorrowDate(), userBkunit.getReturnDate()) * 1;
@@ -108,7 +109,7 @@ public class UserService
             user.setBUL(user.getBUL() + 1);
             userDAO.save(user);
             //修改借书状态
-            userBkunit.setState(UserBkunitUtil.RETURNED);
+            userBkunit.setStatus(UserBkunitUtil.RETURNED);
             userBkunitDAO.save(userBkunit);
             return true;
         }
