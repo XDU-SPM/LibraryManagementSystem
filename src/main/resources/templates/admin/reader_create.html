@@ -129,7 +129,7 @@
                         <div class = "am-form-group">
                             <label for = "reader-password" class = "am-u-sm-3 am-form-label">密码</label>
                             <div class = "am-u-sm-9">
-                                <input type = "number" id = "reader-password" placeholder = "输入密码/Password"
+                                <input type = "password" id = "reader-password" placeholder = "输入密码/Password"
                                        name = "password">
                             </div>
                         </div>
@@ -151,7 +151,7 @@
 
                         <div class = "am-form-group">
                             <div class = "am-u-sm-9 am-u-sm-push-3">
-                                <button type = "button" class = "am-btn am-btn-primary">提交</button>
+                                <button type = "submit" class = "am-btn am-btn-primary">提交</button>
                             </div>
                         </div>
                     </form>
@@ -177,6 +177,26 @@
 <!--<![endif]-->
 <script src = "assets/js/amazeui.min.js"></script>
 <script src = "assets/js/app.js"></script>
+
+<script th:inline = "javascript">
+    isOk();
+
+    console.log('233');
+    console.log([${state}]);
+
+    function isOk() {
+        if ([${state}] == null) {
+        }
+        else {
+            if ([${state}]) {
+                alert("创建成功！");
+            }
+            else
+                alert("创建失败！");
+        }
+    }
+</script>
+
 <script type = "text/javascript" src = "assets/js/charts/echarts.min.js"></script>
 <script type = "text/javascript" src = "assets/js/charts/pieChart.js"></script>
 

@@ -1,7 +1,9 @@
 package com.example.library_management_system.controller;
 
 import com.example.library_management_system.bean.User;
+import com.example.library_management_system.service.StatService;
 import com.example.library_management_system.service.UserService;
+import com.example.library_management_system.utils.GlobalUtil;
 import com.example.library_management_system.utils.Message;
 import com.example.library_management_system.utils.RoleUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,9 @@ public class UserController
 {
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private StatService statService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String main()
@@ -56,8 +61,11 @@ public class UserController
     }
 
     @RequestMapping(value = "/reader/home", method = RequestMethod.GET)
-    public String readerHome()
+    public String readerHome(Model model)
     {
+        model.addAttribute("borrowedNumber", GlobalUtil.MAX_BORROW_NUM - statService.getUserBUL());
+        model.addAttribute("RemainNumber", statService.getUserBUL());
+        model.addAttribute("monthBorrows", statService.monthborrow());
         return "reader/reader_condition";
     }
 
