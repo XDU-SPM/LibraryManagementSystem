@@ -467,13 +467,14 @@
 
 <script>
     getOnePageBook3(1,3);
-    
+
     function getOnePageBook3(page_num,size){
         $.ajax({
             type: "get",
             url: "borrowedBooks",
             data: {start:page_num,size:size,status:3},
             success: function (data) {
+                console.log(data);
                 let objs = data;
                 let str = '';
                 $('#bk-table-3').empty();
