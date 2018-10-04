@@ -4,10 +4,10 @@ import com.example.library_management_system.bean.Account;
 import com.example.library_management_system.bean.User;
 import com.example.library_management_system.bean.UserBkunit;
 import com.example.library_management_system.dao.AccountDAO;
+import com.example.library_management_system.dao.GlobalUtilDAO;
 import com.example.library_management_system.dao.UserBkunitDAO;
 import com.example.library_management_system.dao.UserDAO;
 import com.example.library_management_system.utils.AccountUtil;
-import com.example.library_management_system.utils.GlobalUtil;
 import com.example.library_management_system.utils.MailUtil;
 import com.example.library_management_system.utils.UserBkunitUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +36,9 @@ public class Timer
     @Autowired
     private UserDAO userDAO;
 
+    @Autowired
+    private GlobalUtilDAO globalUtilDAO;
+
     /**
      * Execute once every day at 0:00
      */
@@ -50,9 +53,9 @@ public class Timer
             overdue.setTime(userBkunit.getBorrowDate());
             int days;
             if (userBkunit.getState() == UserBkunitUtil.BORROWED)
-                days = GlobalUtil.MAX_BORROW_DAYS;
+                days =  globalUtilDAO.findById(1).get().getMAX_BORROW_DAYS();
             else
-                days = GlobalUtil.MAX_BORROW_DAYS * 2;
+                days = globalUtilDAO.findById(1).get().getMAX_BORROW_DAYS() * 2;
             overdue.add(Calendar.DATE, days);
             if (now.getTime().after(overdue.getTime()))
                 userBkunit.setState(UserBkunitUtil.OVERDUE);
