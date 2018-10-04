@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>demo</title>
+</head>
+<body>
+    <span id="spanTime"></span>
+</body>
+</html>
+<script type="text/javascript" >
+    var timer = null;
+    window.onload = function(){
+        //定义倒计时的时间(倒计时1分钟10秒)
+        var minutes = 1;
+        var seconds = 10;
+        function show(){
+            //判断时间到了没
+            if(seconds==0&&minutes==0){
+                clearInterval(timer);//清除定时器
+                alert("时间到");
+                return;
+            }
+            seconds--;
+            if(seconds<0){
+                seconds = 59;
+                minutes--;
+            }
+            minutes = (minutes+"").length==1?"0"+minutes:minutes;//(minutes+"")是将其数据类型转换成字符串类型
+            seconds = (seconds+"").length==1?"0"+seconds:seconds;
+            document.getElementById("spanTime").innerHTML = minutes+":"+seconds;
+        }
+        //开启定时器
+        timer = setInterval(show,1000);
+    }
+</script>

@@ -12,6 +12,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Optional;
 import java.util.Set;
@@ -29,9 +30,9 @@ public class LibrarianBookService
     @Autowired
     private UserBkunitDAO userBkunitDAO;
 
-    public void addBkunit(Bkunit bkunit)
+    public void addBkunit(Book book, int number, String category, MultipartFile file)
     {
-        bkunitdao.save(bkunit);
+
     }
 
     public void deleteBkunit(String id)

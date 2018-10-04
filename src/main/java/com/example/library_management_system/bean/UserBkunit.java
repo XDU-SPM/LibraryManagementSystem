@@ -17,7 +17,7 @@ public class UserBkunit
     @Temporal(TemporalType.TIMESTAMP)
     private Date returnDate;
 
-    private int state;
+    private int status;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "buid")
@@ -31,10 +31,10 @@ public class UserBkunit
     {
     }
 
-    public UserBkunit(Date borrowDate, int state, Bkunit bkunit, User user)
+    public UserBkunit(Date borrowDate, int status, Bkunit bkunit, User user)
     {
         this.borrowDate = borrowDate;
-        this.state = state;
+        this.status = status;
         this.bkunit = bkunit;
         this.user = user;
     }
@@ -69,14 +69,14 @@ public class UserBkunit
         this.returnDate = returnDate;
     }
 
-    public int getState()
+    public int getStatus()
     {
-        return state;
+        return status;
     }
 
-    public void setState(int state)
+    public void setStatus(int status)
     {
-        this.state = state;
+        this.status = status;
     }
 
     public Bkunit getBkunit()

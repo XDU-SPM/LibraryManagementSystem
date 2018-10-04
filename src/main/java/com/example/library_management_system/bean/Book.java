@@ -19,7 +19,7 @@ public class Book
     private String title;
 
     private double score;
-//    private String brief;
+    private String brief;
 
     private int hardCover;  // pages
 
@@ -28,6 +28,9 @@ public class Book
 
     private String author;
 
+    private double price;
+
+    private String position;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
@@ -61,12 +64,12 @@ public class Book
         this.isbn = isbn;
     }
 
-    public Book(String isbn, String title, double score, String publishDate, String publisher, String author)
+    public Book(String isbn, String title, double score, String publishDate, String publisher, String author, double price)
     {
-        this(isbn, title, score, 0, publishDate, publisher, author);
+        this(isbn, title, score, 0, publishDate, publisher, author, price);
     }
 
-    public Book(String isbn, String title, double score, int hardCover, String publishDate, String publisher, String author)
+    public Book(String isbn, String title, double score, int hardCover, String publishDate, String publisher, String author, double price)
     {
         this();
         this.isbn = isbn;
@@ -76,6 +79,7 @@ public class Book
         this.publishDate = publishDate;
         this.publisher = publisher;
         this.author = author;
+        this.price = price;
     }
 
     public String getIsbn()
@@ -148,15 +152,15 @@ public class Book
         this.score = score;
     }
 
-//    public String getBrief()
-//    {
-//        return brief;
-//    }
-//
-//    public void setBrief(String brief)
-//    {
-//        this.brief = brief;
-//    }
+    public String getBrief()
+    {
+        return brief;
+    }
+
+    public void setBrief(String brief)
+    {
+        this.brief = brief;
+    }
 
     public int getHardCover()
     {
@@ -194,5 +198,25 @@ public class Book
     public void setBkunits(Set<Bkunit> bkunits)
     {
         this.bkunits = bkunits;
+    }
+
+    public double getPrice()
+    {
+        return price;
+    }
+
+    public void setPrice(double price)
+    {
+        this.price = price;
+    }
+
+    public String getPosition()
+    {
+        return position;
+    }
+
+    public void setPosition(String position)
+    {
+        this.position = position;
     }
 }

@@ -13,11 +13,15 @@ import java.util.Set;
 
 public interface UserBkunitDAO extends JpaRepository<UserBkunit, Integer>
 {
-    List<UserBkunit> findAllByStateOrState(int state1, int state2);
+    List<UserBkunit> findAllByStatusOrStatus(int status1, int status2);
 
-    List<UserBkunit> findAllByState(int state);
+    List<UserBkunit> findAllByStatus(int status);
 
     Page<UserBkunit> findAllByUser(User reader, Pageable pageable);
+
+    Page<UserBkunit> findAllByUserAndStatusOrStatusOrStatus(User user, int status1, int status2, int status3, Pageable pageable);
+
+    Page<UserBkunit> findAllByUserAndStatus(User user, int status, Pageable pageable);
 
     int countByUserAndBorrowDateBetween(User user, Date before, Date after);
 

@@ -12,6 +12,7 @@ import com.example.library_management_system.bean.Bkunit;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class LibrarianBookController
@@ -28,7 +29,7 @@ public class LibrarianBookController
 
     @RequestMapping(path = {"/librarian/addbook"}, method = {RequestMethod.POST})
     @ResponseBody
-    public Bkunit addBkunit(Book book)
+    public Bkunit addBkunit(Book book, int number, String category, MultipartFile file)
     {
         Bkunit bkunit = new Bkunit();
         bkunit.setId(String.valueOf(System.currentTimeMillis()));
@@ -38,7 +39,7 @@ public class LibrarianBookController
         }
         bkunit.setBook(book);
         bkunit.setStatus(BkunitUtil.NORMAL);
-        librarianBookService.addBkunit(bkunit);
+        librarianBookService.addBkunit(book, number, category, file);
         return bkunit;
     }
 

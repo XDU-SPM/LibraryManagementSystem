@@ -1,9 +1,10 @@
 package com.example.library_management_system.controller;
 
 import com.example.library_management_system.bean.User;
+import com.example.library_management_system.service.GlobalUtilService;
+import com.example.library_management_system.service.ReaderFunctionService;
 import com.example.library_management_system.service.StatService;
 import com.example.library_management_system.service.UserService;
-import com.example.library_management_system.utils.GlobalUtil;
 import com.example.library_management_system.utils.Message;
 import com.example.library_management_system.utils.RoleUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,12 @@ public class UserController
 
     @Autowired
     private StatService statService;
+
+    @Autowired
+    private GlobalUtilService globalUtilService;
+
+    @Autowired
+    private ReaderFunctionService readerFunctionService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String main()
@@ -63,16 +70,19 @@ public class UserController
     @RequestMapping(value = "/reader/home", method = RequestMethod.GET)
     public String readerHome(Model model)
     {
-        model.addAttribute("borrowedNumber", GlobalUtil.MAX_BORROW_NUM - statService.getUserBUL());
+        model.addAttribute("borrowedNumber", globalUtilService.getMaxBorrowNum() - statService.getUserBUL());
         model.addAttribute("RemainNumber", statService.getUserBUL());
         model.addAttribute("monthBorrows", statService.monthborrow());
+        model.addAttribute("page1", readerFunctionService.queryborrowedBooks(0, 5, 1));
+        model.addAttribute("page2", readerFunctionService.queryborrowedBooks(0, 5, 2));
+        model.addAttribute("page3", readerFunctionService.queryborrowedBooks(0, 5, 3));
         return "reader/reader_condition";
     }
 
     @RequestMapping(value = "/admin/home", method = RequestMethod.GET)
     public String adminHome()
     {
-        return "admin/admin_homepage";
+        return "admin/permission_change";
     }
 
     @RequestMapping(value = "/librarian/home", method = RequestMethod.GET)
@@ -92,7 +102,7 @@ public class UserController
     public String adminReaderRegister(User reader, Model model)
     {
         userService.registerService(reader, RoleUtil.ROLE_READER_CHECK);
-        model.addAttribute("state", true);
+        model.addAttribute("status", true);
         return "admin/reader_create";
     }
 
