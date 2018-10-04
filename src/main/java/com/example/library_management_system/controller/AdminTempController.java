@@ -7,51 +7,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class AdminTempController
 {
-    @RequestMapping(value = "admin/admin-index", method = RequestMethod.GET)
-    public String admin_admin_index()
+    @RequestMapping(value = "admin/reader_create", method = RequestMethod.GET)
+    public String admin_reader_create()
     {
-        return "admin/admin-index";
+        return "admin/reader_create";
     }
 
-    @RequestMapping(value = "admin/admin-user", method = RequestMethod.GET)
-    public String admin_admin_user()
+    @RequestMapping(value = "admin/librarian_create", method = RequestMethod.GET)
+    public String admin_librarian_create()
     {
-        return "admin/admin-user";
+        return "admin/librarian_create";
     }
 
-    @RequestMapping(value = "admin/admin-help", method = RequestMethod.GET)
-    public String admin_admin_help()
+    @RequestMapping(value = "admin/permission_change", method = RequestMethod.GET)
+    public String admin_permission_change()
     {
-        return "admin/admin-help";
-    }
-
-    @RequestMapping(value = "admin/admin-gallery", method = RequestMethod.GET)
-    public String admin_admin_gallery()
-    {
-        return "admin/admin-gallery";
-    }
-
-    @RequestMapping(value = "admin/admin-log", method = RequestMethod.GET)
-    public String admin_admin_log()
-    {
-        return "admin/admin-log";
-    }
-
-    @RequestMapping(value = "admin/admin-form", method = RequestMethod.GET)
-    public String admin_admin_form()
-    {
-        return "admin/admin-form";
-    }
-
-    @RequestMapping(value = "admin/admin-table", method = RequestMethod.GET)
-    public String admin_admin_table()
-    {
-        return "admin/admin-table";
-    }
-
-    @RequestMapping(value = "admin/admin-404", method = RequestMethod.GET)
-    public String admin_admin_404()
-    {
-        return "admin/admin-404";
+        return "admin/permission_change";
     }
 }

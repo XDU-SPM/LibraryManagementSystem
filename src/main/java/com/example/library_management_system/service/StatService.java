@@ -1,8 +1,8 @@
 package com.example.library_management_system.service;
 
 
-import com.example.library_management_system.bean.Bkunit;
 import com.example.library_management_system.bean.Category;
+import com.example.library_management_system.bean.MonthBorrow;
 import com.example.library_management_system.bean.User;
 
 import com.example.library_management_system.bean.UserBkunit;
@@ -11,6 +11,7 @@ import com.example.library_management_system.dao.CategoryDAO;
 import com.example.library_management_system.dao.UserBkunitDAO;
 import com.example.library_management_system.dao.UserDAO;
 import com.example.library_management_system.utils.BkunitUtil;
+import com.example.library_management_system.utils.OneMonthApart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,76 +33,56 @@ public class StatService
     @Autowired
     private CategoryDAO categoryDAO;
 
-    public int[] monthborrow(int[] book_month, int uid)
+    @Autowired
+    private UserService userService;
+
+    public List<MonthBorrow> monthborrow()
     {
-        Calendar cal = Calendar.getInstance();
-        int year = cal.get(Calendar.YEAR);
+        User reader = userService.getUser();
+        OneMonthApart oneMonthApart = new OneMonthApart();
+        Stack<MonthBorrow> stack = new Stack<>();
         for (int i = 0; i < 12; i++)
         {
-            Date startdate = new Date();
-            Date enddate = new Date();
-            startdate.setYear(year - 1900);
-            startdate.setMonth(i);
-            startdate.setDate(1);
-            startdate.setHours(0);
-            startdate.setMinutes(0);
-            startdate.setSeconds(0);
-            enddate.setYear(year - 1900);
-            enddate.setMonth(i);
-            if (i == 1 || i == 3 || i == 5 || i == 7 || i == 8 || i == 10 || i == 12)
-            {
-                enddate.setDate(31);
-            }
-            else if (i == 2)
-            {
-                if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0)
-                {
-                    enddate.setDate(29);
-                }
-                else
-                {
-                    enddate.setDate(28);
-                }
-            }
-            else
-            {
-                enddate.setTime(30);
-            }
-            enddate.setHours(0);
-            enddate.setMinutes(0);
-            enddate.setSeconds(0);
-            User user = userDAO.findById(uid);
-            book_month[i] = userBkunitDAO.countByUserAndBorrowDateBetween(user, startdate, enddate);
+            stack.push(new MonthBorrow(oneMonthApart.getBefore(), userBkunitDAO.countByUserAndBorrowDateBetween(reader, oneMonthApart.getBefore(), oneMonthApart.getAfter())));
+            oneMonthApart.setLastMonth();
         }
-        return book_month;
+        List<MonthBorrow> monthBorrows = new ArrayList<>();
+        while (!stack.isEmpty())
+            monthBorrows.add(stack.pop());
+        return monthBorrows;
     }
 
+    public int getUserBUL()
+    {
+        User reader = userService.getUser();
+        return reader.getBUL();
+    }
 
-   public int borrowbooknum(int uid)
-   {
+    public int borrowbooknum(int uid)
+    {
 
-       Date today2=new Date();
-       Date today1=new Date();
-       today1.setHours(0);
-       today1.setMinutes(0);
-       today1.setSeconds(0);
-       User user=userDAO.findById(uid);
-       int number=userBkunitDAO.countByUserAndBorrowDateBetween(user,today1,today2);
-       return number;
-   }
+        Date today2 = new Date();
+        Date today1 = new Date();
+        today1.setHours(0);
+        today1.setMinutes(0);
+        today1.setSeconds(0);
+        User user = userDAO.findById(uid);
+        int number = userBkunitDAO.countByUserAndBorrowDateBetween(user, today1, today2);
+        return number;
+    }
 
-   public int returnbooknum(int uid)
-   {
+    public int returnbooknum(int uid)
+    {
 
-       Date today2=new Date();
-       Date today1=new Date();
-       today1.setHours(0);
-       today1.setMinutes(0);
-       today1.setSeconds(0);
-       User user=userDAO.findById(uid);
-       int number=userBkunitDAO.countByUserAndReturnDateBetween(user,today1,today2);
-       return number;
-   }
+        Date today2 = new Date();
+        Date today1 = new Date();
+        today1.setHours(0);
+        today1.setMinutes(0);
+        today1.setSeconds(0);
+        User user = userDAO.findById(uid);
+        int number = userBkunitDAO.countByUserAndReturnDateBetween(user, today1, today2);
+        return number;
+    }
 
 
     public long[] statusnum()
@@ -113,22 +94,22 @@ public class StatService
         return statusnum;
     }
 
-    public Map<String,Integer> categorynum()
+    public Map<String, Integer> categorynum()
     {
-        Map<String,Integer> map=new TreeMap<>();
-       List<UserBkunit> bkunitList=userBkunitDAO.findAllByState(BkunitUtil.BORROWED);
-        List<Category> categoryies=categoryDAO.findAll();
-        for(Category c:categoryies)
+        Map<String, Integer> map = new TreeMap<>();
+        List<UserBkunit> bkunitList = userBkunitDAO.findAllByState(BkunitUtil.BORROWED);
+        List<Category> categoryies = categoryDAO.findAll();
+        for (Category c : categoryies)
         {
-            map.put(c.getName(),0);
+            map.put(c.getName(), 0);
         }
-        for(UserBkunit b:bkunitList)
+        for (UserBkunit b : bkunitList)
         {
-            for( Category i:b.getBkunit().getBook().getCategories())
+            for (Category i : b.getBkunit().getBook().getCategories())
             {
-                String s=i.getName();
-                Integer value=map.get(s);
-                map.put(s,value++);
+                String s = i.getName();
+                Integer value = map.get(s);
+                map.put(s, value++);
             }
         }
         return map;
