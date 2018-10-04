@@ -24,4 +24,10 @@ public class AdminTempController
     {
         return "admin/permission_change";
     }
+
+    @RequestMapping(value = "admin/delete_users", method = RequestMethod.GET)
+    public String admin_delete_users()
+    {
+        return "admin/delete_users";
+    }
 }

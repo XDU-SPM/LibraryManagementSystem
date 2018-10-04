@@ -6,9 +6,6 @@ public class UserBkunitUtil
             BORROWED = 1,
             OVERDUE = 2,
             RETURNED = 3,
-            LOST = 4,
-            MILD_DAMAGE = 5,        // 轻度
-            MODERATE_DAMAGE = 6,    // 中度
-            MAJOR_DAMAGE = 7,       // 重度
-            RENEW = 8;
+            RENEW = 4,
+            RESERVATION = 5;
 }
