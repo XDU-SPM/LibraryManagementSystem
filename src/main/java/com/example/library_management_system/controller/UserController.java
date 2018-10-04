@@ -88,6 +88,14 @@ public class UserController
         return "admin/reader_create";
     }
 
+    @RequestMapping(value = "/admin/librarian_register", method = RequestMethod.POST)
+    public String adminLibrarianRegister(User librarian, Model model)
+    {
+        userService.registerService(librarian, RoleUtil.ROLE_LIBRARIAN_CHECK);
+        model.addAttribute("state", true);
+        return "admin/librarian_create";
+    }
+
     @RequestMapping(value = "/admin/register", method = RequestMethod.POST)
     @ResponseBody
     public User adminRegister(User admin)
