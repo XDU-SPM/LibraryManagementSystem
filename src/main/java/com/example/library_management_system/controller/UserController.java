@@ -63,7 +63,7 @@ public class UserController
     @RequestMapping(value = "/admin/home", method = RequestMethod.GET)
     public String adminHome()
     {
-        return "admin/admin-index";
+        return "admin/admin_homepage";
     }
 
     @RequestMapping(value = "/librarian/home", method = RequestMethod.GET)

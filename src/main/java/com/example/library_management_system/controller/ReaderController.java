@@ -31,12 +31,6 @@ public class ReaderController
         return "reader/reader_message";
     }
 
-    @RequestMapping(value = "/reader/logout", method = RequestMethod.GET)
-    public String reader_logout()
-    {
-        return "reader/logout";
-    }
-
     @RequestMapping(value = "/reader/book_details", method = RequestMethod.GET)
     public String reader_book_details()
     {

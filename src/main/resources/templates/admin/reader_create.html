@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang = "en" xmlns:th = "http://www.thymeleaf.org"
+      xmlns:sec = "http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset = "UTF-8">
+    <title>BiblioSoft</title>
+    <link rel = "icon" type = "image/png" href = "assets/i/favicon.png">
+    <link rel = "apple-touch-icon-precomposed" href = "assets/i/app-icon72x72@2x.png">
+    <link rel = "stylesheet" href = "assets/css/amazeui.min.css"/>
+    <link rel = "stylesheet" href = "assets/css/admin.css">
+    <style>
+        .am-form-group {
+            text-align: left;
+        }
+
+        .am-topbar {
+            /*background-color: black;*/
+        }
+
+        .am-topbar .am-text-ir {
+            display: block;
+            margin-right: 10px;
+            height: 50px;
+            width: 125px;
+            background: url(assets/i/logo.jpg) no-repeat left center;
+            -webkit-background-size: 125px 24px;
+            background-size: 125px 24px;
+        }
+
+        .am-topbar-brand {
+        }
+    </style>
+</head>
+<body>
+<header class = "am-topbar am-topbar-inverse admin-header">
+    <h1 class = "am-topbar-brand">
+        <a href = "#" class = "am-text-ir">BiblioSoft</a>
+    </h1>
+
+    <button class = "am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only"
+            data-am-collapse = "{target: '#doc-topbar-collapse'}"><span class = "am-sr-only">导航切换</span> <span
+            class = "am-icon-bars"></span></button>
+
+    <div class = "am-collapse am-topbar-collapse" id = "doc-topbar-collapse">
+
+
+        <div class = "am-topbar-right">
+            <div class = "am-dropdown" data-am-dropdown = "{boundary: '.am-topbar'}">
+                <button class = "am-btn am-btn-secondary am-topbar-btn am-btn-sm am-dropdown-toggle"
+                        data-am-dropdown-toggle>Language <span class = "am-icon-caret-down"></span></button>
+                <ul class = "am-dropdown-content">
+                    <li><a href = "#">中文</a></li>
+                    <li><a href = "#">English</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class = "am-topbar-right">
+            <button class = "am-btn am-btn-primary am-topbar-btn am-btn-sm">注销</button>
+        </div>
+    </div>
+</header>
+
+<div class = "am-cf admin-main">
+    <!-- sidebar start -->
+    <div class = "admin-sidebar am-offcanvas" id = "admin-offcanvas">
+        <div class = "am-offcanvas-bar admin-offcanvas-bar">
+            <div class = "user-info">
+                <img class = "am-img-circle am-img-thumbnail am-center" src = "assets/img/admin.jpg" alt = ""/>
+                <p style = "text-align: center">管理员</p>
+            </div>
+
+            <ul class = "am-list admin-sidebar-list">
+
+
+                <li class = "admin-parent">
+                    <a class = "am-cf" data-am-collapse = "{target: '#collapse-nav'}"><span
+                            class = "am-icon-file"></span> 管理用户 <span
+                            class = "am-icon-angle-right am-fr am-margin-right"></span></a>
+                    <ul class = "am-list am-collapse admin-sidebar-sub am-in" id = "collapse-nav">
+                        <li><a href = "reader_create"><span class = "am-icon-user-plus"></span> 创建读者</a></li>
+                        <li><a href = "librarian_create"><span class = "am-icon-user-plus"></span> 创建图书管理员</a></li>
+                        <li><a href = "permission_change"><span class = "am-icon-eraser"></span> 修改权限</a></li>
+                    </ul>
+                </li>
+                <li><a href = "#"><span class = "am-icon-comment"></span> 发布公告</a></li>
+            </ul>
+
+            <div class = "am-panel am-panel-default admin-sidebar-panel">
+                <div class = "am-panel-bd">
+                    <p><span class = "am-icon-bookmark"></span> 公告</p>
+                    <p>时光静好，与君语；细水流年，与君同。—— Amaze UI</p>
+                </div>
+            </div>
+
+            <div class = "am-panel am-panel-default admin-sidebar-panel">
+                <div class = "am-panel-bd">
+                    <p><span class = "am-icon-tag"></span> wiki</p>
+                    <p>Welcome to the Amaze UI wiki!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- sidebar end -->
+    <!-- content start -->
+    <div class = "admin-content">
+        <div class = "admin-content-body">
+            <div class = "am-cf am-padding am-padding-bottom-0">
+                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">创建新的读者</strong> /
+                    <small>New Reader</small>
+                </div>
+            </div>
+
+            <hr/>
+
+            <div class = "am-g">
+
+
+                <div class = "am-u-sm-12 am-u-md-8 ">
+                    <form class = "am-form am-form-horizontal">
+                        <div class = "am-form-group">
+                            <label for = "reader-username" class = "am-u-sm-3 am-form-label">用户名</label>
+                            <div class = "am-u-sm-9">
+                                <input type = "text" id = "reader-username" placeholder = "输入用户名/Username">
+                            </div>
+                        </div>
+
+                        <div class = "am-form-group">
+                            <label for = "reader-password" class = "am-u-sm-3 am-form-label">密码</label>
+                            <div class = "am-u-sm-9">
+                                <input type = "number" id = "reader-password" placeholder = "输入密码/Password">
+                            </div>
+                        </div>
+
+                        <div class = "am-form-group">
+                            <label for = "reader-name" class = "am-u-sm-3 am-form-label">姓名</label>
+                            <div class = "am-u-sm-9">
+                                <input type = "text" id = "reader-name" placeholder = "输入姓名/Name">
+                            </div>
+                        </div>
+
+                        <div class = "am-form-group">
+                            <label for = "reader-email" class = "am-u-sm-3 am-form-label">邮箱</label>
+                            <div class = "am-u-sm-9">
+                                <input type = "text" id = "reader-email" placeholder = "输入邮箱/Email">
+                            </div>
+                        </div>
+
+
+                        <div class = "am-form-group">
+                            <div class = "am-u-sm-9 am-u-sm-push-3">
+                                <button type = "button" class = "am-btn am-btn-primary">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <footer class = "admin-content-footer">
+            <hr>
+            <p class = "am-padding-left" style = "text-align: center">© 2018 Biboliosoft Online Library System</p>
+        </footer>
+
+    </div>
+    <!-- content end -->
+</div>
+
+
+<!--[if lt IE 9]>
+<script src = "assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src = "assets/js/jquery.min.js"></script>
+<!--<![endif]-->
+<script src = "assets/js/amazeui.min.js"></script>
+<script src = "assets/js/app.js"></script>
+<script type = "text/javascript" src = "assets/js/charts/echarts.min.js"></script>
+<script type = "text/javascript" src = "assets/js/charts/pieChart.js"></script>
+
+</body>
+</html>
