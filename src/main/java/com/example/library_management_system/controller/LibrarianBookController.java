@@ -19,7 +19,7 @@ public class LibrarianBookController
     @Autowired
     private LibrarianBookService librarianBookService;
 
-    @RequestMapping(path = {"/librarian/deletebook"}, method = {RequestMethod.POST})
+    @RequestMapping(path = {"/librarian/deletebook"}, method = {RequestMethod.GET})
     public String deleteBkunit(@RequestParam(value = "id") String id)
     {
         librarianBookService.deleteBkunit(id);
@@ -44,7 +44,8 @@ public class LibrarianBookController
 
     //返回页面booksinfo
     @RequestMapping(path = {"/librarian/showbkunit"}, method = {RequestMethod.GET})
-    public String showBkunit(Model model, @RequestParam(value = "start", defaultValue = "0") int start, @RequestParam(value = "size", defaultValue = "10") int size) throws Exception
+    public String showBkunit(Model model, @RequestParam(value = "start", defaultValue = "0") int start,
+                             @RequestParam(value = "size", defaultValue = "10") int size)
     {
         Page<Bkunit> page = librarianBookService.showbkunit(start, size);
         model.addAttribute("page", page);
@@ -52,7 +53,8 @@ public class LibrarianBookController
     }
 
     @RequestMapping(path = {"/librarian/showbook"}, method = {RequestMethod.GET})
-    public String showBook(Model model, @RequestParam(value = "start", defaultValue = "0") int start, @RequestParam(value = "size", defaultValue = "10") int size, String category) throws Exception
+    public String showBook(Model model, @RequestParam(value = "start", defaultValue = "0") int start,
+                           @RequestParam(value = "size", defaultValue = "10") int size, String category)
     {
         Page<Book> page = librarianBookService.showbook(start, size, category);
         model.addAttribute("page", page);

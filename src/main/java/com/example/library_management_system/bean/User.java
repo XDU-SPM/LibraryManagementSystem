@@ -25,7 +25,7 @@ public class User
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
     private Set<Review> reviews;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_role",
             joinColumns = @JoinColumn(name = "uid"),

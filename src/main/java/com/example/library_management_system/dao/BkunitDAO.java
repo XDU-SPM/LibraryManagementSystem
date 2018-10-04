@@ -6,6 +6,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Set;
+
 
 public interface BkunitDAO extends JpaRepository<Bkunit, String>
 {
@@ -13,11 +15,17 @@ public interface BkunitDAO extends JpaRepository<Bkunit, String>
     Page<Bkunit> findAll(Pageable pageable);
 
     Bkunit findByBook(Book book);
-    Bkunit findByBookAndStatus(Book book,int status);
+
+    Set<Bkunit> findAllByBookAndStatus(Book book, int status);
+
     long countAllByBook(Book book);
-    long countAllByBookAndStatus(Book book,int status);
+
+    long countAllByBookAndStatus(Book book, int status);
+
     long countByBook(Book book);
+
     long countByBookAndStatus(Book book, int status);
+
     long countByStatus(int status);
 
 }

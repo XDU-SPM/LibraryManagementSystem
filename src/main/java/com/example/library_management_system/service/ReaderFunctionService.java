@@ -11,6 +11,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.Iterator;
+import java.util.Set;
 
 /**
  * @ author Captain
@@ -22,7 +24,6 @@ import java.util.Date;
 @Service
 public class ReaderFunctionService
 {
-
     @Autowired
     private UserService userService;
 
@@ -41,24 +42,25 @@ public class ReaderFunctionService
     @Autowired
     private ReviewDAO reviewDAO;
 
+    @Autowired
+    private BkunitOperatingHistoryDAO bkunitOperatingHistoryDAO;
+
     public Page<UserBkunit> queryborrowedBooks(int start, int size)
     {
         User reader = userService.getUser();
         start = start < 0 ? 0 : start;
-        Sort sort = new Sort(Sort.Direction.DESC, "date");
+        Sort sort = new Sort(Sort.Direction.ASC, "date");
         Pageable pageable = PageRequest.of(start, size, sort);
-        Page<UserBkunit> page = userBkunitDAO.findAllByUser(reader, pageable);
-        return page;
+        return userBkunitDAO.findAllByUser(reader, pageable);
     }
 
     public Page<UserFavoriteBook> queryFavoriteBooks(int start, int size)
     {
         User reader = userService.getUser();
         start = start < 0 ? 0 : start;
-        Sort sort = new Sort(Sort.Direction.DESC, "date");
+        Sort sort = new Sort(Sort.Direction.ASC, "date");
         Pageable pageable = PageRequest.of(start, size, sort);
-        Page<UserFavoriteBook> page = userFavoriteBookDAO.findAllByUser(reader, pageable);
-        return page;
+        return userFavoriteBookDAO.findAllByUser(reader, pageable);
     }
 
 
@@ -90,7 +92,7 @@ public class ReaderFunctionService
             {
                 fb.setBook(null);
                 fb.setUser(null);
-                userFavoriteBookDAO.delete(fb);     //判断欲删除的图书是否已被收藏
+                userFavoriteBookDAO.save(fb);     //判断欲删除的图书是否已被收藏
             }
         }
         catch (Exception e)
@@ -115,11 +117,15 @@ public class ReaderFunctionService
         if (reader.getBUL() <= 0) return 0;
 
         // 添加UserBkunit条目
-        Bkunit bkunit = bkunitDAO.findByBookAndStatus(bk, BkunitUtil.NORMAL);
+        Set<Bkunit> bkunits = bkunitDAO.findAllByBookAndStatus(bk, BkunitUtil.NORMAL);
+        Iterator<Bkunit> iterator = bkunits.iterator();
+        Bkunit bkunit = iterator.next();
         bkunit.setStatus(BkunitUtil.BORROWED);      // 相对应的Bkunit的状态
+        reader.setBUL(reader.getBUL() - 1);   // 修改用户可借图书上限
         UserBkunit userBkunit = new UserBkunit(new Date(), BkunitUtil.BORROWED, bkunit, reader);
         userBkunitDAO.save(userBkunit);
-        reader.setBUL(reader.getBUL() - 1);   // 修改用户可借图书上限
+        BkunitOperatingHistory bkunitOperatingHistory = new BkunitOperatingHistory(new Date(), reader.getId(), bkunit.getId(), BkunitUtil.BORROWED);
+        bkunitOperatingHistoryDAO.save(bkunitOperatingHistory);
         return 1;
     }
 
@@ -143,10 +149,9 @@ public class ReaderFunctionService
     {
         Book book = bookDAO.findByIsbn(Isbn);
         start = start < 0 ? 0 : start;
-        Sort sort = new Sort(Sort.Direction.DESC, "date");
+        Sort sort = new Sort(Sort.Direction.ASC, "date");
         Pageable pageable = PageRequest.of(start, size, sort);
-        Page<Review> page = reviewDAO.findAllByBook(book, pageable);
-        return page;
+        return reviewDAO.findAllByBook(book, pageable);
     }
 
 
@@ -157,7 +162,7 @@ public class ReaderFunctionService
             Review review = reviewDAO.findById(rid);
             review.setBook(null);
             review.setUser(null);
-            reviewDAO.delete(review);
+            reviewDAO.save(review);
         }
         catch (Exception e)
         {
