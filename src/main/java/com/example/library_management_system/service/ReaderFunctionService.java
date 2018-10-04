@@ -50,7 +50,7 @@ public class ReaderFunctionService
     {
         User reader = userService.getUser();
         start = start < 0 ? 0 : start;
-        Sort sort = new Sort(Sort.Direction.ASC, "date");
+        Sort sort = new Sort(Sort.Direction.ASC, "borrowDate");
         Pageable pageable = PageRequest.of(start, size, sort);
         switch (status)
         {
@@ -61,14 +61,14 @@ public class ReaderFunctionService
             case 3:     // 已还
                 return userBkunitDAO.findAllByUserAndStatus(reader, UserBkunitUtil.RETURNED, pageable);
         }
-        return userBkunitDAO.findAllByUser(reader, pageable);
+        return null;
     }
 
     public Page<UserFavoriteBook> queryFavoriteBooks(int start, int size)
     {
         User reader = userService.getUser();
         start = start < 0 ? 0 : start;
-        Sort sort = new Sort(Sort.Direction.ASC, "date");
+        Sort sort = new Sort(Sort.Direction.ASC, "borrowDate");
         Pageable pageable = PageRequest.of(start, size, sort);
         return userFavoriteBookDAO.findAllByUser(reader, pageable);
     }
@@ -159,7 +159,7 @@ public class ReaderFunctionService
     {
         Book book = bookDAO.findByIsbn(Isbn);
         start = start < 0 ? 0 : start;
-        Sort sort = new Sort(Sort.Direction.ASC, "date");
+        Sort sort = new Sort(Sort.Direction.ASC, "borrowDate");
         Pageable pageable = PageRequest.of(start, size, sort);
         return reviewDAO.findAllByBook(book, pageable);
     }
