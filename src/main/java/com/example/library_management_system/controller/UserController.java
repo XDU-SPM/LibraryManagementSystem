@@ -7,6 +7,7 @@ import com.example.library_management_system.utils.RoleUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -73,10 +74,18 @@ public class UserController
     }
 
     @RequestMapping(value = "/reader/register", method = RequestMethod.POST)
-    public String readerRegister(User student)
+    public String readerRegister(User reader)
     {
-        userService.registerService(student, RoleUtil.ROLE_READER_CHECK);
+        userService.registerService(reader, RoleUtil.ROLE_READER_CHECK);
         return "login";
+    }
+
+    @RequestMapping(value = "/admin/reader_register", method = RequestMethod.POST)
+    public String adminReaderRegister(User reader, Model model)
+    {
+        userService.registerService(reader, RoleUtil.ROLE_READER_CHECK);
+        model.addAttribute("state", true);
+        return "admin/reader_create";
     }
 
     @RequestMapping(value = "/admin/register", method = RequestMethod.POST)
