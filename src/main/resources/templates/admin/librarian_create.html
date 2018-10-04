@@ -56,7 +56,7 @@
         </div>
 
         <div class = "am-topbar-right">
-            <button class = "am-btn am-btn-primary am-topbar-btn am-btn-sm">注销</button>
+            <button class = "am-btn am-btn-primary am-topbar-btn am-btn-sm"><a th:href = "@{/logout}">注销</a></button>
         </div>
     </div>
 </header>
@@ -179,20 +179,19 @@
 <script src = "assets/js/app.js"></script>
 
 <script th:inline = "javascript">
-    isOk();
+    var state = [[${state}]];
 
     function isOk() {
-        console.log([${state}]);
-        if ([${state}] == null) {
-        }
-        else {
-            if ([${state}]) {
+        if (state != null) {
+            if (state) {
                 alert("创建成功！");
             }
             else
                 alert("创建失败！");
         }
     }
+
+    isOk();
 </script>
 
 <script type = "text/javascript" src = "assets/js/charts/echarts.min.js"></script>
