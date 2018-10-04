@@ -153,19 +153,21 @@
             <div class = "am-cf am-padding am-padding-bottom-0">
                 <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">借阅历史</strong></div>
             </div>
-
             <hr>
 
+            <div class = "am-cf am-padding am-padding-bottom-0">
+                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">未还</strong></div>
+            </div>
+            <hr>
 
             <div class = "am-u-sm-12 am-u-md-3">
 
             </div>
-        </div>
 
-        <div class = "am-g">
-            <div class = "am-u-sm-12">
+        < class = "am-g">
+            < class = "am-u-sm-12">
 
-                <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "booklist">
+                <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "booklist-1">
                     <thead>
                     <tr>
                         <th class = "table-id">编号</th>
@@ -186,34 +188,72 @@
                         <th class = "table-publisher">出版社</th>
                         <th class = "table-date am-hide-sm-only">出版日期</th>
                         <th class = "table-positon am-hide-sm-only">借书时间</th>
-                        <th class = "table-set">归还时间</th>
+                        <th class = "table-set">截止时间</th>
                         <th class = "table-set">操作</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td><a href = "book_details.html">纯洁神王是如何炼成的</a></td>
-                        <td>宗教类</td>
-                        <td class = "am-hide-sm-only">唐少伟</td>
-                        <td class = "am-hide-sm-only">西安电子科技大学出版社</td>
-                        <td class = "am-hide-sm-only">2014年9月4日 7:28:47</td>
-                        <td>2018.1.12</td>
-                        <td>2018.2.1</td>
-                        <td>
-                            <div class = "am-btn-toolbar">
-                                <div class = "am-btn-group am-btn-group-xs">
-                                    <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><span
-                                            class = "am-icon-pencil-square-o"></span><a href = "reader_comment.html">
-                                        评论</a></button>
+                    <tbody id="bk-table-1">
 
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
                     </tbody>
                 </table>
+                <br>
+            <div class = "am-cf">
+                共 ${} 条记录
+                <div class = "am-fr">
+                    <ul class = "am-pagination">
+                        <li><a th:href = "#">[首页]</a></li>
+                        <li><a th:href = "#">上一页</a></li>
+                        <li><a th:href = "#">下一页</a></li>
+                        <li><a th:href = "#">[末页]</a></li>
+                    </ul>
+                </div>
+            </div>
 
+            <div class = "am-cf am-padding am-padding-bottom-0">
+                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">已还</strong></div>
+            </div>
+            <hr>
+
+            <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "booklist-2">
+                <thead>
+                <tr>
+                    <th class = "table-id">编号</th>
+                    <th class = "table-title">标题</th>
+                    <!--<th class="table-type">类别</th>-->
+                    <th class = "table-type">
+                        <select>
+                            <option value = "option1">专业书</option>
+                            <option value = "option2">杂志</option>
+                            <option value = "option3">小说</option>
+                            <option value = "option3">文学书籍</option>
+                            <option value = "option3">历史</option>
+                            <option value = "option3">科普</option>
+                            <option value = "option3">故事会</option>
+                        </select>
+                    </th>
+                    <th class = "table-author am-hide-sm-only">作者</th>
+                    <th class = "table-publisher">出版社</th>
+                    <th class = "table-date am-hide-sm-only">出版日期</th>
+                    <th class = "table-positon am-hide-sm-only">借书时间</th>
+                    <th class = "table-set">归还时间</th>
+                    <th class = "table-set">操作</th>
+                </tr>
+                </thead>
+                <tbody id="bk-table-2">
+
+                </tbody>
+            </table>
+            <br>
+            <div class = "am-cf">
+                共 ${} 条记录
+                <div class = "am-fr">
+                    <ul class = "am-pagination">
+                        <li><a th:href = "#">[首页]</a></li>
+                        <li><a th:href = "#">上一页</a></li>
+                        <li><a th:href = "#">下一页</a></li>
+                        <li><a th:href = "#">[末页]</a></li>
+                    </ul>
+                </div>
             </div>
 
         </div>
@@ -247,34 +287,48 @@
 <script src = "https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
 <script type = "text/javascript" src = "assets/js/test.js"></script>
 <script>
+    getOnePageBook(1);
+    function getOnePageBook(page_num){
+        $.ajax({
+            type: "get",
+            url: "",
+            data: {},
+            success: function (data) {
+                let objs = data;
+                let str = '';
+                $('#bk-table-1').empty();
+                for (let i = 0; i < objs.length; i++) {
+                    str += '<tr>\n' +
+                        '                        <td>1</td>\n' +
+                        '                        <td><a href = "book_details.html">${}</a></td>\n' +
+                        '                        <td>${}</td>\n' +
+                        '                        <td class = "am-hide-sm-only">${}</td>\n' +
+                        '                        <td class = "am-hide-sm-only">${}</td>\n' +
+                        '                        <td class = "am-hide-sm-only">${}</td>\n' +
+                        '                        <td>${}</td>\n' +
+                        '                        <td>${}</td>\n' +
+                        '                        <td>\n' +
+                        '                            <div class = "am-btn-toolbar">\n' +
+                        '                                <div class = "am-btn-group am-btn-group-xs">\n' +
+                        '                                    <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><span\n' +
+                        '                                            class = "am-icon-pencil-square-o"></span><a href = "reader_comment.html">\n' +
+                        '                                        评论</a></button>\n' +
+                        '\n' +
+                        '                                </div>\n' +
+                        '                            </div>\n' +
+                        '                        </td>\n' +
+                        '                    </tr>'
+                }
+                $('#bk-table-1').html(str);
+            }
+        });
+    }
+</script>
+<script>
     var data = [{
         year: '1991',
         value: 3
-    }, {
-        year: '1992',
-        value: 4
-    }, {
-        year: '1993',
-        value: 3.5
-    }, {
-        year: '1994',
-        value: 5
-    }, {
-        year: '1995',
-        value: 4.9
-    }, {
-        year: '1996',
-        value: 6
-    }, {
-        year: '1997',
-        value: 7
-    }, {
-        year: '1998',
-        value: 9
-    }, {
-        year: '1999',
-        value: 13
-    }];
+    }, ];
     var chart = new G2.Chart({
         container: 'mountNode1',
         forceFit: true,
