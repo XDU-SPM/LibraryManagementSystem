@@ -1,15 +1,25 @@
 package com.example.library_management_system.controller;
 
+import com.example.library_management_system.service.StatService;
+import com.example.library_management_system.utils.GlobalUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class ReaderController
 {
+    @Autowired
+    private StatService statService;
+
     @RequestMapping(value = "/reader/reader_condition", method = RequestMethod.GET)
-    public String reader_reader_condition()
+    public String reader_reader_condition(Model model)
     {
+        model.addAttribute("borrowedNumber", GlobalUtil.MAX_BORROW_NUM - statService.getUserBUL());
+        model.addAttribute("RemainNumber", statService.getUserBUL());
+        model.addAttribute("monthBorrows", statService.monthborrow());
         return "reader/reader_condition";
     }
 
