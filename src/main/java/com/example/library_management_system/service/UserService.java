@@ -4,10 +4,7 @@ import com.example.library_management_system.bean.Account;
 import com.example.library_management_system.bean.Role;
 import com.example.library_management_system.bean.User;
 import com.example.library_management_system.bean.UserBkunit;
-import com.example.library_management_system.dao.AccountDAO;
-import com.example.library_management_system.dao.RoleDAO;
-import com.example.library_management_system.dao.UserBkunitDAO;
-import com.example.library_management_system.dao.UserDAO;
+import com.example.library_management_system.dao.*;
 import com.example.library_management_system.utils.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -27,8 +24,12 @@ public class UserService
 
     @Autowired
     UserBkunitDAO userBkunitDAO;
+
     @Autowired
     AccountDAO accountDAO;
+
+    @Autowired
+    GlobalUtilDAO globalUtilDAO;
 
     public User getUser()
     {
@@ -41,9 +42,9 @@ public class UserService
         user.setPassword(MD5Util.encode(user.getPassword()));
         if (RoleUtil.ROLE_READER_CHECK.equals(roleName))
         {
-            user.setBUL(GlobalUtil.MAX_BORROW_NUM);
-            user.setMoney(GlobalUtil.REGISTER_MONEY);
-            user.getAccounts().add(new Account(AccountUtil.REGISTER, GlobalUtil.REGISTER_MONEY, new Date()));
+            user.setBUL(globalUtilDAO.findById(1).get().getMAX_BORROW_NUM());
+            user.setMoney(globalUtilDAO.findById(1).get().getREGISTER_MONEY());
+            user.getAccounts().add(new Account(AccountUtil.REGISTER,globalUtilDAO.findById(1).get().getREGISTER_MONEY(), new Date()));
         }
         Role role = roleDAO.findByName(roleName);
         user.getRoles().add(role);
