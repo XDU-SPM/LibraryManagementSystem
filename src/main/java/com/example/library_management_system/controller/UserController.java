@@ -2,6 +2,7 @@ package com.example.library_management_system.controller;
 
 import com.example.library_management_system.bean.User;
 import com.example.library_management_system.service.GlobalUtilService;
+import com.example.library_management_system.service.ReaderFunctionService;
 import com.example.library_management_system.service.StatService;
 import com.example.library_management_system.service.UserService;
 import com.example.library_management_system.utils.Message;
@@ -25,6 +26,9 @@ public class UserController
 
     @Autowired
     private GlobalUtilService globalUtilService;
+
+    @Autowired
+    private ReaderFunctionService readerFunctionService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String main()
@@ -69,6 +73,9 @@ public class UserController
         model.addAttribute("borrowedNumber", globalUtilService.getMaxBorrowNum() - statService.getUserBUL());
         model.addAttribute("RemainNumber", statService.getUserBUL());
         model.addAttribute("monthBorrows", statService.monthborrow());
+        model.addAttribute("page1", readerFunctionService.queryborrowedBooks(0, 5, 1));
+        model.addAttribute("page2", readerFunctionService.queryborrowedBooks(0, 5, 2));
+        model.addAttribute("page3", readerFunctionService.queryborrowedBooks(0, 5, 3));
         return "reader/reader_condition";
     }
 

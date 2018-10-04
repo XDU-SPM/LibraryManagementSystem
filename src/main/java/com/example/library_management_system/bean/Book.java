@@ -19,7 +19,7 @@ public class Book
     private String title;
 
     private double score;
-//    private String brief;
+    private String brief;
 
     private int hardCover;  // pages
 
@@ -29,6 +29,8 @@ public class Book
     private String author;
 
     private double price;
+
+    private String position;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
@@ -150,15 +152,15 @@ public class Book
         this.score = score;
     }
 
-//    public String getBrief()
-//    {
-//        return brief;
-//    }
-//
-//    public void setBrief(String brief)
-//    {
-//        this.brief = brief;
-//    }
+    public String getBrief()
+    {
+        return brief;
+    }
+
+    public void setBrief(String brief)
+    {
+        this.brief = brief;
+    }
 
     public int getHardCover()
     {
@@ -206,5 +208,15 @@ public class Book
     public void setPrice(double price)
     {
         this.price = price;
+    }
+
+    public String getPosition()
+    {
+        return position;
+    }
+
+    public void setPosition(String position)
+    {
+        this.position = position;
     }
 }
