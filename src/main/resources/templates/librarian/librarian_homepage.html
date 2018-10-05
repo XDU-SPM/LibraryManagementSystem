@@ -158,24 +158,14 @@
                         </li>
                         <li>
                             <a href = "#" class = "am-text-warning"><span
-<<<<<<< HEAD
-                                    class = "am-icon-btn am-icon-clock-o"></span><br/>逾期人数<br/>
-                                <span th:text = "${todayReturnNumber}">100</span>
-=======
                                 class = "am-icon-btn am-icon-clock-o"></span><br/>逾期人数<br/>
                                 <span th:text="${todayOverdueNumber}">100</span>
->>>>>>> 88a5646bb92560e6da1c5803f57f68e60391f497
                             </a>
                         </li>
                         <li>
                             <a href = "#" class = "am-text-danger"><span
-<<<<<<< HEAD
-                                    class = "am-icon-btn am-icon-recycle"></span><br/>今日归还<br/>
-                                <span th:text = "${todayOverdueNumber}">100</span>
-=======
                                 class = "am-icon-btn am-icon-recycle"></span><br/>今日归还<br/>
                             <span th:text="${todayReturnNumber}">100</span>
->>>>>>> 88a5646bb92560e6da1c5803f57f68e60391f497
                             </a>
                         </li>
                         <li>
@@ -231,9 +221,14 @@
 
 <script th:inline = "javascript">
     //饼状图
+    function date2str(x,y) {
+        x1 = new Date(x);
+        var z ={y:x1.getFullYear(),M:x1.getMonth()+1,d:x1.getDate(),h:x1.getHours(),m:x1.getMinutes(),s:x1.getSeconds()};
+        return y.replace(/(y+|M+|d+|h+|m+|s+)/g,function(v) {return ((v.length>1?"0":"")+eval('z.'+v.slice(-1))).slice(-(v.length>2?v.length:2))});
+    }
     console.log([[${dayBorrowReturns}]]);
     var data = [[${dayBorrowReturns}]];
-    console.log(data[6].date);
+    console.log(date2str(data[0].date,"yyyy-MM-dd"));
     (function(){
 
         var pie1 = echarts.init(document.getElementById("pie1"));
@@ -309,7 +304,13 @@
             xAxis: {
                 type: 'category',
                 boundaryGap: false,
-                data: ['周一','周二','周三','周四','周五','周六','周日']
+                data: [date2str(data[0].date,"MM-dd"),
+                    date2str(data[1].date,"MM-dd"),
+                    date2str(data[2].date,"MM-dd"),
+                    date2str(data[3].date,"MM-dd"),
+                    date2str(data[4].date,"MM-dd"),
+                    date2str(data[5].date,"MM-dd"),
+                    date2str(data[6].date,"MM-dd")]
             },
             yAxis: {
                 type: 'value'
