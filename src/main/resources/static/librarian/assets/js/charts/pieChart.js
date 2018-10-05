@@ -24,12 +24,12 @@
                 radius : '55%',
                 center: ['50%', '60%'],
                 data:[
-                    // {value:[${inLibraryNum}], name:'在馆内'},
-                    // {value:[${orderedNumber}], name:'被预约'},
-                    // {value:[${borrowedNumber}], name:'已借出'},
-                    {value:0,name:'可使用'},
-                    {value:0,name:'被预约'},
-                    {value:0,name:'被借出'}
+                    {value:[[${availableNumber}]], name:'在馆内'},
+                    {value:[[${reservedNumber}]], name:'被预约'},
+                    {value:[[${borrowedNumber}]], name:'已借出'}
+                    // {value:0,name:'可使用'},
+                    // {value:0,name:'被预约'},
+                    // {value:0,name:'被借出'}
                 ],
                 itemStyle: {
                     emphasis: {
