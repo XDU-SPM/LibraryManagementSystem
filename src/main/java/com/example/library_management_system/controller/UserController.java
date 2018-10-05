@@ -70,7 +70,7 @@ public class UserController
     @RequestMapping(value = "/reader/home", method = RequestMethod.GET)
     public String readerHome()
     {
-        return "redirect:reader/reader_condition";
+        return "redirect:reader_condition";
     }
 
     @RequestMapping(value = "/admin/home", method = RequestMethod.GET)
@@ -82,7 +82,7 @@ public class UserController
     @RequestMapping(value = "/librarian/home", method = RequestMethod.GET)
     public String librarianHome()
     {
-        return "redirect:librarian/librarian_homepage";
+        return "redirect:librarian_homepage";
     }
 
     @RequestMapping(value = "/reader/register", method = RequestMethod.POST)
