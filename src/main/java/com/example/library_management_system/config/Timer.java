@@ -40,6 +40,9 @@ public class Timer
     @Autowired
     private BkunitOperatingHistoryDAO bkunitOperatingHistoryDAO;
 
+    @Autowired
+    private GlobalUtilDAO getGlobalUtilDAO;
+
     /**
      * Execute once every day at 0:00
      */
@@ -79,16 +82,10 @@ public class Timer
         List<User> users = userDAO.findAll();
         for (User user : users)
         {
-            int num = 0;
-            Set<UserBkunit> userBkunits = user.getUserBkunits();
-            for (UserBkunit userBkunit : userBkunits)
-            {
-                if (userBkunit.getStatus() == UserBkunitUtil.OVERDUE)
-                    num++;
-            }
-            Account account = new Account(AccountUtil.OVERDUE, num, new Date());
+            double num = userBkunitDAO.countByUserAndStatus(user, UserBkunitUtil.OVERDUE) * getGlobalUtilDAO.findById(1).get().getOVERDUE_MONEY();
+            Account account = new Account(AccountUtil.OVERDUE, num, user.getId(), new Date());
+            accountDAO.save(account);
             user.deductMoney(num);
-            user.getAccounts().add(account);
             userDAO.save(user);
         }
     }

@@ -2,6 +2,7 @@ package com.example.library_management_system.service;
 
 import com.example.library_management_system.bean.*;
 import com.example.library_management_system.dao.*;
+import com.example.library_management_system.utils.AccountUtil;
 import com.example.library_management_system.utils.BkunitUtil;
 import com.example.library_management_system.utils.UserBkunitUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,9 @@ public class ReaderFunctionService
 
     @Autowired
     private PunishmentDAO punishmentDAO;
+
+    @Autowired
+    private AccountDAO accountDAO;
 
     public Page<UserBkunit> queryborrowedBooks(int start, int size, int status)
     {
@@ -176,7 +180,13 @@ public class ReaderFunctionService
                 bkunit.setStatus(BkunitUtil.LOST);
                 break;
         }
-        reader.deductMoney(bkunit.getBook().getPrice() * (punishmentDAO.findById(damageStatus).get().getRate() - punishmentDAO.findById(bkunit.getDamageStatus()).get().getRate()));
+        double money = bkunit.getBook().getPrice() * (punishmentDAO.findById(damageStatus).get().getRate() - punishmentDAO.findById(bkunit.getDamageStatus()).get().getRate());
+        if (money != 0)
+        {
+            Account account = new Account(AccountUtil.DAMAGE, money, reader.getId(), new Date());
+            accountDAO.save(account);
+        }
+        reader.deductMoney(money);
         bkunit.setDamageStatus(damageStatus);
         userBkunit.setReturnDate(new Date());
         userBkunit.setStatus(UserBkunitUtil.RETURNED);

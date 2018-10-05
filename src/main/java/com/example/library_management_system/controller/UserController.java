@@ -68,15 +68,9 @@ public class UserController
     }
 
     @RequestMapping(value = "/reader/home", method = RequestMethod.GET)
-    public String readerHome(Model model)
+    public String readerHome()
     {
-        model.addAttribute("borrowedNumber", globalUtilService.getMaxBorrowNum() - statService.getUserBUL());
-        model.addAttribute("RemainNumber", statService.getUserBUL());
-        model.addAttribute("monthBorrows", statService.monthborrow());
-        model.addAttribute("page1", readerFunctionService.queryborrowedBooks(0, 5, 1));
-        model.addAttribute("page2", readerFunctionService.queryborrowedBooks(0, 5, 2));
-        model.addAttribute("page3", readerFunctionService.queryborrowedBooks(0, 5, 3));
-        return "reader/reader_condition";
+        return "redirect:reader/reader_condition";
     }
 
     @RequestMapping(value = "/admin/home", method = RequestMethod.GET)
@@ -88,7 +82,7 @@ public class UserController
     @RequestMapping(value = "/librarian/home", method = RequestMethod.GET)
     public String librarianHome()
     {
-        return "librarian/librarian_homepage";
+        return "redirect:librarian/librarian_homepage";
     }
 
     @RequestMapping(value = "/reader/register", method = RequestMethod.POST)

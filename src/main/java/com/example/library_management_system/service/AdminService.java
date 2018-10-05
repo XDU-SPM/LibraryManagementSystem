@@ -36,7 +36,6 @@ public class AdminService
         deleteUserBkunits(user);
         deleteReviews(user);
         deleteUserFavoriteBooks(user);
-        deleteAccounts(user);
         userdao.deleteById(id);
     }
 
@@ -71,16 +70,6 @@ public class AdminService
             userFavoriteBook.setBook(null);
         }
         userfavoritebookdao.saveAll(userFavoriteBooks);
-    }
-
-    private void deleteAccounts(User user)
-    {
-        Set<Account> accounts = user.getAccounts();
-        for (Account account : accounts)
-        {
-            account.setUser(null);
-        }
-        accountDAO.saveAll(accounts);
     }
 
     public Page<User> showallinfo(int start, int size, String role)

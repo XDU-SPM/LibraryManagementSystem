@@ -28,6 +28,15 @@ public class OneDayApart
         calendar.set(Calendar.MILLISECOND, 0);
     }
 
+    public void setLastDay()
+    {
+        after = before;
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(before);
+        calendar.add(Calendar.DATE, -1);
+        before = calendar.getTime();
+    }
+
     public Date getBefore()
     {
         return before;
@@ -42,6 +51,9 @@ public class OneDayApart
     {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss SSS");
         OneDayApart oneDayApart = new OneDayApart();
+        System.out.println(sdf.format(oneDayApart.getBefore()));
+        System.out.println(sdf.format(oneDayApart.getAfter()));
+        oneDayApart.setLastDay();
         System.out.println(sdf.format(oneDayApart.getBefore()));
         System.out.println(sdf.format(oneDayApart.getAfter()));
     }

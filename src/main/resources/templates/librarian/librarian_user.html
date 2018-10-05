@@ -177,38 +177,29 @@
                     <form class = "am-form am-form-horizontal">
 
                         <div class = "am-form-group">
-                            <label for = "username" class = "am-u-sm-3 am-form-label" >用户名</label>
+                            <label for = "username" class = "am-u-sm-3 am-form-label">用户名</label>
                             <div class = "am-u-sm-9">
-                                <input type = "text" id = "username" placeholder = "用户名 / username">
+                                <input type = "text" id = "username" placeholder = "用户名 / username" name = "username">
                             </div>
                         </div>
 
                         <div class = "am-form-group">
                             <label for = "name" class = "am-u-sm-3 am-form-label">姓名</label>
                             <div class = "am-u-sm-9">
-                                <input type = "text" id = "name" placeholder = "姓名 / Name">
+                                <input type = "text" id = "name" placeholder = "姓名 / Name" name = "name">
                             </div>
                         </div>
 
                         <div class = "am-form-group">
                             <label for = "user-email" class = "am-u-sm-3 am-form-label">电子邮件</label>
                             <div class = "am-u-sm-9">
-                                <input type = "email" id = "user-email" placeholder = "输入你的电子邮件 / Email">
+                                <input type = "email" id = "user-email" placeholder = "输入你的电子邮件 / Email" name = "email">
                             </div>
                         </div>
-
-                        <div class = "am-form-group">
-                            <label for = "user-phone" class = "am-u-sm-3 am-form-label">电话</label>
-                            <div class = "am-u-sm-9">
-                                <input type = "tel" id = "user-phone" placeholder = "输入你的电话号码 / Telephone " value="18292884508">
-                            </div>
-                        </div>
-
-
 
                         <div class = "am-form-group">
                             <div class = "am-u-sm-9 am-u-sm-push-3">
-                                <input type = "submit" class = "am-btn am-btn-primary" value="保存修改/Save">
+                                <input type = "submit" class = "am-btn am-btn-primary" value = "保存修改/Save">
                             </div>
                         </div>
                     </form>
@@ -246,15 +237,14 @@
 <script>
     $(function () {
         $("#username").blur(function () {
-            var params = $(this).value();
+            var params = $(this).serialize();
             $.ajax(
                 {
                     method: 'GET',
                     url: "checkUser",
                     data: params,
                     success: function (data) {
-                        var resultJson = $.parseJSON(data);
-                        if (resultJson.state == 0)
+                        if (data.status == 0)
                             alert("该用户名已经被注册");
                     }
                 }

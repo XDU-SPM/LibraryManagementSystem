@@ -10,7 +10,7 @@ public class LibrarianService
     @Autowired
     private UserDAO userDAO;
 
-    public boolean userExit(String username)
+    public boolean userExist(String username)
     {
         return userDAO.findByUsername(username) != null;
     }

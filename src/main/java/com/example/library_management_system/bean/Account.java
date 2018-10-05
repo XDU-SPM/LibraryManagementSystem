@@ -13,9 +13,7 @@ public class Account
     private int type;
     private double money;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "uid")
-    private User user;
+    private int uid;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
@@ -24,10 +22,11 @@ public class Account
     {
     }
 
-    public Account(int type, double money, Date date)
+    public Account(int type, double money, int uid, Date date)
     {
         this.type = type;
         this.money = money;
+        this.uid = uid;
         this.date = date;
     }
 
@@ -71,13 +70,13 @@ public class Account
         this.date = date;
     }
 
-    public User getUser()
+    public int getUid()
     {
-        return user;
+        return uid;
     }
 
-    public void setUser(User user)
+    public void setUid(int uid)
     {
-        this.user = user;
+        this.uid = uid;
     }
 }
