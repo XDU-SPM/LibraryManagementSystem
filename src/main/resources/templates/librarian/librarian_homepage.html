@@ -152,26 +152,36 @@
                     <ul class = "am-avg-sm-1 am-avg-md-4 am-margin am-padding am-text-center admin-content-list ">
                         <li>
                             <a href = "#" class = "am-text-success"><span
-                                class = "am-icon-btn am-icon-book"></span><br/>今日借阅<br/>
-                            <span th:text="${todayBorrowNumber}">100</span>
+                                    class = "am-icon-btn am-icon-book"></span><br/>今日借阅<br/>
+                                <span th:text = "${todayBorrowNumber}">100</span>
                             </a>
                         </li>
                         <li>
                             <a href = "#" class = "am-text-warning"><span
+<<<<<<< HEAD
+                                    class = "am-icon-btn am-icon-clock-o"></span><br/>逾期人数<br/>
+                                <span th:text = "${todayReturnNumber}">100</span>
+=======
                                 class = "am-icon-btn am-icon-clock-o"></span><br/>逾期人数<br/>
                                 <span th:text="${todayOverdueNumber}">100</span>
+>>>>>>> 88a5646bb92560e6da1c5803f57f68e60391f497
                             </a>
                         </li>
                         <li>
                             <a href = "#" class = "am-text-danger"><span
+<<<<<<< HEAD
+                                    class = "am-icon-btn am-icon-recycle"></span><br/>今日归还<br/>
+                                <span th:text = "${todayOverdueNumber}">100</span>
+=======
                                 class = "am-icon-btn am-icon-recycle"></span><br/>今日归还<br/>
                             <span th:text="${todayReturnNumber}">100</span>
+>>>>>>> 88a5646bb92560e6da1c5803f57f68e60391f497
                             </a>
                         </li>
                         <li>
                             <a href = "#" class = "am-text-secondary"><span
-                                class = "am-icon-btn am-icon-user-md"></span><br/>罚金收入<br/>
-                                <span th:text="${todayFineIncome}">100</span>
+                                    class = "am-icon-btn am-icon-user-md"></span><br/>罚金收入<br/>
+                                <span th:text = "${todayFineIncome}">100</span>
                             </a>
                         </li>
                     </ul>
@@ -217,7 +227,6 @@
 <script src = "assets/js/amazeui.min.js"></script>
 <script src = "assets/js/app.js"></script>
 <script type = "text/javascript" src = "assets/js/charts/echarts.min.js"></script>
-<script  th:inline="javascript"></script>
 <script type = "text/javascript" src = "assets/js/test.js"></script>
 
 <script th:inline = "javascript">
