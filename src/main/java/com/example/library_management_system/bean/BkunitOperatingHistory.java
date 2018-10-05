@@ -17,18 +17,18 @@ public class BkunitOperatingHistory
     private int uid;    // 谁操作的
     private String buid;   // 操作的的哪本书
 
-    private int state;
+    private int status;
 
     public BkunitOperatingHistory()
     {
     }
 
-    public BkunitOperatingHistory(Date date, int uid, String buid, int state)
+    public BkunitOperatingHistory(Date date, int uid, String buid, int status)
     {
         this.date = date;
         this.uid = uid;
         this.buid = buid;
-        this.state = state;
+        this.status = status;
     }
 
     public int getId()
@@ -71,13 +71,13 @@ public class BkunitOperatingHistory
         this.buid = buid;
     }
 
-    public int getState()
+    public int getStatus()
     {
-        return state;
+        return status;
     }
 
-    public void setState(int state)
+    public void setStatus(int status)
     {
-        this.state = state;
+        this.status = status;
     }
 }

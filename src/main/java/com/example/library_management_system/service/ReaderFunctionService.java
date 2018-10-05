@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.Iterator;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -63,7 +64,7 @@ public class ReaderFunctionService
             case 1:     // 预约
                 return userBkunitDAO.findAllByUserAndStatus(reader, UserBkunitUtil.RESERVATION, pageable);
             case 2:     // 未还
-                return userBkunitDAO.findAllByUserAndStatusOrStatusOrStatus(reader, UserBkunitUtil.OVERDUE, UserBkunitUtil.RENEW, UserBkunitUtil.BORROWED, pageable);
+                return userBkunitDAO.findAllByUserAndStatusBetween(reader, UserBkunitUtil.BORROWED, UserBkunitUtil.RENEW, pageable);
             case 3:     // 已还
                 return userBkunitDAO.findAllByUserAndStatus(reader, UserBkunitUtil.RETURNED, pageable);
         }
@@ -119,29 +120,21 @@ public class ReaderFunctionService
         return true;
     }
 
-    public int lend(String bookIsbn, String username)
+    public int lend(String id, String username)
     {
         User reader = userDAO.findByUsername(username);
         if (reader == null)
             return -1;
-        // 判断传入的参数是否合法
-        Book bk = bookDAO.findByIsbn(bookIsbn);
-        if (bk == null)
-            return -2;
-
-        // 判断图书状态，是否可借(除了预订中的书籍，图书数目是否还有余量)
-        long num = bkunitDAO.countAllByBookAndStatus(bk, BkunitUtil.NORMAL);   // 统计该书在馆且未被预约的数量
-        if (num <= 0)
-            return -3;
 
         //查询用户是否仍可借图书
         if (reader.getBUL() <= 0)
-            return -4;
+            return -2;
 
         // 添加UserBkunit条目
-        Set<Bkunit> bkunits = bkunitDAO.findAllByBookAndStatus(bk, BkunitUtil.NORMAL);
-        Iterator<Bkunit> iterator = bkunits.iterator();
-        Bkunit bkunit = iterator.next();
+        Optional<Bkunit> optionalBkunit = bkunitDAO.findById(id);
+        if (!optionalBkunit.isPresent())
+            return -3;
+        Bkunit bkunit = optionalBkunit.get();
         bkunit.setStatus(BkunitUtil.BORROWED);      // 相对应的Bkunit的状态
         reader.setBUL(reader.getBUL() - 1);   // 修改用户可借图书上限
         UserBkunit userBkunit = new UserBkunit(new Date(), BkunitUtil.BORROWED, bkunit, reader);
@@ -153,10 +146,13 @@ public class ReaderFunctionService
 
     public int returnBook(String id, int damage)
     {
-        Bkunit bkunit = bkunitDAO.findById(id).get();
-        if (bkunit.getStatus() != BkunitUtil.BORROWED)
+        Optional<Bkunit> optionalBkunit = bkunitDAO.findById(id);
+        if (!optionalBkunit.isPresent())
             return -1;
-        UserBkunit userBkunit = userBkunitDAO.findByBkunitAndStatusOrStatusOrStatus(bkunit, UserBkunitUtil.OVERDUE, UserBkunitUtil.RENEW, UserBkunitUtil.BORROWED);
+        Bkunit bkunit = optionalBkunit.get();
+        if (bkunit.getStatus() != BkunitUtil.BORROWED)
+            return -2;
+        UserBkunit userBkunit = userBkunitDAO.findByBkunitAndStatusBetween(bkunit, UserBkunitUtil.BORROWED, UserBkunitUtil.RENEW);
         User reader = userBkunit.getUser();
         bkunit.setStatus(BkunitUtil.NORMAL);
         reader.setBUL(reader.getBUL() + 1);
@@ -182,6 +178,8 @@ public class ReaderFunctionService
         }
         reader.deductMoney(bkunit.getBook().getPrice() * (punishmentDAO.findById(damageStatus).get().getRate() - punishmentDAO.findById(bkunit.getDamageStatus()).get().getRate()));
         bkunit.setDamageStatus(damageStatus);
+        userBkunit.setReturnDate(new Date());
+        userBkunit.setStatus(UserBkunitUtil.RETURNED);
         userBkunitDAO.save(userBkunit);
         BkunitOperatingHistory bkunitOperatingHistory = new BkunitOperatingHistory(new Date(), reader.getId(), bkunit.getId(), UserBkunitUtil.RETURNED);
         bkunitOperatingHistoryDAO.save(bkunitOperatingHistory);
