@@ -175,10 +175,18 @@
 
                 <div class = "am-u-sm-12 am-u-md-8 am-u-md-pull-4">
                     <form class = "am-form am-form-horizontal">
+
                         <div class = "am-form-group">
-                            <label for = "user-name" class = "am-u-sm-3 am-form-label">姓名</label>
+                            <label for = "username" class = "am-u-sm-3 am-form-label" >用户名</label>
                             <div class = "am-u-sm-9">
-                                <input type = "text" id = "user-name" placeholder = "姓名 / Name">
+                                <input type = "text" id = "username" placeholder = "用户名 / username">
+                            </div>
+                        </div>
+
+                        <div class = "am-form-group">
+                            <label for = "name" class = "am-u-sm-3 am-form-label">姓名</label>
+                            <div class = "am-u-sm-9">
+                                <input type = "text" id = "name" placeholder = "姓名 / Name">
                             </div>
                         </div>
 
@@ -196,27 +204,7 @@
                             </div>
                         </div>
 
-                        <div class = "am-form-group">
-                            <label for = "user-QQ" class = "am-u-sm-3 am-form-label">QQ</label>
-                            <div class = "am-u-sm-9">
-                                <input type = "number" pattern = "[0-9]*" id = "user-QQ" placeholder = "输入你的QQ号码">
-                            </div>
-                        </div>
 
-                        <div class="am-form-group">
-                            <label for="user-address" class="am-u-sm-3 am-form-label">地址</label>
-                            <div class = "am-u-sm-9">
-                                <input type="text" id="user-address" placeholder="address/地址">
-                            </div>
-                        </div>
-
-                        <div class = "am-form-group">
-                            <label for = "user-intro" class = "am-u-sm-3 am-form-label">简介</label>
-                            <div class = "am-u-sm-9">
-                                <textarea class = "" rows = "5" id = "user-intro" placeholder = "输入个人简介"></textarea>
-                                <small>250字以内</small>
-                            </div>
-                        </div>
 
                         <div class = "am-form-group">
                             <div class = "am-u-sm-9 am-u-sm-push-3">
@@ -254,6 +242,25 @@
     $("#change").click(function () {
         translate();
     })
+</script>
+<script>
+    $(function () {
+        $("#username").blur(function () {
+            var params = $(this).value();
+            $.ajax(
+                {
+                    method: 'GET',
+                    url: "checkUser",
+                    data: params,
+                    success: function (data) {
+                        var resultJson = $.parseJSON(data);
+                        if (resultJson.state == 0)
+                            alert("该用户名已经被注册");
+                    }
+                }
+            );
+        })
+    });
 </script>
 </body>
 </html>
