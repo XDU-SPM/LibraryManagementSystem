@@ -158,14 +158,24 @@
                         </li>
                         <li>
                             <a href = "#" class = "am-text-warning"><span
+<<<<<<< HEAD
                                     class = "am-icon-btn am-icon-clock-o"></span><br/>逾期人数<br/>
                                 <span th:text = "${todayReturnNumber}">100</span>
+=======
+                                class = "am-icon-btn am-icon-clock-o"></span><br/>逾期人数<br/>
+                                <span th:text="${todayOverdueNumber}">100</span>
+>>>>>>> 88a5646bb92560e6da1c5803f57f68e60391f497
                             </a>
                         </li>
                         <li>
                             <a href = "#" class = "am-text-danger"><span
+<<<<<<< HEAD
                                     class = "am-icon-btn am-icon-recycle"></span><br/>今日归还<br/>
                                 <span th:text = "${todayOverdueNumber}">100</span>
+=======
+                                class = "am-icon-btn am-icon-recycle"></span><br/>今日归还<br/>
+                            <span th:text="${todayReturnNumber}">100</span>
+>>>>>>> 88a5646bb92560e6da1c5803f57f68e60391f497
                             </a>
                         </li>
                         <li>
@@ -217,15 +227,118 @@
 <script src = "assets/js/amazeui.min.js"></script>
 <script src = "assets/js/app.js"></script>
 <script type = "text/javascript" src = "assets/js/charts/echarts.min.js"></script>
-<script type = "text/javascript" src = "assets/js/charts/pieChart.js" th:inline = "javascript"></script>
 <script type = "text/javascript" src = "assets/js/test.js"></script>
+
+<script th:inline = "javascript">
+    //饼状图
+    console.log(101);
+    console.log([[${borrowedNumber}]]);
+    console.log([[${dayBorrowReturns}]]);
+
+    (function(){
+
+        var pie1 = echarts.init(document.getElementById("pie1"));
+
+
+        option = {
+            title : {
+                text: '图书情况',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['可使用','被预约','被借出']
+            },
+            series : [
+                {
+                    name: '图书情况',
+                    type: 'pie',
+                    radius : '55%',
+                    center: ['50%', '60%'],
+                    data:[
+                        {value:[[${availableNumber}]], name:'在馆内'},
+                        {value:[[${reserveNumber}]], name:'被预约'},
+                        {value:[[${borrowedNumber}]], name:'已借出'}
+                        // {value:0,name:'可使用'},
+                        // {value:0,name:'被预约'},
+                        // {value:0,name:'被借出'}
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+
+        pie1.setOption(option);
+    })();
+
+    (function(){
+
+        var myChart = echarts.init(document.getElementById("Stack"));
+
+        option = {
+            title: {
+                text: '图书出入情况'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data:['借阅','归还']
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            toolbox: {
+                feature: {
+                    saveAsImage: {}
+                }
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: ['周一','周二','周三','周四','周五','周六','周日']
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [
+                {
+                    name:'借阅',
+                    type:'line',
+                    stack: '总量',
+                    data:[120, 132, 101, 134, 90, 230, 100]
+                },
+                {
+                    name:'归还',
+                    type:'line',
+                    stack: '总量',
+                    data:[220, 182, 191, 234, 290, 330, 310]
+                }
+            ]
+        };
+
+        myChart.setOption(option);
+    })();
+</script>
 <script type = "text/javascript">
     $("#change").click(function () {
         translate();
     })
 </script>
-<script>
-    console.log(100);
-</script>
+
 </body>
 </html>
