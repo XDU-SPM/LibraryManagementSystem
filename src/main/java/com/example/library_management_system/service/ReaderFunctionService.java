@@ -49,6 +49,9 @@ public class ReaderFunctionService
     @Autowired
     private UserDAO userDAO;
 
+    @Autowired
+    private PunishmentDAO punishmentDAO;
+
     public Page<UserBkunit> queryborrowedBooks(int start, int size, int status)
     {
         User reader = userService.getUser();
@@ -148,10 +151,40 @@ public class ReaderFunctionService
         return 0;
     }
 
-    public int returnBook(String id)
+    public int returnBook(String id, int damage)
     {
         Bkunit bkunit = bkunitDAO.findById(id).get();
-//        UserBkunit userBkunit = userBkunitDAO.findByBkunitAndStatus(bkunit, )
+        if (bkunit.getStatus() != BkunitUtil.BORROWED)
+            return -1;
+        UserBkunit userBkunit = userBkunitDAO.findByBkunitAndStatusOrStatusOrStatus(bkunit, UserBkunitUtil.OVERDUE, UserBkunitUtil.RENEW, UserBkunitUtil.BORROWED);
+        User reader = userBkunit.getUser();
+        bkunit.setStatus(BkunitUtil.NORMAL);
+        reader.setBUL(reader.getBUL() + 1);
+        int damageStatus = 0;
+        switch (damage)
+        {
+            case 0:
+                damageStatus = BkunitUtil.NO_DAMAGE;
+                break;
+            case 1:
+                damageStatus = BkunitUtil.MILD_DAMAGE;
+                break;
+            case 2:
+                damageStatus = BkunitUtil.MODERATE_DAMAGE;
+                break;
+            case 3:
+                damageStatus = BkunitUtil.MAJOR_DAMAGE;
+                break;
+            case 4:
+                damageStatus = BkunitUtil.LOST;
+                bkunit.setStatus(BkunitUtil.LOST);
+                break;
+        }
+        reader.deductMoney(bkunit.getBook().getPrice() * (punishmentDAO.findById(damageStatus).get().getRate() - punishmentDAO.findById(bkunit.getDamageStatus()).get().getRate()));
+        bkunit.setDamageStatus(damageStatus);
+        userBkunitDAO.save(userBkunit);
+        BkunitOperatingHistory bkunitOperatingHistory = new BkunitOperatingHistory(new Date(), reader.getId(), bkunit.getId(), UserBkunitUtil.RETURNED);
+        bkunitOperatingHistoryDAO.save(bkunitOperatingHistory);
         return 0;
     }
 

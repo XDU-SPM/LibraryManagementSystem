@@ -157,7 +157,7 @@ public class User
         this.userFavoriteBooks = userFavoriteBooks;
     }
 
-    public void deductMoney(int money)
+    public void deductMoney(double money)
     {
         this.money -= money;
     }

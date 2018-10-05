@@ -66,14 +66,16 @@ public class ReaderFunctionController
     @RequestMapping(value = "/librarian/lend", method = RequestMethod.POST)
     public String lend(Model model, String isbn, String username)
     {
-        int state = readerfunctionservice.lend(isbn, username);
-        model.addAttribute("state", state);
+        int status = readerfunctionservice.lend(isbn, username);
+        model.addAttribute("status", status);
         return "lend";
     }
 
     @RequestMapping(value = "/librarian/return", method = RequestMethod.POST)
-    public String returnBook(Model model, String isbn)
+    public String returnBook(Model model, String id, @RequestParam(value = "damage", defaultValue = "0") int damage)
     {
+        int status = readerfunctionservice.returnBook(id, damage);
+        model.addAttribute("status", status);
         return "";
     }
 
