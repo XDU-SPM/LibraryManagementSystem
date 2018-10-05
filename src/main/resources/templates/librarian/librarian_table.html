@@ -167,9 +167,9 @@
                     <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "booklist">
                         <thead>
                         <tr>
-                            <th class = "table-id">编号</th>
+                            <!--<th class = "table-id">编号</th>-->
                             <th class = "table-title">标题</th>
-                            <th class="table-isbn">ISBN</th>
+                            <!--<th class="table-isbn">ISBN</th>-->
                             <!--<th class = "table-type">-->
                                 <!--<select>-->
                                     <!--<option value = "option1">专业书</option>-->
@@ -181,17 +181,22 @@
                                     <!--<option value = "option3">故事会</option>-->
                                 <!--</select>-->
                             <!--</th>-->
-                            <th class = "table-author am-hide-sm-only">作者</th>
-                            <th class = "table-publisher">出版社</th>
-                            <th class = "table-date am-hide-sm-only">出版日期</th>
-                            <th class = "table-positon am-hide-sm-only">位置</th>
-                            <th class = "table-set">操作</th>
+                            <!--<th class = "table-author am-hide-sm-only">作者</th>-->
+                            <!--<th class = "table-publisher">出版社</th>-->
+                            <!--<th class = "table-date am-hide-sm-only">出版日期</th>-->
+                            <!--<th class = "table-positon am-hide-sm-only">位置</th>-->
+                            <!--<th class = "table-set">操作</th>-->
                         </tr>
                         </thead>
                         <tbody>
                         <!--<tr th:each="book:${page}">-->
                             <!--<td th:text="${book.id}"></td>-->
                             <!--<td th:text="${book.title}"><a th:href = "@{/librarian_book(id=${book.id})}"></a></td>-->
+                            <tr>
+                                <td>
+                                    <a href="librarian_book.html">书的详细页面</a>
+                                </td>
+                            </tr>
                             <!--<td th:text="${book.isbn}">宗教类</td>-->
                             <!--<td class = "am-hide-sm-only" th:text="${book.author}"></td>-->
                             <!--<td class = "am-hide-sm-only" th:text="${book.publisher}"></td>-->
@@ -208,7 +213,6 @@
                                 <!--</div>-->
                             <!--</td>-->
                         <!--</tr>-->
-                        </tbody>
                     </table>
                     <div class = "am-cf" >
                         <!--<p th:text="'共有'+${page.record_num}+'条记录'"></p>-->
