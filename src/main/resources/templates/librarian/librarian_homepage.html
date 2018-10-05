@@ -222,10 +222,9 @@
 
 <script th:inline = "javascript">
     //饼状图
-    console.log(101);
-    console.log([[${borrowedNumber}]]);
     console.log([[${dayBorrowReturns}]]);
-
+    var data = [[${dayBorrowReturns}]];
+    console.log(data[6].date);
     (function(){
 
         var pie1 = echarts.init(document.getElementById("pie1"));
@@ -311,13 +310,13 @@
                     name:'借阅',
                     type:'line',
                     stack: '总量',
-                    data:[120, 132, 101, 134, 90, 230, 100]
+                    data:[data[0].borrowNumber, data[1].borrowNumber, data[2].borrowNumber, data[3].borrowNumber, data[4].borrowNumber, data[5].borrowNumber, data[6].borrowNumber]
                 },
                 {
                     name:'归还',
                     type:'line',
                     stack: '总量',
-                    data:[220, 182, 191, 234, 290, 330, 310]
+                    data:[data[0].returnNumber, data[1].returnNumber, data[2].returnNumber, data[3].returnNumber, data[4].returnNumber, data[5].returnNumber, data[6].returnNumber]
                 }
             ]
         };
