@@ -153,25 +153,25 @@
                         <li>
                             <a href = "#" class = "am-text-success"><span
                                 class = "am-icon-btn am-icon-book"></span><br/>今日借阅<br/>
-                            <span th:text="${borrow_num}">100</span>
+                            <span th:text="${todayBorrowNumber}">100</span>
                             </a>
                         </li>
                         <li>
                             <a href = "#" class = "am-text-warning"><span
                                 class = "am-icon-btn am-icon-clock-o"></span><br/>逾期人数<br/>
-                                <span th:text="${people_num}">100</span>
+                                <span th:text="${todayReturnNumber}">100</span>
                             </a>
                         </li>
                         <li>
                             <a href = "#" class = "am-text-danger"><span
                                 class = "am-icon-btn am-icon-recycle"></span><br/>今日归还<br/>
-                            <span th:text="${return_num}">100</span>
+                            <span th:text="${todayOverdueNumber}">100</span>
                             </a>
                         </li>
                         <li>
                             <a href = "#" class = "am-text-secondary"><span
                                 class = "am-icon-btn am-icon-user-md"></span><br/>罚金收入<br/>
-                                <span th:text="${fine_num}">100</span>
+                                <span th:text="${todayFineIncome}">100</span>
                             </a>
                         </li>
                     </ul>

@@ -52,7 +52,7 @@ public class LibrarianController
         model.addAttribute("todayFineIncome", statService.todayFineIncome());
         long[] statusnum = statService.statusnum();
         model.addAttribute("borrowedNumber", statusnum[0]);
-        model.addAttribute("avaiableNumber", statusnum[1]);
+        model.addAttribute("availableNumber", statusnum[1]);
         model.addAttribute("reserveNumber", statusnum[2]);
         model.addAttribute("dayBorrowReturns", statService.dayBorrowReturns());
         return "librarian/librarian_homepage";

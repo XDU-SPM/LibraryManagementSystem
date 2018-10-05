@@ -25,7 +25,7 @@
                 center: ['50%', '60%'],
                 data:[
                     {value:[[${availableNumber}]], name:'在馆内'},
-                    {value:[[${reservedNumber}]], name:'被预约'},
+                    {value:[[${reserveNumber}]], name:'被预约'},
                     {value:[[${borrowedNumber}]], name:'已借出'}
                     // {value:0,name:'可使用'},
                     // {value:0,name:'被预约'},
