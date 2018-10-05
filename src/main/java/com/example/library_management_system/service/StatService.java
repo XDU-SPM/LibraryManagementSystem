@@ -108,7 +108,7 @@ public class StatService
         {
             Date before = oneDayApart.getBefore();
             Date after = oneDayApart.getAfter();
-            stack.push(new DayBorrowReturn(new Date(),
+            stack.push(new DayBorrowReturn(before,
                     bkunitOperatingHistoryDAO.countByDateBetweenAndStatus(before, after, UserBkunitUtil.BORROWED),
                     bkunitOperatingHistoryDAO.countByDateBetweenAndStatus(before, after, UserBkunitUtil.RETURNED)));
             oneDayApart.setLastDay();
