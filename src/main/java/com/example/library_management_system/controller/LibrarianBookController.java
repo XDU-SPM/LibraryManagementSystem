@@ -28,7 +28,7 @@ public class LibrarianBookController
     }
 
     @RequestMapping(path = {"/librarian/addbook"}, method = {RequestMethod.POST})
-    public String addBkunit(Book book, int number, String category, MultipartFile file)
+    public String addBkunit(Book book, int number, String category, @RequestParam("file") MultipartFile file)
     {
         librarianBookService.addBkunit(book, number, category, file);
         return "librarian/librarian_table";

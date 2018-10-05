@@ -1,12 +1,10 @@
 package com.example.library_management_system.config;
 
 import com.example.library_management_system.bean.Account;
+import com.example.library_management_system.bean.BkunitOperatingHistory;
 import com.example.library_management_system.bean.User;
 import com.example.library_management_system.bean.UserBkunit;
-import com.example.library_management_system.dao.AccountDAO;
-import com.example.library_management_system.dao.GlobalUtilDAO;
-import com.example.library_management_system.dao.UserBkunitDAO;
-import com.example.library_management_system.dao.UserDAO;
+import com.example.library_management_system.dao.*;
 import com.example.library_management_system.utils.AccountUtil;
 import com.example.library_management_system.utils.MailUtil;
 import com.example.library_management_system.utils.UserBkunitUtil;
@@ -39,6 +37,9 @@ public class Timer
     @Autowired
     private GlobalUtilDAO globalUtilDAO;
 
+    @Autowired
+    private BkunitOperatingHistoryDAO bkunitOperatingHistoryDAO;
+
     /**
      * Execute once every day at 0:00
      */
@@ -58,9 +59,13 @@ public class Timer
                 days = globalUtilDAO.findById(1).get().getMAX_BORROW_DAYS() * 2;
             overdue.add(Calendar.DATE, days);
             if (now.getTime().after(overdue.getTime()))
+            {
                 userBkunit.setStatus(UserBkunitUtil.OVERDUE);
+                userBkunitDAO.save(userBkunit);
+                BkunitOperatingHistory bkunitOperatingHistory = new BkunitOperatingHistory(new Date(), userBkunit.getUser().getId(), userBkunit.getBkunit().getId(), UserBkunitUtil.OVERDUE);
+                bkunitOperatingHistoryDAO.save(bkunitOperatingHistory);
+            }
         }
-        userBkunitDAO.saveAll(userBkunits);
     }
 
     /**

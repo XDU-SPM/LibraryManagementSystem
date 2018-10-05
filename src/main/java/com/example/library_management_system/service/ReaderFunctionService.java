@@ -46,6 +46,9 @@ public class ReaderFunctionService
     @Autowired
     private BkunitOperatingHistoryDAO bkunitOperatingHistoryDAO;
 
+    @Autowired
+    private UserDAO userDAO;
+
     public Page<UserBkunit> queryborrowedBooks(int start, int size, int status)
     {
         User reader = userService.getUser();
@@ -107,24 +110,30 @@ public class ReaderFunctionService
         }
         catch (Exception e)
         {
+            e.printStackTrace();
             return false;
         }
         return true;
     }
 
-    public int lend(String bookIsbn)
+    public int lend(String bookIsbn, String username)
     {
-        User reader = userService.getUser();
+        User reader = userDAO.findByUsername(username);
+        if (reader == null)
+            return -1;
         // 判断传入的参数是否合法
         Book bk = bookDAO.findByIsbn(bookIsbn);
-        if (bk == null) return 0;
+        if (bk == null)
+            return -2;
 
         // 判断图书状态，是否可借(除了预订中的书籍，图书数目是否还有余量)
         long num = bkunitDAO.countAllByBookAndStatus(bk, BkunitUtil.NORMAL);   // 统计该书在馆且未被预约的数量
-        if (num <= 0) return 0;
+        if (num <= 0)
+            return -3;
 
         //查询用户是否仍可借图书
-        if (reader.getBUL() <= 0) return 0;
+        if (reader.getBUL() <= 0)
+            return -4;
 
         // 添加UserBkunit条目
         Set<Bkunit> bkunits = bkunitDAO.findAllByBookAndStatus(bk, BkunitUtil.NORMAL);
@@ -134,11 +143,17 @@ public class ReaderFunctionService
         reader.setBUL(reader.getBUL() - 1);   // 修改用户可借图书上限
         UserBkunit userBkunit = new UserBkunit(new Date(), BkunitUtil.BORROWED, bkunit, reader);
         userBkunitDAO.save(userBkunit);
-        BkunitOperatingHistory bkunitOperatingHistory = new BkunitOperatingHistory(new Date(), reader.getId(), bkunit.getId(), BkunitUtil.BORROWED);
+        BkunitOperatingHistory bkunitOperatingHistory = new BkunitOperatingHistory(new Date(), reader.getId(), bkunit.getId(), UserBkunitUtil.BORROWED);
         bkunitOperatingHistoryDAO.save(bkunitOperatingHistory);
-        return 1;
+        return 0;
     }
 
+    public int returnBook(String id)
+    {
+        Bkunit bkunit = bkunitDAO.findById(id).get();
+//        UserBkunit userBkunit = userBkunitDAO.findByBkunitAndStatus(bkunit, )
+        return 0;
+    }
 
     public int writeReview(String Isbn, String review)
     {

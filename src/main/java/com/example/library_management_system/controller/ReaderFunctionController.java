@@ -63,12 +63,18 @@ public class ReaderFunctionController
     }
 
 
-    @RequestMapping(value = "/reader/lend", method = RequestMethod.POST)
-    public String lend(Model model, String BookIsbn)
+    @RequestMapping(value = "/librarian/lend", method = RequestMethod.POST)
+    public String lend(Model model, String isbn, String username)
     {
-        int state = readerfunctionservice.lend(BookIsbn);
+        int state = readerfunctionservice.lend(isbn, username);
         model.addAttribute("state", state);
         return "lend";
+    }
+
+    @RequestMapping(value = "/librarian/return", method = RequestMethod.POST)
+    public String returnBook(Model model, String isbn)
+    {
+        return "";
     }
 
     @RequestMapping(value = "/reader/writeReview", method = RequestMethod.POST)

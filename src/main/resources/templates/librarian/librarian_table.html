@@ -189,29 +189,28 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each = "book:${page}">
-                            <td th:text = "${book.id}"></td>
-                            <td th:text = "${book.title}"><a th:href = "@{/librarian_book(id=${book.id})}"></a></td>
-                            <td th:text = "${book.isbn}">宗教类</td>
-                            <td class = "am-hide-sm-only" th:text = "${book.author}"></td>
-                            <td class = "am-hide-sm-only" th:text = "${book.publisher}"></td>
-                            <td class = "am-hide-sm-only" th:text = "${book.publishDate}"></td>
-                            <td th:text = "${book.position}"></td>
-                            <td>
-                                <div class = "am-btn-toolbar">
-                                    <div class = "am-btn-group am-btn-group-xs">
-                                        <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><span
-                                                class = "am-icon-pencil-square-o"></span> 编辑
-                                        </button>
+                        <!--<tr th:each="book:${page}">-->
+                        <!--<td th:text="${book.id}"></td>-->
+                        <!--<td th:text="${book.title}"><a th:href = "@{/librarian_book(id=${book.id})}"></a></td>-->
+                        <!--<td th:text="${book.isbn}">宗教类</td>-->
+                        <!--<td class = "am-hide-sm-only" th:text="${book.author}"></td>-->
+                        <!--<td class = "am-hide-sm-only" th:text="${book.publisher}"></td>-->
+                        <!--<td class = "am-hide-sm-only" th:text="${book.publishDate}"></td>-->
+                        <!--<td th:text="${book.position}"></td>-->
+                        <!--<td>-->
+                        <!--<div class = "am-btn-toolbar">-->
+                        <!--<div class = "am-btn-group am-btn-group-xs">-->
+                        <!--<button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><span-->
+                        <!--class = "am-icon-pencil-square-o"></span> 编辑-->
+                        <!--</button>-->
 
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--</td>-->
+                        <!--</tr>-->
                         </tbody>
                     </table>
                     <div class = "am-cf">
-                        <p th:text = "'共有'+${page.record_num}+'条记录'">共有15条记录</p>
                         <div class = "am-fr">
                             <ul class = "am-pagination">
                                 <li class = "am-disabled"><a href = "#">«</a></li>
@@ -237,24 +236,88 @@
         <div class = "am-modal am-modal-prompt" tabindex = "-1" id = "my-prompt">
             <div class = "am-modal-dialog">
                 <div class = "am-modal-hd">添加图书</div>
-                <div class = "am-modal-bd">
-                    <p>书名</p>
-                    <input type = "text" class = "am-modal-prompt-input">
-                    <p>ISBN</p>
-                    <input type = "text" class = "am-modal-prompt-input">
-                    <p>作者</p>
-                    <input type = "text" class = "am-modal-prompt-input">
-                    <p>书类</p>
-                    <input type = "text" class = "am-modal-prompt-input">
-                    <p>位置</p>
-                    <input type = "text" class = "am-modal-prompt-input">
-                    <p>简介</p>
-                    <textarea class = "" rows = "2" id = "user-intro" placeholder = "输入图书简介"></textarea>
-                    <div class = "am-modal-footer">
-                        <span class = "am-modal-btn" data-am-modal-cancel>取消</span>
-                        <span class = "am-modal-btn" data-am-modal-confirm>提交</span>
+                <form class = "am-modal-bd am-form am-form-horizontal" method = "post" action = "addbook" enctype = "multipart/form-data">
+                    <div class = "am-form-group">
+                        <label for = "title" class = "am-u-sm-3 am-form-label">书名</label>
+                        <div class = "am-u-sm-9">
+                            <input type = "text" id = "title" placeholder = "书名 / Title" name = "title">
+                        </div>
                     </div>
-                </div>
+
+                    <div class = "am-form-group">
+                        <label for = "isbn" class = "am-u-sm-3 am-form-label">ISBN</label>
+                        <div class = "am-u-sm-9">
+                            <input type = "text" id = "isbn" placeholder = "ISBN" name = "isbn">
+                        </div>
+                    </div>
+
+                    <div class = "am-form-group">
+                        <label for = "author" class = "am-u-sm-3 am-form-label">作者</label>
+                        <div class = "am-u-sm-9">
+                            <input type = "text" id = "author" placeholder = "作者 / Author" name = "author">
+                        </div>
+                    </div>
+
+                    <div class = "am-form-group">
+                        <label for = "type" class = "am-u-sm-3 am-form-label">类别</label>
+                        <div class = "am-u-sm-9">
+                            <input type = "text" id = "type" placeholder = "类别 / Type" name = "category">
+                        </div>
+                    </div>
+
+                    <div class = "am-form-group">
+                        <label for = "position" class = "am-u-sm-3 am-form-label">位置</label>
+                        <div class = "am-u-sm-9">
+                            <input type = "text" id = "position" placeholder = "位置 / position" name = "position">
+                        </div>
+                    </div>
+
+                    <div class = "am-form-group">
+                        <label for = "publisher" class = "am-u-sm-3 am-form-label">出版社</label>
+                        <div class = "am-u-sm-9">
+                            <input type = "text" id = "publisher" placeholder = "出版社 / Publisher" name = "publisher">
+                        </div>
+                    </div>
+
+                    <div class = "am-form-group">
+                        <label for = "publish_time" class = "am-u-sm-3 am-form-label">出版时间</label>
+                        <div class = "am-u-sm-9">
+                            <input type = "text" id = "publish_time" placeholder = "出版时间 / Publish Time"
+                                   name = "publishDate">
+                        </div>
+                    </div>
+
+
+                    <div class = "am-form-group">
+                        <label for = "number" class = "am-u-sm-3 am-form-label">数量</label>
+                        <div class = "am-u-sm-9">
+                            <input type = "number" id = "number" pattern = "[1-9][0-9]*" placeholder = "数量 / Number"
+                                   name = "number">
+                        </div>
+                    </div>
+
+                    <div class = "am-form-group">
+                        <label for = "abstract" class = "am-u-sm-3 am-form-label">简介</label>
+                        <div class = "am-u-sm-9">
+                            <input type = "text" id = "abstract" placeholder = "摘要 / Abstract" name = "brief">
+                        </div>
+                    </div>
+
+                    <div class = "am-form-group">
+                        <label for = "price" class = "am-u-sm-3 am-form-label">价格</label>
+                        <div class = "am-u-sm-9">
+                            <input type = "number" id = "price" placeholder = "价格 / Price" name = "price">
+                        </div>
+                    </div>
+
+                    <input type = "file" id = "user-pic" class = "am-modal-prompt-input" name = "file">
+                    <div class = "am-modal-footer am-g">
+                        <div class = "am-u-sm-6"><input type = "button" data-am-modal-cancel value = "取消/Cancel"
+                                                        class = "am-btn-group-sm"></div>
+                        <div class = "am-u-sm-6"><input type = "submit" data-am-modal-confirm value = "确认/confirm"
+                                                        class = "am-btn-group-sm"></div>
+                    </div>
+                </form>
             </div>
         </div>
 

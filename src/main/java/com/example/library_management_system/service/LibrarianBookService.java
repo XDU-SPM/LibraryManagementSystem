@@ -38,12 +38,14 @@ public class LibrarianBookService
 
     public void addBkunit(Book book, int number, String categoryName, MultipartFile file)
     {
-        if (!bookdao.existsById(book.getIsbn()))
+        Book book1 = bookdao.findByIsbn(book.getIsbn());
+        if (book1 == null)
         {
+            book1 = book;
             String fileName = file.getOriginalFilename();
-            String[] tmps = fileName.split(".");
+            String[] tmps = fileName.split("\\.");
             String type = tmps[tmps.length - 1];
-            String coverPath = "/upload/" + book.getIsbn() + "." + type;
+            String coverPath = "src/main/resources/static/upload/" + book.getIsbn() + "." + type;
             FileUtil.saveFile(file, new File(coverPath));
 
             Category category = categoryDAO.findByName(categoryName);
@@ -53,14 +55,14 @@ public class LibrarianBookService
                 categoryDAO.save(category);
             }
 
-            book.setCoverPath(coverPath);
-            book.getCategories().add(category);
-            bookdao.save(book);
+            book1.setCoverPath(coverPath);
+            book1.getCategories().add(category);
+            bookdao.save(book1);
         }
         for (int i = 0; i < number; i++)
         {
             String id = String.valueOf(System.currentTimeMillis());
-            Bkunit bkunit = new Bkunit(id, book);
+            Bkunit bkunit = new Bkunit(id, book1);
             bkunitdao.save(bkunit);
         }
     }
