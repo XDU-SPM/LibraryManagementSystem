@@ -2,7 +2,8 @@
 (function(){
 
     var pie1 = echarts.init(document.getElementById("pie1"));
-
+    console.log(101);
+    console.log([[${borrowedNumber}]]);
     option = {
         title : {
             text: '图书情况',
