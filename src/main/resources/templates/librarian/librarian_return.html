@@ -264,6 +264,25 @@
 <script src = "assets/js/amazeui.min.js"></script>
 <script src = "assets/js/app.js"></script>
 <script type = "text/javascript" src = "assets/js/test.js"></script>
+
+<script th:inline="javascript">
+    var status=[[${status}]];
+
+    function isOk() {
+        if(status==0){
+            alert("归还成功")
+        }
+        else if(status==-1){
+            alert("没有对应的书本")
+        }
+        else if(status==-2){
+            alert("这本书没有被借过")
+        }
+    }
+
+    isOk();
+</script>
+
 <script type = "text/javascript">
     $("#change").click(function () {
         translate();
