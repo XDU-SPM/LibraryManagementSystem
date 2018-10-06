@@ -34,4 +34,6 @@ public interface UserBkunitDAO extends JpaRepository<UserBkunit, Integer>
     UserBkunit findByUserAndBkunit(User user, Bkunit bkunit);
 
     UserBkunit findByBkunitAndStatusBetween(Bkunit bkunit, int status1, int status2);
+
+    UserBkunit findByBkunitAndStatus(Bkunit bkunit, int status);
 }

@@ -1,10 +1,12 @@
 package com.example.library_management_system.service;
 
 import com.example.library_management_system.bean.*;
+import com.example.library_management_system.config.QueueConfig;
 import com.example.library_management_system.dao.*;
 import com.example.library_management_system.utils.AccountUtil;
 import com.example.library_management_system.utils.BkunitUtil;
 import com.example.library_management_system.utils.UserBkunitUtil;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,7 +15,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.Iterator;
 import java.util.Optional;
 import java.util.Set;
 
@@ -56,6 +57,9 @@ public class ReaderFunctionService
 
     @Autowired
     private AccountDAO accountDAO;
+
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
     public Page<UserBkunit> queryborrowedBooks(int start, int size, int status)
     {
@@ -113,7 +117,7 @@ public class ReaderFunctionService
             {
                 fb.setBook(null);
                 fb.setUser(null);
-                userFavoriteBookDAO.save(fb);     //判断欲删除的图书是否已被收藏
+                userFavoriteBookDAO.delete(fb);     //判断欲删除的图书是否已被收藏
             }
         }
         catch (Exception e)
@@ -138,10 +142,28 @@ public class ReaderFunctionService
         Optional<Bkunit> optionalBkunit = bkunitDAO.findById(id);
         if (!optionalBkunit.isPresent())
             return -3;
+
         Bkunit bkunit = optionalBkunit.get();
+
+        UserBkunit userBkunit = null;
+        if (bkunit.getStatus() == BkunitUtil.RESERVATION
+                && (userBkunit = userBkunitDAO.findByBkunitAndStatus(bkunit, UserBkunitUtil.RESERVATION)) != null
+                && userBkunit.getUser().getId() != reader.getId())
+            return -4;
+
+        if (userBkunit == null)
+            userBkunit = userBkunitDAO.findByUserAndBkunit(reader, bkunit);
+
+        if (userBkunit == null)
+            userBkunit = new UserBkunit(new Date(), UserBkunitUtil.BORROWED, bkunit, reader);
+        else
+        {
+            userBkunit.setBorrowDate(new Date());
+            userBkunit.setStatus(UserBkunitUtil.BORROWED);
+        }
+
         bkunit.setStatus(BkunitUtil.BORROWED);      // 相对应的Bkunit的状态
         reader.setBUL(reader.getBUL() - 1);   // 修改用户可借图书上限
-        UserBkunit userBkunit = new UserBkunit(new Date(), BkunitUtil.BORROWED, bkunit, reader);
         userBkunitDAO.save(userBkunit);
         BkunitOperatingHistory bkunitOperatingHistory = new BkunitOperatingHistory(new Date(), reader.getId(), bkunit.getId(), UserBkunitUtil.BORROWED);
         bkunitOperatingHistoryDAO.save(bkunitOperatingHistory);
@@ -153,9 +175,11 @@ public class ReaderFunctionService
         Optional<Bkunit> optionalBkunit = bkunitDAO.findById(id);
         if (!optionalBkunit.isPresent())
             return -1;
+
         Bkunit bkunit = optionalBkunit.get();
         if (bkunit.getStatus() != BkunitUtil.BORROWED)
             return -2;
+
         UserBkunit userBkunit = userBkunitDAO.findByBkunitAndStatusBetween(bkunit, UserBkunitUtil.BORROWED, UserBkunitUtil.RENEW);
         User reader = userBkunit.getUser();
         bkunit.setStatus(BkunitUtil.NORMAL);
@@ -228,7 +252,7 @@ public class ReaderFunctionService
             Review review = reviewDAO.findById(rid);
             review.setBook(null);
             review.setUser(null);
-            reviewDAO.save(review);
+            reviewDAO.delete(review);
         }
         catch (Exception e)
         {
@@ -236,5 +260,42 @@ public class ReaderFunctionService
             return false;
         }
         return true;
+    }
+
+    public String reserve(String isbn)
+    {
+        Book book = bookDAO.findByIsbn(isbn);
+        Set<Bkunit> bkunits = book.getBkunits();
+        Bkunit bkunit = null;
+        for (Bkunit bkunit1 : bkunits)
+        {
+            if (bkunit1.getStatus() == BkunitUtil.NORMAL)
+            {
+                bkunit = bkunit1;
+                break;
+            }
+        }
+        if (bkunit == null)
+            return String.valueOf(-1);
+
+        User reader = userService.getUser();
+        UserBkunit userBkunit = userBkunitDAO.findByUserAndBkunit(reader, bkunit);
+        if (userBkunit == null)
+            userBkunit = new UserBkunit(new Date(), UserBkunitUtil.RESERVATION, bkunit, reader);
+        else
+        {
+            userBkunit.setBorrowDate(new Date());
+            userBkunit.setStatus(UserBkunitUtil.RESERVATION);
+        }
+
+        bkunit.setStatus(BkunitUtil.RESERVATION);
+        userBkunitDAO.save(userBkunit);
+        BkunitOperatingHistory bkunitOperatingHistory = new BkunitOperatingHistory(new Date(), reader.getId(), bkunit.getId(), UserBkunitUtil.RESERVATION);
+        bkunitOperatingHistoryDAO.save(bkunitOperatingHistory);
+
+        int id = userBkunit.getId();
+        rabbitTemplate.convertAndSend(QueueConfig.DELAY_QUEUE_PER_MESSAGE_TTL_NAME, id);
+
+        return bkunit.getId();
     }
 }

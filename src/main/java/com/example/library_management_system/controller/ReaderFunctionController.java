@@ -104,8 +104,9 @@ public class ReaderFunctionController
     }
 
     @RequestMapping(value = "/reader/reserve", method = RequestMethod.POST)
-    public String reserveBook()
+    public String reserveBook(String isbn)
     {
+        String status = readerfunctionservice.reserve(isbn);
         return "";
     }
 }

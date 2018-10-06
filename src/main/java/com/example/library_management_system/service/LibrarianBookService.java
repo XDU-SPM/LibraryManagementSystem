@@ -5,6 +5,7 @@ import com.example.library_management_system.dao.BkunitDAO;
 import com.example.library_management_system.dao.BookDAO;
 import com.example.library_management_system.dao.CategoryDAO;
 import com.example.library_management_system.dao.UserBkunitDAO;
+import com.example.library_management_system.utils.BkunitUtil;
 import com.example.library_management_system.utils.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -70,14 +71,8 @@ public class LibrarianBookService
     public void deleteBkunit(String id)
     {
         Bkunit bkunit = bkunitdao.findById(id).get();
-        Set<UserBkunit> userBkunits = bkunit.getUserBkunits();
-        for (UserBkunit userBkunit : userBkunits)
-        {
-            userBkunit.setBkunit(null);
-            userBkunit.setUser(null);
-        }
-        userBkunitDAO.saveAll(userBkunits);
-        bkunitdao.deleteById(id);
+        bkunit.setStatus(BkunitUtil.LOST);
+        bkunitdao.save(bkunit);
     }
 
     public Page<Bkunit> showbkunit(int start, int size)
