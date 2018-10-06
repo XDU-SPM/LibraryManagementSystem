@@ -1,8 +1,5 @@
 package com.example.library_management_system.bean;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.util.Date;
 
@@ -37,6 +34,16 @@ public class UserBkunit
     public UserBkunit(Date borrowDate, int status, Bkunit bkunit, User user)
     {
         this.borrowDate = borrowDate;
+        this.returnDate = null;
+        this.status = status;
+        this.bkunit = bkunit;
+        this.user = user;
+    }
+
+    public UserBkunit(Date borrowDate, Date returnDate, int status, Bkunit bkunit, User user)
+    {
+        this.borrowDate = borrowDate;
+        this.returnDate = returnDate;
         this.status = status;
         this.bkunit = bkunit;
         this.user = user;
