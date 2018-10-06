@@ -19,7 +19,7 @@ public interface UserBkunitDAO extends JpaRepository<UserBkunit, Integer>
 
     Page<UserBkunit> findAllByUser(User reader, Pageable pageable);
 
-    Page<UserBkunit> findAllByUserAndStatusOrStatusOrStatus(User user, int status1, int status2, int status3, Pageable pageable);
+    Page<UserBkunit> findAllByUserAndStatusBetween(User user, int status1, int status2, Pageable pageable);
 
     Page<UserBkunit> findAllByUserAndStatus(User user, int status, Pageable pageable);
 
@@ -27,8 +27,13 @@ public interface UserBkunitDAO extends JpaRepository<UserBkunit, Integer>
 
     int countByUserAndReturnDateBetween(User user, Date before, Date after);
 
+    int countByUserAndStatus(User user, int status);
+
     UserBkunit findById(int id);
 
     UserBkunit findByUserAndBkunit(User user, Bkunit bkunit);
 
+    UserBkunit findByBkunitAndStatusBetween(Bkunit bkunit, int status1, int status2);
+
+    UserBkunit findByBkunitAndStatus(Bkunit bkunit, int status);
 }

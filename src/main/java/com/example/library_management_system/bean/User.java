@@ -39,15 +39,11 @@ public class User
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
     private Set<UserFavoriteBook> userFavoriteBooks;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
-    private Set<Account> accounts;
-
     public User()
     {
         this.userBkunits = new HashSet<>();
         this.roles = new HashSet<>();
         this.userFavoriteBooks = new HashSet<>();
-        this.accounts = new HashSet<>();
         this.reviews = new HashSet<>();
     }
 
@@ -157,19 +153,9 @@ public class User
         this.userFavoriteBooks = userFavoriteBooks;
     }
 
-    public void deductMoney(int money)
+    public void deductMoney(double money)
     {
         this.money -= money;
-    }
-
-    public Set<Account> getAccounts()
-    {
-        return accounts;
-    }
-
-    public void setAccounts(Set<Account> accounts)
-    {
-        this.accounts = accounts;
     }
 
     public Set<Review> getReviews() {

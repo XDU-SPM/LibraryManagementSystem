@@ -44,7 +44,6 @@ public class UserService
         {
             user.setBUL(globalUtilDAO.findById(1).get().getMAX_BORROW_NUM());
             user.setMoney(globalUtilDAO.findById(1).get().getREGISTER_MONEY());
-            user.getAccounts().add(new Account(AccountUtil.REGISTER,globalUtilDAO.findById(1).get().getREGISTER_MONEY(), new Date()));
         }
         Role role = roleDAO.findByName(roleName);
         user.getRoles().add(role);
@@ -102,7 +101,7 @@ public class UserService
                 account.setDate(new Date(System.currentTimeMillis()));
                 account.setMoney(money);
                 account.setType(AccountUtil.OVERDUE);
-                account.setUser(user);
+//                account.setUser(user);
                 accountDAO.save(account);
             }
             //可借图书天数加1

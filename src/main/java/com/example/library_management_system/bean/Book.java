@@ -31,6 +31,7 @@ public class Book
     private double price;
 
     private String position;
+    private String coverPath;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
@@ -218,5 +219,15 @@ public class Book
     public void setPosition(String position)
     {
         this.position = position;
+    }
+
+    public String getCoverPath()
+    {
+        return coverPath;
+    }
+
+    public void setCoverPath(String coverPath)
+    {
+        this.coverPath = coverPath;
     }
 }

@@ -28,19 +28,10 @@ public class LibrarianBookController
     }
 
     @RequestMapping(path = {"/librarian/addbook"}, method = {RequestMethod.POST})
-    @ResponseBody
-    public Bkunit addBkunit(Book book, int number, String category, MultipartFile file)
+    public String addBkunit(Book book, int number, String category, @RequestParam("file") MultipartFile file)
     {
-        Bkunit bkunit = new Bkunit();
-        bkunit.setId(String.valueOf(System.currentTimeMillis()));
-        if (!librarianBookService.isexist(book))
-        {
-            librarianBookService.addBook(book);
-        }
-        bkunit.setBook(book);
-        bkunit.setStatus(BkunitUtil.NORMAL);
         librarianBookService.addBkunit(book, number, category, file);
-        return bkunit;
+        return "librarian/librarian_table";
     }
 
     //返回页面booksinfo

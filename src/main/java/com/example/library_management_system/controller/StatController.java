@@ -27,24 +27,24 @@ public class StatController
         return "reader";
     }
 
-    //统计今日借阅多少本书,路径为商定
-    @RequestMapping(path = "/librarain/borrowbooknum", method = {RequestMethod.POST})
-    public String borrowbooknum(Model model, @RequestParam(value = "uid") int uid)
-    {
-        int num = statService.borrowbooknum(uid);
-        model.addAttribute("borrowbooknum", num);
-        return "index";
-    }
-
-
-    //统计今日归还多少本书
-    @RequestMapping(path = "/librarain/returnbooknum", method = {RequestMethod.POST})
-    public String returnbooknum(Model model, @RequestParam(value = "uid") int uid)
-    {
-        int returnbooknum = statService.returnbooknum(uid);
-        model.addAttribute("returnbooknum", returnbooknum);
-        return "index";
-    }
+//    //统计今日借阅多少本书,路径为商定
+//    @RequestMapping(path = "/librarain/borrowbooknum", method = {RequestMethod.POST})
+//    public String borrowbooknum(Model model, @RequestParam(value = "uid") int uid)
+//    {
+//        int num = statService.borrowbooknum(uid);
+//        model.addAttribute("borrowbooknum", num);
+//        return "index";
+//    }
+//
+//
+//    //统计今日归还多少本书
+//    @RequestMapping(path = "/librarain/returnbooknum", method = {RequestMethod.POST})
+//    public String returnbooknum(Model model, @RequestParam(value = "uid") int uid)
+//    {
+//        int returnbooknum = statService.returnbooknum(uid);
+//        model.addAttribute("returnbooknum", returnbooknum);
+//        return "index";
+//    }
 
     //统计各个书的状态的数量
     @RequestMapping(path = "/librarian/statusnum", method = {RequestMethod.POST})

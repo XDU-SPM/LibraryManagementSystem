@@ -5,6 +5,8 @@ import com.example.library_management_system.dao.BkunitDAO;
 import com.example.library_management_system.dao.BookDAO;
 import com.example.library_management_system.dao.CategoryDAO;
 import com.example.library_management_system.dao.UserBkunitDAO;
+import com.example.library_management_system.utils.BkunitUtil;
+import com.example.library_management_system.utils.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
@@ -14,38 +16,63 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
 @Service
 public class LibrarianBookService
 {
-
     @Autowired
     private BkunitDAO bkunitdao;
+
     @Autowired
     private BookDAO bookdao;
+
     @Autowired
     private CategoryDAO categoryDAO;
+
     @Autowired
     private UserBkunitDAO userBkunitDAO;
 
-    public void addBkunit(Book book, int number, String category, MultipartFile file)
+    public void addBkunit(Book book, int number, String categoryName, MultipartFile file)
     {
+        Book book1 = bookdao.findByIsbn(book.getIsbn());
+        if (book1 == null)
+        {
+            book1 = book;
+            String fileName = file.getOriginalFilename();
+            String[] tmps = fileName.split("\\.");
+            String type = tmps[tmps.length - 1];
+            String coverPath = "src/main/resources/static/upload/" + book.getIsbn() + "." + type;
+            FileUtil.saveFile(file, new File(coverPath));
 
+            Category category = categoryDAO.findByName(categoryName);
+            if (category == null)
+            {
+                category = new Category(categoryName);
+                categoryDAO.save(category);
+            }
+
+            book1.setCoverPath(coverPath);
+            book1.getCategories().add(category);
+            bookdao.save(book1);
+        }
+        for (int i = 0; i < number; i++)
+        {
+            String id = String.valueOf(System.currentTimeMillis());
+            Bkunit bkunit = new Bkunit(id, book1);
+            bkunitdao.save(bkunit);
+        }
     }
 
     public void deleteBkunit(String id)
     {
         Bkunit bkunit = bkunitdao.findById(id).get();
-        Set<UserBkunit> userBkunits = bkunit.getUserBkunits();
-        for (UserBkunit userBkunit : userBkunits)
-        {
-            userBkunit.setBkunit(null);
-            userBkunit.setUser(null);
-        }
-        userBkunitDAO.saveAll(userBkunits);
-        bkunitdao.deleteById(id);
+        bkunit.setStatus(BkunitUtil.LOST);
+        bkunitdao.save(bkunit);
     }
 
     public Page<Bkunit> showbkunit(int start, int size)

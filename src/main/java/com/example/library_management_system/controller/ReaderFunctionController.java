@@ -62,13 +62,20 @@ public class ReaderFunctionController
         return "deleteFavoriteBook";
     }
 
-
-    @RequestMapping(value = "/reader/lend", method = RequestMethod.POST)
-    public String lend(Model model, String BookIsbn)
+    @RequestMapping(value = "/librarian/lend", method = RequestMethod.POST)
+    public String lend(Model model, String id, String username)
     {
-        int state = readerfunctionservice.lend(BookIsbn);
-        model.addAttribute("state", state);
-        return "lend";
+        int status = readerfunctionservice.lend(id, username);
+        model.addAttribute("status", status);
+        return "/librarian/librarian_borrow";
+    }
+
+    @RequestMapping(value = "/librarian/return", method = RequestMethod.POST)
+    public String returnBook(Model model, String id, @RequestParam(value = "damage", defaultValue = "0") int damage)
+    {
+        int status = readerfunctionservice.returnBook(id, damage);
+        model.addAttribute("status", status);
+        return "/librarian/librarian_return";
     }
 
     @RequestMapping(value = "/reader/writeReview", method = RequestMethod.POST)
@@ -94,5 +101,12 @@ public class ReaderFunctionController
         boolean status = readerfunctionservice.deleteReview(rid);
         model.addAttribute("status", status);
         return "deleteReview";
+    }
+
+    @RequestMapping(value = "/reader/reserve", method = RequestMethod.POST)
+    public String reserveBook(String isbn)
+    {
+        String status = readerfunctionservice.reserve(isbn);
+        return "";
     }
 }

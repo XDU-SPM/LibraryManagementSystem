@@ -4,8 +4,9 @@ import com.example.library_management_system.bean.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Date;
+import java.util.Set;
 
 public interface AccountDAO extends JpaRepository<Account, Integer>
 {
-    Account findByDateBetweenAndType(Date before, Date after, int type);
+    Set<Account> findAllByDateBetween(Date before, Date after);
 }

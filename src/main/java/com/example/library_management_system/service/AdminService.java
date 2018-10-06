@@ -24,8 +24,6 @@ public class AdminService
     @Autowired
     private ReviewDAO reviewDAO;
     @Autowired
-    private AccountDAO accountDAO;
-    @Autowired
     private RoleDAO roleDAO;
     @Autowired
     private GlobalUtilDAO globalUtilDAO;
@@ -33,15 +31,7 @@ public class AdminService
     public void deleteuser(int id)
     {
         User user = userdao.findById(id);
-        deleteUserBkunits(user);
-        deleteReviews(user);
-        deleteUserFavoriteBooks(user);
-        deleteAccounts(user);
-        userdao.deleteById(id);
-    }
 
-    private void deleteUserBkunits(User user)
-    {
         Set<UserBkunit> userBkunits = user.getUserBkunits();
         for (UserBkunit userBkunit : userBkunits)
         {
@@ -49,10 +39,7 @@ public class AdminService
             userBkunit.setBkunit(null);
         }
         userbkunitdao.saveAll(userBkunits);
-    }
 
-    private void deleteReviews(User user)
-    {
         Set<Review> reviews = user.getReviews();
         for (Review review : reviews)
         {
@@ -60,10 +47,7 @@ public class AdminService
             review.setBook(null);
         }
         reviewDAO.saveAll(reviews);
-    }
 
-    private void deleteUserFavoriteBooks(User user)
-    {
         Set<UserFavoriteBook> userFavoriteBooks = user.getUserFavoriteBooks();
         for (UserFavoriteBook userFavoriteBook : userFavoriteBooks)
         {
@@ -71,16 +55,12 @@ public class AdminService
             userFavoriteBook.setBook(null);
         }
         userfavoritebookdao.saveAll(userFavoriteBooks);
-    }
 
-    private void deleteAccounts(User user)
-    {
-        Set<Account> accounts = user.getAccounts();
-        for (Account account : accounts)
-        {
-            account.setUser(null);
-        }
-        accountDAO.saveAll(accounts);
+        userdao.deleteById(id);
+
+        userbkunitdao.deleteAll(userBkunits);
+        reviewDAO.deleteAll(reviews);
+        userfavoritebookdao.deleteAll(userFavoriteBooks);
     }
 
     public Page<User> showallinfo(int start, int size, String role)

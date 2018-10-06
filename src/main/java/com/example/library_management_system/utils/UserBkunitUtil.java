@@ -5,7 +5,8 @@ public class UserBkunitUtil
     public final static int
             BORROWED = 1,
             OVERDUE = 2,
-            RETURNED = 3,
-            RENEW = 4,
-            RESERVATION = 5;
+            RENEW = 3,
+            RETURNED = 4,
+            RESERVATION = 5,
+            RESERVATION_FAIL = 6;
 }

@@ -1,17 +1,13 @@
 package com.example.library_management_system.service;
 
 
-import com.example.library_management_system.bean.Category;
-import com.example.library_management_system.bean.MonthBorrow;
-import com.example.library_management_system.bean.User;
+import com.example.library_management_system.bean.*;
 
-import com.example.library_management_system.bean.UserBkunit;
-import com.example.library_management_system.dao.BkunitDAO;
-import com.example.library_management_system.dao.CategoryDAO;
-import com.example.library_management_system.dao.UserBkunitDAO;
-import com.example.library_management_system.dao.UserDAO;
+import com.example.library_management_system.dao.*;
 import com.example.library_management_system.utils.BkunitUtil;
+import com.example.library_management_system.utils.OneDayApart;
 import com.example.library_management_system.utils.OneMonthApart;
+import com.example.library_management_system.utils.UserBkunitUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +32,12 @@ public class StatService
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private BkunitOperatingHistoryDAO bkunitOperatingHistoryDAO;
+
+    @Autowired
+    private AccountDAO accountDAO;
+
     public List<MonthBorrow> monthborrow()
     {
         User reader = userService.getUser();
@@ -58,32 +60,35 @@ public class StatService
         return reader.getBUL();
     }
 
-    public int borrowbooknum(int uid)
+    public long todayBorrowNumber()
     {
-
-        Date today2 = new Date();
-        Date today1 = new Date();
-        today1.setHours(0);
-        today1.setMinutes(0);
-        today1.setSeconds(0);
-        User user = userDAO.findById(uid);
-        int number = userBkunitDAO.countByUserAndBorrowDateBetween(user, today1, today2);
-        return number;
+        OneDayApart oneDayApart = new OneDayApart();
+        return bkunitOperatingHistoryDAO.countByDateBetweenAndStatus(oneDayApart.getBefore(), oneDayApart.getAfter(), UserBkunitUtil.BORROWED);
     }
 
-    public int returnbooknum(int uid)
+    public long todayReturnNumber()
     {
-
-        Date today2 = new Date();
-        Date today1 = new Date();
-        today1.setHours(0);
-        today1.setMinutes(0);
-        today1.setSeconds(0);
-        User user = userDAO.findById(uid);
-        int number = userBkunitDAO.countByUserAndReturnDateBetween(user, today1, today2);
-        return number;
+        OneDayApart oneDayApart = new OneDayApart();
+        return bkunitOperatingHistoryDAO.countByDateBetweenAndStatus(oneDayApart.getBefore(), oneDayApart.getAfter(), UserBkunitUtil.RETURNED);
     }
 
+    public long todayOverdueNumber()
+    {
+        OneDayApart oneDayApart = new OneDayApart();
+        return bkunitOperatingHistoryDAO.countByDateBetweenAndStatus(oneDayApart.getBefore(), oneDayApart.getAfter(), UserBkunitUtil.OVERDUE);
+    }
+
+    public double todayFineIncome()
+    {
+        OneDayApart oneDayApart = new OneDayApart();
+        Set<Account> accounts = accountDAO.findAllByDateBetween(oneDayApart.getBefore(), oneDayApart.getAfter());
+        double money = 0;
+        for (Account account : accounts)
+        {
+            money += account.getMoney();
+        }
+        return money;
+    }
 
     public long[] statusnum()
     {
@@ -92,6 +97,25 @@ public class StatService
         statusnum[1] = bkunitDAO.countByStatus(BkunitUtil.NORMAL);
         statusnum[2] = bkunitDAO.countByStatus(BkunitUtil.RESERVATION);
         return statusnum;
+    }
+
+    public List<DayBorrowReturn> dayBorrowReturns()
+    {
+        List<DayBorrowReturn> dayBorrowReturns = new ArrayList<>();
+        OneDayApart oneDayApart = new OneDayApart();
+        Stack<DayBorrowReturn> stack = new Stack<>();
+        for (int i = 0; i < 7; i++)
+        {
+            Date before = oneDayApart.getBefore();
+            Date after = oneDayApart.getAfter();
+            stack.push(new DayBorrowReturn(before,
+                    bkunitOperatingHistoryDAO.countByDateBetweenAndStatus(before, after, UserBkunitUtil.BORROWED),
+                    bkunitOperatingHistoryDAO.countByDateBetweenAndStatus(before, after, UserBkunitUtil.RETURNED)));
+            oneDayApart.setLastDay();
+        }
+        while (!stack.isEmpty())
+            dayBorrowReturns.add(stack.pop());
+        return dayBorrowReturns;
     }
 
     public Map<String, Integer> categorynum()
