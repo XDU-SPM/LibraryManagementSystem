@@ -1,5 +1,7 @@
 package com.example.library_management_system.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,6 +17,7 @@ public class Category
     private String name;
 
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "categories")
+    @JsonIgnore
     private Set<Book> books;
 
     public Category()

@@ -109,4 +109,11 @@ public class ReaderFunctionController
         String status = readerfunctionservice.reserve(isbn);
         return "";
     }
+
+    @RequestMapping(value = "/reader/reserveCancel", method = RequestMethod.GET)
+    public String reserveCancel(String id)
+    {
+        readerfunctionservice.reserveCancel(id);
+        return "";
+    }
 }

@@ -1,6 +1,7 @@
 package com.example.library_management_system.bean;
 
 import com.example.library_management_system.utils.BkunitUtil;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -25,6 +26,7 @@ public class Bkunit
     private Book book;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "bkunit")
+    @JsonIgnore
     private Set<UserBkunit> userBkunits;
 
     public Bkunit(String id, Book book)

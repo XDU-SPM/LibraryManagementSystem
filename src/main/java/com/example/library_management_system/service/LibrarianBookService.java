@@ -87,7 +87,7 @@ public class LibrarianBookService
     {
         Category c = categoryDAO.findByName(category);
         start = start < 0 ? 0 : start;
-        Sort sort = new Sort(Sort.Direction.ASC, "id");
+        Sort sort = new Sort(Sort.Direction.ASC, "isbn");
         Pageable pageable = PageRequest.of(start, size, sort);
         return bookdao.findByCategoriesContaining(c, pageable);
     }
@@ -98,6 +98,11 @@ public class LibrarianBookService
         if (bkunitOptional.isPresent())
             return bkunitdao.findById(id).get();
         return null;
+    }
+
+    public Book bookInfo(String isbn)
+    {
+        return bookdao.findByIsbn(isbn);
     }
 
     public void changeinfo(Bkunit bkunit)

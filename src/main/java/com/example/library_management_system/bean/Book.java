@@ -33,6 +33,8 @@ public class Book
     private String position;
     private String coverPath;
 
+    private int frequency;
+
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "book_category",
@@ -42,9 +44,11 @@ public class Book
     private Set<Category> categories;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "book")
+    @JsonIgnore
     private Set<UserFavoriteBook> userFavoriteBooks;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "book")
+    @JsonIgnore
     private Set<Review> reviews;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "book")
@@ -53,6 +57,7 @@ public class Book
 
     public Book()
     {
+        this.frequency = 0;
         this.categories = new HashSet<>();
         this.userFavoriteBooks = new HashSet<>();
         this.reviews = new HashSet<>();
@@ -81,6 +86,21 @@ public class Book
         this.publisher = publisher;
         this.author = author;
         this.price = price;
+    }
+
+    public int getFrequency()
+    {
+        return frequency;
+    }
+
+    public void setFrequency(int frequency)
+    {
+        this.frequency = frequency;
+    }
+
+    public void addFrequency()
+    {
+        this.frequency++;
     }
 
     public String getIsbn()

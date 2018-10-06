@@ -1,5 +1,7 @@
 package com.example.library_management_system.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,9 +22,11 @@ public class User
     private double money;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+    @JsonIgnore
     private Set<UserBkunit> userBkunits;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+    @JsonIgnore
     private Set<Review> reviews;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -37,6 +41,7 @@ public class User
     private int BUL;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+    @JsonIgnore
     private Set<UserFavoriteBook> userFavoriteBooks;
 
     public User()
