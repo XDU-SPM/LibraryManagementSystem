@@ -44,7 +44,7 @@ public class LibrarianBookController
         return "bkunitsinfo";
     }
 
-    @RequestMapping(path = {"/librarian/showbook"}, method = {RequestMethod.GET})
+    @RequestMapping(path = {"/librarian/showbook", "/reader/showbook"}, method = {RequestMethod.GET})
     public String showBook(Model model, @RequestParam(value = "start", defaultValue = "0") int start,
                            @RequestParam(value = "size", defaultValue = "10") int size, String category)
     {
@@ -66,4 +66,10 @@ public class LibrarianBookController
         return "booksinfo";
     }
 
+    @RequestMapping(path = {"/librarian/bookInfo", "/reader/bookInfo"}, method = RequestMethod.GET)
+    public String bookInfo(String isbn)
+    {
+        Book book = librarianBookService.bookInfo(isbn);
+        return "";
+    }
 }

@@ -151,6 +151,10 @@ public class ReaderFunctionService
                 && userBkunit.getUser().getId() != reader.getId())
             return -4;
 
+        Book book = bkunit.getBook();
+        book.addFrequency();
+        bookDAO.save(book);
+
         if (userBkunit == null)
             userBkunit = userBkunitDAO.findByUserAndBkunit(reader, bkunit);
 
@@ -297,5 +301,15 @@ public class ReaderFunctionService
         rabbitTemplate.convertAndSend(QueueConfig.DELAY_QUEUE_PER_MESSAGE_TTL_NAME, id);
 
         return bkunit.getId();
+    }
+
+    public void reserveCancel(String id)
+    {
+        Bkunit bkunit = bkunitDAO.findById(id).get();
+        bkunit.setStatus(BkunitUtil.NORMAL);
+        User reader = userService.getUser();
+        UserBkunit userBkunit = userBkunitDAO.findByUserAndBkunit(reader, bkunit);
+        userBkunit.setStatus(UserBkunitUtil.RESERVATION_CANCEL);
+        userBkunitDAO.save(userBkunit);
     }
 }
