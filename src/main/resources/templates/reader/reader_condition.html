@@ -170,18 +170,6 @@
                 <tr>
                     <th class = "table-id">编号</th>
                     <th class = "table-title">标题</th>
-                    <!--<th class="table-type">类别</th>-->
-                    <th class = "table-type">
-                        <select>
-                            <option value = "option1">专业书</option>
-                            <option value = "option2">杂志</option>
-                            <option value = "option3">小说</option>
-                            <option value = "option3">文学书籍</option>
-                            <option value = "option3">历史</option>
-                            <option value = "option3">科普</option>
-                            <option value = "option3">故事会</option>
-                        </select>
-                    </th>
                     <th class = "table-author am-hide-sm-only">作者</th>
                     <th class = "table-publisher">出版社</th>
                     <th class = "table-date am-hide-sm-only">出版日期</th>
@@ -220,18 +208,6 @@
                 <tr>
                     <th class = "table-id">编号</th>
                     <th class = "table-title">标题</th>
-                    <!--<th class="table-type">类别</th>-->
-                    <th class = "table-type">
-                        <select>
-                            <option value = "option1">专业书</option>
-                            <option value = "option2">杂志</option>
-                            <option value = "option3">小说</option>
-                            <option value = "option3">文学书籍</option>
-                            <option value = "option3">历史</option>
-                            <option value = "option3">科普</option>
-                            <option value = "option3">故事会</option>
-                        </select>
-                    </th>
                     <th class = "table-author am-hide-sm-only">作者</th>
                     <th class = "table-publisher">出版社</th>
                     <th class = "table-date am-hide-sm-only">出版日期</th>
@@ -279,7 +255,7 @@
                 <tr th:each="book:${page3}">
 
                     <td th:text="${book.id}"></td>
-                    <td th:text="${book.bkunit.book.title}"><a th:href = "@{/book_details(id=${book.id})}"></a></td>
+                    <td><a th:href = "@{/book_details(id=${book.bkunit.book.isbn})}" th:text="${book.bkunit.book.title}"></a></td>
                     <td class = "am-hide-sm-only" th:text="${book.bkunit.book.author}"></td>
                     <td class = "am-hide-sm-only" th:text="${book.bkunit.book.publisher}"></td>
                     <td class = "am-hide-sm-only" th:text="${book.bkunit.book.publishDate}"></td>

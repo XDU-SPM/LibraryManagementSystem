@@ -37,23 +37,13 @@
                     <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">请评论：</strong></div>
                 </div>
 
-                <div class = "am-g am-margin-top">
-                    <div class = "am-u-sm-4 am-u-md-2 am-text-right">
-                        <strong>
-                            标题
-                            <small>(选填)</small>
-                        </strong>
-                    </div>
-                    <div class = "am-u-sm-8 am-u-md-4 am-u-end col-end">
-                        <input type = "text" class = "am-input-sm">
-                    </div>
-                </div>
+                <input th:type="hidden" th:text="${isbn}">
 
                 <div class = "am-g am-margin-top">
                     <div class = "am-u-sm-4 am-u-md-2 am-text-right">
                         <strong>
-                            作者
-                            <small>(选填)</small>
+                            标题
+                            <small>(*必填)</small>
                         </strong>
                     </div>
                     <div class = "am-u-sm-8 am-u-md-4 am-u-end col-end">
