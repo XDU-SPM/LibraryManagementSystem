@@ -288,7 +288,25 @@
                 </tr>
                 </thead>
                 <tbody id="bk-table-3">
+                <tr th:each="book:${page3}">
 
+                    <td th:text="${book.id}"></td>
+                    <td th:text="${book.title}"><a th:href = "@{/librarian_book(id=${book.id})}"></a></td>
+                    <td th:text="${book.isbn}">宗教类</td>
+                    <td class = "am-hide-sm-only" th:text="${book.author}"></td>
+                    <td class = "am-hide-sm-only" th:text="${book.publisher}"></td>
+                    <td class = "am-hide-sm-only" th:text="${book.publishDate}"></td>
+                    <td th:text="${book.position}"></td>
+                    <td>
+                        <div class = "am-btn-toolbar">
+                            <div class = "am-btn-group am-btn-group-xs">
+                                <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><span
+                                        class = "am-icon-pencil-square-o"></span> 评论
+                                </button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
                 </tbody>
             </table>
             <br>
@@ -334,6 +352,12 @@
 <script src = "https://gw.alipayobjects.com/os/antv/pkg/_antv.data-set-0.9.6/dist/data-set.min.js"></script>
 <script src = "https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
 <script type = "text/javascript" src = "assets/js/test.js"></script>
+
+<script>
+    function () {
+
+    }
+</script>
 
 <script th:inline="javascript">
     console.log([[${monthBorrows}]]);
