@@ -279,7 +279,7 @@
                 <tr th:each="book:${page3}">
 
                     <td th:text="${book.id}"></td>
-                    <td th:text="${book.bkunit.book.title}"><a th:href = "@{/book_details(id=${book.id})}"></a></td>
+                    <td ><a th:href = "@{/book_details(id=${book.id})}" th:text="${book.bkunit.book.title}"></a></td>
                     <td class = "am-hide-sm-only" th:text="${book.bkunit.book.author}"></td>
                     <td class = "am-hide-sm-only" th:text="${book.bkunit.book.publisher}"></td>
                     <td class = "am-hide-sm-only" th:text="${book.bkunit.book.publishDate}"></td>
@@ -288,7 +288,7 @@
                     <td>
                         <div class = "am-btn-toolbar">
                             <div class = "am-btn-group am-btn-group-xs">
-                                <a th:href="@{/reader_comment(isbn=${book.bkunit.book.isbn})}">
+                                <a th:href="@{reader_comment(isbn=${book.bkunit.book.isbn})}">
                                     <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><span
                                             class = "am-icon-pencil-square-o"></span> 评论
                                     </button>
