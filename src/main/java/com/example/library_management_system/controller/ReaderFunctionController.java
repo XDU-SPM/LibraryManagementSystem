@@ -86,13 +86,13 @@ public class ReaderFunctionController
         return "writeReview";
     }
 
-    @RequestMapping(value = "/reader/BookReview", method = RequestMethod.GET)
+    @RequestMapping(value = "/reader/bookReview", method = RequestMethod.GET)
     public String BookReview(Model model, @RequestParam(value = "start", defaultValue = "0") int start,
-                             @RequestParam(value = "size", defaultValue = "10") int size, String Isbn)
+                             @RequestParam(value = "size", defaultValue = "10") int size, String isbn)
     {
-        Page<Review> page = readerfunctionservice.bookReview(start, size, Isbn);
+        Page<Review> page = readerfunctionservice.bookReview(start, size, isbn);
         model.addAttribute("page", page);
-        return "BookReview";
+        return "bookReview";
     }
 
     @RequestMapping(value = "/reader/deleteReview", method = RequestMethod.POST)

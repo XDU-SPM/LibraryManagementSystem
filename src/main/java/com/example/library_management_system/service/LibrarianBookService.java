@@ -46,7 +46,6 @@ public class LibrarianBookService
             String fileName = file.getOriginalFilename();
             String[] tmps = fileName.split("\\.");
             String type = tmps[tmps.length - 1];
-            String rootPath = "";
             String coverPath = "src/main/resources/static/upload/" + book.getIsbn() + "." + type;
             FileUtil.saveFile(file, new File(coverPath));
 
@@ -57,7 +56,7 @@ public class LibrarianBookService
                 categoryDAO.save(category);
             }
 
-            book1.setCoverPath(coverPath);
+            book1.setCoverPath("../upload/" + book.getIsbn() + "." + type);
             book1.getCategories().add(category);
             bookdao.save(book1);
         }

@@ -243,7 +243,7 @@ public class ReaderFunctionService
     {
         Book book = bookDAO.findByIsbn(Isbn);
         start = start < 0 ? 0 : start;
-        Sort sort = new Sort(Sort.Direction.ASC, "borrowDate");
+        Sort sort = new Sort(Sort.Direction.ASC, "date");
         Pageable pageable = PageRequest.of(start, size, sort);
         return reviewDAO.findAllByBook(book, pageable);
     }
