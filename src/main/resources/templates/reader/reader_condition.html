@@ -267,18 +267,6 @@
                 <tr>
                     <th class = "table-id">编号</th>
                     <th class = "table-title">标题</th>
-                    <!--<th class="table-type">类别</th>-->
-                    <th class = "table-type">
-                        <select>
-                            <option value = "option1">专业书</option>
-                            <option value = "option2">杂志</option>
-                            <option value = "option3">小说</option>
-                            <option value = "option3">文学书籍</option>
-                            <option value = "option3">历史</option>
-                            <option value = "option3">科普</option>
-                            <option value = "option3">故事会</option>
-                        </select>
-                    </th>
                     <th class = "table-author am-hide-sm-only">作者</th>
                     <th class = "table-publisher">出版社</th>
                     <th class = "table-date am-hide-sm-only">出版日期</th>
@@ -292,7 +280,6 @@
 
                     <td th:text="${book.id}"></td>
                     <td th:text="${book.bkunit.book.title}"><a th:href = "@{/librarian_book(id=${book.id})}"></a></td>
-                    <td th:text="${book.bkunit.book.categories.get(0).name}">宗教类</td>
                     <td class = "am-hide-sm-only" th:text="${book.bkunit.book.author}"></td>
                     <td class = "am-hide-sm-only" th:text="${book.bkunit.book.publishDate}"></td>
                     <td class = "am-hide-sm-only" th:text="${book.borrowDate}"></td>
