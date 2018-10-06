@@ -291,12 +291,12 @@
                 <tr th:each="book:${page3}">
 
                     <td th:text="${book.id}"></td>
-                    <td th:text="${book.title}"><a th:href = "@{/librarian_book(id=${book.id})}"></a></td>
-                    <td th:text="${book.isbn}">宗教类</td>
-                    <td class = "am-hide-sm-only" th:text="${book.author}"></td>
-                    <td class = "am-hide-sm-only" th:text="${book.publisher}"></td>
-                    <td class = "am-hide-sm-only" th:text="${book.publishDate}"></td>
-                    <td th:text="${book.position}"></td>
+                    <td th:text="${book.bkunit.book.title}"><a th:href = "@{/librarian_book(id=${book.id})}"></a></td>
+                    <td th:text="${book.bkunit.book.categories.get(0).name}">宗教类</td>
+                    <td class = "am-hide-sm-only" th:text="${book.bkunit.book.author}"></td>
+                    <td class = "am-hide-sm-only" th:text="${book.bkunit.book.publishDate}"></td>
+                    <td class = "am-hide-sm-only" th:text="${book.borrowDate}"></td>
+                    <td th:text="${book.returnDate}"></td>
                     <td>
                         <div class = "am-btn-toolbar">
                             <div class = "am-btn-group am-btn-group-xs">
