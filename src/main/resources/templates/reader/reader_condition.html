@@ -255,7 +255,7 @@
                 <tr th:each="book:${page3}">
 
                     <td th:text="${book.id}"></td>
-                    <td><a th:href = "@{/book_details(id=${book.bkunit.book.isbn})}" th:text="${book.bkunit.book.title}"></a></td>
+                    <td><a th:href = "@{book_details(id=${book.bkunit.book.isbn})}" th:text="${book.bkunit.book.title}"></a></td>
 
                     <td class = "am-hide-sm-only" th:text="${book.bkunit.book.author}"></td>
                     <td class = "am-hide-sm-only" th:text="${book.bkunit.book.publisher}"></td>

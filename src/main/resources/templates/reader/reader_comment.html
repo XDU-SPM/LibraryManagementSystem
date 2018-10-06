@@ -37,12 +37,13 @@
                     <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">请评论：</strong></div>
                 </div>
 
-                <input th:type="hidden" th:text="${isbn}">
+                <input type = "hidden" th:value = "${isbn}">
 
                 <div class = "am-g am-margin-top">
                     <div class = "am-u-sm-4 am-u-md-2 am-text-right">
                         <strong>
                             标题
+                            <br>
                             <small>(*必填)</small>
                         </strong>
                     </div>
@@ -55,6 +56,7 @@
                     <div class = "am-u-sm-12 am-u-md-2 am-text-right admin-form-text">
                         <strong>
                             评论内容
+                            <br>
                             <small>（*必填）</small>
                         </strong>
                     </div>
