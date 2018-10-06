@@ -1,7 +1,7 @@
 <!doctype html>
-<html class="no-js fixed-layout" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
-      xmlns:type="http://www.springframework.org/schema/mvc">
+<html class = "no-js fixed-layout" xmlns:th = "http://www.thymeleaf.org"
+      xmlns:sec = "http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      xmlns:type = "http://www.springframework.org/schema/mvc">
 <head>
     <meta charset = "utf-8">
     <meta http-equiv = "X-UA-Compatible" content = "IE=edge">
@@ -189,7 +189,7 @@
                     <th class = "table-set">操作</th>
                 </tr>
                 </thead>
-                <tbody id="bk-table-1">
+                <tbody id = "bk-table-1">
 
                 </tbody>
             </table>
@@ -215,36 +215,36 @@
 
             </div>
 
-                <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "booklist-2">
-                    <thead>
-                    <tr>
-                        <th class = "table-id">编号</th>
-                        <th class = "table-title">标题</th>
-                        <!--<th class="table-type">类别</th>-->
-                        <th class = "table-type">
-                            <select>
-                                <option value = "option1">专业书</option>
-                                <option value = "option2">杂志</option>
-                                <option value = "option3">小说</option>
-                                <option value = "option3">文学书籍</option>
-                                <option value = "option3">历史</option>
-                                <option value = "option3">科普</option>
-                                <option value = "option3">故事会</option>
-                            </select>
-                        </th>
-                        <th class = "table-author am-hide-sm-only">作者</th>
-                        <th class = "table-publisher">出版社</th>
-                        <th class = "table-date am-hide-sm-only">出版日期</th>
-                        <th class = "table-positon am-hide-sm-only">借书时间</th>
-                        <th class = "table-set">截止时间</th>
-                        <th class = "table-set">操作</th>
-                    </tr>
-                    </thead>
-                    <tbody id="bk-table-2">
+            <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "booklist-2">
+                <thead>
+                <tr>
+                    <th class = "table-id">编号</th>
+                    <th class = "table-title">标题</th>
+                    <!--<th class="table-type">类别</th>-->
+                    <th class = "table-type">
+                        <select>
+                            <option value = "option1">专业书</option>
+                            <option value = "option2">杂志</option>
+                            <option value = "option3">小说</option>
+                            <option value = "option3">文学书籍</option>
+                            <option value = "option3">历史</option>
+                            <option value = "option3">科普</option>
+                            <option value = "option3">故事会</option>
+                        </select>
+                    </th>
+                    <th class = "table-author am-hide-sm-only">作者</th>
+                    <th class = "table-publisher">出版社</th>
+                    <th class = "table-date am-hide-sm-only">出版日期</th>
+                    <th class = "table-positon am-hide-sm-only">借书时间</th>
+                    <th class = "table-set">截止时间</th>
+                    <th class = "table-set">操作</th>
+                </tr>
+                </thead>
+                <tbody id = "bk-table-2">
 
-                    </tbody>
-                </table>
-                <br>
+                </tbody>
+            </table>
+            <br>
             <div class = "am-cf">
                 共 [[${page2.totalElements}]] 条记录
                 <div class = "am-fr">
@@ -304,10 +304,10 @@
                 共 [[${page3.totalElements}]] 条记录
                 <div class = "am-fr">
                     <ul class = "am-pagination">
-                        <li><a onclick="getOnePageBook3_1()">[首页]</a></li>
-                        <li><a onclick="getOnePageBook3_2(-1)">上一页</a></li>
-                        <li><a onclick="getOnePageBook3_2(1)">下一页</a></li>
-                        <li><a onclick="getOnePageBook3_3([[${page3.totalPages}]])">[末页]</a></li>
+                        <li><a onclick = "getOnePageBook3_1()">[首页]</a></li>
+                        <li><a onclick = "getOnePageBook3_2(-1)">上一页</a></li>
+                        <li><a onclick = "getOnePageBook3_2(1)">下一页</a></li>
+                        <li><a onclick = "getOnePageBook3_3([[${page3.totalPages}]])">[末页]</a></li>
                     </ul>
                 </div>
             </div>
@@ -349,56 +349,56 @@
     }
 </script>
 
-<script th:inline="javascript">
+<script th:inline = "javascript">
     console.log([[${monthBorrows}]]);
     console.log([[${page3}]]);
     var data = [
         {
-            time: date2str([[${monthBorrows[0].date}]],"yyyy-MM"),
+            time: date2str([[${monthBorrows[0].date}]], "yyyy-MM"),
             value: [[${monthBorrows[0].num}]]
         },
         {
-            time: date2str([[${monthBorrows[1].date}]],"yyyy-MM"),
+            time: date2str([[${monthBorrows[1].date}]], "yyyy-MM"),
             value: [[${monthBorrows[1].num}]]
         },
         {
-            time: date2str([[${monthBorrows[2].date}]],"yyyy-MM"),
+            time: date2str([[${monthBorrows[2].date}]], "yyyy-MM"),
             value: [[${monthBorrows[2].num}]]
         },
         {
-            time: date2str([[${monthBorrows[3].date}]],"yyyy-MM"),
+            time: date2str([[${monthBorrows[3].date}]], "yyyy-MM"),
             value: [[${monthBorrows[3].num}]]
         },
         {
-            time: date2str([[${monthBorrows[4].date}]],"yyyy-MM"),
+            time: date2str([[${monthBorrows[4].date}]], "yyyy-MM"),
             value: [[${monthBorrows[4].num}]]
         },
         {
-            time: date2str([[${monthBorrows[5].date}]],"yyyy-MM"),
+            time: date2str([[${monthBorrows[5].date}]], "yyyy-MM"),
             value: [[${monthBorrows[5].num}]]
         },
         {
-            time: date2str([[${monthBorrows[6].date}]],"yyyy-MM"),
+            time: date2str([[${monthBorrows[6].date}]], "yyyy-MM"),
             value: [[${monthBorrows[6].num}]]
         },
         {
-            time: date2str([[${monthBorrows[7].date}]],"yyyy-MM"),
+            time: date2str([[${monthBorrows[7].date}]], "yyyy-MM"),
             value: [[${monthBorrows[7].num}]]
         },
         {
-            time: date2str([[${monthBorrows[8].date}]],"yyyy-MM"),
+            time: date2str([[${monthBorrows[8].date}]], "yyyy-MM"),
             value: [[${monthBorrows[8].num}]]
         },
         {
-            time: date2str([[${monthBorrows[9].date}]],"yyyy-MM"),
+            time: date2str([[${monthBorrows[9].date}]], "yyyy-MM"),
             value: [[${monthBorrows[9].num}]]
         },
         {
-            time: date2str([[${monthBorrows[10].date}]],"yyyy-MM"),
+            time: date2str([[${monthBorrows[10].date}]], "yyyy-MM"),
             value: [[${monthBorrows[10].num}]]
         },
         {
-            time: date2str([[${monthBorrows[11].date}]],"yyyy-MM"),
+            time: date2str([[${monthBorrows[11].date}]], "yyyy-MM"),
             value: [[${monthBorrows[11].num}]]
         }
     ];
@@ -427,10 +427,19 @@
     });
     chart.render();
 
-    function date2str(x,y) {
+    function date2str(x, y) {
         x1 = new Date(x);
-        var z ={y:x1.getFullYear(),M:x1.getMonth()+1,d:x1.getDate(),h:x1.getHours(),m:x1.getMinutes(),s:x1.getSeconds()};
-        return y.replace(/(y+|M+|d+|h+|m+|s+)/g,function(v) {return ((v.length>1?"0":"")+eval('z.'+v.slice(-1))).slice(-(v.length>2?v.length:2))});
+        var z = {
+            y: x1.getFullYear(),
+            M: x1.getMonth() + 1,
+            d: x1.getDate(),
+            h: x1.getHours(),
+            m: x1.getMinutes(),
+            s: x1.getSeconds()
+        };
+        return y.replace(/(y+|M+|d+|h+|m+|s+)/g, function (v) {
+            return ((v.length > 1 ? "0" : "") + eval('z.' + v.slice(-1))).slice(-(v.length > 2 ? v.length : 2))
+        });
     }
 </script>
 <script>
@@ -438,11 +447,11 @@
         [{
             item: 'BorrowedNumber',
             count: [[${borrowedNumber}]],
-            percent: [[${borrowedNumber}]]/([[${borrowedNumber}]]+[[${RemainNumber}]])
+            percent: [[${borrowedNumber}]] / ([[${borrowedNumber}]] + [[${RemainNumber}]])
         }, {
             item: 'RemainNumber',
             count: [[${RemainNumber}]],
-            percent: [[${RemainNumber}]]/([[${borrowedNumber}]]+[[${RemainNumber}]])
+            percent: [[${RemainNumber}]] / ([[${borrowedNumber}]] + [[${RemainNumber}]])
         }];
     var chart = new G2.Chart({
         container: 'mountNode',
@@ -469,7 +478,7 @@
         formatter: function formatter(val, item) {
             return item.point.item + ': ' + val + ' ' + item.point.count + '本';
         }
-    }).tooltip('item*percent', function(item, percent) {
+    }).tooltip('item*percent', function (item, percent) {
         percent = percent * 100 + '%';
         return {
             name: item,
@@ -485,55 +494,13 @@
 <script>
 
     var pageNumber3 = 1;
-    function getOnePageBook3_1(){
-        pageNumber3=1;
-            $.ajax({
-                type: "get",
-                url: "borrowedBooks",
-                data: {start:0,size:3,status:3},
-                success: function (data) {
-                    console.log(data);
-                    let objs = data;
-                    let str = '';
-                    $('#bk-table-3').empty();
-                    for (let i = 0; i < objs.length; i++) {
-                        str += '<tr>\n' +
-                            '                        <td>1</td>\n' +
-                            '                        <td><a href = "book_details.html">${}</a></td>\n' +
-                            '                        <td>${}</td>\n' +
-                            '                        <td class = "am-hide-sm-only">${}</td>\n' +
-                            '                        <td class = "am-hide-sm-only">${}</td>\n' +
-                            '                        <td class = "am-hide-sm-only">${}</td>\n' +
-                            '                        <td>${}</td>\n' +
-                            '                        <td>${}</td>\n' +
-                            '                        <td>\n' +
-                            '                            <div class = "am-btn-toolbar">\n' +
-                            '                                <div class = "am-btn-group am-btn-group-xs">\n' +
-                            '                                    <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><span\n' +
-                            '                                            class = "am-icon-pencil-square-o"></span><a href = "reader_comment.html">\n' +
-                            '                                        评论</a></button>\n' +
-                            '\n' +
-                            '                                </div>\n' +
-                            '                            </div>\n' +
-                            '                        </td>\n' +
-                            '                    </tr>'
-                    }
-                    $('#bk-table-3').html(str);
-                }
-            });
-    }
 
-    function getOnePageBook3_2(temp){
-        pageNumber3+=temp;
-        if(pageNumber3<=0)
-            pageNumber3=1;
-        else if(pageNumber3>[[${page3.totalPages}]])
-            pageNumber3=[[${page3.totalPages}]];
-        else
+    function getOnePageBook3_1() {
+        pageNumber3 = 1;
         $.ajax({
             type: "get",
             url: "borrowedBooks",
-            data: {start:page_num,size:3,status:3},
+            data: {start: 0, size: 3, status: 3},
             success: function (data) {
                 console.log(data);
                 let objs = data;
@@ -566,12 +533,17 @@
         });
     }
 
-    function getOnePageBook3_3(end){
-        pageNumber2=end;
+    function getOnePageBook3_2(temp) {
+        pageNumber3 += temp;
+        if (pageNumber3 <= 0)
+            pageNumber3 = 1;
+        else if (pageNumber3 > [[${page3.totalPages}]])
+            pageNumber3 = [[${page3.totalPages}]];
+        else
             $.ajax({
                 type: "get",
                 url: "borrowedBooks",
-                data: {start:end,size:3,status:3},
+                data: {start: page_num, size: 3, status: 3},
                 success: function (data) {
                     console.log(data);
                     let objs = data;
@@ -603,16 +575,55 @@
                 }
             });
     }
+
+    function getOnePageBook3_3(end) {
+        pageNumber2 = end;
+        $.ajax({
+            type: "get",
+            url: "borrowedBooks",
+            data: {start: end, size: 3, status: 3},
+            success: function (data) {
+                console.log(data);
+                let objs = data;
+                let str = '';
+                $('#bk-table-3').empty();
+                for (let i = 0; i < objs.length; i++) {
+                    str += '<tr>\n' +
+                        '                        <td>1</td>\n' +
+                        '                        <td><a href = "book_details.html">${}</a></td>\n' +
+                        '                        <td>${}</td>\n' +
+                        '                        <td class = "am-hide-sm-only">${}</td>\n' +
+                        '                        <td class = "am-hide-sm-only">${}</td>\n' +
+                        '                        <td class = "am-hide-sm-only">${}</td>\n' +
+                        '                        <td>${}</td>\n' +
+                        '                        <td>${}</td>\n' +
+                        '                        <td>\n' +
+                        '                            <div class = "am-btn-toolbar">\n' +
+                        '                                <div class = "am-btn-group am-btn-group-xs">\n' +
+                        '                                    <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><span\n' +
+                        '                                            class = "am-icon-pencil-square-o"></span><a href = "reader_comment.html">\n' +
+                        '                                        评论</a></button>\n' +
+                        '\n' +
+                        '                                </div>\n' +
+                        '                            </div>\n' +
+                        '                        </td>\n' +
+                        '                    </tr>'
+                }
+                $('#bk-table-3').html(str);
+            }
+        });
+    }
 </script>
 <script>
 
-    var pageNumber2=1;
-    function getOnePageBook2_1(){
-        pageNumber2=1;
+    var pageNumber2 = 1;
+
+    function getOnePageBook2_1() {
+        pageNumber2 = 1;
         $.ajax({
             type: "get",
             url: "borrowedBooks",
-            data: {start:1,size:5,status:2},
+            data: {start: 1, size: 5, status: 2},
             success: function (data) {
                 let objs = data;
                 let str = '';
@@ -644,54 +655,17 @@
         });
     }
 
-    function getOnePageBook2_2(temp){
+    function getOnePageBook2_2(temp) {
         pageNumber2 += temp;
-        if(pageNumber2 <= 0)
-            pageNumber2=1;
-        else if(pageNumber2 > [[${page2.totalPages}]])
-            pageNumber2=[[${page2.totalPages}]];
+        if (pageNumber2 <= 0)
+            pageNumber2 = 1;
+        else if (pageNumber2 > [[${page2.totalPages}]])
+            pageNumber2 = [[${page2.totalPages}]];
         else
-        $.ajax({
-            type: "get",
-            url: "borrowedBooks",
-            data: {start:pageNumber2,size:5,status:2},
-            success: function (data) {
-                let objs = data;
-                let str = '';
-                $('#bk-table-2').empty();
-                for (let i = 0; i < objs.length; i++) {
-                    str += '<tr>\n' +
-                        '                        <td>1</td>\n' +
-                        '                        <td><a href = "book_details.html">${}</a></td>\n' +
-                        '                        <td>${}</td>\n' +
-                        '                        <td class = "am-hide-sm-only">${}</td>\n' +
-                        '                        <td class = "am-hide-sm-only">${}</td>\n' +
-                        '                        <td class = "am-hide-sm-only">${}</td>\n' +
-                        '                        <td>${}</td>\n' +
-                        '                        <td>${}</td>\n' +
-                        '                        <td>\n' +
-                        '                            <div class = "am-btn-toolbar">\n' +
-                        '                                <div class = "am-btn-group am-btn-group-xs">\n' +
-                        '                                    <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><span\n' +
-                        '                                            class = "am-icon-pencil-square-o"></span><a href = "reader_comment.html">\n' +
-                        '                                        评论</a></button>\n' +
-                        '\n' +
-                        '                                </div>\n' +
-                        '                            </div>\n' +
-                        '                        </td>\n' +
-                        '                    </tr>'
-                }
-                $('#bk-table-2').html(str);
-            }
-        });
-    }
-
-    function getOnePageBook2_3(end){
-        pageNumber2 = end;
             $.ajax({
                 type: "get",
                 url: "borrowedBooks",
-                data: {start:end,size:5,status:2},
+                data: {start: pageNumber2, size: 5, status: 2},
                 success: function (data) {
                     let objs = data;
                     let str = '';
@@ -722,15 +696,53 @@
                 }
             });
     }
+
+    function getOnePageBook2_3(end) {
+        pageNumber2 = end;
+        $.ajax({
+            type: "get",
+            url: "borrowedBooks",
+            data: {start: end, size: 5, status: 2},
+            success: function (data) {
+                let objs = data;
+                let str = '';
+                $('#bk-table-2').empty();
+                for (let i = 0; i < objs.length; i++) {
+                    str += '<tr>\n' +
+                        '                        <td>1</td>\n' +
+                        '                        <td><a href = "book_details.html">${}</a></td>\n' +
+                        '                        <td>${}</td>\n' +
+                        '                        <td class = "am-hide-sm-only">${}</td>\n' +
+                        '                        <td class = "am-hide-sm-only">${}</td>\n' +
+                        '                        <td class = "am-hide-sm-only">${}</td>\n' +
+                        '                        <td>${}</td>\n' +
+                        '                        <td>${}</td>\n' +
+                        '                        <td>\n' +
+                        '                            <div class = "am-btn-toolbar">\n' +
+                        '                                <div class = "am-btn-group am-btn-group-xs">\n' +
+                        '                                    <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><span\n' +
+                        '                                            class = "am-icon-pencil-square-o"></span><a href = "reader_comment.html">\n' +
+                        '                                        评论</a></button>\n' +
+                        '\n' +
+                        '                                </div>\n' +
+                        '                            </div>\n' +
+                        '                        </td>\n' +
+                        '                    </tr>'
+                }
+                $('#bk-table-2').html(str);
+            }
+        });
+    }
 </script>
 <script>
-    var pageNumber1=1;
-    function getOnePageBook1_1(){
-        pageNumber1=1;
+    var pageNumber1 = 1;
+
+    function getOnePageBook1_1() {
+        pageNumber1 = 1;
         $.ajax({
             type: "get",
             url: "borrowedBooks",
-            data: {start:1,size:5,status:1},
+            data: {start: 1, size: 5, status: 1},
             success: function (data) {
                 let objs = data;
                 let str = '';
@@ -761,53 +773,17 @@
         });
     }
 
-    function getOnePageBook1_2(temp){
+    function getOnePageBook1_2(temp) {
         pageNumber1 += temp;
-        if(pageNumber1<=0)
-            pageNumber1=1;
-        else if(pageNumber1>[[${page1.totalPages}]])
-            pageNumber1=[[${page1.totalPages}]];
+        if (pageNumber1 <= 0)
+            pageNumber1 = 1;
+        else if (pageNumber1 > [[${page1.totalPages}]])
+            pageNumber1 = [[${page1.totalPages}]];
         else
-        $.ajax({
-            type: "get",
-            url: "borrowedBooks",
-            data: {start:pageNumber1,size:5,status:1},
-            success: function (data) {
-                let objs = data;
-                let str = '';
-                $('#bk-table-1').empty();
-                for (let i = 0; i < objs.length; i++) {
-                    str += '<tr>\n' +
-                        '                        <td>1</td>\n' +
-                        '                        <td><a href = "book_details.html">${}</a></td>\n' +
-                        '                        <td>${}</td>\n' +
-                        '                        <td class = "am-hide-sm-only">${}</td>\n' +
-                        '                        <td class = "am-hide-sm-only">${}</td>\n' +
-                        '                        <td class = "am-hide-sm-only">${}</td>\n' +
-                        '                        <td>${}</td>\n' +
-                        '                        <td>\n' +
-                        '                            <div class = "am-btn-toolbar">\n' +
-                        '                                <div class = "am-btn-group am-btn-group-xs">\n' +
-                        '                                    <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><span\n' +
-                        '                                            class = "am-icon-pencil-square-o"></span><a href = "reader_comment.html">\n' +
-                        '                                        取消预约</a></button>\n' +
-                        '\n' +
-                        '                                </div>\n' +
-                        '                            </div>\n' +
-                        '                        </td>\n' +
-                        '                    </tr>'
-                }
-                $('#bk-table-1').html(str);
-            }
-        });
-    }
-
-    function getOnePageBook1_2(end){
-        pageNumber1 = end;
             $.ajax({
                 type: "get",
                 url: "borrowedBooks",
-                data: {start:end,size:5,status:1},
+                data: {start: pageNumber1, size: 5, status: 1},
                 success: function (data) {
                     let objs = data;
                     let str = '';
@@ -836,6 +812,42 @@
                     $('#bk-table-1').html(str);
                 }
             });
+    }
+
+    function getOnePageBook1_2(end) {
+        pageNumber1 = end;
+        $.ajax({
+            type: "get",
+            url: "borrowedBooks",
+            data: {start: end, size: 5, status: 1},
+            success: function (data) {
+                let objs = data;
+                let str = '';
+                $('#bk-table-1').empty();
+                for (let i = 0; i < objs.length; i++) {
+                    str += '<tr>\n' +
+                        '                        <td>1</td>\n' +
+                        '                        <td><a href = "book_details.html">${}</a></td>\n' +
+                        '                        <td>${}</td>\n' +
+                        '                        <td class = "am-hide-sm-only">${}</td>\n' +
+                        '                        <td class = "am-hide-sm-only">${}</td>\n' +
+                        '                        <td class = "am-hide-sm-only">${}</td>\n' +
+                        '                        <td>${}</td>\n' +
+                        '                        <td>\n' +
+                        '                            <div class = "am-btn-toolbar">\n' +
+                        '                                <div class = "am-btn-group am-btn-group-xs">\n' +
+                        '                                    <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><span\n' +
+                        '                                            class = "am-icon-pencil-square-o"></span><a href = "reader_comment.html">\n' +
+                        '                                        取消预约</a></button>\n' +
+                        '\n' +
+                        '                                </div>\n' +
+                        '                            </div>\n' +
+                        '                        </td>\n' +
+                        '                    </tr>'
+                }
+                $('#bk-table-1').html(str);
+            }
+        });
     }
 </script>
 <script type = "text/javascript">
