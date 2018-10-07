@@ -79,11 +79,11 @@ public class ReaderFunctionController
     }
 
     @RequestMapping(value = "/reader/writeReview", method = RequestMethod.POST)
-    public String writeReview(Model model, String Isbn, String review)
+    public String writeReview(Model model, String Isbn, String review, String title)
     {
-        int state = readerfunctionservice.writeReview(Isbn, review);
+        int state = readerfunctionservice.writeReview(Isbn, review, title);
         model.addAttribute("status", state);
-        return "writeReview";
+        return "reader/reader_comment";
     }
 
     @RequestMapping(value = "/reader/bookReview", method = RequestMethod.GET)

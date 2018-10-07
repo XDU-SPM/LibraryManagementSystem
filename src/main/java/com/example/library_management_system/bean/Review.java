@@ -19,6 +19,8 @@ public class Review
 
     private String review;
 
+    private String title;
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
 
@@ -34,9 +36,10 @@ public class Review
     {
     }
 
-    public Review(String review, Date date, Book book, User user)
+    public Review(String review, String title, Date date, Book book, User user)
     {
         this.review = review;
+        this.title = title;
         this.date = date;
         this.book = book;
         this.user = user;
@@ -90,5 +93,15 @@ public class Review
     public void setUser(User user)
     {
         this.user = user;
+    }
+
+    public String getTitle()
+    {
+        return title;
+    }
+
+    public void setTitle(String title)
+    {
+        this.title = title;
     }
 }
