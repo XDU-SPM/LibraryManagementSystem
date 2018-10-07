@@ -167,21 +167,9 @@
                     <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "booklist">
                         <thead>
                         <tr>
-                            <th class="table-check"><input type="checkbox" /></th>
-                            <th class = "table-id">编号</th>
+                            <th class = "table-id">书号</th>
                             <th class = "table-title">标题</th>
                             <th class = "table-isbn">ISBN</th>
-                            <th class = "table-type">
-                            <select>
-                            <option value = "option1">专业书</option>
-                            <option value = "option2">杂志</option>
-                            <option value = "option3">小说</option>
-                            <option value = "option3">文学书籍</option>
-                            <option value = "option3">历史</option>
-                            <option value = "option3">科普</option>
-                            <option value = "option3">故事会</option>
-                            </select>
-                            </th>
                             <th class = "table-author am-hide-sm-only">作者</th>
                             <th class = "table-publisher">出版社</th>
                             <th class = "table-date am-hide-sm-only">出版日期</th>
@@ -190,61 +178,36 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each = "book:${page}">
-
-                            <td th:text = "${book.id}"></td>
-                            <td th:text = "${book.title}"><a th:href = "@{/librarian_book(id=${book.id})}"></a></td>
-                            <td th:text = "${book.isbn}">宗教类</td>
-                            <td class = "am-hide-sm-only" th:text = "${book.author}"></td>
-                            <td class = "am-hide-sm-only" th:text = "${book.publisher}"></td>
-                            <td class = "am-hide-sm-only" th:text = "${book.publishDate}"></td>
-                            <td th:text = "${book.position}"></td>
+                        <tr th:each = "bunit:${page}">
+                            <td th:text = "${bunit.id}"></td>
+                            <td ><a th:text = "${bunit.book.title}" th:href="@{librarian_book(isbn=${bunit.book.isbn})}"></a></td>
+                            <td th:text = "${bunit.book.isbn}"></td>
+                            <td class = "am-hide-sm-only" th:text = "${bunit.book.author}"></td>
+                            <td class = "am-hide-sm-only" th:text = "${bunit.book.publisher}"></td>
+                            <td class = "am-hide-sm-only" th:text = "${bunit.book.publishDate}"></td>
+                            <td th:text = "${bunit.book.position}"></td>
                             <td>
                                 <div class = "am-btn-toolbar">
                                     <div class = "am-btn-group am-btn-group-xs">
                                         <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><span
-                                                class = "am-icon-pencil-square-o"></span> 编辑
+                                                class = "am-icon-pencil-square-o" th:href="@{deletebook(id=${bunit.id},start=${page.number})}"></span>
                                         </button>
-
                                     </div>
                                 </div>
                             </td>
-
-                            <td th:text = "${book.id}"></td>
-                            <td th:text = "${book.title}"><a th:href = "@{/librarian_book(id=${book.id})}"></a></td>
-                            <td th:text = "${book.isbn}">宗教类</td>
-                            <td class = "am-hide-sm-only" th:text = "${book.author}"></td>
-                            <td class = "am-hide-sm-only" th:text = "${book.publisher}"></td>
-                            <td class = "am-hide-sm-only" th:text = "${book.publishDate}"></td>
-                            <td th:text = "${book.position}"></td>
-                            <td>
-                                <div class = "am-btn-toolbar">
-                                    <div class = "am-btn-group am-btn-group-xs">
-                                        <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><span
-                                                class = "am-icon-pencil-square-o"></span> 编辑
-                                        </button>
-
-                                    </div>
-                                </div>
-                            </td>
-
                         </tr>
                     </table>
                     <div class = "am-cf">
                         <div class = "am-fr">
                             <ul class = "am-pagination">
-                                <li class = "am-disabled"><a href = "#">«</a></li>
-                                <li class = "am-active"><a href = "#">1</a></li>
-                                <li><a href = "#">2</a></li>
-                                <li><a href = "#">3</a></li>
-                                <li><a href = "#">4</a></li>
-                                <li><a href = "#">5</a></li>
-                                <li><a href = "#">»</a></li>
+                                <li><a th:href = "@{librarian_table(start=0)}">首页</a></li>
+                                <li><a th:href = "@{librarian_table(start=${page.number}-1)}">上一页</a></li>
+                                <li><a th:href = "@{librarian_table(start=${page.number}+1)}">上一页</a></li>
+                                <li><a th:href="@{librarian_table(start=${page.totalPages})}">末页</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
 
