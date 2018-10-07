@@ -30,16 +30,60 @@
 <body>
     <div data-am-widget="intro" class="am-intro am-cf am-intro-default">
         <div class="am-intro-hd">
-            <h2 class="am-intro-title">条形码</h2>
-            <a class="am-intro-more am-intro-more-top " href="#more">倒计时</a>
+            <h2 class="am-intro-title">条形码：</h2>
+            <b th:text="${userBkunit.bkunit.id}"></b>
+            <h2 class="am-intro-more am-intro-more-top ">倒计时：<span id="count-down"></span></h2>
         </div>
 
         <div class="am-g am-intro-bd">
             <div
                     class="am-intro-left am-u-sm-5"><img src="http://s.amazeui.org/assets/2.x/i/cpts/intro/WP_Cortana_China.png" alt="小娜" /></div>
-            <div
-                    class="am-intro-right am-u-sm-7"><p>Cortana 恐怕是用户急于更新到 WP8.1 Update 开发者预览版的原因之一</p><p>Cortana 中国版特有的新图标（面团，带眼睛，可在 Cortana 设置中切换回圆圈），使用的是中文语言，也同样支持 Cortana 笔记本。</p></div>
+            <div class="am-intro-right am-u-sm-7">
+                <p th:text="${userBkunit.bkunit.book.title}"></p>
+                <p th:text="${userBkunit.bkunit.book.author}"></p>
+                <p th:text="${userBkunit.bkunit.book.brief}"></p>
+            </div>
         </div>
     </div>
+
+    <script type="text/javascript" >
+        window.onload = function(){
+            var timer = null;
+            //定义倒计时的时间(倒计时1分钟10秒)
+            var expire_date = new Date([[${userBkunit.returnDate}]]);
+            var current_date = new Date();
+            var expire_hours = expire_date.getHours();
+            var expire_minutes = expire_date.getMinutes();
+            var expire_seconds = expire_date.getSeconds();
+            var current_hours = current_date.getHours();
+            var current_minutes = current_date.getMinutes();
+            var current_seconds = current_date.getSeconds();
+            var hours = expire_hours - current_hours;
+            var minutes = expire_minutes - current_minutes;
+            var seconds = expire_seconds - current_seconds;
+            function show(){
+                //判断时间到了没
+                if(hours==0&&seconds==0&&minutes==0){
+                    clearInterval(timer);//清除定时器
+                    alert("时间到");
+                    return;
+                }
+                seconds--;
+                if(seconds<0){
+                    seconds = 59;
+                    minutes--;
+                    if(minutes<0){
+                        minutes = 59;
+                        hours--;
+                    }
+                }
+                minutes = (minutes+"").length==1?"0"+minutes:minutes;//(minutes+"")是将其数据类型转换成字符串类型
+                seconds = (seconds+"").length==1?"0"+seconds:seconds;
+                document.getElementById("count-down").innerHTML = hours+":"+minutes+":"+seconds;
+            }
+            //开启定时器
+            timer = setInterval(show,1000);
+        }
+    </script>
 </body>
 </html>
