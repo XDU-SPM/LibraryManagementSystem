@@ -35,13 +35,13 @@ public class LibrarianBookController
     }
 
     //返回页面booksinfo
-    @RequestMapping(path = {"/librarian/showbkunit"}, method = {RequestMethod.GET})
+    @RequestMapping(path = {"/librarian/librarian_table"}, method = {RequestMethod.GET})
     public String showBkunit(Model model, @RequestParam(value = "start", defaultValue = "0") int start,
                              @RequestParam(value = "size", defaultValue = "10") int size)
     {
         Page<Bkunit> page = librarianBookService.showbkunit(start, size);
         model.addAttribute("page", page);
-        return "bkunitsinfo";
+        return "librarian/librarian_table";
     }
 
     @RequestMapping(path = {"/librarian/showbook", "/reader/showbook"}, method = {RequestMethod.GET})
