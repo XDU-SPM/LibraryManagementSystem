@@ -4,6 +4,8 @@ import com.example.library_management_system.bean.Review;
 import com.example.library_management_system.bean.UserBkunit;
 import com.example.library_management_system.bean.UserFavoriteBook;
 import com.example.library_management_system.service.ReaderFunctionService;
+import com.example.library_management_system.utils.Message;
+import com.example.library_management_system.utils.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -105,16 +107,17 @@ public class ReaderFunctionController
 
     @RequestMapping(value = "/reader/reserve", method = RequestMethod.GET)
     @ResponseBody
-    public String reserveBook(String isbn)
+    public Message reserveBook(String isbn)
     {
         String status = readerfunctionservice.reserve(isbn);
-        return status;
+        return new Message(status);
     }
 
     @RequestMapping(value = "/reader/reserveCancel", method = RequestMethod.GET)
-    public String reserveCancel(String id)
+    @ResponseBody
+    public Status reserveCancel(int id)
     {
         readerfunctionservice.reserveCancel(id);
-        return "";
+        return new Status(1);
     }
 }

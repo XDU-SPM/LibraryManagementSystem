@@ -89,7 +89,6 @@ public class ReaderFunctionService
         return userFavoriteBookDAO.findAllByUser(reader, pageable);
     }
 
-
     public boolean addFavoriteBook(String Isbn)
     {
         try
@@ -318,12 +317,10 @@ public class ReaderFunctionService
         return bkunit.getId();
     }
 
-    public void reserveCancel(String id)
+    public void reserveCancel(int id)
     {
-        Bkunit bkunit = bkunitDAO.findById(id).get();
-        bkunit.setStatus(BkunitUtil.NORMAL);
-        User reader = userService.getUser();
-        UserBkunit userBkunit = userBkunitDAO.findByUserAndBkunit(reader, bkunit);
+        UserBkunit userBkunit = userBkunitDAO.findById(id);
+        userBkunit.getBkunit().setStatus(BkunitUtil.NORMAL);
         userBkunit.setStatus(UserBkunitUtil.RESERVATION_CANCEL);
         userBkunitDAO.save(userBkunit);
     }

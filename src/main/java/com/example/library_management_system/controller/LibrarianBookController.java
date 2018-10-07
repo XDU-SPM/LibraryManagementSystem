@@ -44,13 +44,12 @@ public class LibrarianBookController
         return "librarian/librarian_table";
     }
 
-    @RequestMapping(path = {"/librarian/showbook", "/reader/showbook"}, method = {RequestMethod.GET})
-    public String showBook(Model model, @RequestParam(value = "start", defaultValue = "0") int start,
+    @RequestMapping(path = {"/reader/showbook"}, method = {RequestMethod.GET})
+    @ResponseBody
+    public Page<Book> showBook(@RequestParam(value = "start", defaultValue = "0") int start,
                            @RequestParam(value = "size", defaultValue = "10") int size, String category)
     {
-        Page<Book> page = librarianBookService.showbook(start, size, category);
-        model.addAttribute("page", page);
-        return "booksinfo";
+        return librarianBookService.showbook(start, size, category);
     }
 
     @RequestMapping(path = {"/librarian/serchbyid"}, method = {RequestMethod.GET})
@@ -66,12 +65,19 @@ public class LibrarianBookController
         return "booksinfo";
     }
 
-    @RequestMapping(path = {"/librarian/librarian_book", "/reader/bookInfo"}, method = RequestMethod.GET)
+    @RequestMapping(path = {"/librarian/librarian_book"}, method = RequestMethod.GET)
     public String bookInfo(String isbn, Model model)
     {
         Book book = librarianBookService.bookInfo(isbn);
         model.addAttribute("book", book);
         model.addAttribute("number", librarianBookService.getBookNumber(book));
         return "/librarian/librarian_book";
+    }
+
+    @RequestMapping(value = "/librarian/saveBook", method = RequestMethod.POST)
+    public String saveBook(Book book)
+    {
+        librarianBookService.saveBook(book);
+        return "redirect:librarian_book?isbn=" + book.getIsbn();
     }
 }

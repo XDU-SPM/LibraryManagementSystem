@@ -81,7 +81,14 @@ public class LibrarianBookService
         start = start < 0 ? 0 : start;
         Sort sort = new Sort(Sort.Direction.DESC, "frequency");
         Pageable pageable = PageRequest.of(start, size, sort);
-        return bookdao.findByCategoriesContaining(c, pageable);
+        Page<Book> books;
+        if (category != null)
+            books = bookdao.findByCategoriesContaining(c, pageable);
+        else
+            books = bookdao.findAll(pageable);
+        for (Book book : books)
+            book.setNumber(getBookNumber(book));
+        return books;
     }
 
     public Bkunit searchbyid(String id)
@@ -115,5 +122,20 @@ public class LibrarianBookService
     public boolean isexist(Book book)
     {
         return bookdao.existsById(book.getIsbn());
+    }
+
+    public void saveBook(Book tmp)
+    {
+        Book book = bookdao.findByIsbn(tmp.getIsbn());
+
+        book.setTitle(tmp.getTitle());
+        book.setAuthor(tmp.getAuthor());
+        book.setPosition(tmp.getPosition());
+        book.setPublisher(tmp.getPublisher());
+        book.setPublishDate(tmp.getPublishDate());
+        book.setBrief(tmp.getBrief());
+        book.setPrice(tmp.getPrice());
+
+        bookdao.save(book);
     }
 }
