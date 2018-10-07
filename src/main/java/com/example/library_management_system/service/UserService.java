@@ -11,6 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
 import java.util.Date;
 
 @Service
@@ -77,7 +78,10 @@ public class UserService
             //更新续借图书的状态和天数
             userBkunit.setStatus(UserBkunitUtil.RENEW);
             Date borrowDate = userBkunit.getBorrowDate();
-
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(borrowDate);
+            calendar.add(Calendar.DATE, 2 * globalUtilDAO.findById(1).get().getMAX_BORROW_DAYS());
+            userBkunit.setReturnDate(calendar.getTime());
             userBkunitDAO.save(userBkunit);
             return true;
         }

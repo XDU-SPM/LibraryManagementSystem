@@ -67,7 +67,7 @@ public class ReaderFunctionController
     {
         int status = readerfunctionservice.lend(id, username);
         model.addAttribute("status", status);
-        return "/librarian/librarian_borrow";
+        return "librarian/librarian_borrow";
     }
 
     @RequestMapping(value = "/librarian/return", method = RequestMethod.POST)
