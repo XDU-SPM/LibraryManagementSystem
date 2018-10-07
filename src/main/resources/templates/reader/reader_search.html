@@ -237,7 +237,7 @@
 </script>
 <script>
     function book_reserve(book_isbn) {
-        var res = confirm("确认取消？");
+        var res = confirm("确认预约？");
         if(res == true){
             $.ajax({
                 type: "get",
@@ -245,7 +245,7 @@
                 url: "",
                 success: function (data) {
                     if(data!=null)
-                        alert("成功取消！条形码："+data);
+                        alert("成功预约！条形码："+data);
                     else
                         alert("预约失败，请稍后再试！");
                 },
