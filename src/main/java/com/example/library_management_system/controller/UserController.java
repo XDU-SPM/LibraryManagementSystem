@@ -7,6 +7,7 @@ import com.example.library_management_system.service.StatService;
 import com.example.library_management_system.service.UserService;
 import com.example.library_management_system.utils.Message;
 import com.example.library_management_system.utils.RoleUtil;
+import com.example.library_management_system.utils.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -138,14 +139,9 @@ public class UserController
 
     //用户续借图书
     @RequestMapping(value = "/user/renew", method = RequestMethod.GET)
-    public String renew(int id)
+    @ResponseBody
+    public Status renew(int id)
     {
-        if (userService.renew(id))
-        {
-            return "redirect:/readerquery";
-        }
-        return null;
+        return new Status(userService.renew(id) ? 1 : 0);
     }
-
-
 }

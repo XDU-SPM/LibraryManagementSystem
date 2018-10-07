@@ -31,14 +31,6 @@ public class UserBkunit
     {
     }
 
-//    public UserBkunit(Date borrowDate, int status, Bkunit bkunit, User user)
-//    {
-//        this.borrowDate = borrowDate;
-//        this.status = status;
-//        this.bkunit = bkunit;
-//        this.user = user;
-//    }
-
     public UserBkunit(Date borrowDate, Date returnDate, int status, Bkunit bkunit, User user)
     {
         this.borrowDate = borrowDate;
