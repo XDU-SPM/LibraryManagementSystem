@@ -190,7 +190,7 @@
                         <td>
                             <div class = "am-btn-toolbar">
                                 <div class = "am-btn-group am-btn-group-xs">
-                                        <button class = "am-btn am-btn-default am-btn-xs am-text-secondary" th:onclick="'javascript:cancel_appointment('+${book.id}')'">
+                                        <button class = "am-btn am-btn-default am-btn-xs am-text-secondary" th:onclick="'javascript:cancel_appointment('+${book.id}+')'">
                                             <span class = "am-icon-pencil-square-o"></span> 取消预约
                                         </button>
                                 </div>
@@ -382,9 +382,9 @@
             $.ajax({
                 type: "get",
                 data: {id: book_id},
-                url: "",
+                url: "reserveCancel",
                 success: function (data) {
-                    if(data)
+                    if(data.status == 1)
                         alert("成功取消！");
                     else
                         alert("取消失败，请稍后再试！");
@@ -402,10 +402,10 @@
             $.ajax({
                 type: "get",
                 data: {id: book_id},
-                url: "",
+                url: "renew",
                 success: function (data) {
-                    if(data)
-                        alert("成功续借，归还时间延后30天！");
+                    if(data.status == 1)
+                        alert("成功续借，归还时间延后" + data.number + "天！");
                     else
                         alert("续借失败，请稍后再试！");
                 },
@@ -570,6 +570,7 @@
             url: "borrowedBooks",
             data: {start: 0, size: 5, status: 3},
             success: function (data) {
+                console.log(data);
                 var str = "";
                 $('#bk-table-3').empty();
                 for (let i = 0; i < data.length; i++) {

@@ -15,7 +15,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class LibrarianBookService
@@ -87,7 +89,7 @@ public class LibrarianBookService
         else
             books = bookdao.findAll(pageable);
         for (Book book : books)
-            book.setNumber(getBookNumber(book));
+            book.setNumber(bkunitdao.countByBookAndStatus(book, BkunitUtil.NORMAL));
         return books;
     }
 
