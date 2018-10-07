@@ -189,15 +189,17 @@
                             <td>
                                 <div class = "am-btn-toolbar">
                                     <div class = "am-btn-group am-btn-group-xs">
-                                        <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><span
-                                                class = "am-icon-pencil-square-o" th:href="@{deletebook(id=${bunit.id},start=${page.number})}"></span>
-                                        </button>
+                                        <!--<button class = "am-btn am-btn-default am-btn-xs am-text-secondary" th:href="@{deletebook(id=${bunit.id},start=${page.number})}"><span-->
+                                                <!--class = "am-icon-pencil-square-o" >删除</span>-->
+                                        <!--</button>-->
+                                        <a th:href="@{deletebook(id=${bunit.id},start=${page.number})}">删除</a>
                                     </div>
                                 </div>
                             </td>
                         </tr>
                     </table>
                     <div class = "am-cf">
+                        <p th:text="'共有'+${page.numberOfElements}+'条数据'"></p>
                         <div class = "am-fr">
                             <ul class = "am-pagination">
                                 <li><a th:href = "@{librarian_table(start=0)}">首页</a></li>
