@@ -9,14 +9,15 @@
 </body>
 </html>
 <script type="text/javascript" >
-    var timer = null;
     window.onload = function(){
+        var timer = null;
         //定义倒计时的时间(倒计时1分钟10秒)
+        var hours = 0;
         var minutes = 1;
         var seconds = 10;
         function show(){
             //判断时间到了没
-            if(seconds==0&&minutes==0){
+            if(hours==0&&seconds==0&&minutes==0){
                 clearInterval(timer);//清除定时器
                 alert("时间到");
                 return;
@@ -25,10 +26,15 @@
             if(seconds<0){
                 seconds = 59;
                 minutes--;
+                if(minutes<0){
+                    minutes = 59;
+                    hours--;
+                }
             }
             minutes = (minutes+"").length==1?"0"+minutes:minutes;//(minutes+"")是将其数据类型转换成字符串类型
             seconds = (seconds+"").length==1?"0"+seconds:seconds;
-            document.getElementById("spanTime").innerHTML = minutes+":"+seconds;
+            alert(hours+":"+minutes+":"+seconds);
+//            document.getElementById("spanTime").innerHTML = hours+":"+minutes+":"+seconds;
         }
         //开启定时器
         timer = setInterval(show,1000);

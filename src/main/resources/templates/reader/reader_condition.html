@@ -173,12 +173,32 @@
                     <th class = "table-author am-hide-sm-only">作者</th>
                     <th class = "table-publisher">出版社</th>
                     <th class = "table-date am-hide-sm-only">出版日期</th>
-                    <th class = "table-positon am-hide-sm-only">预约倒计时</th>
+                    <th class = "table-positon am-hide-sm-only">预约到期时间</th>
                     <th class = "table-set">操作</th>
                 </tr>
                 </thead>
                 <tbody id = "bk-table-1">
+                    <tr th:each="book:${page1}">
 
+                        <td th:text="${book.id}"></td>
+                        <td th:text="${book.title}"><a th:href = "@{/librarian_book(id=${book.id})}"></a></td>
+                        <td class = "am-hide-sm-only" th:text="${book.author}"></td>
+                        <td class = "am-hide-sm-only" th:text="${book.publisher}"></td>
+                        <td class = "am-hide-sm-only" th:text="${book.publishDate}"></td>
+                        <td th:text="${book.position}"></td>
+                        <td>
+                            <div class = "am-btn-toolbar">
+                                <div class = "am-btn-group am-btn-group-xs">
+                                    <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><span
+                                            class = "am-icon-pencil-square-o"></span> 取消预约
+                                    </button>
+                                    <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><span
+                                            class = "am-icon-pencil-square-o"></span> 查看预约
+                                    </button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <br>
@@ -320,9 +340,32 @@
 <script src = "https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
 <script type = "text/javascript" src = "assets/js/test.js"></script>
 
-<script>
-    function () {
-
+<script type="text/javascript" >
+    function counter(hours,minutes,seconds){
+        var timer = null;
+        //定义倒计时的时间(倒计时1分钟10秒)
+        function show(){
+            //判断时间到了没
+            if(hours&&seconds==0&&minutes==0){
+                clearInterval(timer);//清除定时器
+                alert("时间到");
+                return;
+            }
+            seconds--;
+            if(seconds<0){
+                seconds = 59;
+                minutes--;
+                if(minutes<0){
+                    minutes = 59;
+                    hours--;
+                }
+            }
+            minutes = (minutes+"").length==1?"0"+minutes:minutes;//(minutes+"")是将其数据类型转换成字符串类型
+            seconds = (seconds+"").length==1?"0"+seconds:seconds;
+            document.getElementById("spanTime").innerHTML =hours+":"+minutes+":"+seconds;
+        }
+        //开启定时器
+        timer = setInterval(show,1000);
     }
 </script>
 
