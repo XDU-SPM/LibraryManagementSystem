@@ -1,9 +1,6 @@
 package com.example.library_management_system.controller;
 
-import com.example.library_management_system.service.GlobalUtilService;
-import com.example.library_management_system.service.LibrarianBookService;
-import com.example.library_management_system.service.ReaderFunctionService;
-import com.example.library_management_system.service.StatService;
+import com.example.library_management_system.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +21,9 @@ public class ReaderController
 
     @Autowired
     private LibrarianBookService librarianBookService;
+
+    @Autowired
+    private ReaderService readerService;
 
     @RequestMapping(value = "/reader/reader_condition", method = RequestMethod.GET)
     public String reader_reader_condition(Model model)
@@ -68,5 +68,12 @@ public class ReaderController
     {
         model.addAttribute("isbn", isbn);
         return "reader/reader_comment";
+    }
+
+    @RequestMapping(value = "/reader/appointment", method = RequestMethod.GET)
+    public String appointment(int id, Model model)
+    {
+        model.addAttribute("userBkunit", readerService.appointment(id));
+        return "reader/appointment";
     }
 }

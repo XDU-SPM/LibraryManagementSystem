@@ -33,8 +33,8 @@
             }
             minutes = (minutes+"").length==1?"0"+minutes:minutes;//(minutes+"")是将其数据类型转换成字符串类型
             seconds = (seconds+"").length==1?"0"+seconds:seconds;
-            alert(hours+":"+minutes+":"+seconds);
-//            document.getElementById("spanTime").innerHTML = hours+":"+minutes+":"+seconds;
+            // alert(hours+":"+minutes+":"+seconds);
+           document.getElementById("spanTime").innerHTML = hours+":"+minutes+":"+seconds;
         }
         //开启定时器
         timer = setInterval(show,1000);
