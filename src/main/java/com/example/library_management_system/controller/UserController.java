@@ -142,6 +142,6 @@ public class UserController
     @ResponseBody
     public Status renew(int id)
     {
-        return new Status(userService.renew(id) ? 1 : 0);
+        return new Status(userService.renew(id) ? 1 : 0, globalUtilService.getMaxBorrowDays());
     }
 }
