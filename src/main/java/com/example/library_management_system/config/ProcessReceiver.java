@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 
 import java.io.ByteArrayInputStream;
 import java.io.ObjectInputStream;
-import java.util.Calendar;
 import java.util.Date;
 
 @Component
@@ -27,16 +26,23 @@ public class ProcessReceiver implements ChannelAwareMessageListener
         ByteArrayInputStream in = new ByteArrayInputStream(message.getBody());
         ObjectInputStream sIn = new ObjectInputStream(in);
         int id = (Integer) sIn.readObject();
+
+        System.out.println("get " + id);
+
         UserBkunit userBkunit = userBkunitDAO.findById(id);
         if (userBkunit.getStatus() != UserBkunitUtil.RESERVATION)
+        {
+            System.out.println("This book is not reservation");
             return;
+        }
 
-        Calendar overdue = Calendar.getInstance();
-        overdue.setTime(userBkunit.getBorrowDate());
-        overdue.add(Calendar.MILLISECOND, QueueConfig.QUEUE_EXPIRATION);
         Date now = new Date();
-        if (now.before(overdue.getTime()))
+        Date overdue = userBkunit.getReturnDate();
+        if (now.before(overdue))
+        {
+            System.out.println("This delay had been canceled");
             return;
+        }
 
         userBkunit.getBkunit().setStatus(BkunitUtil.NORMAL);
         userBkunit.setStatus(UserBkunitUtil.RESERVATION_FAIL);

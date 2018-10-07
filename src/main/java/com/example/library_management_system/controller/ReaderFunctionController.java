@@ -103,11 +103,12 @@ public class ReaderFunctionController
         return "deleteReview";
     }
 
-    @RequestMapping(value = "/reader/reserve", method = RequestMethod.POST)
+    @RequestMapping(value = "/reader/reserve", method = RequestMethod.GET)
+    @ResponseBody
     public String reserveBook(String isbn)
     {
         String status = readerfunctionservice.reserve(isbn);
-        return "";
+        return status;
     }
 
     @RequestMapping(value = "/reader/reserveCancel", method = RequestMethod.GET)

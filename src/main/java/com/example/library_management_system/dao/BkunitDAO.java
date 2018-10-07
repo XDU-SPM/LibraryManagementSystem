@@ -27,5 +27,4 @@ public interface BkunitDAO extends JpaRepository<Bkunit, String>
     long countByBookAndStatus(Book book, int status);
 
     long countByStatus(int status);
-
 }
