@@ -260,15 +260,11 @@
                                     <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><span
                                             class = "am-icon-pencil-square-o"></span> 评论
                                     </button>
+                                    <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"
+                                            th:onclick = "'javascript:book_renew('+${book.id}+')'">
+                                        <span class = "am-icon-pencil-square-o"></span> 续借
+                                    </button>
                                 </a>
-                            </div>
-                        </div>
-                        <div class = "am-btn-toolbar">
-                            <div class = "am-btn-group am-btn-group-xs">
-                                <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"
-                                        th:onclick = "'javascript:book_renew('+${book.id}+')'">
-                                    <span class = "am-icon-pencil-square-o"></span> 续借
-                                </button>
                             </div>
                         </div>
                     </td>
@@ -578,26 +574,30 @@
                 console.log(data.content[0]);
                 var str = "";
                 $('#bk-table-3').empty();
-                for (let i = 0; i < data.length; i++) {
-                    str += '<tr>\n' +
-                        '                        <td>${data[i].bkunit.id}</td>\n' +
-                        '                        <td><a href = "book_details?isbn=${data[i].bkunit.book.isbn}">${data[i].bkunit.book.title}</a></td>\n' +
-                        '                        <td>${data[i].bkunit.book.author}</td>\n' +
-                        '                        <td class = "am-hide-sm-only">${data[i].bkunit.book.publisher}</td>\n' +
-                        '                        <td class = "am-hide-sm-only">${data[i].bkunit.book.publishDate}</td>\n' +
-                        '                        <td>${data[i].borrowDate}</td>\n' +
-                        '                        <td>${data[i].returnDate}</td>\n' +
-                        '                        <td>\n' +
-                        '                            <div class = "am-btn-toolbar">\n' +
-                        '                                <div class = "am-btn-group am-btn-group-xs">\n' +
-                        '                                    <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><span\n' +
-                        '                                            class = "am-icon-pencil-square-o"></span><a href = "reader_comment?isbn=${data[i].bkunit.book.isbn}">\n' +
-                        '                                        评论</a></button>\n' +
-                        '\n' +
-                        '                                </div>\n' +
-                        '                            </div>\n' +
-                        '                        </td>\n' +
-                        '                    </tr>'
+                for (var i = 0; i < data.content.length; i++) {
+                    str += "<tr>\n" +
+                        "\n" +
+                        "                    <td th:text = \"${data.content[i].bkunit.id}\"></td>\n" +
+                        "                    <td><a th:href = \"@{book_details(isbn=${data.content[i].bkunit.book.isbn})}\"\n" +
+                        "                           th:text = \"${data.content[i].bkunit.book.title}\"></a></td>\n" +
+                        "\n" +
+                        "                    <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.author}\"></td>\n" +
+                        "                    <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.publisher}\"></td>\n" +
+                        "                    <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.publishDate}\"></td>\n" +
+                        "                    <td th:text = \"${data.content[i].borrowDate}\"></td>\n" +
+                        "                    <td th:text = \"${data.content[i].returnDate}\"></td>\n" +
+                        "                    <td>\n" +
+                        "                        <div class = \"am-btn-toolbar\">\n" +
+                        "                            <div class = \"am-btn-group am-btn-group-xs\">\n" +
+                        "                                <a th:href = \"@{reader_comment(isbn=${data.content[i].bkunit.book.isbn})}\">\n" +
+                        "                                    <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"><span\n" +
+                        "                                            class = \"am-icon-pencil-square-o\"></span> 评论\n" +
+                        "                                    </button>\n" +
+                        "                                </a>\n" +
+                        "                            </div>\n" +
+                        "                        </div>\n" +
+                        "                    </td>\n" +
+                        "                </tr>"
                 }
                 $('#bk-table-3').html(str);
             }
@@ -617,29 +617,32 @@
                 data: {start: page_num, size: 3, status: 3},
                 success: function (data) {
                     console.log(data);
-                    let objs = data;
-                    let str = '';
+                    var str = '';
                     $('#bk-table-3').empty();
-                    for (let i = 0; i < objs.length; i++) {
-                        str += '<tr>\n' +
-                            '                        <td>${data[i].bkunit.id}</td>\n' +
-                            '                        <td><a href = "book_details?isbn=${data[i].bkunit.book.isbn}">${data[i].bkunit.book.title}</a></td>\n' +
-                            '                        <td>${data[i].bkunit.book.author}</td>\n' +
-                            '                        <td class = "am-hide-sm-only">${data[i].bkunit.book.publisher}</td>\n' +
-                            '                        <td class = "am-hide-sm-only">${data[i].bkunit.book.publishDate}</td>\n' +
-                            '                        <td>${data[i].borrowDate}</td>\n' +
-                            '                        <td>${data[i].returnDate}</td>\n' +
-                            '                        <td>\n' +
-                            '                            <div class = "am-btn-toolbar">\n' +
-                            '                                <div class = "am-btn-group am-btn-group-xs">\n' +
-                            '                                    <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><span\n' +
-                            '                                            class = "am-icon-pencil-square-o"></span><a href = "reader_comment?isbn=${data[i].bkunit.book.isbn}">\n' +
-                            '                                        评论</a></button>\n' +
-                            '\n' +
-                            '                                </div>\n' +
-                            '                            </div>\n' +
-                            '                        </td>\n' +
-                            '                    </tr>'
+                    for (var i = 0; i < objs.length; i++) {
+                        str += "<tr>\n" +
+                            "\n" +
+                            "                    <td th:text = \"${data.content[i].bkunit.id}\"></td>\n" +
+                            "                    <td><a th:href = \"@{book_details(isbn=${data.content[i].bkunit.book.isbn})}\"\n" +
+                            "                           th:text = \"${data.content[i].bkunit.book.title}\"></a></td>\n" +
+                            "\n" +
+                            "                    <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.author}\"></td>\n" +
+                            "                    <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.publisher}\"></td>\n" +
+                            "                    <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.publishDate}\"></td>\n" +
+                            "                    <td th:text = \"${data.content[i].borrowDate}\"></td>\n" +
+                            "                    <td th:text = \"${data.content[i].returnDate}\"></td>\n" +
+                            "                    <td>\n" +
+                            "                        <div class = \"am-btn-toolbar\">\n" +
+                            "                            <div class = \"am-btn-group am-btn-group-xs\">\n" +
+                            "                                <a th:href = \"@{reader_comment(isbn=${data.content[i].bkunit.book.isbn})}\">\n" +
+                            "                                    <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"><span\n" +
+                            "                                            class = \"am-icon-pencil-square-o\"></span> 评论\n" +
+                            "                                    </button>\n" +
+                            "                                </a>\n" +
+                            "                            </div>\n" +
+                            "                        </div>\n" +
+                            "                    </td>\n" +
+                            "                </tr>"
                     }
                     $('#bk-table-3').html(str);
                 }
@@ -654,29 +657,32 @@
             data: {start: end, size: 3, status: 3},
             success: function (data) {
                 console.log(data);
-                let objs = data;
-                let str = '';
+                var str = '';
                 $('#bk-table-3').empty();
-                for (let i = 0; i < objs.length; i++) {
-                    str += '<tr>\n' +
-                        '                        <td>${data[i].bkunit.id}</td>\n' +
-                        '                        <td><a href = "book_details?isbn=${data[i].bkunit.book.isbn}">${data[i].bkunit.book.title}</a></td>\n' +
-                        '                        <td>${data[i].bkunit.book.author}</td>\n' +
-                        '                        <td class = "am-hide-sm-only">${data[i].bkunit.book.publisher}</td>\n' +
-                        '                        <td class = "am-hide-sm-only">${data[i].bkunit.book.publishDate}</td>\n' +
-                        '                        <td>${data[i].borrowDate}</td>\n' +
-                        '                        <td>${data[i].returnDate}</td>\n' +
-                        '                        <td>\n' +
-                        '                            <div class = "am-btn-toolbar">\n' +
-                        '                                <div class = "am-btn-group am-btn-group-xs">\n' +
-                        '                                    <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><span\n' +
-                        '                                            class = "am-icon-pencil-square-o"></span><a href = "reader_comment?isbn=${data[i].bkunit.book.isbn}">\n' +
-                        '                                        评论</a></button>\n' +
-                        '\n' +
-                        '                                </div>\n' +
-                        '                            </div>\n' +
-                        '                        </td>\n' +
-                        '                    </tr>'
+                for (var i = 0; i < objs.length; i++) {
+                    str += "<tr>\n" +
+                        "\n" +
+                        "                    <td th:text = \"${data.content[i].bkunit.id}\"></td>\n" +
+                        "                    <td><a th:href = \"@{book_details(isbn=${data.content[i].bkunit.book.isbn})}\"\n" +
+                        "                           th:text = \"${data.content[i].bkunit.book.title}\"></a></td>\n" +
+                        "\n" +
+                        "                    <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.author}\"></td>\n" +
+                        "                    <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.publisher}\"></td>\n" +
+                        "                    <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.publishDate}\"></td>\n" +
+                        "                    <td th:text = \"${data.content[i].borrowDate}\"></td>\n" +
+                        "                    <td th:text = \"${data.content[i].returnDate}\"></td>\n" +
+                        "                    <td>\n" +
+                        "                        <div class = \"am-btn-toolbar\">\n" +
+                        "                            <div class = \"am-btn-group am-btn-group-xs\">\n" +
+                        "                                <a th:href = \"@{reader_comment(isbn=${data.content[i].bkunit.book.isbn})}\">\n" +
+                        "                                    <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"><span\n" +
+                        "                                            class = \"am-icon-pencil-square-o\"></span> 评论\n" +
+                        "                                    </button>\n" +
+                        "                                </a>\n" +
+                        "                            </div>\n" +
+                        "                        </div>\n" +
+                        "                    </td>\n" +
+                        "                </tr>"
                 }
                 $('#bk-table-3').html(str);
             }
@@ -694,30 +700,36 @@
             url: "borrowedBooks",
             data: {start: 1, size: 5, status: 2},
             success: function (data) {
-                let objs = data;
-                let str = '';
+                var str = '';
                 $('#bk-table-2').empty();
-                for (let i = 0; i < objs.length; i++) {
-                    str += '<tr>\n' +
-                        '                        <td>1</td>\n' +
-                        '                        <td><a href = "book_details.html">${}</a></td>\n' +
-                        '                        <td>${}</td>\n' +
-                        '                        <td class = "am-hide-sm-only">${}</td>\n' +
-                        '                        <td class = "am-hide-sm-only">${}</td>\n' +
-                        '                        <td class = "am-hide-sm-only">${}</td>\n' +
-                        '                        <td>${}</td>\n' +
-                        '                        <td>${}</td>\n' +
-                        '                        <td>\n' +
-                        '                            <div class = "am-btn-toolbar">\n' +
-                        '                                <div class = "am-btn-group am-btn-group-xs">\n' +
-                        '                                    <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><span\n' +
-                        '                                            class = "am-icon-pencil-square-o"></span><a href = "reader_comment.html">\n' +
-                        '                                        评论</a></button>\n' +
-                        '\n' +
-                        '                                </div>\n' +
-                        '                            </div>\n' +
-                        '                        </td>\n' +
-                        '                    </tr>'
+                for (var i = 0; i < data.content.length; i++) {
+                    str += "<tr>\n" +
+                        "\n" +
+                        "                    <td th:text = \"${data.content[i].bkunit.id}\"></td>\n" +
+                        "                    <td><a th:href = \"@{book_details(isbn=${data.content[i].bkunit.book.isbn})}\"\n" +
+                        "                           th:text = \"${data.content[i].bkunit.book.title}\"></a></td>\n" +
+                        "\n" +
+                        "                    <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.author}\"></td>\n" +
+                        "                    <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.publisher}\"></td>\n" +
+                        "                    <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.publishDate}\"></td>\n" +
+                        "                    <td th:text = \"${data.content[i].borrowDate}\"></td>\n" +
+                        "                    <td th:text = \"${data.content[i].returnDate}\"></td>\n" +
+                        "                    <td>\n" +
+                        "                        <div class = \"am-btn-toolbar\">\n" +
+                        "                            <div class = \"am-btn-group am-btn-group-xs\">\n" +
+                        "                                <a th:href = \"@{reader_comment(isbn=${data.content[i].bkunit.book.isbn})}\">\n" +
+                        "                                    <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"><span\n" +
+                        "                                            class = \"am-icon-pencil-square-o\"></span> 评论\n" +
+                        "                                    </button>\n" +
+                        "                                    <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"\n" +
+                        "                                            th:onclick = \"'javascript:book_renew('+${data.content[i].id}+')'\">\n" +
+                        "                                        <span class = \"am-icon-pencil-square-o\"></span> 续借\n" +
+                        "                                    </button>\n" +
+                        "                                </a>\n" +
+                        "                            </div>\n" +
+                        "                        </div>\n" +
+                        "                    </td>\n" +
+                        "                </tr>"
                 }
                 $('#bk-table-2').html(str);
             }
@@ -736,30 +748,36 @@
                 url: "borrowedBooks",
                 data: {start: pageNumber2, size: 5, status: 2},
                 success: function (data) {
-                    let objs = data;
-                    let str = '';
+                    var str = '';
                     $('#bk-table-2').empty();
-                    for (let i = 0; i < objs.length; i++) {
-                        str += '<tr>\n' +
-                            '                        <td>1</td>\n' +
-                            '                        <td><a href = "book_details.html">${}</a></td>\n' +
-                            '                        <td>${}</td>\n' +
-                            '                        <td class = "am-hide-sm-only">${}</td>\n' +
-                            '                        <td class = "am-hide-sm-only">${}</td>\n' +
-                            '                        <td class = "am-hide-sm-only">${}</td>\n' +
-                            '                        <td>${}</td>\n' +
-                            '                        <td>${}</td>\n' +
-                            '                        <td>\n' +
-                            '                            <div class = "am-btn-toolbar">\n' +
-                            '                                <div class = "am-btn-group am-btn-group-xs">\n' +
-                            '                                    <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><span\n' +
-                            '                                            class = "am-icon-pencil-square-o"></span><a href = "reader_comment.html">\n' +
-                            '                                        评论</a></button>\n' +
-                            '\n' +
-                            '                                </div>\n' +
-                            '                            </div>\n' +
-                            '                        </td>\n' +
-                            '                    </tr>'
+                    for (var i = 0; i < objs.length; i++) {
+                        str +="<tr>\n" +
+                            "\n" +
+                            "                    <td th:text = \"${data.content[i].bkunit.id}\"></td>\n" +
+                            "                    <td><a th:href = \"@{book_details(isbn=${data.content[i].bkunit.book.isbn})}\"\n" +
+                            "                           th:text = \"${data.content[i].bkunit.book.title}\"></a></td>\n" +
+                            "\n" +
+                            "                    <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.author}\"></td>\n" +
+                            "                    <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.publisher}\"></td>\n" +
+                            "                    <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.publishDate}\"></td>\n" +
+                            "                    <td th:text = \"${data.content[i].borrowDate}\"></td>\n" +
+                            "                    <td th:text = \"${data.content[i].returnDate}\"></td>\n" +
+                            "                    <td>\n" +
+                            "                        <div class = \"am-btn-toolbar\">\n" +
+                            "                            <div class = \"am-btn-group am-btn-group-xs\">\n" +
+                            "                                <a th:href = \"@{reader_comment(isbn=${data.content[i].bkunit.book.isbn})}\">\n" +
+                            "                                    <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"><span\n" +
+                            "                                            class = \"am-icon-pencil-square-o\"></span> 评论\n" +
+                            "                                    </button>\n" +
+                            "                                    <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"\n" +
+                            "                                            th:onclick = \"'javascript:book_renew('+${data.content[i].id}+')'\">\n" +
+                            "                                        <span class = \"am-icon-pencil-square-o\"></span> 续借\n" +
+                            "                                    </button>\n" +
+                            "                                </a>\n" +
+                            "                            </div>\n" +
+                            "                        </div>\n" +
+                            "                    </td>\n" +
+                            "                </tr>"
                     }
                     $('#bk-table-2').html(str);
                 }
@@ -773,30 +791,36 @@
             url: "borrowedBooks",
             data: {start: end, size: 5, status: 2},
             success: function (data) {
-                let objs = data;
-                let str = '';
+                var str = '';
                 $('#bk-table-2').empty();
-                for (let i = 0; i < objs.length; i++) {
-                    str += '<tr>\n' +
-                        '                        <td>1</td>\n' +
-                        '                        <td><a href = "book_details.html">${}</a></td>\n' +
-                        '                        <td>${}</td>\n' +
-                        '                        <td class = "am-hide-sm-only">${}</td>\n' +
-                        '                        <td class = "am-hide-sm-only">${}</td>\n' +
-                        '                        <td class = "am-hide-sm-only">${}</td>\n' +
-                        '                        <td>${}</td>\n' +
-                        '                        <td>${}</td>\n' +
-                        '                        <td>\n' +
-                        '                            <div class = "am-btn-toolbar">\n' +
-                        '                                <div class = "am-btn-group am-btn-group-xs">\n' +
-                        '                                    <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><span\n' +
-                        '                                            class = "am-icon-pencil-square-o"></span><a href = "reader_comment.html">\n' +
-                        '                                        评论</a></button>\n' +
-                        '\n' +
-                        '                                </div>\n' +
-                        '                            </div>\n' +
-                        '                        </td>\n' +
-                        '                    </tr>'
+                for (var i = 0; i < objs.length; i++) {
+                    str += "<tr>\n" +
+                        "\n" +
+                        "                    <td th:text = \"${data.content[i].bkunit.id}\"></td>\n" +
+                        "                    <td><a th:href = \"@{book_details(isbn=${data.content[i].bkunit.book.isbn})}\"\n" +
+                        "                           th:text = \"${data.content[i].bkunit.book.title}\"></a></td>\n" +
+                        "\n" +
+                        "                    <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.author}\"></td>\n" +
+                        "                    <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.publisher}\"></td>\n" +
+                        "                    <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.publishDate}\"></td>\n" +
+                        "                    <td th:text = \"${data.content[i].borrowDate}\"></td>\n" +
+                        "                    <td th:text = \"${data.content[i].returnDate}\"></td>\n" +
+                        "                    <td>\n" +
+                        "                        <div class = \"am-btn-toolbar\">\n" +
+                        "                            <div class = \"am-btn-group am-btn-group-xs\">\n" +
+                        "                                <a th:href = \"@{reader_comment(isbn=${data.content[i].bkunit.book.isbn})}\">\n" +
+                        "                                    <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"><span\n" +
+                        "                                            class = \"am-icon-pencil-square-o\"></span> 评论\n" +
+                        "                                    </button>\n" +
+                        "                                    <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"\n" +
+                        "                                            th:onclick = \"'javascript:book_renew('+${data.content[i].id}+')'\">\n" +
+                        "                                        <span class = \"am-icon-pencil-square-o\"></span> 续借\n" +
+                        "                                    </button>\n" +
+                        "                                </a>\n" +
+                        "                            </div>\n" +
+                        "                        </div>\n" +
+                        "                    </td>\n" +
+                        "                </tr>"
                 }
                 $('#bk-table-2').html(str);
             }
@@ -813,29 +837,35 @@
             url: "borrowedBooks",
             data: {start: 1, size: 5, status: 1},
             success: function (data) {
-                let objs = data;
-                let str = '';
+                var str = '';
                 $('#bk-table-1').empty();
-                for (let i = 0; i < objs.length; i++) {
-                    str += '<tr>\n' +
-                        '                        <td>1</td>\n' +
-                        '                        <td><a href = "book_details.html">${}</a></td>\n' +
-                        '                        <td>${}</td>\n' +
-                        '                        <td class = "am-hide-sm-only">${}</td>\n' +
-                        '                        <td class = "am-hide-sm-only">${}</td>\n' +
-                        '                        <td class = "am-hide-sm-only">${}</td>\n' +
-                        '                        <td>${}</td>\n' +
-                        '                        <td>\n' +
-                        '                            <div class = "am-btn-toolbar">\n' +
-                        '                                <div class = "am-btn-group am-btn-group-xs">\n' +
-                        '                                    <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><span\n' +
-                        '                                            class = "am-icon-pencil-square-o"></span><a href = "reader_comment.html">\n' +
-                        '                                        取消预约</a></button>\n' +
-                        '\n' +
-                        '                                </div>\n' +
-                        '                            </div>\n' +
-                        '                        </td>\n' +
-                        '                    </tr>'
+                for (var i = 0; i < objs.length; i++) {
+                    str += "<tr>\n" +
+                        "\n" +
+                        "                        <td th:text = \"${data.content[i].bkunit.id}\"></td>\n" +
+                        "                        <td><a th:href = \"@{book_details(isbn=${data.content[i].bkunit.book.isbn})}\"\n" +
+                        "                               th:text = \"${data.content[i].bkunit.book.title}\"></a></td>\n" +
+                        "\n" +
+                        "                        <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.author}\"></td>\n" +
+                        "                        <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.publisher}\"></td>\n" +
+                        "                        <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.publishDate}\"></td>\n" +
+                        "                        <td th:text = \"${data.content[i].returnDate}\"></td>\n" +
+                        "                        <td>\n" +
+                        "                            <div class = \"am-btn-toolbar\">\n" +
+                        "                                <div class = \"am-btn-group am-btn-group-xs\">\n" +
+                        "                                    <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"\n" +
+                        "                                            th:onclick = \"'javascript:cancel_appointment('+${data.content[i].id}+')'\">\n" +
+                        "                                        <span class = \"am-icon-pencil-square-o\"></span> 取消\n" +
+                        "                                    </button>\n" +
+                        "                                    <a th:href = \"@{appointment(id=${data.content[i].id})}\">\n" +
+                        "                                        <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"><span\n" +
+                        "                                                class = \"am-icon-pencil-square-o\"></span> 查看\n" +
+                        "                                        </button>\n" +
+                        "                                    </a>\n" +
+                        "                                </div>\n" +
+                        "                            </div>\n" +
+                        "                        </td>\n" +
+                        "                    </tr>"
                 }
                 $('#bk-table-1').html(str);
             }
@@ -854,29 +884,35 @@
                 url: "borrowedBooks",
                 data: {start: pageNumber1, size: 5, status: 1},
                 success: function (data) {
-                    let objs = data;
-                    let str = '';
+                    var str = '';
                     $('#bk-table-1').empty();
-                    for (let i = 0; i < objs.length; i++) {
-                        str += '<tr>\n' +
-                            '                        <td>1</td>\n' +
-                            '                        <td><a href = "book_details.html">${}</a></td>\n' +
-                            '                        <td>${}</td>\n' +
-                            '                        <td class = "am-hide-sm-only">${}</td>\n' +
-                            '                        <td class = "am-hide-sm-only">${}</td>\n' +
-                            '                        <td class = "am-hide-sm-only">${}</td>\n' +
-                            '                        <td>${}</td>\n' +
-                            '                        <td>\n' +
-                            '                            <div class = "am-btn-toolbar">\n' +
-                            '                                <div class = "am-btn-group am-btn-group-xs">\n' +
-                            '                                    <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><span\n' +
-                            '                                            class = "am-icon-pencil-square-o"></span><a href = "reader_comment.html">\n' +
-                            '                                        取消预约</a></button>\n' +
-                            '\n' +
-                            '                                </div>\n' +
-                            '                            </div>\n' +
-                            '                        </td>\n' +
-                            '                    </tr>'
+                    for (var i = 0; i < objs.length; i++) {
+                        str += "<tr>\n" +
+                            "\n" +
+                            "                        <td th:text = \"${data.content[i].bkunit.id}\"></td>\n" +
+                            "                        <td><a th:href = \"@{book_details(isbn=${data.content[i].bkunit.book.isbn})}\"\n" +
+                            "                               th:text = \"${data.content[i].bkunit.book.title}\"></a></td>\n" +
+                            "\n" +
+                            "                        <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.author}\"></td>\n" +
+                            "                        <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.publisher}\"></td>\n" +
+                            "                        <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.publishDate}\"></td>\n" +
+                            "                        <td th:text = \"${data.content[i].returnDate}\"></td>\n" +
+                            "                        <td>\n" +
+                            "                            <div class = \"am-btn-toolbar\">\n" +
+                            "                                <div class = \"am-btn-group am-btn-group-xs\">\n" +
+                            "                                    <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"\n" +
+                            "                                            th:onclick = \"'javascript:cancel_appointment('+${data.content[i].id}+')'\">\n" +
+                            "                                        <span class = \"am-icon-pencil-square-o\"></span> 取消\n" +
+                            "                                    </button>\n" +
+                            "                                    <a th:href = \"@{appointment(id=${data.content[i].id})}\">\n" +
+                            "                                        <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"><span\n" +
+                            "                                                class = \"am-icon-pencil-square-o\"></span> 查看\n" +
+                            "                                        </button>\n" +
+                            "                                    </a>\n" +
+                            "                                </div>\n" +
+                            "                            </div>\n" +
+                            "                        </td>\n" +
+                            "                    </tr>"
                     }
                     $('#bk-table-1').html(str);
                 }
@@ -890,29 +926,35 @@
             url: "borrowedBooks",
             data: {start: end, size: 5, status: 1},
             success: function (data) {
-                let objs = data;
-                let str = '';
+                var str = '';
                 $('#bk-table-1').empty();
-                for (let i = 0; i < objs.length; i++) {
-                    str += '<tr>\n' +
-                        '                        <td>1</td>\n' +
-                        '                        <td><a href = "book_details.html">${}</a></td>\n' +
-                        '                        <td>${}</td>\n' +
-                        '                        <td class = "am-hide-sm-only">${}</td>\n' +
-                        '                        <td class = "am-hide-sm-only">${}</td>\n' +
-                        '                        <td class = "am-hide-sm-only">${}</td>\n' +
-                        '                        <td>${}</td>\n' +
-                        '                        <td>\n' +
-                        '                            <div class = "am-btn-toolbar">\n' +
-                        '                                <div class = "am-btn-group am-btn-group-xs">\n' +
-                        '                                    <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><span\n' +
-                        '                                            class = "am-icon-pencil-square-o"></span><a href = "reader_comment.html">\n' +
-                        '                                        取消预约</a></button>\n' +
-                        '\n' +
-                        '                                </div>\n' +
-                        '                            </div>\n' +
-                        '                        </td>\n' +
-                        '                    </tr>'
+                for (var i = 0; i < objs.length; i++) {
+                    str += "<tr>\n" +
+                        "\n" +
+                        "                        <td th:text = \"${data.content[i].bkunit.id}\"></td>\n" +
+                        "                        <td><a th:href = \"@{book_details(isbn=${data.content[i].bkunit.book.isbn})}\"\n" +
+                        "                               th:text = \"${data.content[i].bkunit.book.title}\"></a></td>\n" +
+                        "\n" +
+                        "                        <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.author}\"></td>\n" +
+                        "                        <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.publisher}\"></td>\n" +
+                        "                        <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.publishDate}\"></td>\n" +
+                        "                        <td th:text = \"${data.content[i].returnDate}\"></td>\n" +
+                        "                        <td>\n" +
+                        "                            <div class = \"am-btn-toolbar\">\n" +
+                        "                                <div class = \"am-btn-group am-btn-group-xs\">\n" +
+                        "                                    <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"\n" +
+                        "                                            th:onclick = \"'javascript:cancel_appointment('+${data.content[i].id}+')'\">\n" +
+                        "                                        <span class = \"am-icon-pencil-square-o\"></span> 取消\n" +
+                        "                                    </button>\n" +
+                        "                                    <a th:href = \"@{appointment(id=${data.content[i].id})}\">\n" +
+                        "                                        <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"><span\n" +
+                        "                                                class = \"am-icon-pencil-square-o\"></span> 查看\n" +
+                        "                                        </button>\n" +
+                        "                                    </a>\n" +
+                        "                                </div>\n" +
+                        "                            </div>\n" +
+                        "                        </td>\n" +
+                        "                    </tr>"
                 }
                 $('#bk-table-1').html(str);
             }
