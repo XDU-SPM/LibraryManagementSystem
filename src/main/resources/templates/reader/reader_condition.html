@@ -214,7 +214,7 @@
                         <li><a onclick = "getOnePageBook1_1()">[首页]</a></li>
                         <li><a onclick = "getOnePageBook1_2(-1)">上一页</a></li>
                         <li><a onclick = "getOnePageBook1_2(1)">下一页</a></li>
-                        <li><a onclick = "getOnePageBook1_3([[${page1.totalPages}]])">[末页]</a></li>
+                        <li><a onclick = "getOnePageBook1_3([[${page1.totalPages}]]-1)">[末页]</a></li>
                     </ul>
                 </div>
             </div>
@@ -279,7 +279,7 @@
                         <li><a onclick = "getOnePageBook2_1()">[首页]</a></li>
                         <li><a onclick = "getOnePageBook2_2(-1)">上一页</a></li>
                         <li><a onclick = "getOnePageBook2_2(1)">下一页</a></li>
-                        <li><a onclick = "getOnePageBook2_3([[${page2.totalPages}]])">[末页]</a></li>
+                        <li><a onclick = "getOnePageBook2_3([[${page2.totalPages}]]-1)">[末页]</a></li>
                     </ul>
                 </div>
             </div>
@@ -303,29 +303,29 @@
                 </tr>
                 </thead>
                 <tbody id = "bk-table-3">
-                <tr th:each = "book:${page3}">
+                    <tr th:each = "book:${page3}">
 
-                    <td th:text = "${book.bkunit.id}"></td>
-                    <td><a th:href = "@{book_details(isbn=${book.bkunit.book.isbn})}"
-                           th:text = "${book.bkunit.book.title}"></a></td>
+                        <td th:text = "${book.bkunit.id}"></td>
+                        <td><a th:href = "@{book_details(isbn=${book.bkunit.book.isbn})}"
+                               th:text = "${book.bkunit.book.title}"></a></td>
 
-                    <td class = "am-hide-sm-only" th:text = "${book.bkunit.book.author}"></td>
-                    <td class = "am-hide-sm-only" th:text = "${book.bkunit.book.publisher}"></td>
-                    <td class = "am-hide-sm-only" th:text = "${book.bkunit.book.publishDate}"></td>
-                    <td th:text = "${book.borrowDate}"></td>
-                    <td th:text = "${book.returnDate}"></td>
-                    <td>
-                        <div class = "am-btn-toolbar">
-                            <div class = "am-btn-group am-btn-group-xs">
-                                <a th:href = "@{reader_comment(isbn=${book.bkunit.book.isbn})}">
-                                    <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><span
-                                            class = "am-icon-pencil-square-o"></span> 评论
-                                    </button>
-                                </a>
+                        <td class = "am-hide-sm-only" th:text = "${book.bkunit.book.author}"></td>
+                        <td class = "am-hide-sm-only" th:text = "${book.bkunit.book.publisher}"></td>
+                        <td class = "am-hide-sm-only" th:text = "${book.bkunit.book.publishDate}"></td>
+                        <td th:text = "${book.borrowDate}"></td>
+                        <td th:text = "${book.returnDate}"></td>
+                        <td>
+                            <div class = "am-btn-toolbar">
+                                <div class = "am-btn-group am-btn-group-xs">
+                                    <a th:href = "@{reader_comment(isbn=${book.bkunit.book.isbn})}">
+                                        <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><span
+                                                class = "am-icon-pencil-square-o"></span> 评论
+                                        </button>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <br>
@@ -336,7 +336,7 @@
                         <li><a onclick = "getOnePageBook3_1()">[首页]</a></li>
                         <li><a onclick = "getOnePageBook3_2(-1)">上一页</a></li>
                         <li><a onclick = "getOnePageBook3_2(1)">下一页</a></li>
-                        <li><a onclick = "getOnePageBook3_3([[${page3.totalPages}]])">[末页]</a></li>
+                        <li><a onclick = "getOnePageBook3_3([[${page3.totalPages}]]-1)">[末页]</a></li>
                     </ul>
                 </div>
             </div>
@@ -609,12 +609,12 @@
         if (pageNumber3 < 0)
             pageNumber3 = 0;
         else if (pageNumber3 >= [[${page3.totalPages}]])
-            pageNumber3 = [[${page3.totalPages}]];
+            pageNumber3 = [[${page3.totalPages}]]-1;
         else
             $.ajax({
                 type: "get",
                 url: "borrowedBooks",
-                data: {start: page_num, size: 3, status: 3},
+                data: {start: pageNumber3, size: 5, status: 3},
                 success: function (data) {
                     console.log(data);
                     var str = '';
@@ -691,14 +691,14 @@
 </script>
 <script>
 
-    var pageNumber2 = 1;
+    var pageNumber2 = 0;
 
     function getOnePageBook2_1() {
-        pageNumber2 = 1;
+        pageNumber2 = 0;
         $.ajax({
             type: "get",
             url: "borrowedBooks",
-            data: {start: 1, size: 5, status: 2},
+            data: {start: 0, size: 5, status: 2},
             success: function (data) {
                 var str = '';
                 $('#bk-table-2').empty();
@@ -738,10 +738,10 @@
 
     function getOnePageBook2_2(temp) {
         pageNumber2 += temp;
-        if (pageNumber2 <= 0)
-            pageNumber2 = 1;
-        else if (pageNumber2 > [[${page2.totalPages}]])
-            pageNumber2 = [[${page2.totalPages}]];
+        if (pageNumber2 < 0)
+            pageNumber2 = 0;
+        else if (pageNumber2 >= [[${page2.totalPages}]])
+            pageNumber2 = [[${page2.totalPages}]]-1;
         else
             $.ajax({
                 type: "get",
@@ -828,14 +828,14 @@
     }
 </script>
 <script>
-    var pageNumber1 = 1;
+    var pageNumber1 = 0;
 
     function getOnePageBook1_1() {
-        pageNumber1 = 1;
+        pageNumber1 = 0;
         $.ajax({
             type: "get",
             url: "borrowedBooks",
-            data: {start: 1, size: 5, status: 1},
+            data: {start: 0, size: 5, status: 1},
             success: function (data) {
                 var str = '';
                 $('#bk-table-1').empty();
@@ -874,10 +874,10 @@
 
     function getOnePageBook1_2(temp) {
         pageNumber1 += temp;
-        if (pageNumber1 <= 0)
-            pageNumber1 = 1;
-        else if (pageNumber1 > [[${page1.totalPages}]])
-            pageNumber1 = [[${page1.totalPages}]];
+        if (pageNumber1 < 0)
+            pageNumber1 = 0;
+        else if (pageNumber1 >= [[${page1.totalPages}]])
+            pageNumber1 = [[${page1.totalPages}]]-1;
         else
             $.ajax({
                 type: "get",
