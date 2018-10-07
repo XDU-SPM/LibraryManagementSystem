@@ -35,6 +35,9 @@ public class Book
 
     private int frequency;
 
+    @Transient
+    private long number;
+
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "book_category",
@@ -85,6 +88,16 @@ public class Book
         this.publisher = publisher;
         this.author = author;
         this.price = price;
+    }
+
+    public long getNumber()
+    {
+        return number;
+    }
+
+    public void setNumber(long number)
+    {
+        this.number = number;
     }
 
     public int getFrequency()

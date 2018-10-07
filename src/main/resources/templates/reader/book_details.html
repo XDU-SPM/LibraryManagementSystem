@@ -32,8 +32,7 @@
 <figure data-am-widget = "figure" class = "am am-figure am-figure-default " data-am-figure = "{  pureview: 'true' }">
 
 
-    <img th:src = "${book.coverPath}" th:width="50%" th:height="60%"
-         data-rel = "http://s.amazeui.org/media/i/demos/pure-1.jpg" alt = "春天的花开秋天的风以及冬天的落阳"/>
+    <img th:src = "${book.coverPath}" width = "300"/>
     <figcaption class = "am-figure-capition-btm">
         [[${book.title}]]
     </figcaption>
@@ -116,10 +115,10 @@
                 "                        <header class = \"am-comment-hd\">\n" +
                 "                            <!--<h3 class=\"am-comment-title\">评论标题</h3>-->\n" +
                 "                            <div class = \"am-comment-meta\">\n" +
-                "                                <a href = \"#link-to-user\" class = \"am-comment-author\">"+x.user.username+"</a>\n" +
+                "                                <a href = \"#link-to-user\" class = \"am-comment-author\">" + x.user.username + "</a>\n" +
                 "                                评论于\n" +
                 "                                <time datetime = \"2013-07-27T04:54:29-07:00\" title = \"2013年7月27日 下午7:54 格林尼治标准时间+0800\">\n" +
-                "                                    "+date2str(x.date,"yyyy-MM-d h:m:s")+"\n" +
+                "                                    " + date2str(x.date, "yyyy-MM-d h:m:s") + "\n" +
                 "                                </time>\n" +
                 "                            </div>\n" +
                 "                        </header>\n" +
@@ -131,7 +130,7 @@
                 "                </article>\n" +
                 "            </li>";
         }
-        document.getElementById("book-review").innerHTML=str;
+        document.getElementById("book-review").innerHTML = str;
     }
 
     function date2str(x, y) {

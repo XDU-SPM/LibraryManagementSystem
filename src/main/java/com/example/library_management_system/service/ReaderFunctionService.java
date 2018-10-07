@@ -89,7 +89,6 @@ public class ReaderFunctionService
         return userFavoriteBookDAO.findAllByUser(reader, pageable);
     }
 
-
     public boolean addFavoriteBook(String Isbn)
     {
         try

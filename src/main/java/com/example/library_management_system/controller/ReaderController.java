@@ -38,8 +38,9 @@ public class ReaderController
     }
 
     @RequestMapping(value = "/reader/reader_search", method = RequestMethod.GET)
-    public String reader_reader_search()
+    public String reader_reader_search(Model model)
     {
+        model.addAttribute("page", librarianBookService.showbook(0, 8, null));
         return "reader/reader_search";
     }
 
