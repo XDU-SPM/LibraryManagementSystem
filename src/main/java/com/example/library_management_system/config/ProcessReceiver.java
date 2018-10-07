@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.ByteArrayInputStream;
 import java.io.ObjectInputStream;
+import java.util.Calendar;
 import java.util.Date;
 
 @Component
@@ -36,7 +37,13 @@ public class ProcessReceiver implements ChannelAwareMessageListener
             return;
         }
 
+        // will generate some bugs
         Date now = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(now);
+        calendar.add(Calendar.SECOND, 1);
+        now = calendar.getTime();
+
         Date overdue = userBkunit.getReturnDate();
         if (now.before(overdue))
         {

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -29,12 +30,6 @@ public class LibrarianController
     public String librarian_librarian_return()
     {
         return "librarian/librarian_return";
-    }
-
-    @RequestMapping(value = "/librarian/librarian_record", method = RequestMethod.GET)
-    public String librarian_librarian_record()
-    {
-        return "librarian/librarian_record";
     }
 
     @RequestMapping(value = "/librarian/librarian_homepage", method = RequestMethod.GET)
@@ -64,5 +59,13 @@ public class LibrarianController
     {
         boolean status = librarianService.userExist(username);
         return new Status(status ? 0 : 1);
+    }
+
+    @RequestMapping(value = "/librarian/librarian_record", method = RequestMethod.GET)
+    public String getReserves(Model model, @RequestParam(value = "start", defaultValue = "0") int start,
+                              @RequestParam(value = "size", defaultValue = "10") int size)
+    {
+        model.addAttribute("page", librarianService.getReserves(start, size));
+        return "librarian/librarian_record";
     }
 }

@@ -117,7 +117,6 @@ public class ReaderFunctionController
     @ResponseBody
     public Status reserveCancel(int id)
     {
-        readerfunctionservice.reserveCancel(id);
-        return new Status(1);
+        return new Status(readerfunctionservice.reserveCancel(id));
     }
 }

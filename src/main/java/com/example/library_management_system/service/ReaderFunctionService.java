@@ -317,11 +317,15 @@ public class ReaderFunctionService
         return bkunit.getId();
     }
 
-    public void reserveCancel(int id)
+    public int reserveCancel(int id)
     {
         UserBkunit userBkunit = userBkunitDAO.findById(id);
+        if (userBkunit.getStatus() != UserBkunitUtil.RESERVATION)
+            return 0;
+
         userBkunit.getBkunit().setStatus(BkunitUtil.NORMAL);
         userBkunit.setStatus(UserBkunitUtil.RESERVATION_CANCEL);
         userBkunitDAO.save(userBkunit);
+        return 1;
     }
 }

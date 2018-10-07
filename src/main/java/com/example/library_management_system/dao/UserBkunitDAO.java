@@ -9,13 +9,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 public interface UserBkunitDAO extends JpaRepository<UserBkunit, Integer>
 {
     List<UserBkunit> findAllByStatusOrStatus(int status1, int status2);
 
     List<UserBkunit> findAllByStatus(int status);
+
+    Page<UserBkunit> findAllByStatusBetween(int status1, int status2, Pageable pageable);
 
     Page<UserBkunit> findAllByUser(User reader, Pageable pageable);
 
