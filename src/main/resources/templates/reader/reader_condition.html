@@ -168,7 +168,7 @@
             <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "booklist-1">
                 <thead>
                 <tr>
-                    <th class = "table-id">编号</th>
+                    <th class = "table-id">条形码</th>
                     <th class = "table-title">标题</th>
                     <th class = "table-author am-hide-sm-only">作者</th>
                     <th class = "table-publisher">出版社</th>
@@ -180,7 +180,7 @@
                 <tbody id = "bk-table-1">
                     <tr th:each="book:${page1}">
 
-                        <td th:text="${book.id}"></td>
+                        <td th:text="${book.bkunit.id}"></td>
                         <td><a th:href = "@{book_details(isbn=${book.bkunit.book.isbn})}" th:text="${book.bkunit.book.title}"></a></td>
 
                         <td class = "am-hide-sm-only" th:text="${book.bkunit.book.author}"></td>
@@ -233,7 +233,7 @@
             <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "booklist-2">
                 <thead>
                 <tr>
-                    <th class = "table-id">编号</th>
+                    <th class = "table-id">条形码</th>
                     <th class = "table-title">标题</th>
                     <th class = "table-author am-hide-sm-only">作者</th>
                     <th class = "table-publisher">出版社</th>
@@ -246,7 +246,7 @@
                 <tbody id = "bk-table-2">
                     <tr th:each="book:${page2}">
 
-                        <td th:text="${book.id}"></td>
+                        <td th:text="${book.bkunit.id}"></td>
                         <td><a th:href = "@{book_details(isbn=${book.bkunit.book.isbn})}" th:text="${book.bkunit.book.title}"></a></td>
 
                         <td class = "am-hide-sm-only" th:text="${book.bkunit.book.author}"></td>
@@ -296,7 +296,7 @@
             <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "booklist-3">
                 <thead>
                 <tr>
-                    <th class = "table-id">编号</th>
+                    <th class = "table-id">条形码</th>
                     <th class = "table-title">标题</th>
                     <th class = "table-author am-hide-sm-only">作者</th>
                     <th class = "table-publisher">出版社</th>
@@ -309,7 +309,7 @@
                 <tbody id="bk-table-3">
                 <tr th:each="book:${page3}">
 
-                    <td th:text="${book.id}"></td>
+                    <td th:text="${book.bkunit.id}"></td>
                     <td><a th:href = "@{book_details(isbn=${book.bkunit.book.isbn})}" th:text="${book.bkunit.book.title}"></a></td>
 
                     <td class = "am-hide-sm-only" th:text="${book.bkunit.book.author}"></td>
@@ -882,7 +882,7 @@
             });
     }
 
-    function getOnePageBook1_2(end) {
+    function getOnePageBook1_3(end) {
         pageNumber1 = end;
         $.ajax({
             type: "get",
