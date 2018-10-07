@@ -164,59 +164,41 @@
 
             <div class = "am-g">
                 <div class = "am-u-sm-12">
-                    <form class = "am-form">
-                        <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "booklist">
-                            <thead>
-                            <tr>
-                                <th class = "table-id">编号</th>
-                                <th class = "table-title">书名</th>
-                                <!--<th class="table-type">类别</th>-->
-
-                                <th class = "table-author am-hide-sm-only">学号</th>
-                                <th class = "table-publisher">书的编号</th>
-                                <th class = "table-date am-hide-sm-only">借书时间</th>
-                                <th class = "table-positon am-hide-sm-only">还书时间</th>
-                                <th class = "table-set">状态</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td><a href = "#">纯洁神王是如何炼成的</a></td>
-                                <td>15130110044</td>
-                                <td class = "am-hide-sm-only">1234567</td>
-                                <td class = "am-hide-sm-only">2014年9月4日 7:28:47</td>
-                                <td class = "am-hide-sm-only">2014年9月4日 7:28:47</td>
-                                <td>未超期</td>
-                                <td>
-                                    <div class = "am-btn-toolbar">
-                                        <div class = "am-btn-group am-btn-group-xs">
-                                            <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><span
-                                                    class = "am-icon-pencil-square-o"></span> 编辑
-                                            </button>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <div class = "am-cf">
-                            共 15 条记录
-                            <div class = "am-fr">
-                                <ul class = "am-pagination">
-                                    <li class = "am-disabled"><a href = "#">«</a></li>
-                                    <li class = "am-active"><a href = "#">1</a></li>
-                                    <li><a href = "#">2</a></li>
-                                    <li><a href = "#">3</a></li>
-                                    <li><a href = "#">4</a></li>
-                                    <li><a href = "#">5</a></li>
-                                    <li><a href = "#">»</a></li>
-                                </ul>
-                            </div>
+                    <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "booklist">
+                        <thead>
+                        <tr>
+                            <th class = "table-id">编号</th>
+                            <th class = "table-id">书号</th>
+                            <th class = "table-title">标题</th>
+                            <th class = "table-isbn">ISBN</th>
+                            <th class = "table-author am-hide-sm-only">用户名</th>
+                            <th class = "table-publisher">预约时间</th>
+                            <th class = "table-date am-hide-sm-only">预约状态</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each = "record:${page}">
+                            <td th:text = "${record.id}"></td>
+                            <td th:text = "${record.bkunit.id}"></td>
+                            <td th:text = "${record.bkunit.book.title}"></td>
+                            <td ><a th:text = "${record.bkunit.book.isbn}" th:href="@{librarian_book(isbn=${record.bkunit.book.isbn})}"></a></td>
+                            <td class = "am-hide-sm-only" th:text = "${record.user.username}"></td>
+                            <td class = "am-hide-sm-only" th:text = "${record.borrowDate}"></td>
+                            <td class = "am-hide-sm-only" th:text = "${record.status}"></td>
+                        </tr>
+                    </table>
+                    <div class = "am-cf">
+                        <p th:text="'共有'+${page.numberOfElements}+'条数据'"></p>
+                        <div class = "am-fr">
+                            <ul class = "am-pagination">
+                                <li><a th:href = "@{librarian_table(start=0)}">首页</a></li>
+                                <li><a th:href = "@{librarian_table(start=${page.number}-1)}">上一页</a></li>
+                                <li><a th:href = "@{librarian_table(start=${page.number}+1)}">下一页</a></li>
+                                <li><a th:href="@{librarian_table(start=${page.totalPages})}">末页</a></li>
+                            </ul>
                         </div>
-                    </form>
+                    </div>
                 </div>
-
             </div>
         </div>
 
