@@ -190,14 +190,14 @@
                         <div class = "am-form-group">
                             <label for = "user-account" class = "am-u-sm-3 am-form-label">用户账号 / Account</label>
                             <div class = "am-u-sm-9">
-                                <input type = "tel" id = "user-account" placeholder = "用户账号 / Account">
+                                <input type = "tel" id = "user-account" th:text="${user.username}">
                             </div>
                         </div>
 
                         <div class = "am-form-group">
                             <label for = "user-name" class = "am-u-sm-3 am-form-label">姓名 / Name</label>
                             <div class = "am-u-sm-9">
-                                <input type = "text" id = "user-name" placeholder = "姓名 / Name">
+                                <input type = "text" id = "user-name" th:text="${user.name}">
                                 <small>输入你的名字，让我们记住你。</small>
                             </div>
                         </div>
@@ -205,7 +205,7 @@
                         <div class = "am-form-group">
                             <label for = "user-email" class = "am-u-sm-3 am-form-label">电子邮件 / Email</label>
                             <div class = "am-u-sm-9">
-                                <input type = "email" id = "user-email" placeholder = "输入你的电子邮件 / Email">
+                                <input type = "email" id = "user-email" th:text="${user.email}">
                                 <small>邮箱你懂得...</small>
                             </div>
                         </div>
@@ -213,7 +213,7 @@
                         <div class = "am-form-group">
                             <label for = "user-balance" class = "am-u-sm-3 am-form-label">余额 / Balance</label>
                             <div class = "am-u-sm-9">
-                                <input type = "number" pattern = "[0-9]*" id = "user-balance" disabled>
+                                <input type = "number" pattern = "[0-9]*" id = "user-balance" th:text="${user.money}元" disabled>
                             </div>
                         </div>
 
