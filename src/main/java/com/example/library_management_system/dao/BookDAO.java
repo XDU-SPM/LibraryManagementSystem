@@ -15,4 +15,6 @@ public interface BookDAO extends JpaRepository<Book, String>
     Book findByTitle(String name);
 
     Page<Book> findByCategoriesContaining(Category category, Pageable pageable);
+
+    Page<Book> findAll(Pageable pageable);
 }
