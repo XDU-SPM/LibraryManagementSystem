@@ -164,22 +164,21 @@
   am-avg-md-3 am-avg-lg-4 am-gallery-bordered" data-am-gallery = "{  }">
                             <li th:each = "book:${page}">
                                 <div class = "am-gallery-item">
-                                    <a href = "book_details?id=${}" class = "">
-                                        <img th:src = "${book.coverPath}"
-                                             alt = "远方 有一个地方 那里种有我们的梦想"/>
+                                    <a th:href="@{book_details(isbn=${book.isbn})}" class = "">
+                                        <img th:src = "${book.coverPath}"/>
                                         <h3 th:text="${book.title}" class = "am-gallery-title"></h3>
-                                        <div class = "am-gallery-desc">剩余：<strong th:text="${}"></strong>本</div>
+                                        <div class = "am-gallery-desc">剩余：<strong th:text="${book.number}"></strong>本</div>
                                     </a>
-                                    <button th:if = "${} eq 0" type = "button" class = "am-btn am-btn-default" disabled>
+                                    <button th:if = "${book.number} eq 0" type = "button" class = "am-btn am-btn-default" disabled>
                                         预约
                                     </button>
-                                    <button th:if = "0 gt 0" type = "button" class = "am-btn am-btn-default">预约</button>
+                                    <button th:if = "${book.number} gt 0" type = "button" class = "am-btn am-btn-default">预约</button>
                                 </div>
                             </li>
 
                         </ul>
                         <div class = "am-cf">
-                            共 15 条记录
+                            共 [[${book.totalElements}]] 条记录
                             <div class = "am-fr">
                                 <ul class = "am-pagination">
                                     <li><a href = "#">[首页]</a></li>
