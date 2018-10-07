@@ -71,7 +71,7 @@ public class LibrarianBookController
     {
         Book book = librarianBookService.bookInfo(isbn);
         model.addAttribute("book", book);
-        model.addAttribute("number", book.getBkunits().size());
+        model.addAttribute("number", librarianBookService.getBookNumber(book));
         return "/librarian/librarian_book";
     }
 }

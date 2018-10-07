@@ -116,10 +116,10 @@
                 "                        <header class = \"am-comment-hd\">\n" +
                 "                            <!--<h3 class=\"am-comment-title\">评论标题</h3>-->\n" +
                 "                            <div class = \"am-comment-meta\">\n" +
-                "                                <a href = \"#link-to-user\" class = \"am-comment-author\">" + x.user.name + "</a>\n" +
+                "                                <a href = \"#link-to-user\" class = \"am-comment-author\">"+x.user.username+"</a>\n" +
                 "                                评论于\n" +
                 "                                <time datetime = \"2013-07-27T04:54:29-07:00\" title = \"2013年7月27日 下午7:54 格林尼治标准时间+0800\">\n" +
-                "                                    " + x.date + "\n" +
+                "                                    "+date2str(x.date,"yyyy-MM-d h:m:s")+"\n" +
                 "                                </time>\n" +
                 "                            </div>\n" +
                 "                        </header>\n" +
@@ -132,8 +132,22 @@
                 "            </li>";
         }
         document.getElementById("book-review").innerHTML=str;
-    }    
+    }
 
+    function date2str(x, y) {
+        x1 = new Date(x);
+        var z = {
+            y: x1.getFullYear(),
+            M: x1.getMonth() + 1,
+            d: x1.getDate(),
+            h: x1.getHours(),
+            m: x1.getMinutes(),
+            s: x1.getSeconds()
+        };
+        return y.replace(/(y+|M+|d+|h+|m+|s+)/g, function (v) {
+            return ((v.length > 1 ? "0" : "") + eval('z.' + v.slice(-1))).slice(-(v.length > 2 ? v.length : 2))
+        });
+    }
 </script>
 </body>
 </html>

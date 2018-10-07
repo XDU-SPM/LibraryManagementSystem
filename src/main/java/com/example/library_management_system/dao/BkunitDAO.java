@@ -20,11 +20,7 @@ public interface BkunitDAO extends JpaRepository<Bkunit, String>
 
     Set<Bkunit> findAllByBookAndStatus(Book book, int status);
 
-    long countAllByBook(Book book);
-
-    long countAllByBookAndStatus(Book book, int status);
-
-    long countByBook(Book book);
+    long countByBookAndStatusNot(Book book, int status);
 
     long countByBookAndStatus(Book book, int status);
 

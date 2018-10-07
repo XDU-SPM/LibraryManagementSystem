@@ -92,6 +92,11 @@ public class LibrarianBookService
         return null;
     }
 
+    public long getBookNumber(Book book)
+    {
+        return bkunitdao.countByBookAndStatusNot(book, BkunitUtil.LOST);
+    }
+
     public Book bookInfo(String isbn)
     {
         return bookdao.findByIsbn(isbn);

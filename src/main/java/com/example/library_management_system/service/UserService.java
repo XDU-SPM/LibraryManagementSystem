@@ -76,6 +76,8 @@ public class UserService
         {
             //更新续借图书的状态和天数
             userBkunit.setStatus(UserBkunitUtil.RENEW);
+            Date borrowDate = userBkunit.getBorrowDate();
+
             userBkunitDAO.save(userBkunit);
             return true;
         }
