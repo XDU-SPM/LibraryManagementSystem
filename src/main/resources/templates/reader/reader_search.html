@@ -165,7 +165,7 @@
                             <li th:each = "book:${page}">
                                 <div class = "am-gallery-item">
                                     <a th:href="@{book_details(isbn=${book.isbn})}" class = "">
-                                        <img th:src = "${book.coverPath}"/>
+                                        <img th:src = "${book.coverPath}" height="326" />
                                         <h3 th:text="${book.title}" class = "am-gallery-title"></h3>
                                         <div class = "am-gallery-desc">剩余：<strong th:text="${book.number}"></strong>本</div>
                                     </a>
@@ -179,7 +179,7 @@
 
                         </ul>
                         <div class = "am-cf">
-                            共 [[${book.totalElements}]] 条记录
+                            共 [[${page.totalElements}]] 条记录
                             <div class = "am-fr">
                                 <ul class = "am-pagination">
                                     <li><a href = "#">[首页]</a></li>
