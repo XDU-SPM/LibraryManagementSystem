@@ -105,6 +105,7 @@
     function iteSetOfReview() {
         var str = "";
         for (var x of [[${book.reviews}]]) {
+            console.log(x);
             str += "<li class = \"am-comment\">\n" +
                 "                <article class = \"am-comment\">\n" +
                 "                    <a href = \"#link-to-user-home\">\n" +
@@ -128,9 +129,9 @@
                 "                        </div>\n" +
                 "                    </div>\n" +
                 "                </article>\n" +
-                "            </li>"
+                "            </li>";
         }
-        document.getElementById("book-review").innerHeight=str;
+        document.getElementById("book-review").innerHTML=str;
     }    
 
 </script>
