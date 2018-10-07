@@ -31,12 +31,6 @@ public class LibrarianController
         return "librarian/librarian_return";
     }
 
-    @RequestMapping(value = "/librarian/librarian_table", method = RequestMethod.GET)
-    public String librarian_librarian_table()
-    {
-        return "librarian/librarian_table";
-    }
-
     @RequestMapping(value = "/librarian/librarian_record", method = RequestMethod.GET)
     public String librarian_librarian_record()
     {
@@ -62,6 +56,12 @@ public class LibrarianController
     public String librarian_librarian_user()
     {
         return "librarian/librarian_user";
+    }
+
+    @RequestMapping(value = "/librarian/librarian_book", method = RequestMethod.GET)
+    public String librarian_librarian_book()
+    {
+        return "librarian/librarian_book";
     }
 
     @RequestMapping(value = {"/librarian/checkUser", "/reader/checkUser"}, method = RequestMethod.GET)
