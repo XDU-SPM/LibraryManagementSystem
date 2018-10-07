@@ -168,7 +168,7 @@
             <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "booklist-1">
                 <thead>
                 <tr>
-                    <th class = "table-id">编号</th>
+                    <th class = "table-id">条形码</th>
                     <th class = "table-title">标题</th>
                     <th class = "table-author am-hide-sm-only">作者</th>
                     <th class = "table-publisher">出版社</th>
@@ -180,21 +180,28 @@
                 <tbody id = "bk-table-1">
                     <tr th:each="book:${page1}">
 
-                        <td th:text="${book.id}"></td>
-                        <td th:text="${book.title}"><a th:href = "@{/librarian_book(id=${book.id})}"></a></td>
-                        <td class = "am-hide-sm-only" th:text="${book.author}"></td>
-                        <td class = "am-hide-sm-only" th:text="${book.publisher}"></td>
-                        <td class = "am-hide-sm-only" th:text="${book.publishDate}"></td>
-                        <td th:text="${book.position}"></td>
+                        <td th:text="${book.bkunit.id}"></td>
+                        <td><a th:href = "@{book_details(isbn=${book.bkunit.book.isbn})}" th:text="${book.bkunit.book.title}"></a></td>
+
+                        <td class = "am-hide-sm-only" th:text="${book.bkunit.book.author}"></td>
+                        <td class = "am-hide-sm-only" th:text="${book.bkunit.book.publisher}"></td>
+                        <td class = "am-hide-sm-only" th:text="${book.bkunit.book.publishDate}"></td>
+                        <td th:text="${book.returnDate}"></td>
                         <td>
                             <div class = "am-btn-toolbar">
                                 <div class = "am-btn-group am-btn-group-xs">
-                                    <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><span
-                                            class = "am-icon-pencil-square-o"></span> 取消预约
-                                    </button>
-                                    <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><span
-                                            class = "am-icon-pencil-square-o"></span> 查看预约
-                                    </button>
+                                        <button class = "am-btn am-btn-default am-btn-xs am-text-secondary" th:onclick="'javascript:cancel_appointment('+${book.id}')'">
+                                            <span class = "am-icon-pencil-square-o"></span> 取消预约
+                                        </button>
+                                </div>
+                            </div>
+                            <div class = "am-btn-toolbar">
+                                <div class = "am-btn-group am-btn-group-xs">
+                                    <a th:href="@{appointment(id=${book.id})}">
+                                        <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><span
+                                                class = "am-icon-pencil-square-o"></span> 查看预约
+                                        </button>
+                                    </a>
                                 </div>
                             </div>
                         </td>
@@ -226,7 +233,7 @@
             <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "booklist-2">
                 <thead>
                 <tr>
-                    <th class = "table-id">编号</th>
+                    <th class = "table-id">条形码</th>
                     <th class = "table-title">标题</th>
                     <th class = "table-author am-hide-sm-only">作者</th>
                     <th class = "table-publisher">出版社</th>
@@ -237,7 +244,35 @@
                 </tr>
                 </thead>
                 <tbody id = "bk-table-2">
+                    <tr th:each="book:${page2}">
 
+                        <td th:text="${book.bkunit.id}"></td>
+                        <td><a th:href = "@{book_details(isbn=${book.bkunit.book.isbn})}" th:text="${book.bkunit.book.title}"></a></td>
+
+                        <td class = "am-hide-sm-only" th:text="${book.bkunit.book.author}"></td>
+                        <td class = "am-hide-sm-only" th:text="${book.bkunit.book.publisher}"></td>
+                        <td class = "am-hide-sm-only" th:text="${book.bkunit.book.publishDate}"></td>
+                        <td th:text="${book.borrowDate}"></td>
+                        <td th:text="${book.returnDate}"></td>
+                        <td>
+                            <div class = "am-btn-toolbar">
+                                <div class = "am-btn-group am-btn-group-xs">
+                                    <a th:href="@{reader_comment(isbn=${book.bkunit.book.isbn})}">
+                                        <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><span
+                                                class = "am-icon-pencil-square-o"></span> 评论
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class = "am-btn-toolbar">
+                                <div class = "am-btn-group am-btn-group-xs">
+                                        <button class = "am-btn am-btn-default am-btn-xs am-text-secondary" th:onclick="'javascript:book_renew('+${book.id}+')'">
+                                            <span class = "am-icon-pencil-square-o"></span> 续借
+                                        </button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <br>
@@ -261,7 +296,7 @@
             <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "booklist-3">
                 <thead>
                 <tr>
-                    <th class = "table-id">编号</th>
+                    <th class = "table-id">条形码</th>
                     <th class = "table-title">标题</th>
                     <th class = "table-author am-hide-sm-only">作者</th>
                     <th class = "table-publisher">出版社</th>
@@ -274,7 +309,7 @@
                 <tbody id="bk-table-3">
                 <tr th:each="book:${page3}">
 
-                    <td th:text="${book.id}"></td>
+                    <td th:text="${book.bkunit.id}"></td>
                     <td><a th:href = "@{book_details(isbn=${book.bkunit.book.isbn})}" th:text="${book.bkunit.book.title}"></a></td>
 
                     <td class = "am-hide-sm-only" th:text="${book.bkunit.book.author}"></td>
@@ -339,6 +374,48 @@
 <script src = "https://gw.alipayobjects.com/os/antv/pkg/_antv.data-set-0.9.6/dist/data-set.min.js"></script>
 <script src = "https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
 <script type = "text/javascript" src = "assets/js/test.js"></script>
+
+<script th:inline="javascript">
+    function cancel_appointment(book_id) {
+        var res = confirm("确认取消？");
+        if(res == true){
+            $.ajax({
+                type: "get",
+                data: {id: book_id},
+                url: "",
+                success: function (data) {
+                    if(data)
+                        alert("成功取消！");
+                    else
+                        alert("取消失败，请稍后再试！");
+                },
+                error: function (data) {
+                    alert("发生错误，请稍后再试！");
+                }
+            });
+        }
+    }
+
+    function book_renew(book_id) {
+        var res = confirm("确认续借？");
+        if(res == true){
+            $.ajax({
+                type: "get",
+                data: {id: book_id},
+                url: "",
+                success: function (data) {
+                    if(data)
+                        alert("成功续借，归还时间延后30天！");
+                    else
+                        alert("续借失败，请稍后再试！");
+                },
+                error: function (data) {
+                    alert("发生错误，请稍后再试！");
+                }
+            });
+        }
+    }
+</script>
 
 <script th:inline = "javascript">
     console.log([[${monthBorrows}]]);
@@ -805,7 +882,7 @@
             });
     }
 
-    function getOnePageBook1_2(end) {
+    function getOnePageBook1_3(end) {
         pageNumber1 = end;
         $.ajax({
             type: "get",
