@@ -202,7 +202,7 @@
                             <ul class = "am-pagination">
                                 <li><a th:href = "@{librarian_table(start=0)}">首页</a></li>
                                 <li><a th:href = "@{librarian_table(start=${page.number}-1)}">上一页</a></li>
-                                <li><a th:href = "@{librarian_table(start=${page.number}+1)}">上一页</a></li>
+                                <li><a th:href = "@{librarian_table(start=${page.number}+1)}">下一页</a></li>
                                 <li><a th:href="@{librarian_table(start=${page.totalPages})}">末页</a></li>
                             </ul>
                         </div>
