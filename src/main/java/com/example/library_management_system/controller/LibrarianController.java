@@ -31,12 +31,6 @@ public class LibrarianController
         return "librarian/librarian_return";
     }
 
-    @RequestMapping(value = "/librarian/librarian_table", method = RequestMethod.GET)
-    public String librarian_librarian_table()
-    {
-        return "librarian/librarian_table";
-    }
-
     @RequestMapping(value = "/librarian/librarian_record", method = RequestMethod.GET)
     public String librarian_librarian_record()
     {

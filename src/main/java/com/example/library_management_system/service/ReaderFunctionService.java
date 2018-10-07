@@ -14,9 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @ author Captain
@@ -65,7 +63,7 @@ public class ReaderFunctionService
     {
         User reader = userService.getUser();
         start = start < 0 ? 0 : start;
-        Sort sort = new Sort(Sort.Direction.ASC, "borrowDate");
+        Sort sort = new Sort(Sort.Direction.DESC, "borrowDate");
         Pageable pageable = PageRequest.of(start, size, sort);
         switch (status)
         {
@@ -83,7 +81,7 @@ public class ReaderFunctionService
     {
         User reader = userService.getUser();
         start = start < 0 ? 0 : start;
-        Sort sort = new Sort(Sort.Direction.ASC, "borrowDate");
+        Sort sort = new Sort(Sort.Direction.DESC, "borrowDate");
         Pageable pageable = PageRequest.of(start, size, sort);
         return userFavoriteBookDAO.findAllByUser(reader, pageable);
     }
@@ -128,6 +126,13 @@ public class ReaderFunctionService
         return true;
     }
 
+    /**
+     * 不存在已经被借走的情况
+     *
+     * @param id
+     * @param username
+     * @return
+     */
     public int lend(String id, String username)
     {
         User reader = userDAO.findByUsername(username);
@@ -248,7 +253,6 @@ public class ReaderFunctionService
         return reviewDAO.findAllByBook(book, pageable);
     }
 
-
     public boolean deleteReview(int rid)
     {
         try
@@ -269,26 +273,27 @@ public class ReaderFunctionService
     public String reserve(String isbn)
     {
         Book book = bookDAO.findByIsbn(isbn);
-        Set<Bkunit> bkunits = book.getBkunits();
-        Bkunit bkunit = null;
-        for (Bkunit bkunit1 : bkunits)
-        {
-            if (bkunit1.getStatus() == BkunitUtil.NORMAL)
-            {
-                bkunit = bkunit1;
-                break;
-            }
-        }
-        if (bkunit == null)
+        Set<Bkunit> bkunits = bkunitDAO.findAllByBookAndStatus(book, BkunitUtil.NORMAL);
+        if (bkunits.size() == 0)
             return String.valueOf(-1);
+
+        Bkunit bkunit = bkunits.iterator().next();
 
         User reader = userService.getUser();
         UserBkunit userBkunit = userBkunitDAO.findByUserAndBkunit(reader, bkunit);
+
+        Date now = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(now);
+        calendar.add(Calendar.MILLISECOND, QueueConfig.QUEUE_EXPIRATION);
+        Date overdue = calendar.getTime();
+
         if (userBkunit == null)
-            userBkunit = new UserBkunit(new Date(), UserBkunitUtil.RESERVATION, bkunit, reader);
+            userBkunit = new UserBkunit(now, overdue, UserBkunitUtil.RESERVATION, bkunit, reader);
         else
         {
             userBkunit.setBorrowDate(new Date());
+            userBkunit.setReturnDate(overdue);
             userBkunit.setStatus(UserBkunitUtil.RESERVATION);
         }
 
@@ -298,7 +303,7 @@ public class ReaderFunctionService
         bkunitOperatingHistoryDAO.save(bkunitOperatingHistory);
 
         int id = userBkunit.getId();
-        rabbitTemplate.convertAndSend(QueueConfig.DELAY_QUEUE_PER_MESSAGE_TTL_NAME, id);
+        rabbitTemplate.convertAndSend(QueueConfig.DELAY_QUEUE_PER_QUEUE_TTL_NAME, id);
 
         return bkunit.getId();
     }

@@ -4,7 +4,6 @@ import com.example.library_management_system.bean.*;
 import com.example.library_management_system.dao.BkunitDAO;
 import com.example.library_management_system.dao.BookDAO;
 import com.example.library_management_system.dao.CategoryDAO;
-import com.example.library_management_system.dao.UserBkunitDAO;
 import com.example.library_management_system.utils.BkunitUtil;
 import com.example.library_management_system.utils.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,14 +12,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Service
 public class LibrarianBookService
@@ -33,9 +28,6 @@ public class LibrarianBookService
 
     @Autowired
     private CategoryDAO categoryDAO;
-
-    @Autowired
-    private UserBkunitDAO userBkunitDAO;
 
     public void addBkunit(Book book, int number, String categoryName, MultipartFile file)
     {
@@ -87,7 +79,7 @@ public class LibrarianBookService
     {
         Category c = categoryDAO.findByName(category);
         start = start < 0 ? 0 : start;
-        Sort sort = new Sort(Sort.Direction.ASC, "isbn");
+        Sort sort = new Sort(Sort.Direction.DESC, "frequency");
         Pageable pageable = PageRequest.of(start, size, sort);
         return bookdao.findByCategoriesContaining(c, pageable);
     }
