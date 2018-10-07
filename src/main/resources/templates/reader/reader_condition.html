@@ -385,11 +385,7 @@
                 data: {id: book_id},
                 url: "reserveCancel",
                 success: function (data) {
-<<<<<<< HEAD
-                    if(data) {
-=======
-                    if (data.status == 1)
->>>>>>> 9e6ce22a0a0823927fb36198473343bc9f6c3465
+                    if (data.status == 1){
                         alert("成功取消！");
                         getOnePageBook1_2(0);
                     }
