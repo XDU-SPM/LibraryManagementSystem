@@ -172,7 +172,8 @@
                                     <button th:if = "${book.number} eq 0" type = "button" class = "am-btn am-btn-default" disabled>
                                         预约
                                     </button>
-                                    <button th:if = "${book.number} gt 0" type = "button" class = "am-btn am-btn-default">预约</button>
+                                    <button th:if = "${book.number} gt 0" type = "button" class = "am-btn am-btn-default" th:onclick="book_reserve(${book.isbn})">
+                                        预约</button>
                                 </div>
                             </li>
 
@@ -233,6 +234,27 @@
     $("#change").click(function () {
         translate();
     })
+</script>
+<script>
+    function book_reserve(book_isbn) {
+        var res = confirm("确认取消？");
+        if(res == true){
+            $.ajax({
+                type: "get",
+                data: {isbn: book_isbn},
+                url: "",
+                success: function (data) {
+                    if(data!=null)
+                        alert("成功取消！条形码："+data);
+                    else
+                        alert("预约失败，请稍后再试！");
+                },
+                error: function (data) {
+                    alert("发生错误，请稍后再试！");
+                }
+            });
+        }
+    }
 </script>
 </body>
 </html>
