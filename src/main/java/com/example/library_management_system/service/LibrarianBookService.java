@@ -72,7 +72,7 @@ public class LibrarianBookService
         start = start < 0 ? 0 : start;
         Sort sort = new Sort(Sort.Direction.ASC, "id");
         Pageable pageable = PageRequest.of(start, size, sort);
-        return bkunitdao.findAll(pageable);
+        return bkunitdao.findAllByStatusNot(BkunitUtil.LOST, pageable);
     }
 
     public Page<Book> showbook(int start, int size, String category)
@@ -90,6 +90,11 @@ public class LibrarianBookService
         if (bkunitOptional.isPresent())
             return bkunitdao.findById(id).get();
         return null;
+    }
+
+    public long getBookNumber(Book book)
+    {
+        return bkunitdao.countByBookAndStatusNot(book, BkunitUtil.LOST);
     }
 
     public Book bookInfo(String isbn)

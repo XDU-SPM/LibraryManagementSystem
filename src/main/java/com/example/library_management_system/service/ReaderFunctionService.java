@@ -59,6 +59,9 @@ public class ReaderFunctionService
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
+    @Autowired
+    private GlobalUtilDAO globalUtilDAO;
+
     public Page<UserBkunit> queryborrowedBooks(int start, int size, int status)
     {
         User reader = userService.getUser();
@@ -163,11 +166,18 @@ public class ReaderFunctionService
         if (userBkunit == null)
             userBkunit = userBkunitDAO.findByUserAndBkunit(reader, bkunit);
 
+        Date now = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(now);
+        calendar.add(Calendar.DATE, globalUtilDAO.findById(1).get().getMAX_BORROW_DAYS());
+        Date overdue = calendar.getTime();
+
         if (userBkunit == null)
-            userBkunit = new UserBkunit(new Date(), UserBkunitUtil.BORROWED, bkunit, reader);
+            userBkunit = new UserBkunit(now, overdue, UserBkunitUtil.BORROWED, bkunit, reader);
         else
         {
-            userBkunit.setBorrowDate(new Date());
+            userBkunit.setBorrowDate(now);
+            userBkunit.setReturnDate(overdue);
             userBkunit.setStatus(UserBkunitUtil.BORROWED);
         }
 

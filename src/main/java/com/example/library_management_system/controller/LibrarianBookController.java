@@ -31,7 +31,7 @@ public class LibrarianBookController
     public String addBkunit(Book book, int number, String category, @RequestParam("file") MultipartFile file)
     {
         librarianBookService.addBkunit(book, number, category, file);
-        return "librarian/librarian_table";
+        return "redirect:librarian_table";
     }
 
     //返回页面booksinfo
@@ -71,7 +71,7 @@ public class LibrarianBookController
     {
         Book book = librarianBookService.bookInfo(isbn);
         model.addAttribute("book", book);
-        model.addAttribute("number", book.getBkunits().size());
+        model.addAttribute("number", librarianBookService.getBookNumber(book));
         return "/librarian/librarian_book";
     }
 }
