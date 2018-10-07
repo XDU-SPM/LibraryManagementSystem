@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang = "en" xmlns:th = "http://www.thymeleaf.org"
-      xmlns:sec = "http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset = "UTF-8">
     <title>BiblioSoft</title>
@@ -163,7 +163,6 @@
 
             <div class = "am-g">
                 <div class = "am-u-sm-12">
-
                     <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "booklist">
                         <thead>
                         <tr>
@@ -295,12 +294,17 @@
                         </div>
                     </div>
 
-                    <input type = "file" id = "user-pic" class = "am-modal-prompt-input" name = "file">
+                    <div class = "am-form-group">
+                        <label for = "price" class = "am-u-sm-3 am-form-label">封面</label>
+                        <div class = "am-u-sm-9">
+                            <input type = "file" id = "user-pic" class = "am-modal-prompt-input" name = "file">
+                        </div>
+                    </div>
+
+
                     <div class = "am-modal-footer am-g">
-                        <div class = "am-u-sm-6"><input type = "button" data-am-modal-cancel value = "取消/Cancel"
-                                                        class = "am-btn-group-sm"></div>
-                        <div class = "am-u-sm-6"><input type = "submit" data-am-modal-confirm value = "确认/confirm"
-                                                        class = "am-btn-group-sm"></div>
+                        <div class = "am-u-sm-7 am-u-sm-push-2 am-u-end">
+                            <input type = "submit" data-am-modal-confirm value = "确认/confirm" class = "am-btn am-btn-primary"></div>
                     </div>
                 </form>
             </div>
@@ -335,7 +339,21 @@
 <script src = "assets/js/amazeui.min.js"></script>
 <script src = "assets/js/app.js"></script>
 
+<script>
+    $(function () {
+        $('#add-book').on('click', function () {
+            $('#my-prompt').modal({
+                relatedTarget: this,
+                onConfirm: function (e) {
+                    alert('创建成功')
+                },
+                onCancel: function (e) {
 
+                }
+            });
+        });
+    });
+</script>
 <script type = "text/javascript" src = "assets/js/test.js"></script>
 
 
