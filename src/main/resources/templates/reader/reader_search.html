@@ -172,7 +172,7 @@
                                     <button th:if = "${book.number} eq 0" type = "button" class = "am-btn am-btn-default" disabled>
                                         预约
                                     </button>
-                                    <button th:if = "${book.number} gt 0" type = "button" class = "am-btn am-btn-default" th:onclick="book_reserve(${book.isbn})">
+                                    <button th:if = "${book.number} gt 0" type = "button" class = "am-btn am-btn-default" th:onclick="'javascript:book_reserve('+${book.isbn}+')'">
                                         预约</button>
                                 </div>
                             </li>
@@ -242,7 +242,7 @@
             $.ajax({
                 type: "get",
                 data: {isbn: book_isbn},
-                url: "",
+                url: "reserve",
                 success: function (data) {
                     if(data!=null)
                         alert("成功预约！条形码："+data);
