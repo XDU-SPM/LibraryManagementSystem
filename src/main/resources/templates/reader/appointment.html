@@ -106,7 +106,7 @@
             var expire_date = new Date([[${userBkunit.returnDate}]]);
             var current_date = new Date();
             var diff_date = new Date(expire_date-current_date)
-            var hours = diff_date.getHours();
+            var hours = diff_date.getHours() - 8;
             var minutes = diff_date.getMinutes();
             var seconds = diff_date.getSeconds();
             function show(){

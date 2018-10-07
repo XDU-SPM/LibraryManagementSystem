@@ -333,10 +333,10 @@
                 共 [[${page3.totalElements}]] 条记录
                 <div class = "am-fr">
                     <ul class = "am-pagination">
-                        <li><a onclick = "getOnePageBook3_1()">[首页]</a></li>
-                        <li><a onclick = "getOnePageBook3_2(-1)">上一页</a></li>
-                        <li><a onclick = "getOnePageBook3_2(1)">下一页</a></li>
-                        <li><a onclick = "getOnePageBook3_3([[${page3.totalPages}]]-1)">[末页]</a></li>
+                        <li><button onclick = "getOnePageBook3_1()">[首页]</button></li>
+                        <li><button onclick = "getOnePageBook3_2(-1)">上一页</button></li>
+                        <li><button onclick = "getOnePageBook3_2(1)">下一页</button></li>
+                        <li><button th:onclick = "'javascript:getOnePageBook3_3('+${page3.totalPages}+'-1)'">[末页]</button></li>
                     </ul>
                 </div>
             </div>
@@ -604,6 +604,7 @@
     }
 
     function getOnePageBook3_2(temp) {
+        console.log('233');
         pageNumber3 += temp;
         if (pageNumber3 < 0)
             pageNumber3 = 0;
@@ -648,11 +649,12 @@
     }
 
     function getOnePageBook3_3(end) {
-        pageNumber2 = end;
+        pageNumber3 = end;
+        console.log('233 ' + end);
         $.ajax({
             type: "get",
             url: "borrowedBooks",
-            data: {start: end, size: 3, status: 3},
+            data: {start: end, size: 5, status: 3},
             success: function (data) {
                 console.log(data);
                 var str = '';
