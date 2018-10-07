@@ -384,8 +384,10 @@
                 data: {id: book_id},
                 url: "",
                 success: function (data) {
-                    if(data)
+                    if(data) {
                         alert("成功取消！");
+                        getOnePageBook1_2(0);
+                    }
                     else
                         alert("取消失败，请稍后再试！");
                 },
