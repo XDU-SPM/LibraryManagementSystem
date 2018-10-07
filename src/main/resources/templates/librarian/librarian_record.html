@@ -162,9 +162,9 @@
 
             <hr>
 
-            <div class = "am-g">
+            <div class = "am-g" >
                 <div class = "am-u-sm-12">
-                    <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "booklist">
+                    <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "record">
                         <thead>
                         <tr>
                             <th class = "table-id">编号</th>
@@ -177,7 +177,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each = "record:${page}">
+                        <tr th:each = "record:${page}" >
                             <td th:text = "${record.id}"></td>
                             <td th:text = "${record.bkunit.id}"></td>
                             <td th:text = "${record.bkunit.book.title}"></td>
@@ -234,6 +234,41 @@
 <script src = "dist/amazeui.datatables.min.js"></script>
 <script src = "assets/js/amazeui.min.js"></script>
 <script src = "assets/js/app.js"></script>
+<script type="text/javascript">
+    function checkNumber(theObj) {
+        var reg = /[1-7]/;
+        if (reg.test(theObj)) {
+            return true;
+        }
+        return false;
+    }
+
+    function status(status){
+        status=parseInt(status);
+        var array=["BORROWED", "OVERDUE", "RENEW", "RETURNED", "RESERVATION", "RESERVATION_FAIL", "RESERVATION_CANCEL"];
+        return array[status-1];
+    }
+
+    function getTableContent(id){
+        var mytable = document.getElementById(id);
+        var data = [];
+        for(var i=0,rows=mytable.rows.length; i<rows; i++){
+            for(var j=0,cells=mytable.rows[i].cells.length; j<cells; j++){
+                if(!data[i]){
+                    data[i] = new Array();
+                }
+                data[i][j] = mytable.rows[i].cells[j].innerText;
+                if(checkNumber(data[i][j])&&j==6)
+                {
+                    mytable.rows[i].cells[j].innerText=status(data[i][j]);
+                }
+            }
+        }
+        return data;
+    }
+    getTableContent("record");
+
+</script>
 <script type = "text/javascript" src = "assets/js/test.js"></script>
 <script type = "text/javascript">
     $("#change").click(function () {
