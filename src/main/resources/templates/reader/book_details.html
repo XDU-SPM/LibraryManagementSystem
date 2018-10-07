@@ -32,7 +32,7 @@
 <figure data-am-widget = "figure" class = "am am-figure am-figure-default " data-am-figure = "{  pureview: 'true' }">
 
 
-    <img src = "[[${book.coverPath}]]"
+    <img th:src = "${book.coverPath}"
          data-rel = "http://s.amazeui.org/media/i/demos/pure-1.jpg" alt = "春天的花开秋天的风以及冬天的落阳"/>
     <figcaption class = "am-figure-capition-btm">
         [[${book.title}]]

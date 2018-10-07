@@ -1,5 +1,7 @@
 package com.example.library_management_system.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -26,6 +28,7 @@ public class Review
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "isbn")
+    @JsonIgnore
     private Book book;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

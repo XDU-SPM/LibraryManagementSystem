@@ -48,7 +48,6 @@ public class Book
     private Set<UserFavoriteBook> userFavoriteBooks;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "book")
-    @JsonIgnore
     private Set<Review> reviews;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "book")

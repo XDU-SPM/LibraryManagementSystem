@@ -58,12 +58,6 @@ public class LibrarianController
         return "librarian/librarian_user";
     }
 
-    @RequestMapping(value = "/librarian/librarian_book", method = RequestMethod.GET)
-    public String librarian_librarian_book()
-    {
-        return "librarian/librarian_book";
-    }
-
     @RequestMapping(value = {"/librarian/checkUser", "/reader/checkUser"}, method = RequestMethod.GET)
     @ResponseBody
     public Status userExist(String username)
