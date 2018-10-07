@@ -577,19 +577,18 @@
                 for (var i = 0; i < data.content.length; i++) {
                     str += "<tr>\n" +
                         "\n" +
-                        "                    <td th:text = \"${data.content[i].bkunit.id}\"></td>\n" +
-                        "                    <td><a th:href = \"@{book_details(isbn=${data.content[i].bkunit.book.isbn})}\"\n" +
-                        "                           th:text = \"${data.content[i].bkunit.book.title}\"></a></td>\n" +
+                        "                    <td>"+data.content[i].bkunit.id+"</td>\n" +
+                        "                    <td><a href = \"book_details?isbn="+data.content[i].bkunit.book.isbn+"\">"+data.content[i].bkunit.book.title+"</a></td>\n" +
                         "\n" +
-                        "                    <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.author}\"></td>\n" +
-                        "                    <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.publisher}\"></td>\n" +
-                        "                    <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.publishDate}\"></td>\n" +
-                        "                    <td th:text = \"${data.content[i].borrowDate}\"></td>\n" +
-                        "                    <td th:text = \"${data.content[i].returnDate}\"></td>\n" +
+                        "                    <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.author+"</td>\n" +
+                        "                    <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.publisher+"</td>\n" +
+                        "                    <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.publishDate+"</td>\n" +
+                        "                    <td>"+data.content[i].borrowDate+"</td>\n" +
+                        "                    <td>"+data.content[i].returnDate+"</td>\n" +
                         "                    <td>\n" +
                         "                        <div class = \"am-btn-toolbar\">\n" +
                         "                            <div class = \"am-btn-group am-btn-group-xs\">\n" +
-                        "                                <a th:href = \"@{reader_comment(isbn=${data.content[i].bkunit.book.isbn})}\">\n" +
+                        "                                <a href = \"reader_comment?isbn="+data.content[i].bkunit.book.isbn+"\">\n" +
                         "                                    <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"><span\n" +
                         "                                            class = \"am-icon-pencil-square-o\"></span> 评论\n" +
                         "                                    </button>\n" +
@@ -622,19 +621,18 @@
                     for (var i = 0; i < data.content.length; i++) {
                         str += "<tr>\n" +
                             "\n" +
-                            "                    <td th:text = \"${data.content[i].bkunit.id}\"></td>\n" +
-                            "                    <td><a th:href = \"@{book_details(isbn=${data.content[i].bkunit.book.isbn})}\"\n" +
-                            "                           th:text = \"${data.content[i].bkunit.book.title}\"></a></td>\n" +
+                            "                    <td>"+data.content[i].bkunit.id+"</td>\n" +
+                            "                    <td><a href = \"book_details?isbn="+data.content[i].bkunit.book.isbn+"\">"+data.content[i].bkunit.book.title+"</a></td>\n" +
                             "\n" +
-                            "                    <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.author}\"></td>\n" +
-                            "                    <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.publisher}\"></td>\n" +
-                            "                    <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.publishDate}\"></td>\n" +
-                            "                    <td th:text = \"${data.content[i].borrowDate}\"></td>\n" +
-                            "                    <td th:text = \"${data.content[i].returnDate}\"></td>\n" +
+                            "                    <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.author+"</td>\n" +
+                            "                    <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.publisher+"</td>\n" +
+                            "                    <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.publishDate+"</td>\n" +
+                            "                    <td>"+data.content[i].borrowDate+"</td>\n" +
+                            "                    <td>"+data.content[i].returnDate+"</td>\n" +
                             "                    <td>\n" +
                             "                        <div class = \"am-btn-toolbar\">\n" +
                             "                            <div class = \"am-btn-group am-btn-group-xs\">\n" +
-                            "                                <a th:href = \"@{reader_comment(isbn=${data.content[i].bkunit.book.isbn})}\">\n" +
+                            "                                <a href = \"reader_comment?isbn="+data.content[i].bkunit.book.isbn+"\">\n" +
                             "                                    <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"><span\n" +
                             "                                            class = \"am-icon-pencil-square-o\"></span> 评论\n" +
                             "                                    </button>\n" +
@@ -662,19 +660,18 @@
                 for (var i = 0; i < data.content.length; i++) {
                     str += "<tr>\n" +
                         "\n" +
-                        "                    <td th:text = \"${data.content[i].bkunit.id}\"></td>\n" +
-                        "                    <td><a th:href = \"@{book_details(isbn=${data.content[i].bkunit.book.isbn})}\"\n" +
-                        "                           th:text = \"${data.content[i].bkunit.book.title}\"></a></td>\n" +
+                        "                    <td>"+data.content[i].bkunit.id+"</td>\n" +
+                        "                    <td><a href = \"book_details?isbn="+data.content[i].bkunit.book.isbn+"\">"+data.content[i].bkunit.book.title+"</a></td>\n" +
                         "\n" +
-                        "                    <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.author}\"></td>\n" +
-                        "                    <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.publisher}\"></td>\n" +
-                        "                    <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.publishDate}\"></td>\n" +
-                        "                    <td th:text = \"${data.content[i].borrowDate}\"></td>\n" +
-                        "                    <td th:text = \"${data.content[i].returnDate}\"></td>\n" +
+                        "                    <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.author+"</td>\n" +
+                        "                    <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.publisher+"</td>\n" +
+                        "                    <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.publishDate+"</td>\n" +
+                        "                    <td>"+data.content[i].borrowDate+"</td>\n" +
+                        "                    <td>"+data.content[i].returnDate+"</td>\n" +
                         "                    <td>\n" +
                         "                        <div class = \"am-btn-toolbar\">\n" +
                         "                            <div class = \"am-btn-group am-btn-group-xs\">\n" +
-                        "                                <a th:href = \"@{reader_comment(isbn=${data.content[i].bkunit.book.isbn})}\">\n" +
+                        "                                <a href = \"reader_comment?isbn="+data.content[i].bkunit.book.isbn+"\">\n" +
                         "                                    <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"><span\n" +
                         "                                            class = \"am-icon-pencil-square-o\"></span> 评论\n" +
                         "                                    </button>\n" +
@@ -705,24 +702,23 @@
                 for (var i = 0; i < data.content.length; i++) {
                     str += "<tr>\n" +
                         "\n" +
-                        "                    <td th:text = \"${data.content[i].bkunit.id}\"></td>\n" +
-                        "                    <td><a th:href = \"@{book_details(isbn=${data.content[i].bkunit.book.isbn})}\"\n" +
-                        "                           th:text = \"${data.content[i].bkunit.book.title}\"></a></td>\n" +
+                        "                    <td>"+data.content[i].bkunit.id+"</td>\n" +
+                        "                    <td><a href = \"book_details?isbn="+data.content[i].bkunit.book.isbn+"\">"+data.content[i].bkunit.book.title+"</a></td>\n" +
                         "\n" +
-                        "                    <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.author}\"></td>\n" +
-                        "                    <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.publisher}\"></td>\n" +
-                        "                    <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.publishDate}\"></td>\n" +
-                        "                    <td th:text = \"${data.content[i].borrowDate}\"></td>\n" +
-                        "                    <td th:text = \"${data.content[i].returnDate}\"></td>\n" +
+                        "                    <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.author+"</td>\n" +
+                        "                    <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.publisher+"</td>\n" +
+                        "                    <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.publishDate+"</td>\n" +
+                        "                    <td>"+data.content[i].borrowDate+"</td>\n" +
+                        "                    <td>"+data.content[i].returnDate+"</td>\n" +
                         "                    <td>\n" +
                         "                        <div class = \"am-btn-toolbar\">\n" +
                         "                            <div class = \"am-btn-group am-btn-group-xs\">\n" +
-                        "                                <a th:href = \"@{reader_comment(isbn=${data.content[i].bkunit.book.isbn})}\">\n" +
+                        "                                <a href = \"reader_comment?isbn="+data.content[i].bkunit.book.isbn+"\">\n" +
                         "                                    <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"><span\n" +
                         "                                            class = \"am-icon-pencil-square-o\"></span> 评论\n" +
                         "                                    </button>\n" +
                         "                                    <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"\n" +
-                        "                                            th:onclick = \"'javascript:book_renew('+${data.content[i].id}+')'\">\n" +
+                        "                                            onclick = \"book_renew("+data.content[i].id+")\">\n" +
                         "                                        <span class = \"am-icon-pencil-square-o\"></span> 续借\n" +
                         "                                    </button>\n" +
                         "                                </a>\n" +
@@ -753,24 +749,23 @@
                     for (var i = 0; i < data.content.length; i++) {
                         str +="<tr>\n" +
                             "\n" +
-                            "                    <td th:text = \"${data.content[i].bkunit.id}\"></td>\n" +
-                            "                    <td><a th:href = \"@{book_details(isbn=${data.content[i].bkunit.book.isbn})}\"\n" +
-                            "                           th:text = \"${data.content[i].bkunit.book.title}\"></a></td>\n" +
+                            "                    <td>"+data.content[i].bkunit.id+"</td>\n" +
+                            "                    <td><a href = \"book_details?isbn="+data.content[i].bkunit.book.isbn+"\">"+data.content[i].bkunit.book.title+"</a></td>\n" +
                             "\n" +
-                            "                    <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.author}\"></td>\n" +
-                            "                    <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.publisher}\"></td>\n" +
-                            "                    <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.publishDate}\"></td>\n" +
-                            "                    <td th:text = \"${data.content[i].borrowDate}\"></td>\n" +
-                            "                    <td th:text = \"${data.content[i].returnDate}\"></td>\n" +
+                            "                    <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.author+"</td>\n" +
+                            "                    <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.publisher+"</td>\n" +
+                            "                    <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.publishDate+"</td>\n" +
+                            "                    <td>"+data.content[i].borrowDate+"</td>\n" +
+                            "                    <td>"+data.content[i].returnDate+"</td>\n" +
                             "                    <td>\n" +
                             "                        <div class = \"am-btn-toolbar\">\n" +
                             "                            <div class = \"am-btn-group am-btn-group-xs\">\n" +
-                            "                                <a th:href = \"@{reader_comment(isbn=${data.content[i].bkunit.book.isbn})}\">\n" +
+                            "                                <a href = \"reader_comment?isbn="+data.content[i].bkunit.book.isbn+"\">\n" +
                             "                                    <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"><span\n" +
                             "                                            class = \"am-icon-pencil-square-o\"></span> 评论\n" +
                             "                                    </button>\n" +
                             "                                    <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"\n" +
-                            "                                            th:onclick = \"'javascript:book_renew('+${data.content[i].id}+')'\">\n" +
+                            "                                            onclick = \"book_renew("+data.content[i].id+")\">\n" +
                             "                                        <span class = \"am-icon-pencil-square-o\"></span> 续借\n" +
                             "                                    </button>\n" +
                             "                                </a>\n" +
@@ -796,24 +791,23 @@
                 for (var i = 0; i < data.content.length; i++) {
                     str += "<tr>\n" +
                         "\n" +
-                        "                    <td th:text = \"${data.content[i].bkunit.id}\"></td>\n" +
-                        "                    <td><a th:href = \"@{book_details(isbn=${data.content[i].bkunit.book.isbn})}\"\n" +
-                        "                           th:text = \"${data.content[i].bkunit.book.title}\"></a></td>\n" +
+                        "                    <td>"+data.content[i].bkunit.id+"</td>\n" +
+                        "                    <td><a href = \"book_details?isbn="+data.content[i].bkunit.book.isbn+"\">"+data.content[i].bkunit.book.title+"</a></td>\n" +
                         "\n" +
-                        "                    <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.author}\"></td>\n" +
-                        "                    <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.publisher}\"></td>\n" +
-                        "                    <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.publishDate}\"></td>\n" +
-                        "                    <td th:text = \"${data.content[i].borrowDate}\"></td>\n" +
-                        "                    <td th:text = \"${data.content[i].returnDate}\"></td>\n" +
+                        "                    <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.author+"</td>\n" +
+                        "                    <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.publisher+"</td>\n" +
+                        "                    <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.publishDate+"</td>\n" +
+                        "                    <td>"+data.content[i].borrowDate+"</td>\n" +
+                        "                    <td>"+data.content[i].returnDate+"</td>\n" +
                         "                    <td>\n" +
                         "                        <div class = \"am-btn-toolbar\">\n" +
                         "                            <div class = \"am-btn-group am-btn-group-xs\">\n" +
-                        "                                <a th:href = \"@{reader_comment(isbn=${data.content[i].bkunit.book.isbn})}\">\n" +
+                        "                                <a href = \"reader_comment?isbn="+data.content[i].bkunit.book.isbn+"\">\n" +
                         "                                    <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"><span\n" +
                         "                                            class = \"am-icon-pencil-square-o\"></span> 评论\n" +
                         "                                    </button>\n" +
                         "                                    <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"\n" +
-                        "                                            th:onclick = \"'javascript:book_renew('+${data.content[i].id}+')'\">\n" +
+                        "                                            onclick = \"book_renew("+data.content[i].id+")\">\n" +
                         "                                        <span class = \"am-icon-pencil-square-o\"></span> 续借\n" +
                         "                                    </button>\n" +
                         "                                </a>\n" +
@@ -842,22 +836,21 @@
                 for (var i = 0; i < data.content.length; i++) {
                     str += "<tr>\n" +
                         "\n" +
-                        "                        <td th:text = \"${data.content[i].bkunit.id}\"></td>\n" +
-                        "                        <td><a th:href = \"@{book_details(isbn=${data.content[i].bkunit.book.isbn})}\"\n" +
-                        "                               th:text = \"${data.content[i].bkunit.book.title}\"></a></td>\n" +
+                        "                        <td>"+data.content[i].bkunit.id+"</td>\n" +
+                        "                        <td><a href = \"book_details?isbn="+data.content[i].bkunit.book.isbn+"\">"+data.content[i].bkunit.book.title+"</a></td>\n" +
                         "\n" +
-                        "                        <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.author}\"></td>\n" +
-                        "                        <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.publisher}\"></td>\n" +
-                        "                        <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.publishDate}\"></td>\n" +
-                        "                        <td th:text = \"${data.content[i].returnDate}\"></td>\n" +
+                        "                        <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.author+"</td>\n" +
+                        "                        <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.publisher+"</td>\n" +
+                        "                        <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.publishDate+"</td>\n" +
+                        "                        <td>"+data.content[i].returnDate+"</td>\n" +
                         "                        <td>\n" +
                         "                            <div class = \"am-btn-toolbar\">\n" +
                         "                                <div class = \"am-btn-group am-btn-group-xs\">\n" +
                         "                                    <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"\n" +
-                        "                                            th:onclick = \"'javascript:cancel_appointment('+${data.content[i].id}+')'\">\n" +
+                        "                                            onclick = \"cancel_appointment("+data.content[i].id+")\">\n" +
                         "                                        <span class = \"am-icon-pencil-square-o\"></span> 取消\n" +
                         "                                    </button>\n" +
-                        "                                    <a th:href = \"@{appointment(id=${data.content[i].id})}\">\n" +
+                        "                                    <a href = \"appointment?id="+data.content[i].id+"\">\n" +
                         "                                        <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"><span\n" +
                         "                                                class = \"am-icon-pencil-square-o\"></span> 查看\n" +
                         "                                        </button>\n" +
@@ -889,22 +882,21 @@
                     for (var i = 0; i < data.content.length; i++) {
                         str += "<tr>\n" +
                             "\n" +
-                            "                        <td th:text = \"${data.content[i].bkunit.id}\"></td>\n" +
-                            "                        <td><a th:href = \"@{book_details(isbn=${data.content[i].bkunit.book.isbn})}\"\n" +
-                            "                               th:text = \"${data.content[i].bkunit.book.title}\"></a></td>\n" +
+                            "                        <td>"+data.content[i].bkunit.id+"</td>\n" +
+                            "                        <td><a href = \"book_details?isbn="+data.content[i].bkunit.book.isbn+"\">"+data.content[i].bkunit.book.title+"</a></td>\n" +
                             "\n" +
-                            "                        <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.author}\"></td>\n" +
-                            "                        <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.publisher}\"></td>\n" +
-                            "                        <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.publishDate}\"></td>\n" +
-                            "                        <td th:text = \"${data.content[i].returnDate}\"></td>\n" +
+                            "                        <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.author+"</td>\n" +
+                            "                        <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.publisher+"</td>\n" +
+                            "                        <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.publishDate+"</td>\n" +
+                            "                        <td>"+data.content[i].returnDate+"</td>\n" +
                             "                        <td>\n" +
                             "                            <div class = \"am-btn-toolbar\">\n" +
                             "                                <div class = \"am-btn-group am-btn-group-xs\">\n" +
                             "                                    <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"\n" +
-                            "                                            th:onclick = \"'javascript:cancel_appointment('+${data.content[i].id}+')'\">\n" +
+                            "                                            onclick = \"cancel_appointment("+data.content[i].id+")\">\n" +
                             "                                        <span class = \"am-icon-pencil-square-o\"></span> 取消\n" +
                             "                                    </button>\n" +
-                            "                                    <a th:href = \"@{appointment(id=${data.content[i].id})}\">\n" +
+                            "                                    <a href = \"appointment?id="+data.content[i].id+"\">\n" +
                             "                                        <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"><span\n" +
                             "                                                class = \"am-icon-pencil-square-o\"></span> 查看\n" +
                             "                                        </button>\n" +
@@ -931,22 +923,21 @@
                 for (var i = 0; i < data.content.length; i++) {
                     str += "<tr>\n" +
                         "\n" +
-                        "                        <td th:text = \"${data.content[i].bkunit.id}\"></td>\n" +
-                        "                        <td><a th:href = \"@{book_details(isbn=${data.content[i].bkunit.book.isbn})}\"\n" +
-                        "                               th:text = \"${data.content[i].bkunit.book.title}\"></a></td>\n" +
+                        "                        <td>"+data.content[i].bkunit.id+"</td>\n" +
+                        "                        <td><a href = \"book_details?isbn="+data.content[i].bkunit.book.isbn+"\">"+data.content[i].bkunit.book.title+"</a></td>\n" +
                         "\n" +
-                        "                        <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.author}\"></td>\n" +
-                        "                        <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.publisher}\"></td>\n" +
-                        "                        <td class = \"am-hide-sm-only\" th:text = \"${data.content[i].bkunit.book.publishDate}\"></td>\n" +
-                        "                        <td th:text = \"${data.content[i].returnDate}\"></td>\n" +
+                        "                        <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.author+"</td>\n" +
+                        "                        <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.publisher+"</td>\n" +
+                        "                        <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.publishDate+"</td>\n" +
+                        "                        <td>"+data.content[i].returnDate+"</td>\n" +
                         "                        <td>\n" +
                         "                            <div class = \"am-btn-toolbar\">\n" +
                         "                                <div class = \"am-btn-group am-btn-group-xs\">\n" +
                         "                                    <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"\n" +
-                        "                                            th:onclick = \"'javascript:cancel_appointment('+${data.content[i].id}+')'\">\n" +
+                        "                                            onclick = \"cancel_appointment("+data.content[i].id+")\">\n" +
                         "                                        <span class = \"am-icon-pencil-square-o\"></span> 取消\n" +
                         "                                    </button>\n" +
-                        "                                    <a th:href = \"@{appointment(id=${data.content[i].id})}\">\n" +
+                        "                                    <a href = \"appointment?id="+data.content[i].id+"\">\n" +
                         "                                        <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"><span\n" +
                         "                                                class = \"am-icon-pencil-square-o\"></span> 查看\n" +
                         "                                        </button>\n" +
