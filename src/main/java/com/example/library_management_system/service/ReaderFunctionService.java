@@ -229,12 +229,12 @@ public class ReaderFunctionService
         return 0;
     }
 
-    public int writeReview(String Isbn, String review)
+    public int writeReview(String Isbn, String review, String title)
     {
         try
         {
             Book bk = bookDAO.findByIsbn(Isbn);
-            Review rv = new Review(review, new Date(), bk, userService.getUser());
+            Review rv = new Review(review, title, new Date(), bk, userService.getUser());
             reviewDAO.save(rv);
         }
         catch (Exception e)

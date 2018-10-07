@@ -21,10 +21,10 @@ public class LibrarianBookController
     private LibrarianBookService librarianBookService;
 
     @RequestMapping(path = {"/librarian/deletebook"}, method = {RequestMethod.GET})
-    public String deleteBkunit(@RequestParam(value = "id") String id)
+    public String deleteBkunit(String id, int start)
     {
         librarianBookService.deleteBkunit(id);
-        return "books";
+        return "redirect:librarian_table?start=" + start;
     }
 
     @RequestMapping(path = {"/librarian/addbook"}, method = {RequestMethod.POST})
@@ -66,10 +66,12 @@ public class LibrarianBookController
         return "booksinfo";
     }
 
-    @RequestMapping(path = {"/librarian/bookInfo", "/reader/bookInfo"}, method = RequestMethod.GET)
-    public String bookInfo(String isbn)
+    @RequestMapping(path = {"/librarian/librarian_book", "/reader/bookInfo"}, method = RequestMethod.GET)
+    public String bookInfo(String isbn, Model model)
     {
         Book book = librarianBookService.bookInfo(isbn);
-        return "";
+        model.addAttribute("book", book);
+        model.addAttribute("number", book.getBkunits().size());
+        return "/librarian/librarian_book";
     }
 }

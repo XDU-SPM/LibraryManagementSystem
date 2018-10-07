@@ -1,5 +1,7 @@
 package com.example.library_management_system.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -19,11 +21,14 @@ public class Review
 
     private String review;
 
+    private String title;
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "isbn")
+    @JsonIgnore
     private Book book;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -34,9 +39,10 @@ public class Review
     {
     }
 
-    public Review(String review, Date date, Book book, User user)
+    public Review(String review, String title, Date date, Book book, User user)
     {
         this.review = review;
+        this.title = title;
         this.date = date;
         this.book = book;
         this.user = user;
@@ -90,5 +96,15 @@ public class Review
     public void setUser(User user)
     {
         this.user = user;
+    }
+
+    public String getTitle()
+    {
+        return title;
+    }
+
+    public void setTitle(String title)
+    {
+        this.title = title;
     }
 }

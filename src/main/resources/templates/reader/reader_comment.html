@@ -31,13 +31,13 @@
 
 <div class = "am-g">
     <div class = "am-u-lg-6 am-u-md-8 am-u-sm-centered">
-        <form class = "am-form">
+        <form class = "am-form" method = "post" action = "writeReview">
             <fieldset>
                 <div class = "am-cf am-padding">
                     <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">请评论：</strong></div>
                 </div>
 
-                <input type = "hidden" th:value = "${isbn}">
+                <input type = "hidden" th:value = "${isbn}" name = "isbn">
 
                 <div class = "am-g am-margin-top">
                     <div class = "am-u-sm-4 am-u-md-2 am-text-right">
@@ -48,7 +48,7 @@
                         </strong>
                     </div>
                     <div class = "am-u-sm-8 am-u-md-4 am-u-end col-end">
-                        <input type = "text" class = "am-input-sm">
+                        <input type = "text" class = "am-input-sm" name = "title">
                     </div>
                 </div>
 
@@ -61,7 +61,7 @@
                         </strong>
                     </div>
                     <div class = "am-u-sm-12 am-u-md-10">
-                        <textarea rows = "10" placeholder = "请使用富文本编辑插件"></textarea>
+                        <textarea rows = "10" placeholder = "请使用富文本编辑插件" name = "review"></textarea>
                     </div>
                 </div>
                 <hr/>
