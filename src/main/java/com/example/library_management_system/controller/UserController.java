@@ -144,4 +144,18 @@ public class UserController
     {
         return new Status(userService.renew(id) ? 1 : 0, globalUtilService.getMaxBorrowDays());
     }
+
+    @RequestMapping(value = "/visitor-main", method = RequestMethod.GET)
+    public String visitor_main()
+    {
+        return "visitor-main";
+    }
+
+    @RequestMapping(value = "/forgetPassword", method = RequestMethod.GET)
+    public String forgetPassword()
+    {
+        return "forgetPassword";
+    }
+
+
 }
