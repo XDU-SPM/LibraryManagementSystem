@@ -171,7 +171,6 @@
                             <table class = "am-table am-table-striped am-table-hover table-main">
                                 <thead>
                                 <tr>
-                                    <th class = "table-check"><input type = "checkbox"/></th>
                                     <th class = "table-id">ID</th>
                                     <th class = "table-title">用户名</th>
                                     <th class = "table-type">类别</th>
@@ -181,90 +180,17 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td><input type = "checkbox"/></td>
-                                    <td>1</td>
-                                    <td><a href = "#">reader1</a></td>
-                                    <td>reader</td>
-                                    <td class = "am-hide-sm-only">测试1号</td>
-                                    <td class = "am-hide-sm-only">1720121812@qq.com</td>
+                                <tr th:each = "user:${page}">
+                                    <td th:text="${user.id}"></td>
+                                    <td th:text="${user.username}"></td>
+                                    <td th:text="${user.roles}"></td>
+                                    <td class = "am-hide-sm-only" th:text="${user.name}"></td>
+                                    <td class = "am-hide-sm-only" th:text="${user.email}"></td>
                                     <td>
                                         <div class = "am-btn-toolbar">
                                             <div class = "am-btn-group am-btn-group-xs">
                                                 <button class = "am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
-                                                    <span class = "am-icon-trash-o"></span> 删除
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td><input type = "checkbox"/></td>
-                                    <td>2</td>
-                                    <td><a href = "#">reader2</a></td>
-                                    <td>reader</td>
-                                    <td class = "am-hide-sm-only">测试2号</td>
-                                    <td class = "am-hide-sm-only">172012322@qq.com</td>
-                                    <td>
-                                        <div class = "am-btn-toolbar">
-                                            <div class = "am-btn-group am-btn-group-xs">
-                                                <button class = "am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
-                                                    <span class = "am-icon-trash-o"></span> 删除
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td><input type = "checkbox"/></td>
-                                    <td>3</td>
-                                    <td><a href = "#">reader3</a></td>
-                                    <td>reader</td>
-                                    <td class = "am-hide-sm-only">测试3号</td>
-                                    <td class = "am-hide-sm-only">172012181212@qq.com</td>
-                                    <td>
-                                        <div class = "am-btn-toolbar">
-                                            <div class = "am-btn-group am-btn-group-xs">
-                                                <button class = "am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
-                                                    <span class = "am-icon-trash-o"></span> 删除
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td><input type = "checkbox"/></td>
-                                    <td>4</td>
-                                    <td><a href = "#">librarian1</a></td>
-                                    <td>librarian</td>
-                                    <td class = "am-hide-sm-only">测试4号</td>
-                                    <td class = "am-hide-sm-only">1720121812@qq.com</td>
-                                    <td>
-                                        <div class = "am-btn-toolbar">
-                                            <div class = "am-btn-group am-btn-group-xs">
-                                                <button class = "am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
-                                                    <span class = "am-icon-trash-o"></span> 删除
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td><input type = "checkbox"/></td>
-                                    <td>5</td>
-                                    <td><a href = "#">librarian2</a></td>
-                                    <td>librarian</td>
-                                    <td class = "am-hide-sm-only">测试5号</td>
-                                    <td class = "am-hide-sm-only">1720121812@qq.com</td>
-                                    <td>
-                                        <div class = "am-btn-toolbar">
-                                            <div class = "am-btn-group am-btn-group-xs">
-                                                <button class = "am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
-                                                    <span class = "am-icon-trash-o"></span> 删除
+                                                    <span class = "am-icon-trash-o" th:href="@{deleteuser(id=${user.id},start={page.number})}"></span> 删除
                                                 </button>
                                             </div>
                                         </div>
@@ -274,16 +200,13 @@
                                 </tbody>
                             </table>
                             <div class = "am-cf">
-                                共 5 条记录
+                                <p th:text="'共有'+${page.numberOfElements}+'条数据'"></p>
                                 <div class = "am-fr">
                                     <ul class = "am-pagination">
-                                        <li class = "am-disabled"><a href = "#">«</a></li>
-                                        <li class = "am-active"><a href = "#">1</a></li>
-                                        <li><a href = "#">2</a></li>
-                                        <li><a href = "#">3</a></li>
-                                        <li><a href = "#">4</a></li>
-                                        <li><a href = "#">5</a></li>
-                                        <li><a href = "#">»</a></li>
+                                        <li><a th:href = "@{librarian_table(start=0)}">首页</a></li>
+                                        <li><a th:href = "@{librarian_table(start=${page.number}-1)}">上一页</a></li>
+                                        <li><a th:href = "@{librarian_table(start=${page.number}+1)}">下一页</a></li>
+                                        <li><a th:href="@{librarian_table(start=${page.totalPages})}">末页</a></li>
                                     </ul>
                                 </div>
                             </div>

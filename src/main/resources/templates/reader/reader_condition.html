@@ -542,7 +542,7 @@
     });
     chart.intervalStack().position('percent').color('item').label('percent', {
         formatter: function formatter(val, item) {
-            return item.point.item + ': ' + val + ' ' + item.point.count + '本';
+            return item.point.item + ': ' + item.point.count + '本';
         }
     }).tooltip('item*percent', function (item, percent) {
         percent = percent * 100 + '%';
