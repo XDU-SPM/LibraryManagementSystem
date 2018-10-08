@@ -21,6 +21,9 @@ public class User
 
     private double money;
 
+    @Transient
+    private String role;
+
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
     @JsonIgnore
     private Set<UserBkunit> userBkunits;
@@ -57,6 +60,16 @@ public class User
         this();
         this.username = username;
         this.password = password;
+    }
+
+    public String getRole()
+    {
+        return role;
+    }
+
+    public void setRole(String role)
+    {
+        this.role = role;
     }
 
     public int getId()

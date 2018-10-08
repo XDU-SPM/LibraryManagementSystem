@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.example.library_management_system.dao.*;
 import com.example.library_management_system.bean.*;
 
+import java.util.Iterator;
 import java.util.Set;
 
 
@@ -68,12 +69,31 @@ public class AdminService
         start = start < 0 ? 0 : start;
         Sort sort = new Sort(Sort.Direction.ASC, "id");
         Pageable pageable = PageRequest.of(start, size, sort);
+        Page<User> users;
         if (role != null)
         {
             Role r = roleDAO.findByName(role);
-            return userdao.findByRolesContaining(r, pageable);
+            users = userdao.findByRolesContaining(r, pageable);
         }
-        return userdao.findAll(pageable);
+        else
+        users = userdao.findAll(pageable);
+        for (User user : users)
+        {
+            Iterator<Role> iterator = user.getRoles().iterator();
+            switch (iterator.next().getId())
+            {
+                case 2:
+                    user.setRole("管理员");
+                    break;
+                case 4:
+                    user.setRole("读者");
+                    break;
+                case 5:
+                    user.setRole("图书管理员");
+                    break;
+            }
+        }
+        return users;
     }
 
     public User showinfo(int id)
