@@ -138,10 +138,24 @@ public class UserController
     }
 
     //用户续借图书
-    @RequestMapping(value = "/user/renew", method = RequestMethod.GET)
+    @RequestMapping(value = "/reader/renew", method = RequestMethod.GET)
     @ResponseBody
     public Status renew(int id)
     {
         return new Status(userService.renew(id) ? 1 : 0, globalUtilService.getMaxBorrowDays());
     }
+
+    @RequestMapping(value = "/visitor-main", method = RequestMethod.GET)
+    public String visitor_main()
+    {
+        return "visitor-main";
+    }
+
+    @RequestMapping(value = "/forgetPassword", method = RequestMethod.GET)
+    public String forgetPassword()
+    {
+        return "forgetPassword";
+    }
+
+
 }

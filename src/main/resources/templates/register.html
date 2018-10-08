@@ -14,7 +14,20 @@
     <meta name = "apple-mobile-web-app-title" content = "Amaze UI"/>
     <link rel = "stylesheet" href = "assets/css/amazeui.min.css"/>
     <link rel = "stylesheet" href = "assets/css/admin.css">
-    <script src = "https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+    <script src = "http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+   <!-- <script src = "https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script> -->
+
+    <style>
+        .am-topbar .am-text-ir {
+            display: block;
+            margin-right: 10px;
+            height: 50px;
+            width: 125px;
+            background: url(assets/i/logo.jpg) no-repeat left center;
+            -webkit-background-size: 125px 24px;
+            background-size: 125px 24px;
+        }
+    </style>
 </head>
 <body>
 
@@ -26,8 +39,7 @@
 
 <header class = "am-topbar am-topbar-inverse admin-header">
     <div class = "am-topbar-brand">
-        <strong>Amaze UI</strong>
-        <small>图书管理系统</small>
+        <a href = "/visitor-main" class = "am-text-ir">BiblioSoft</a>
     </div>
 
 
@@ -101,7 +113,7 @@
 
                         <div class = "am-form-group">
                             <div class = "am-u-sm-9 am-u-sm-push-3">
-                                <input type = "submit" class = "am-btn am-btn-primary" value="注册">
+                                <input type = "submit" class = "am-btn am-btn-primary" value="注册/register">
                             </div>
                         </div>
                     </form>
@@ -135,7 +147,8 @@
 <script type = "text/javascript" color = "50,177,108" opacity = "1" zIndex = "-1" count = "100"
         src = "https://www.laomoit.com/wp-content/themes/pc/js/line.js"></script>
 <!--[if (gte IE 9)|!(IE)]><!-->
-<script src = "../static/assets/js/my.js"></script>
+<!--<script src = "../static/assets/js/my.js"></script>-->
+<script src = "assets/js/my.js"></script>
 <script src = "../static/assets/js/jquery.min.js"></script>
 <!--<![endif]-->
 <script src = "../static/assets/js/amazeui.min.js"></script>
