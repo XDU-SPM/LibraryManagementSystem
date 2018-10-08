@@ -17,7 +17,7 @@ public class GlobalUtil
     private double REGISTER_MONEY;
     private int MAX_BORROW_DAYS;
     private int MAX_BORROW_NUM;
-    private int OVERDUE_MONEY;
+    private double OVERDUE_MONEY;
 
     public GlobalUtil()
     {
@@ -68,12 +68,12 @@ public class GlobalUtil
         this.MAX_BORROW_NUM = MAX_BORROW_NUM;
     }
 
-    public int getOVERDUE_MONEY()
+    public double getOVERDUE_MONEY()
     {
         return OVERDUE_MONEY;
     }
 
-    public void setOVERDUE_MONEY(int OVERDUE_MONEY)
+    public void setOVERDUE_MONEY(double OVERDUE_MONEY)
     {
         this.OVERDUE_MONEY = OVERDUE_MONEY;
     }

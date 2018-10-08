@@ -1,12 +1,19 @@
 package com.example.library_management_system.controller;
 
+import com.example.library_management_system.service.AdminService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class AdminTempController
 {
+    @Autowired
+    private AdminService adminService;
+
     @RequestMapping(value = "admin/reader_create", method = RequestMethod.GET)
     public String admin_reader_create()
     {
@@ -26,8 +33,11 @@ public class AdminTempController
     }
 
     @RequestMapping(value = "admin/delete_users", method = RequestMethod.GET)
-    public String admin_delete_users()
+    public String admin_delete_users(Model model, @RequestParam(value = "start", defaultValue = "0") int start,
+                                     @RequestParam(value = "size", defaultValue = "10") int size,
+                                     @RequestParam(value = "role") String role)
     {
+        model.addAttribute("page", adminService.showallinfo(start, size, role));
         return "admin/delete_users";
     }
 }

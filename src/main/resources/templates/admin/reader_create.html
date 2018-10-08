@@ -179,13 +179,13 @@
 
                         <div class = "am-form-group">
                             <div class = "am-u-sm-9 am-u-sm-push-3">
-                                <button type = "submit" class = "am-btn am-btn-primary">提交</button>
+                                <button type = "submit" class = "am-btn am-btn-primary" onclick = "return check()">提交
+                                </button>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
-
 
 
         </div>
@@ -232,6 +232,39 @@
     $("#change").click(function () {
         translate();
     })
+</script>
+
+<script>
+    let status = true;
+
+    $(function () {
+        $("#reader-username").blur(function () {
+            var params = $(this).serialize();
+            $.ajax(
+                {
+                    method: 'GET',
+                    url: "checkUser",
+                    data: params,
+                    success: function (data) {
+                        if (data.status == 0) {
+                            status = false;
+                            alert("该用户名已经被注册");
+                        }
+                        else
+                            status = true;
+                    }
+                }
+            );
+        })
+    });
+
+    function check() {
+        if (!status) {
+            alert("该用户名已经被注册");
+            return false;
+        }
+        return true;
+    }
 </script>
 </body>
 </html>

@@ -19,6 +19,7 @@ public class Review
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Lob
     private String review;
 
     private String title;

@@ -68,8 +68,12 @@ public class AdminService
         start = start < 0 ? 0 : start;
         Sort sort = new Sort(Sort.Direction.ASC, "id");
         Pageable pageable = PageRequest.of(start, size, sort);
-        Role r = roleDAO.findByName(role);
-        return userdao.findByRolesContaining(r, pageable);
+        if (role != null)
+        {
+            Role r = roleDAO.findByName(role);
+            return userdao.findByRolesContaining(r, pageable);
+        }
+        return userdao.findAll(pageable);
     }
 
     public User showinfo(int id)
@@ -95,6 +99,13 @@ public class AdminService
     {
         GlobalUtil globalUtil = globalUtilDAO.findById(1).get();
         globalUtil.setREGISTER_MONEY(num);
+        globalUtilDAO.save(globalUtil);
+    }
+
+    public void modifyOverdueMoney(double money)
+    {
+        GlobalUtil globalUtil = globalUtilDAO.findById(1).get();
+        globalUtil.setOVERDUE_MONEY(money);
         globalUtilDAO.save(globalUtil);
     }
 }

@@ -63,4 +63,12 @@ public class AdminController
         model.addAttribute("status", true);
         return "admin/permission_change";
     }
+
+    @RequestMapping(value = "/admin/modifyOverdueMoney", method = RequestMethod.POST)
+    public String modifyOverdueMoney(double money, Model model)
+    {
+        adminservice.modifyOverdueMoney(money);
+        model.addAttribute("status", true);
+        return "admin/permission_change";
+    }
 }
