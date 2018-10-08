@@ -120,4 +120,15 @@ public class UserService
         }
         return false;
     }
+
+    public void saveUser(User tmp)
+    {
+        User user = getUser();
+
+        user.setUsername(tmp.getUsername());
+        user.setName(tmp.getName());
+        user.setEmail(tmp.getEmail());
+
+        userDAO.save(user);
+    }
 }

@@ -1,14 +1,14 @@
 package com.example.library_management_system.controller;
 
-import com.example.library_management_system.service.GlobalUtilService;
-import com.example.library_management_system.service.LibrarianBookService;
-import com.example.library_management_system.service.ReaderFunctionService;
-import com.example.library_management_system.service.StatService;
+import com.example.library_management_system.bean.User;
+import com.example.library_management_system.service.*;
+import com.example.library_management_system.utils.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class ReaderController
@@ -24,6 +24,12 @@ public class ReaderController
 
     @Autowired
     private LibrarianBookService librarianBookService;
+
+    @Autowired
+    private ReaderService readerService;
+
+    @Autowired
+    private UserService userService;
 
     @RequestMapping(value = "/reader/reader_condition", method = RequestMethod.GET)
     public String reader_reader_condition(Model model)
@@ -45,8 +51,9 @@ public class ReaderController
     }
 
     @RequestMapping(value = "/reader/reader_information", method = RequestMethod.GET)
-    public String reader_reader_information()
+    public String reader_reader_information(Model model)
     {
+        model.addAttribute("user", userService.getUser());
         return "reader/reader_information";
     }
 
@@ -68,5 +75,20 @@ public class ReaderController
     {
         model.addAttribute("isbn", isbn);
         return "reader/reader_comment";
+    }
+
+    @RequestMapping(value = "/reader/appointment", method = RequestMethod.GET)
+    public String appointment(int id, Model model)
+    {
+        model.addAttribute("userBkunit", readerService.appointment(id));
+        return "reader/appointment";
+    }
+
+    @RequestMapping(value = "reader/saveUser", method = RequestMethod.POST)
+    public String saveUser(User user, Model model)
+    {
+        userService.saveUser(user);
+        model.addAttribute("status", true);
+        return "redirect:reader_information";
     }
 }
