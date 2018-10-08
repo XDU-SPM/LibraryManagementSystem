@@ -62,6 +62,9 @@ public class ReaderFunctionService
     @Autowired
     private GlobalUtilDAO globalUtilDAO;
 
+    @Autowired
+    private ReturnHistoryDAO returnHistoryDAO;
+
     public Page<UserBkunit> queryborrowedBooks(int start, int size, int status)
     {
         User reader = userService.getUser();
@@ -75,9 +78,19 @@ public class ReaderFunctionService
             case 2:     // 未还
                 return userBkunitDAO.findAllByUserAndStatusBetween(reader, UserBkunitUtil.BORROWED, UserBkunitUtil.RENEW, pageable);
             case 3:     // 已还
-                return userBkunitDAO.findAllByUserAndStatus(reader, UserBkunitUtil.RETURNED, pageable);
+//                return userBkunitDAO.findAllByUserAndStatus(reader, UserBkunitUtil.RETURNED, pageable);
+                break;
         }
         return null;
+    }
+
+    public Page<ReturnHistory> queryReturnedBooks(int start, int size)
+    {
+        User reader = userService.getUser();
+        start = start < 0 ? 0 : start;
+        Sort sort = new Sort(Sort.Direction.DESC, "borrowDate");
+        Pageable pageable = PageRequest.of(start, size, sort);
+        return returnHistoryDAO.findAllByUserId(reader.getId(), pageable);
     }
 
     public Page<UserFavoriteBook> queryFavoriteBooks(int start, int size)
@@ -235,6 +248,8 @@ public class ReaderFunctionService
         userBkunitDAO.save(userBkunit);
         BkunitOperatingHistory bkunitOperatingHistory = new BkunitOperatingHistory(new Date(), reader.getId(), bkunit.getId(), UserBkunitUtil.RETURNED);
         bkunitOperatingHistoryDAO.save(bkunitOperatingHistory);
+        ReturnHistory returnHistory = new ReturnHistory(reader.getId(), userBkunit);
+        returnHistoryDAO.save(returnHistory);
         return 0;
     }
 

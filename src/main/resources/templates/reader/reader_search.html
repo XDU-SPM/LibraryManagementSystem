@@ -277,13 +277,15 @@
                         "                                        <img src = \""+data.content[i].coverPath+"\" height=\"326\" />\n" +
                         "                                        <h3 class = \"am-gallery-title\">"+data.content[i].title+"</h3>\n" +
                         "                                        <div class = \"am-gallery-desc\">剩余：<strong>"+data.content[i].number+"</strong>本</div>\n" +
-                        "                                    </a>\n" +
-                        "                                    <button th:if = \"${data.content[i].number} eq 0\" type = \"button\" class = \"am-btn am-btn-default\" disabled>\n" +
+                        "                                    </a>\n";
+                    if(data.content[i].number == 0)
+                        str+="                                    <button type = \"button\" class = \"am-btn am-btn-default\" disabled>\n" +
                         "                                        预约\n" +
-                        "                                    </button>\n" +
-                        "                                    <button th:if = \"${data.content[i].number} gt 0\" type = \"button\" class = \"am-btn am-btn-default\" th:onclick=\"'javascript:book_reserve('+${data.content[i].isbn}+')'\">\n" +
-                        "                                        预约</button>\n" +
-                        "                                </div>\n" +
+                        "                                    </button>\n"
+                    else
+                        str+="                                    <button type = \"button\" class = \"am-btn am-btn-default\" onclick=\"book_reserve(data.content[i].isbn)\">\n" +
+                        "                                        预约</button>\n"
+                    str+= "                                </div>\n" +
                         "                            </li>"
                 }
                 $('#all-books').html(str);
@@ -312,13 +314,15 @@
                             "                                        <img src = \""+data.content[i].coverPath+"\" height=\"326\" />\n" +
                             "                                        <h3 class = \"am-gallery-title\">"+data.content[i].title+"</h3>\n" +
                             "                                        <div class = \"am-gallery-desc\">剩余：<strong>"+data.content[i].number+"</strong>本</div>\n" +
-                            "                                    </a>\n" +
-                            "                                    <button th:if = \"${data.content[i].number} eq 0\" type = \"button\" class = \"am-btn am-btn-default\" disabled>\n" +
-                            "                                        预约\n" +
-                            "                                    </button>\n" +
-                            "                                    <button th:if = \"${data.content[i].number} gt 0\" type = \"button\" class = \"am-btn am-btn-default\" th:onclick=\"'javascript:book_reserve('+${data.content[i].isbn}+')'\">\n" +
-                            "                                        预约</button>\n" +
-                            "                                </div>\n" +
+                            "                                    </a>\n";
+                        if(data.content[i].number == 0)
+                            str+="                                    <button type = \"button\" class = \"am-btn am-btn-default\" disabled>\n" +
+                                "                                        预约\n" +
+                                "                                    </button>\n"
+                        else
+                            str+="                                    <button type = \"button\" class = \"am-btn am-btn-default\" onclick=\"book_reserve("+data.content[i].isbn+")\">\n" +
+                                "                                        预约</button>\n"
+                        str+= "                                </div>\n" +
                             "                            </li>"
                     }
                     $('#all-books').html(str);
@@ -342,13 +346,15 @@
                         "                                        <img src = \""+data.content[i].coverPath+"\" height=\"326\" />\n" +
                         "                                        <h3 class = \"am-gallery-title\">"+data.content[i].title+"</h3>\n" +
                         "                                        <div class = \"am-gallery-desc\">剩余：<strong>"+data.content[i].number+"</strong>本</div>\n" +
-                        "                                    </a>\n" +
-                        "                                    <button th:if = \"${data.content[i].number} eq 0\" type = \"button\" class = \"am-btn am-btn-default\" disabled>\n" +
-                        "                                        预约\n" +
-                        "                                    </button>\n" +
-                        "                                    <button th:if = \"${data.content[i].number} gt 0\" type = \"button\" class = \"am-btn am-btn-default\" th:onclick=\"'javascript:book_reserve('+${data.content[i].isbn}+')'\">\n" +
-                        "                                        预约</button>\n" +
-                        "                                </div>\n" +
+                        "                                    </a>\n";
+                    if(data.content[i].number == 0)
+                        str+="                                    <button type = \"button\" class = \"am-btn am-btn-default\" disabled>\n" +
+                            "                                        预约\n" +
+                            "                                    </button>\n"
+                    else
+                        str+="                                    <button type = \"button\" class = \"am-btn am-btn-default\" onclick=\"book_reserve(data.content[i].isbn)\">\n" +
+                            "                                        预约</button>\n"
+                    str+= "                                </div>\n" +
                         "                            </li>"
                 }
                 $('#all-books').html(str);
