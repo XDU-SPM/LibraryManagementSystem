@@ -245,7 +245,7 @@
 
     function status(status){
         status=parseInt(status);
-        var array=["BORROWED", "OVERDUE", "RENEW", "RETURNED", "RESERVATION", "RESERVATION_FAIL", "RESERVATION_CANCEL"];
+        var array=["已借出", "逾期", "续借", "已归还", "已预约", "预约失败", "取消预约"];
         return array[status-1];
     }
 
