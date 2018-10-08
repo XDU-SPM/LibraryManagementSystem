@@ -86,7 +86,7 @@ public class ReaderController
     public String saveUser(User user, Model model)
     {
         userService.saveUser(user);
-        model.addAttribute("status", true);
+        model.addAttribute("status", 1);
         return "redirect:reader_information";
     }
 }

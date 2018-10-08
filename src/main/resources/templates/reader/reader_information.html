@@ -285,7 +285,18 @@
         translate();
     })
 </script>
-
+<script th:inline="javascript">
+    isOk();
+    function isOk() {
+        console.log([[${status}]]);
+        if([[${status}]] == null)
+            return;
+        if ([[${status}]])
+            alert("修改成功！");
+        else
+            alert("修改失败！");
+    }
+</script>
 <script>
     let status = true;
 
