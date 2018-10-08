@@ -1,7 +1,9 @@
 package com.example.library_management_system.controller;
 
+import com.example.library_management_system.bean.User;
 import com.example.library_management_system.service.LibrarianService;
 import com.example.library_management_system.service.StatService;
+import com.example.library_management_system.service.UserService;
 import com.example.library_management_system.utils.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,9 @@ public class LibrarianController
 
     @Autowired
     private StatService statService;
+
+    @Autowired
+    private UserService userService;
 
     @RequestMapping(value = "/librarian/librarian_borrow", method = RequestMethod.GET)
     public String librarian_librarian_borrow()
@@ -48,8 +53,9 @@ public class LibrarianController
     }
 
     @RequestMapping(value = "/librarian/librarian_user", method = RequestMethod.GET)
-    public String librarian_librarian_user()
+    public String librarian_librarian_user(Model model)
     {
+        model.addAttribute("user", userService.getUser());
         return "librarian/librarian_user";
     }
 
@@ -67,5 +73,13 @@ public class LibrarianController
     {
         model.addAttribute("page", librarianService.getReserves(start, size));
         return "librarian/librarian_record";
+    }
+
+    @RequestMapping(value = "librarian/saveUser", method = RequestMethod.POST)
+    public String saveUser(User user, Model model)
+    {
+        userService.saveUser(user);
+        model.addAttribute("status", true);
+        return "redirect:librarian_user";
     }
 }
