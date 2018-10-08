@@ -283,7 +283,7 @@
                         "                                        预约\n" +
                         "                                    </button>\n"
                     else
-                        str+="                                    <button type = \"button\" class = \"am-btn am-btn-default\" th:onclick=\"'javascript:book_reserve('+${data.content[i].isbn}+')'\">\n" +
+                        str+="                                    <button type = \"button\" class = \"am-btn am-btn-default\" onclick=\"book_reserve(data.content[i].isbn)\">\n" +
                         "                                        预约</button>\n"
                     str+= "                                </div>\n" +
                         "                            </li>"
@@ -320,7 +320,7 @@
                                 "                                        预约\n" +
                                 "                                    </button>\n"
                         else
-                            str+="                                    <button type = \"button\" class = \"am-btn am-btn-default\" th:onclick=\"'javascript:book_reserve('+${data.content[i].isbn}+')'\">\n" +
+                            str+="                                    <button type = \"button\" class = \"am-btn am-btn-default\" onclick=\"book_reserve(data.content[i].isbn)\">\n" +
                                 "                                        预约</button>\n"
                         str+= "                                </div>\n" +
                             "                            </li>"
@@ -352,7 +352,7 @@
                             "                                        预约\n" +
                             "                                    </button>\n"
                     else
-                        str+="                                    <button type = \"button\" class = \"am-btn am-btn-default\" th:onclick=\"'javascript:book_reserve('+${data.content[i].isbn}+')'\">\n" +
+                        str+="                                    <button type = \"button\" class = \"am-btn am-btn-default\" onclick=\"book_reserve(data.content[i].isbn)\">\n" +
                             "                                        预约</button>\n"
                     str+= "                                </div>\n" +
                         "                            </li>"
