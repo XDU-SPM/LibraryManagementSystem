@@ -402,7 +402,6 @@
                 data: {id: book_id},
                 url: "renew",
                 success: function (data) {
-                    console.log(data);
                     if (data.status == 1)
                         alert("成功续借，归还时间延后" + data.number + "天！");
                     else
@@ -418,8 +417,6 @@
 </script>
 
 <script th:inline = "javascript">
-    console.log([[${monthBorrows}]]);
-    console.log([[${page3}]]);
     var data = [
         {
             time: date2str([[${monthBorrows[0].date}]], "yyyy-MM"),
@@ -570,9 +567,6 @@
             url: "returnedBooks",
             data: {start: 0, size: 5, status: 3},
             success: function (data) {
-                console.log(data);
-                console.log(data.content);
-                console.log(data.content[0]);
                 var str = "";
                 $('#bk-table-3').empty();
                 for (var i = 0; i < data.content.length; i++) {
@@ -605,7 +599,6 @@
     }
 
     function getOnePageBook3_2(temp) {
-        console.log('233');
         pageNumber3 += temp;
         if (pageNumber3 < 0)
             pageNumber3 = 0;
@@ -614,10 +607,9 @@
         else
             $.ajax({
                 type: "get",
-                url: "borrowedBooks",
+                url: "returnedBooks",
                 data: {start: pageNumber3, size: 5, status: 3},
                 success: function (data) {
-                    console.log(data);
                     var str = '';
                     $('#bk-table-3').empty();
                     for (var i = 0; i < data.content.length; i++) {
@@ -651,10 +643,9 @@
 
     function getOnePageBook3_3(end) {
         pageNumber3 = end;
-        console.log('233 ' + end);
         $.ajax({
             type: "get",
-            url: "borrowedBooks",
+            url: "returnedBooks",
             data: {start: end, size: 5, status: 3},
             success: function (data) {
                 console.log(data);
