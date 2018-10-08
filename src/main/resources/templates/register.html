@@ -15,7 +15,7 @@
     <link rel = "stylesheet" href = "assets/css/amazeui.min.css"/>
     <link rel = "stylesheet" href = "assets/css/admin.css">
     <script src = "http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
-   <!-- <script src = "https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script> -->
+    <!-- <script src = "https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script> -->
 
     <style>
         .am-topbar .am-text-ir {
@@ -85,49 +85,51 @@
             <div style = "text-align: center" class = "am-text-primary am-text-lg"><h2>注册</h2></div>
             <hr>
 
-                <div class = "am-u-sm-12 am-u-md-8 am-u-md-push-2">
-                    <form class = "am-form am-form-horizontal" action="/reader/register" method="post">
-                        <div class = "am-form-group">
-                            <label for = "user-name" class = "am-u-sm-3 am-form-label">用户名 / Username</label>
-                            <div class = "am-u-sm-9">
-                                <input type = "text" id = "user-name" placeholder = "用户名 / Username" name="username">
-                                <small>输入你的名字，让我们记住你。</small>
-                            </div>
+            <div class = "am-u-sm-12 am-u-md-8 am-u-md-push-2">
+                <form class = "am-form am-form-horizontal" action = "/reader/register" method = "post">
+                    <div class = "am-form-group">
+                        <label for = "user-name" class = "am-u-sm-3 am-form-label">用户名 / Username</label>
+                        <div class = "am-u-sm-9">
+                            <input type = "text" id = "user-name" placeholder = "用户名 / Username" name = "username">
+                            <small>输入你的名字，让我们记住你。</small>
                         </div>
+                    </div>
 
-                        <div class = "am-form-group">
-                            <label for = "user-email" class = "am-u-sm-3 am-form-label">电子邮件 / Email</label>
-                            <div class = "am-u-sm-9">
-                                <input type = "email" id = "user-email" placeholder = "输入你的电子邮件 / Email" name="email">
-                                <small>邮箱你懂得...</small>
-                            </div>
+                    <div class = "am-form-group">
+                        <label for = "user-email" class = "am-u-sm-3 am-form-label">电子邮件 / Email</label>
+                        <div class = "am-u-sm-9">
+                            <input type = "email" id = "user-email" placeholder = "输入你的电子邮件 / Email" name = "email">
+                            <small>邮箱你懂得...</small>
                         </div>
+                    </div>
 
-                        <div class = "am-form-group">
-                            <label for = "password" class = "am-u-sm-3 am-form-label">密码 / Password</label>
-                            <div class = "am-u-sm-9">
-                                <input type = "password" id = "password" placeholder = "输入你的密码 / Password" name="password">
-                            </div>
+                    <div class = "am-form-group">
+                        <label for = "password" class = "am-u-sm-3 am-form-label">密码 / Password</label>
+                        <div class = "am-u-sm-9">
+                            <input type = "password" id = "password" placeholder = "输入你的密码 / Password"
+                                   name = "password">
                         </div>
+                    </div>
 
 
-                        <div class = "am-form-group">
-                            <div class = "am-u-sm-9 am-u-sm-push-3">
-                                <input type = "submit" class = "am-btn am-btn-primary" value="注册/register">
-                            </div>
+                    <div class = "am-form-group">
+                        <div class = "am-u-sm-9 am-u-sm-push-3">
+                            <input type = "submit" class = "am-btn am-btn-primary" value = "注册/register"
+                                   onsubmit = "return check()">
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
-
-        <footer class = "admin-content-footer">
-            <hr>
-            <p class = "am-padding-left">© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
-        </footer>
-
     </div>
-    <!-- content end -->
+
+    <footer class = "admin-content-footer">
+        <hr>
+        <p class = "am-padding-left">© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
+    </footer>
+
+</div>
+<!-- content end -->
 
 </div>
 
@@ -136,7 +138,7 @@
 
 <footer>
     <hr>
-    <p class = "am-padding-left">© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
+    <p class = "am-padding-left">© 2018 Biboliosoft Online Library System</p>
 </footer>
 
 <!--[if lt IE 9]>
@@ -149,9 +151,42 @@
 <!--[if (gte IE 9)|!(IE)]><!-->
 <!--<script src = "../static/assets/js/my.js"></script>-->
 <script src = "assets/js/my.js"></script>
-<script src = "../static/assets/js/jquery.min.js"></script>
+<script src = "assets/js/jquery.min.js"></script>
 <!--<![endif]-->
-<script src = "../static/assets/js/amazeui.min.js"></script>
-<script src = "../static/assets/js/app.js"></script>
+<script src = "assets/js/amazeui.min.js"></script>
+<script src = "assets/js/app.js"></script>
+
+<script>
+    let status = true;
+
+    $(function () {
+        $("#user-name").blur(function () {
+            var params = $(this).serialize();
+            $.ajax(
+                {
+                    method: 'GET',
+                    url: "checkUser",
+                    data: params,
+                    success: function (data) {
+                        if (data.status == 0) {
+                            status = false;
+                            alert("该用户名已经被注册");
+                        }
+                        else
+                            status = true;
+                    }
+                }
+            );
+        })
+    });
+
+    function check() {
+        if (!status) {
+            alert("该用户名已经被注册");
+            return false;
+        }
+        return true;
+    }
+</script>
 </body>
 </html>

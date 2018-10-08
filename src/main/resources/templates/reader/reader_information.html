@@ -223,7 +223,9 @@
 
                         <div class = "am-form-group">
                             <div class = "am-u-sm-9 am-u-sm-push-3">
-                                <button type = "submit" class = "am-btn am-btn-primary">保存修改</button>
+                                <button type = "submit" class = "am-btn am-btn-primary" onsubmit = "return check()">
+                                    保存修改
+                                </button>
                             </div>
                         </div>
                     </form>
@@ -285,6 +287,8 @@
 </script>
 
 <script>
+    let status = true;
+
     $(function () {
         $("#user-account").blur(function () {
             var params = $(this).serialize();
@@ -294,13 +298,25 @@
                     url: "checkUser",
                     data: params,
                     success: function (data) {
-                        if (data.status == 0)
+                        if (data.status == 0) {
+                            status = false;
                             alert("该用户名已经被注册");
+                        }
+                        else
+                            status = true;
                     }
                 }
             );
         })
     });
+
+    function check() {
+        if (!status) {
+            alert("该用户名已经被注册");
+            return false;
+        }
+        return true;
+    }
 </script>
 </body>
 </html>
