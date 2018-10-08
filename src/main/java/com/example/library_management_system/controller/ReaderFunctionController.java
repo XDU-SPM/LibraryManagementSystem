@@ -1,5 +1,6 @@
 package com.example.library_management_system.controller;
 
+import com.example.library_management_system.bean.ReturnHistory;
 import com.example.library_management_system.bean.Review;
 import com.example.library_management_system.bean.UserBkunit;
 import com.example.library_management_system.bean.UserFavoriteBook;
@@ -33,6 +34,14 @@ public class ReaderFunctionController
                                      @RequestParam(value = "size", defaultValue = "10") int size, int status)
     {
         return readerfunctionservice.queryborrowedBooks(start, size, status);
+    }
+
+    @RequestMapping(value = "/reader/returnedBooks", method = RequestMethod.GET)
+    @ResponseBody
+    public Page<ReturnHistory> queryReturnedBooks(@RequestParam(value = "start", defaultValue = "0") int start,
+                                                  @RequestParam(value = "size", defaultValue = "10") int size, int status)
+    {
+        return readerfunctionservice.queryReturnedBooks(start, size);
     }
 
     @RequestMapping(value = "/reader/favoriteBooks", method = RequestMethod.GET)

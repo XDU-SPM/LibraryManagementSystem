@@ -78,9 +78,19 @@ public class ReaderFunctionService
             case 2:     // 未还
                 return userBkunitDAO.findAllByUserAndStatusBetween(reader, UserBkunitUtil.BORROWED, UserBkunitUtil.RENEW, pageable);
             case 3:     // 已还
-                return userBkunitDAO.findAllByUserAndStatus(reader, UserBkunitUtil.RETURNED, pageable);
+//                return userBkunitDAO.findAllByUserAndStatus(reader, UserBkunitUtil.RETURNED, pageable);
+                break;
         }
         return null;
+    }
+
+    public Page<ReturnHistory> queryReturnedBooks(int start, int size)
+    {
+        User reader = userService.getUser();
+        start = start < 0 ? 0 : start;
+        Sort sort = new Sort(Sort.Direction.DESC, "borrowDate");
+        Pageable pageable = PageRequest.of(start, size, sort);
+        return returnHistoryDAO.findAllByUserId(reader.getId(), pageable);
     }
 
     public Page<UserFavoriteBook> queryFavoriteBooks(int start, int size)
