@@ -59,7 +59,7 @@ public class LibrarianController
         return "librarian/librarian_user";
     }
 
-    @RequestMapping(value = {"/librarian/checkUser", "/reader/checkUser"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/librarian/checkUser", "/reader/checkUser", "/checkUser"}, method = RequestMethod.GET)
     @ResponseBody
     public Status userExist(String username)
     {

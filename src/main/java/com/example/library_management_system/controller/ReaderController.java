@@ -1,16 +1,12 @@
 package com.example.library_management_system.controller;
 
-import com.example.library_management_system.bean.Book;
 import com.example.library_management_system.bean.User;
 import com.example.library_management_system.service.*;
-import com.example.library_management_system.utils.Status;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class ReaderController
@@ -41,7 +37,7 @@ public class ReaderController
         model.addAttribute("monthBorrows", statService.monthborrow());
         model.addAttribute("page1", readerFunctionService.queryborrowedBooks(0, 5, 1));
         model.addAttribute("page2", readerFunctionService.queryborrowedBooks(0, 5, 2));
-        model.addAttribute("page3", readerFunctionService.queryborrowedBooks(0, 5, 3));
+        model.addAttribute("page3", readerFunctionService.queryReturnedBooks(0, 5));
         return "reader/reader_condition";
     }
 

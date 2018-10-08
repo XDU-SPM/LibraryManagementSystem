@@ -179,27 +179,31 @@
                         <div class = "am-form-group">
                             <label for = "username" class = "am-u-sm-3 am-form-label">用户名</label>
                             <div class = "am-u-sm-9">
-                                <input type = "text" id = "username" placeholder = "用户名 / username" name = "username" th:value="${user.username}">
+                                <input type = "text" id = "username" placeholder = "用户名 / username" name = "username"
+                                       th:value = "${user.username}">
                             </div>
                         </div>
 
                         <div class = "am-form-group">
                             <label for = "name" class = "am-u-sm-3 am-form-label">姓名</label>
                             <div class = "am-u-sm-9">
-                                <input type = "text" id = "name" placeholder = "姓名 / Name" name = "name" th:value="${user.name}">
+                                <input type = "text" id = "name" placeholder = "姓名 / Name" name = "name"
+                                       th:value = "${user.name}">
                             </div>
                         </div>
 
                         <div class = "am-form-group">
                             <label for = "user-email" class = "am-u-sm-3 am-form-label">电子邮件</label>
                             <div class = "am-u-sm-9">
-                                <input type = "email" id = "user-email" placeholder = "输入你的电子邮件 / Email" name = "email" th:value="${user.email}">
+                                <input type = "email" id = "user-email" placeholder = "输入你的电子邮件 / Email" name = "email"
+                                       th:value = "${user.email}">
                             </div>
                         </div>
 
                         <div class = "am-form-group">
                             <div class = "am-u-sm-9 am-u-sm-push-3">
-                                <input type = "submit" class = "am-btn am-btn-primary" value = "保存修改/Save">
+                                <input type = "submit" class = "am-btn am-btn-primary" value = "保存修改/Save"
+                                       onclick = "return check()">
                             </div>
                         </div>
                     </form>
@@ -235,6 +239,8 @@
     })
 </script>
 <script>
+    let status = true;
+
     $(function () {
         $("#username").blur(function () {
             var params = $(this).serialize();
@@ -244,13 +250,25 @@
                     url: "checkUser",
                     data: params,
                     success: function (data) {
-                        if (data.status == 0)
+                        if (data.status == 0) {
+                            status = false;
                             alert("该用户名已经被注册");
+                        }
+                        else
+                            status = true;
                     }
                 }
             );
         })
     });
+
+    function check() {
+        if (!status) {
+            alert("该用户名已经被注册");
+            return false;
+        }
+        return true;
+    }
 </script>
 </body>
 </html>
