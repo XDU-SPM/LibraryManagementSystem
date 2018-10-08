@@ -203,7 +203,7 @@
             </table>
             <br>
             <div class = "am-cf">
-                共 [[${page1.totalElements}]] 条记录
+                共 <span id="book-appointment">[[${page1.totalElements}]]</span> 条记录
                 <div class = "am-fr">
                     <ul class = "am-pagination">
                         <li><a onclick = "getOnePageBook1_1()">[首页]</a></li>
@@ -368,6 +368,7 @@
 <script type = "text/javascript" src = "assets/js/test.js"></script>
 
 <script th:inline = "javascript">
+    var appointment_number = [[${page1.totalElements}]];
     function cancel_appointment(book_id) {
         var res = confirm("确认取消？");
         if (res == true) {
@@ -379,6 +380,9 @@
                     if (data.status == 1){
                         alert("成功取消！");
                         getOnePageBook1_2(0);
+                        $('#book-appointment').empty();
+                        appointment_number--;
+                        $('#book-appointment').html(appointment_number);
                     }
                     else
                         alert("取消失败，您的预约已失效");
