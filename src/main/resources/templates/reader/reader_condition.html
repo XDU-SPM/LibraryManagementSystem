@@ -407,6 +407,7 @@
                         alert("成功续借，归还时间延后" + data.number + "天！");
                     else
                         alert("续借失败，请稍后再试！");
+                    getOnePageBook2_2(0);
                 },
                 error: function (data) {
                     alert("发生错误，请稍后再试！");
