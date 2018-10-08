@@ -160,11 +160,12 @@
                         </form>
                     </div>
                     <form class = "am-form">
-                        <ul data-am-widget = "gallery" id="all-books" class = "am-gallery am-gallery-bordered" data-am-gallery = "{  }">
+                        <ul data-am-widget = "gallery" id="all-books" class = "am-gallery am-avg-sm-2
+  am-avg-md-3 am-avg-lg-4 am-gallery-bordered" data-am-gallery = "{  }">
                             <li th:each = "book:${page}">
                                 <div class = "am-gallery-item">
                                     <a th:href="@{book_details(isbn=${book.isbn})}" class = "">
-                                        <img th:src = "${book.coverPath}" height="326" width="233" />
+                                        <img th:src = "${book.coverPath}" height="326" />
                                         <h3 th:text="${book.title}" class = "am-gallery-title"></h3>
                                         <div class = "am-gallery-desc">剩余：<strong th:text="${book.number}"></strong>本</div>
                                     </a>
