@@ -138,7 +138,7 @@ public class UserController
     }
 
     //用户续借图书
-    @RequestMapping(value = "/user/renew", method = RequestMethod.GET)
+    @RequestMapping(value = "/reader/renew", method = RequestMethod.GET)
     @ResponseBody
     public Status renew(int id)
     {
