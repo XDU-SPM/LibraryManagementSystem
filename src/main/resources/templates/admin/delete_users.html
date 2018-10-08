@@ -190,7 +190,7 @@
                                         <div class = "am-btn-toolbar">
                                             <div class = "am-btn-group am-btn-group-xs">
                                                 <button class = "am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
-                                                    <span class = "am-icon-trash-o" th:href="@{deleteuser(id=${user.id},start={page.number})}"></span> 删除
+                                                    <span class = "am-icon-trash-o"><a th:href="@{deleteaccount(id=${user.id},start=${page.number})}">删除</a></span>
                                                 </button>
                                             </div>
                                         </div>

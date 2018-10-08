@@ -16,17 +16,18 @@ public class AdminController
     @Autowired
     private AdminService adminservice;
 
-    @RequestMapping(path = "/admin/deleteaccount", method = {RequestMethod.POST})
-    public String deleteuser(@RequestParam(value = "id") int id)
+    @RequestMapping(value = "/admin/deleteaccount", method = {RequestMethod.GET})
+    public String deleteuser(int id, int start)
     {
+        System.out.println(id);
         adminservice.deleteuser(id);
-        return "admin";
+        return "redirect:delete_users?start=" + start;
     }
 
     @RequestMapping(path = "/admin", method = {RequestMethod.GET})
     public String showallinfo(Model model, @RequestParam(value = "start", defaultValue = "0") int start,
                               @RequestParam(value = "size", defaultValue = "10") int size,
-                              @RequestParam(value = "role") String role)
+                              String role)
     {
         Page<User> page = adminservice.showallinfo(start, size, role);
         model.addAttribute("page", page);
