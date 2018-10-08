@@ -62,6 +62,9 @@ public class ReaderFunctionService
     @Autowired
     private GlobalUtilDAO globalUtilDAO;
 
+    @Autowired
+    private ReturnHistoryDAO returnHistoryDAO;
+
     public Page<UserBkunit> queryborrowedBooks(int start, int size, int status)
     {
         User reader = userService.getUser();
@@ -235,6 +238,8 @@ public class ReaderFunctionService
         userBkunitDAO.save(userBkunit);
         BkunitOperatingHistory bkunitOperatingHistory = new BkunitOperatingHistory(new Date(), reader.getId(), bkunit.getId(), UserBkunitUtil.RETURNED);
         bkunitOperatingHistoryDAO.save(bkunitOperatingHistory);
+        ReturnHistory returnHistory = new ReturnHistory(reader.getId(), userBkunit);
+        returnHistoryDAO.save(returnHistory);
         return 0;
     }
 
