@@ -215,6 +215,13 @@
                         </div>
 
                         <div class = "am-form-group">
+                            <label for = "user-balance" class = "am-u-sm-3 am-form-label">总罚金(元) / Total-fine(CNY)</label>
+                            <div class = "am-u-sm-9">
+                                <input id = "total-fine" th:value = "${user.money}" disabled>
+                            </div>
+                        </div>
+
+                        <div class = "am-form-group">
                             <label for = "user-balance" class = "am-u-sm-3 am-form-label">余额(元) / Balance(CNY)</label>
                             <div class = "am-u-sm-9">
                                 <input id = "user-balance" th:value = "${user.money}" disabled>
@@ -226,25 +233,6 @@
                                 <button type = "submit" class = "am-btn am-btn-primary" onclick = "return check()">
                                     保存修改
                                 </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-                <div class = "am-u-sm-12 am-u-md-8 am-u-md-pull-4">
-                    <form class = "am-form am-form-horizontal">
-
-
-                        <div class = "am-form-group">
-                            <label for = "user-balance" class = "am-u-sm-3 am-form-label">充值金额 / Recharge amount</label>
-                            <div class = "am-u-sm-9">
-                                <input type = "number" pattern = "[0-9]*" id = "user-recharge">
-                            </div>
-                        </div>
-
-                        <div class = "am-form-group">
-                            <div class = "am-u-sm-9 am-u-sm-push-3">
-                                <button type = "button" class = "am-btn am-btn-primary">充值</button>
                             </div>
                         </div>
                     </form>
