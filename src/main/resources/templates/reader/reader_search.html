@@ -162,7 +162,7 @@
                     </div>
                     <form class = "am-form">
                         <ul data-am-widget = "gallery" id="all-books" class = "am-gallery am-avg-sm-2
-  am-avg-md-3 am-avg-lg-4 am-gallery-bordered" data-am-gallery = "{  }">
+  am-avg-md-4 am-avg-lg-6 am-gallery-bordered" data-am-gallery = "{  }">
                             <li th:each = "book:${page}">
                                 <div class = "am-gallery-item">
                                     <a th:href="@{book_details(isbn=${book.isbn})}" class = "">
@@ -170,10 +170,10 @@
                                         <h3 th:text="${book.title}" class = "am-gallery-title"></h3>
                                         <div class = "am-gallery-desc">剩余：<strong th:text="${book.number}"></strong>本</div>
                                     </a>
-                                    <button th:if = "${book.number} eq 0" type = "button" class = "am-btn am-btn-default" disabled>
+                                    <button th:if = "${book.number} eq 0" type = "button" class = "am-btn am-btn-primary am-round" disabled>
                                         预约
                                     </button>
-                                    <button th:if = "${book.number} gt 0" type = "button" class = "am-btn am-btn-default" th:onclick="'javascript:book_reserve('+${book.isbn}+')'">
+                                    <button th:if = "${book.number} gt 0" type = "button" class = "am-btn am-btn-primary am-round" th:onclick="'javascript:book_reserve('+${book.isbn}+')'">
                                         预约</button>
                                 </div>
                             </li>
@@ -278,11 +278,11 @@
                         "                                        <div class = \"am-gallery-desc\">剩余：<strong>"+data.content[i].number+"</strong>本</div>\n" +
                         "                                    </a>\n";
                     if(data.content[i].number == 0)
-                        str+="                                    <button type = \"button\" class = \"am-btn am-btn-default\" disabled>\n" +
+                        str+="                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" disabled>\n" +
                         "                                        预约\n" +
                         "                                    </button>\n"
                     else
-                        str+="                                    <button type = \"button\" class = \"am-btn am-btn-default\" onclick=\"book_reserve(data.content[i].isbn)\">\n" +
+                        str+="                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" onclick=\"book_reserve(data.content[i].isbn)\">\n" +
                         "                                        预约</button>\n"
                     str+= "                                </div>\n" +
                         "                            </li>"
@@ -315,11 +315,11 @@
                             "                                        <div class = \"am-gallery-desc\">剩余：<strong>"+data.content[i].number+"</strong>本</div>\n" +
                             "                                    </a>\n";
                         if(data.content[i].number == 0)
-                            str+="                                    <button type = \"button\" class = \"am-btn am-btn-default\" disabled>\n" +
+                            str+="                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" disabled>\n" +
                                 "                                        预约\n" +
                                 "                                    </button>\n"
                         else
-                            str+="                                    <button type = \"button\" class = \"am-btn am-btn-default\" onclick=\"book_reserve("+data.content[i].isbn+")\">\n" +
+                            str+="                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" onclick=\"book_reserve("+data.content[i].isbn+")\">\n" +
                                 "                                        预约</button>\n"
                         str+= "                                </div>\n" +
                             "                            </li>"
@@ -347,11 +347,11 @@
                         "                                        <div class = \"am-gallery-desc\">剩余：<strong>"+data.content[i].number+"</strong>本</div>\n" +
                         "                                    </a>\n";
                     if(data.content[i].number == 0)
-                        str+="                                    <button type = \"button\" class = \"am-btn am-btn-default\" disabled>\n" +
+                        str+="                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" disabled>\n" +
                             "                                        预约\n" +
                             "                                    </button>\n"
                     else
-                        str+="                                    <button type = \"button\" class = \"am-btn am-btn-default\" onclick=\"book_reserve(data.content[i].isbn)\">\n" +
+                        str+="                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" onclick=\"book_reserve(data.content[i].isbn)\">\n" +
                             "                                        预约</button>\n"
                     str+= "                                </div>\n" +
                         "                            </li>"
