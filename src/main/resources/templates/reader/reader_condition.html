@@ -204,13 +204,13 @@
             </table>
             <br>
             <div class = "am-cf">
-                共 <span id="book-appointment">[[${page1.totalElements}]]</span> 条记录
+                共 [[${page1.totalElements}]] 条记录
                 <div class = "am-fr">
                     <ul class = "am-pagination">
-                        <li><a onclick = "getOnePageBook1_1()">[首页]</a></li>
-                        <li><a onclick = "getOnePageBook1_2(-1)">上一页</a></li>
-                        <li><a onclick = "getOnePageBook1_2(1)">下一页</a></li>
-                        <li><a onclick = "getOnePageBook1_3([[${page1.totalPages}]]-1)">[末页]</a></li>
+                        <li><button onclick = "getOnePageBook1_1()">[首页]</button></li>
+                        <li><button onclick = "getOnePageBook1_2(-1)">上一页</button></li>
+                        <li><button onclick = "getOnePageBook1_2(1)">下一页</button></li>
+                        <li><button th:onclick = "'javascript:getOnePageBook1_3('+${page1.totalPages}+'-1)'">[末页]</button></li>
                     </ul>
                 </div>
             </div>
@@ -272,10 +272,10 @@
                 共 [[${page2.totalElements}]] 条记录
                 <div class = "am-fr">
                     <ul class = "am-pagination">
-                        <li><a onclick = "getOnePageBook2_1()">[首页]</a></li>
-                        <li><a onclick = "getOnePageBook2_2(-1)">上一页</a></li>
-                        <li><a onclick = "getOnePageBook2_2(1)">下一页</a></li>
-                        <li><a onclick = "getOnePageBook2_3([[${page2.totalPages}]]-1)">[末页]</a></li>
+                        <li><button onclick = "getOnePageBook2_1()">[首页]</button></li>
+                        <li><button onclick = "getOnePageBook2_2(-1)">上一页</button></li>
+                        <li><button onclick = "getOnePageBook2_2(1)">下一页</button></li>
+                        <li><button th:onclick = "'javascript:getOnePageBook2_3('+${page2.totalPages}+'-1)'">[末页]</button></li>
                     </ul>
                 </div>
             </div>
@@ -290,11 +290,12 @@
                 <tr>
                     <th class = "table-id">条形码</th>
                     <th class = "table-title">标题</th>
-                    <th class = "table-author am-hide-sm-only">作者</th>
+                    <th class = "table-author">作者</th>
                     <th class = "table-publisher">出版社</th>
                     <th class = "table-date am-hide-sm-only">出版日期</th>
-                    <th class = "table-positon am-hide-sm-only">借书时间</th>
-                    <th class = "table-set">归还时间</th>
+                    <th class = "table-date am-hide-sm-only">借书时间</th>
+                    <th class = "table-date am-hide-sm-only">归还时间</th>
+                    <th class = "table-title">罚金(元)</th>
                     <th class = "table-set">操作</th>
                 </tr>
                 </thead>
@@ -305,11 +306,12 @@
                         <td><a th:href = "@{book_details(isbn=${book.isbn})}"
                                th:text = "${book.title}"></a></td>
 
-                        <td class = "am-hide-sm-only" th:text = "${book.author}"></td>
-                        <td class = "am-hide-sm-only" th:text = "${book.publisher}"></td>
+                        <td th:text = "${book.author}"></td>
+                        <td th:text = "${book.publisher}"></td>
                         <td class = "am-hide-sm-only" th:text = "${book.publishDate}"></td>
-                        <td th:text = "${book.borrowDate}"></td>
-                        <td th:text = "${book.returnDate}"></td>
+                        <td class = "am-hide-sm-only" th:text = "${book.borrowDate}"></td>
+                        <td class = "am-hide-sm-only" th:text = "${book.returnDate}"></td>
+                        <td th:text = "${book.money}"></td>
                         <td>
                             <div class = "am-btn-toolbar">
                                 <div class = "am-btn-group am-btn-group-xs">
@@ -576,11 +578,12 @@
                         "                    <td>"+data.content[i].bkunitId+"</td>\n" +
                         "                    <td><a href = \"book_details?isbn="+data.content[i].isbn+"\">"+data.content[i].title+"</a></td>\n" +
                         "\n" +
-                        "                    <td class = \"am-hide-sm-only\">"+data.content[i].author+"</td>\n" +
-                        "                    <td class = \"am-hide-sm-only\">"+data.content[i].publisher+"</td>\n" +
+                        "                    <td>"+data.content[i].author+"</td>\n" +
+                        "                    <td>"+data.content[i].publisher+"</td>\n" +
                         "                    <td class = \"am-hide-sm-only\">"+data.content[i].publishDate+"</td>\n" +
-                        "                    <td>"+data.content[i].borrowDate+"</td>\n" +
-                        "                    <td>"+data.content[i].returnDate+"</td>\n" +
+                        "                    <td class = \"am-hide-sm-only\">"+data.content[i].borrowDate+"</td>\n" +
+                        "                    <td class = \"am-hide-sm-only\">"+data.content[i].returnDate+"</td>\n" +
+                        "                    <td>"+data.content[i].money+"</td>\n" +
                         "                    <td>\n" +
                         "                        <div class = \"am-btn-toolbar\">\n" +
                         "                            <div class = \"am-btn-group am-btn-group-xs\">\n" +
@@ -619,11 +622,12 @@
                             "                    <td>"+data.content[i].bkunitId+"</td>\n" +
                             "                    <td><a href = \"book_details?isbn="+data.content[i].isbn+"\">"+data.content[i].title+"</a></td>\n" +
                             "\n" +
-                            "                    <td class = \"am-hide-sm-only\">"+data.content[i].author+"</td>\n" +
-                            "                    <td class = \"am-hide-sm-only\">"+data.content[i].publisher+"</td>\n" +
+                            "                    <td>"+data.content[i].author+"</td>\n" +
+                            "                    <td>"+data.content[i].publisher+"</td>\n" +
                             "                    <td class = \"am-hide-sm-only\">"+data.content[i].publishDate+"</td>\n" +
-                            "                    <td>"+data.content[i].borrowDate+"</td>\n" +
-                            "                    <td>"+data.content[i].returnDate+"</td>\n" +
+                            "                    <td class = \"am-hide-sm-only\">"+data.content[i].borrowDate+"</td>\n" +
+                            "                    <td class = \"am-hide-sm-only\">"+data.content[i].returnDate+"</td>\n" +
+                            "                    <td>"+data.content[i].money+"</td>\n" +
                             "                    <td>\n" +
                             "                        <div class = \"am-btn-toolbar\">\n" +
                             "                            <div class = \"am-btn-group am-btn-group-xs\">\n" +
@@ -658,11 +662,12 @@
                         "                    <td>"+data.content[i].bkunitId+"</td>\n" +
                         "                    <td><a href = \"book_details?isbn="+data.content[i].isbn+"\">"+data.content[i].title+"</a></td>\n" +
                         "\n" +
-                        "                    <td class = \"am-hide-sm-only\">"+data.content[i].author+"</td>\n" +
-                        "                    <td class = \"am-hide-sm-only\">"+data.content[i].publisher+"</td>\n" +
+                        "                    <td>"+data.content[i].author+"</td>\n" +
+                        "                    <td>"+data.content[i].publisher+"</td>\n" +
                         "                    <td class = \"am-hide-sm-only\">"+data.content[i].publishDate+"</td>\n" +
-                        "                    <td>"+data.content[i].borrowDate+"</td>\n" +
-                        "                    <td>"+data.content[i].returnDate+"</td>\n" +
+                        "                    <td class = \"am-hide-sm-only\">"+data.content[i].borrowDate+"</td>\n" +
+                        "                    <td class = \"am-hide-sm-only\">"+data.content[i].returnDate+"</td>\n" +
+                        "                    <td>"+data.content[i].money+"</td>\n" +
                         "                    <td>\n" +
                         "                        <div class = \"am-btn-toolbar\">\n" +
                         "                            <div class = \"am-btn-group am-btn-group-xs\">\n" +
