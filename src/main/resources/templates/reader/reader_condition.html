@@ -11,9 +11,7 @@
     <meta name = "viewport" content = "width=device-width, initial-scale=1">
     <meta name = "renderer" content = "webkit">
     <meta http-equiv = "Cache-Control" content = "no-siteapp"/>
-    <link rel = "icon" type = "image/jpg" href = "../../static/reader/assets/i/head_logo.jpg">
-    <link rel = "apple-touch-icon-precomposed" href = "assets/i/app-icon72x72@2x.png">
-    <meta name = "apple-mobile-web-app-title" content = "Amaze UI"/>
+    <link rel = "icon" type = "image/jpg" href = "assets/i/head_logo.jpg">
     <link rel = "stylesheet" href = "assets/css/amazeui.min.css"/>
     <link rel = "stylesheet" href = "assets/css/admin.css">
     <script src = "http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
@@ -164,7 +162,6 @@
             <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "booklist-1">
                 <thead>
                 <tr>
-                    <th class = "table-id">条形码</th>
                     <th class = "table-title">标题</th>
                     <th class = "table-author am-hide-sm-only">作者</th>
                     <th class = "table-publisher">出版社</th>
@@ -176,7 +173,6 @@
                 <tbody id = "bk-table-1">
                     <tr th:each = "book:${page1}">
 
-                        <td th:text = "${book.bkunit.id}"></td>
                         <td><a th:href = "@{book_details(isbn=${book.bkunit.book.isbn})}"
                                th:text = "${book.bkunit.book.title}"></a></td>
 
@@ -216,7 +212,7 @@
             </div>
 
             <div class = "am-cf am-padding am-padding-bottom-0">
-                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">未还</strong></div>
+                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">未归还</strong></div>
             </div>
             <hr>
 
@@ -227,7 +223,7 @@
             <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "booklist-2">
                 <thead>
                 <tr>
-                    <th class = "table-id">条形码</th>
+                    <th class = "table-title">条形码</th>
                     <th class = "table-title">标题</th>
                     <th class = "table-author am-hide-sm-only">作者</th>
                     <th class = "table-publisher">出版社</th>
@@ -281,14 +277,14 @@
             </div>
 
             <div class = "am-cf am-padding am-padding-bottom-0">
-                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">已还</strong></div>
+                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">已经归还</strong></div>
             </div>
             <hr>
 
             <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "booklist-3">
                 <thead>
                 <tr>
-                    <th class = "table-id">条形码</th>
+                    <th class = "table-title">条形码</th>
                     <th class = "table-title">标题</th>
                     <th class = "table-author">作者</th>
                     <th class = "table-publisher">出版社</th>
@@ -836,7 +832,6 @@
                 for (var i = 0; i < data.content.length; i++) {
                     str += "<tr>\n" +
                         "\n" +
-                        "                        <td>"+data.content[i].bkunit.id+"</td>\n" +
                         "                        <td><a href = \"book_details?isbn="+data.content[i].bkunit.book.isbn+"\">"+data.content[i].bkunit.book.title+"</a></td>\n" +
                         "\n" +
                         "                        <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.author+"</td>\n" +
@@ -882,7 +877,6 @@
                     for (var i = 0; i < data.content.length; i++) {
                         str += "<tr>\n" +
                             "\n" +
-                            "                        <td>"+data.content[i].bkunit.id+"</td>\n" +
                             "                        <td><a href = \"book_details?isbn="+data.content[i].bkunit.book.isbn+"\">"+data.content[i].bkunit.book.title+"</a></td>\n" +
                             "\n" +
                             "                        <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.author+"</td>\n" +
@@ -923,7 +917,6 @@
                 for (var i = 0; i < data.content.length; i++) {
                     str += "<tr>\n" +
                         "\n" +
-                        "                        <td>"+data.content[i].bkunit.id+"</td>\n" +
                         "                        <td><a href = \"book_details?isbn="+data.content[i].bkunit.book.isbn+"\">"+data.content[i].bkunit.book.title+"</a></td>\n" +
                         "\n" +
                         "                        <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.author+"</td>\n" +
