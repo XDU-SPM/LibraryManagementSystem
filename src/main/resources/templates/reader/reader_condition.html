@@ -1,0 +1,982 @@
+<!doctype html>
+<html class = "no-js fixed-layout" xmlns:th = "http://www.thymeleaf.org"
+      xmlns:sec = "http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      xmlns:type = "http://www.springframework.org/schema/mvc">
+<head>
+    <meta charset = "utf-8">
+    <meta http-equiv = "X-UA-Compatible" content = "IE=edge">
+    <title>Bibliosoft</title>
+    <meta name = "description" content = "这是一个 index 页面">
+    <meta name = "keywords" content = "index">
+    <meta name = "viewport" content = "width=device-width, initial-scale=1">
+    <meta name = "renderer" content = "webkit">
+    <meta http-equiv = "Cache-Control" content = "no-siteapp"/>
+    <link rel = "icon" type = "image/jpg" href = "../../static/reader/assets/i/head_logo.jpg">
+    <link rel = "apple-touch-icon-precomposed" href = "assets/i/app-icon72x72@2x.png">
+    <meta name = "apple-mobile-web-app-title" content = "Amaze UI"/>
+    <link rel = "stylesheet" href = "assets/css/amazeui.min.css"/>
+    <link rel = "stylesheet" href = "assets/css/admin.css">
+    <script src = "http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+    <style>
+        .am-form-group {
+            text-align: left;
+        }
+
+        .am-topbar {
+            /*background-color: black;*/
+        }
+
+        .am-topbar .am-text-ir {
+            display: block;
+            margin-right: 10px;
+            height: 50px;
+            width: 125px;
+            background: url(assets/i/logo.jpg) no-repeat left center;
+            -webkit-background-size: 125px 24px;
+            background-size: 125px 24px;
+        }
+
+    </style>
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class = "browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href = "http://browsehappy.com/"
+                                                                          target = "_blank">升级浏览器</a>
+    以获得更好的体验！</p>
+<![endif]-->
+
+<header class = "am-topbar am-topbar-inverse admin-header">
+    <h1 class = "am-topbar-brand ">
+        <a href = "#" class = "am-text-ir">BiblioSoft</a>
+    </h1>
+
+    <button class = "am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only"
+            data-am-collapse = "{target: '#doc-topbar-collapse'}"><span class = "am-sr-only">导航切换</span> <span
+            class = "am-icon-bars"></span></button>
+
+    <div class = "am-collapse am-topbar-collapse" id = "doc-topbar-collapse">
+        <ul class = "am-nav am-nav-pills am-topbar-nav">
+            <li class = "am-active"><a href = "#">首页</a></li>
+            <li class = "am-dropdown" data-am-dropdown>
+                <a class = "am-dropdown-toggle" data-am-dropdown-toggle href = "javascript:;">
+                    下拉 <span class = "am-icon-caret-down"></span>
+                </a>
+                <ul class = "am-dropdown-content">
+                    <li class = "am-dropdown-header">标题</li>
+                    <li><a href = "#">1. 去月球</a></li>
+                    <li class = "am-active"><a href = "#">2. 去火星</a></li>
+                    <li><a href = "#">3. 还是回地球</a></li>
+                    <li class = "am-disabled"><a href = "#">4. 下地狱</a></li>
+                    <li class = "am-divider"></li>
+                    <li><a href = "#">5. 桥头一回首</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <form class = "am-topbar-form am-topbar-left am-form-inline" role = "search">
+            <div class = "am-form-group">
+                <input type = "text" class = "am-form-field am-input-sm" placeholder = "搜索">
+            </div>
+        </form>
+
+        <div class = "am-collapse am-topbar-collapse" id = "topbar-collapse">
+
+            <ul class = "am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
+
+                <li><a href = "javascript:;">
+                    <button id = "change" class = "am-btn am-btn-primary am-btn-sm">中文/英文</button>
+                </a></li>
+
+                <li class = "am-dropdown" data-am-dropdown>
+                    <a class = "am-dropdown-toggle" data-am-dropdown-toggle href = "javascript:;">
+                        <a th:href = "@{/logout}">注销</a>
+                    </a>
+
+                </li>
+
+            </ul>
+        </div>
+
+    </div>
+</header>
+
+<div class = "am-cf admin-main">
+    <!-- sidebar start -->
+    <div class = "admin-sidebar am-offcanvas" id = "admin-offcanvas">
+        <div class = "am-offcanvas-bar admin-offcanvas-bar">
+            <ul class = "am-list admin-sidebar-list">
+                <li><a href = "reader_condition"><span class = "am-icon-bar-chart"></span> 借书信息统计</a></li>
+                <li><a href = "reader_search"><span class = "am-icon-search"></span> 搜索页面</a></li>
+                <li><a href = "reader_information" class = "am-cf"><span class = "am-icon-check"></span> 个人资料<span
+                        class = "am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
+                <li><a href = "reader_message"><span class = "am-icon-commenting-o"></span> 留言</a></li>
+            </ul>
+
+            <div class = "am-panel am-panel-default admin-sidebar-panel">
+                <div class = "am-panel-bd">
+                    <p><span class = "am-icon-bookmark"></span> 公告</p>
+                    <p>时光静好，与君语；细水流年，与君同。</p>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <!-- sidebar end -->
+
+    <!-- content start -->
+    <div class = "admin-content">
+        <div class = "admin-content-body">
+            <div class = "am-cf am-padding">
+             <!--   <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">首页</strong> /
+                    <small>一些常用模块</small>
+                </div> -->
+            </div>
+            <div class = "am-tabs am-margin" data-am-tabs>
+                <ul class = "am-tabs-nav am-nav am-nav-tabs">
+                    <li class = "am-active"><a href = "#tab1">借书统计</a></li>
+                    <li><a href = "#tab3">预约</a></li>
+                    <li><a href = "#tab4">未还</a></li>
+                    <li><a href = "#tab5">已还</a></li>
+                </ul>
+                <div class = "am-tabs-bd">
+                    <div class = "am-tab-panel am-fade am-in am-active" id = "tab1">
+                        <div class = "am-g am-center am-padding" >
+                            <ul data-am-widget = "gallery" class = "am-gallery am-avg-sm-2 am-gallery-default"
+                                data-am-gallery = "{ pureview: true }">
+                                <li>
+                                    <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">借书统计</strong></div>
+                                    <div id = "mountNode"></div>
+                                </li>
+                                <li>
+                                    <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">借书历史统计</strong></div>
+                                    <div id = "mountNode1"></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class = "am-tab-panel am-fade am-in " id = "tab2">
+                        <div class = "am-cf am-padding am-padding-bottom-0" >
+                            <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">借阅历史</strong></div>
+                        </div>
+                    </div>
+
+                    <div class = "am-tab-panel am-fade am-in " id = "tab3">
+                        <div class = "am-cf am-padding am-padding-bottom-0">
+                            <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">预约</strong></div>
+                        </div>
+                        <hr>
+
+                        <div class = "am-u-sm-12 am-u-md-3">
+
+                        </div>
+
+                        <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "booklist-1">
+                            <thead>
+                            <tr>
+                                <th class = "table-id">条形码</th>
+                                <th class = "table-title">标题</th>
+                                <th class = "table-author am-hide-sm-only">作者</th>
+                                <th class = "table-publisher">出版社</th>
+                                <th class = "table-date am-hide-sm-only">出版日期</th>
+                                <th class = "table-positon am-hide-sm-only">预约到期时间</th>
+                                <th class = "table-set">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody id = "bk-table-1">
+                            <tr th:each = "book:${page1}">
+
+                                <td th:text = "${book.bkunit.id}"></td>
+                                <td><a th:href = "@{book_details(isbn=${book.bkunit.book.isbn})}"
+                                       th:text = "${book.bkunit.book.title}"></a></td>
+
+                                <td class = "am-hide-sm-only" th:text = "${book.bkunit.book.author}"></td>
+                                <td class = "am-hide-sm-only" th:text = "${book.bkunit.book.publisher}"></td>
+                                <td class = "am-hide-sm-only" th:text = "${book.bkunit.book.publishDate}"></td>
+                                <td th:text = "${book.returnDate}"></td>
+                                <td>
+                                    <div class = "am-btn-toolbar">
+                                        <div class = "am-btn-group am-btn-group-xs">
+                                            <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"
+                                                    th:onclick = "'javascript:cancel_appointment('+${book.id}+')'">
+                                                <span class = "am-icon-pencil-square-o"></span> 取消
+                                            </button>
+                                            <a th:href = "@{appointment(id=${book.id})}">
+                                                <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><span
+                                                        class = "am-icon-pencil-square-o"></span> 查看
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <br>
+                        <div class = "am-cf">
+                            共 [[${page1.totalElements}]] 条记录
+                            <div class = "am-fr">
+                                <ul class = "am-pagination">
+                                    <li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook1_1()">首页</button></li>
+                                    <li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook1_2(-1)">上一页</button></li>
+                                    <li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook1_2(1)">下一页</button></li>
+                                    <li><button type="button" class="am-btn am-btn-primary am-round" th:onclick = "'javascript:getOnePageBook1_3('+${page1.totalPages}+'-1)'">末页</button></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class = "am-tab-panel am-fade am-in " id = "tab4">
+                        <div class = "am-cf am-padding am-padding-bottom-0">
+                            <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">未还</strong></div>
+                        </div>
+                        <hr>
+
+                        <div class = "am-u-sm-12 am-u-md-3">
+
+                        </div>
+
+                        <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "booklist-2">
+                            <thead>
+                            <tr>
+                                <th class = "table-id">条形码</th>
+                                <th class = "table-title">标题</th>
+                                <th class = "table-author am-hide-sm-only">作者</th>
+                                <th class = "table-publisher">出版社</th>
+                                <th class = "table-date am-hide-sm-only">出版日期</th>
+                                <th class = "table-positon am-hide-sm-only">借书时间</th>
+                                <th class = "table-set">截止时间</th>
+                                <th class = "table-set">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody id = "bk-table-2">
+                            <tr th:each = "book:${page2}">
+
+                                <td th:text = "${book.bkunit.id}"></td>
+                                <td><a th:href = "@{book_details(isbn=${book.bkunit.book.isbn})}"
+                                       th:text = "${book.bkunit.book.title}"></a></td>
+
+                                <td class = "am-hide-sm-only" th:text = "${book.bkunit.book.author}"></td>
+                                <td class = "am-hide-sm-only" th:text = "${book.bkunit.book.publisher}"></td>
+                                <td class = "am-hide-sm-only" th:text = "${book.bkunit.book.publishDate}"></td>
+                                <td th:text = "${book.borrowDate}"></td>
+                                <td th:text = "${book.returnDate}"></td>
+                                <td>
+                                    <div class = "am-btn-toolbar">
+                                        <div class = "am-btn-group am-btn-group-xs">
+                                            <a th:href = "@{reader_comment(isbn=${book.bkunit.book.isbn})}">
+                                                <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><span
+                                                        class = "am-icon-pencil-square-o"></span> 评论
+                                                </button>
+                                            </a>
+                                            <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"
+                                                    th:onclick = "'javascript:book_renew('+${book.id}+')'">
+                                                <span class = "am-icon-pencil-square-o"></span> 续借
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <br>
+                        <div class = "am-cf">
+                            共 [[${page2.totalElements}]] 条记录
+                            <div class = "am-fr">
+                                <ul class = "am-pagination">
+                                    <li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook2_1()">首页</button></li>
+                                    <li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook2_2(-1)">上一页</button></li>
+                                    <li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook2_2(1)">下一页</button></li>
+                                    <li><button type="button" class="am-btn am-btn-primary am-round" th:onclick = "'javascript:getOnePageBook2_3('+${page2.totalPages}+'-1)'">[末页]</button></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class = "am-tab-panel am-fade am-in " id = "tab5">
+                        <div class = "am-cf am-padding am-padding-bottom-0">
+                            <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">已还</strong></div>
+                        </div>
+                        <hr>
+
+                        <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "booklist-3">
+                            <thead>
+                            <tr>
+                                <th class = "table-id">条形码</th>
+                                <th class = "table-title">标题</th>
+                                <th class = "table-author">作者</th>
+                                <th class = "table-publisher">出版社</th>
+                                <th class = "table-date am-hide-sm-only">出版日期</th>
+                                <th class = "table-date am-hide-sm-only">借书时间</th>
+                                <th class = "table-date am-hide-sm-only">归还时间</th>
+                                <th class = "table-title">罚金(元)</th>
+                                <th class = "table-set">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody id = "bk-table-3">
+                            <tr th:each = "book:${page3}">
+
+                                <td th:text = "${book.bkunitId}"></td>
+                                <td><a th:href = "@{book_details(isbn=${book.isbn})}"
+                                       th:text = "${book.title}"></a></td>
+
+                                <td th:text = "${book.author}"></td>
+                                <td th:text = "${book.publisher}"></td>
+                                <td class = "am-hide-sm-only" th:text = "${book.publishDate}"></td>
+                                <td class = "am-hide-sm-only" th:text = "${book.borrowDate}"></td>
+                                <td class = "am-hide-sm-only" th:text = "${book.returnDate}"></td>
+                                <td th:text = "${book.money}"></td>
+                                <td>
+                                    <div class = "am-btn-toolbar">
+                                        <div class = "am-btn-group am-btn-group-xs">
+                                            <a th:href = "@{reader_comment(isbn=${book.isbn})}">
+                                                <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><span
+                                                        class = "am-icon-pencil-square-o"></span> 评论
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <br>
+                        <div class = "am-cf">
+                            共 [[${page3.totalElements}]] 条记录
+                            <div class = "am-fr">
+                                <ul class = "am-pagination">
+                                    <li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook3_1()">首页</button></li>
+                                    <li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook3_2(-1)">上一页</button></li>
+                                    <li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook3_2(1)">下一页</button></li>
+                                    <li><button type="button" class="am-btn am-btn-primary am-round" th:onclick = "'javascript:getOnePageBook3_3('+${page3.totalPages}+'-1)'">末页</button></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <footer class = "admin-content-footer">
+            <hr>
+            <p class = "am-padding-left" style = "text-align: center">© 2018 Biboliosoft Online Library System</p>
+        </footer>
+    </div>
+    <!-- content end -->
+
+</div>
+
+<a href = "#" class = "am-icon-btn am-icon-th-list am-show-sm-only admin-menu"
+   data-am-offcanvas = "{target: '#admin-offcanvas'}"></a>
+
+<!--[if lt IE 9]>
+<script src = "http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src = "http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src = "assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src = "assets/js/jquery.min.js"></script>
+<!--<![endif]-->
+<script src = "assets/js/amazeui.min.js"></script>
+<script src = "assets/js/app.js"></script>
+
+<script src = "https://gw.alipayobjects.com/os/antv/pkg/_antv.g2-3.2.8/dist/g2.min.js"></script>
+<script src = "https://gw.alipayobjects.com/os/antv/pkg/_antv.data-set-0.9.6/dist/data-set.min.js"></script>
+<script src = "https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script type = "text/javascript" src = "assets/js/test.js"></script>
+
+<script th:inline = "javascript">
+    var appointment_number = [[${page1.totalElements}]];
+    function cancel_appointment(book_id) {
+        var res = confirm("确认取消？");
+        if (res == true) {
+            $.ajax({
+                type: "get",
+                data: {id: book_id},
+                url: "reserveCancel",
+                success: function (data) {
+                    if (data.status == 1){
+                        alert("成功取消！");
+                        getOnePageBook1_2(0);
+                        $('#book-appointment').empty();
+                        appointment_number--;
+                        $('#book-appointment').html(appointment_number);
+                    }
+                    else
+                        alert("取消失败，您的预约已失效");
+                },
+                error: function (data) {
+                    alert("发生错误，请稍后再试！");
+                }
+            });
+        }
+    }
+
+    function book_renew(book_id) {
+        var res = confirm("确认续借？");
+        if (res == true) {
+            $.ajax({
+                type: "get",
+                data: {id: book_id},
+                url: "renew",
+                success: function (data) {
+                    if (data.status == 1)
+                        alert("成功续借，归还时间延后" + data.number + "天！");
+                    else
+                        alert("续借失败，请稍后再试！");
+                    getOnePageBook2_2(0);
+                },
+                error: function (data) {
+                    alert("发生错误，请稍后再试！");
+                }
+            });
+        }
+    }
+</script>
+
+<script th:inline = "javascript">
+    var data = [
+        {
+            time: date2str([[${monthBorrows[0].date}]], "yyyy-MM"),
+            value: [[${monthBorrows[0].num}]]
+        },
+        {
+            time: date2str([[${monthBorrows[1].date}]], "yyyy-MM"),
+            value: [[${monthBorrows[1].num}]]
+        },
+        {
+            time: date2str([[${monthBorrows[2].date}]], "yyyy-MM"),
+            value: [[${monthBorrows[2].num}]]
+        },
+        {
+            time: date2str([[${monthBorrows[3].date}]], "yyyy-MM"),
+            value: [[${monthBorrows[3].num}]]
+        },
+        {
+            time: date2str([[${monthBorrows[4].date}]], "yyyy-MM"),
+            value: [[${monthBorrows[4].num}]]
+        },
+        {
+            time: date2str([[${monthBorrows[5].date}]], "yyyy-MM"),
+            value: [[${monthBorrows[5].num}]]
+        },
+        {
+            time: date2str([[${monthBorrows[6].date}]], "yyyy-MM"),
+            value: [[${monthBorrows[6].num}]]
+        },
+        {
+            time: date2str([[${monthBorrows[7].date}]], "yyyy-MM"),
+            value: [[${monthBorrows[7].num}]]
+        },
+        {
+            time: date2str([[${monthBorrows[8].date}]], "yyyy-MM"),
+            value: [[${monthBorrows[8].num}]]
+        },
+        {
+            time: date2str([[${monthBorrows[9].date}]], "yyyy-MM"),
+            value: [[${monthBorrows[9].num}]]
+        },
+        {
+            time: date2str([[${monthBorrows[10].date}]], "yyyy-MM"),
+            value: [[${monthBorrows[10].num}]]
+        },
+        {
+            time: date2str([[${monthBorrows[11].date}]], "yyyy-MM"),
+            value: [[${monthBorrows[11].num}]]
+        }
+    ];
+    var chart = new G2.Chart({
+        container: 'mountNode1',
+        forceFit: true,
+        height: 300,
+        padding: 40
+    });
+    chart.source(data);
+    chart.scale('value', {
+        min: 0
+    });
+    chart.scale('time', {
+        range: [0, 1]
+    });
+    chart.tooltip({
+        crosshairs: {
+            type: 'line'
+        }
+    });
+    chart.line().position('time*value');
+    chart.point().position('time*value').size(4).shape('circle').style({
+        stroke: '#fff',
+        lineWidth: 1
+    });
+    chart.render();
+
+    function date2str(x, y) {
+        x1 = new Date(x);
+        var z = {
+            y: x1.getFullYear(),
+            M: x1.getMonth() + 1,
+            d: x1.getDate(),
+            h: x1.getHours(),
+            m: x1.getMinutes(),
+            s: x1.getSeconds()
+        };
+        return y.replace(/(y+|M+|d+|h+|m+|s+)/g, function (v) {
+            return ((v.length > 1 ? "0" : "") + eval('z.' + v.slice(-1))).slice(-(v.length > 2 ? v.length : 2))
+        });
+    }
+</script>
+<script>
+    var data =
+        [{
+            item: 'BorrowedNumber',
+            count: [[${borrowedNumber}]],
+            percent: [[${borrowedNumber}]] / ([[${borrowedNumber}]] + [[${RemainNumber}]])
+        }, {
+            item: 'RemainNumber',
+            count: [[${RemainNumber}]],
+            percent: [[${RemainNumber}]] / ([[${borrowedNumber}]] + [[${RemainNumber}]])
+        }];
+    var chart = new G2.Chart({
+        container: 'mountNode',
+        forceFit: true,
+        height: 300,
+        padding: 40
+    });
+    chart.source(data, {
+        percent: {
+            formatter: function formatter(val) {
+                val = val * 100 + '%';
+                return val;
+            }
+        }
+    });
+    chart.coord('theta', {
+        radius: 0.75
+    });
+    chart.tooltip({
+        showTitle: false,
+        itemTpl: '<li><span style="background-color:{color};" class="g2-tooltip-marker"></span>{name}: {value}</li>'
+    });
+    chart.intervalStack().position('percent').color('item').label('percent', {
+        formatter: function formatter(val, item) {
+            return item.point.item + ': ' + item.point.count + '本';
+        }
+    }).tooltip('item*percent', function (item, percent) {
+        percent = percent * 100 + '%';
+        return {
+            name: item,
+            value: percent
+        };
+    }).style({
+        lineWidth: 1,
+        stroke: '#fff'
+    });
+    chart.render();
+</script>
+
+<script>
+
+    var pageNumber3 = 0;
+
+    function getOnePageBook3_1() {
+        pageNumber3 = 0;
+        $.ajax({
+            type: "get",
+            url: "returnedBooks",
+            data: {start: 0, size: 5, status: 3},
+            success: function (data) {
+                var str = "";
+                $('#bk-table-3').empty();
+                for (var i = 0; i < data.content.length; i++) {
+                    str += "<tr>\n" +
+                        "\n" +
+                        "                    <td>"+data.content[i].bkunitId+"</td>\n" +
+                        "                    <td><a href = \"book_details?isbn="+data.content[i].isbn+"\">"+data.content[i].title+"</a></td>\n" +
+                        "\n" +
+                        "                    <td>"+data.content[i].author+"</td>\n" +
+                        "                    <td>"+data.content[i].publisher+"</td>\n" +
+                        "                    <td class = \"am-hide-sm-only\">"+data.content[i].publishDate+"</td>\n" +
+                        "                    <td class = \"am-hide-sm-only\">"+data.content[i].borrowDate+"</td>\n" +
+                        "                    <td class = \"am-hide-sm-only\">"+data.content[i].returnDate+"</td>\n" +
+                        "                    <td>"+data.content[i].money+"</td>\n" +
+                        "                    <td>\n" +
+                        "                        <div class = \"am-btn-toolbar\">\n" +
+                        "                            <div class = \"am-btn-group am-btn-group-xs\">\n" +
+                        "                                <a href = \"reader_comment?isbn="+data.content[i].isbn+"\">\n" +
+                        "                                    <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"><span\n" +
+                        "                                            class = \"am-icon-pencil-square-o\"></span> 评论\n" +
+                        "                                    </button>\n" +
+                        "                                </a>\n" +
+                        "                            </div>\n" +
+                        "                        </div>\n" +
+                        "                    </td>\n" +
+                        "                </tr>"
+                }
+                $('#bk-table-3').html(str);
+            }
+        });
+    }
+
+    function getOnePageBook3_2(temp) {
+        pageNumber3 += temp;
+        if (pageNumber3 < 0)
+            pageNumber3 = 0;
+        else if (pageNumber3 >= [[${page3.totalPages}]])
+            pageNumber3 = [[${page3.totalPages}]]-1;
+        else
+            $.ajax({
+                type: "get",
+                url: "returnedBooks",
+                data: {start: pageNumber3, size: 5, status: 3},
+                success: function (data) {
+                    var str = '';
+                    $('#bk-table-3').empty();
+                    for (var i = 0; i < data.content.length; i++) {
+                        str += "<tr>\n" +
+                            "\n" +
+                            "                    <td>"+data.content[i].bkunitId+"</td>\n" +
+                            "                    <td><a href = \"book_details?isbn="+data.content[i].isbn+"\">"+data.content[i].title+"</a></td>\n" +
+                            "\n" +
+                            "                    <td>"+data.content[i].author+"</td>\n" +
+                            "                    <td>"+data.content[i].publisher+"</td>\n" +
+                            "                    <td class = \"am-hide-sm-only\">"+data.content[i].publishDate+"</td>\n" +
+                            "                    <td class = \"am-hide-sm-only\">"+data.content[i].borrowDate+"</td>\n" +
+                            "                    <td class = \"am-hide-sm-only\">"+data.content[i].returnDate+"</td>\n" +
+                            "                    <td>"+data.content[i].money+"</td>\n" +
+                            "                    <td>\n" +
+                            "                        <div class = \"am-btn-toolbar\">\n" +
+                            "                            <div class = \"am-btn-group am-btn-group-xs\">\n" +
+                            "                                <a href = \"reader_comment?isbn="+data.content[i].isbn+"\">\n" +
+                            "                                    <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"><span\n" +
+                            "                                            class = \"am-icon-pencil-square-o\"></span> 评论\n" +
+                            "                                    </button>\n" +
+                            "                                </a>\n" +
+                            "                            </div>\n" +
+                            "                        </div>\n" +
+                            "                    </td>\n" +
+                            "                </tr>"
+                    }
+                    $('#bk-table-3').html(str);
+                }
+            });
+    }
+
+    function getOnePageBook3_3(end) {
+        pageNumber3 = end;
+        $.ajax({
+            type: "get",
+            url: "returnedBooks",
+            data: {start: end, size: 5, status: 3},
+            success: function (data) {
+                console.log(data);
+                var str = '';
+                $('#bk-table-3').empty();
+                for (var i = 0; i < data.content.length; i++) {
+                    str += "<tr>\n" +
+                        "\n" +
+                        "                    <td>"+data.content[i].bkunitId+"</td>\n" +
+                        "                    <td><a href = \"book_details?isbn="+data.content[i].isbn+"\">"+data.content[i].title+"</a></td>\n" +
+                        "\n" +
+                        "                    <td>"+data.content[i].author+"</td>\n" +
+                        "                    <td>"+data.content[i].publisher+"</td>\n" +
+                        "                    <td class = \"am-hide-sm-only\">"+data.content[i].publishDate+"</td>\n" +
+                        "                    <td class = \"am-hide-sm-only\">"+data.content[i].borrowDate+"</td>\n" +
+                        "                    <td class = \"am-hide-sm-only\">"+data.content[i].returnDate+"</td>\n" +
+                        "                    <td>"+data.content[i].money+"</td>\n" +
+                        "                    <td>\n" +
+                        "                        <div class = \"am-btn-toolbar\">\n" +
+                        "                            <div class = \"am-btn-group am-btn-group-xs\">\n" +
+                        "                                <a href = \"reader_comment?isbn="+data.content[i].isbn+"\">\n" +
+                        "                                    <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"><span\n" +
+                        "                                            class = \"am-icon-pencil-square-o\"></span> 评论\n" +
+                        "                                    </button>\n" +
+                        "                                </a>\n" +
+                        "                            </div>\n" +
+                        "                        </div>\n" +
+                        "                    </td>\n" +
+                        "                </tr>"
+                }
+                $('#bk-table-3').html(str);
+            }
+        });
+    }
+</script>
+<script>
+
+    var pageNumber2 = 0;
+
+    function getOnePageBook2_1() {
+        pageNumber2 = 0;
+        $.ajax({
+            type: "get",
+            url: "borrowedBooks",
+            data: {start: 0, size: 5, status: 2},
+            success: function (data) {
+                var str = '';
+                $('#bk-table-2').empty();
+                for (var i = 0; i < data.content.length; i++) {
+                    str += "<tr>\n" +
+                        "\n" +
+                        "                    <td>"+data.content[i].bkunit.id+"</td>\n" +
+                        "                    <td><a href = \"book_details?isbn="+data.content[i].bkunit.book.isbn+"\">"+data.content[i].bkunit.book.title+"</a></td>\n" +
+                        "\n" +
+                        "                    <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.author+"</td>\n" +
+                        "                    <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.publisher+"</td>\n" +
+                        "                    <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.publishDate+"</td>\n" +
+                        "                    <td>"+data.content[i].borrowDate+"</td>\n" +
+                        "                    <td>"+data.content[i].returnDate+"</td>\n" +
+                        "                    <td>\n" +
+                        "                        <div class = \"am-btn-toolbar\">\n" +
+                        "                            <div class = \"am-btn-group am-btn-group-xs\">\n" +
+                        "                                <a href = \"reader_comment?isbn="+data.content[i].bkunit.book.isbn+"\">\n" +
+                        "                                    <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"><span\n" +
+                        "                                            class = \"am-icon-pencil-square-o\"></span> 评论\n" +
+                        "                                    </button>\n" +
+                        "                                    <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"\n" +
+                        "                                            onclick = \"book_renew("+data.content[i].id+")\">\n" +
+                        "                                        <span class = \"am-icon-pencil-square-o\"></span> 续借\n" +
+                        "                                    </button>\n" +
+                        "                                </a>\n" +
+                        "                            </div>\n" +
+                        "                        </div>\n" +
+                        "                    </td>\n" +
+                        "                </tr>"
+                }
+                $('#bk-table-2').html(str);
+            }
+        });
+    }
+
+    function getOnePageBook2_2(temp) {
+        pageNumber2 += temp;
+        if (pageNumber2 < 0)
+            pageNumber2 = 0;
+        else if (pageNumber2 >= [[${page2.totalPages}]])
+            pageNumber2 = [[${page2.totalPages}]]-1;
+        else
+            $.ajax({
+                type: "get",
+                url: "borrowedBooks",
+                data: {start: pageNumber2, size: 5, status: 2},
+                success: function (data) {
+                    var str = '';
+                    $('#bk-table-2').empty();
+                    for (var i = 0; i < data.content.length; i++) {
+                        str +="<tr>\n" +
+                            "\n" +
+                            "                    <td>"+data.content[i].bkunit.id+"</td>\n" +
+                            "                    <td><a href = \"book_details?isbn="+data.content[i].bkunit.book.isbn+"\">"+data.content[i].bkunit.book.title+"</a></td>\n" +
+                            "\n" +
+                            "                    <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.author+"</td>\n" +
+                            "                    <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.publisher+"</td>\n" +
+                            "                    <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.publishDate+"</td>\n" +
+                            "                    <td>"+data.content[i].borrowDate+"</td>\n" +
+                            "                    <td>"+data.content[i].returnDate+"</td>\n" +
+                            "                    <td>\n" +
+                            "                        <div class = \"am-btn-toolbar\">\n" +
+                            "                            <div class = \"am-btn-group am-btn-group-xs\">\n" +
+                            "                                <a href = \"reader_comment?isbn="+data.content[i].bkunit.book.isbn+"\">\n" +
+                            "                                    <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"><span\n" +
+                            "                                            class = \"am-icon-pencil-square-o\"></span> 评论\n" +
+                            "                                    </button>\n" +
+                            "                                    <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"\n" +
+                            "                                            onclick = \"book_renew("+data.content[i].id+")\">\n" +
+                            "                                        <span class = \"am-icon-pencil-square-o\"></span> 续借\n" +
+                            "                                    </button>\n" +
+                            "                                </a>\n" +
+                            "                            </div>\n" +
+                            "                        </div>\n" +
+                            "                    </td>\n" +
+                            "                </tr>"
+                    }
+                    $('#bk-table-2').html(str);
+                }
+            });
+    }
+
+    function getOnePageBook2_3(end) {
+        pageNumber2 = end;
+        $.ajax({
+            type: "get",
+            url: "borrowedBooks",
+            data: {start: end, size: 5, status: 2},
+            success: function (data) {
+                var str = '';
+                $('#bk-table-2').empty();
+                for (var i = 0; i < data.content.length; i++) {
+                    str += "<tr>\n" +
+                        "\n" +
+                        "                    <td>"+data.content[i].bkunit.id+"</td>\n" +
+                        "                    <td><a href = \"book_details?isbn="+data.content[i].bkunit.book.isbn+"\">"+data.content[i].bkunit.book.title+"</a></td>\n" +
+                        "\n" +
+                        "                    <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.author+"</td>\n" +
+                        "                    <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.publisher+"</td>\n" +
+                        "                    <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.publishDate+"</td>\n" +
+                        "                    <td>"+data.content[i].borrowDate+"</td>\n" +
+                        "                    <td>"+data.content[i].returnDate+"</td>\n" +
+                        "                    <td>\n" +
+                        "                        <div class = \"am-btn-toolbar\">\n" +
+                        "                            <div class = \"am-btn-group am-btn-group-xs\">\n" +
+                        "                                <a href = \"reader_comment?isbn="+data.content[i].bkunit.book.isbn+"\">\n" +
+                        "                                    <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"><span\n" +
+                        "                                            class = \"am-icon-pencil-square-o\"></span> 评论\n" +
+                        "                                    </button>\n" +
+                        "                                    <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"\n" +
+                        "                                            onclick = \"book_renew("+data.content[i].id+")\">\n" +
+                        "                                        <span class = \"am-icon-pencil-square-o\"></span> 续借\n" +
+                        "                                    </button>\n" +
+                        "                                </a>\n" +
+                        "                            </div>\n" +
+                        "                        </div>\n" +
+                        "                    </td>\n" +
+                        "                </tr>"
+                }
+                $('#bk-table-2').html(str);
+            }
+        });
+    }
+</script>
+<script>
+    var pageNumber1 = 0;
+
+    function getOnePageBook1_1() {
+        pageNumber1 = 0;
+        $.ajax({
+            type: "get",
+            url: "borrowedBooks",
+            data: {start: 0, size: 5, status: 1},
+            success: function (data) {
+                var str = '';
+                $('#bk-table-1').empty();
+                for (var i = 0; i < data.content.length; i++) {
+                    str += "<tr>\n" +
+                        "\n" +
+                        "                        <td>"+data.content[i].bkunit.id+"</td>\n" +
+                        "                        <td><a href = \"book_details?isbn="+data.content[i].bkunit.book.isbn+"\">"+data.content[i].bkunit.book.title+"</a></td>\n" +
+                        "\n" +
+                        "                        <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.author+"</td>\n" +
+                        "                        <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.publisher+"</td>\n" +
+                        "                        <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.publishDate+"</td>\n" +
+                        "                        <td>"+data.content[i].returnDate+"</td>\n" +
+                        "                        <td>\n" +
+                        "                            <div class = \"am-btn-toolbar\">\n" +
+                        "                                <div class = \"am-btn-group am-btn-group-xs\">\n" +
+                        "                                    <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"\n" +
+                        "                                            onclick = \"cancel_appointment("+data.content[i].id+")\">\n" +
+                        "                                        <span class = \"am-icon-pencil-square-o\"></span> 取消\n" +
+                        "                                    </button>\n" +
+                        "                                    <a href = \"appointment?id="+data.content[i].id+"\">\n" +
+                        "                                        <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"><span\n" +
+                        "                                                class = \"am-icon-pencil-square-o\"></span> 查看\n" +
+                        "                                        </button>\n" +
+                        "                                    </a>\n" +
+                        "                                </div>\n" +
+                        "                            </div>\n" +
+                        "                        </td>\n" +
+                        "                    </tr>"
+                }
+                $('#bk-table-1').html(str);
+            }
+        });
+    }
+
+    function getOnePageBook1_2(temp) {
+        pageNumber1 += temp;
+        if (pageNumber1 < 0)
+            pageNumber1 = 0;
+        else if (pageNumber1 >= [[${page1.totalPages}]])
+            pageNumber1 = [[${page1.totalPages}]]-1;
+        else
+            $.ajax({
+                type: "get",
+                url: "borrowedBooks",
+                data: {start: pageNumber1, size: 5, status: 1},
+                success: function (data) {
+                    var str = '';
+                    $('#bk-table-1').empty();
+                    for (var i = 0; i < data.content.length; i++) {
+                        str += "<tr>\n" +
+                            "\n" +
+                            "                        <td>"+data.content[i].bkunit.id+"</td>\n" +
+                            "                        <td><a href = \"book_details?isbn="+data.content[i].bkunit.book.isbn+"\">"+data.content[i].bkunit.book.title+"</a></td>\n" +
+                            "\n" +
+                            "                        <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.author+"</td>\n" +
+                            "                        <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.publisher+"</td>\n" +
+                            "                        <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.publishDate+"</td>\n" +
+                            "                        <td>"+data.content[i].returnDate+"</td>\n" +
+                            "                        <td>\n" +
+                            "                            <div class = \"am-btn-toolbar\">\n" +
+                            "                                <div class = \"am-btn-group am-btn-group-xs\">\n" +
+                            "                                    <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"\n" +
+                            "                                            onclick = \"cancel_appointment("+data.content[i].id+")\">\n" +
+                            "                                        <span class = \"am-icon-pencil-square-o\"></span> 取消\n" +
+                            "                                    </button>\n" +
+                            "                                    <a href = \"appointment?id="+data.content[i].id+"\">\n" +
+                            "                                        <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"><span\n" +
+                            "                                                class = \"am-icon-pencil-square-o\"></span> 查看\n" +
+                            "                                        </button>\n" +
+                            "                                    </a>\n" +
+                            "                                </div>\n" +
+                            "                            </div>\n" +
+                            "                        </td>\n" +
+                            "                    </tr>"
+                    }
+                    $('#bk-table-1').html(str);
+                }
+            });
+    }
+
+    function getOnePageBook1_3(end) {
+        pageNumber1 = end;
+        $.ajax({
+            type: "get",
+            url: "borrowedBooks",
+            data: {start: end, size: 5, status: 1},
+            success: function (data) {
+                var str = '';
+                $('#bk-table-1').empty();
+                for (var i = 0; i < data.content.length; i++) {
+                    str += "<tr>\n" +
+                        "\n" +
+                        "                        <td>"+data.content[i].bkunit.id+"</td>\n" +
+                        "                        <td><a href = \"book_details?isbn="+data.content[i].bkunit.book.isbn+"\">"+data.content[i].bkunit.book.title+"</a></td>\n" +
+                        "\n" +
+                        "                        <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.author+"</td>\n" +
+                        "                        <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.publisher+"</td>\n" +
+                        "                        <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.publishDate+"</td>\n" +
+                        "                        <td>"+data.content[i].returnDate+"</td>\n" +
+                        "                        <td>\n" +
+                        "                            <div class = \"am-btn-toolbar\">\n" +
+                        "                                <div class = \"am-btn-group am-btn-group-xs\">\n" +
+                        "                                    <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"\n" +
+                        "                                            onclick = \"cancel_appointment("+data.content[i].id+")\">\n" +
+                        "                                        <span class = \"am-icon-pencil-square-o\"></span> 取消\n" +
+                        "                                    </button>\n" +
+                        "                                    <a href = \"appointment?id="+data.content[i].id+"\">\n" +
+                        "                                        <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"><span\n" +
+                        "                                                class = \"am-icon-pencil-square-o\"></span> 查看\n" +
+                        "                                        </button>\n" +
+                        "                                    </a>\n" +
+                        "                                </div>\n" +
+                        "                            </div>\n" +
+                        "                        </td>\n" +
+                        "                    </tr>"
+                }
+                $('#bk-table-1').html(str);
+            }
+        });
+    }
+</script>
+<script type = "text/javascript">
+    $("#change").click(function () {
+        translate();
+    })
+</script>
+<script type = "text/javascript" color = "50,177,108" opacity = "1" zIndex = "-1" count = "100"
+        src = "https://www.laomoit.com/wp-content/themes/pc/js/line.js"></script>
+</body>
+</html>
+>>>>>>> 8db0a7f5ae29bf19868473074b6b80ec6b513cfc
