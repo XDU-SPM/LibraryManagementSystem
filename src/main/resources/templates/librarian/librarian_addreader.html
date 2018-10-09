@@ -79,7 +79,6 @@
                     <a class = "am-dropdown-toggle" data-am-dropdown-toggle href = "javascript:;">
                         <a th:href = "@{/logout}">注销</a>
                     </a>
-
                 </li>
 
             </ul>
@@ -157,77 +156,69 @@
     <div class = "admin-content">
         <div class = "admin-content-body">
             <div class = "am-cf am-padding am-padding-bottom-0">
-                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">个人资料</strong> /
-                    <small>Personal information</small>
+                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">创建新的读者</strong> /
+                    <small>New Reader</small>
                 </div>
+
             </div>
 
             <hr/>
 
             <div class = "am-g">
-                <div class = "am-u-sm-12 am-u-md-4 am-u-md-push-8">
-                    <div class = "am-panel am-panel-default">
-                        <div class = "am-panel-bd">
-                            <div class = "am-g">
-                                <div class = "am-u-md-4">
-                                    <img class = "am-img-circle am-img-thumbnail"
-                                         src = "http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/200/h/200/q/80"
-                                         alt = ""/>
-                                </div>
-                                <div class = "am-u-md-8">
-                                    <p>你可以使用<a href = "#">gravatar.com</a>提供的头像或者使用本地上传头像。 </p>
-                                    <form class = "am-form">
-                                        <div class = "am-form-group">
-                                            <input type = "file" id = "user-pic">
-                                            <p class = "am-form-help">请选择要上传的文件...</p>
-                                            <button type = "button" class = "am-btn am-btn-primary am-btn-xs">保存
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
+
+
+                <div class = "am-u-sm-12 am-u-md-8 ">
+                    <form class = "am-form am-form-horizontal" action = "reader_register" method = "post">
+                        <div class = "am-form-group">
+                            <label for = "reader-username" class = "am-u-sm-3 am-form-label">用户名</label>
+                            <div class = "am-u-sm-9">
+                                <input type = "text" id = "reader-username" placeholder = "输入用户名/Username"
+                                       name = "username">
                             </div>
                         </div>
-                    </div>
 
-
-                </div>
-
-                <div class = "am-u-sm-12 am-u-md-8 am-u-md-pull-4">
-                    <form class = "am-form am-form-horizontal" method = "post" action = "saveUser">
-
-                        <div class = "am-form-group">
-                            <label for = "username" class = "am-u-sm-3 am-form-label">用户名</label>
-                            <div class = "am-u-sm-9">
-                                <input minlength="5" maxlength="20" type = "text" id = "username" placeholder = "用户名 / username" name = "username" th:value="${user.username}">
+                        <div class="am-form-group">
+                            <label for = "deposit" class = "am-u-sm-3 am-form-label">保证金</label>
+                            <div class="am-u-sm-9">
+                                <input id = "deposit" readonly="readonly" th:value="${deposit}" type="number">
                             </div>
                         </div>
 
                         <div class = "am-form-group">
-                            <label for = "name" class = "am-u-sm-3 am-form-label">姓名</label>
+                            <label for = "reader-password" class = "am-u-sm-3 am-form-label">密码</label>
                             <div class = "am-u-sm-9">
-                                <input type = "text" minlength="5" maxlength="20" id = "name" placeholder = "姓名 / Name" name = "name" th:value="${user.name}">
+                                <input type = "password" id = "reader-password" placeholder = "输入密码/Password"
+                                       name = "password" value="12345678">
                             </div>
                         </div>
 
                         <div class = "am-form-group">
-                            <label for = "user-email" class = "am-u-sm-3 am-form-label">电子邮件</label>
+                            <label for = "reader-name" class = "am-u-sm-3 am-form-label">姓名</label>
                             <div class = "am-u-sm-9">
-                                <input type = "email" id = "user-email" placeholder = "输入你的电子邮件 / Email" name = "email"
-                                       th:value = "${user.email}">
+                                <input type = "text" id = "reader-name" placeholder = "输入姓名/Name" name = "name">
                             </div>
                         </div>
+
+                        <div class = "am-form-group">
+                            <label for = "reader-email" class = "am-u-sm-3 am-form-label">邮箱</label>
+                            <div class = "am-u-sm-9">
+                                <input type = "text" id = "reader-email" placeholder = "输入邮箱/Email" name = "email">
+                            </div>
+                        </div>
+
 
                         <div class = "am-form-group">
                             <div class = "am-u-sm-9 am-u-sm-push-3">
-                                <input type = "submit" class = "am-btn am-btn-primary" value = "保存修改/Save"
-                                       onclick = "return check()">
+                                <button type = "submit" class = "am-btn am-btn-primary" onclick = "return check()">提交
+                                </button>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
-        </div>
 
+
+        </div>
         <footer class = "admin-content-footer">
             <hr>
             <p class = "am-padding-left" style = "text-align: center">© 2018 Biboliosoft Online Library System</p>
@@ -235,13 +226,10 @@
 
     </div>
     <!-- content end -->
-
 </div>
 
 
 <!--[if lt IE 9]>
-<script src = "http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
-<script src = "http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
 <script src = "assets/js/amazeui.ie8polyfill.min.js"></script>
 <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!-->
@@ -249,17 +237,38 @@
 <!--<![endif]-->
 <script src = "assets/js/amazeui.min.js"></script>
 <script src = "assets/js/app.js"></script>
-<script type = "text/javascript" src = "assets/js/test.js"></script>
+
+<script th:inline = "javascript">
+    var status = [[${status}]];
+
+    function isOk() {
+        if (status != 'null') {
+            if (status) {
+                alert("创建成功！");
+            }
+            else
+                alert("创建失败！");
+        }
+    }
+
+    isOk();
+</script>
+
+<script type = "text/javascript" src = "assets/js/charts/echarts.min.js"></script>
+<script type = "text/javascript" src = "assets/js/charts/pieChart.js"></script>
+<script src = "assets/js/test.js">
+</script>
 <script type = "text/javascript">
     $("#change").click(function () {
         translate();
     })
 </script>
+
 <script>
     let status = true;
 
     $(function () {
-        $("#username").blur(function () {
+        $("#reader-username").blur(function () {
             var params = $(this).serialize();
             $.ajax(
                 {

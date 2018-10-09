@@ -115,7 +115,26 @@
                         </li>
                     </ul>
                 </li>
-                <li><a href = "#"><span class = "am-icon-comment"></span> 发布公告</a></li>
+                <li class="admin-parent">
+                    <a class = "am-cf" data-am-collapse = "{target: '#collapse-nav2'}"><span
+                            class = "am-icon-user"></span> 管理读者 <span
+                            class = "am-icon-angle-right am-fr am-margin-right"></span></a>
+                    <ul class = "am-list am-collapse admin-sidebar-sub am-in" id = "collapse-nav2">
+                        <li><a href = "librarian_addreader"><span class = "am-icon-user-plus"></span> 增加读者</a></li>
+                        <li><a href = "librarian_managereader"><span class = "am-icon-pencil"></span> 管理读者</a></li>
+                    </ul>
+                </li>
+                <li class="admin-parent">
+                    <a class = "am-cf" data-am-collapse = "{target: '#collapse-nav3'}"><span
+                            class = "am-icon-table"></span> 记录 <span
+                            class = "am-icon-angle-right am-fr am-margin-right"></span></a>
+                    <ul class = "am-list am-collapse admin-sidebar-sub am-in" id = "collapse-nav3">
+                        <li><a href = "librarian_history"><span class = "am-icon-book"></span> 借阅记录</a></li>
+                        <li><a href = "librarian_income"><span class = "am-icon-money"></span> 收入记录 </a></li>
+                        <li><a href = "librarian_fine"><span class="am-icon-bolt">罚金记录</span></a></li>
+                    </ul>
+                </li>
+                <li><a href = "librarian_announce"><span class = "am-icon-comment"></span> 发布公告</a></li>
             </ul>
 
             <div class = "am-panel am-panel-default admin-sidebar-panel">
@@ -211,7 +230,7 @@
 
                             <div class = "am-g am-margin-top-sm">
                                 <div class = "am-u-sm-10 am-u-sm-push-2">
-                                    <input type = "submit" class = "am-btn am-btn-primary " value = "提交">
+                                    <input type = "submit" class = "am-btn am-btn-primary " value = "提交/submit">
                                 </div>
                             </div>
 
@@ -232,7 +251,7 @@
 
                             <div class = "am-g am-margin-top-sm">
                                 <div class = "am-u-sm-10 am-u-sm-push-2">
-                                    <input type = "submit" class = "am-btn am-btn-primary " value = "提交">
+                                    <input type = "submit" class = "am-btn am-btn-primary " value = "提交/submit">
                                 </div>
                             </div>
                         </form>

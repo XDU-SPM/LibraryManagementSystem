@@ -8,9 +8,10 @@
     <link rel = "apple-touch-icon-precomposed" href = "assets/i/app-icon72x72@2x.png">
     <link rel = "stylesheet" href = "assets/css/amazeui.min.css"/>
     <link rel = "stylesheet" href = "assets/css/admin.css">
+    <link rel = "stylesheet" href = "dist/amazeui.datatables.min.css">
     <style>
-        .am-form-group {
-            text-align: left;
+        .am-table {
+
         }
 
         .am-topbar {
@@ -25,9 +26,6 @@
             background: url(assets/i/logo.jpg) no-repeat left center;
             -webkit-background-size: 125px 24px;
             background-size: 125px 24px;
-        }
-
-        .am-topbar-brand {
         }
     </style>
 </head>
@@ -134,7 +132,7 @@
                         <li><a href = "librarian_fine"><span class="am-icon-bolt">罚金记录</span></a></li>
                     </ul>
                 </li>
-                <li><a href = "librarian_announce"><span class = "am-icon-comment"></span> 发布公告</a></li>
+                <li><a href = "#"><span class = "am-icon-comment"></span> 发布公告</a></li>
             </ul>
 
             <div class = "am-panel am-panel-default admin-sidebar-panel">
@@ -153,77 +151,72 @@
         </div>
     </div>
     <!-- sidebar end -->
-    <!-- content start -->
+
+
     <div class = "admin-content">
         <div class = "admin-content-body">
+
+
             <div class = "am-cf am-padding am-padding-bottom-0">
-                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">个人资料</strong> /
-                    <small>Personal information</small>
+                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">书本删除记录</strong> /
+                    <small>BorrowRecord</small>
                 </div>
             </div>
 
-            <hr/>
+            <hr>
 
-            <div class = "am-g">
-                <div class = "am-u-sm-12 am-u-md-4 am-u-md-push-8">
-                    <div class = "am-panel am-panel-default">
-                        <div class = "am-panel-bd">
-                            <div class = "am-g">
-                                <div class = "am-u-md-4">
-                                    <img class = "am-img-circle am-img-thumbnail"
-                                         src = "http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/200/h/200/q/80"
-                                         alt = ""/>
-                                </div>
-                                <div class = "am-u-md-8">
-                                    <p>你可以使用<a href = "#">gravatar.com</a>提供的头像或者使用本地上传头像。 </p>
-                                    <form class = "am-form">
-                                        <div class = "am-form-group">
-                                            <input type = "file" id = "user-pic">
-                                            <p class = "am-form-help">请选择要上传的文件...</p>
-                                            <button type = "button" class = "am-btn am-btn-primary am-btn-xs">保存
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+
+            <div class = "am-g am-g-fixed">
+                <div class = "am-u-sm-8 ">
+                    <div class = "am-input-group am-input-group-sm">
+                        <input type = "text" class = "am-form-field">
+                        <span class = "am-input-group-btn">
+						<button class = "am-btn am-btn-default" type = "button">搜索</button>
+					  </span>
                     </div>
-
-
                 </div>
 
-                <div class = "am-u-sm-12 am-u-md-8 am-u-md-pull-4">
-                    <form class = "am-form am-form-horizontal" method = "post" action = "saveUser">
 
-                        <div class = "am-form-group">
-                            <label for = "username" class = "am-u-sm-3 am-form-label">用户名</label>
-                            <div class = "am-u-sm-9">
-                                <input minlength="5" maxlength="20" type = "text" id = "username" placeholder = "用户名 / username" name = "username" th:value="${user.username}">
-                            </div>
-                        </div>
+            </div>
 
-                        <div class = "am-form-group">
-                            <label for = "name" class = "am-u-sm-3 am-form-label">姓名</label>
-                            <div class = "am-u-sm-9">
-                                <input type = "text" minlength="5" maxlength="20" id = "name" placeholder = "姓名 / Name" name = "name" th:value="${user.name}">
-                            </div>
-                        </div>
+            <hr>
 
-                        <div class = "am-form-group">
-                            <label for = "user-email" class = "am-u-sm-3 am-form-label">电子邮件</label>
-                            <div class = "am-u-sm-9">
-                                <input type = "email" id = "user-email" placeholder = "输入你的电子邮件 / Email" name = "email"
-                                       th:value = "${user.email}">
-                            </div>
+            <div class = "am-g" >
+                <div class = "am-u-sm-12">
+                    <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "record">
+                        <thead>
+                        <tr>
+                            <th class = "table-id">编号</th>
+                            <th class = "table-id">书号</th>
+                            <th class = "table-title">标题</th>
+                            <th class = "table-isbn">ISBN</th>
+                            <th class = "table-librarian am-hide-sm-only">管理员</th>
+                            <th class = "table-deleteDate">删除时间</th>
+                            <th class = "table-reason am-hide-sm-only">删除原因</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each = "record:${page}" >
+                            <td th:text = "${record.id}"></td>
+                            <td th:text = "${record.bkunit.id}"></td>
+                            <td th:text = "${record.bkunit.book.title}"></td>
+                            <td ><a th:text = "${record.bkunit.book.isbn}" th:href="@{librarian_book(isbn=${record.bkunit.book.isbn})}"></a></td>
+                            <td class = "am-hide-sm-only"><a th:text = "${record.user.username}" th:href="@{librarian_user(username=${record.user.uername})}"></a></td>
+                            <td class = "am-hide-sm-only" th:text = "${record.deleteDate}"></td>
+                            <td class = "am-hide-sm-only" th:text = "${record.reason}"></td>
+                        </tr>
+                    </table>
+                    <div class = "am-cf">
+                        <p th:text="'共有'+${page.numberOfElements}+'条数据'"></p>
+                        <div class = "am-fr">
+                            <ul class = "am-pagination">
+                                <li><a th:href = "@{librarian_deletebookhistory(start=0)}">首页</a></li>
+                                <li><a th:href = "@{librarian_deletebookhistory(start=${page.number}-1)}">上一页</a></li>
+                                <li><a th:href = "@{librarian_deletebookhistory(start=${page.number}+1)}">下一页</a></li>
+                                <li><a th:href="@{librarian_deletebookhistory(start=${page.totalPages})}">末页</a></li>
+                            </ul>
                         </div>
-
-                        <div class = "am-form-group">
-                            <div class = "am-u-sm-9 am-u-sm-push-3">
-                                <input type = "submit" class = "am-btn am-btn-primary" value = "保存修改/Save"
-                                       onclick = "return check()">
-                            </div>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -235,7 +228,6 @@
 
     </div>
     <!-- content end -->
-
 </div>
 
 
@@ -247,45 +239,60 @@
 <!--[if (gte IE 9)|!(IE)]><!-->
 <script src = "assets/js/jquery.min.js"></script>
 <!--<![endif]-->
+<!--<script>-->
+<!--$(function () {-->
+<!--$('#booklist').DataTable(-->
+<!--{-->
+<!--"ordering":false,-->
+<!--"bLengthChange":false,-->
+<!--}-->
+<!--);-->
+<!--})-->
+<!--</script>-->
+
+<script src = "dist/amazeui.datatables.min.js"></script>
 <script src = "assets/js/amazeui.min.js"></script>
 <script src = "assets/js/app.js"></script>
+<script type="text/javascript">
+    function checkNumber(theObj) {
+        var reg = /[1-7]/;
+        if (reg.test(theObj)) {
+            return true;
+        }
+        return false;
+    }
+
+    function status(status){
+        status=parseInt(status);
+        var array=["已借出", "逾期", "续借", "已归还", "已预约", "预约失败", "取消预约"];
+        return array[status-1];
+    }
+
+    function getTableContent(id){
+        var mytable = document.getElementById(id);
+        var data = [];
+        for(var i=0,rows=mytable.rows.length; i<rows; i++){
+            for(var j=0,cells=mytable.rows[i].cells.length; j<cells; j++){
+                if(!data[i]){
+                    data[i] = new Array();
+                }
+                data[i][j] = mytable.rows[i].cells[j].innerText;
+                if(checkNumber(data[i][j])&&j==6)
+                {
+                    mytable.rows[i].cells[j].innerText=status(data[i][j]);
+                }
+            }
+        }
+        return data;
+    }
+    getTableContent("record");
+
+</script>
 <script type = "text/javascript" src = "assets/js/test.js"></script>
 <script type = "text/javascript">
     $("#change").click(function () {
         translate();
     })
-</script>
-<script>
-    let status = true;
-
-    $(function () {
-        $("#username").blur(function () {
-            var params = $(this).serialize();
-            $.ajax(
-                {
-                    method: 'GET',
-                    url: "checkUser",
-                    data: params,
-                    success: function (data) {
-                        if (data.status == 0) {
-                            status = false;
-                            alert("该用户名已经被注册");
-                        }
-                        else
-                            status = true;
-                    }
-                }
-            );
-        })
-    });
-
-    function check() {
-        if (!status) {
-            alert("该用户名已经被注册");
-            return false;
-        }
-        return true;
-    }
 </script>
 </body>
 </html>

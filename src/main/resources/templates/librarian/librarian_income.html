@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang = "en" xmlns:th = "http://www.thymeleaf.org"
-      xmlns:sec = "http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset = "UTF-8">
     <title>BiblioSoft</title>
@@ -132,7 +132,7 @@
                         <li><a href = "librarian_fine"><span class="am-icon-bolt">罚金记录</span></a></li>
                     </ul>
                 </li>
-                <li><a href = "#"><span class = "am-icon-comment"></span> 发布公告</a></li>
+                <li><a href = "librarian_announce"><span class = "am-icon-comment"></span> 发布公告</a></li>
             </ul>
 
             <div class = "am-panel am-panel-default admin-sidebar-panel">
@@ -151,59 +151,69 @@
         </div>
     </div>
     <!-- sidebar end -->
-
-
     <div class = "admin-content">
         <div class = "admin-content-body">
-
-
             <div class = "am-cf am-padding am-padding-bottom-0">
-                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">借阅记录</strong> /
-                    <small>BorrowRecord</small>
+                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">书本清单</strong> /
+                    <small>BookList</small>
                 </div>
             </div>
 
             <hr>
 
-
-            <div class = "am-g am-g-fixed">
-                <div class = "am-u-sm-8 ">
-                    <div class = "am-input-group am-input-group-sm">
-                        <input type = "text" class = "am-form-field">
-                        <span class = "am-input-group-btn">
-						<button class = "am-btn am-btn-default" type = "button">搜索</button>
-					  </span>
+            <div class = "am-g">
+                <div class = "am-u-sm-12 am-u-md-6">
+                    <div class = "am-btn-toolbar">
+                        <div class = "am-btn-group am-btn-group-xs">
+                            <button type = "button" class = "am-btn am-btn-default" id = "add-book"><span
+                                    class = "am-icon-plus"></span> 新增
+                            </button>
+                            <button type = "button" class = "am-btn am-btn-default"><span
+                                    class = "am-icon-trash-o"></span> 删除
+                            </button>
+                        </div>
                     </div>
                 </div>
 
+                <div class = "am-u-sm-12 am-u-md-3">
 
+                </div>
             </div>
 
-            <hr>
-
-            <div class = "am-g" >
+            <div class = "am-g">
                 <div class = "am-u-sm-12">
-                    <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "record">
+                    <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "booklist">
                         <thead>
                         <tr>
-                            <th class = "table-id">编号</th>
                             <th class = "table-id">书号</th>
                             <th class = "table-title">标题</th>
                             <th class = "table-isbn">ISBN</th>
-                            <th class = "table-author am-hide-sm-only">用户名</th>
-                            <th class = "table-publisher">预约时间</th>
-                            <th class = "table-date am-hide-sm-only">预约状态</th>
+                            <th class = "table-author am-hide-sm-only">作者</th>
+                            <th class = "table-publisher">出版社</th>
+                            <th class = "table-date am-hide-sm-only">出版日期</th>
+                            <th class = "table-positon am-hide-sm-only">位置</th>
+                            <th class = "table-set">操作</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each = "record:${page}" >
-                            <td th:text = "${record.id}"></td>
-                            <td th:text = "${record.bkunit.id}"></td>
-                            <td th:text = "${record.bkunit.book.title}"></td>
-                            <td ><a th:text = "${record.bkunit.book.isbn}" th:href="@{librarian_book(isbn=${record.bkunit.book.isbn})}"></a></td>
-                            <td class = "am-hide-sm-only" th:text = "${record.user.username}"></td>
-                            <td class = "am-hide-sm-only" th:text = "${record.borrowDate}"></td>
-                            <td class = "am-hide-sm-only" th:text = "${record.status}"></td>
+                        <tr th:each = "bunit:${page}">
+                            <td th:text = "${bunit.id}"></td>1
+                            <td ><a th:text = "${bunit.book.title}" th:href="@{librarian_book(isbn=${bunit.book.isbn})}"></a></td>
+                            <td th:text = "${bunit.book.isbn}"></td>
+                            <td class = "am-hide-sm-only" th:text = "${bunit.book.author}"></td>
+                            <td class = "am-hide-sm-only" th:text = "${bunit.book.publisher}"></td>
+                            <td class = "am-hide-sm-only" th:text = "${bunit.book.publishDate}"></td>
+                            <td th:text = "${bunit.book.position}"></td>
+                            <td>
+                                <div class = "am-btn-toolbar">
+                                    <div class = "am-btn-group am-btn-group-xs">
+                                        <button class = "am-btn am-btn-default am-btn-xs am-text-secondary" ><a
+                                                th:href="@{deletebook(id=${bunit.id},start=${page.number})}"
+                                                class = "am-icon-close" >删除</a>
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
                     </table>
                     <div class = "am-cf">
@@ -226,8 +236,102 @@
             <p class = "am-padding-left" style = "text-align: center">© 2018 Biboliosoft Online Library System</p>
         </footer>
 
+        <div class = "am-modal am-modal-prompt" tabindex = "-1" id = "my-prompt">
+            <div class = "am-modal-dialog">
+                <div class = "am-modal-hd">添加图书</div>
+                <form class = "am-modal-bd am-form am-form-horizontal" method = "post" action = "addbook" enctype = "multipart/form-data">
+                    <div class = "am-form-group">
+                        <label for = "title" class = "am-u-sm-3 am-form-label">书名</label>
+                        <div class = "am-u-sm-9">
+                            <input type = "text" id = "title" placeholder = "书名 / Title" name = "title">
+                        </div>
+                    </div>
+
+                    <div class = "am-form-group">
+                        <label for = "isbn" class = "am-u-sm-3 am-form-label">ISBN</label>
+                        <div class = "am-u-sm-9">
+                            <input type = "text" id = "isbn" placeholder = "ISBN" name = "isbn">
+                        </div>
+                    </div>
+
+                    <div class = "am-form-group">
+                        <label for = "author" class = "am-u-sm-3 am-form-label">作者</label>
+                        <div class = "am-u-sm-9">
+                            <input type = "text" id = "author" placeholder = "作者 / Author" name = "author">
+                        </div>
+                    </div>
+
+                    <div class = "am-form-group">
+                        <label for = "type" class = "am-u-sm-3 am-form-label">类别</label>
+                        <div class = "am-u-sm-9">
+                            <input type = "text" id = "type" placeholder = "类别 / Type" name = "category">
+                        </div>
+                    </div>
+
+                    <div class = "am-form-group">
+                        <label for = "position" class = "am-u-sm-3 am-form-label">位置</label>
+                        <div class = "am-u-sm-9">
+                            <input type = "text" id = "position" placeholder = "位置 / position" name = "position">
+                        </div>
+                    </div>
+
+                    <div class = "am-form-group">
+                        <label for = "publisher" class = "am-u-sm-3 am-form-label">出版社</label>
+                        <div class = "am-u-sm-9">
+                            <input type = "text" id = "publisher" placeholder = "出版社 / Publisher" name = "publisher">
+                        </div>
+                    </div>
+
+                    <div class = "am-form-group">
+                        <label for = "publish_time" class = "am-u-sm-3 am-form-label">出版时间</label>
+                        <div class = "am-u-sm-9">
+                            <input type = "text" id = "publish_time" placeholder = "出版时间 / Publish Time"
+                                   name = "publishDate">
+                        </div>
+                    </div>
+
+
+                    <div class = "am-form-group">
+                        <label for = "number" class = "am-u-sm-3 am-form-label">数量</label>
+                        <div class = "am-u-sm-9">
+                            <input type = "number" id = "number" pattern = "[1-9][0-9]*" placeholder = "数量 / Number"
+                                   name = "number">
+                        </div>
+                    </div>
+
+                    <div class = "am-form-group">
+                        <label for = "abstract" class = "am-u-sm-3 am-form-label">简介</label>
+                        <div class = "am-u-sm-9">
+                            <input type = "text" id = "abstract" placeholder = "摘要 / Abstract" name = "brief">
+                        </div>
+                    </div>
+
+                    <div class = "am-form-group">
+                        <label for = "price" class = "am-u-sm-3 am-form-label">价格</label>
+                        <div class = "am-u-sm-9">
+                            <input type = "text" id = "price" placeholder = "价格 / Price" name = "price">
+                        </div>
+                    </div>
+
+                    <div class = "am-form-group">
+                        <label for = "price" class = "am-u-sm-3 am-form-label">封面</label>
+                        <div class = "am-u-sm-9">
+                            <input type = "file" id = "user-pic" class = "am-modal-prompt-input" name = "file">
+                        </div>
+                    </div>
+
+
+                    <div class = "am-modal-footer am-g">
+                        <div class = "am-u-sm-7 am-u-sm-push-2 am-u-end">
+                            <input type = "submit" data-am-modal-confirm value = "确认/confirm" class = "am-btn am-btn-primary"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
     </div>
     <!-- content end -->
+
 </div>
 
 
@@ -253,47 +357,30 @@
 <script src = "dist/amazeui.datatables.min.js"></script>
 <script src = "assets/js/amazeui.min.js"></script>
 <script src = "assets/js/app.js"></script>
-<script type="text/javascript">
-    function checkNumber(theObj) {
-        var reg = /[1-7]/;
-        if (reg.test(theObj)) {
-            return true;
-        }
-        return false;
-    }
 
-    function status(status){
-        status=parseInt(status);
-        var array=["已借出", "逾期", "续借", "已归还", "已预约", "预约失败", "取消预约"];
-        return array[status-1];
-    }
-
-    function getTableContent(id){
-        var mytable = document.getElementById(id);
-        var data = [];
-        for(var i=0,rows=mytable.rows.length; i<rows; i++){
-            for(var j=0,cells=mytable.rows[i].cells.length; j<cells; j++){
-                if(!data[i]){
-                    data[i] = new Array();
-                }
-                data[i][j] = mytable.rows[i].cells[j].innerText;
-                if(checkNumber(data[i][j])&&j==6)
-                {
-                    mytable.rows[i].cells[j].innerText=status(data[i][j]);
-                }
-            }
-        }
-        return data;
-    }
-    getTableContent("record");
-
+<script>
+    $(function () {
+        $('#add-book').on('click', function () {
+            $('#my-prompt').modal({
+                relatedTarget: this,
+                // onConfirm: function (e) {
+                //     alert('创建成功')
+                // },
+                // onCancel: function (e) {
+                //
+                // }
+            });
+        });
+    });
 </script>
 <script type = "text/javascript" src = "assets/js/test.js"></script>
+
+
 <script type = "text/javascript">
     $("#change").click(function () {
         translate();
     })
 </script>
+
 </body>
 </html>
-
