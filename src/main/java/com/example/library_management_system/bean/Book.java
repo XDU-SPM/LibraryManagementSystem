@@ -19,6 +19,8 @@ public class Book
     private String title;
 
     private double score;
+
+    @Lob
     private String brief;
 
     private int hardCover;  // pages

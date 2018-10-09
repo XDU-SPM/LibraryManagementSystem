@@ -15,6 +15,7 @@
     <meta name = "apple-mobile-web-app-title" content = "Amaze UI"/>
     <link rel = "stylesheet" href = "assets/css/amazeui.min.css"/>
     <link rel = "stylesheet" href = "assets/css/admin.css">
+    <link rel = "stylesheet" href = "assets/css/app.css">
     <style>
         .am-form-group {
             text-align: left;
@@ -182,15 +183,13 @@
                             共 [[${page.totalElements}]] 条记录
                             <div class = "am-fr">
                                 <ul class = "am-pagination">
-                                    <li><button onclick = "getOnePageBook_1()">[首页]</button></li>
-                                    <li><button onclick = "getOnePageBook_2(-1)">上一页</button></li>
-                                    <li><button onclick = "getOnePageBook_2(1)">下一页</button></li>
-                                    <li><button th:onclick = "'javascript:getOnePageBook_3('+${page.totalPages}+'-1)'">[末页]</button></li>
+                                    <li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook_1()">首页</button></li>
+                                    <li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook_2(-1)">上一页</button></li>
+                                    <li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook_2(1)">下一页</button></li>
+                                    <li><button type="button" class="am-btn am-btn-primary am-round" th:onclick = "'javascript:getOnePageBook_3('+${page.totalPages}+'-1)'">末页</button></li>
                                 </ul>
                             </div>
                         </div>
-                        <hr/>
-                        <p>注：.....</p>
                     </form>
                 </div>
 
