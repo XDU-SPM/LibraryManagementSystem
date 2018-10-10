@@ -109,9 +109,6 @@
                         <li><a href = "delete_users"><span class = "am-icon-trash"></span> 删除图书管理员</a></li>
                     </ul>
                 </li>
-
-                <li><a href = "permission_change"><span class = "am-icon-eraser"></span> 修改权限</a></li>
-
                 <li><a href = "#"><span class = "am-icon-comment"></span> 发布公告</a></li>
             </ul>
 
@@ -135,60 +132,59 @@
     <div class = "admin-content">
         <div class = "admin-content-body">
             <div class = "am-cf am-padding am-padding-bottom-0">
-                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">创建新的图书管理员</strong> /
-                    <small>New Librarian</small>
+                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">图书管理员编辑</strong> /
+                    <small>Librarian Edit</small>
                 </div>
             </div>
 
             <hr/>
 
-            <div class = "am-g">
+            <div class = "am-tabs am-margin" data-am-tabs>
 
 
-                <div class = "am-u-sm-12 am-u-md-8 ">
-                    <form class = "am-form am-form-horizontal" action = "librarian_register" method = "post">
-                        <div class = "am-form-group">
-                            <label for = "librarian-username" class = "am-u-sm-3 am-form-label">用户名</label>
-                            <div class = "am-u-sm-9">
-                                <input type = "text" id = "librarian-username" placeholder = "输入用户名/Username"
-                                       name = "username">
-                            </div>
+                <div class = "am-tabs-bd">
+                    <div class = "am-tab-panel am-fade am-in am-active" id = "tab1">
+                        <div class = "am-g am-margin-top">
+                            <form method = "post" action = "modifyMaxBorrowNum">
+                                <div class = "am-form am-form-horizontal">
+                                    <div class = "am-g am-margin-top">
+                                        <div class = "am-u-sm-4 am-u-md-2 am-text-right">
+                                            图书管理员
+                                        </div>
+                                        <div class = "am-u-sm-8 am-u-md-4">
+                                            <input type = "text" class = "am-input-sm" placeholder = "请输入图书管理员的账号"
+                                                   name = "num">
+                                        </div>
+                                        <div class = "am-hide-sm-only am-u-md-6"></div>
+                                    </div>
+
+                                    <div class = "am-g am-margin-top-sm">
+                                        <div class = "am-u-sm-10 am-u-sm-push-2">
+                                            <button type = "submit" class = "am-btn am-btn-primary ">搜索</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
+                    </div>
 
 
-                        <div class = "am-form-group">
-                            <label for = "librarian-name" class = "am-u-sm-3 am-form-label">姓名</label>
-                            <div class = "am-u-sm-9">
-                                <input type = "text" id = "librarian-name" placeholder = "输入姓名/Name" name = "name">
-                            </div>
-                        </div>
-
-                        <div class = "am-form-group">
-                            <label for = "librarian-email" class = "am-u-sm-3 am-form-label">邮箱</label>
-                            <div class = "am-u-sm-9">
-                                <input type = "text" id = "librarian-email" placeholder = "输入邮箱/Email" name = "email">
-                            </div>
-                        </div>
 
 
-                        <div class = "am-form-group">
-                            <div class = "am-u-sm-9 am-u-sm-push-3">
-                                <button type = "submit" class = "am-btn am-btn-primary" onclick = "return check()">提交
-                                </button>
-                            </div>
-                        </div>
-                    </form>
                 </div>
             </div>
+
+
         </div>
 
-        <footer class = "admin-content-footer">
+        <footer class = "admin-content-footer am-footer-desktop am-footer-fixed">
             <hr>
             <p class = "am-padding-left" style = "text-align: center">© 2018 Biboliosoft Online Library System</p>
         </footer>
 
     </div>
     <!-- content end -->
+
 </div>
 
 
@@ -200,64 +196,29 @@
 <!--<![endif]-->
 <script src = "assets/js/amazeui.min.js"></script>
 <script src = "assets/js/app.js"></script>
+<script type = "text/javascript" src = "assets/js/charts/echarts.min.js"></script>
+<script type = "text/javascript" src = "assets/js/charts/pieChart.js"></script>
+<script src = "assets/js/test.js">
+</script>
+<script type = "text/javascript" th:inline = "javascript">
+    $("#change").click(function () {
+        translate();
+    });
 
-<script th:inline = "javascript">
     var status = [[${status}]];
 
     function isOk() {
         if (status != 'null') {
             if (status) {
-                alert("创建成功！");
+                alert("修改成功！");
             }
             else
-                alert("创建失败！");
+                alert("修改失败！");
+            status = null;
         }
     }
 
     isOk();
 </script>
-
-<script type = "text/javascript" src = "assets/js/charts/echarts.min.js"></script>
-<script type = "text/javascript" src = "assets/js/charts/pieChart.js"></script>
-<script src = "assets/js/test.js">
-</script>
-<script type = "text/javascript">
-    $("#change").click(function () {
-        translate();
-    })
-</script>
-
-<script>
-    let status = true;
-
-    $(function () {
-        $("#librarian-username").blur(function () {
-            var params = $(this).serialize();
-            $.ajax(
-                {
-                    method: 'GET',
-                    url: "checkUser",
-                    data: params,
-                    success: function (data) {
-                        if (data.status == 0) {
-                            status = false;
-                        }
-                        else
-                            status = true;
-                    }
-                }
-            );
-        })
-    });
-
-    function check() {
-        if (!status) {
-            alert("该用户名已经被注册");
-            return false;
-        }
-        return true;
-    }
-</script>
-
 </body>
 </html>
