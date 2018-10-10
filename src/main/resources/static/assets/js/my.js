@@ -32,5 +32,5 @@ function translate(){
     }else{
         sessionStorage.setItem("language", "1");
     }
-    window.location.reload();//刷新当前页面.
+    window.location.reload();
 }
