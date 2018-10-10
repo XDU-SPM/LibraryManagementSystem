@@ -103,6 +103,12 @@
     <!-- sidebar start -->
     <div class = "admin-sidebar am-offcanvas" id = "admin-offcanvas">
         <div class = "am-offcanvas-bar admin-offcanvas-bar">
+            <div class = "user-info">
+                <img class = "am-img-circle am-img-thumbnail am-center"
+                     src = "http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/200/h/200/q/80"
+                     alt = ""/>
+                <p style = "text-align: center">Spiderman</p>
+            </div>
             <ul class = "am-list admin-sidebar-list">
                 <li><a href = "reader_condition"><span class = "am-icon-bar-chart"></span> 借书信息统计</a></li>
                 <li><a href = "reader_search"><span class = "am-icon-search"></span> 搜索页面</a></li>
@@ -131,10 +137,10 @@
     <!-- content start -->
     <div class = "admin-content">
         <div class = "admin-content-body">
-
+            <hr>
             <div class = "am-g am-padding">
-                <div class = "am-u-sm-12 am-u-md-6">
-                    <form class = "am-form">
+                <div class = "am-u-sm-12 am-u-md-6 am-u-md-centered">
+                    <form class = "am-form" style = "align: center">
                         <div class = "am-input-group am-input-group-sm">
                             <input type = "text" class = "am-form-field am-radius">
                             <span class = "am-input-group-btn">
@@ -145,6 +151,7 @@
                     </form>
                 </div>
             </div>
+            <hr>
 
             <div class = "am-g">
                 <div class = "am-u-sm-12">
@@ -179,6 +186,7 @@
                             </li>
 
                         </ul>
+                        <hr>
                         <div class = "am-cf">
                             共 [[${page.totalElements}]] 条记录
                             <div class = "am-fr">
