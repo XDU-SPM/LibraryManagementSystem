@@ -145,30 +145,31 @@
                 <div class = "am-tabs-bd">
                     <div class = "am-tab-panel am-fade am-in am-active" id = "tab1">
                         <div class = "am-g am-margin-top">
-                            <form>
-                                <div class = "am-form am-form-horizontal">
-                                    <div class = "am-g am-margin-top">
-                                        <div class = "am-u-sm-4 am-u-md-2 am-text-right">
-                                            图书管理员
-                                        </div>
-                                        <div class = "am-u-sm-8 am-u-md-4">
-                                            <input id="libra-account" type = "text" class = "am-input-sm" placeholder = "请输入图书管理员的账号"
-                                                   name = "num">
-                                        </div>
-                                        <div class = "am-hide-sm-only am-u-md-6"></div>
+                            <div class = "am-form am-form-horizontal">
+                                <div class = "am-g am-margin-top">
+                                    <div class = "am-u-sm-4 am-u-md-2 am-text-right">
+                                        图书管理员
                                     </div>
+                                    <div class = "am-u-sm-8 am-u-md-4">
+                                        <input id = "libra-account" type = "text" class = "am-input-sm"
+                                               placeholder = "请输入图书管理员的账号"
+                                               name = "num">
+                                    </div>
+                                    <div class = "am-hide-sm-only am-u-md-6"></div>
+                                </div>
 
-                                    <div class = "am-g am-margin-top-sm">
-                                        <div class = "am-u-sm-10 am-u-sm-push-2">
-                                            <button type = "submit" class = "am-btn am-btn-primary" onclick="getLibrarian()">搜索</button>
-                                        </div>
+                                <div class = "am-g am-margin-top-sm">
+                                    <div class = "am-u-sm-10 am-u-sm-push-2">
+                                        <button class = "am-btn am-btn-primary"
+                                                onclick = "getLibrarian()">搜索
+                                        </button>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
 
-                    <div id="libra-information" class = "am-u-sm-12 am-u-md-6 am-u-md-centered">
+                    <div id = "libra-information" class = "am-u-sm-12 am-u-md-6 am-u-md-centered">
 
                     </div>
 
@@ -224,33 +225,34 @@
 </script>
 <script>
     function getLibrarian() {
-        var inputDoc=document.getElementById("string");
-        var libraAccount=inputDoc.value;
+        var inputDoc = document.getElementById("libra-account");
+        var libraAccount = inputDoc.value;
         $.ajax({
             type: "get",
             url: "searchLibrarian",
-            data: {username:libraAccount},
-            success:function (data) {
+            data: {username: libraAccount},
+            success: function (data) {
                 var str = "";
                 str = "<form class = \"am-form am-form-horizontal\" action = \"saveLibrarian\" method = \"post\">\n" +
+                    "                        <input type=\"hidden\" value=\"" + data.id + "\" name = \"id\">\n>" +
                     "                        <div class = \"am-form-group\">\n" +
                     "                            <label for = \"user-account\" class = \"am-u-sm-3 am-form-label\">用户账号 / Account</label>\n" +
                     "                            <div class = \"am-u-sm-9\">\n" +
-                    "                                <input type = \"tel\" id = \"user-account\" value = \""+data.username+"\" name = \"username\">\n" +
+                    "                                <input type = \"tel\" id = \"user-account\" value = \"" + data.username + "\" name = \"username\">\n" +
                     "                            </div>\n" +
                     "                        </div>\n" +
                     "\n" +
                     "                        <div class = \"am-form-group\">\n" +
                     "                            <label for = \"user-name\" class = \"am-u-sm-3 am-form-label\">姓名 / Name</label>\n" +
                     "                            <div class = \"am-u-sm-9\">\n" +
-                    "                                <input type = \"text\" id = \"user-name\" value = \""+user.name+"\" name = \"name\">\n" +
+                    "                                <input type = \"text\" id = \"user-name\" value = \"" + data.name + "\" name = \"name\">\n" +
                     "                            </div>\n" +
                     "                        </div>\n" +
                     "\n" +
                     "                        <div class = \"am-form-group\">\n" +
                     "                            <label for = \"user-email\" class = \"am-u-sm-3 am-form-label\">电子邮件 / Email</label>\n" +
                     "                            <div class = \"am-u-sm-9\">\n" +
-                    "                                <input type = \"email\" id = \"user-email\" value = \""+user.email+"\" name = \"email\">\n" +
+                    "                                <input type = \"email\" id = \"user-email\" value = \"" + data.email + "\" name = \"email\">\n" +
                     "                            </div>\n" +
                     "                        </div>\n" +
                     "\n" +

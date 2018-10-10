@@ -58,4 +58,12 @@ public class AdminUserController
         model.addAttribute("librarianPassword", adminUserService.getLibrarianPassword(id));
         return "";
     }
+
+    @RequestMapping(value = "/admin/saveLibrarian", method = RequestMethod.POST)
+    public String saveLibrarian(User librarian, Model model)
+    {
+        adminUserService.saveLibrarian(librarian);
+        model.addAttribute("status", true);
+        return "admin/librarian_edit";
+    }
 }

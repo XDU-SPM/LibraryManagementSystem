@@ -332,18 +332,21 @@ public class LibrarianBookService
         return userBookDAO.findAllByStatusBetween(UserBookUtil.RESERVATION, UserBookUtil.RESERVATION_CANCEL, pageable);
     }
 
-    public Page<BkunitOperatingHistory> getBkunitOperatingHistory(int start, int size, int status)
+    public Page<BkunitOperatingHistory> getBkunitOperatingHistory(int start, int size, int status, boolean bkunit)
     {
         Pageable pageable = PageableUtil.pageable(false, "date", start, size);
         Page<BkunitOperatingHistory> bkunitOperatingHistories = bkunitOperatingHistoryDAO.findAllByStatus(status, pageable);
         for (BkunitOperatingHistory bkunitOperatingHistory : bkunitOperatingHistories)
-            updateBkunitOperatingHistory(bkunitOperatingHistory);
+            updateBkunitOperatingHistory(bkunitOperatingHistory, bkunit);
         return bkunitOperatingHistories;
     }
 
-    private void updateBkunitOperatingHistory(BkunitOperatingHistory bkunitOperatingHistory)
+    private void updateBkunitOperatingHistory(BkunitOperatingHistory bkunitOperatingHistory, boolean bkunit)
     {
         bkunitOperatingHistory.setUsername(userDAO.findById(bkunitOperatingHistory.getUid()).getUsername());
-        bkunitOperatingHistory.setBookName(bkunitDAO.findById(bkunitOperatingHistory.getBuid()).get().getBook().getTitle());
+        if (bkunit)
+            bkunitOperatingHistory.setBookName(bkunitDAO.findById(bkunitOperatingHistory.getBuid()).get().getBook().getTitle());
+        else
+            bkunitOperatingHistory.setBookName(bookDAO.findByIsbn(bkunitOperatingHistory.getBuid()).getTitle());
     }
 }

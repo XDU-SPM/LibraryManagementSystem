@@ -107,8 +107,16 @@ public class LibrarianBookController
     public String librarian_history(Model model, @RequestParam(value = "start", defaultValue = "0") int start,
                                     @RequestParam(value = "size", defaultValue = "10") int size)
     {
-        model.addAttribute("page1", librarianBookService.getBkunitOperatingHistory(start, size, UserBkunitUtil.BORROWED));
-        model.addAttribute("page2", librarianBookService.getBkunitOperatingHistory(start, size, UserBkunitUtil.RETURNED));
+        model.addAttribute("page1", librarianBookService.getBkunitOperatingHistory(start, size, UserBkunitUtil.BORROWED, true));
+        model.addAttribute("page2", librarianBookService.getBkunitOperatingHistory(start, size, UserBkunitUtil.RETURNED, true));
         return "librarian/librarian_history";
+    }
+
+    @RequestMapping(value = "/librarian/librarian_deletebookhistory", method = RequestMethod.GET)
+    public String librarian_deletebookhistory(Model model, @RequestParam(value = "start", defaultValue = "0") int start,
+                                              @RequestParam(value = "size", defaultValue = "10") int size)
+    {
+        model.addAttribute("page", librarianBookService.getBkunitOperatingHistory(start, size, UserBkunitUtil.DELETE, true));
+        return "librarian/librarian_deletebookhistory";
     }
 }
