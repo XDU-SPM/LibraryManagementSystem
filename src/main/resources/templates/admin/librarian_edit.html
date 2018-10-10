@@ -145,14 +145,14 @@
                 <div class = "am-tabs-bd">
                     <div class = "am-tab-panel am-fade am-in am-active" id = "tab1">
                         <div class = "am-g am-margin-top">
-                            <form method = "post" action = "modifyMaxBorrowNum">
+                            <form>
                                 <div class = "am-form am-form-horizontal">
                                     <div class = "am-g am-margin-top">
                                         <div class = "am-u-sm-4 am-u-md-2 am-text-right">
                                             图书管理员
                                         </div>
                                         <div class = "am-u-sm-8 am-u-md-4">
-                                            <input type = "text" class = "am-input-sm" placeholder = "请输入图书管理员的账号"
+                                            <input id="libra-account" type = "text" class = "am-input-sm" placeholder = "请输入图书管理员的账号"
                                                    name = "num">
                                         </div>
                                         <div class = "am-hide-sm-only am-u-md-6"></div>
@@ -160,7 +160,7 @@
 
                                     <div class = "am-g am-margin-top-sm">
                                         <div class = "am-u-sm-10 am-u-sm-push-2">
-                                            <button type = "submit" class = "am-btn am-btn-primary ">搜索</button>
+                                            <button type = "submit" class = "am-btn am-btn-primary" onclick="getLibrarian()">搜索</button>
                                         </div>
                                     </div>
                                 </div>
@@ -168,7 +168,9 @@
                         </div>
                     </div>
 
+                    <div id="libra-information" class = "am-u-sm-12 am-u-md-8 am-u-md-pull-4">
 
+                    </div>
 
 
                 </div>
@@ -219,6 +221,82 @@
     }
 
     isOk();
+</script>
+<script>
+    function getLibrarian() {
+        var inputDoc=document.getElementById("string");
+        var libraAccount=inputDoc.value;
+        $.ajax({
+            type: "get",
+            url: "searchLibrarian",
+            data: {username:libraAccount},
+            success:function (data) {
+                var str = "";
+                str = "<form class = \"am-form am-form-horizontal\" action = \"saveLibrarian\" method = \"post\">\n" +
+                    "                        <div class = \"am-form-group\">\n" +
+                    "                            <label for = \"user-account\" class = \"am-u-sm-3 am-form-label\">用户账号 / Account</label>\n" +
+                    "                            <div class = \"am-u-sm-9\">\n" +
+                    "                                <input type = \"tel\" id = \"user-account\" value = \""+data.username+"\" name = \"username\">\n" +
+                    "                            </div>\n" +
+                    "                        </div>\n" +
+                    "\n" +
+                    "                        <div class = \"am-form-group\">\n" +
+                    "                            <label for = \"user-name\" class = \"am-u-sm-3 am-form-label\">姓名 / Name</label>\n" +
+                    "                            <div class = \"am-u-sm-9\">\n" +
+                    "                                <input type = \"text\" id = \"user-name\" value = \""+user.name+"\" name = \"name\">\n" +
+                    "                            </div>\n" +
+                    "                        </div>\n" +
+                    "\n" +
+                    "                        <div class = \"am-form-group\">\n" +
+                    "                            <label for = \"user-email\" class = \"am-u-sm-3 am-form-label\">电子邮件 / Email</label>\n" +
+                    "                            <div class = \"am-u-sm-9\">\n" +
+                    "                                <input type = \"email\" id = \"user-email\" value = \""+user.email+"\" name = \"email\">\n" +
+                    "                            </div>\n" +
+                    "                        </div>\n" +
+                    "\n" +
+                    "                        <div class = \"am-form-group\">\n" +
+                    "                            <div class = \"am-u-sm-9 am-u-sm-push-3\">\n" +
+                    "                                <button type = \"submit\" class = \"am-btn am-btn-primary\" onclick = \"return check()\">\n" +
+                    "                                    保存修改\n" +
+                    "                                </button>\n" +
+                    "                            </div>\n" +
+                    "                        </div>\n" +
+                    "                    </form>";
+                $('#libra-information').html(str)
+            }
+        });
+    }
+</script>
+<script>
+    let status = true;
+
+    $(function () {
+        $("#user-account").blur(function () {
+            var params = $(this).serialize();
+            $.ajax(
+                {
+                    method: 'GET',
+                    url: "checkUser",
+                    data: params,
+                    success: function (data) {
+                        if (data.status == 0) {
+                            status = false;
+                        }
+                        else
+                            status = true;
+                    }
+                }
+            );
+        })
+    });
+
+    function check() {
+        if (!status) {
+            alert("该用户名已经被注册");
+            return false;
+        }
+        return true;
+    }
 </script>
 </body>
 </html>
