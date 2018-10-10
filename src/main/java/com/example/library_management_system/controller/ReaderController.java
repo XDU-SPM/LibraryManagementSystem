@@ -32,7 +32,6 @@ public class ReaderController
     {
         User reader = userService.getUser();
         model.addAttribute("user", reader);
-        model.addAttribute("totalFine", reader.getMoney() < 0 ? -reader.getMoney() : 0);
         return "reader/reader_information";
     }
 

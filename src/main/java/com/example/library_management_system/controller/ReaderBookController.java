@@ -31,8 +31,8 @@ public class ReaderBookController
         model.addAttribute("borrowedNumber", borrowNumber);
         model.addAttribute("RemainNumber", globalUtilService.getMaxBorrowNum() - borrowNumber);
         model.addAttribute("monthBorrows", readerBookService.monthBorrows());
-        model.addAttribute("page1", readerBookService.queryBorrowedBooks(0, 5));
-        model.addAttribute("page2", readerBookService.queryReservedBooks(0, 5));
+        model.addAttribute("page1", readerBookService.queryReservedBooks(0, 5));
+        model.addAttribute("page2", readerBookService.queryBorrowedBooks(0, 5));
         model.addAttribute("page3", readerBookService.queryReturnedBooks(0, 5));
         return "reader/reader_condition";
     }
@@ -78,7 +78,7 @@ public class ReaderBookController
     @RequestMapping(value = "/reader/appointment", method = RequestMethod.GET)
     public String appointment(int id, Model model)
     {
-        model.addAttribute("userBkunit", readerBookService.appointment(id));
+        model.addAttribute("userBook", readerBookService.appointment(id));
         return "reader/appointment";
     }
 

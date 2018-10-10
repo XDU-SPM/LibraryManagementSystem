@@ -153,9 +153,9 @@ public class LibrarianBookService
         UserBook userBook;
 
         if ((userBook = userBookDAO.findByUserAndBook(reader, book)) != null && userBook.getStatus() == UserBookUtil.RESERVATION)
-            book.addNumber(-1);
+            book.addNumber(1);
 
-        book.addNumber(1);
+        book.addNumber(-1);
         book.addFrequency();
 //        bookDAO.save(book);
 
