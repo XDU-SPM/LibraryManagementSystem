@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class ReaderController
 {
     @Autowired
-    private LibrarianBookService librarianBookService;
-
-    @Autowired
     private UserService userService;
 
     @Autowired
@@ -23,7 +20,7 @@ public class ReaderController
     @RequestMapping(value = "/reader/reader_search", method = RequestMethod.GET)
     public String reader_reader_search(Model model)
     {
-        model.addAttribute("page", librarianBookService.showBook(0, 8, null));
+        model.addAttribute("page", bookService.showBook(0, 8, null));
         return "reader/reader_search";
     }
 

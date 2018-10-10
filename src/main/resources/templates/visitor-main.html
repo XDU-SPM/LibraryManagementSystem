@@ -3,6 +3,7 @@
       xmlns:sec = "http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="utf-8">
+    <meta name="referrer" content="no-referrer"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
     <meta name="keywords" content="">
@@ -480,12 +481,14 @@
     }
 
     function getOnePageBook_3(end) {
+        console.log('233');
         pageNumber = end;
         $.ajax({
             type: "get",
             url: "showbook",
             data: {start: end, size: 12},
             success: function (data) {
+                console.log(data);
                 var str = '';
                 $('#all-books').empty();
                 for (var i = 0; i < data.content.length; i++) {
