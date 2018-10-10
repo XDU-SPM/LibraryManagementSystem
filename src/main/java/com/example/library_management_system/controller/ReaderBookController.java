@@ -1,9 +1,6 @@
 package com.example.library_management_system.controller;
 
-import com.example.library_management_system.bean.ReturnHistory;
-import com.example.library_management_system.bean.Review;
-import com.example.library_management_system.bean.UserBkunit;
-import com.example.library_management_system.bean.UserFavoriteBook;
+import com.example.library_management_system.bean.*;
 import com.example.library_management_system.service.*;
 import com.example.library_management_system.utils.Status;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +43,13 @@ public class ReaderBookController
                                                @RequestParam(value = "size", defaultValue = "10") int size)
     {
         return readerBookService.queryBorrowedBooks(start, size);
+    }
+    @RequestMapping(value = "/reader/reservedBooks", method = RequestMethod.GET)
+    @ResponseBody
+    public Page<UserBook> queryReservedBooks(@RequestParam(value = "start", defaultValue = "0") int start,
+                                             @RequestParam(value = "size", defaultValue = "10") int size)
+    {
+        return readerBookService.queryReservedBooks(start, size);
     }
 
     @RequestMapping(value = "/reader/returnedBooks", method = RequestMethod.GET)
