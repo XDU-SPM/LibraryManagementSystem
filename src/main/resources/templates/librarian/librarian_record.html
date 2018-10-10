@@ -197,8 +197,8 @@
                         <tbody>
                         <tr th:each = "record:${page}" >
                             <td th:text = "${record.id}"></td>
-                            <td th:text = "${record.book.title}"></td>
-                            <td ><a th:text = "${record.book.isbn}" th:href="@{librarian_book(isbn=${record.book.isbn})}"></a></td>
+                            <td ><a th:text = "${record.book.title}" th:href="@{librarian_book(isbn=${record.book.isbn})}"></a></td>
+                            <td th:text = "${record.book.isbn}"></td>
                             <td class = "am-hide-sm-only" th:text = "${record.user.username}"></td>
                             <td class = "am-hide-sm-only" th:text = "${record.borrowDate}"></td>
                             <td class = "am-hide-sm-only" th:text = "${record.status}"></td>
@@ -275,7 +275,7 @@
                     data[i] = new Array();
                 }
                 data[i][j] = mytable.rows[i].cells[j].innerText;
-                if(checkNumber(data[i][j])&&j==6)
+                if(checkNumber(data[i][j])&&j==5)
                 {
                     mytable.rows[i].cells[j].innerText=status(data[i][j]);
                 }
