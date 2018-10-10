@@ -26,4 +26,12 @@ public class BookController
         System.out.println(type);
         return bookService.searchBook(string, type, start, size);
     }
+
+    @RequestMapping(path = {"/reader/showbook", "/showbook"}, method = RequestMethod.GET)
+    @ResponseBody
+    public Page<Book> showBook(@RequestParam(value = "start", defaultValue = "0") int start,
+                               @RequestParam(value = "size", defaultValue = "10") int size, String category)
+    {
+        return bookService.showBook(start, size, category);
+    }
 }
