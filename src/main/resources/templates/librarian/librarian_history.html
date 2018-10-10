@@ -154,61 +154,233 @@
     <!-- sidebar end -->
     <div class = "admin-content">
         <div class = "admin-content-body">
-            <div class = "am-cf am-padding am-padding-bottom-0">
-                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">书本清单</strong> /
-                    <small>BookList</small>
-                </div>
+            <div class = "am-cf am-padding">
+                <!--   <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">首页</strong> /
+                       <small>一些常用模块</small>
+                   </div> -->
             </div>
-
-            <hr>
-
-
-
-            <div class = "am-g">
-                <div class = "am-u-sm-12">
-                    <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "booklist">
-                        <thead>
-                        <tr>
-                            <th class = "table-id">编号</th>
-                            <th class = "table-title">标题</th>
-                            <th class = "table-isbn">ISBN</th>
-                            <th class = "table-username am-hide-sm-only">用户名</th>
-                            <th class = "table-borrowDate am-hide-sm-only">借阅日期</th>
-                            <th class = "table-returnDate am-hide-sm-only">归还日期</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each = "record:${page}">
-                            <td th:text="${record.id}"></td>
-                            <td ><a th:text = "${record.bunit.book.title}" th:href="@{librarian_book(isbn=${record.bunit.book.isbn})}"></a></td>
-                            <td th:text = "${record.bunit.book.isbn}"></td>
-                            <td class = "am-hide-sm-only" th:text = "${record.user.username}" th:href="@{librarian_reader(username=${record.user.username})}"></td>
-                            <td class = "am-hide-sm-only" th:text = "${record.borrowDate}"></td>
-                            <td class = "am-hide-sm-only" th:text = "${record.returnDate}"></td>
-                        </tr>
-                    </table>
-                    <div class = "am-cf">
-                        <p th:text="'共有'+${page.numberOfElements}+'条数据'"></p>
-                        <div class = "am-fr">
-                            <ul class = "am-pagination">
-                                <li><a th:href = "@{librarian_history(start=0)}">首页</a></li>
-                                <li><a th:href = "@{librarian_history(start=${page.number}-1)}">上一页</a></li>
-                                <li><a th:href = "@{librarian_history(start=${page.number}+1)}">下一页</a></li>
-                                <li><a th:href="@{librarian_history(start=${page.totalPages})}">末页</a></li>
+            <div class = "am-tabs am-margin" data-am-tabs>
+                <ul class = "am-tabs-nav am-nav am-nav-tabs">
+                    <li class = "am-active"><a href = "#tab1">借书统计</a></li>
+                    <li><a href = "#tab3">预约</a></li>
+                    <li><a href = "#tab4">未归还</a></li>
+                    <li><a href = "#tab5">已经归还</a></li>
+                </ul>
+                <div class = "am-tabs-bd">
+                    <div class = "am-tab-panel am-fade am-in am-active" id = "tab1">
+                        <div class = "am-g am-center am-padding" >
+                            <ul data-am-widget = "gallery" class = "am-gallery am-avg-sm-2 am-gallery-default"
+                                data-am-gallery = "{ pureview: true }">
+                                <li>
+                                    <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">借书统计</strong></div>
+                                    <div id = "mountNode"></div>
+                                </li>
+                                <li>
+                                    <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">借书历史统计</strong></div>
+                                    <div id = "mountNode1"></div>
+                                </li>
                             </ul>
+                        </div>
+                    </div>
+                    <div class = "am-tab-panel am-fade am-in " id = "tab2">
+                        <div class = "am-cf am-padding am-padding-bottom-0" >
+                            <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">借阅历史</strong></div>
+                        </div>
+                    </div>
+
+                    <div class = "am-tab-panel am-fade am-in " id = "tab3">
+                        <div class = "am-cf am-padding am-padding-bottom-0">
+                            <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">预约</strong></div>
+                        </div>
+                        <hr>
+
+                        <div class = "am-u-sm-12 am-u-md-3">
+
+                        </div>
+
+                        <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "booklist-1">
+                            <thead>
+                            <tr>
+                                <th class = "table-title">标题</th>
+                                <th class = "table-author">作者</th>
+                                <th class = "table-publisher">出版社</th>
+                                <th class = "table-date am-hide-sm-only">出版日期</th>
+                                <th class = "table-positon am-hide-sm-only">预约到期时间</th>
+                                <th class = "table-set">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody id = "bk-table-1">
+                            <tr th:each = "book:${page1}">
+
+                                <td><a th:href = "@{book_details(isbn=${book.book.isbn})}"
+                                       th:text = "${book.book.title}"></a></td>
+
+                                <td th:text = "${book.book.author}"></td>
+                                <td th:text = "${book.book.publisher}"></td>
+                                <td class = "am-hide-sm-only" th:text = "${book.book.publishDate}"></td>
+                                <td class = "am-hide-sm-only" th:text = "${book.returnDate}"></td>
+                                <td>
+                                    <div class = "am-btn-toolbar">
+                                        <div class = "am-btn-group am-btn-group-xs">
+                                            <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"
+                                                    th:onclick = "'javascript:cancel_appointment('+${book.id}+')'">
+                                                <span class = "am-icon-pencil-square-o"></span> 取消
+                                            </button>
+                                            <a th:href = "@{appointment(id=${book.id})}">
+                                                <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><span
+                                                        class = "am-icon-pencil-square-o"></span> 查看
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <br>
+                        <div class = "am-cf">
+                            共 <span id="book-appointment">[[${page1.totalElements}]]</span> 条记录
+                            <div class = "am-fr">
+                                <ul class = "am-pagination">
+                                    <li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook1_1()">首页</button></li>
+                                    <li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook1_2(-1)">上一页</button></li>
+                                    <li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook1_2(1)">下一页</button></li>
+                                    <li><button type="button" class="am-btn am-btn-primary am-round" th:onclick = "'javascript:getOnePageBook1_3('+${page1.totalPages}+'-1)'">末页</button></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class = "am-tab-panel am-fade am-in " id = "tab4">
+                        <div class = "am-cf am-padding am-padding-bottom-0">
+                            <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">未归还</strong></div>
+                        </div>
+                        <hr>
+
+                        <div class = "am-u-sm-12 am-u-md-3">
+
+                        </div>
+
+                        <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "booklist-2">
+                            <thead>
+                            <tr>
+                                <th class = "table-title">条形码</th>
+                                <th class = "table-title">标题</th>
+                                <th class = "table-author">作者</th>
+                                <th class = "table-date am-hide-sm-only">借书时间</th>
+                                <th class = "table-date am-hide-sm-only">截止时间</th>
+                                <th class = "table-set">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody id = "bk-table-2">
+                            <tr th:each = "book:${page2}">
+
+                                <td th:text = "${book.bkunit.id}"></td>
+                                <td><a th:href = "@{book_details(isbn=${book.bkunit.book.isbn})}"
+                                       th:text = "${book.bkunit.book.title}"></a></td>
+
+                                <td th:text = "${book.bkunit.book.author}"></td>
+                                <td class = "am-hide-sm-only" th:text = "${book.borrowDate}"></td>
+                                <td class = "am-hide-sm-only" th:text = "${book.returnDate}"></td>
+                                <td>
+                                    <div class = "am-btn-toolbar">
+                                        <div class = "am-btn-group am-btn-group-xs">
+                                            <a th:href = "@{reader_comment(isbn=${book.bkunit.book.isbn})}">
+                                                <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><span
+                                                        class = "am-icon-pencil-square-o"></span> 评论
+                                                </button>
+                                            </a>
+                                            <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"
+                                                    th:onclick = "'javascript:book_renew('+${book.id}+')'">
+                                                <span class = "am-icon-pencil-square-o"></span> 续借
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <br>
+                        <div class = "am-cf">
+                            共 [[${page2.totalElements}]] 条记录
+                            <div class = "am-fr">
+                                <ul class = "am-pagination">
+                                    <li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook2_1()">首页</button></li>
+                                    <li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook2_2(-1)">上一页</button></li>
+                                    <li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook2_2(1)">下一页</button></li>
+                                    <li><button type="button" class="am-btn am-btn-primary am-round" th:onclick = "'javascript:getOnePageBook2_3('+${page2.totalPages}+'-1)'">末页</button></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class = "am-tab-panel am-fade am-in " id = "tab5">
+                        <div class = "am-cf am-padding am-padding-bottom-0">
+                            <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">已经归还</strong></div>
+                        </div>
+                        <hr>
+
+                        <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "booklist-3">
+                            <thead>
+                            <tr>
+                                <th class = "table-title">条形码</th>
+                                <th class = "table-title">标题</th>
+                                <th class = "table-author">作者</th>
+                                <th class = "table-date am-hide-sm-only">借书时间</th>
+                                <th class = "table-date am-hide-sm-only">归还时间</th>
+                                <th class = "table-title">罚金(元)</th>
+                                <th class = "table-set">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody id = "bk-table-3">
+                            <tr th:each = "book:${page3}">
+
+                                <td th:text = "${book.bkunitId}"></td>
+                                <td><a th:href = "@{book_details(isbn=${book.isbn})}"
+                                       th:text = "${book.title}"></a></td>
+
+                                <td th:text = "${book.author}"></td>
+                                <td class = "am-hide-sm-only" th:text = "${book.borrowDate}"></td>
+                                <td class = "am-hide-sm-only" th:text = "${book.returnDate}"></td>
+                                <td th:text = "${book.money}"></td>
+                                <td>
+                                    <div class = "am-btn-toolbar">
+                                        <div class = "am-btn-group am-btn-group-xs">
+                                            <a th:href = "@{reader_comment(isbn=${book.isbn})}">
+                                                <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><span
+                                                        class = "am-icon-pencil-square-o"></span> 评论
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <br>
+                        <div class = "am-cf">
+                            共 [[${page3.totalElements}]] 条记录
+                            <div class = "am-fr">
+                                <ul class = "am-pagination">
+                                    <li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook3_1()">首页</button></li>
+                                    <li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook3_2(-1)">上一页</button></li>
+                                    <li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook3_2(1)">下一页</button></li>
+                                    <li><button type="button" class="am-btn am-btn-primary am-round" th:onclick = "'javascript:getOnePageBook3_3('+${page3.totalPages}+'-1)'">末页</button></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <footer class = "admin-content-footer">
-            <hr>
-            <p class = "am-padding-left" style = "text-align: center">© 2018 Biboliosoft Online Library System</p>
-        </footer>
-
-
     </div>
+
+    <footer class = "admin-content-footer">
+        <hr>
+        <p class = "am-padding-left" style = "text-align: center">© 2018 Biboliosoft Online Library System</p>
+    </footer>
+</div>
     <!-- content end -->
 
 </div>

@@ -189,22 +189,21 @@
                         <tr>
                             <th class = "table-id">编号</th>
                             <th class = "table-id">书号</th>
-                            <th class = "table-title">标题</th>
-                            <th class = "table-isbn">ISBN</th>
+                            <th class = "table-title">书名</th>
                             <th class = "table-librarian am-hide-sm-only">管理员</th>
+                            <th class = "table-librarianid am-hide-sm-only">管理员id</th>
                             <th class = "table-deleteDate">删除时间</th>
-                            <th class = "table-reason am-hide-sm-only">删除原因</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr th:each = "record:${page}" >
                             <td th:text = "${record.id}"></td>
-                            <td th:text = "${record.bkunit.id}"></td>
-                            <td th:text = "${record.bkunit.book.title}"></td>
-                            <td ><a th:text = "${record.bkunit.book.isbn}" th:href="@{librarian_book(isbn=${record.bkunit.book.isbn})}"></a></td>
+                            <td th:text = "${record.buid}"></td>
+                            <td th:text = "${record.bookName}"></td>
+                            <!--<td ><a th:text = "${record.bkunit.book.isbn}" th:href="@{librarian_book(isbn=${record.bkunit.book.isbn})}"></a></td>-->
                             <td class = "am-hide-sm-only"><a th:text = "${record.user.username}" th:href="@{librarian_user(username=${record.user.uername})}"></a></td>
-                            <td class = "am-hide-sm-only" th:text = "${record.deleteDate}"></td>
-                            <td class = "am-hide-sm-only" th:text = "${record.reason}"></td>
+                            <td class = "am-hide-sm-only" th:text = "${record.uid}"></td>
+                            <td class = "am-hide-sm-only" th:text = "${record.date}"></td>
                         </tr>
                     </table>
                     <div class = "am-cf">
@@ -254,41 +253,6 @@
 <script src = "dist/amazeui.datatables.min.js"></script>
 <script src = "assets/js/amazeui.min.js"></script>
 <script src = "assets/js/app.js"></script>
-<script type="text/javascript">
-    function checkNumber(theObj) {
-        var reg = /[1-7]/;
-        if (reg.test(theObj)) {
-            return true;
-        }
-        return false;
-    }
-
-    function status(status){
-        status=parseInt(status);
-        var array=["已借出", "逾期", "续借", "已归还", "已预约", "预约失败", "取消预约"];
-        return array[status-1];
-    }
-
-    function getTableContent(id){
-        var mytable = document.getElementById(id);
-        var data = [];
-        for(var i=0,rows=mytable.rows.length; i<rows; i++){
-            for(var j=0,cells=mytable.rows[i].cells.length; j<cells; j++){
-                if(!data[i]){
-                    data[i] = new Array();
-                }
-                data[i][j] = mytable.rows[i].cells[j].innerText;
-                if(checkNumber(data[i][j])&&j==6)
-                {
-                    mytable.rows[i].cells[j].innerText=status(data[i][j]);
-                }
-            }
-        }
-        return data;
-    }
-    getTableContent("record");
-
-</script>
 <script type = "text/javascript" src = "assets/js/test.js"></script>
 <script type = "text/javascript">
     $("#change").click(function () {
