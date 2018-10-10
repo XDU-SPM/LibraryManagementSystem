@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class AdminUserController
@@ -29,10 +30,10 @@ public class AdminUserController
     }
 
     @RequestMapping(value = "/admin/searchLibrarian", method = RequestMethod.GET)
-    public String searchLibrarian(String username, Model model)
+    @ResponseBody
+    public User searchLibrarian(String username)
     {
-        model.addAttribute("librarian", userService.searchUser(username));
-        return "";
+        return userService.searchUser(username);
     }
 
     @RequestMapping(value = "admin/delete_users", method = RequestMethod.GET)

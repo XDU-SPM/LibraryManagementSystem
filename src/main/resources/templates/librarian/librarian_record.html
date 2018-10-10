@@ -109,7 +109,7 @@
                         <li><a href = "librarian_borrow"><span class = "am-icon-leaf"></span> 借阅</a></li>
                         <li><a href = "librarian_return"><span class = "am-icon-mail-reply"></span> 归还</a></li>
                         <li><a href = "librarian_table"><span class = "am-icon-book"></span> 管理图书</a></li>
-                        <li><a href = "librarian_record"><span class = "am-icon-calendar-check-o"></span> 预约记录</a>
+                        <li><a href = "librarian_deletebookhistory"><span class="am-icon-trash"> 删除记录</span></a></li>
                         </li>
                     </ul>
                 </li>
@@ -127,12 +127,13 @@
                             class = "am-icon-table"></span> 记录 <span
                             class = "am-icon-angle-right am-fr am-margin-right"></span></a>
                     <ul class = "am-list am-collapse admin-sidebar-sub am-in" id = "collapse-nav3">
+                        <li><a href = "librarian_record"><span class = "am-icon-book"></span> 预约记录</a></li>
                         <li><a href = "librarian_history"><span class = "am-icon-book"></span> 借阅记录</a></li>
                         <li><a href = "librarian_income"><span class = "am-icon-money"></span> 收入记录 </a></li>
-                        <li><a href = "librarian_fine"><span class="am-icon-bolt">罚金记录</span></a></li>
+                        <li><a href = "librarian_fine"><span class="am-icon-bolt"></span> 罚金记录</a></li>
                     </ul>
                 </li>
-                <li><a href = "#"><span class = "am-icon-comment"></span> 发布公告</a></li>
+                <li><a href = "librarian_announce"><span class = "am-icon-comment"></span> 发布公告</a></li>
             </ul>
 
             <div class = "am-panel am-panel-default admin-sidebar-panel">
@@ -187,7 +188,6 @@
                         <thead>
                         <tr>
                             <th class = "table-id">编号</th>
-                            <th class = "table-id">书号</th>
                             <th class = "table-title">标题</th>
                             <th class = "table-isbn">ISBN</th>
                             <th class = "table-author am-hide-sm-only">用户名</th>
@@ -198,9 +198,8 @@
                         <tbody>
                         <tr th:each = "record:${page}" >
                             <td th:text = "${record.id}"></td>
-                            <td th:text = "${record.bkunit.id}"></td>
-                            <td th:text = "${record.bkunit.book.title}"></td>
-                            <td ><a th:text = "${record.bkunit.book.isbn}" th:href="@{librarian_book(isbn=${record.bkunit.book.isbn})}"></a></td>
+                            <td ><a th:text = "${record.book.title}" th:href="@{librarian_book(isbn=${record.book.isbn})}"></a></td>
+                            <td th:text = "${record.book.isbn}"></td>
                             <td class = "am-hide-sm-only" th:text = "${record.user.username}"></td>
                             <td class = "am-hide-sm-only" th:text = "${record.borrowDate}"></td>
                             <td class = "am-hide-sm-only" th:text = "${record.status}"></td>
@@ -255,7 +254,7 @@
 <script src = "assets/js/app.js"></script>
 <script type="text/javascript">
     function checkNumber(theObj) {
-        var reg = /[1-7]/;
+        var reg = /[1-9]/;
         if (reg.test(theObj)) {
             return true;
         }
@@ -264,8 +263,8 @@
 
     function status(status){
         status=parseInt(status);
-        var array=["已借出", "逾期", "续借", "已归还", "已预约", "预约失败", "取消预约"];
-        return array[status-1];
+        var array=["已预约", "预约失败", "取消预约"];
+        return array[status-6];
     }
 
     function getTableContent(id){
@@ -277,7 +276,7 @@
                     data[i] = new Array();
                 }
                 data[i][j] = mytable.rows[i].cells[j].innerText;
-                if(checkNumber(data[i][j])&&j==6)
+                if(checkNumber(data[i][j])&&j==5)
                 {
                     mytable.rows[i].cells[j].innerText=status(data[i][j]);
                 }

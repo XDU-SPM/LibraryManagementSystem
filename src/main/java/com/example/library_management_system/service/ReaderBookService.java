@@ -91,7 +91,6 @@ public class ReaderBookService
         Book book = bookDAO.findByIsbn(isbn);
         book.addNumber(-1);
         User reader = userService.getUser();
-        UserBook userBook = userBookDAO.findByUserAndBook(reader, book);
 
         Date now = new Date();
         Calendar calendar = Calendar.getInstance();
@@ -99,14 +98,7 @@ public class ReaderBookService
         calendar.add(Calendar.MILLISECOND, QueueConfig.QUEUE_EXPIRATION);
         Date overdue = calendar.getTime();
 
-        if (userBook == null)
-            userBook = new UserBook(now, overdue, UserBookUtil.RESERVATION, book, reader);
-        else
-        {
-            userBook.setBorrowDate(now);
-            userBook.setReturnDate(overdue);
-            userBook.setStatus(UserBookUtil.RESERVATION);
-        }
+        UserBook userBook = new UserBook(now, overdue, UserBookUtil.RESERVATION, book, reader);
 
         userBookDAO.save(userBook);
 

@@ -12,19 +12,24 @@
     <link rel = "alternate icon" type = "image/jpg" href = "assets/i/head_logo.jpg">
     <link rel = "stylesheet" href = "assets/css/amazeui.min.css"/>
     <style>
-        .header {
-            text-align: center;
+        .am-form-group {
+            text-align: left;
         }
 
-        .header h1 {
-            font-size: 200%;
-            color: #333;
-            margin-top: 30px;
+        .am-topbar {
+            /*background-color: black;*/
         }
 
-        .header p {
-            font-size: 14px;
+        .am-topbar .am-text-ir {
+            display: block;
+            margin-right: 10px;
+            height: 50px;
+            width: 125px;
+            background: url(assets/i/logo.jpg) no-repeat left center;
+            -webkit-background-size: 125px 24px;
+            background-size: 125px 24px;
         }
+
     </style>
 </head>
 <body background="assets/img/background.jpg">
@@ -79,14 +84,12 @@
             [[${book.title}]]
         </div>
         <br>
-        <br>
 
         <h3>作者</h3>
         <hr>
         <div class = "am-text-bottom">
             [[${book.author}]]
         </div>
-        <br>
         <br>
 
         <h3>出版社</h3>
@@ -95,7 +98,6 @@
             [[${book.publisher}]]
         </div>
         <br>
-        <br>
 
         <h3>图书位置</h3>
         <hr>
@@ -103,14 +105,12 @@
             [[${book.position}]]
         </div>
         <br>
-        <br>
 
         <h3>简介</h3>
         <hr>
         <div class = "am-text-bottom">
             [[${book.brief}]]
         </div>
-        <br>
         <br>
 
         <hr>
