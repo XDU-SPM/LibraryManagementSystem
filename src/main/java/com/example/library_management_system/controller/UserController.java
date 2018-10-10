@@ -2,13 +2,16 @@ package com.example.library_management_system.controller;
 
 import com.example.library_management_system.bean.Role;
 import com.example.library_management_system.bean.User;
+import com.example.library_management_system.service.BookService;
 import com.example.library_management_system.service.GlobalUtilService;
+import com.example.library_management_system.service.LibrarianBookService;
 import com.example.library_management_system.service.UserService;
 import com.example.library_management_system.utils.RoleUtil;
 import com.example.library_management_system.utils.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,9 +27,16 @@ public class UserController
     @Autowired
     private GlobalUtilService globalUtilService;
 
+    @Autowired
+    private LibrarianBookService librarianBookService;
+
+    @Autowired
+    private BookService bookService;
+
     @RequestMapping(value = {"/", "/visitor-main"}, method = RequestMethod.GET)
-    public String main()
+    public String main(Model model)
     {
+        model.addAttribute("page", bookService.showBook(0, 8, null));
         return "visitor-main";
     }
 
@@ -57,12 +67,6 @@ public class UserController
         }
         return false;
     }
-
-    /*@RequestMapping(value = "/register", method = RequestMethod.GET)
-    public String register()
-    {
-        return "register";
-    }*/
 
     @RequestMapping(value = "/reader/home", method = RequestMethod.GET)
     public String readerHome()
@@ -134,9 +138,9 @@ public class UserController
 
     @RequestMapping(value = "/forgetPassword", method = RequestMethod.GET)
     @ResponseBody
-    public Status forgetPassword()
+    public Status forgetPassword(String username)
     {
-        return new Status(userService.forgetPassword() ? 1 : 0);
+        return new Status(userService.forgetPassword(username));
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)

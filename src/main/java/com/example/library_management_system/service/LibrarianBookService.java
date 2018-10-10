@@ -106,15 +106,6 @@ public class LibrarianBookService
         return bkunitDAO.findAllByStatusNot(BkunitUtil.LOST, pageable);
     }
 
-    public Page<Book> showBook(int start, int size, String category)
-    {
-        Category c = categoryDAO.findByName(category);
-        Pageable pageable = PageableUtil.pageable(false, "frequency", start, size);
-        if (category != null)
-            return bookDAO.findByCategoriesContaining(c, pageable);
-        return bookDAO.findAll(pageable);
-    }
-
     public void saveBook(Book tmp)
     {
         Book book = bookDAO.findByIsbn(tmp.getIsbn());
@@ -148,7 +139,11 @@ public class LibrarianBookService
         if (reader.getBorrowNumber() >= globalUtilService.getMaxBorrowNum())
             return -2;
 
-        Bkunit bkunit = bkunitDAO.findById(id).get();
+        Optional<Bkunit> optional = bkunitDAO.findById(id);
+        if (!optional.isPresent())
+            return -3;
+        Bkunit bkunit = optional.get();
+
         Book book = bkunit.getBook();
         UserBook userBook;
 

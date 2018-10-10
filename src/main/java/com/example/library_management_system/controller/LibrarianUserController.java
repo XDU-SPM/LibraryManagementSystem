@@ -1,6 +1,7 @@
 package com.example.library_management_system.controller;
 
 import com.example.library_management_system.bean.User;
+import com.example.library_management_system.service.GlobalUtilService;
 import com.example.library_management_system.service.LibrarianUserService;
 import com.example.library_management_system.service.UserService;
 import com.example.library_management_system.utils.RoleUtil;
@@ -19,12 +20,15 @@ public class LibrarianUserController
     @Autowired
     private LibrarianUserService librarianUserService;
 
+    @Autowired
+    private GlobalUtilService globalUtilService;
+
     @RequestMapping(value = "/librarian/readerRegister", method = RequestMethod.POST)
     public String readerRegister(User reader, Model model)
     {
         userService.registerService(reader, RoleUtil.ROLE_READER_CHECK);
         model.addAttribute("status", true);
-        return "";
+        return "/librarian/librarian_create";
     }
 
     @RequestMapping(value = "/librarian/payFine", method = RequestMethod.POST)
@@ -47,8 +51,9 @@ public class LibrarianUserController
     }
 
     @RequestMapping(value = "/librarian/librarian_addreader", method = RequestMethod.GET)
-    public String librarian_addreader()
+    public String librarian_addreader(Model model)
     {
+        model.addAttribute("registerMoney", globalUtilService.getRegisterMoney());
         return "librarian/librarian_addreader";
     }
 

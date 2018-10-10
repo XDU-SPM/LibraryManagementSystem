@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.example.library_management_system.bean.Bkunit;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.data.domain.Page;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Set;
 
@@ -48,21 +47,11 @@ public class LibrarianBookController
         return "librarian/librarian_table";
     }
 
-    @RequestMapping(path = "/reader/showbook", method = RequestMethod.GET)
-    @ResponseBody
-    public Page<Book> showBook(@RequestParam(value = "start", defaultValue = "0") int start,
-                               @RequestParam(value = "size", defaultValue = "10") int size, String category)
-    {
-        return librarianBookService.showBook(start, size, category);
-    }
-
     @RequestMapping(path = "/librarian/librarian_book", method = RequestMethod.GET)
     public String bookInfo(String isbn, Model model)
     {
         Book book = bookService.bookInfo(isbn);
         model.addAttribute("book", book);
-        // TODO: 2018/10/9 直接通过 book.number 访问 库存
-//        model.addAttribute("number", librarianBookService.getBookNumber(book));
         return "/librarian/librarian_book";
     }
 

@@ -150,9 +150,13 @@ public class UserService
         userDAO.save(user);
     }
 
-    public boolean forgetPassword()
+    public int forgetPassword(String username)
     {
-        User user = getUser();
+        User user = userDAO.findByUsername(username);
+
+        if (user == null)
+            return -1;
+
         try
         {
             MailUtil.sendmail(user.getEmail(), user.getPassword(), "password");
@@ -160,14 +164,14 @@ public class UserService
         catch (MessagingException e)
         {
             e.printStackTrace();
-            return false;
+            return -2;
         }
         catch (UnsupportedEncodingException e)
         {
             e.printStackTrace();
-            return false;
+            return -2;
         }
-        return true;
+        return 0;
     }
 
     public void modifyPassword(String password)

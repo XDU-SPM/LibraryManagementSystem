@@ -1,7 +1,9 @@
 <!doctype html>
-<html>
+<html class = "no-js" xmlns:th = "http://www.thymeleaf.org"
+      xmlns:sec = "http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="utf-8">
+    <meta name="referrer" content="no-referrer"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
     <meta name="keywords" content="">
@@ -196,6 +198,51 @@
                 </div>
             </div>
         </div>
+
+        <div class = "am-g">
+            <div class = "am-u-sm-12">
+                <div class = "am-cf am-padding" id = "recom-book">
+                    <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">所有图书</strong></div>
+                    <form action = "" class = "am-topbar-right">
+                        <select name = "test" data-am-selected>
+                            <option value = "a">产品</option>
+                            <option value = "b" selected>设计</option>
+                            <option value = "o">开发</option>
+                            <option value = "m">测试</option>
+                            <option value = "d" disabled>运维</option>
+                        </select>
+                    </form>
+                </div>
+                <form class = "am-form">
+                    <ul data-am-widget = "gallery" id="all-books" class = "am-gallery am-avg-sm-2
+          am-avg-md-4 am-avg-lg-6 am-gallery-bordered" data-am-gallery = "{  }">
+                        <li th:each = "book:${page}">
+                            <div class = "am-gallery-item">
+                                <a th:href="@{book_details(isbn=${book.isbn})}" class = "">
+                                    <img th:src = "${book.coverPath}" height="326" />
+                                    <h3 th:text="${book.title}" class = "am-gallery-title"></h3>
+                                    <div class = "am-gallery-desc">剩余：<strong th:text="${book.number}"></strong>本</div>
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+                    <hr>
+                    <div class = "am-cf" id="table-paging">
+                        共 [[${page.totalElements}]] 条记录
+                        <div class = "am-fr">
+                            <ul class = "am-pagination">
+                                <li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook_1()">首页</button></li>
+                                <li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook_2(-1)">上一页</button></li>
+                                <li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook_2(1)">下一页</button></li>
+                                <li><button type="button" class="am-btn am-btn-primary am-round" th:onclick = "'javascript:getOnePageBook_3('+${page.totalPages}+'-1)'">末页</button></li>
+                            </ul>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
     <!--</div>-->
 <!--</div>-->
 <!--搜索框-->
@@ -345,5 +392,262 @@
 <script type = "text/javascript" src = "assets/js/test.js"></script>
 <script type = "text/javascript" color = "50,177,108" opacity = "1" zIndex = "-1" count = "100"
         src = "https://www.laomoit.com/wp-content/themes/pc/js/line.js"></script>
+<script>
+    function clear() {
+        $('#recom-book').empty();
+        $('#table-paging').empty();
+    }
+</script>
+<script>
+    function book_reserve(book_isbn) {
+        var res = confirm("确认预约？");
+        if(res == true){
+            $.ajax({
+                type: "get",
+                data: {isbn: book_isbn},
+                url: "reserve",
+                success: function (data) {
+                    if(data!=null)
+                        alert("成功预约！");
+                    else
+                        alert("预约失败，请稍后再试！");
+                    getOnePageBook_2(0);
+                },
+                error: function (data) {
+                    alert("发生错误，请稍后再试！");
+                }
+            });
+        }
+    }
+</script>
+<script>
+
+    var pageNumber = 0;
+
+    function getOnePageBook_1() {
+        pageNumber = 0;
+        $.ajax({
+            type: "get",
+            url: "showbook",
+            data: {start: 0, size: 12},
+            success: function (data) {
+                var str = "";
+                $('#bk-table-3').empty();
+                for (var i = 0; i < data.content.length; i++) {
+                    str += "<li>\n" +
+                        "                                <div class = \"am-gallery-item\">\n" +
+                        "                                    <a href=\"book_details?isbn="+data.content[i].isbn+"\" class = \"\">\n" +
+                        "                                        <img src = \""+data.content[i].coverPath+"\" height=\"326\" />\n" +
+                        "                                        <h3 class = \"am-gallery-title\">"+data.content[i].title+"</h3>\n" +
+                        "                                        <div class = \"am-gallery-desc\">剩余：<strong>"+data.content[i].number+"</strong>本</div>\n" +
+                        "                                    </a>\n";
+                    if(data.content[i].number == 0)
+                    str+= "                                </div>\n" +
+                        "                            </li>"
+                }
+                $('#all-books').html(str);
+            }
+        });
+    }
+
+    function getOnePageBook_2(temp) {
+        pageNumber += temp;
+        if (pageNumber < 0)
+            pageNumber = 0;
+        else if (pageNumber >= [[${page.totalPages}]])
+            pageNumber = [[${page.totalPages}]]-1;
+        else
+            $.ajax({
+                type: "get",
+                url: "showbook",
+                data: {start: pageNumber, size: 12},
+                success: function (data) {
+                    var str = '';
+                    $('#all-books').empty();
+                    for (var i = 0; i < data.content.length; i++) {
+                        str += "<li>\n" +
+                            "                                <div class = \"am-gallery-item\">\n" +
+                            "                                    <a href=\"book_details?isbn="+data.content[i].isbn+"\" class = \"\">\n" +
+                            "                                        <img src = \""+data.content[i].coverPath+"\" height=\"326\" />\n" +
+                            "                                        <h3 class = \"am-gallery-title\">"+data.content[i].title+"</h3>\n" +
+                            "                                        <div class = \"am-gallery-desc\">剩余：<strong>"+data.content[i].number+"</strong>本</div>\n" +
+                            "                                    </a>\n";
+                        str+= "                                </div>\n" +
+                            "                            </li>"
+                    }
+                    $('#all-books').html(str);
+                }
+            });
+    }
+
+    function getOnePageBook_3(end) {
+        console.log('233');
+        pageNumber = end;
+        $.ajax({
+            type: "get",
+            url: "showbook",
+            data: {start: end, size: 12},
+            success: function (data) {
+                console.log(data);
+                var str = '';
+                $('#all-books').empty();
+                for (var i = 0; i < data.content.length; i++) {
+                    str += "<li>\n" +
+                        "                                <div class = \"am-gallery-item\">\n" +
+                        "                                    <a href=\"book_details?isbn="+data.content[i].isbn+"\" class = \"\">\n" +
+                        "                                        <img src = \""+data.content[i].coverPath+"\" height=\"326\" />\n" +
+                        "                                        <h3 class = \"am-gallery-title\">"+data.content[i].title+"</h3>\n" +
+                        "                                        <div class = \"am-gallery-desc\">剩余：<strong>"+data.content[i].number+"</strong>本</div>\n" +
+                        "                                    </a>\n";
+                    str+= "                                </div>\n" +
+                        "                            </li>"
+                }
+                $('#all-books').html(str);
+            }
+        });
+    }
+</script>
+
+<script>
+    var totalPage4 = 0;
+    var pageNumber4 = 0;
+
+    function getOnePageBook4_1() {
+        pageNumber4 = 0;
+        var myselect=document.getElementById("type");
+        var index=myselect.selectedIndex;
+        var inputDoc=document.getElementById("string");
+        var string=inputDoc.value;
+        $.ajax({
+            type: "get",
+            url: "searchBook",
+            data: {string: string,type: myselect.options[index].value, start: 0, size: 12},
+            success: function (data) {
+                console.log(data);
+                var str = "";
+                totalPage4 = data.totalPages;
+                $('#bk-table-3').empty();
+                for (var i = 0; i < data.content.length; i++) {
+                    str += "<li>\n" +
+                        "                                <div class = \"am-gallery-item\">\n" +
+                        "                                    <a href=\"book_details?isbn="+data.content[i].isbn+"\" class = \"\">\n" +
+                        "                                        <img src = \""+data.content[i].coverPath+"\" height=\"326\" />\n" +
+                        "                                        <h3 class = \"am-gallery-title\">"+data.content[i].title+"</h3>\n" +
+                        "                                        <div class = \"am-gallery-desc\">剩余：<strong>"+data.content[i].number+"</strong>本</div>\n" +
+                        "                                    </a>\n";
+                    str+= "                                </div>\n" +
+                        "                            </li>"
+                }
+                var str1 = "";
+                str1 += "<div class = \"am-cf\" id=\"table-paging\">\n" +
+                    "                            共 "+data.totalElements+" 条记录\n" +
+                    "                            <div class = \"am-fr\">\n" +
+                    "                                <ul class = \"am-pagination\">\n" +
+                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_1()\">首页</button></li>\n" +
+                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(-1)\">上一页</button></li>\n" +
+                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(1)\">下一页</button></li>\n" +
+                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_3()\">末页</button></li>\n" +
+                    "                                </ul>\n" +
+                    "                            </div>\n" +
+                    "                        </div>"
+                clear();
+                $('#all-books').html(str);
+                $('#table-paging').html(str1);
+            }
+        });
+    }
+
+    function getOnePageBook4_2(temp) {
+        pageNumber4 += temp;
+        var myselect=document.getElementById("type");
+        var index=myselect.selectedIndex;
+        var inputDoc=document.getElementById("string");
+        var string=inputDoc.value;
+
+        if (pageNumber4 < 0)
+            pageNumber4 = 0;
+        else if (pageNumber4 >= totalPage4)
+            pageNumber4 = totalPage4-1;
+        else
+            $.ajax({
+                type: "get",
+                url: "searchBook",
+                data: {string:string,type: myselect.options[index].value, start: pageNumber4, size: 12},
+                success: function (data) {
+                    var str = '';
+                    $('#all-books').empty();
+                    for (var i = 0; i < data.content.length; i++) {
+                        str += "<li>\n" +
+                            "                                <div class = \"am-gallery-item\">\n" +
+                            "                                    <a href=\"book_details?isbn="+data.content[i].isbn+"\" class = \"\">\n" +
+                            "                                        <img src = \""+data.content[i].coverPath+"\" height=\"326\" />\n" +
+                            "                                        <h3 class = \"am-gallery-title\">"+data.content[i].title+"</h3>\n" +
+                            "                                        <div class = \"am-gallery-desc\">剩余：<strong>"+data.content[i].number+"</strong>本</div>\n" +
+                            "                                    </a>\n";
+                        str+= "                                </div>\n" +
+                            "                            </li>"
+                    }
+                    var str1 = "";
+                    str1 += "<div class = \"am-cf\" id=\"table-paging\">\n" +
+                        "                            共 "+data.totalElements+" 条记录\n" +
+                        "                            <div class = \"am-fr\">\n" +
+                        "                                <ul class = \"am-pagination\">\n" +
+                        "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_1()\">首页</button></li>\n" +
+                        "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(-1)\">上一页</button></li>\n" +
+                        "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(1)\">下一页</button></li>\n" +
+                        "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_3()\">末页</button></li>\n" +
+                        "                                </ul>\n" +
+                        "                            </div>\n" +
+                        "                        </div>"
+                    clear();
+                    $('#all-books').html(str);
+                    $('#table-paging').html(str1);
+                }
+            });
+    }
+
+    function getOnePageBook4_3() {
+        pageNumber4 = totalPage4-1;
+        var myselect=document.getElementById("type");
+        var index=myselect.selectedIndex;
+        var inputDoc=document.getElementById("string");
+        var string=inputDoc.value;
+        $.ajax({
+            type: "get",
+            url: "searchBook",
+            data: {string:string,type: myselect.options[index].value, start: pageNumber4, size: 12},
+            success: function (data) {
+                var str = '';
+                $('#all-books').empty();
+                for (var i = 0; i < data.content.length; i++) {
+                    str += "<li>\n" +
+                        "                                <div class = \"am-gallery-item\">\n" +
+                        "                                    <a href=\"book_details?isbn="+data.content[i].isbn+"\" class = \"\">\n" +
+                        "                                        <img src = \""+data.content[i].coverPath+"\" height=\"326\" />\n" +
+                        "                                        <h3 class = \"am-gallery-title\">"+data.content[i].title+"</h3>\n" +
+                        "                                        <div class = \"am-gallery-desc\">剩余：<strong>"+data.content[i].number+"</strong>本</div>\n" +
+                        "                                    </a>\n";
+                    str+= "                                </div>\n" +
+                        "                            </li>"
+                }
+                var str1 = "";
+                str1 += "<div class = \"am-cf\" id=\"table-paging\">\n" +
+                    "                            共 "+data.totalElements+" 条记录\n" +
+                    "                            <div class = \"am-fr\">\n" +
+                    "                                <ul class = \"am-pagination\">\n" +
+                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_1()\">首页</button></li>\n" +
+                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(-1)\">上一页</button></li>\n" +
+                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(1)\">下一页</button></li>\n" +
+                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_3()\">末页</button></li>\n" +
+                    "                                </ul>\n" +
+                    "                            </div>\n" +
+                    "                        </div>"
+                clear();
+                $('#all-books').html(str);
+                $('#table-paging').html(str1);
+            }
+        });
+    }
+</script>
 </body>
 </html>
