@@ -111,6 +111,7 @@
                         <li><a href = "librarian_borrow"><span class = "am-icon-leaf"></span> 借阅</a></li>
                         <li><a href = "librarian_return"><span class = "am-icon-mail-reply"></span> 归还</a></li>
                         <li><a href = "librarian_table"><span class = "am-icon-book"></span> 管理图书</a></li>
+                        <li><a href = "librarian_deletebookhistory"><span class="am-icon-trash"></span> 删除记录</a></li>
                         <li><a href = "librarian_record"><span class = "am-icon-calendar-check-o"></span> 预约记录</a>
                         </li>
                     </ul>
@@ -131,7 +132,7 @@
                     <ul class = "am-list am-collapse admin-sidebar-sub am-in" id = "collapse-nav3">
                         <li><a href = "librarian_history"><span class = "am-icon-book"></span> 借阅记录</a></li>
                         <li><a href = "librarian_income"><span class = "am-icon-money"></span> 收入记录 </a></li>
-                        <li><a href = "librarian_fine"><span class="am-icon-bolt">罚金记录</span></a></li>
+                        <li><a href = "librarian_fine"><span class="am-icon-bolt"></span> 罚金记录</a></li>
                     </ul>
                 </li>
                 <li><a href = "librarian_announce"><span class = "am-icon-comment"></span> 发布公告</a></li>
@@ -255,7 +256,7 @@
 
         option = {
             title : {
-                text: '图书情况',
+                text: 'Book Information',
                 x:'center'
             },
             tooltip : {
@@ -265,7 +266,7 @@
             legend: {
                 orient: 'vertical',
                 left: 'left',
-                data: ['可使用','被预约','被借出']
+                data: ['Available/可使用','Reserved/被预约','Borrowed/被借出']
             },
             series : [
                 {
@@ -274,9 +275,9 @@
                     radius : '55%',
                     center: ['50%', '60%'],
                     data:[
-                        {value:[[${availableNumber}]], name:'可使用'},
-                        {value:[[${reserveNumber}]], name:'被预约'},
-                        {value:[[${borrowedNumber}]], name:'被借出'}
+                        {value:[[${availableNumber}]], name:'Available/可使用'},
+                        {value:[[${reserveNumber}]], name:'Reserved/被预约'},
+                        {value:[[${borrowedNumber}]], name:'Borrowed/被借出'}
                         // {value:0,name:'可使用'},
                         // {value:0,name:'被预约'},
                         // {value:0,name:'被借出'}
@@ -301,13 +302,13 @@
 
         option = {
             title: {
-                text: '图书出入情况'
+                text: 'Borrow/Return'
             },
             tooltip: {
                 trigger: 'axis'
             },
             legend: {
-                data:['借阅','归还']
+                data:['Borrow','Return']
             },
             grid: {
                 left: '3%',
@@ -336,13 +337,13 @@
             },
             series: [
                 {
-                    name:'借阅',
+                    name:'Borrow',
                     type:'line',
                     stack: '总量1',
                     data:[data[0].borrowNumber, data[1].borrowNumber, data[2].borrowNumber, data[3].borrowNumber, data[4].borrowNumber, data[5].borrowNumber, data[6].borrowNumber]
                 },
                 {
-                    name:'归还',
+                    name:'Return',
                     type:'line',
                     stack: '总量2',
                     data:[data[0].returnNumber, data[1].returnNumber, data[2].returnNumber, data[3].returnNumber, data[4].returnNumber, data[5].returnNumber, data[6].returnNumber]
