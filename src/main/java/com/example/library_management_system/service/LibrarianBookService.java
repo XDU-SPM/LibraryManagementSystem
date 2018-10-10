@@ -69,9 +69,11 @@ public class LibrarianBookService
             book1.getCategories().add(category);
             bookDAO.save(book1);
         }
+        else
+            book1.addNumber(book.getNumber());
 
         Set<String> ids = new HashSet<>();
-        int number = book1.getNumber();
+        int number = book.getNumber();
         for (int i = 0; i < number; i++)
         {
             String id = BkunitUtil.generateBarCode();

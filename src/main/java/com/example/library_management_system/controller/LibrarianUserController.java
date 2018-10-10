@@ -33,4 +33,28 @@ public class LibrarianUserController
         model.addAttribute("status", librarianUserService.payFine(money, username));
         return "";
     }
+
+    @RequestMapping(value = "/librarian/librarian_income", method = RequestMethod.GET)
+    public String librarian_income()
+    {
+        return "librarian/librarian_income";
+    }
+
+    @RequestMapping(value = "/librarian/librarian_fine", method = RequestMethod.GET)
+    public String librarian_fine()
+    {
+        return "librarian/librarian_fine";
+    }
+
+    @RequestMapping(value = "/librarian/librarian_addreader", method = RequestMethod.GET)
+    public String librarian_addreader()
+    {
+        return "librarian/librarian_addreader";
+    }
+
+    @RequestMapping(value = "/librarian/librarian_managereader", method = RequestMethod.GET)
+    public String librarian_managereader()
+    {
+        return "librarian/librarian_managereader";
+    }
 }
