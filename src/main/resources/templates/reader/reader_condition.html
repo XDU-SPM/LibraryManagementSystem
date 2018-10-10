@@ -193,12 +193,12 @@
                             <tbody id = "bk-table-1">
                             <tr th:each = "book:${page1}">
 
-                                <td><a th:href = "@{book_details(isbn=${book.bkunit.book.isbn})}"
-                                       th:text = "${book.bkunit.book.title}"></a></td>
+                                <td><a th:href = "@{book_details(isbn=${book.book.isbn})}"
+                                       th:text = "${book.book.title}"></a></td>
 
-                                <td th:text = "${book.bkunit.book.author}"></td>
-                                <td th:text = "${book.bkunit.book.publisher}"></td>
-                                <td class = "am-hide-sm-only" th:text = "${book.bkunit.book.publishDate}"></td>
+                                <td th:text = "${book.book.author}"></td>
+                                <td th:text = "${book.book.publisher}"></td>
+                                <td class = "am-hide-sm-only" th:text = "${book.book.publishDate}"></td>
                                 <td class = "am-hide-sm-only" th:text = "${book.returnDate}"></td>
                                 <td>
                                     <div class = "am-btn-toolbar">
@@ -852,7 +852,7 @@
         pageNumber1 = 0;
         $.ajax({
             type: "get",
-            url: "borrowedBooks",
+            url: "reservedBooks",
             data: {start: 0, size: 5, status: 1},
             success: function (data) {
                 var str = '';
@@ -860,11 +860,11 @@
                 for (var i = 0; i < data.content.length; i++) {
                     str += "<tr>\n" +
                         "\n" +
-                        "                        <td><a href = \"book_details?isbn="+data.content[i].bkunit.book.isbn+"\">"+data.content[i].bkunit.book.title+"</a></td>\n" +
+                        "                        <td><a href = \"book_details?isbn="+data.content[i].book.isbn+"\">"+data.content[i].book.title+"</a></td>\n" +
                         "\n" +
-                        "                        <td>"+data.content[i].bkunit.book.author+"</td>\n" +
-                        "                        <td>"+data.content[i].bkunit.book.publisher+"</td>\n" +
-                        "                        <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.publishDate+"</td>\n" +
+                        "                        <td>"+data.content[i].book.author+"</td>\n" +
+                        "                        <td>"+data.content[i].book.publisher+"</td>\n" +
+                        "                        <td class = \"am-hide-sm-only\">"+data.content[i].book.publishDate+"</td>\n" +
                         "                        <td class = \"am-hide-sm-only\">"+data.content[i].returnDate+"</td>\n" +
                         "                        <td>\n" +
                         "                            <div class = \"am-btn-toolbar\">\n" +
@@ -897,7 +897,7 @@
         else
             $.ajax({
                 type: "get",
-                url: "borrowedBooks",
+                url: "reservedBooks",
                 data: {start: pageNumber1, size: 5, status: 1},
                 success: function (data) {
                     var str = '';
@@ -905,11 +905,11 @@
                     for (var i = 0; i < data.content.length; i++) {
                         str += "<tr>\n" +
                             "\n" +
-                            "                        <td><a href = \"book_details?isbn="+data.content[i].bkunit.book.isbn+"\">"+data.content[i].bkunit.book.title+"</a></td>\n" +
+                            "                        <td><a href = \"book_details?isbn="+data.content[i].book.isbn+"\">"+data.content[i].book.title+"</a></td>\n" +
                             "\n" +
-                            "                        <td>"+data.content[i].bkunit.book.author+"</td>\n" +
-                            "                        <td>"+data.content[i].bkunit.book.publisher+"</td>\n" +
-                            "                        <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.publishDate+"</td>\n" +
+                            "                        <td>"+data.content[i].book.author+"</td>\n" +
+                            "                        <td>"+data.content[i].book.publisher+"</td>\n" +
+                            "                        <td class = \"am-hide-sm-only\">"+data.content[i].book.publishDate+"</td>\n" +
                             "                        <td class = \"am-hide-sm-only\">"+data.content[i].returnDate+"</td>\n" +
                             "                        <td>\n" +
                             "                            <div class = \"am-btn-toolbar\">\n" +
@@ -937,7 +937,7 @@
         pageNumber1 = end;
         $.ajax({
             type: "get",
-            url: "borrowedBooks",
+            url: "reservedBooks",
             data: {start: end, size: 5, status: 1},
             success: function (data) {
                 var str = '';
@@ -945,11 +945,11 @@
                 for (var i = 0; i < data.content.length; i++) {
                     str += "<tr>\n" +
                         "\n" +
-                        "                        <td><a href = \"book_details?isbn="+data.content[i].bkunit.book.isbn+"\">"+data.content[i].bkunit.book.title+"</a></td>\n" +
+                        "                        <td><a href = \"book_details?isbn="+data.content[i].book.isbn+"\">"+data.content[i].book.title+"</a></td>\n" +
                         "\n" +
-                        "                        <td>"+data.content[i].bkunit.book.author+"</td>\n" +
-                        "                        <td>"+data.content[i].bkunit.book.publisher+"</td>\n" +
-                        "                        <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.publishDate+"</td>\n" +
+                        "                        <td>"+data.content[i].book.author+"</td>\n" +
+                        "                        <td>"+data.content[i].book.publisher+"</td>\n" +
+                        "                        <td class = \"am-hide-sm-only\">"+data.content[i].book.publishDate+"</td>\n" +
                         "                        <td class = \"am-hide-sm-only\">"+data.content[i].returnDate+"</td>\n" +
                         "                        <td>\n" +
                         "                            <div class = \"am-btn-toolbar\">\n" +
