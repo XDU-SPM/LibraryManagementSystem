@@ -205,7 +205,7 @@
                                 <tbody>
                                 <tr th:each = "user:${page}">
                                     <td th:text="${user.id}"></td>
-                                    <td th:text="${user.username}"></td>
+                                    <td><a th:text="${user.username}" th:href="@{librarian_user(id=${user.id})}"></a></td>
                                     <td class = "am-hide-sm-only" th:text="${user.name}"></td>
                                     <td class = "am-hide-sm-only" th:text="${user.email}"></td>
                                     <td>
