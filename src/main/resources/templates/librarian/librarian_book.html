@@ -249,7 +249,7 @@
                             <label for = "number" class = "am-u-sm-3 am-form-label">数量</label>
                             <div class = "am-u-sm-9">
                                 <input type = "number" id = "number" readonly="readonly" pattern = "[1-9][0-9]*"
-                                       placeholder = "数量 / Number" th:value = "${number}"
+                                       placeholder = "数量 / Number" th:value = "${book.number}"
                                        name = "number" min="0">
                             </div>
                         </div>
@@ -257,15 +257,17 @@
                         <div class = "am-form-group">
                             <label for = "abstract" class = "am-u-sm-3 am-form-label">简介</label>
                             <div class = "am-u-sm-9">
-                                <input type = "text" id = "abstract" placeholder = "摘要 / Abstract" name = "brief"
-                                       th:value = "${book.brief}">
+                                <!--<input type = "text" id = "abstract" placeholder = "摘要 / Abstract" name = "brief"-->
+                                       <!--th:value = "${book.brief}">-->
+                                <textarea rows="3" cols="20"  name="brief" id="abstract">
+                                </textarea>
                             </div>
                         </div>
 
                         <div class = "am-form-group">
                             <label for = "price" class = "am-u-sm-3 am-form-label">价格</label>
                             <div class = "am-u-sm-9">
-                                <input type = "number" id = "price" placeholder = "价格 / Price" name = "price"
+                                <input type = "text" id = "price" placeholder = "价格 / Price" name = "price"
                                        th:value = "${book.price}" min="0">
                             </div>
                         </div>
@@ -296,6 +298,10 @@
 <!--<![endif]-->
 <script src = "assets/js/amazeui.min.js"></script>
 <script src = "assets/js/app.js"></script>
+<script th:inline="javascript">
+    console.log([[${book.brief}]]);
+    document.getElementById("abstract").value=[[${book.brief}]];
+</script>
 <script type = "text/javascript" src = "assets/js/test.js"></script>
 <script type = "text/javascript">
     $("#change").click(function () {
