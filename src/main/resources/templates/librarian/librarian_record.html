@@ -263,8 +263,8 @@
 
     function status(status){
         status=parseInt(status);
-        var array=["已借出", "逾期", "续借", "已归还", "已预约", "预约失败", "取消预约"];
-        return array[status-1];
+        var array=["已预约", "预约失败", "取消预约"];
+        return array[status-6];
     }
 
     function getTableContent(id){
