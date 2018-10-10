@@ -2,7 +2,7 @@ $(function(){
       // do something 
     var script=document.createElement("script");  
     script.type="text/javascript";  
-    script.src="http://www.microsoftTranslator.com/ajax/v3/WidgetV3.ashx?siteData=ueOIGRSKkd965FeEGM5JtQ**";  
+    script.src="assets/js/translate.js";
     document.getElementsByTagName('head')[0].appendChild(script);  
 
 
@@ -32,5 +32,5 @@ function translate(){
     }else{
         sessionStorage.setItem("language", "1");
     }
-    window.location.reload();//刷新当前页面.
+    window.location.reload();
 }
