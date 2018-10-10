@@ -158,8 +158,8 @@
     <div class = "admin-content">
         <div class = "admin-content-body">
             <div class = "am-cf am-padding am-padding-bottom-0">
-                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">删除用户</strong> /
-                    <small>Delete User</small>
+                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">Manage reader</strong> /
+                    <small>管理用户</small>
                 </div>
                 <div class = "am-g">
                     <div class = "am-u-sm-12 am-u-md-6">
@@ -197,7 +197,6 @@
                                 <tr>
                                     <th class = "table-id">ID</th>
                                     <th class = "table-title">用户名</th>
-                                    <th class = "table-type">类别</th>
                                     <th class = "table-author am-hide-sm-only">姓名</th>
                                     <th class = "table-date am-hide-sm-only">邮箱</th>
                                     <th class = "table-set">操作</th>
@@ -207,7 +206,6 @@
                                 <tr th:each = "user:${page}">
                                     <td th:text="${user.id}"></td>
                                     <td th:text="${user.username}"></td>
-                                    <td th:text="${user.role}"></td>
                                     <td class = "am-hide-sm-only" th:text="${user.name}"></td>
                                     <td class = "am-hide-sm-only" th:text="${user.email}"></td>
                                     <td>
