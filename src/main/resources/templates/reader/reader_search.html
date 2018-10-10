@@ -54,29 +54,6 @@
             class = "am-icon-bars"></span></button>
 
     <div class = "am-collapse am-topbar-collapse" id = "doc-topbar-collapse">
-        <ul class = "am-nav am-nav-pills am-topbar-nav">
-            <li class = "am-active"><a href = "#">首页</a></li>
-            <li><a href = "#">项目</a></li>
-            <li class = "am-dropdown" data-am-dropdown>
-                <a class = "am-dropdown-toggle" data-am-dropdown-toggle href = "javascript:;">
-                    下拉 <span class = "am-icon-caret-down"></span>
-                </a>
-                <ul class = "am-dropdown-content">
-                    <li class = "am-dropdown-header">标题</li>
-                    <li><a href = "#">1. 去月球</a></li>
-                    <li class = "am-active"><a href = "#">2. 去火星</a></li>
-                    <li><a href = "#">3. 还是回地球</a></li>
-                    <li class = "am-disabled"><a href = "#">4. 下地狱</a></li>
-                    <li class = "am-divider"></li>
-                    <li><a href = "#">5. 桥头一回首</a></li>
-                </ul>
-            </li>
-        </ul>
-                <form class = "am-topbar-form am-topbar-left am-form-inline am-center" role = "search">
-                    <div class = "am-form-group">
-                        <input type = "text" class = "am-form-field am-input-sm" placeholder = "搜索">
-                    </div>
-                </form>
         <div class = "am-collapse am-topbar-collapse" id = "topbar-collapse">
 
             <ul class = "am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
@@ -141,22 +118,19 @@
                 <div class = "am-u-sm-12 am-u-md-6 am-u-md-centered">
                     <form class = "am-form">
                         <div class = "am-input-group am-input-group-sm">
-                            <input type = "text" class = "am-form-field am-radius">
+                            <input name="string" type = "text" class = "am-form-field am-radius">
                             <span class = "am-input-group-btn">
                                 <button class = "am-btn am-btn-default am-icon-search am-radius"
                                         type = "button">搜索</button>
                             </span>
                         </div>
                         <div class = "am-input-group">
-                            <select data-am-selected = "{btnSize: 'sm'}">
-                                <option value = "option1">所有类别</option>
-                                <option value = "option2">IT业界</option>
-                                <option value = "option3">数码产品</option>
-                                <option value = "option3">笔记本电脑</option>
-                                <option value = "option3">平板电脑</option>
-                                <option value = "option3">只能手机</option>
-                                <option value = "option3">超极本</option>
+                            <select data-am-selected = "{btnSize: 'sm'}"  name="type">
+                                <option value = "1">isbn</option>
+                                <option value = "2">书名</option>
+                                <option value = "3">作者</option>
                             </select>
+                            <small>（依据isbn\书名\作者搜索）</small>
                         </div>
                     </form>
                 </div>
