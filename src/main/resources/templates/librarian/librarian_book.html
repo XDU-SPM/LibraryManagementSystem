@@ -238,7 +238,7 @@
                         <div class = "am-form-group">
                             <label for = "publish_time" class = "am-u-sm-3 am-form-label">出版时间</label>
                             <div class = "am-u-sm-9">
-                                <input type = "date" id = "publish_time" placeholder = "出版时间 / Publish Time "
+                                <input type = "text" id = "publish_time" placeholder = "出版时间 / Publish Time "
                                        th:value = "${book.publishDate}"
                                        name = "publishDate">
                             </div>
@@ -250,7 +250,7 @@
                             <div class = "am-u-sm-9">
                                 <input type = "number" id = "number" readonly="readonly" pattern = "[1-9][0-9]*"
                                        placeholder = "数量 / Number" th:value = "${number}"
-                                       name = "number"> min="0"
+                                       name = "number" min="0">
                             </div>
                         </div>
 
@@ -266,7 +266,7 @@
                             <label for = "price" class = "am-u-sm-3 am-form-label">价格</label>
                             <div class = "am-u-sm-9">
                                 <input type = "number" id = "price" placeholder = "价格 / Price" name = "price"
-                                       th:value = "${book.price}"> min="0"
+                                       th:value = "${book.price}" min="0">
                             </div>
                         </div>
 

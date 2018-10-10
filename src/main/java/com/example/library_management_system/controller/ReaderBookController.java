@@ -1,9 +1,6 @@
 package com.example.library_management_system.controller;
 
-import com.example.library_management_system.bean.ReturnHistory;
-import com.example.library_management_system.bean.Review;
-import com.example.library_management_system.bean.UserBkunit;
-import com.example.library_management_system.bean.UserFavoriteBook;
+import com.example.library_management_system.bean.*;
 import com.example.library_management_system.service.*;
 import com.example.library_management_system.utils.Status;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +31,8 @@ public class ReaderBookController
         model.addAttribute("borrowedNumber", borrowNumber);
         model.addAttribute("RemainNumber", globalUtilService.getMaxBorrowNum() - borrowNumber);
         model.addAttribute("monthBorrows", readerBookService.monthBorrows());
-        model.addAttribute("page1", readerBookService.queryBorrowedBooks(0, 5));
-        model.addAttribute("page2", readerBookService.queryReservedBooks(0, 5));
+        model.addAttribute("page1", readerBookService.queryReservedBooks(0, 5));
+        model.addAttribute("page2", readerBookService.queryBorrowedBooks(0, 5));
         model.addAttribute("page3", readerBookService.queryReturnedBooks(0, 5));
         return "reader/reader_condition";
     }
@@ -46,6 +43,13 @@ public class ReaderBookController
                                                @RequestParam(value = "size", defaultValue = "10") int size)
     {
         return readerBookService.queryBorrowedBooks(start, size);
+    }
+    @RequestMapping(value = "/reader/reservedBooks", method = RequestMethod.GET)
+    @ResponseBody
+    public Page<UserBook> queryReservedBooks(@RequestParam(value = "start", defaultValue = "0") int start,
+                                             @RequestParam(value = "size", defaultValue = "10") int size)
+    {
+        return readerBookService.queryReservedBooks(start, size);
     }
 
     @RequestMapping(value = "/reader/returnedBooks", method = RequestMethod.GET)
@@ -74,7 +78,7 @@ public class ReaderBookController
     @RequestMapping(value = "/reader/appointment", method = RequestMethod.GET)
     public String appointment(int id, Model model)
     {
-        model.addAttribute("userBkunit", readerBookService.appointment(id));
+        model.addAttribute("userBook", readerBookService.appointment(id));
         return "reader/appointment";
     }
 
