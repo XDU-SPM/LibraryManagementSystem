@@ -1,10 +1,8 @@
 package com.example.library_management_system.config;
 
-import com.example.library_management_system.bean.Account;
-import com.example.library_management_system.bean.BkunitOperatingHistory;
-import com.example.library_management_system.bean.User;
-import com.example.library_management_system.bean.UserBkunit;
+import com.example.library_management_system.bean.*;
 import com.example.library_management_system.dao.*;
+import com.example.library_management_system.service.GlobalUtilService;
 import com.example.library_management_system.utils.AccountUtil;
 import com.example.library_management_system.utils.MailUtil;
 import com.example.library_management_system.utils.UserBkunitUtil;
@@ -41,7 +39,7 @@ public class Timer
     private BkunitOperatingHistoryDAO bkunitOperatingHistoryDAO;
 
     @Autowired
-    private GlobalUtilDAO getGlobalUtilDAO;
+    private GlobalUtilService globalUtilService;
 
     /**
      * Execute once every day at 0:00
@@ -65,6 +63,7 @@ public class Timer
             {
                 userBkunit.setStatus(UserBkunitUtil.OVERDUE);
                 userBkunitDAO.save(userBkunit);
+
                 BkunitOperatingHistory bkunitOperatingHistory = new BkunitOperatingHistory(new Date(), userBkunit.getUser().getId(), userBkunit.getBkunit().getId(), UserBkunitUtil.OVERDUE);
                 bkunitOperatingHistoryDAO.save(bkunitOperatingHistory);
             }
@@ -80,12 +79,16 @@ public class Timer
     public void deduction()
     {
         List<User> users = userDAO.findAll();
+        double money = globalUtilService.getOverdueMoney();
         for (User user : users)
         {
-            double num = userBkunitDAO.countByUserAndStatus(user, UserBkunitUtil.OVERDUE) * getGlobalUtilDAO.findById(1).get().getOVERDUE_MONEY();
-            Account account = new Account(AccountUtil.OVERDUE, num, user.getId(), new Date());
-            accountDAO.save(account);
-            user.deductMoney(num);
+            List<UserBkunit> userBkunits = userBkunitDAO.findAllByUserAndStatus(user, UserBkunitUtil.OVERDUE);
+            for (UserBkunit userBkunit : userBkunits)
+            {
+                Account account = new Account(AccountUtil.OVERDUE, user.getId(), money, userBkunit.getBkunit().getId(), new Date());
+                accountDAO.save(account);
+            }
+            user.addMoney(money * userBkunits.size() * (-1));
             userDAO.save(user);
         }
     }

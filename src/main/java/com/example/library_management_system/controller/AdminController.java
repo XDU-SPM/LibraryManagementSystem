@@ -14,37 +14,30 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class AdminController
 {
     @Autowired
-    private AdminService adminservice;
+    private AdminService adminService;
 
-    @RequestMapping(value = "/admin/deleteaccount", method = {RequestMethod.GET})
-    public String deleteuser(int id, int start)
+    /*@RequestMapping(value = "admin/reader_create", method = RequestMethod.GET)
+    public String admin_reader_create()
     {
-        System.out.println(id);
-        adminservice.deleteuser(id);
-        return "redirect:delete_users?start=" + start;
+        return "admin/reader_create";
+    }*/
+
+    @RequestMapping(value = "admin/librarian_create", method = RequestMethod.GET)
+    public String admin_librarian_create()
+    {
+        return "admin/librarian_create";
     }
 
-    @RequestMapping(path = "/admin", method = {RequestMethod.GET})
-    public String showallinfo(Model model, @RequestParam(value = "start", defaultValue = "0") int start,
-                              @RequestParam(value = "size", defaultValue = "10") int size,
-                              String role)
+    @RequestMapping(value = "admin/permission_change", method = RequestMethod.GET)
+    public String admin_permission_change()
     {
-        Page<User> page = adminservice.showallinfo(start, size, role);
-        model.addAttribute("page", page);
-        return "userinfo";
-    }
-
-    @RequestMapping(path = "/admin/showinfo", method = {RequestMethod.GET})
-    public String showinfo(@RequestParam(value = "id") int id, Model model)
-    {
-        model.addAttribute("accountinfo", adminservice.showinfo(id));
-        return "userinfo";
+        return "admin/permission_change";
     }
 
     @RequestMapping(value = "/admin/modifyRegisterMoney", method = RequestMethod.POST)
     public String modifyRegisterMoney(double money, Model model)
     {
-        adminservice.modifyRegisterMoney(money);
+        adminService.modifyRegisterMoney(money);
         model.addAttribute("status", true);
         return "admin/permission_change";
     }
@@ -52,7 +45,7 @@ public class AdminController
     @RequestMapping(value = "/admin/modifyMaxBorrowDays", method = RequestMethod.POST)
     public String modifyMaxBorrowDays(int days, Model model)
     {
-        adminservice.modifyMaxBorrowDays(days);
+        adminService.modifyMaxBorrowDays(days);
         model.addAttribute("status", true);
         return "admin/permission_change";
     }
@@ -60,7 +53,7 @@ public class AdminController
     @RequestMapping(value = "/admin/modifyMaxBorrowNum", method = RequestMethod.POST)
     public String modifyMaxBorrowNum(int num, Model model)
     {
-        adminservice.modifyMaxBorrowNum(num);
+        adminService.modifyMaxBorrowNum(num);
         model.addAttribute("status", true);
         return "admin/permission_change";
     }
@@ -68,7 +61,7 @@ public class AdminController
     @RequestMapping(value = "/admin/modifyOverdueMoney", method = RequestMethod.POST)
     public String modifyOverdueMoney(double money, Model model)
     {
-        adminservice.modifyOverdueMoney(money);
+        adminService.modifyOverdueMoney(money);
         model.addAttribute("status", true);
         return "admin/permission_change";
     }

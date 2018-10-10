@@ -19,6 +19,8 @@ public class ReturnHistory
     private String publisher;
     private String publishDate;
 
+    private double money;
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date borrowDate;
 
@@ -29,7 +31,7 @@ public class ReturnHistory
     {
     }
 
-    public ReturnHistory(int userId, UserBkunit userBkunit)
+    public ReturnHistory(int userId, UserBkunit userBkunit, double money)
     {
         Bkunit bkunit = userBkunit.getBkunit();
         Book book = bkunit.getBook();
@@ -42,6 +44,7 @@ public class ReturnHistory
         this.publisher = book.getPublisher();
         this.borrowDate = userBkunit.getBorrowDate();
         this.returnDate = userBkunit.getReturnDate();
+        this.money = money;
     }
 
     public int getId()
@@ -142,5 +145,15 @@ public class ReturnHistory
     public void setReturnDate(Date returnDate)
     {
         this.returnDate = returnDate;
+    }
+
+    public double getMoney()
+    {
+        return money;
+    }
+
+    public void setMoney(double money)
+    {
+        this.money = money;
     }
 }

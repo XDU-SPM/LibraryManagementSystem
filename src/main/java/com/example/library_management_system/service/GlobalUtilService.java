@@ -12,25 +12,35 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-public class GlobalUtilService {
+public class GlobalUtilService
+{
 
     @Autowired
     private GlobalUtilDAO globalUtilDAO;
 
-    public void initGlobalUtil(){
+    public void initGlobalUtil()
+    {
         GlobalUtil globalUtil = new GlobalUtil();
         globalUtilDAO.save(globalUtil);
     }
 
-    public double getRegisterMoney(){
+    public double getRegisterMoney()
+    {
         return globalUtilDAO.findById(1).get().getREGISTER_MONEY();
     }
 
-    public int getMaxBorrowDays(){
+    public int getMaxBorrowDays()
+    {
         return globalUtilDAO.findById(1).get().getMAX_BORROW_DAYS();
     }
 
-    public int getMaxBorrowNum(){
+    public int getMaxBorrowNum()
+    {
         return globalUtilDAO.findById(1).get().getMAX_BORROW_NUM();
+    }
+
+    public double getOverdueMoney()
+    {
+        return globalUtilDAO.findById(1).get().getOVERDUE_MONEY();
     }
 }

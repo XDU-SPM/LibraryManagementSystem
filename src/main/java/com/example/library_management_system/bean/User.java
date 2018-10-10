@@ -30,6 +30,10 @@ public class User
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
     @JsonIgnore
+    private Set<UserBook> userBooks;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+    @JsonIgnore
     private Set<Review> reviews;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -40,8 +44,7 @@ public class User
     )
     private Set<Role> roles;
 
-    // 可借数目上限 (Borrow Upper limit)
-    private int BUL;
+    private int borrowNumber;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
     @JsonIgnore
@@ -53,6 +56,7 @@ public class User
         this.roles = new HashSet<>();
         this.userFavoriteBooks = new HashSet<>();
         this.reviews = new HashSet<>();
+        this.userBooks = new HashSet<>();
     }
 
     public User(String username, String password)
@@ -148,10 +152,6 @@ public class User
         this.email = email;
     }
 
-    public int getBUL() {
-        return BUL;
-    }
-
     public Set<UserFavoriteBook> getUserFavoriteBooks() {
         return userFavoriteBooks;
     }
@@ -161,19 +161,24 @@ public class User
         this.userBkunits = userBkunits;
     }
 
-    public void setBUL(int BUL) {
-        this.BUL = BUL;
+    public int getBorrowNumber()
+    {
+        return borrowNumber;
     }
 
+    public void setBorrowNumber(int borrowNumber)
+    {
+        this.borrowNumber = borrowNumber;
+    }
 
     public void setUserFavoriteBooks(Set<UserFavoriteBook> userFavoriteBooks)
     {
         this.userFavoriteBooks = userFavoriteBooks;
     }
 
-    public void deductMoney(double money)
+    public void addMoney(double money)
     {
-        this.money -= money;
+        this.money += money;
     }
 
     public Set<Review> getReviews() {
@@ -182,5 +187,20 @@ public class User
 
     public void setReviews(Set<Review> reviews) {
         this.reviews = reviews;
+    }
+
+    public void addBookNumber(int number)
+    {
+        this.borrowNumber += number;
+    }
+
+    public Set<UserBook> getUserBooks()
+    {
+        return userBooks;
+    }
+
+    public void setUserBooks(Set<UserBook> userBooks)
+    {
+        this.userBooks = userBooks;
     }
 }

@@ -7,7 +7,5 @@ public class UserBkunitUtil
             OVERDUE = 2,
             RENEW = 3,
             RETURNED = 4,
-            RESERVATION = 5,
-            RESERVATION_FAIL = 6,
-            RESERVATION_CANCEL = 7;
+            DELETE = 5;
 }

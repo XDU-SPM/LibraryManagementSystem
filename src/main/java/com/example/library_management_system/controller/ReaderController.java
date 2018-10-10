@@ -12,46 +12,27 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class ReaderController
 {
     @Autowired
-    private StatService statService;
-
-    @Autowired
-    private GlobalUtilService globalUtilService;
-
-    @Autowired
-    private ReaderFunctionService readerFunctionService;
-
-    @Autowired
     private LibrarianBookService librarianBookService;
-
-    @Autowired
-    private ReaderService readerService;
 
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/reader/reader_condition", method = RequestMethod.GET)
-    public String reader_reader_condition(Model model)
-    {
-        model.addAttribute("borrowedNumber", globalUtilService.getMaxBorrowNum() - statService.getUserBUL());
-        model.addAttribute("RemainNumber", statService.getUserBUL());
-        model.addAttribute("monthBorrows", statService.monthborrow());
-        model.addAttribute("page1", readerFunctionService.queryborrowedBooks(0, 5, 1));
-        model.addAttribute("page2", readerFunctionService.queryborrowedBooks(0, 5, 2));
-        model.addAttribute("page3", readerFunctionService.queryReturnedBooks(0, 5));
-        return "reader/reader_condition";
-    }
+    @Autowired
+    private BookService bookService;
 
     @RequestMapping(value = "/reader/reader_search", method = RequestMethod.GET)
     public String reader_reader_search(Model model)
     {
-        model.addAttribute("page", librarianBookService.showbook(0, 8, null));
+        model.addAttribute("page", librarianBookService.showBook(0, 8, null));
         return "reader/reader_search";
     }
 
     @RequestMapping(value = "/reader/reader_information", method = RequestMethod.GET)
     public String reader_reader_information(Model model)
     {
-        model.addAttribute("user", userService.getUser());
+        User reader = userService.getUser();
+        model.addAttribute("user", reader);
+        model.addAttribute("totalFine", reader.getMoney() < 0 ? -reader.getMoney() : 0);
         return "reader/reader_information";
     }
 
@@ -64,7 +45,7 @@ public class ReaderController
     @RequestMapping(value = "/reader/book_details", method = RequestMethod.GET)
     public String reader_book_details(String isbn, Model model)
     {
-        model.addAttribute("book", librarianBookService.bookInfo(isbn));
+        model.addAttribute("book", bookService.bookInfo(isbn));
         return "reader/book_details";
     }
 
@@ -73,13 +54,6 @@ public class ReaderController
     {
         model.addAttribute("isbn", isbn);
         return "reader/reader_comment";
-    }
-
-    @RequestMapping(value = "/reader/appointment", method = RequestMethod.GET)
-    public String appointment(int id, Model model)
-    {
-        model.addAttribute("userBkunit", readerService.appointment(id));
-        return "reader/appointment";
     }
 
     @RequestMapping(value = "reader/saveUser", method = RequestMethod.POST)
