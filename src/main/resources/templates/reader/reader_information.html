@@ -175,7 +175,7 @@
                         <div class = "am-form-group">
                             <label for = "user-balance" class = "am-u-sm-3 am-form-label">待交罚金(元) / Pending fine(CNY)</label>
                             <div class = "am-u-sm-9">
-                                <input id = "user-balance" th:value = "${user.money}" disabled>
+                                <input id = "user-balance" disabled>
                             </div>
                         </div>
 
@@ -219,6 +219,13 @@
 <script src = "assets/js/app.js"></script>
 <script src = "https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
 <script type = "text/javascript" src = "assets/js/test.js"></script>
+<script>
+    getMoney();
+    function getMoney() {
+        var money = -[[${user.money}]];
+        document.getElementById("user-balance").value = money;
+    }
+</script>
 <script type = "text/javascript" th:inline = "javascript">
     $("#change").click(function () {
         translate();
