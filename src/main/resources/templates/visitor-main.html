@@ -1,24 +1,34 @@
 <!doctype html>
-<html class = "no-js">
+<html>
 <head>
-    <meta charset = "utf-8">
-    <meta http-equiv = "X-UA-Compatible" content = "IE=edge">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>Bibliosoft</title>
-    <meta name = "description" content = "这是一个 table 页面">
-    <meta name = "keywords" content = "table">
-    <meta name = "viewport" content = "width=device-width, initial-scale=1">
-    <meta name = "renderer" content = "webkit">
-    <meta http-equiv = "Cache-Control" content = "no-siteapp"/>
-    <link rel = "icon" type = "image/png" href = "assets/i/favicon.png">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel = "icon" type = "image/jpg" href = "assets/i/head_logo.jpg">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="assets/i/app-icon72x72@2x.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
     <link rel = "apple-touch-icon-precomposed" href = "assets/i/app-icon72x72@2x.png">
-    <meta name = "apple-mobile-web-app-title" content = "Amaze UI"/>
-    <link rel = "stylesheet" href = "assets/css/amazeui.min.css"/>
+    <meta name="msapplication-TileColor" content="#0e90d2">
+    <link rel="stylesheet" href="assets/css/amazeui.min.css">
+    <link rel="stylesheet" href="assets/css/app.css">
     <link rel = "stylesheet" href = "assets/css/admin.css">
-    <script src = "https://gw.alipayobjects.com/os/antv/pkg/_antv.g2-3.2.8/dist/g2.min.js"></script>
-
-    <!--引入jquery-->
     <script src = "http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+
     <style>
+        .am-form-group {
+            text-align: left;
+        }
+        .am-topbar {
+            /*background-color: black;*/
+        }
         .am-topbar .am-text-ir {
             display: block;
             margin-right: 10px;
@@ -29,433 +39,299 @@
             background-size: 125px 24px;
         }
     </style>
-
-
-
 </head>
-<body>
-<!--[if lte IE 9]>
-<p class = "browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href = "http://browsehappy.com/"
-                                                                          target = "_blank">升级浏览器</a>
-    以获得更好的体验！</p>
-<![endif]-->
 
-<header class = "am-topbar am-topbar-inverse admin-header">
-    <div class = "am-topbar-brand">
-        <a href = "/visitor-main" class = "am-text-ir" >BiblioSoft</a>
-    </div>
+<body id="blog">
 
+<!--<nav class="am-g am-g-fixed blog-fixed blog-nav">
+    <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only blog-button" data-am-collapse="{target: '#blog-collapse'}" ><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
 
-    <div class = "am-collapse am-topbar-collapse" id = "topbar-collapse">
-
-        <ul class = "am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
-
-            <li><a href = "javascript:;">
+    <div class="am-collapse am-topbar-collapse" id="blog-collapse">
+        <ul class="am-nav am-nav-pills am-topbar-nav">
+            <li class="am-active"><a href="lw-index.html">首页</a></li>
+            <li class="am-dropdown" data-am-dropdown>
+                <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+                    首页布局 <span class="am-icon-caret-down"></span>
+                </a>
+                <ul class="am-dropdown-content">
+                    <li><a href="lw-index.html">1. blog-index-standard</a></li>
+                    <li><a href="lw-index-nosidebar.html">2. blog-index-nosidebar</a></li>
+                    <li><a href="lw-index-center.html">3. blog-index-layout</a></li>
+                    <li><a href="lw-index-noslider.html">4. blog-index-noslider</a></li>
+                </ul>
+            </li>
+            <li><a href="lw-article.html">标准文章</a></li>
+            <li><a href="lw-img.html">图片库</a></li>
+            <li><a href="lw-article-fullwidth.html">全宽页面</a></li>
+            <li><a href="lw-timeline.html">存档</a></li>
+        </ul>
+        <form class="am-topbar-form am-topbar-right am-form-inline" role="search">
+            <div class="am-form-group">
+                <input type="text" class="am-form-field am-input-sm" placeholder="搜索">
+            </div>
+            <div class="am-form-group">
                 <button id = "change" class = "am-btn am-btn-primary am-btn-sm">中文/英文</button>
-            </a></li>
+            </div>
+        </form>
+    </div>
+</nav>-->
+<header class = "am-topbar am-topbar-inverse admin-header">
+    <h1 class = "am-topbar-brand ">
+        <a href = "#" class = "am-text-ir">BiblioSoft</a>
+    </h1>
 
+    <button class = "am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only"
+            data-am-collapse = "{target: '#doc-topbar-collapse'}"><span class = "am-sr-only">导航切换</span> <span
+            class = "am-icon-bars"></span></button>
+
+    <div class = "am-collapse am-topbar-collapse" id = "doc-topbar-collapse">
+        <ul class = "am-nav am-nav-pills am-topbar-nav">
+            <li class = "am-active"><a href = "#">首页</a></li>
             <li class = "am-dropdown" data-am-dropdown>
                 <a class = "am-dropdown-toggle" data-am-dropdown-toggle href = "javascript:;">
-                    <a href = "/login">登录</a>
+                    下拉 <span class = "am-icon-caret-down"></span>
                 </a>
-
+                <ul class = "am-dropdown-content">
+                    <li class = "am-dropdown-header">标题</li>
+                    <li><a href = "#">1. 去月球</a></li>
+                    <li class = "am-active"><a href = "#">2. 去火星</a></li>
+                    <li><a href = "#">3. 还是回地球</a></li>
+                    <li class = "am-disabled"><a href = "#">4. 下地狱</a></li>
+                    <li class = "am-divider"></li>
+                    <li><a href = "#">5. 桥头一回首</a></li>
+                </ul>
             </li>
-            <!--<li class = "am-dropdown" data-am-dropdown>-->
-                <!--<a class = "am-dropdown-toggle" data-am-dropdown-toggle href = "javascript:;">-->
-                    <!--<a href = "/register">注册</a>-->
-                <!--</a>-->
-
-            <!--</li>-->
-
         </ul>
+
+        <form class = "am-topbar-form am-topbar-left am-form-inline" role = "search">
+            <div class = "am-form-group">
+                <input type = "text" class = "am-form-field am-input-sm" placeholder = "搜索">
+            </div>
+        </form>
+
+        <div class = "am-collapse am-topbar-collapse" id = "topbar-collapse">
+
+            <ul class = "am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
+
+                <li><a href = "javascript:;">
+                    <button id = "change" class = "am-btn am-btn-primary am-btn-sm">中文/英文</button>
+                </a></li>
+
+                <li class = "am-dropdown" data-am-dropdown>
+                    <a class = "am-dropdown-toggle" data-am-dropdown-toggle href = "javascript:;">
+                        <a href = "/login">登录</a>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+
     </div>
-    <script type = "text/javascript">
-        $("#change").click(function () {
-            translate();
-            //window.alert(G2.version);
-        })
-    </script>
-
-
 </header>
 
-<div class = "am-cf admin-main">
+<!-- banner start -->
+<div class="am-g am-g-fixed blog-fixed am-u-sm-centered blog-article-margin">
+    <div data-am-widget="slider" class="am-slider am-slider-b1" data-am-slider='{&quot;controlNav&quot;:false}' >
+        <ul class="am-slides">
+            <li>
+                <img src="assets/i/b1.jpg">
+                <div class="blog-slider-desc am-slider-desc ">
+                    <div class="blog-text-center blog-slider-con">
+                        <span><p class="am-text-secondary">Bibliosoft</p></span>
+                        <h1 class="blog-h-margin"><a href="">书籍是人类知识的总结。书籍是全世界的营养品。</a></h1>
+                        <!--<p>那时候刚好下着雨，柏油路面湿冷冷的，还闪烁着青、黄、红颜色的灯火。</p>-->
+                        <!--<span class="blog-bor">2015/10/9</span>-->
 
-    <!-- sidebar start -->
-    <!--
-  <div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
-    <div class="am-offcanvas-bar admin-offcanvas-bar">
-      <ul class="am-list admin-sidebar-list">
-        <li><a href="admin-index.html"><span class="am-icon-home"></span> 首页</a></li>
-        <li class="admin-parent">
-          <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-file"></span> 页面模块 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
-          <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
-            <li><a href="admin-user.html" class="am-cf"><span class="am-icon-check"></span> 个人资料<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
-            <li><a href="admin-help.html"><span class="am-icon-puzzle-piece"></span> 帮助页</a></li>
-            <li><a href="admin-gallery.html"><span class="am-icon-th"></span> 相册页面<span class="am-badge am-badge-secondary am-margin-right am-fr">24</span></a></li>
-            <li><a href="admin-log.html"><span class="am-icon-calendar"></span> 系统日志</a></li>
-            <li><a href="admin-404.html"><span class="am-icon-bug"></span> 404</a></li>
-          </ul>
-        </li>
-        <li><a href="admin-table.html"><span class="am-icon-table"></span> 表格</a></li>
-        <li><a href="admin-form.html"><span class="am-icon-pencil-square-o"></span> 表单</a></li>
-        <li><a href="#"><span class="am-icon-sign-out"></span> 注销</a></li>
-      </ul>
+                        <br><br>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <img src="assets/i/b2.jpg">
+                <div class="am-slider-desc blog-slider-desc">
+                    <div class="blog-text-center blog-slider-con">
+                        <span><p class="am-text-secondary">Bibliosoft</p></span>
+                        <h1 class="blog-h-margin"><a href="">任何时候我也不会满足，越是多读书，就越是深刻地感到不满足，越感到自己知识贫乏。</a></h1>
+                        <!--<p>那时候刚好下着雨，柏油路面湿冷冷的，还闪烁着青、黄、红颜色的灯火。-->
+                        <!--</p>-->
+                        <!--<span>2015/10/9</span>-->
 
-      <div class="am-panel am-panel-default admin-sidebar-panel">
-        <div class="am-panel-bd">
-          <p><span class="am-icon-bookmark"></span> 公告</p>
-          <p>时光静好，与君语；细水流年，与君同。—— Amaze UI</p>
-        </div>
-      </div>
-
-      <div class="am-panel am-panel-default admin-sidebar-panel">
-        <div class="am-panel-bd">
-          <p><span class="am-icon-tag"></span> wiki</p>
-          <p>Welcome to the Amaze UI wiki!</p>
-        </div>
-      </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <img src="assets/i/b3.jpg">
+                <div class="am-slider-desc blog-slider-desc">
+                    <div class="blog-text-center blog-slider-con">
+                        <span><p class="am-text-secondary">Bibliosoft</p></span>
+                        <h1 class="blog-h-margin"><a href="">书籍是在时代的波涛中航行的思想之船，它小心翼翼地把珍贵的货物运送给一代又一代。</a></h1>
+                        <!--<p>那时候刚好下着雨，柏油路面湿冷冷的，还闪烁着青、黄、红颜色的灯火。-->
+                        <!--</p>-->
+                        <!--<span>2015/10/9</span>-->
+                    </div>
+                </div>
+            </li>
+            <li>
+                <img src="assets/i/b2.jpg">
+                <div class="am-slider-desc blog-slider-desc">
+                    <div class="blog-text-center blog-slider-con">
+                        <span><p class="am-text-secondary">Bibliosoft</p></span>
+                        <h1 class="blog-h-margin"><a href="">我读书越多，书籍就使我和世界越接近，生活对我也变得越加光明和有意义。</a></h1>
+                        <!--<p>那时候刚好下着雨，柏油路面湿冷冷的，还闪烁着青、黄、红颜色的灯火。-->
+                        <!--</p>-->
+                        <!--<span>2015/10/9</span>-->
+                    </div>
+                </div>
+            </li>
+        </ul>
     </div>
-  </div>
-  <!-- sidebar end -->
-
-    <!-- content start -->
-    <div class = "admin-content">
-        <div class = "admin-content-body">
-
-
-            <div class = "am-cf am-padding am-padding-bottom-0">
-                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">图书搜索</strong>
-                    <small></small>
-                </div>
-            </div>
-
-
-            <hr>
-
-            <div class = "am-g am-g-fixed">
-                <!--
-              <div class="am-u-sm-12 am-u-md-6">
-                <div class="am-btn-toolbar">
-                  <div class="am-btn-group am-btn-group-xs">
-                    <button type="button" class="am-btn am-btn-default"> 图</button>
-                    <button type="button" class="am-btn am-btn-default"> 书</button>
-                    <button type="button" class="am-btn am-btn-default"> 搜</button>
-                    <button type="button" class="am-btn am-btn-default"> 索</button>
-                  </div>
-                </div>
-              </div>
-              -->
-
-                <div class = "am-u-sm-6  am-u-end">
-                    <div class = "am-input-group am-input-group-sm">
-                        <input type = "text" class = "am-form-field">
-                        <span class = "am-input-group-btn">
-            <button class = "am-btn am-btn-default" type = "button">搜索</button>
-          </span>
-                    </div>
-                </div>
-
-                <div class = "am-u-sm-4 ">
-                    <div class = "am-form-group">
-                        <select data-am-selected = "{btnSize: 'sm'}">
-                            <option value = "option1">所有类别</option>
-                            <option value = "option2">IT业界</option>
-                            <option value = "option3">数码产品</option>
-                            <option value = "option3">笔记本电脑</option>
-                            <option value = "option3">平板电脑</option>
-                            <option value = "option3">只能手机</option>
-                            <option value = "option3">超极本</option>
-                        </select>
-                    </div>
-                </div>
-                <div class = "am-u-sm-1 "></div>
-            </div>
-
-
-            <div class = "admin-content">
-
-                <div class = "admin-content-body">
-
-                    <div class = "am-cf am-padding am-padding-bottom-0">
-                        <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">借书统计</strong>
-                            <small></small>
-                        </div>
-                    </div>
-
-                    <hr>
-                    <!--book borrowed information-->
-
-                    <!-- 创建图表容器 -->
-                    <div id = "c1" style = "float: left;height: 370px;"></div>
-                    <div id = "mountNode" style = "float: left;height: 370px;"></div>
-
-                    <script>
-                        const data = [
-                            {genre: 'Sports', sold: 275}, //图书的名称以及数量
-                            {genre: 'Strategy', sold: 115},
-                            {genre: 'Action', sold: 120},
-                            {genre: 'Shooter', sold: 350},
-                            {genre: 'Other', sold: 150}
-                        ]; // G2 对数据源格式的要求，仅仅是 JSON 数组，数组的每个元素是一个标准 JSON 对象。
-                        // Step 1: 创建 Chart 对象
-                        const chart = new G2.Chart({
-                            container: 'c1', // 指定图表容器 ID
-                            width: 600, // 指定图表宽度
-                            height: 300 // 指定图表高度
-                        });
-                        // Step 2: 载入数据源
-                        chart.source(data);
-                        // Step 3：创建图形语法，绘制柱状图，由 genre 和 sold 两个属性决定图形位置，genre 映射至 x 轴，sold 映射至 y 轴
-                        chart.interval().position('genre*sold').color('genre')
-                        // Step 4: 渲染图表
-                        chart.render();
-                    </script>
-
-
-                    <script>/*Fixing iframe window.innerHeight 0 issue in Safari*/
-                    document.body.clientHeight;</script>
-                    <script src = "https://gw.alipayobjects.com/os/antv/pkg/_antv.g2-3.2.8/dist/g2.min.js"></script>
-                    <script src = "https://gw.alipayobjects.com/os/antv/pkg/_antv.data-set-0.9.6/dist/data-set.min.js"></script>
-                    <script>
-                        var data1 = [{
-                            item: '事例一',
-                            count: 40,
-                            percent: 0.4
-                        }, {
-                            item: '事例二',
-                            count: 21,
-                            percent: 0.21
-                        }, {
-                            item: '事例三',
-                            count: 17,
-                            percent: 0.17
-                        }, {
-                            item: '事例四',
-                            count: 13,
-                            percent: 0.13
-                        }, {
-                            item: '事例五',
-                            count: 9,
-                            percent: 0.09
-                        }];
-                        var chart1 = new G2.Chart({
-                            container: 'mountNode',
-                            height: 327,
-                            width: 400
-
-                        });
-                        chart1.source(data1, {
-                            percent: {
-                                formatter: function formatter(val) {
-                                    val = val * 100 + '%';
-                                    return val;
-                                }
-                            }
-                        });
-                        chart1.coord('theta', {
-                            radius: 0.75
-                        });
-                        chart1.tooltip({
-                            showTitle: false,
-                            itemTpl: '<li><span style="background-color:{color};" class="g2-tooltip-marker"></span>{name}: {value}</li>'
-                        });
-                        chart1.intervalStack().position('percent').color('item').label('percent', {
-                            formatter: function formatter(val, item) {
-                                return item.point.item + ': ' + val;
-                            }
-                        }).tooltip('item*percent', function (item, percent) {
-                            percent = percent * 100 + '%';
-                            return {
-                                name: item,
-                                value: percent
-                            };
-                        }).style({
-                            lineWidth: 1,
-                            stroke: '#fff'
-                        });
-                        chart1.render();
-                    </script>
-
-
-                </div>
-            </div>
-
-
-            <div class = "admin-content" style = "">
-
-                <div class = "admin-content-body">
-                    <div class = "am-cf am-padding am-padding-bottom-0">
-                        <div class = "am-fl am-cf">
-                            <strong class = "am-text-primary am-text-lg">图书推荐</strong>
-                            <small></small>
-                        </div>
-                    </div>
-
-                    <hr>
-
-                    <ul class = "am-avg-sm-2 am-avg-md-4 am-avg-lg-6 am-margin gallery-list">
-                        <li>
-                            <a href = "#">
-                                <img class = "am-img-thumbnail am-img-bdrs"
-                                     src = "http://s.amazeui.org/media/i/demos/bing-1.jpg" alt = ""/>
-                                <div class = "gallery-title">远方 有一个地方 那里种有我们的梦想</div>
-                                <div class = "gallery-desc">2375-09-26</div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href = "#">
-                                <img class = "am-img-thumbnail am-img-bdrs"
-                                     src = "http://s.amazeui.org/media/i/demos/bing-2.jpg" alt = ""/>
-                                <div class = "gallery-title">君可见漫天落霞</div>
-                                <div class = "gallery-desc">2375-09-26</div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href = "#">
-                                <img class = "am-img-thumbnail am-img-bdrs"
-                                     src = "http://s.amazeui.org/media/i/demos/bing-3.jpg" alt = ""/>
-                                <div class = "gallery-title">此刻鲜花满天幸福在身边</div>
-                                <div class = "gallery-desc">2375-09-26</div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href = "#">
-                                <img class = "am-img-thumbnail am-img-bdrs"
-                                     src = "http://s.amazeui.org/media/i/demos/bing-4.jpg" alt = ""/>
-                                <div class = "gallery-title">你当我是浮夸吧</div>
-                                <div class = "gallery-desc">2375-09-26</div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href = "#">
-                                <img class = "am-img-thumbnail am-img-bdrs"
-                                     src = "http://s.amazeui.org/media/i/demos/bing-4.jpg" alt = ""/>
-                                <div class = "gallery-title">远方 有一个地方 那里种有我们的梦想</div>
-                                <div class = "gallery-desc">2375-09-26</div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href = "#">
-                                <img class = "am-img-thumbnail am-img-bdrs"
-                                     src = "http://s.amazeui.org/media/i/demos/bing-1.jpg" alt = ""/>
-                                <div class = "gallery-title">斜阳染幽草 几度飞红</div>
-                                <div class = "gallery-desc">2375-09-26</div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href = "#">
-                                <img class = "am-img-thumbnail am-img-bdrs"
-                                     src = "http://s.amazeui.org/media/i/demos/bing-1.jpg" alt = ""/>
-                                <div class = "gallery-title">远方 有一个地方 那里种有我们的梦想</div>
-                                <div class = "gallery-desc">2375-09-26</div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href = "#">
-                                <img class = "am-img-thumbnail am-img-bdrs"
-                                     src = "http://s.amazeui.org/media/i/demos/bing-3.jpg" alt = ""/>
-                                <div class = "gallery-title">你当我是浮夸吧</div>
-                                <div class = "gallery-desc">2375-09-26</div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href = "#">
-                                <img class = "am-img-thumbnail am-img-bdrs"
-                                     src = "http://s.amazeui.org/media/i/demos/bing-3.jpg" alt = ""/>
-                                <div class = "gallery-title">远方 有一个地方 那里种有我们的梦想</div>
-                                <div class = "gallery-desc">2375-09-26</div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href = "#">
-                                <img class = "am-img-thumbnail am-img-bdrs"
-                                     src = "http://s.amazeui.org/media/i/demos/bing-2.jpg" alt = ""/>
-                                <div class = "gallery-title">君可见漫天落霞</div>
-                                <div class = "gallery-desc">2375-09-26</div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href = "#">
-                                <img class = "am-img-thumbnail am-img-bdrs"
-                                     src = "http://s.amazeui.org/media/i/demos/bing-3.jpg" alt = ""/>
-                                <div class = "gallery-title">你当我是浮夸吧</div>
-                                <div class = "gallery-desc">2375-09-26</div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href = "#">
-                                <img class = "am-img-thumbnail am-img-bdrs"
-                                     src = "http://s.amazeui.org/media/i/demos/bing-2.jpg" alt = ""/>
-                                <div class = "gallery-title">君可见漫天落霞</div>
-                                <div class = "gallery-desc">2375-09-26</div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href = "#">
-                                <img class = "am-img-thumbnail am-img-bdrs"
-                                     src = "http://s.amazeui.org/media/i/demos/bing-1.jpg" alt = ""/>
-                                <div class = "gallery-title">斜阳染幽草 几度飞红</div>
-                                <div class = "gallery-desc">2375-09-26</div>
-                            </a>
-                        </li>
-                    </ul>
-
-                    <div class = "am-margin am-cf">
-                        <hr/>
-                        <p class = "am-fl">共 15 条记录</p>
-                        <ol class = "am-pagination am-fr">
-                            <li class = "am-disabled"><a href = "#">&laquo;</a></li>
-                            <li class = "am-active"><a href = "#">1</a></li>
-                            <li><a href = "#">2</a></li>
-                            <li><a href = "#">3</a></li>
-                            <li><a href = "#">4</a></li>
-                            <li><a href = "#">5</a></li>
-                            <li><a href = "#">&raquo;</a></li>
-                        </ol>
-                    </div>
-                </div>
-
-
-            </div>
-
-        </div>
-
-        <footer class = "admin-content-footer">
-            <hr>
-            <p class = "am-padding-left">© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
-        </footer>
-
-    </div>
-    <!-- content end -->
 </div>
+<!-- banner end -->
 
-<a href = "#" class = "am-icon-btn am-icon-th-list am-show-sm-only admin-menu"
-   data-am-offcanvas = "{target: '#admin-offcanvas'}"></a>
+<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed">
+    <div class="am-u-md-12 am-u-sm-12">
 
-<footer>
+        <article class="am-g blog-entry-article">
+            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+                <img src="assets/i/f10.jpg" alt="" class="am-u-sm-12">
+            </div>
+            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+                <span><a href="" class="blog-color">article &nbsp;</a></span>
+                <span> @amazeUI &nbsp;</span>
+                <span>2015/10/9</span>
+                <h1><a href="">我本楚狂人，凤歌笑孔丘</a></h1>
+                <p>我们一直在坚持着，不是为了改变这个世界，而是希望不被这个世界所改变。
+                </p>
+                <p><a href="" class="blog-continue">continue reading</a></p>
+            </div>
+        </article>
+
+        <article class="am-g blog-entry-article">
+            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+                <img src="assets/i/f6.jpg" alt="" class="am-u-sm-12">
+            </div>
+            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+                <span><a href="" class="blog-color">article&nbsp;</a></span>
+                <span>@amazeUI &nbsp;</span>
+                <span>2015/10/9</span>
+                <h1><a href="">世间所有的相遇，都是久别重逢。</a></h1>
+                <p>你可以选择在原处不停地跟周遭不解的人解释你为何这么做，让他们理解你，你可以选择什么都不讲，自顾自往前走。
+                </p>
+                <p><a href="" class="blog-continue">continue</a></p>
+            </div>
+        </article>
+
+        <article class="am-g blog-entry-article">
+            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+                <img src="assets/i/f12.jpg" alt="" class="am-u-sm-12">
+            </div>
+            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+                <span><a href="" class="blog-color">article&nbsp;</a></span>
+                <span>@amazeUI</span>
+                <span>2015/10/9</span>
+                <h1><a href="">陌上花开，可缓缓归矣。</a></h1>
+                <p>那时候刚好下着雨，柏油路面湿冷冷的，还闪烁着青、黄、红颜色的灯火。我们就在骑楼下躲雨，看绿色的邮筒孤独地站在街的对面。
+                </p>
+                <p><a href="" class="blog-continue">continue</a></p>
+            </div>
+        </article>
+
+        <article class="am-g blog-entry-article">
+            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+                <img src="assets/i/f22.jpg" alt="" class="am-u-sm-12">
+            </div>
+            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+                <span><a href="" class="blog-color">article&nbsp;</a></span>
+                <span>@amazeUI</span>
+                <span>2015/10/9</span>
+                <h1><a href="">爱自己是终生浪漫的开始</a></h1>
+                <p>the whole of life becomes an act of letting go, but what always hurts the most is not taking a moment to say goodbye
+                </p>
+                <p><a href="" class="blog-continue">continue</a></p>
+            </div>
+        </article>
+
+        <article class="am-g blog-entry-article">
+            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+                <img src="assets/i/f18.jpg" alt="" class="am-u-sm-12">
+            </div>
+            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+                <span><a href="" class="blog-color">article&nbsp;</a></span>
+                <span> @amazeUI &nbsp;</span>
+                <span>2015/10/9</span>
+                <h1><a href="">My dear amazeUI, Hello </a></h1>
+                <p>那时候刚好下着雨，柏油路面湿冷冷的，还闪烁着青、黄、红颜色的灯火。我们就在骑楼下躲雨，看绿色的邮筒孤独地站在街的对面。
+                </p>
+                <p><a href="" class="blog-continue">continue reading</a></p>
+            </div>
+        </article>
+
+        <article class="am-g blog-entry-article">
+            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+                <img src="assets/i/f20.jpg" alt="" class="am-u-sm-12">
+            </div>
+            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+                <span><a href="" class="blog-color">article&nbsp;</a></span>
+                <span> @amazeUI &nbsp;</span>
+                <span>2015/10/9</span>
+                <h1><a href="">My way or the highway</a></h1>
+                <p>A big wind rises， clouds are driven away. Home am Inow the world is under my sway. Where are brave men to guard the four frontiers today！
+                </p>
+                <p><a href="" class="blog-continue">continue reading</a></p>
+            </div>
+        </article>
+
+        <article class="am-g blog-entry-article">
+            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+                <img src="assets/i/f19.jpg" alt="" class="am-u-sm-12">
+            </div>
+            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+                <span><a href="" class="blog-color">article&nbsp;</a></span>
+                <span> @amazeUI &nbsp;</span>
+                <span>2015/10/9</span>
+                <h1><a href="">一想到你，我这张丑脸上就泛起微笑</a></h1>
+                <p>那一天我二十一岁，在我一生的黄金时代。我有好多奢望。我想爱，想吃，还想在一瞬间变成天上半明半暗的云。
+                </p>
+                <p><a href="" class="blog-continue">continue reading</a></p>
+            </div>
+        </article>
+
+        <ul class="am-pagination">
+            <li class="am-pagination-prev"><a href="">&laquo; Prev</a></li>
+            <li class="am-pagination-next"><a href="">Next &raquo;</a></li>
+        </ul>
+    </div>
+
+</div>
+<!-- content end -->
+
+
+<footer class = "admin-content-footer">
     <hr>
-    <p class = "am-padding-left">© 2018 Biboliosoft Online Library System</p>
+    <p class = "am-padding-left" style = "text-align: center">© 2018 Biboliosoft Online Library System</p>
 </footer>
 
-<!--[if lt IE 9]>
-<script src = "http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
-<script src = "http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
-<script src = "../static/assets/js/amazeui.ie8polyfill.min.js"></script>
-<![endif]-->
 
 
-<!--make sure that all the js file was placed at the end of the code.-->
+<script type = "text/javascript">
+    $("#change").click(function () {
+        translate();
+    })
+</script>
+
 <!--[if (gte IE 9)|!(IE)]><!-->
-<script src = "assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.min.js"></script>
 <!--<![endif]-->
-<script src = "assets/js/my.js"></script>
-<script src = "assets/js/amazeui.min.js"></script>
-<script src = "assets/js/app.js"></script>
-
+<!--[if lte IE 8 ]>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+<script src="assets/js/amazeui.min.js"></script>
+<!-- <script src="assets/js/app.js"></script> -->
+<script type = "text/javascript" src = "assets/js/test.js"></script>
 <script type = "text/javascript" color = "50,177,108" opacity = "1" zIndex = "-1" count = "100"
         src = "https://www.laomoit.com/wp-content/themes/pc/js/line.js"></script>
-
 </body>
-
 </html>
