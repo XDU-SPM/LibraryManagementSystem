@@ -57,4 +57,11 @@ public class LibrarianUserController
     {
         return "librarian/librarian_managereader";
     }
+
+    @RequestMapping(value = "/librarian/deleteReader", method = RequestMethod.GET)
+    public String deleteReader(int id, Model model)
+    {
+        model.addAttribute("status", userService.deleteUser(id));
+        return "";
+    }
 }

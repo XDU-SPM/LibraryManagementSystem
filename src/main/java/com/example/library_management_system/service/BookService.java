@@ -30,11 +30,11 @@ public class BookService
         string = "%" + string + "%";
         switch (type)
         {
-            case 1:     // isbn
+            case 0:     // isbn
                 return bookDAO.findByIsbnLike(string, pageable);
-            case 2:     // title
+            case 1:     // title
                 return bookDAO.findByTitleLike(string, pageable);
-            case 3:     // author
+            case 2:     // author
                 return bookDAO.findByAuthorLike(string, pageable);
         }
         return null;
