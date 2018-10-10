@@ -128,7 +128,7 @@
 	<hr>
 	<br>
 
-	<form method = "post" class="mystyle" action="/login">
+	<form method = "post" class="mystyle" name="myform" action="/login">
 
 		<label for = "username" >用户名:</label>
 		<input name = "username" size="width:250px;" id = "username" value = "" >
@@ -136,18 +136,11 @@
 		<label for = "password" >密&nbsp&nbsp&nbsp码:</label>
 		<input type = "password"  size="width:250px;"  autocomplete="new-password"  name = "password" id = "password" value = "">
 		<br><br>
-		<!--           <label for = "remember-me">
-                       <input id = "remember-me" type = "checkbox">
-                       记住密码
-                   </label>-->
-
 		<div class = "am-cf">
-			<input type = "submit" name = "" value = "登 录/login" class = "am-btn am-btn-primary am-btn-sm am-fl am-animation-shake">
-
+			<input type = "submit" name = ""  id="loginbun" onclick="shake(); return validateForm();" value = "登 录/login" class = "am-btn am-btn-primary am-btn-sm am-fl ">
 			<br><br><br>
-			<!--<a href="/register" >注册&nbsp</a>-->
+			<a>忘记密码&nbsp</a>
 		</div>
-
 	</form>
 
 	<!--<input type = "submit" name = "" value = "注 册/register" class = "am-btn am-btn-primary am-btn-sm am-fl">-->
@@ -155,6 +148,25 @@
 
 
 </div>
+<script type="text/javascript">
+	function shake() {
+	    var classval=document.getElementById("loginbun").getAttribute("class");
+	    classval=classval.concat(" am-animation-shake");
+		document.getElementById("loginbun").setAttribute("class",classval);
+    }
+    function validateForm() {
+        var x=document.forms["myform"]["username"].value;
+        if(x==null || x==""){
+            alert("please input username");
+            return false;
+        }
+        var y=document.forms["myform"]["password"].value;
+        if(y==null || y==""){
+            alert("please input password");
+            return false;
+        }
+    }
+</script>
 
 <script type = "text/javascript" color = "50,177,108" opacity = "1" zIndex = "-1" count = "100"
 		src = "https://www.laomoit.com/wp-content/themes/pc/js/line.js"></script>
