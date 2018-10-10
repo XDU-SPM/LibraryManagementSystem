@@ -5,15 +5,12 @@ package com.example.library_management_system.utils;
  * @ date 2018/9/27
  * @ description as bellow.
  */
-
-
 public class BkunitUtil
 {
     // status
     public final static int
             BORROWED = 1,
-            NORMAL = 2,
-            RESERVATION = 3;
+            NORMAL = 2;
 
     // damageStatus
     public final static int
@@ -22,4 +19,9 @@ public class BkunitUtil
             MODERATE_DAMAGE = 6,    // 中度
             MAJOR_DAMAGE = 7,       // 重度
             NO_DAMAGE = 8;
+
+    public static String generateBarCode()
+    {
+        return String.valueOf(System.currentTimeMillis());
+    }
 }

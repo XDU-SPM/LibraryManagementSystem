@@ -15,6 +15,8 @@ public class BkunitOperatingHistory
     private Date date;
 
     private int uid;    // 谁操作的
+
+    // 预约时，此字段为 book 的 isbn
     private String buid;   // 操作的的哪本书
 
     private int status;

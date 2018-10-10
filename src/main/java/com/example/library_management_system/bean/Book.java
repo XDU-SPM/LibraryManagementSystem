@@ -17,28 +17,23 @@ public class Book
     @Id
     private String isbn;
     private String title;
-
-    private double score;
+    private String publishDate;
+    private String publisher;
+    private String author;
+    private String position;
+    private String coverPath;
 
     @Lob
     private String brief;
 
-    private int hardCover;  // pages
-
-    private String publishDate;
-    private String publisher;
-
-    private String author;
-
+    private double score;
     private double price;
 
-    private String position;
-    private String coverPath;
-
     private int frequency;
+    private int hardCover;  // pages
 
-    @Transient
-    private long number;
+    // 空闲书的数量
+    private int number;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
@@ -59,6 +54,10 @@ public class Book
     @JsonIgnore
     private Set<Bkunit> bkunits;
 
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "book")
+    @JsonIgnore
+    private Set<UserBook> userBooks;
+
     public Book()
     {
         this.frequency = 0;
@@ -66,6 +65,7 @@ public class Book
         this.userFavoriteBooks = new HashSet<>();
         this.reviews = new HashSet<>();
         this.bkunits = new HashSet<>();
+        this.userBooks = new HashSet<>();
     }
 
     public Book(String isbn)
@@ -92,12 +92,13 @@ public class Book
         this.price = price;
     }
 
-    public long getNumber()
+
+    public int getNumber()
     {
         return number;
     }
 
-    public void setNumber(long number)
+    public void setNumber(int number)
     {
         this.number = number;
     }
@@ -263,5 +264,20 @@ public class Book
     public void setCoverPath(String coverPath)
     {
         this.coverPath = coverPath;
+    }
+
+    public void addNumber(int number)
+    {
+        this.number += number;
+    }
+
+    public Set<UserBook> getUserBooks()
+    {
+        return userBooks;
+    }
+
+    public void setUserBooks(Set<UserBook> userBooks)
+    {
+        this.userBooks = userBooks;
     }
 }

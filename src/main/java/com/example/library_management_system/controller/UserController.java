@@ -1,20 +1,19 @@
 package com.example.library_management_system.controller;
 
+import com.example.library_management_system.bean.Role;
 import com.example.library_management_system.bean.User;
 import com.example.library_management_system.service.GlobalUtilService;
-import com.example.library_management_system.service.ReaderFunctionService;
-import com.example.library_management_system.service.StatService;
 import com.example.library_management_system.service.UserService;
-import com.example.library_management_system.utils.Message;
 import com.example.library_management_system.utils.RoleUtil;
 import com.example.library_management_system.utils.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.Set;
 
 @Controller
 public class UserController
@@ -23,50 +22,47 @@ public class UserController
     private UserService userService;
 
     @Autowired
-    private StatService statService;
-
-    @Autowired
     private GlobalUtilService globalUtilService;
 
-    @Autowired
-    private ReaderFunctionService readerFunctionService;
-
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = {"/", "/visitor-main"}, method = RequestMethod.GET)
     public String main()
     {
         return "visitor-main";
     }
 
-    @RequestMapping(value = {"/login"}, method = {RequestMethod.POST, RequestMethod.GET})
+    @RequestMapping(value = "/login", method = {RequestMethod.POST, RequestMethod.GET})
     public String login()
     {
-        if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("anonymousUser"))  // Has logged
+        if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("anonymousUser"))  // Has logged in
         {
-            User user = userService.getUser();
-            if (user.getRoles().contains(RoleUtil.ROLE_ADMIN))
-            {
-                System.out.println("admin has logged in");
+            Set<Role> roles = userService.getUser().getRoles();
+            if (roleContainsString(roles, RoleUtil.ROLE_ADMIN))
                 return "redirect:admin/home";
-            }
-            else if (user.getRoles().contains(RoleUtil.ROLE_READER))
-            {
-                System.out.println("reader has logged in");
+            else if (roleContainsString(roles, RoleUtil.ROLE_READER) || roleContainsString(roles, RoleUtil.ROLE_READER_CHECK))
                 return "redirect:reader/home";
-            }
-            else
-            {
-                System.out.println("librarian has logged in");
+            else if (roleContainsString(roles, RoleUtil.ROLE_LIBRARIAN) || roleContainsString(roles, RoleUtil.ROLE_LIBRARIAN_CHECK))
                 return "redirect:librarian/home";
-            }
+            else
+                return "login";
         }
         return "login";
     }
 
-    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    private boolean roleContainsString(Set<Role> roles, String string)
+    {
+        for (Role role : roles)
+        {
+            if (string.equals(role.getName()))
+                return true;
+        }
+        return false;
+    }
+
+    /*@RequestMapping(value = "/register", method = RequestMethod.GET)
     public String register()
     {
         return "register";
-    }
+    }*/
 
     @RequestMapping(value = "/reader/home", method = RequestMethod.GET)
     public String readerHome()
@@ -86,28 +82,20 @@ public class UserController
         return "redirect:librarian_homepage";
     }
 
-    @RequestMapping(value = "/reader/register", method = RequestMethod.POST)
+    /*@RequestMapping(value = "/reader/register", method = RequestMethod.POST)
     public String readerRegister(User reader)
     {
         userService.registerService(reader, RoleUtil.ROLE_READER_CHECK);
         return "login";
-    }
+    }*/
 
-    @RequestMapping(value = "/admin/reader_register", method = RequestMethod.POST)
+    /*@RequestMapping(value = "/admin/reader_register", method = RequestMethod.POST)
     public String adminReaderRegister(User reader, Model model)
     {
         userService.registerService(reader, RoleUtil.ROLE_READER_CHECK);
         model.addAttribute("status", true);
         return "admin/reader_create";
-    }
-
-    @RequestMapping(value = "/admin/librarian_register", method = RequestMethod.POST)
-    public String adminLibrarianRegister(User librarian, Model model)
-    {
-        userService.registerService(librarian, RoleUtil.ROLE_LIBRARIAN_CHECK);
-        model.addAttribute("state", true);
-        return "admin/librarian_create";
-    }
+    }*/
 
     @RequestMapping(value = "/admin/register", method = RequestMethod.POST)
     @ResponseBody
@@ -125,7 +113,7 @@ public class UserController
         return librarian;
     }
 
-    @RequestMapping(value = "/admin/accept", method = RequestMethod.GET)
+    /*@RequestMapping(value = "/admin/accept", method = RequestMethod.GET)
     @ResponseBody
     public Message accept(int id)
     {
@@ -135,9 +123,8 @@ public class UserController
         else if (RoleUtil.ROLE_LIBRARIAN_CHECK.equals(role))
             return new Message("librarianHome");
         return null;
-    }
+    }*/
 
-    //用户续借图书
     @RequestMapping(value = "/reader/renew", method = RequestMethod.GET)
     @ResponseBody
     public Status renew(int id)
@@ -145,15 +132,26 @@ public class UserController
         return new Status(userService.renew(id) ? 1 : 0, globalUtilService.getMaxBorrowDays());
     }
 
-    @RequestMapping(value = "/visitor-main", method = RequestMethod.GET)
-    public String visitor_main()
+    @RequestMapping(value = "/forgetPassword", method = RequestMethod.GET)
+    @ResponseBody
+    public Status forgetPassword()
     {
-        return "visitor-main";
+        return new Status(userService.forgetPassword() ? 1 : 0);
     }
 
-    @RequestMapping(value = "/forgetPassword", method = RequestMethod.GET)
-    public String forgetPassword()
+    @RequestMapping(value = "", method = RequestMethod.POST)
+    @ResponseBody
+    public Status modifyPassword(String password)
     {
-        return "forgetPassword";
+        userService.modifyPassword(password);
+        return new Status(1);
+    }
+
+    @RequestMapping(value = {"/librarian/checkUser", "/reader/checkUser", "/checkUser", "/admin/checkUser"}, method = RequestMethod.GET)
+    @ResponseBody
+    public Status userExist(String username)
+    {
+        boolean status = userService.userExist(username);
+        return new Status(status ? 0 : 1);
     }
 }

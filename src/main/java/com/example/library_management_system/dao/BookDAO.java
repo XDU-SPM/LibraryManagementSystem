@@ -12,7 +12,11 @@ public interface BookDAO extends JpaRepository<Book, String>
 {
     Book findByIsbn(String isbn);
 
-    Book findByTitle(String name);
+    Page<Book> findByIsbnLike(String isbn, Pageable pageable);
+
+    Page<Book> findByTitleLike(String title, Pageable pageable);
+
+    Page<Book> findByAuthorLike(String author, Pageable pageable);
 
     Page<Book> findByCategoriesContaining(Category category, Pageable pageable);
 
