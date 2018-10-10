@@ -364,6 +364,7 @@
             url: "searchBook",
             data: {string:string,type: myselect.options[index].value, start: 0, size: 12},
             success: function (data) {
+                console.log(data);
                 var str = "";
                 $('#bk-table-3').empty();
                 for (var i = 0; i < data.content.length; i++) {
