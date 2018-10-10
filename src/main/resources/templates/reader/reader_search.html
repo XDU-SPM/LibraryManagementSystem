@@ -171,7 +171,7 @@
 
                         </ul>
                         <hr>
-                        <div class = "am-cf">
+                        <div class = "am-cf" id="table-paging">
                             共 [[${page.totalElements}]] 条记录
                             <div class = "am-fr">
                                 <ul class = "am-pagination">
@@ -219,6 +219,7 @@
     function clear() {
         if (status == 0)
             $('#recom-book').empty();
+            $('#table-paging').empty();
     }
 </script>
 <script type = "text/javascript">
