@@ -15,7 +15,6 @@
     <meta name = "apple-mobile-web-app-title" content = "Amaze UI"/>
     <link rel = "stylesheet" href = "assets/css/amazeui.min.css"/>
     <link rel = "stylesheet" href = "assets/css/admin.css">
-    <link rel = "stylesheet" href = "assets/css/app.css">
 
     <style>
         .am-form-group {
@@ -351,20 +350,22 @@
 </script>
 
 <script>
-
+    var totalPage4 = 0;
     var pageNumber4 = 0;
 
     function getOnePageBook4_1() {
-        pageNumber = 0;
+        pageNumber4 = 0;
         var myselect=document.getElementById("type");
         var index=myselect.selectedIndex;
-        var string=document.getElementById("string");
+        var inputDoc=document.getElementById("string");
+        var string=inputDoc.value;
         $.ajax({
             type: "get",
             url: "searchBook",
-            data: {string:string,type: myselect.options[index].value, start: 0, size: 12},
+            data: {string: string,type: myselect.options[index].value, start: 0, size: 12},
             success: function (data) {
                 var str = "";
+                totalPage4 = data.totalPages;
                 $('#bk-table-3').empty();
                 for (var i = 0; i < data.content.length; i++) {
                     str += "<li>\n" +
@@ -392,7 +393,7 @@
                     "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_1()\">首页</button></li>\n" +
                     "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(-1)\">上一页</button></li>\n" +
                     "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(1)\">下一页</button></li>\n" +
-                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_3("+data.totalPages-1+")\">末页</button></li>\n" +
+                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_3()\">末页</button></li>\n" +
                     "                                </ul>\n" +
                     "                            </div>\n" +
                     "                        </div>"
@@ -407,11 +408,13 @@
         pageNumber4 += temp;
         var myselect=document.getElementById("type");
         var index=myselect.selectedIndex;
-        var string=document.getElementById("string");
+        var inputDoc=document.getElementById("string");
+        var string=inputDoc.value;
+
         if (pageNumber4 < 0)
             pageNumber4 = 0;
-        else if (pageNumber4 >= [[${page.totalPages}]])
-            pageNumber4 = [[${page.totalPages}]]-1;
+        else if (pageNumber4 >= totalPage4)
+            pageNumber4 = totalPage4-1;
         else
             $.ajax({
                 type: "get",
@@ -446,7 +449,7 @@
                         "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_1()\">首页</button></li>\n" +
                         "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(-1)\">上一页</button></li>\n" +
                         "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(1)\">下一页</button></li>\n" +
-                        "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_3("+data.totalPages-1+")\">末页</button></li>\n" +
+                        "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_3()\">末页</button></li>\n" +
                         "                                </ul>\n" +
                         "                            </div>\n" +
                         "                        </div>"
@@ -457,15 +460,16 @@
             });
     }
 
-    function getOnePageBook4_3(end) {
-        pageNumber4 = end;
+    function getOnePageBook4_3() {
+        pageNumber4 = totalPage4-1;
         var myselect=document.getElementById("type");
         var index=myselect.selectedIndex;
-        var string=document.getElementById("string");
+        var inputDoc=document.getElementById("string");
+        var string=inputDoc.value;
         $.ajax({
             type: "get",
             url: "searchBook",
-            data: {string:string,type: myselect.options[index].value, start: end, size: 12},
+            data: {string:string,type: myselect.options[index].value, start: pageNumber4, size: 12},
             success: function (data) {
                 var str = '';
                 $('#all-books').empty();
@@ -495,7 +499,7 @@
                     "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_1()\">首页</button></li>\n" +
                     "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(-1)\">上一页</button></li>\n" +
                     "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(1)\">下一页</button></li>\n" +
-                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_3("+data.totalPages-1+")\">末页</button></li>\n" +
+                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_3()\">末页</button></li>\n" +
                     "                                </ul>\n" +
                     "                            </div>\n" +
                     "                        </div>"
