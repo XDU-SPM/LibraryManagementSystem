@@ -12,6 +12,12 @@ public class AdminService
     @Autowired
     private GlobalUtilDAO globalUtilDAO;
 
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private UserDAO userDAO;
+
     public void modifyRegisterMoney(double money)
     {
         GlobalUtil globalUtil = globalUtilDAO.findById(1).get();
@@ -38,5 +44,15 @@ public class AdminService
         GlobalUtil globalUtil = globalUtilDAO.findById(1).get();
         globalUtil.setOVERDUE_MONEY(money);
         globalUtilDAO.save(globalUtil);
+    }
+
+    public boolean modifyPassword(String oldPassword, String newPassword)
+    {
+        User admin = userService.getUser();
+        if (!admin.getPassword().equals(oldPassword))
+            return false;
+        admin.setPassword(newPassword);
+        userDAO.save(admin);
+        return true;
     }
 }

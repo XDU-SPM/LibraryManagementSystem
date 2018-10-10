@@ -24,6 +24,18 @@ public class ReaderBookController
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private BookService bookService;
+
+    @RequestMapping(value = "/reader/searchBook", method = RequestMethod.GET)
+    public String searchBook(String string, int type, Model model,
+                             @RequestParam(value = "start", defaultValue = "0") int start,
+                             @RequestParam(value = "size", defaultValue = "10") int size)
+    {
+        model.addAttribute("page", bookService.searchBook(string, type, start, size));
+        return "/reader/reader_search";
+    }
+
     @RequestMapping(value = "/reader/reader_condition", method = RequestMethod.GET)
     public String reader_reader_condition(Model model)
     {
