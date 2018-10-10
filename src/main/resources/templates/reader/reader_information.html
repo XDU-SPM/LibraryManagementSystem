@@ -197,14 +197,7 @@
                         </div>
 
                         <div class = "am-form-group">
-                            <label for = "user-balance" class = "am-u-sm-3 am-form-label">总罚金(元) / Total-fine(CNY)</label>
-                            <div class = "am-u-sm-9">
-                                <input id = "total-fine" th:value = "${user.totalFine}" disabled>
-                            </div>
-                        </div>
-
-                        <div class = "am-form-group">
-                            <label for = "user-balance" class = "am-u-sm-3 am-form-label">余额(元) / Balance(CNY)</label>
+                            <label for = "user-balance" class = "am-u-sm-3 am-form-label">待交罚金(元) / Pending fine(CNY)</label>
                             <div class = "am-u-sm-9">
                                 <input id = "user-balance" th:value = "${user.money}" disabled>
                             </div>
