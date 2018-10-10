@@ -16,6 +16,7 @@
     <link rel = "stylesheet" href = "assets/css/amazeui.min.css"/>
     <link rel = "stylesheet" href = "assets/css/admin.css">
     <link rel = "stylesheet" href = "assets/css/app.css">
+
     <style>
         .am-form-group {
             text-align: left;
@@ -71,13 +72,11 @@
                 </ul>
             </li>
         </ul>
-
-        <form class = "am-topbar-form am-topbar-left am-form-inline" role = "search">
-            <div class = "am-form-group">
-                <input type = "text" class = "am-form-field am-input-sm" placeholder = "搜索">
-            </div>
-        </form>
-
+                <form class = "am-topbar-form am-topbar-left am-form-inline am-center" role = "search">
+                    <div class = "am-form-group">
+                        <input type = "text" class = "am-form-field am-input-sm" placeholder = "搜索">
+                    </div>
+                </form>
         <div class = "am-collapse am-topbar-collapse" id = "topbar-collapse">
 
             <ul class = "am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
@@ -103,6 +102,12 @@
     <!-- sidebar start -->
     <div class = "admin-sidebar am-offcanvas" id = "admin-offcanvas">
         <div class = "am-offcanvas-bar admin-offcanvas-bar">
+            <div class = "user-info">
+                <img class = "am-img-circle am-img-thumbnail am-center"
+                     src = "http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/200/h/200/q/80"
+                     alt = ""/>
+                <p style = "text-align: center">Spiderman</p>
+            </div>
             <ul class = "am-list admin-sidebar-list">
                 <li><a href = "reader_condition"><span class = "am-icon-bar-chart"></span> 借书信息统计</a></li>
                 <li><a href = "reader_search"><span class = "am-icon-search"></span> 搜索页面</a></li>
@@ -131,9 +136,9 @@
     <!-- content start -->
     <div class = "admin-content">
         <div class = "admin-content-body">
-
+            <hr>
             <div class = "am-g am-padding">
-                <div class = "am-u-sm-12 am-u-md-6">
+                <div class = "am-u-sm-12 am-u-md-6 am-u-md-centered">
                     <form class = "am-form">
                         <div class = "am-input-group am-input-group-sm">
                             <input type = "text" class = "am-form-field am-radius">
@@ -142,9 +147,21 @@
                                         type = "button">搜索</button>
                             </span>
                         </div>
+                        <div class = "am-input-group">
+                            <select data-am-selected = "{btnSize: 'sm'}">
+                                <option value = "option1">所有类别</option>
+                                <option value = "option2">IT业界</option>
+                                <option value = "option3">数码产品</option>
+                                <option value = "option3">笔记本电脑</option>
+                                <option value = "option3">平板电脑</option>
+                                <option value = "option3">只能手机</option>
+                                <option value = "option3">超极本</option>
+                            </select>
+                        </div>
                     </form>
                 </div>
             </div>
+            <hr>
 
             <div class = "am-g">
                 <div class = "am-u-sm-12">
@@ -162,7 +179,7 @@
                     </div>
                     <form class = "am-form">
                         <ul data-am-widget = "gallery" id="all-books" class = "am-gallery am-avg-sm-2
-  am-avg-md-3 am-avg-lg-4 am-gallery-bordered" data-am-gallery = "{  }">
+  am-avg-md-4 am-avg-lg-6 am-gallery-bordered" data-am-gallery = "{  }">
                             <li th:each = "book:${page}">
                                 <div class = "am-gallery-item">
                                     <a th:href="@{book_details(isbn=${book.isbn})}" class = "">
@@ -170,15 +187,16 @@
                                         <h3 th:text="${book.title}" class = "am-gallery-title"></h3>
                                         <div class = "am-gallery-desc">剩余：<strong th:text="${book.number}"></strong>本</div>
                                     </a>
-                                    <button th:if = "${book.number} eq 0" type = "button" class = "am-btn am-btn-default" disabled>
+                                    <button th:if = "${book.number} eq 0" type = "button" class = "am-btn am-btn-primary am-round" disabled>
                                         预约
                                     </button>
-                                    <button th:if = "${book.number} gt 0" type = "button" class = "am-btn am-btn-default" th:onclick="'javascript:book_reserve('+${book.isbn}+')'">
+                                    <button th:if = "${book.number} gt 0" type = "button" class = "am-btn am-btn-primary am-round" th:onclick="'javascript:book_reserve('+${book.isbn}+')'">
                                         预约</button>
                                 </div>
                             </li>
 
                         </ul>
+                        <hr>
                         <div class = "am-cf">
                             共 [[${page.totalElements}]] 条记录
                             <div class = "am-fr">
@@ -278,11 +296,11 @@
                         "                                        <div class = \"am-gallery-desc\">剩余：<strong>"+data.content[i].number+"</strong>本</div>\n" +
                         "                                    </a>\n";
                     if(data.content[i].number == 0)
-                        str+="                                    <button type = \"button\" class = \"am-btn am-btn-default\" disabled>\n" +
+                        str+="                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" disabled>\n" +
                         "                                        预约\n" +
                         "                                    </button>\n"
                     else
-                        str+="                                    <button type = \"button\" class = \"am-btn am-btn-default\" onclick=\"book_reserve(data.content[i].isbn)\">\n" +
+                        str+="                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" onclick=\"book_reserve(data.content[i].isbn)\">\n" +
                         "                                        预约</button>\n"
                     str+= "                                </div>\n" +
                         "                            </li>"
@@ -315,11 +333,11 @@
                             "                                        <div class = \"am-gallery-desc\">剩余：<strong>"+data.content[i].number+"</strong>本</div>\n" +
                             "                                    </a>\n";
                         if(data.content[i].number == 0)
-                            str+="                                    <button type = \"button\" class = \"am-btn am-btn-default\" disabled>\n" +
+                            str+="                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" disabled>\n" +
                                 "                                        预约\n" +
                                 "                                    </button>\n"
                         else
-                            str+="                                    <button type = \"button\" class = \"am-btn am-btn-default\" onclick=\"book_reserve("+data.content[i].isbn+")\">\n" +
+                            str+="                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" onclick=\"book_reserve("+data.content[i].isbn+")\">\n" +
                                 "                                        预约</button>\n"
                         str+= "                                </div>\n" +
                             "                            </li>"
@@ -347,11 +365,11 @@
                         "                                        <div class = \"am-gallery-desc\">剩余：<strong>"+data.content[i].number+"</strong>本</div>\n" +
                         "                                    </a>\n";
                     if(data.content[i].number == 0)
-                        str+="                                    <button type = \"button\" class = \"am-btn am-btn-default\" disabled>\n" +
+                        str+="                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" disabled>\n" +
                             "                                        预约\n" +
                             "                                    </button>\n"
                     else
-                        str+="                                    <button type = \"button\" class = \"am-btn am-btn-default\" onclick=\"book_reserve(data.content[i].isbn)\">\n" +
+                        str+="                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" onclick=\"book_reserve(data.content[i].isbn)\">\n" +
                             "                                        预约</button>\n"
                     str+= "                                </div>\n" +
                         "                            </li>"

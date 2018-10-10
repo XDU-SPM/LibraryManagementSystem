@@ -1,7 +1,6 @@
 package com.example.library_management_system.config;
 
 import com.example.library_management_system.service.CustomUserService;
-import com.example.library_management_system.utils.MD5Util;
 import com.example.library_management_system.utils.RoleUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -28,13 +27,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
             @Override
             public String encode(CharSequence rawPassword)
             {
-                return MD5Util.encode((String) rawPassword);
+//                return MD5Util.encode((String) rawPassword);
+                return (String) rawPassword;
             }
 
             @Override
             public boolean matches(CharSequence rawPassword, String encodedPassword)
             {
-                return encodedPassword.equals(MD5Util.encode((String) rawPassword));
+//                return encodedPassword.equals(MD5Util.encode((String) rawPassword));
+                return encodedPassword.contentEquals(rawPassword);
             }
         });
     }

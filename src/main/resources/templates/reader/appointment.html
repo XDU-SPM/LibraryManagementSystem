@@ -86,13 +86,18 @@
 
     <div data-am-widget="intro" class="am-intro am-cf am-intro-default">
         <div class="am-g am-intro-bd">
-            <div class="am-intro-left am-u-sm-5"><img th:src="${userBkunit.bkunit.book.coverPath}" alt="小娜" /></div>
+            <div class="am-intro-left am-u-sm-5"><img th:src="${userBook.book.coverPath}" alt="" /></div>
             <div class="am-intro-right am-u-sm-7">
-                <h2 class="am-intro-title">条形码：<b th:text="${userBkunit.bkunit.id}"></b></h2>
                 <h2 class="am-intro-more am-intro-right ">倒计时：<span id="count-down"></span></h2>
-                <p th:text="${userBkunit.bkunit.book.title}"></p>
-                <p th:text="${userBkunit.bkunit.book.author}"></p>
-                <p th:text="${userBkunit.bkunit.book.brief}"></p>
+                <h2>书名</h2>
+                <br>
+                <p th:text="${userBook.book.title}"></p>
+                <h2>作者</h2>
+                <br>
+                <p th:text="${userBook.book.author}"></p>
+                <h2>简介</h2>
+                <br>
+                <p th:text="${userBook.book.brief}"></p>
             </div>
         </div>
     </div>
@@ -103,7 +108,7 @@
         window.onload = function(){
             var timer = null;
             // 定义倒计时的时间(倒计时1分钟10秒)
-            var expire_date = new Date([[${userBkunit.returnDate}]]);
+            var expire_date = new Date([[${userBook.returnDate}]]);
             var current_date = new Date();
             var diff_date = new Date(expire_date-current_date)
             var hours = diff_date.getHours() - 8;

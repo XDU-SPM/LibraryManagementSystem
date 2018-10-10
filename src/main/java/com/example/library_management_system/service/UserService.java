@@ -1,18 +1,23 @@
 package com.example.library_management_system.service;
 
-import com.example.library_management_system.bean.Account;
-import com.example.library_management_system.bean.Role;
-import com.example.library_management_system.bean.User;
-import com.example.library_management_system.bean.UserBkunit;
+import com.example.library_management_system.bean.*;
 import com.example.library_management_system.dao.*;
 import com.example.library_management_system.utils.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import javax.mail.MessagingException;
+import java.io.UnsupportedEncodingException;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.Set;
 
 @Service
 public class UserService
@@ -24,13 +29,19 @@ public class UserService
     private RoleDAO roleDAO;
 
     @Autowired
-    UserBkunitDAO userBkunitDAO;
+    private UserBkunitDAO userBkunitDAO;
 
     @Autowired
-    AccountDAO accountDAO;
+    private GlobalUtilService globalUtilService;
 
     @Autowired
-    GlobalUtilDAO globalUtilDAO;
+    private UserFavoriteBookDAO userFavoriteBookDAO;
+
+    @Autowired
+    private ReviewDAO reviewDAO;
+
+    @Autowired
+    private AccountDAO accountDAO;
 
     public User getUser()
     {
@@ -40,18 +51,23 @@ public class UserService
 
     public void registerService(User user, String roleName)
     {
-        user.setPassword(MD5Util.encode(user.getPassword()));
+//        user.setPassword(MD5Util.encode(user.getPassword()));
         if (RoleUtil.ROLE_READER_CHECK.equals(roleName))
-        {
-            user.setBUL(globalUtilDAO.findById(1).get().getMAX_BORROW_NUM());
-            user.setMoney(globalUtilDAO.findById(1).get().getREGISTER_MONEY());
-        }
+            user.setPassword(UserUtil.READER_PASSWORD_DEFAULT);
+        else if (RoleUtil.ROLE_LIBRARIAN_CHECK.equals(roleName))
+            user.setPassword(UserUtil.LIBRARIAN_PASSWORD_DEFAULT);
         Role role = roleDAO.findByName(roleName);
         user.getRoles().add(role);
         userDAO.save(user);
+
+        if (RoleUtil.ROLE_READER_CHECK.equals(roleName))
+        {
+            Account account = new Account(AccountUtil.DEPOSIT, user.getId(), globalUtilService.getRegisterMoney(), null, new Date());
+            accountDAO.save(account);
+        }
     }
 
-    public String accept(int id)
+    /*public String accept(int id)
     {
         User user = userDAO.getOne(id);
         if (user.getRoles().contains(roleDAO.findByName(RoleUtil.ROLE_READER_CHECK)))
@@ -67,9 +83,8 @@ public class UserService
             return RoleUtil.ROLE_LIBRARIAN_CHECK;
         }
         return null;
-    }
+    }*/
 
-    //续借图书
     public boolean renew(int id)
     {
         UserBkunit userBkunit = userBkunitDAO.findById(id);
@@ -80,7 +95,7 @@ public class UserService
             Date borrowDate = userBkunit.getBorrowDate();
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(borrowDate);
-            calendar.add(Calendar.DATE, 2 * globalUtilDAO.findById(1).get().getMAX_BORROW_DAYS());
+            calendar.add(Calendar.DATE, 2 * globalUtilService.getMaxBorrowDays());
             userBkunit.setReturnDate(calendar.getTime());
             userBkunitDAO.save(userBkunit);
             return true;
@@ -89,7 +104,7 @@ public class UserService
     }
 
     //还书
-    public boolean returnbook(int uid, int buid)
+    /*public boolean returnbook(int uid, int buid)
     {
         User user = userDAO.findById(uid);
         UserBkunit userBkunit = userBkunitDAO.findByUserAndBkunit(null, null);
@@ -119,7 +134,7 @@ public class UserService
             return true;
         }
         return false;
-    }
+    }*/
 
     public void saveUser(User tmp)
     {
@@ -130,5 +145,114 @@ public class UserService
         user.setEmail(tmp.getEmail());
 
         userDAO.save(user);
+    }
+
+    public boolean forgetPassword()
+    {
+        User user = getUser();
+        try
+        {
+            MailUtil.sendmail(user.getEmail(), user.getPassword(), "password");
+        }
+        catch (MessagingException e)
+        {
+            e.printStackTrace();
+            return false;
+        }
+        catch (UnsupportedEncodingException e)
+        {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    public void modifyPassword(String password)
+    {
+        User user = getUser();
+        user.setPassword(password);
+        userDAO.save(user);
+    }
+
+    public User searchUser(String username)
+    {
+        return userDAO.findByUsername(username);
+    }
+
+    public void deleteUser(int id)
+    {
+        User user = userDAO.findById(id);
+
+        Set<UserBkunit> userBkunits = user.getUserBkunits();
+        for (UserBkunit userBkunit : userBkunits)
+        {
+            userBkunit.setUser(null);
+            userBkunit.setBkunit(null);
+        }
+        userBkunitDAO.saveAll(userBkunits);
+
+        Set<Review> reviews = user.getReviews();
+        for (Review review : reviews)
+        {
+            review.setUser(null);
+            review.setBook(null);
+        }
+        reviewDAO.saveAll(reviews);
+
+        Set<UserFavoriteBook> userFavoriteBooks = user.getUserFavoriteBooks();
+        for (UserFavoriteBook userFavoriteBook : userFavoriteBooks)
+        {
+            userFavoriteBook.setUser(null);
+            userFavoriteBook.setBook(null);
+        }
+        userFavoriteBookDAO.saveAll(userFavoriteBooks);
+
+        userDAO.deleteById(id);
+
+        userBkunitDAO.deleteAll(userBkunits);
+        reviewDAO.deleteAll(reviews);
+        userFavoriteBookDAO.deleteAll(userFavoriteBooks);
+    }
+
+    public Page<User> showAllUser(int start, int size, String role)
+    {
+        start = start < 0 ? 0 : start;
+        Sort sort = new Sort(Sort.Direction.ASC, "id");
+        Pageable pageable = PageRequest.of(start, size, sort);
+        Page<User> users;
+        if (role != null)
+        {
+            Role r = roleDAO.findByName(role);
+            users = userDAO.findByRolesContaining(r, pageable);
+        }
+        else
+            users = userDAO.findAll(pageable);
+        for (User user : users)
+        {
+            Iterator<Role> iterator = user.getRoles().iterator();
+            switch (iterator.next().getId())
+            {
+                case 2:
+                    user.setRole("admin");
+                    break;
+                case 4:
+                    user.setRole("reader");
+                    break;
+                case 5:
+                    user.setRole("librarian");
+                    break;
+            }
+        }
+        return users;
+    }
+
+    public User showUser(int id)
+    {
+        return userDAO.findById(id);
+    }
+
+    public boolean userExist(String username)
+    {
+        return userDAO.findByUsername(username) != null;
     }
 }

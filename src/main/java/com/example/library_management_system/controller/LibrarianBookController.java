@@ -1,8 +1,8 @@
 package com.example.library_management_system.controller;
 
 import com.example.library_management_system.bean.Book;
+import com.example.library_management_system.service.BookService;
 import com.example.library_management_system.service.LibrarianBookService;
-import com.example.library_management_system.utils.BkunitUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +12,8 @@ import com.example.library_management_system.bean.Bkunit;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
+
+import java.util.Set;
 
 @Controller
 public class LibrarianBookController
@@ -20,57 +21,48 @@ public class LibrarianBookController
     @Autowired
     private LibrarianBookService librarianBookService;
 
-    @RequestMapping(path = {"/librarian/deletebook"}, method = {RequestMethod.GET})
+    @Autowired
+    private BookService bookService;
+
+    @RequestMapping(path = "/librarian/deletebook", method = RequestMethod.GET)
     public String deleteBkunit(String id, int start)
     {
         librarianBookService.deleteBkunit(id);
         return "redirect:librarian_table?start=" + start;
     }
 
-    @RequestMapping(path = {"/librarian/addbook"}, method = {RequestMethod.POST})
-    public String addBkunit(Book book, int number, String category, @RequestParam("file") MultipartFile file)
+    @RequestMapping(path = "/librarian/addbook", method = RequestMethod.POST)
+    public String addBkunit(Book book, String category, Model model)
     {
-        librarianBookService.addBkunit(book, number, category, file);
+        Set<String> ids = librarianBookService.addBkunit(book, category);
+        model.addAttribute("ids", ids);
         return "redirect:librarian_table";
     }
 
-    //返回页面booksinfo
-    @RequestMapping(path = {"/librarian/librarian_table"}, method = {RequestMethod.GET})
+    @RequestMapping(path = "/librarian/librarian_table", method = RequestMethod.GET)
     public String showBkunit(Model model, @RequestParam(value = "start", defaultValue = "0") int start,
                              @RequestParam(value = "size", defaultValue = "10") int size)
     {
-        Page<Bkunit> page = librarianBookService.showbkunit(start, size);
+        Page<Bkunit> page = librarianBookService.showBkunit(start, size);
         model.addAttribute("page", page);
         return "librarian/librarian_table";
     }
 
-    @RequestMapping(path = {"/reader/showbook"}, method = {RequestMethod.GET})
+    @RequestMapping(path = "/reader/showbook", method = RequestMethod.GET)
     @ResponseBody
     public Page<Book> showBook(@RequestParam(value = "start", defaultValue = "0") int start,
-                           @RequestParam(value = "size", defaultValue = "10") int size, String category)
+                               @RequestParam(value = "size", defaultValue = "10") int size, String category)
     {
-        return librarianBookService.showbook(start, size, category);
+        return librarianBookService.showBook(start, size, category);
     }
 
-    @RequestMapping(path = {"/librarian/serchbyid"}, method = {RequestMethod.GET})
-    public Bkunit searchById(@RequestParam(value = "id") String id)
-    {
-        return librarianBookService.searchbyid(id);
-    }
-
-    @RequestMapping(path = {"/librarian/changeinfo"}, method = {RequestMethod.POST})
-    public String changeinfo(Bkunit bkunit)
-    {
-        librarianBookService.changeinfo(bkunit);
-        return "booksinfo";
-    }
-
-    @RequestMapping(path = {"/librarian/librarian_book"}, method = RequestMethod.GET)
+    @RequestMapping(path = "/librarian/librarian_book", method = RequestMethod.GET)
     public String bookInfo(String isbn, Model model)
     {
-        Book book = librarianBookService.bookInfo(isbn);
+        Book book = bookService.bookInfo(isbn);
         model.addAttribute("book", book);
-        model.addAttribute("number", librarianBookService.getBookNumber(book));
+        // TODO: 2018/10/9 直接通过 book.number 访问 库存
+//        model.addAttribute("number", librarianBookService.getBookNumber(book));
         return "/librarian/librarian_book";
     }
 
@@ -79,5 +71,45 @@ public class LibrarianBookController
     {
         librarianBookService.saveBook(book);
         return "redirect:librarian_book?isbn=" + book.getIsbn();
+    }
+
+    @RequestMapping(value = "/librarian/searchBook", method = RequestMethod.GET)
+    public String searchBook(String string, int type, Model model,
+                             @RequestParam(value = "start", defaultValue = "0") int start,
+                             @RequestParam(value = "size", defaultValue = "10") int size)
+    {
+        model.addAttribute("page", bookService.searchBook(string, type, start, size));
+        return "";
+    }
+
+    @RequestMapping(value = "/librarian/addBookCategory", method = RequestMethod.POST)
+    public String addBookCategory(String isbn, String category)
+    {
+        librarianBookService.addBookCategory(isbn, category);
+        return "";
+    }
+
+    @RequestMapping(value = "/librarian/lend", method = RequestMethod.POST)
+    public String lend(Model model, String id, String username)
+    {
+        int status = librarianBookService.lend(id, username);
+        model.addAttribute("status", status);
+        return "librarian/librarian_borrow";
+    }
+
+    @RequestMapping(value = "/librarian/return", method = RequestMethod.POST)
+    public String returnBook(Model model, String id, @RequestParam(value = "damage", defaultValue = "0") int damage)
+    {
+        int status = librarianBookService.returnBook(id, damage);
+        model.addAttribute("status", status);
+        return "/librarian/librarian_return";
+    }
+
+    @RequestMapping(value = "/librarian/librarian_record", method = RequestMethod.GET)
+    public String getReserves(Model model, @RequestParam(value = "start", defaultValue = "0") int start,
+                              @RequestParam(value = "size", defaultValue = "10") int size)
+    {
+        model.addAttribute("page", librarianBookService.getReserves(start, size));
+        return "librarian/librarian_record";
     }
 }

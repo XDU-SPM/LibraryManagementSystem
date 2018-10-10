@@ -9,4 +9,8 @@ import java.util.Set;
 public interface AccountDAO extends JpaRepository<Account, Integer>
 {
     Set<Account> findAllByDateBetween(Date before, Date after);
+
+    Set<Account> findAllByUid(int uid);
+
+    Set<Account> findAllByUidAndBkidAndTypeAndDateBetween(int uid, String bkid, int type, Date before, Date after);
 }

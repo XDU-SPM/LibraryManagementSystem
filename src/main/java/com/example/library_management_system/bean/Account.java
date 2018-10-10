@@ -11,9 +11,11 @@ public class Account
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int type;
+    private int uid;
+
     private double money;
 
-    private int uid;
+    private String bkid;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
@@ -22,11 +24,13 @@ public class Account
     {
     }
 
-    public Account(int type, double money, int uid, Date date)
+
+    public Account(int type, int uid, double money, String bkid, Date date)
     {
         this.type = type;
-        this.money = money;
         this.uid = uid;
+        this.money = money;
+        this.bkid = bkid;
         this.date = date;
     }
 
@@ -78,5 +82,15 @@ public class Account
     public void setUid(int uid)
     {
         this.uid = uid;
+    }
+
+    public String getBkid()
+    {
+        return bkid;
+    }
+
+    public void setBkid(String bkid)
+    {
+        this.bkid = bkid;
     }
 }

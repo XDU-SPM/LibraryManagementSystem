@@ -181,16 +181,17 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each = "user:${page}">
-                                    <td th:text="${user.id}"></td>
-                                    <td th:text="${user.username}"></td>
-                                    <td th:text="${user.role}"></td>
-                                    <td class = "am-hide-sm-only" th:text="${user.name}"></td>
-                                    <td class = "am-hide-sm-only" th:text="${user.email}"></td>
+                                    <td th:text = "${user.id}"></td>
+                                    <td th:text = "${user.username}"></td>
+                                    <td th:text = "${user.role}"></td>
+                                    <td class = "am-hide-sm-only" th:text = "${user.name}"></td>
+                                    <td class = "am-hide-sm-only" th:text = "${user.email}"></td>
                                     <td>
                                         <div class = "am-btn-toolbar">
                                             <div class = "am-btn-group am-btn-group-xs">
                                                 <button class = "am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
-                                                    <span class = "am-icon-trash-o"><a th:href="@{deleteaccount(id=${user.id},start=${page.number})}">删除</a></span>
+                                                    <span class = "am-icon-trash-o"><a
+                                                            th:href = "@{deleteaccount(id=${user.id},start=${page.number})}">删除</a></span>
                                                 </button>
                                             </div>
                                         </div>
@@ -200,13 +201,13 @@
                                 </tbody>
                             </table>
                             <div class = "am-cf">
-                                <p th:text="'共有'+${page.numberOfElements}+'条数据'"></p>
+                                <p th:text = "'共有'+${page.numberOfElements}+'条数据'"></p>
                                 <div class = "am-fr">
                                     <ul class = "am-pagination">
                                         <li><a th:href = "@{delete_users(start=0)}">首页</a></li>
                                         <li><a th:href = "@{delete_users(start=${page.number}-1)}">上一页</a></li>
                                         <li><a th:href = "@{delete_users(start=${page.number}+1)}">下一页</a></li>
-                                        <li><a th:href="@{delete_users(start=${page.totalPages})}">末页</a></li>
+                                        <li><a th:href = "@{delete_users(start=${page.totalPages})}">末页</a></li>
                                     </ul>
                                 </div>
                             </div>

@@ -17,8 +17,8 @@ public class Bkunit
 {
     @Id
     private String id;
-    private int status;
 
+    private int status;
     private int damageStatus;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
