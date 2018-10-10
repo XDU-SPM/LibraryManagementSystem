@@ -58,12 +58,6 @@ public class UserController
         return false;
     }
 
-    /*@RequestMapping(value = "/register", method = RequestMethod.GET)
-    public String register()
-    {
-        return "register";
-    }*/
-
     @RequestMapping(value = "/reader/home", method = RequestMethod.GET)
     public String readerHome()
     {
@@ -134,9 +128,9 @@ public class UserController
 
     @RequestMapping(value = "/forgetPassword", method = RequestMethod.GET)
     @ResponseBody
-    public Status forgetPassword()
+    public Status forgetPassword(String username)
     {
-        return new Status(userService.forgetPassword() ? 1 : 0);
+        return new Status(userService.forgetPassword(username));
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
