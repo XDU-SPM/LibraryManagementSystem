@@ -154,4 +154,11 @@ public class UserController
         boolean status = userService.userExist(username);
         return new Status(status ? 0 : 1);
     }
+
+    @RequestMapping(value = "/forget_password", method = RequestMethod.GET)
+    public String forget_password()
+    {
+        System.out.println(233);
+        return "forgetPassword";
+    }
 }

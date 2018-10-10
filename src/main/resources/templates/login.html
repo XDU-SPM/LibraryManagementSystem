@@ -50,7 +50,7 @@
 </body>
 </html>-->
 
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html>
 <head lang = "en">
 	<meta charset = "UTF-8">
@@ -63,7 +63,7 @@
 	<link rel = "icon" type = "image/jpg" href = "/assets/i/head_logo.jpg">
 	<link rel = "stylesheet" href = "assets/css/amazeui.min.css"/>
 	<script src = "http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
-	<!--<script src = "https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>-->
+	&lt;!&ndash;<script src = "https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>&ndash;&gt;
 	<style type="text/css">
 		.header {
 			text-align: center;
@@ -90,46 +90,33 @@
 		}
 
 		.mystyle{
-			position: absolute;
+			/*position: absolute;
 			margin-top: 60px;
-			margin-left: 650px;
+			margin-left: 650px;*/
+            text-align: center;
 		}
-
-
 	</style>
 </head>
-
 <header class = "am-topbar am-topbar-inverse admin-header">
 
 	<div class = "am-topbar-brand">
 		<a href = "/visitor-main"  class = "am-text-ir">BiblioSoft</a>
 	</div>
-
-
 	<div class = "am-collapse am-topbar-collapse" id = "topbar-collapse">
-
 		<ul class = "am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
-
 			<li><a href = "javascript:;">
 				<button id = "change" class = "am-btn am-btn-primary am-btn-sm">中文/英文</button>
 			</a></li>
-
 		</ul>
 	</div>
-
-
-
 </header>
-
 <body>
 <hr>
 <div class = "am-g">
 	<div style = "text-align: center" class = "am-text-primary am-text-lg"><h2>登录</h2></div>
 	<hr>
 	<br>
-
 	<form method = "post" class="mystyle" name="myform" action="/login">
-
 		<label for = "username" >用户名:</label>
 		<input name = "username" size="width:250px;" id = "username" value = "" >
 		<br><br>
@@ -137,17 +124,19 @@
 		<input type = "password"  size="width:250px;"  autocomplete="new-password"  name = "password" id = "password" value = "">
 		<br><br>
 		<div class = "am-cf">
-			<input type = "submit" name = ""  id="loginbun" onclick="shake(); return validateForm();" value = "登 录/login" class = "am-btn am-btn-primary am-btn-sm am-fl ">
+			<input type = "submit" name = ""  id="loginbun" onclick="shake(); return validateForm();" value = "登 录/login" class = "am-btn am-btn-primary am-btn-sm  ">
 			<br><br><br>
 			<a>忘记密码&nbsp</a>
 		</div>
 	</form>
-
-	<!--<input type = "submit" name = "" value = "注 册/register" class = "am-btn am-btn-primary am-btn-sm am-fl">-->
-
-
-
 </div>
+<br><br><br><br><br><br><br><br>
+<footer class = "admin-content-footer">
+    <hr>
+    <p class = "am-padding-left" style = "text-align: center">© 2018 Biboliosoft Online Library System</p>
+</footer>
+
+
 <script type="text/javascript">
 	function shake() {
 	    var classval=document.getElementById("loginbun").getAttribute("class");
@@ -175,9 +164,119 @@
         translate();
     })
 </script>
-<!--<script src = "../static/assets/js/my.js"></script>-->
 <script src = "assets/js/my.js"></script>
 </body>
+</html>-->
+
+
+<!--新的登录界面-->
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+
+    <meta charset="utf-8">
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- CSS -->
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=PT+Sans:400,700'>
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/supersized.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel = "icon" type = "image/jpg" href = "/assets/i/head_logo.jpg">
+    <link rel = "stylesheet" href = "assets/css/amazeui.min.css"/>
+    <script src = "http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <style type="text/css">
+        .header {
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 200%;
+            color: #333;
+            margin-top: 30px;
+        }
+
+        .header p {
+            font-size: 14px;
+        }
+
+        .am-topbar .am-text-ir {
+            display: block;
+            margin-right: 10px;
+            height: 50px;
+            width: 125px;
+            background: url(assets/i/logo.jpg) no-repeat left center;
+            -webkit-background-size: 125px 24px;
+            background-size: 125px 24px;
+        }
+
+        .mystyle{
+            /*position: absolute;
+            margin-top: 60px;
+            margin-left: 650px;*/
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<header class = "am-topbar am-topbar-inverse admin-header">
+
+    <div class = "am-topbar-brand">
+        <a href = "/visitor-main"  class = "am-text-ir">BiblioSoft</a>
+    </div>
+    <div class = "am-collapse am-topbar-collapse" id = "topbar-collapse">
+        <ul class = "am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
+            <li><a href = "javascript:;">
+                <button id = "change" class = "am-btn am-btn-primary am-btn-sm">中文/英文</button>
+            </a></li>
+        </ul>
+    </div>
+</header>
+<div class="page-container">
+    <div class = "am-g">
+        <div style = "text-align: center" class = "am-text-primary am-text-lg"><h2>登录</h2></div>
+        <br>
+        <form method = "post" class="mystyle" name="myform" action="/login">
+            <label for = "username" >用户名:</label>
+            <input name = "username" size="width:250px;" id = "username" value = "" >
+            <br><br>
+            <label for = "password" >密&nbsp&nbsp&nbsp码:</label>
+            <input type = "password"  size="width:250px;"  autocomplete="new-password"  name = "password" id = "password" value = "">
+            <br><br>
+            <div class = "am-cf">
+                <input type = "submit" name = ""  id="loginbun" onclick="shake(); return validateForm();" value = "登 录/login" class = "am-btn am-btn-primary am-btn-sm  ">
+                <br><br><br>
+                <a href="/forget_password">忘记密码&nbsp</a>
+            </div>
+        </form>
+    </div>
+</div>
+<br><br><br>
+<footer class = "admin-content-footer">
+    <p class = "am-padding-left" style = "text-align: center">© 2018 Biboliosoft Online Library System</p>
+</footer>
+
+<!-- Javascript -->
+<script type = "text/javascript">
+    $("#change").click(function () {
+        translate();
+    })
+</script>
+<script src="assets/js/jquery-1.8.2.min.js"></script>
+<script src="assets/js/supersized.3.2.7.min.js"></script>
+<script src="assets/js/supersized-init.js"></script>
+<script src = "assets/js/my.js"></script>
+</body>
+
 </html>
 
 
