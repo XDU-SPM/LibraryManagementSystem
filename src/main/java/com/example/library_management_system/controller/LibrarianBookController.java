@@ -112,4 +112,10 @@ public class LibrarianBookController
         model.addAttribute("page", librarianBookService.getReserves(start, size));
         return "librarian/librarian_record";
     }
+
+    @RequestMapping(value = "/librarian/librarian_history", method = RequestMethod.GET)
+    public String librarian_history()
+    {
+        return "librarian/librarian_history";
+    }
 }

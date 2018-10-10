@@ -65,4 +65,23 @@ public class AdminController
         model.addAttribute("status", true);
         return "admin/permission_change";
     }
+
+    @RequestMapping(value = "/admin/modifyPassword", method = RequestMethod.POST)
+    public String modifyPassword(String oldPassword, String newPassword, Model model)
+    {
+        model.addAttribute("status", adminService.modifyPassword(oldPassword, newPassword));
+        return "";
+    }
+
+    @RequestMapping(value = "/admin/librarian_edit", method = RequestMethod.GET)
+    public String librarian_edit()
+    {
+        return "admin/librarian_edit";
+    }
+
+    @RequestMapping(value = "/admin/password_change", method = RequestMethod.GET)
+    public String password_change()
+    {
+        return "admin/password_change";
+    }
 }

@@ -88,7 +88,7 @@
     </div>
 </header>
 
-<div class = "am-cf admin-main">
+<div class = "am-cf admin-main" style="">
     <!-- sidebar start -->
     <div class = "admin-sidebar am-offcanvas" id = "admin-offcanvas">
         <div class = "am-offcanvas-bar admin-offcanvas-bar">
@@ -172,19 +172,19 @@
                         <li>
                             <a href = "#" class = "am-text-success"><span
                                     class = "am-icon-btn am-icon-book"></span><br/>今日借阅<br/>
-                                <span th:text = "${todayBorrowNumber}">100</span>
+                                <span th:text = "${todayBorrowNumber}"></span>
                             </a>
                         </li>
                         <li>
                             <a href = "#" class = "am-text-warning"><span
                                 class = "am-icon-btn am-icon-clock-o"></span><br/>逾期人数<br/>
-                                <span th:text="${todayOverdueNumber}">100</span>
+                                <span th:text="${todayOverdueNumber}"></span>
                             </a>
                         </li>
                         <li>
                             <a href = "#" class = "am-text-danger"><span
                                 class = "am-icon-btn am-icon-recycle"></span><br/>今日归还<br/>
-                            <span th:text="${todayReturnNumber}">100</span>
+                            <span th:text="${todayReturnNumber}"></span>
                             </a>
                         </li>
                         <li>

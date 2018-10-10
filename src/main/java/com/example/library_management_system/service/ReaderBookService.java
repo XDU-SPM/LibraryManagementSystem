@@ -130,9 +130,9 @@ public class ReaderBookService
         return 1;
     }
 
-    public UserBkunit appointment(int id)
+    public UserBook appointment(int id)
     {
-        return userBkunitDAO.findById(id);
+        return userBookDAO.findById(id).get();
     }
 
     public Page<UserFavoriteBook> queryFavoriteBooks(int start, int size)

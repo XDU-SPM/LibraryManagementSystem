@@ -43,6 +43,9 @@ public class UserService
     @Autowired
     private AccountDAO accountDAO;
 
+    @Autowired
+    private UserBookDAO userBookDAO;
+
     public User getUser()
     {
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -179,11 +182,23 @@ public class UserService
         return userDAO.findByUsername(username);
     }
 
-    public void deleteUser(int id)
+    public int deleteUser(int id)
     {
         User user = userDAO.findById(id);
 
+        if (user.getMoney() < 0)
+            return -1;
+
+
+
         Set<UserBkunit> userBkunits = user.getUserBkunits();
+
+        for (UserBkunit userBkunit : userBkunits)
+        {
+            if (userBkunit.getStatus() == UserBkunitUtil.BORROWED)
+                return -2;
+        }
+
         for (UserBkunit userBkunit : userBkunits)
         {
             userBkunit.setUser(null);
@@ -207,11 +222,21 @@ public class UserService
         }
         userFavoriteBookDAO.saveAll(userFavoriteBooks);
 
+        Set<UserBook> userBooks = user.getUserBooks();
+        for (UserBook userBook : userBooks)
+        {
+            userBook.setUser(null);
+            userBook.setBook(null);
+        }
+        userBookDAO.saveAll(userBooks);
+
         userDAO.deleteById(id);
 
         userBkunitDAO.deleteAll(userBkunits);
         reviewDAO.deleteAll(reviews);
         userFavoriteBookDAO.deleteAll(userFavoriteBooks);
+        userBookDAO.deleteAll(userBooks);
+        return 0;
     }
 
     public Page<User> showAllUser(int start, int size, String role)
