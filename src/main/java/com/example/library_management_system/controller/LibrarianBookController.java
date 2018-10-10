@@ -3,6 +3,7 @@ package com.example.library_management_system.controller;
 import com.example.library_management_system.bean.Book;
 import com.example.library_management_system.service.BookService;
 import com.example.library_management_system.service.LibrarianBookService;
+import com.example.library_management_system.utils.UserBkunitUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -103,8 +104,11 @@ public class LibrarianBookController
     }
 
     @RequestMapping(value = "/librarian/librarian_history", method = RequestMethod.GET)
-    public String librarian_history()
+    public String librarian_history(Model model, @RequestParam(value = "start", defaultValue = "0") int start,
+                                    @RequestParam(value = "size", defaultValue = "10") int size)
     {
+        model.addAttribute("page1", librarianBookService.getBkunitOperatingHistory(start, size, UserBkunitUtil.BORROWED));
+        model.addAttribute("page2", librarianBookService.getBkunitOperatingHistory(start, size, UserBkunitUtil.RETURNED));
         return "librarian/librarian_history";
     }
 }

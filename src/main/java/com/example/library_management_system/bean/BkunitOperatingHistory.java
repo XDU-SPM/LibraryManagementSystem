@@ -16,8 +16,14 @@ public class BkunitOperatingHistory
 
     private int uid;    // 谁操作的
 
+    @Transient
+    private String username;
+
     // 预约时，此字段为 book 的 isbn
     private String buid;   // 操作的的哪本书
+
+    @Transient
+    private String bookName;
 
     private int status;
 
@@ -81,5 +87,25 @@ public class BkunitOperatingHistory
     public void setStatus(int status)
     {
         this.status = status;
+    }
+
+    public String getUsername()
+    {
+        return username;
+    }
+
+    public void setUsername(String username)
+    {
+        this.username = username;
+    }
+
+    public String getBookName()
+    {
+        return bookName;
+    }
+
+    public void setBookName(String bookName)
+    {
+        this.bookName = bookName;
     }
 }
