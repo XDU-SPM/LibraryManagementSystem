@@ -226,8 +226,6 @@
                                 <th class = "table-title">条形码</th>
                                 <th class = "table-title">标题</th>
                                 <th class = "table-author">作者</th>
-                                <th class = "table-publisher">出版社</th>
-                                <th class = "table-date am-hide-sm-only">出版日期</th>
                                 <th class = "table-date am-hide-sm-only">借书时间</th>
                                 <th class = "table-date am-hide-sm-only">截止时间</th>
                                 <th class = "table-set">操作</th>
@@ -241,8 +239,6 @@
                                        th:text = "${book.bkunit.book.title}"></a></td>
 
                                 <td th:text = "${book.bkunit.book.author}"></td>
-                                <td th:text = "${book.bkunit.book.publisher}"></td>
-                                <td class = "am-hide-sm-only" th:text = "${book.bkunit.book.publishDate}"></td>
                                 <td class = "am-hide-sm-only" th:text = "${book.borrowDate}"></td>
                                 <td class = "am-hide-sm-only" th:text = "${book.returnDate}"></td>
                                 <td>
@@ -288,8 +284,6 @@
                                 <th class = "table-title">条形码</th>
                                 <th class = "table-title">标题</th>
                                 <th class = "table-author">作者</th>
-                                <th class = "table-publisher">出版社</th>
-                                <th class = "table-date am-hide-sm-only">出版日期</th>
                                 <th class = "table-date am-hide-sm-only">借书时间</th>
                                 <th class = "table-date am-hide-sm-only">归还时间</th>
                                 <th class = "table-title">罚金(元)</th>
@@ -304,8 +298,6 @@
                                        th:text = "${book.title}"></a></td>
 
                                 <td th:text = "${book.author}"></td>
-                                <td th:text = "${book.publisher}"></td>
-                                <td class = "am-hide-sm-only" th:text = "${book.publishDate}"></td>
                                 <td class = "am-hide-sm-only" th:text = "${book.borrowDate}"></td>
                                 <td class = "am-hide-sm-only" th:text = "${book.returnDate}"></td>
                                 <td th:text = "${book.money}"></td>
@@ -409,7 +401,7 @@
                     if (data.status == 1)
                         alert("成功续借，归还时间延后" + data.number + "天！");
                     else
-                        alert("续借失败，请稍后再试！");
+                        alert("续借失败，只能续借一次！");
                     getOnePageBook2_2(0);
                 },
                 error: function (data) {
@@ -580,8 +572,6 @@
                         "                    <td><a href = \"book_details?isbn="+data.content[i].isbn+"\">"+data.content[i].title+"</a></td>\n" +
                         "\n" +
                         "                    <td>"+data.content[i].author+"</td>\n" +
-                        "                    <td>"+data.content[i].publisher+"</td>\n" +
-                        "                    <td class = \"am-hide-sm-only\">"+data.content[i].publishDate+"</td>\n" +
                         "                    <td class = \"am-hide-sm-only\">"+data.content[i].borrowDate+"</td>\n" +
                         "                    <td class = \"am-hide-sm-only\">"+data.content[i].returnDate+"</td>\n" +
                         "                    <td>"+data.content[i].money+"</td>\n" +
@@ -624,8 +614,6 @@
                             "                    <td><a href = \"book_details?isbn="+data.content[i].isbn+"\">"+data.content[i].title+"</a></td>\n" +
                             "\n" +
                             "                    <td>"+data.content[i].author+"</td>\n" +
-                            "                    <td>"+data.content[i].publisher+"</td>\n" +
-                            "                    <td class = \"am-hide-sm-only\">"+data.content[i].publishDate+"</td>\n" +
                             "                    <td class = \"am-hide-sm-only\">"+data.content[i].borrowDate+"</td>\n" +
                             "                    <td class = \"am-hide-sm-only\">"+data.content[i].returnDate+"</td>\n" +
                             "                    <td>"+data.content[i].money+"</td>\n" +
@@ -664,8 +652,6 @@
                         "                    <td><a href = \"book_details?isbn="+data.content[i].isbn+"\">"+data.content[i].title+"</a></td>\n" +
                         "\n" +
                         "                    <td>"+data.content[i].author+"</td>\n" +
-                        "                    <td>"+data.content[i].publisher+"</td>\n" +
-                        "                    <td class = \"am-hide-sm-only\">"+data.content[i].publishDate+"</td>\n" +
                         "                    <td class = \"am-hide-sm-only\">"+data.content[i].borrowDate+"</td>\n" +
                         "                    <td class = \"am-hide-sm-only\">"+data.content[i].returnDate+"</td>\n" +
                         "                    <td>"+data.content[i].money+"</td>\n" +
@@ -707,8 +693,6 @@
                         "                    <td><a href = \"book_details?isbn="+data.content[i].bkunit.book.isbn+"\">"+data.content[i].bkunit.book.title+"</a></td>\n" +
                         "\n" +
                         "                    <td>"+data.content[i].bkunit.book.author+"</td>\n" +
-                        "                    <td>"+data.content[i].bkunit.book.publisher+"</td>\n" +
-                        "                    <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.publishDate+"</td class = \"am-hide-sm-only\">\n" +
                         "                    <td class = \"am-hide-sm-only\">"+data.content[i].borrowDate+"</td>\n" +
                         "                    <td class = \"am-hide-sm-only\">"+data.content[i].returnDate+"</td>\n" +
                         "                    <td>\n" +
@@ -754,8 +738,6 @@
                             "                    <td><a href = \"book_details?isbn="+data.content[i].bkunit.book.isbn+"\">"+data.content[i].bkunit.book.title+"</a></td>\n" +
                             "\n" +
                             "                    <td>"+data.content[i].bkunit.book.author+"</td>\n" +
-                            "                    <td>"+data.content[i].bkunit.book.publisher+"</td>\n" +
-                            "                    <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.publishDate+"</td class = \"am-hide-sm-only\">\n" +
                             "                    <td class = \"am-hide-sm-only\">"+data.content[i].borrowDate+"</td>\n" +
                             "                    <td class = \"am-hide-sm-only\">"+data.content[i].returnDate+"</td>\n" +
                             "                    <td>\n" +
@@ -796,8 +778,6 @@
                         "                    <td><a href = \"book_details?isbn="+data.content[i].bkunit.book.isbn+"\">"+data.content[i].bkunit.book.title+"</a></td>\n" +
                         "\n" +
                         "                    <td>"+data.content[i].bkunit.book.author+"</td>\n" +
-                        "                    <td>"+data.content[i].bkunit.book.publisher+"</td>\n" +
-                        "                    <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.publishDate+"</td class = \"am-hide-sm-only\">\n" +
                         "                    <td class = \"am-hide-sm-only\">"+data.content[i].borrowDate+"</td>\n" +
                         "                    <td class = \"am-hide-sm-only\">"+data.content[i].returnDate+"</td>\n" +
                         "                    <td>\n" +
