@@ -88,67 +88,143 @@
 
 <div class = "am-cf admin-main">
     <!-- sidebar start -->
-    <div class = "admin-sidebar am-offcanvas" id = "admin-offcanvas">
-        <div class = "am-offcanvas-bar admin-offcanvas-bar">
-            <div class = "user-info">
-                <img class = "am-img-circle am-img-thumbnail am-center"
-                     src = "http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/200/h/200/q/80"
-                     alt = ""/>
-                <p style = "text-align: center">纯洁神王</p>
-            </div>
-
-            <ul class = "am-list admin-sidebar-list">
-                <li><a href = "librarian_homepage"><span class = "am-icon-home"></span> 首页</a></li>
-                <li><a href = "librarian_user" class = "am-cf"><span class = "am-icon-check"></span> 个人资料<span
-                        class = "am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
-                <li class = "admin-parent">
-                    <a class = "am-cf" data-am-collapse = "{target: '#collapse-nav'}"><span
-                            class = "am-icon-file"></span> 管理图书 <span
-                            class = "am-icon-angle-right am-fr am-margin-right"></span></a>
-                    <ul class = "am-list am-collapse admin-sidebar-sub am-in" id = "collapse-nav">
-                        <li><a href = "librarian_borrow"><span class = "am-icon-leaf"></span> 借阅</a></li>
-                        <li><a href = "librarian_return"><span class = "am-icon-mail-reply"></span> 归还</a></li>
-                        <li><a href = "librarian_table"><span class = "am-icon-book"></span> 管理图书</a></li>
-                        <li><a href = "librarian_record"><span class = "am-icon-calendar-check-o"></span> 预约记录</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="admin-parent">
-                    <a class = "am-cf" data-am-collapse = "{target: '#collapse-nav2'}"><span
-                            class = "am-icon-user"></span> 管理读者 <span
-                            class = "am-icon-angle-right am-fr am-margin-right"></span></a>
-                    <ul class = "am-list am-collapse admin-sidebar-sub am-in" id = "collapse-nav2">
-                        <li><a href = "librarian_addreader"><span class = "am-icon-user-plus"></span> 增加读者</a></li>
-                        <li><a href = "librarian_managereader"><span class = "am-icon-pencil"></span> 管理读者</a></li>
-                    </ul>
-                </li>
-                <li class="admin-parent">
-                    <a class = "am-cf" data-am-collapse = "{target: '#collapse-nav3'}"><span
-                            class = "am-icon-table"></span> 记录 <span
-                            class = "am-icon-angle-right am-fr am-margin-right"></span></a>
-                    <ul class = "am-list am-collapse admin-sidebar-sub am-in" id = "collapse-nav3">
-                        <li><a href = "librarian_history"><span class = "am-icon-book"></span> 借阅记录</a></li>
-                        <li><a href = "librarian_income"><span class = "am-icon-money"></span> 收入记录 </a></li>
-                        <li><a href = "librarian_fine"><span class="am-icon-bolt">罚金记录</span></a></li>
-                    </ul>
-                </li>
-                <li><a href = "librarian_announce"><span class = "am-icon-comment"></span> 发布公告</a></li>
-            </ul>
-
-            <div class = "am-panel am-panel-default admin-sidebar-panel">
-                <div class = "am-panel-bd">
-                    <p><span class = "am-icon-bookmark"></span> 公告</p>
-                    <p>时光静好，与君语；细水流年，与君同。—— Amaze UI</p>
+    <div class = "am-cf admin-main" style="">
+        <!-- sidebar start -->
+        <div class = "admin-sidebar am-offcanvas" id = "admin-offcanvas">
+            <div class = "am-offcanvas-bar admin-offcanvas-bar">
+                <div class = "user-info">
+                    <img class = "am-img-circle am-img-thumbnail am-center"
+                         src = "http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/200/h/200/q/80"
+                         alt = ""/>
+                    <p style = "text-align: center">纯洁神王</p>
                 </div>
-            </div>
 
-            <div class = "am-panel am-panel-default admin-sidebar-panel">
-                <div class = "am-panel-bd">
-                    <p><span class = "am-icon-tag"></span> wiki</p>
-                    <p>Welcome to the Amaze UI wiki!</p>
+                <ul class = "am-list admin-sidebar-list">
+                    <li><a href = "librarian_homepage"><span class = "am-icon-home"></span> 首页</a></li>
+                    <li><a href = "librarian_user" class = "am-cf"><span class = "am-icon-check"></span> 个人资料<span
+                            class = "am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
+                    <li class = "admin-parent">
+                        <a class = "am-cf" data-am-collapse = "{target: '#collapse-nav'}"><span
+                                class = "am-icon-file"></span> 管理图书 <span
+                                class = "am-icon-angle-right am-fr am-margin-right"></span></a>
+                        <ul class = "am-list am-collapse admin-sidebar-sub am-in" id = "collapse-nav">
+                            <li><a href = "librarian_borrow"><span class = "am-icon-leaf"></span> 借阅</a></li>
+                            <li><a href = "librarian_return"><span class = "am-icon-mail-reply"></span> 归还</a></li>
+                            <li><a href = "librarian_table"><span class = "am-icon-book"></span> 管理图书</a></li>
+                            <li><a href = "librarian_deletebookhistory"><span class="am-icon-trash"> 删除记录</span></a></li>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="admin-parent">
+                        <a class = "am-cf" data-am-collapse = "{target: '#collapse-nav2'}"><span
+                                class = "am-icon-user"></span> 管理读者 <span
+                                class = "am-icon-angle-right am-fr am-margin-right"></span></a>
+                        <ul class = "am-list am-collapse admin-sidebar-sub am-in" id = "collapse-nav2">
+                            <li><a href = "librarian_addreader"><span class = "am-icon-user-plus"></span> 增加读者</a></li>
+                            <li><a href = "librarian_managereader"><span class = "am-icon-pencil"></span> 管理读者</a></li>
+                        </ul>
+                    </li>
+                    <li class="admin-parent">
+                        <a class = "am-cf" data-am-collapse = "{target: '#collapse-nav3'}"><span
+                                class = "am-icon-table"></span> 记录 <span
+                                class = "am-icon-angle-right am-fr am-margin-right"></span></a>
+                        <ul class = "am-list am-collapse admin-sidebar-sub am-in" id = "collapse-nav3">
+                            <li><a href = "librarian_record"><span class = "am-icon-calendar-check-o"> 预约记录</span></a>
+                            <li><a href = "librarian_history"><span class = "am-icon-book"></span> 借阅记录</a></li>
+                            <li><a href = "librarian_income"><span class = "am-icon-money"></span> 收入记录 </a></li>
+                            <li><a href = "librarian_fine"><span class="am-icon-bolt"></span> 罚金记录</a></li>
+                        </ul>
+                    </li>
+                    <li><a href = "librarian_announce"><span class = "am-icon-comment"></span> 发布公告</a></li>
+                </ul>
+
+                <div class = "am-panel am-panel-default admin-sidebar-panel">
+                    <div class = "am-panel-bd">
+                        <p><span class = "am-icon-bookmark"></span> 公告</p>
+                        <p>时光静好，与君语；细水流年，与君同。—— Amaze UI</p>
+                    </div>
+                </div>
+
+                <div class = "am-panel am-panel-default admin-sidebar-panel">
+                    <div class = "am-panel-bd">
+                        <p><span class = "am-icon-tag"></span> wiki</p>
+                        <p>Welcome to the Amaze UI wiki!</p>
+                    </div>
                 </div>
             </div>
         </div>
+        <!-- sidebar end -->
+        <!-- content start -->
+        <div class = "admin-content">
+            <div class = "admin-content-body">
+                <div class = "am-cf am-padding am-padding-bottom-0">
+                    <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">主页</strong> /
+                        <small>Homepage</small>
+                    </div>
+                </div>
+
+                <hr/>
+
+                <div class = "content-page">
+                    <!-- Start content -->
+                    <div class = "content">
+
+                        <ul class = "am-avg-sm-1 am-avg-md-4 am-margin am-padding am-text-center admin-content-list ">
+                            <li>
+                                <a href = "#" class = "am-text-success"><span
+                                        class = "am-icon-btn am-icon-book"></span><br/>今日借阅<br/>
+                                    <span th:text = "${todayBorrowNumber}"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href = "#" class = "am-text-warning"><span
+                                        class = "am-icon-btn am-icon-clock-o"></span><br/>逾期人数<br/>
+                                    <span th:text="${todayOverdueNumber}"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href = "#" class = "am-text-danger"><span
+                                        class = "am-icon-btn am-icon-recycle"></span><br/>今日归还<br/>
+                                    <span th:text="${todayReturnNumber}"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href = "#" class = "am-text-secondary"><span
+                                        class = "am-icon-btn am-icon-user-md"></span><br/>罚金收入<br/>
+                                    <span th:text = "${todayFineIncome}">100</span>
+                                </a>
+                            </li>
+                        </ul>
+
+
+                        <div class = "am-g">
+                            <div class = "am-u-md-6">
+                                <!-- Step Line -->
+                                <div class = "card-box">
+                                    <div id = "pie1" style = "width: 100%;height: 400px;"></div>
+                                </div>
+                            </div>
+
+                            <div class = "am-u-md-6">
+                                <!-- 大数据面积图  -->
+                                <div class = "am-card">
+                                    <div id = "Stack" style = "width: 100%;height: 400px;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <footer class = "admin-content-footer am-footer-desktop am-footer-fixed">
+                <hr>
+                <p class = "am-padding-left" style = "text-align: center">© 2018 Biboliosoft Online Library System</p>
+            </footer>
+
+        </div>
+        <!-- content end -->
+
     </div>
     <!-- sidebar end -->
     <div class = "admin-content">
