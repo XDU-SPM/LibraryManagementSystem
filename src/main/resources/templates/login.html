@@ -228,7 +228,7 @@
     </style>
 </head>
 <body>
-<header class = "am-topbar am-topbar-inverse admin-header">
+<!--<header class = "am-topbar am-topbar-inverse admin-header">
 
     <div class = "am-topbar-brand">
         <a href = "/visitor-main"  class = "am-text-ir">BiblioSoft</a>
@@ -240,22 +240,22 @@
             </a></li>
         </ul>
     </div>
-</header>
+</header>-->
 <div class="page-container">
     <div class = "am-g">
-        <div style = "text-align: center" class = "am-text-primary am-text-lg"><h2>登录</h2></div>
+        <div style = "text-align: center" class = "am-text-primary am-text-lg"><h2>LOGIN</h2></div>
         <br>
         <form method = "post" class="mystyle" name="myform" action="/login">
-            <label for = "username" >用户名:</label>
+            <label for = "username" >username:</label>
             <input name = "username" size="width:250px;" id = "username" value = "" >
             <br><br>
-            <label for = "password" >密&nbsp&nbsp&nbsp码:</label>
+            <label for = "password" >password:</label>
             <input type = "password"  size="width:250px;"  autocomplete="new-password"  name = "password" id = "password" value = "">
             <br><br>
             <div class = "am-cf">
-                <input type = "submit" name = ""  id="loginbun" onclick="shake(); return validateForm();" value = "登 录/login" class = "am-btn am-btn-primary am-btn-sm  ">
+                <input type = "submit" name = ""  id="loginbun" onclick="shake(); return validateForm();" value = "login" class = "am-btn am-btn-primary am-btn-sm  ">
                 <br><br><br>
-                <a href="/forget_password">忘记密码&nbsp</a>
+                <a href="/forget_password">forget password</a>&nbsp;&nbsp;&nbsp;<a href="/visitor-main">back to homepage</a>
             </div>
         </form>
     </div>
@@ -270,6 +270,25 @@
     $("#change").click(function () {
         translate();
     })
+</script>
+<script type="text/javascript">
+    function shake() {
+        var classval=document.getElementById("loginbun").getAttribute("class");
+        classval=classval.concat(" am-animation-shake");
+        document.getElementById("loginbun").setAttribute("class",classval);
+    }
+    function validateForm() {
+        var x=document.forms["myform"]["username"].value;
+        if(x==null || x==""){
+            alert("please input username");
+            return false;
+        }
+        var y=document.forms["myform"]["password"].value;
+        if(y==null || y==""){
+            alert("please input password");
+            return false;
+        }
+    }
 </script>
 <script src="assets/js/jquery-1.8.2.min.js"></script>
 <script src="assets/js/supersized.3.2.7.min.js"></script>

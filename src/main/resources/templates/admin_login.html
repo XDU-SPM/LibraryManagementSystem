@@ -1,0 +1,116 @@
+<html>
+<head lang = "en">
+    <meta charset = "UTF-8">
+    <title>admin login</title>
+    <meta http-equiv = "X-UA-Compatible" content = "IE=edge">
+    <meta name = "viewport" content = "width=device-width, initial-scale=1">
+    <meta name = "format-detection" content = "telephone=no">
+    <meta name = "renderer" content = "webkit">
+    <meta http-equiv = "Cache-Control" content = "no-siteapp"/>
+    <link rel = "icon" type = "image/jpg" href = "/assets/i/head_logo.jpg">
+    <link rel = "stylesheet" href = "assets/css/amazeui.min.css"/>
+    <script src = "http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+    &lt;!&ndash;<script src = "https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>&ndash;&gt;
+    <style type="text/css">
+        .header {
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 200%;
+            color: #333;
+            margin-top: 30px;
+        }
+
+        .header p {
+            font-size: 14px;
+        }
+
+        .am-topbar .am-text-ir {
+            display: block;
+            margin-right: 10px;
+            height: 50px;
+            width: 125px;
+            background: url(assets/i/logo.jpg) no-repeat left center;
+            -webkit-background-size: 125px 24px;
+            background-size: 125px 24px;
+        }
+
+        .mystyle{
+            /*position: absolute;
+            margin-top: 60px;
+            margin-left: 650px;*/
+            text-align: center;
+        }
+    </style>
+</head>
+<header class = "am-topbar am-topbar-inverse admin-header">
+
+    <div class = "am-topbar-brand">
+        <a href = "/visitor-main"  class = "am-text-ir">BiblioSoft</a>
+    </div>
+    <div class = "am-collapse am-topbar-collapse" id = "topbar-collapse">
+        <ul class = "am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
+            <li><a href = "javascript:;">
+                <button id = "change" class = "am-btn am-btn-primary am-btn-sm">中文/英文</button>
+            </a></li>
+        </ul>
+    </div>
+</header>
+<body>
+<hr>
+<div class = "am-g">
+    <div style = "text-align: center" class = "am-text-primary am-text-lg"><h2>LOGIN</h2></div>
+    <hr>
+    <br>
+    <form method = "post" class="mystyle" name="myform" action="##">
+        <label for = "username" >username:</label>
+        <input name = "username" size="width:250px;" id = "username" value = "" >
+        <br><br>
+        <label for = "password" >password:</label>
+        <input type = "password"  size="width:250px;"  autocomplete="new-password"  name = "password" id = "password" value = "">
+        <br><br>
+        <div class = "am-cf">
+            <input type = "submit" name = ""  id="loginbun" onclick="shake(); return validateForm();" value = "login" class = "am-btn am-btn-primary am-btn-sm  ">
+            <br><br><br>
+            <a>forget password&nbsp</a>
+        </div>
+    </form>
+</div>
+<br><br><br><br><br><br><br><br>
+<footer class = "admin-content-footer">
+    <hr>
+    <p class = "am-padding-left" style = "text-align: center">© 2018 Biboliosoft Online Library System</p>
+</footer>
+
+
+<script type="text/javascript">
+    function shake() {
+        var classval=document.getElementById("loginbun").getAttribute("class");
+        classval=classval.concat(" am-animation-shake");
+        document.getElementById("loginbun").setAttribute("class",classval);
+    }
+    function validateForm() {
+        var x=document.forms["myform"]["username"].value;
+        if(x==null || x==""){
+            alert("please input username");
+            return false;
+        }
+        var y=document.forms["myform"]["password"].value;
+        if(y==null || y==""){
+            alert("please input password");
+            return false;
+        }
+    }
+</script>
+
+<script type = "text/javascript" color = "50,177,108" opacity = "1" zIndex = "-1" count = "100"
+        src = "https://www.laomoit.com/wp-content/themes/pc/js/line.js"></script>
+<script type = "text/javascript">
+    $("#change").click(function () {
+        translate();
+    })
+</script>
+<script src = "assets/js/my.js"></script>
+</body>
+</html>
