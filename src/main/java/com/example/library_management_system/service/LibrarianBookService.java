@@ -152,15 +152,17 @@ public class LibrarianBookService
         Book book = bkunit.getBook();
         UserBook userBook;
 
-        if ((userBook = userBookDAO.findByUserAndBook(reader, book)) != null && userBook.getStatus() == UserBookUtil.RESERVATION)
-            book.addNumber(1);
+        if ((userBook = userBookDAO.findByUserAndBook(reader, book)) != null)
+        {
+            if (userBook.getStatus() == UserBookUtil.RESERVATION)
+                book.addNumber(1);
+            userBook.setStatus(UserBkunitUtil.BORROWED);
+            userBookDAO.save(userBook);
+        }
 
         book.addNumber(-1);
         book.addFrequency();
 //        bookDAO.save(book);
-
-        userBook.setStatus(UserBkunitUtil.BORROWED);
-        userBookDAO.save(userBook);
 
         UserBkunit userBkunit = userBkunitDAO.findByUserAndBkunit(reader, bkunit);
 
