@@ -222,7 +222,7 @@
 <script>
     getMoney();
     function getMoney() {
-        var money = -[[${user.money}]];
+        var money = 0 - [[${user.money}]];
         document.getElementById("user-balance").value = money;
     }
 </script>
@@ -234,7 +234,6 @@
 <script th:inline="javascript">
     isOk();
     function isOk() {
-        console.log([[${status}]]);
         if([[${status}]] == null)
             return;
         if ([[${status}]])

@@ -329,6 +329,21 @@ public class LibrarianBookService
     public Page<UserBook> getReserves(int start, int size)
     {
         Pageable pageable = PageableUtil.pageable(false, "borrowDate", start, size);
-        return userBookDAO.findAllByStatusBetween(UserBookUtil.RESERVATION, UserBookUtil.RESERVATION_FAIL, pageable);
+        return userBookDAO.findAllByStatusBetween(UserBookUtil.RESERVATION, UserBookUtil.RESERVATION_CANCEL, pageable);
+    }
+
+    public Page<BkunitOperatingHistory> getBkunitOperatingHistory(int start, int size, int status)
+    {
+        Pageable pageable = PageableUtil.pageable(false, "date", start, size);
+        Page<BkunitOperatingHistory> bkunitOperatingHistories = bkunitOperatingHistoryDAO.findAllByStatus(status, pageable);
+        for (BkunitOperatingHistory bkunitOperatingHistory : bkunitOperatingHistories)
+            updateBkunitOperatingHistory(bkunitOperatingHistory);
+        return bkunitOperatingHistories;
+    }
+
+    private void updateBkunitOperatingHistory(BkunitOperatingHistory bkunitOperatingHistory)
+    {
+        bkunitOperatingHistory.setUsername(userDAO.findById(bkunitOperatingHistory.getUid()).getUsername());
+        bkunitOperatingHistory.setBookName(bkunitDAO.findById(bkunitOperatingHistory.getBuid()).get().getBook().getTitle());
     }
 }
