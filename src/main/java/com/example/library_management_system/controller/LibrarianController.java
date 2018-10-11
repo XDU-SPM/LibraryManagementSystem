@@ -73,4 +73,12 @@ public class LibrarianController
         model.addAttribute("username", userService.getUser().getUsername());
         return "redirect:librarian_user";
     }
+
+    @RequestMapping(value = "/librarian/librarian_announce", method = RequestMethod.GET)
+    public String librarian_announce(Model model)
+    {
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
+        return "librarian/librarian_announce";
+    }
 }

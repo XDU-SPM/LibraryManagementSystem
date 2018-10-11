@@ -25,6 +25,12 @@ public class User
     @Transient
     private String role;
 
+    @Transient
+    private double paidFine;
+
+    @Transient
+    private double unPaidFine;
+
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
     @JsonIgnore
     private Set<UserBkunit> userBkunits;
@@ -213,5 +219,25 @@ public class User
     public void setAvatarPath(String avatarPath)
     {
         this.avatarPath = avatarPath;
+    }
+
+    public double getPaidFine()
+    {
+        return paidFine;
+    }
+
+    public void setPaidFine(double paidFine)
+    {
+        this.paidFine = paidFine;
+    }
+
+    public double getUnPaidFine()
+    {
+        return unPaidFine;
+    }
+
+    public void setUnPaidFine(double unPaidFine)
+    {
+        this.unPaidFine = unPaidFine;
     }
 }

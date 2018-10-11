@@ -76,4 +76,13 @@ public class LibrarianUserController
         model.addAttribute("username", userService.getUser().getUsername());
         return "librarian/librarian_managereader";
     }
+
+    @RequestMapping(value = "/librarian/librarian_readerinfo", method = RequestMethod.GET)
+    public String librarian_readerinfo(Model model, int id)
+    {
+        model.addAttribute("user", userService.showUser(id));
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
+        return "/librarian/librarian_readerinfo";
+    }
 }

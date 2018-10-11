@@ -276,7 +276,10 @@ public class UserService
         else
             users = userDAO.findAll();
         for (User user : users)
+        {
             addRole(user);
+            getFineRecord(user);
+        }
         return users;
     }
 
@@ -295,6 +298,16 @@ public class UserService
                 user.setRole("librarian");
                 break;
         }
+    }
+
+    private void getFineRecord(User user)
+    {
+        Set<Account> accounts = accountDAO.findAllByUidAndType(user.getId(), AccountUtil.FINE);
+        double money = 0;
+        for (Account account : accounts)
+            money += account.getMoney();
+        user.setPaidFine(money);
+        user.setUnPaidFine(-user.getMoney());
     }
 
     public User showUser(int id)

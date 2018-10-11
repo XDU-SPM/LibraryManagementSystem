@@ -202,6 +202,7 @@ public class LibrarianBookService
      */
     public int returnBook(String id, int damage)
     {
+        id = id.trim();
         Bkunit bkunit = bkunitDAO.findById(id).get();
         if (bkunit.getStatus() != BkunitUtil.BORROWED)
             return -2;
