@@ -1,0 +1,277 @@
+<!doctype html>
+<html class = "no-js" xmlns:th = "http://www.thymeleaf.org"
+      xmlns:sec = "http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset = "utf-8">
+    <meta http-equiv = "X-UA-Compatible" content = "IE=edge">
+    <title>Bibliosoft</title>
+    <meta name = "description" content = "这是一个 user 页面">
+    <meta name = "keywords" content = "user">
+    <meta name = "viewport" content = "width=device-width, initial-scale=1">
+    <meta name = "renderer" content = "webkit">
+    <meta http-equiv = "Cache-Control" content = "no-siteapp"/>
+    <link rel = "icon" type = "image/jpg" href = "assets/i/head_logo.jpg">
+    <link rel = "stylesheet" href = "assets/css/amazeui.min.css"/>
+    <link rel = "stylesheet" href = "assets/css/admin.css">
+    <style>
+        .am-form-group {
+            text-align: left;
+        }
+
+        .am-topbar {
+            /*background-color: black;*/
+        }
+
+        .am-topbar .am-text-ir {
+            display: block;
+            margin-right: 10px;
+            height: 50px;
+            width: 125px;
+            background: url(assets/i/logo.jpg) no-repeat left center;
+            -webkit-background-size: 125px 24px;
+            background-size: 125px 24px;
+        }
+    </style>
+
+    <script type = "text/javascript" th:inline = "javascript">
+        console.log([[${user}]]);
+    </script>
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class = "browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href = "http://browsehappy.com/"
+                                                                          target = "_blank">升级浏览器</a>
+    以获得更好的体验！</p>
+<![endif]-->
+
+<header class = "am-topbar am-topbar-inverse admin-header">
+    <h1 class = "am-topbar-brand ">
+        <a href = "#" class = "am-text-ir">BiblioSoft</a>
+    </h1>
+
+    <button class = "am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only"
+            data-am-collapse = "{target: '#doc-topbar-collapse'}"><span class = "am-sr-only">导航切换</span> <span
+            class = "am-icon-bars"></span></button>
+
+    <div class = "am-collapse am-topbar-collapse" id = "doc-topbar-collapse">
+
+        <div class = "am-collapse am-topbar-collapse" id = "topbar-collapse">
+
+            <ul class = "am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
+
+                <li><a href = "javascript:;">
+                    <button id = "change" class = "am-btn am-btn-primary am-btn-sm">中文/英文</button>
+                </a></li>
+
+                <li class = "am-dropdown" data-am-dropdown>
+                    <a class = "am-dropdown-toggle" data-am-dropdown-toggle href = "javascript:;">
+                        <a th:href = "@{/logout}">注销</a>
+                    </a>
+
+                </li>
+
+            </ul>
+        </div>
+
+    </div>
+</header>
+
+<div class = "am-cf admin-main">
+    <!-- sidebar start -->
+    <div class = "admin-sidebar am-offcanvas" id = "admin-offcanvas">
+        <div class = "am-offcanvas-bar admin-offcanvas-bar">
+            <div class = "user-info">
+                <img class = "am-img-circle am-img-thumbnail am-center"
+                     src = "http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/200/h/200/q/80"
+                     alt = ""/>
+                <p style = "text-align: center">Spiderman</p>
+            </div>
+            <ul class = "am-list admin-sidebar-list">
+                <li><a href = "reader_condition"><span class = "am-icon-bar-chart"></span> 借书信息统计</a></li>
+                <li><a href = "reader_search"><span class = "am-icon-search"></span> 搜索页面</a></li>
+                <li><a href = "reader_information" class = "am-cf"><span class = "am-icon-check"></span> 个人资料<span
+                        class = "am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
+                <li><a href = "reader_message"><span class = "am-icon-commenting-o"></span> 留言</a></li>
+            </ul>
+
+            <div class = "am-panel am-panel-default admin-sidebar-panel">
+                <div class = "am-panel-bd">
+                    <p><span class = "am-icon-bookmark"></span> 公告</p>
+                    <p>时光静好，与君语；细水流年，与君同。—— Amaze UI</p>
+                </div>
+            </div>
+
+            <div class = "am-panel am-panel-default admin-sidebar-panel">
+                <div class = "am-panel-bd">
+                    <p><span class = "am-icon-tag"></span> wiki</p>
+                    <p>Welcome to the Amaze UI wiki!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- sidebar end -->
+
+    <!-- content start -->
+    <div class = "admin-content">
+        <div class = "admin-content-body">
+            <div class = "am-cf am-padding am-padding-bottom-0">
+                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">个人资料</strong> /
+                    <small>Personal information</small>
+                </div>
+            </div>
+
+            <hr/>
+
+            <div class = "am-g">
+                <div class = "am-u-sm-12 am-u-md-4 am-u-md-push-8">
+                    <div class = "am-panel am-panel-default">
+                        <div class = "am-panel-bd">
+                            <div class = "am-g">
+                                <div class = "am-u-md-4">
+                                    <img class = "am-img-circle am-img-thumbnail"
+                                         src = "http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/200/h/200/q/80"
+                                         alt = ""/>
+                                </div>
+                                <div class = "am-u-md-8">
+                                    <p>你可以使用<a href = "#">gravatar.com</a>提供的头像或者使用本地上传头像。 </p>
+                                    <form class = "am-form">
+                                        <div class = "am-form-group">
+                                            <input type = "file" id = "user-pic">
+                                            <p class = "am-form-help">请选择要上传的文件...</p>
+                                            <button type = "button" class = "am-btn am-btn-primary am-btn-xs">保存
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class = "am-u-sm-12 am-u-md-8 am-u-md-pull-4">
+                    <form class = "am-form am-form-horizontal" action = "saveUser" method = "post">
+                        <div class = "am-form-group">
+                            <label for = "user-account" class = "am-u-sm-3 am-form-label">用户账号 / Account</label>
+                            <div class = "am-u-sm-9">
+                                <input type = "tel" id = "user-account" th:value = "${user.username}" name = "username">
+                            </div>
+                        </div>
+
+                        <div class = "am-form-group">
+                            <label for = "user-name" class = "am-u-sm-3 am-form-label">姓名 / Name</label>
+                            <div class = "am-u-sm-9">
+                                <input type = "text" id = "user-name" th:value = "${user.name}" name = "name">
+                            </div>
+                        </div>
+
+                        <div class = "am-form-group">
+                            <label for = "user-email" class = "am-u-sm-3 am-form-label">电子邮件 / Email</label>
+                            <div class = "am-u-sm-9">
+                                <input type = "email" id = "user-email" th:value = "${user.email}" name = "email">
+                            </div>
+                        </div>
+
+                        <div class = "am-form-group">
+                            <label for = "user-balance" class = "am-u-sm-3 am-form-label">待交罚金(元) / Pending fine(CNY)</label>
+                            <div class = "am-u-sm-9">
+                                <input id = "user-balance" disabled>
+                            </div>
+                        </div>
+
+                        <div class = "am-form-group">
+                            <div class = "am-u-sm-9 am-u-sm-push-3">
+                                <button type = "submit" class = "am-btn am-btn-primary" onclick = "return check()">
+                                    保存修改
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+        <footer>
+            <hr>
+            <p class = "am-padding-left" style = "text-align: center">© 2018 Biboliosoft Online Library System</p>
+        </footer>
+
+    </div>
+    <!-- content end -->
+
+</div>
+
+<a href = "#" class = "am-icon-btn am-icon-th-list am-show-sm-only admin-menu"
+   data-am-offcanvas = "{target: '#admin-offcanvas'}"></a>
+
+<!--[if lt IE 9]>
+<script src = "http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script src = "http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src = "assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src = "assets/js/jquery.min.js"></script>
+<!--<![endif]-->
+<script src = "assets/js/amazeui.min.js"></script>
+
+<script src = "assets/js/app.js"></script>
+<script src = "https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script type = "text/javascript" src = "assets/js/test.js"></script>
+<script>
+    getMoney();
+    function getMoney() {
+        var money = 0 - [[${user.money}]];
+        document.getElementById("user-balance").value = money;
+    }
+</script>
+<script type = "text/javascript" th:inline = "javascript">
+    $("#change").click(function () {
+        translate();
+    })
+</script>
+<script th:inline="javascript">
+    isOk();
+    function isOk() {
+        if([[${status}]] == null)
+            return;
+        if ([[${status}]])
+            alert("修改成功！");
+        else
+            alert("修改失败！");
+    }
+</script>
+<script>
+    let status = true;
+
+    $(function () {
+        $("#user-account").blur(function () {
+            var params = $(this).serialize();
+            $.ajax(
+                {
+                    method: 'GET',
+                    url: "checkUser",
+                    data: params,
+                    success: function (data) {
+                        if (data.status == 0) {
+                            status = false;
+                        }
+                        else
+                            status = true;
+                    }
+                }
+            );
+        })
+    });
+
+    function check() {
+        if (!status) {
+            alert("该用户名已经被注册");
+            return false;
+        }
+        return true;
+    }
+</script>
+</body>
+</html>
