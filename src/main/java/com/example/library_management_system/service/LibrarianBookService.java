@@ -102,7 +102,7 @@ public class LibrarianBookService
 
     public Page<Bkunit> showBkunit(int start, int size)
     {
-        Pageable pageable = PageableUtil.pageable(true, "id", start, size);
+        Pageable pageable = PageableUtil.pageable(false, "id", start, size);
         return bkunitDAO.findAllByStatusNot(BkunitUtil.LOST, pageable);
     }
 

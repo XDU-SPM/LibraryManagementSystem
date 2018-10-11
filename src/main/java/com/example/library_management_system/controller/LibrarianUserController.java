@@ -28,7 +28,7 @@ public class LibrarianUserController
     {
         userService.registerService(reader, RoleUtil.ROLE_READER_CHECK);
         model.addAttribute("status", true);
-        return "/librarian/librarian_create";
+        return "/librarian/librarian_addreader";
     }
 
     @RequestMapping(value = "/librarian/payFine", method = RequestMethod.POST)
