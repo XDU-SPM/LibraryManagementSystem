@@ -91,10 +91,10 @@
     <div class = "admin-sidebar am-offcanvas" id = "admin-offcanvas">
         <div class = "am-offcanvas-bar admin-offcanvas-bar">
             <div class = "user-info">
-                <img class = "am-img-circle am-img-thumbnail am-center"
-                     src = "http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/200/h/200/q/80"
+                <img class = "am-img-circle am-img-thumbnail am-center" width="200" height="200"
+                     th:src= "${avatarPath}"
                      alt = ""/>
-                <p style = "text-align: center">纯洁神王</p>
+                <p style = "text-align: center" th:text="${username}">纯洁神王</p>
             </div>
 
             <ul class = "am-list admin-sidebar-list">
@@ -171,7 +171,7 @@
                             <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "borrowHistory">
                                 <thead>
                                 <tr>
-                                    <th class = "table-id">编号</th>
+                                    <th class = "table-id">ID</th>
                                     <th class = "table-buid">书号</th>
                                     <th class = "table-title">书名</th>
                                     <th class = "table-uid">读者编号</th>
@@ -183,7 +183,7 @@
                                 <tr th:each = "record:${set1}">
                                     <td th:text="${record.id}"></td>
                                     <td th:text = "${record.buid}"></td>
-                                    <td ><a th:text = "${record.bookName}" ></a></td>
+                                    <td ><a th:text = "${record.bookName}" href="http://www.baidu.com"></a></td>
                                     <td class = "am-hide-sm-only" th:text = "${record.uid}"></td>
                                     <td class = "am-hide-sm-only" th:text = "${record.username}"></td>
                                     <td class = "am-hide-sm-only" th:text = "${record.date}"></td>
@@ -197,7 +197,7 @@
                         <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "returnHistory">
                             <thead>
                             <tr>
-                                <th class = "table-id">编号</th>
+                                <th class = "table-id">ID</th>
                                 <th class = "table-buid">书号</th>
                                 <th class = "table-title">书名</th>
                                 <th class = "table-uid">读者编号</th>

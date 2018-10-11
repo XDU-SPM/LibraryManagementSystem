@@ -92,8 +92,10 @@
     <div class = "admin-sidebar am-offcanvas" id = "admin-offcanvas">
         <div class = "am-offcanvas-bar admin-offcanvas-bar">
             <div class = "user-info">
-                <img class = "am-img-circle am-img-thumbnail am-center" src = "assets/img/admin.jpg" alt = ""/>
-                <p style = "text-align: center">管理员</p>
+                <img class = "am-img-circle am-img-thumbnail am-center" width="200" height="200"
+                     th:src= "${avatarPath}"
+                     alt = ""/>
+                <p style = "text-align: center" th:text="${username}">Admin</p>
             </div>
 
             <ul class = "am-list admin-sidebar-list">

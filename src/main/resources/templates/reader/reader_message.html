@@ -78,10 +78,10 @@
     <div class = "admin-sidebar am-offcanvas" id = "admin-offcanvas">
         <div class = "am-offcanvas-bar admin-offcanvas-bar">
             <div class = "user-info">
-                <img class = "am-img-circle am-img-thumbnail am-center"
-                     src = "http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/200/h/200/q/80"
+                <img class = "am-img-circle am-img-thumbnail am-center" width="200" height="200"
+                     th:src= "${avatarPath}"
                      alt = ""/>
-                <p style = "text-align: center">Spiderman</p>
+                <p style = "text-align: center" th:text="${username}">Reader</p>
             </div>
             <ul class = "am-list admin-sidebar-list">
                 <li><a href = "reader_condition"><span class = "am-icon-bar-chart"></span> 借书信息统计</a></li>
