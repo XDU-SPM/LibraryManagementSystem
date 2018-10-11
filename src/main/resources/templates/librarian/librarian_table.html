@@ -197,7 +197,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each = "bunit:${page}">
+                        <tr th:each = "bunit:${set}">
                             <td th:text = "${bunit.id}"></td>
                             <td ><a th:text = "${bunit.book.title}" th:href="@{librarian_book(isbn=${bunit.book.isbn})}"></a></td>
                             <td th:text = "${bunit.book.isbn}"></td>
@@ -208,26 +208,15 @@
                             <td>
                                 <div class = "am-btn-toolbar">
                                     <div class = "am-btn-group am-btn-group-xs">
-                                        <button class = "am-btn am-btn-default am-btn-xs am-text-secondary" ><a
-                                                th:href="@{deletebook(id=${bunit.id},start=${page.number})}"
-                                                class = "am-icon-close" >删除</a>
+                                        <button class = "am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only delete"
+                                                th:onclick = "'javascript:deletebook('+${bunit.id}+')'">
+                                            <span class = "am-icon-trash-o">删除</span>
                                         </button>
                                     </div>
                                 </div>
                             </td>
                         </tr>
                     </table>
-                    <div class = "am-cf">
-                        <p th:text="'共有'+${page.numberOfElements}+'条数据'"></p>
-                        <div class = "am-fr">
-                            <ul class = "am-pagination">
-                                <li><a th:href = "@{librarian_table(start=0)}">首页</a></li>
-                                <li><a th:href = "@{librarian_table(start=${page.number}-1)}">上一页</a></li>
-                                <li><a th:href = "@{librarian_table(start=${page.number}+1)}">下一页</a></li>
-                                <li><a th:href="@{librarian_table(start=${page.totalPages})}">末页</a></li>
-                            </ul>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -350,11 +339,11 @@
 <script th:inline="javascript" src = "dist/amazeui.datatables.js"></script>
 <script src = "assets/js/amazeui.min.js"></script>
 <script src = "assets/js/app.js"></script>
-<!--<script>-->
-    <!--$(document).ready(function(){-->
-        <!--$("#booklist").DataTable();-->
-    <!--});-->
-<!--</script>-->
+<script>
+    $(document).ready(function(){
+        $("#booklist").DataTable();
+    });
+</script>
 <script>
     $(function () {
         $('#add-book').on('click', function () {
@@ -393,6 +382,31 @@
         getBook(isbn);
 
     })
+
+    $(function(){
+        $("table#booklist tbody").on('click', 'button.delete', function () {
+            $('#booklist').DataTable().row($(this).parents('tr')).remove().draw();
+        })
+    });
+
+    function deletebook(id) {
+        $.ajax(
+            {
+                method: 'GET',
+                url: "deleteReader",
+                data: {id: id},
+                success: function (data) {
+                    if (data.status == 0) {
+                        alert("删除成功");
+                        // document.getElementById('readlist').deleteRow(id);
+                    }
+                    else {
+                        alert("删除失败");
+                    }
+                }
+            }
+        );
+    }
 </script>
 <script type = "text/javascript" src = "assets/js/test.js"></script>
 
