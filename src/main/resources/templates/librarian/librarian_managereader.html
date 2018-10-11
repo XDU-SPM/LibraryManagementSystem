@@ -190,16 +190,20 @@
                                 <th class = "table-title">用户名</th>
                                 <th class = "table-author am-hide-sm-only">姓名</th>
                                 <th class = "table-date am-hide-sm-only">邮箱</th>
+                                <th class = "table-money">已缴</th>
+                                <th class = "table-money">未缴</th>
                                 <th class = "table-set">操作</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr th:each = "user:${set}" th:id = "${user.id}">
                                 <td th:text = "${user.id}"></td>
-                                <td><a th:text = "${user.username}" th:href = "@{librarian_user(id=${user.id})}"></a>
+                                <td><a th:text = "${user.username}" th:href = "@{librarian_readerinfo(id=${user.id})}"></a>
                                 </td>
                                 <td class = "am-hide-sm-only" th:text = "${user.name}"></td>
                                 <td class = "am-hide-sm-only" th:text = "${user.email}"></td>
+                                <td class = "am-hide-sm-only" th:text = "${user.paidFine}"></td>
+                                <td class = "am-hide-sm-only" th:text = "${user.unPaidFine}"></td>
                                 <td>
                                     <div class = "am-btn-toolbar">
                                         <div class = "am-btn-group am-btn-group-xs">
