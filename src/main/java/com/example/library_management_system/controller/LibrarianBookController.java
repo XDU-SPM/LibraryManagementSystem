@@ -10,9 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import com.example.library_management_system.bean.Bkunit;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.data.domain.Page;
 
 import java.util.Set;
 
@@ -50,7 +48,7 @@ public class LibrarianBookController
     @RequestMapping(path = "/librarian/librarian_table", method = RequestMethod.GET)
     public String showBkunit(Model model)
     {
-        model.addAttribute("page", librarianBookService.showBkunit());
+        model.addAttribute("set", librarianBookService.showBkunit());
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
         return "librarian/librarian_table";
