@@ -166,7 +166,7 @@
                 <div class = "am-u-sm-12 am-u-md-6">
                     <div class = "am-btn-toolbar">
                         <div class = "am-btn-group am-btn-group-xs">
-                            <button type = "button" class = "am-btn am-btn-default" id = "add-book"><span
+                            <button type = "button" class = "am-btn am-btn-default" id = "add_announce"><span
                                     class = "am-icon-plus"></span> 新增
                             </button>
                         </div>
@@ -183,25 +183,19 @@
                     <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "booklist">
                         <thead>
                         <tr>
-                            <th class = "table-id">书号</th>
+                            <th class = "table-id">ID</th>
                             <th class = "table-title">标题</th>
-                            <th class = "table-isbn">ISBN</th>
-                            <th class = "table-author am-hide-sm-only">作者</th>
-                            <th class = "table-publisher">出版社</th>
-                            <th class = "table-date am-hide-sm-only">出版日期</th>
-                            <th class = "table-positon am-hide-sm-only">位置</th>
+                            <th class = "table-librarian">管理员</th>
+                            <th class = "table-author am-hide-sm-only">内容</th>
                             <th class = "table-set">操作</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each = "bunit:${page}">
-                            <td th:text = "${bunit.id}"></td>
-                            <td ><a th:text = "${bunit.book.title}" th:href="@{librarian_book(isbn=${bunit.book.isbn})}"></a></td>
-                            <td th:text = "${bunit.book.isbn}"></td>
-                            <td class = "am-hide-sm-only" th:text = "${bunit.book.author}"></td>
-                            <td class = "am-hide-sm-only" th:text = "${bunit.book.publisher}"></td>
-                            <td class = "am-hide-sm-only" th:text = "${bunit.book.publishDate}"></td>
-                            <td th:text = "${bunit.book.position}"></td>
+                        <tr th:each = "announce:${page}">
+                            <td th:text = "${announce.id}"></td>
+                            <td ><a th:text = "${announce.title}" th:href="@{librarian_announce(id=${announce.id})}" th:onclick="modify(${announce.id},${announce.title},${announce.content})" ></a></td>
+                            <td th:text = "${announce.username}"></td>
+                            <td class = "am-hide-sm-only" th:text = "${announce.content}"></td>
                             <td>
                                 <div class = "am-btn-toolbar">
                                     <div class = "am-btn-group am-btn-group-xs">
@@ -234,90 +228,37 @@
             <p class = "am-padding-left" style = "text-align: center">© 2018 Biboliosoft Online Library System</p>
         </footer>
 
-        <div class = "am-modal am-modal-prompt" tabindex = "-1" id = "my-prompt">
+        <div class = "am-modal am-modal-prompt" tabindex = "-1" id = "my-prompt1">
             <div class = "am-modal-dialog">
                 <div class = "am-modal-hd">添加图书</div>
                 <form class = "am-modal-bd am-form am-form-horizontal" method = "post" action = "addbook" enctype = "multipart/form-data">
                     <div class = "am-form-group">
-                        <label for = "isbn" class = "am-u-sm-3 am-form-label">ISBN</label>
+                        <label for = "id" class = "am-u-sm-3 am-form-label" readonly="readonly">ID</label>
                         <div class = "am-u-sm-9">
-                            <input type = "text" id = "isbn" placeholder = "ISBN" name = "isbn">
+                            <input type = "text" id = "id" placeholder = "id" name = "">
                         </div>
                     </div>
 
 
                     <div class = "am-form-group">
-                        <label for = "title" class = "am-u-sm-3 am-form-label">书名</label>
+                        <label for = "title" class = "am-u-sm-3 am-form-label">标题</label>
                         <div class = "am-u-sm-9">
-                            <input type = "text" id = "title" placeholder = "书名 / Title" name = "title">
+                            <input type = "text" id = "title" placeholder = "标题 / Title" name = "title">
                         </div>
                     </div>
+
 
 
                     <div class = "am-form-group">
-                        <label for = "author" class = "am-u-sm-3 am-form-label">作者</label>
+                        <label for = "content" class = "am-u-sm-3 am-form-label">内容</label>
                         <div class = "am-u-sm-9">
-                            <input type = "text" id = "author" placeholder = "作者 / Author" name = "author">
-                        </div>
-                    </div>
-
-                    <div class = "am-form-group">
-                        <label for = "type" class = "am-u-sm-3 am-form-label">类别</label>
-                        <div class = "am-u-sm-9">
-                            <input type = "text" id = "type" placeholder = "类别 / Type" name = "category">
-                        </div>
-                    </div>
-
-                    <div class = "am-form-group">
-                        <label for = "position" class = "am-u-sm-3 am-form-label">位置</label>
-                        <div class = "am-u-sm-9">
-                            <input type = "text" id = "position" placeholder = "位置 / position" name = "position">
-                        </div>
-                    </div>
-
-                    <div class = "am-form-group">
-                        <label for = "publisher" class = "am-u-sm-3 am-form-label">出版社</label>
-                        <div class = "am-u-sm-9">
-                            <input type = "text" id = "publisher" placeholder = "出版社 / Publisher" name = "publisher">
-                        </div>
-                    </div>
-
-                    <div class = "am-form-group ">
-                        <label for = "publish_time" class = "am-u-sm-3 am-form-label">出版时间</label>
-                        <div class = "am-u-sm-9">
-                            <input type = "text" id = "publish_time" placeholder = "出版时间 / Publish Time"
-                                   name = "publishDate">
+                            <!--<input type = "text" id = "content" placeholder = "内容 / Content" name = "brief">-->
+                            <textarea id = "content" placeholder = "内容 / Content" name = "brief" cols="10" rows="3">
+                            </textarea>
                         </div>
                     </div>
 
 
-                    <div class = "am-form-group">
-                        <label for = "number" class = "am-u-sm-3 am-form-label">数量</label>
-                        <div class = "am-u-sm-9">
-                            <input type = "number" id = "number" pattern = "[1-9][0-9]*" placeholder = "数量 / Number"
-                                   name = "number">
-                        </div>
-                    </div>
-
-                    <div class = "am-form-group">
-                        <label for = "abstract" class = "am-u-sm-3 am-form-label">简介</label>
-                        <div class = "am-u-sm-9">
-                            <input type = "text" id = "abstract" placeholder = "摘要 / Abstract" name = "brief">
-                        </div>
-                    </div>
-
-                    <div class = "am-form-group ">
-                        <label for = "price" class = "am-u-sm-3 am-form-label">价格</label>
-                        <div class = "am-u-sm-9">
-                            <input type = "text" id = "price" placeholder = "价格 / Price" name = "price">
-                        </div>
-                    </div>
-
-                    <div class = "am-form-group am-hide">
-                        <div class = "am-u-sm-9 ">
-                            <input type="text"  id = "cover" class = "am-modal-prompt-input" name = "coverPath">
-                        </div>
-                    </div>
 
 
                     <div class = "am-modal-footer am-g">
@@ -327,7 +268,46 @@
                 </form>
             </div>
         </div>
+        <div class = "am-modal am-modal-prompt" tabindex = "-1" id = "my-prompt2">
+            <div class = "am-modal-dialog">
+                <div class = "am-modal-hd">添加图书</div>
+                <form class = "am-modal-bd am-form am-form-horizontal" method = "post" action = "addbook" enctype = "multipart/form-data">
+                    <div class = "am-form-group">
+                        <label for = "id" class = "am-u-sm-3 am-form-label" readonly="readonly">ID</label>
+                        <div class = "am-u-sm-9">
+                            <input type = "text" id = "id2" placeholder = "id" name = "">
+                        </div>
+                    </div>
 
+
+                    <div class = "am-form-group">
+                        <label for = "title" class = "am-u-sm-3 am-form-label">标题</label>
+                        <div class = "am-u-sm-9">
+                            <input type = "text" id = "title2" placeholder = "标题 / Title" name = "title">
+                        </div>
+                    </div>
+
+
+
+                    <div class = "am-form-group">
+                        <label for = "content" class = "am-u-sm-3 am-form-label">内容</label>
+                        <div class = "am-u-sm-9">
+                            <!--<input type = "text" id = "content" placeholder = "内容 / Content" name = "brief">-->
+                            <textarea id = "content2" placeholder = "内容 / Content" name = "brief" cols="10" rows="3">
+                            </textarea>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class = "am-modal-footer am-g">
+                        <div class = "am-u-sm-7 am-u-sm-push-2 am-u-end">
+                            <input type = "submit" data-am-modal-confirm value = "确认/confirm" class = "am-btn am-btn-primary"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
     <!-- content end -->
 
@@ -347,15 +327,11 @@
 <script th:inline="javascript" src = "dist/amazeui.datatables.js"></script>
 <script src = "assets/js/amazeui.min.js"></script>
 <script src = "assets/js/app.js"></script>
-<!--<script>-->
-<!--$(document).ready(function(){-->
-<!--$("#booklist").DataTable();-->
-<!--});-->
-<!--</script>-->
+
 <script>
     $(function () {
-        $('#add-book').on('click', function () {
-            $('#my-prompt').modal({
+        $('#add_announce').on('click', function () {
+            $('#my-prompt1').modal({
                 relatedTarget: this,
                 // onConfirm: function (e) {
                 //     alert('创建成功')
@@ -367,29 +343,17 @@
         });
     });
 </script>
-<script>
-    function getBook(isbn) {
-        var url = 'https://api.douban.com/v2/book/isbn/'+isbn;
-        $.ajax({
-            url: url,
-            dataType: 'jsonp',
-            success:function (data) {
-                console.log(data);
-                $("#title").attr("value",data.title.toString());
-                $("#author").attr("value",data.author.toString());
-                $("#publish_time").attr("value",data.pubdate.toString());
-                $("#publisher").attr("value",data.publisher.toString());
-                $("#abstract").attr("value",data.summary);
-                $("#cover").attr("value",data.image);
-                $("#price").attr("value",data.price.replace(/[^0-9|.]/ig,""));
+<script th:inline="javascript">
+    function modify(id,title,content) {
+        $('#my-prompt2').modal(
+            {
+                relatedTarget: this
             }
-        });
+        );
+        $('#id2').attr("value",id);
+        $('#title2').attr("value",title);
+        $('#content2').attr("value",content);
     }
-    $("#isbn").blur(function () {
-        var isbn = $(this).val();
-        getBook(isbn);
-
-    })
 </script>
 <script type = "text/javascript" src = "assets/js/test.js"></script>
 
