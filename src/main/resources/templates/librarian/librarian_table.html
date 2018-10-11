@@ -8,7 +8,7 @@
     <link rel = "apple-touch-icon-precomposed" href = "assets/i/app-icon72x72@2x.png">
     <link rel = "stylesheet" href = "assets/css/amazeui.min.css"/>
     <link rel = "stylesheet" href = "assets/css/admin.css">
-    <link rel = "stylesheet" href = "dist/amazeui.datatables.min.css">
+    <link rel = "stylesheet" href = "//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
     <style>
         .am-table {
 
@@ -342,24 +342,19 @@
 <script src = "http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
 <script src = "assets/js/amazeui.ie8polyfill.min.js"></script>
 <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!-->
-<script src = "assets/js/jquery.min.js"></script>
-<!--<![endif]-->
-<!--<script>-->
-<!--$(function () {-->
-<!--$('#booklist').DataTable(-->
-<!--{-->
-<!--"ordering":false,-->
-<!--"bLengthChange":false,-->
-<!--}-->
-<!--);-->
-<!--})-->
-<!--</script>-->
 
-<script src = "dist/amazeui.datatables.min.js"></script>
+<script th:inline="javascript" src = "assets/js/jquery.min.js"></script>
+
+
+
+<script th:inline="javascript" src = "dist/amazeui.datatables.js"></script>
 <script src = "assets/js/amazeui.min.js"></script>
 <script src = "assets/js/app.js"></script>
-
+<!--<script>-->
+    <!--$(document).ready(function(){-->
+        <!--$("#booklist").DataTable();-->
+    <!--});-->
+<!--</script>-->
 <script>
     $(function () {
         $('#add-book').on('click', function () {
