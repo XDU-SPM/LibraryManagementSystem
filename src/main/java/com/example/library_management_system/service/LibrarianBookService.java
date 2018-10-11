@@ -149,6 +149,9 @@ public class LibrarianBookService
             return -3;
         Bkunit bkunit = optional.get();
 
+        if (bkunit.getStatus() != BkunitUtil.NORMAL)
+            return -5;
+
         Book book = bkunit.getBook();
         UserBook userBook;
 
