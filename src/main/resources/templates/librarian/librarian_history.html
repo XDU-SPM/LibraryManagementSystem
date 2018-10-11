@@ -171,7 +171,7 @@
                             <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "borrowHistory">
                                 <thead>
                                 <tr>
-                                    <th class = "table-id">编号</th>
+                                    <th class = "table-id">ID</th>
                                     <th class = "table-buid">书号</th>
                                     <th class = "table-title">书名</th>
                                     <th class = "table-uid">读者编号</th>
@@ -183,7 +183,7 @@
                                 <tr th:each = "record:${set1}">
                                     <td th:text="${record.id}"></td>
                                     <td th:text = "${record.buid}"></td>
-                                    <td ><a th:text = "${record.bookName}" ></a></td>
+                                    <td ><a th:text = "${record.bookName}" href="http://www.baidu.com"></a></td>
                                     <td class = "am-hide-sm-only" th:text = "${record.uid}"></td>
                                     <td class = "am-hide-sm-only" th:text = "${record.username}"></td>
                                     <td class = "am-hide-sm-only" th:text = "${record.date}"></td>
@@ -197,7 +197,7 @@
                         <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "returnHistory">
                             <thead>
                             <tr>
-                                <th class = "table-id">编号</th>
+                                <th class = "table-id">ID</th>
                                 <th class = "table-buid">书号</th>
                                 <th class = "table-title">书名</th>
                                 <th class = "table-uid">读者编号</th>
