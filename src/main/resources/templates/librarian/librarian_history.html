@@ -171,35 +171,22 @@
                             <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "borrowHistory">
                                 <thead>
                                 <tr>
-                                    <th class = "table-id">书号</th>
-                                    <th class = "table-title">标题</th>
-                                    <th class = "table-isbn">ISBN</th>
-                                    <th class = "table-author am-hide-sm-only">作者</th>
-                                    <th class = "table-publisher">出版社</th>
-                                    <th class = "table-date am-hide-sm-only">出版日期</th>
-                                    <th class = "table-positon am-hide-sm-only">位置</th>
-                                    <th class = "table-set">操作</th>
+                                    <th class = "table-id">编号</th>
+                                    <th class = "table-buid">书号</th>
+                                    <th class = "table-title">书名</th>
+                                    <th class = "table-uid">读者编号</th>
+                                    <th class = "table-reader am-hide-sm-only">读者</th>
+                                    <th class = "table-date am-hide-sm-only">借阅日期</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr th:each = "record:${set1}">
-                                    <td th:text = "${bunit.id}"></td>
-                                    <td ><a th:text = "${bunit.book.title}" th:href="@{librarian_book(isbn=${bunit.book.isbn})}"></a></td>
-                                    <td th:text = "${bunit.book.isbn}"></td>
-                                    <td class = "am-hide-sm-only" th:text = "${bunit.book.author}"></td>
-                                    <td class = "am-hide-sm-only" th:text = "${bunit.book.publisher}"></td>
-                                    <td class = "am-hide-sm-only" th:text = "${bunit.book.publishDate}"></td>
-                                    <td th:text = "${bunit.book.position}"></td>
-                                    <td>
-                                        <div class = "am-btn-toolbar">
-                                            <div class = "am-btn-group am-btn-group-xs">
-                                                <button class = "am-btn am-btn-default am-btn-xs am-text-secondary" ><a
-                                                        th:href="@{deletebook(id=${bunit.id},start=${page.number})}"
-                                                        class = "am-icon-close" >删除</a>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </td>
+                                    <td th:text="${record.id}"></td>
+                                    <td th:text = "${record.buid}"></td>
+                                    <td ><a th:text = "${record.bookName}" ></a></td>
+                                    <td class = "am-hide-sm-only" th:text = "${record.uid}"></td>
+                                    <td class = "am-hide-sm-only" th:text = "${record.username}"></td>
+                                    <td class = "am-hide-sm-only" th:text = "${record.date}"></td>
                                 </tr>
                             </table>
 
