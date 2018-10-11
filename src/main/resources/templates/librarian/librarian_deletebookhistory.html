@@ -196,7 +196,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each = "record:${page}" >
+                        <tr th:each = "record:${set}" >
                             <td th:text = "${record.id}"></td>
                             <td th:text = "${record.buid}"></td>
                             <td th:text = "${record.bookName}"></td>
@@ -206,17 +206,6 @@
                             <td class = "am-hide-sm-only" th:text = "${record.date}"></td>
                         </tr>
                     </table>
-                    <div class = "am-cf">
-                        <p th:text="'共有'+${page.numberOfElements}+'条数据'"></p>
-                        <div class = "am-fr">
-                            <ul class = "am-pagination">
-                                <li><a th:href = "@{librarian_deletebookhistory(start=0)}">首页</a></li>
-                                <li><a th:href = "@{librarian_deletebookhistory(start=${page.number}-1)}">上一页</a></li>
-                                <li><a th:href = "@{librarian_deletebookhistory(start=${page.number}+1)}">下一页</a></li>
-                                <li><a th:href="@{librarian_deletebookhistory(start=${page.totalPages})}">末页</a></li>
-                            </ul>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -239,16 +228,17 @@
 <!--[if (gte IE 9)|!(IE)]><!-->
 <script src = "assets/js/jquery.min.js"></script>
 <!--<![endif]-->
-<!--<script>-->
-<!--$(function () {-->
-<!--$('#booklist').DataTable(-->
-<!--{-->
-<!--"ordering":false,-->
-<!--"bLengthChange":false,-->
-<!--}-->
-<!--);-->
-<!--})-->
-<!--</script>-->
+<script th:inline="javascript" src = "dist/amazeui.datatables.js"></script>
+<script>
+$(function () {
+$('#booklist').DataTable(
+{
+"ordering":false,
+"bLengthChange":false,
+}
+);
+})
+</script>
 
 <script src = "dist/amazeui.datatables.min.js"></script>
 <script src = "assets/js/amazeui.min.js"></script>
