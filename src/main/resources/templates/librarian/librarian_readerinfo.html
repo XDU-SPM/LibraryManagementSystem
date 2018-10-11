@@ -81,17 +81,49 @@
     <div class = "admin-sidebar am-offcanvas" id = "admin-offcanvas">
         <div class = "am-offcanvas-bar admin-offcanvas-bar">
             <div class = "user-info">
-                <img class = "am-img-circle am-img-thumbnail am-center"
-                     src = "http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/200/h/200/q/80"
+                <img class = "am-img-circle am-img-thumbnail am-center" width="200" height="200"
+                     th:src= "${avatarPath}"
                      alt = ""/>
-                <p style = "text-align: center">Spiderman</p>
+                <p style = "text-align: center" th:text="${username}">纯洁神王</p>
             </div>
+
             <ul class = "am-list admin-sidebar-list">
-                <li><a href = "reader_condition"><span class = "am-icon-bar-chart"></span> 借书信息统计</a></li>
-                <li><a href = "reader_search"><span class = "am-icon-search"></span> 搜索页面</a></li>
-                <li><a href = "reader_information" class = "am-cf"><span class = "am-icon-check"></span> 个人资料<span
+                <li><a href = "librarian_homepage"><span class = "am-icon-home"></span> 首页</a></li>
+                <li><a href = "librarian_user" class = "am-cf"><span class = "am-icon-check"></span> 个人资料<span
                         class = "am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
-                <li><a href = "reader_message"><span class = "am-icon-commenting-o"></span> 留言</a></li>
+                <li class = "admin-parent">
+                    <a class = "am-cf" data-am-collapse = "{target: '#collapse-nav'}"><span
+                            class = "am-icon-file"></span> 管理图书 <span
+                            class = "am-icon-angle-right am-fr am-margin-right"></span></a>
+                    <ul class = "am-list am-collapse admin-sidebar-sub am-in" id = "collapse-nav">
+                        <li><a href = "librarian_borrow"><span class = "am-icon-leaf"></span> 借阅</a></li>
+                        <li><a href = "librarian_return"><span class = "am-icon-mail-reply"></span> 归还</a></li>
+                        <li><a href = "librarian_table"><span class = "am-icon-book"></span> 管理图书</a></li>
+                        <li><a href = "librarian_deletebookhistory"><span class="am-icon-trash"> 删除记录</span></a></li>
+                        </li>
+                    </ul>
+                </li>
+                <li class="admin-parent">
+                    <a class = "am-cf" data-am-collapse = "{target: '#collapse-nav2'}"><span
+                            class = "am-icon-user"></span> 管理读者 <span
+                            class = "am-icon-angle-right am-fr am-margin-right"></span></a>
+                    <ul class = "am-list am-collapse admin-sidebar-sub am-in" id = "collapse-nav2">
+                        <li><a href = "librarian_addreader"><span class = "am-icon-user-plus"></span> 增加读者</a></li>
+                        <li><a href = "librarian_managereader"><span class = "am-icon-pencil"></span> 管理读者</a></li>
+                    </ul>
+                </li>
+                <li class="admin-parent">
+                    <a class = "am-cf" data-am-collapse = "{target: '#collapse-nav3'}"><span
+                            class = "am-icon-table"></span> 记录 <span
+                            class = "am-icon-angle-right am-fr am-margin-right"></span></a>
+                    <ul class = "am-list am-collapse admin-sidebar-sub am-in" id = "collapse-nav3">
+                        <li><a href = "librarian_record"><span class = "am-icon-book"></span> 预约记录</a></li>
+                        <li><a href = "librarian_history"><span class = "am-icon-book"></span> 借阅记录</a></li>
+                        <li><a href = "librarian_income"><span class = "am-icon-money"></span> 收入记录 </a></li>
+                        <li><a href = "librarian_fine"><span class="am-icon-bolt"></span> 罚金记录</a></li>
+                    </ul>
+                </li>
+                <li><a href = "librarian_announce"><span class = "am-icon-comment"></span> 发布公告</a></li>
             </ul>
 
             <div class = "am-panel am-panel-default admin-sidebar-panel">
@@ -115,8 +147,8 @@
     <div class = "admin-content">
         <div class = "admin-content-body">
             <div class = "am-cf am-padding am-padding-bottom-0">
-                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">个人资料</strong> /
-                    <small>Personal information</small>
+                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">Reader Info</strong> /
+                    <small>读者资料</small>
                 </div>
             </div>
 
@@ -124,33 +156,17 @@
 
             <div class = "am-g">
                 <div class = "am-u-sm-12 am-u-md-4 am-u-md-push-8">
-                    <div class = "am-panel am-panel-default">
-                        <div class = "am-panel-bd">
-                            <div class = "am-g">
-                                <div class = "am-u-md-4">
-                                    <img class = "am-img-circle am-img-thumbnail"
-                                         src = "http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/200/h/200/q/80"
-                                         alt = ""/>
-                                </div>
-                                <div class = "am-u-md-8">
-                                    <p>你可以使用<a href = "#">gravatar.com</a>提供的头像或者使用本地上传头像。 </p>
-                                    <form class = "am-form">
-                                        <div class = "am-form-group">
-                                            <input type = "file" id = "user-pic">
-                                            <p class = "am-form-help">请选择要上传的文件...</p>
-                                            <button type = "button" class = "am-btn am-btn-primary am-btn-xs">保存
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
 
                 <div class = "am-u-sm-12 am-u-md-8 am-u-md-pull-4">
                     <form class = "am-form am-form-horizontal" action = "saveUser" method = "post">
+                        <div class = "am-form-group">
+                            <label for = "user-id" class = "am-u-sm-3 am-form-label">ID</label>
+                            <div class = "am-u-sm-9">
+                                <input type = "text" id = "user-id" th:value = "${user.id}" name = "id" readonly="readonly">
+                            </div>
+                        </div>
+
                         <div class = "am-form-group">
                             <label for = "user-account" class = "am-u-sm-3 am-form-label">用户账号 / Account</label>
                             <div class = "am-u-sm-9">
@@ -159,11 +175,20 @@
                         </div>
 
                         <div class = "am-form-group">
-                            <label for = "user-name" class = "am-u-sm-3 am-form-label">姓名 / Name</label>
+                            <label for = "user-password" class = "am-u-sm-3 am-form-label">Password / 密码</label>
+                            <div class = "am-u-sm-9">
+                                <input type = "password" id = "user-password" th:value = "${user.password}" name = "password">
+                            </div>
+                        </div>
+
+                        <div class = "am-form-group">
+                            <label for = "user-name" class = "am-u-sm-3 am-form-label">Name / 姓名</label>
                             <div class = "am-u-sm-9">
                                 <input type = "text" id = "user-name" th:value = "${user.name}" name = "name">
                             </div>
                         </div>
+
+
 
                         <div class = "am-form-group">
                             <label for = "user-email" class = "am-u-sm-3 am-form-label">电子邮件 / Email</label>
@@ -172,12 +197,6 @@
                             </div>
                         </div>
 
-                        <div class = "am-form-group">
-                            <label for = "user-balance" class = "am-u-sm-3 am-form-label">待交罚金(元) / Pending fine(CNY)</label>
-                            <div class = "am-u-sm-9">
-                                <input id = "user-balance" disabled>
-                            </div>
-                        </div>
 
                         <div class = "am-form-group">
                             <div class = "am-u-sm-9 am-u-sm-push-3">

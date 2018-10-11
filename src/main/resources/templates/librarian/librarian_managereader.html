@@ -169,14 +169,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class = "am-u-sm-12 am-u-md-3">
-                        <div class = "am-input-group am-input-group-sm">
-                            <input type = "text" class = "am-form-field">
-                            <span class = "am-input-group-btn">
-				            <button class = "am-btn am-btn-default" type = "button">搜索</button>
-				          </span>
-                        </div>
-                    </div>
                 </div>
             </div>
 
@@ -192,7 +184,7 @@
                 <div class = "am-g">
                     <div class = "am-u-sm-12">
                         <form class = "am-form">
-                            <table class = "am-table am-table-striped am-table-hover table-main">
+                            <table class = "am-table am-table-striped am-table-hover table-main" id="readerlist">
                                 <thead>
                                 <tr>
                                     <th class = "table-id">ID</th>
@@ -203,7 +195,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each = "user:${page}">
+                                <tr th:each = "user:${set}">
                                     <td th:text="${user.id}"></td>
                                     <td><a th:text="${user.username}" th:href="@{librarian_user(id=${user.id})}"></a></td>
                                     <td class = "am-hide-sm-only" th:text="${user.name}"></td>
@@ -221,17 +213,7 @@
 
                                 </tbody>
                             </table>
-                            <div class = "am-cf">
-                                <p th:text="'共有'+${page.numberOfElements}+'条数据'"></p>
-                                <div class = "am-fr">
-                                    <ul class = "am-pagination">
-                                        <li><a th:href = "@{delete_users(start=0)}">首页</a></li>
-                                        <li><a th:href = "@{delete_users(start=${page.number}-1)}">上一页</a></li>
-                                        <li><a th:href = "@{delete_users(start=${page.number}+1)}">下一页</a></li>
-                                        <li><a th:href="@{delete_users(start=${page.totalPages})}">末页</a></li>
-                                    </ul>
-                                </div>
-                            </div>
+
 
                         </form>
                     </div>
@@ -283,7 +265,18 @@
 
 <script type = "text/javascript" src = "assets/js/charts/echarts.min.js"></script>
 <script type = "text/javascript" src = "assets/js/charts/pieChart.js"></script>
-<script src = "assets/js/test.js">
+<script src = "assets/js/test.js"></script>
+<script src = "dist/amazeui.datatables.min.js"></script>
+<script>
+    $(function () {
+        $('#readerlist').DataTable(
+            {
+                "ordering":false,
+                "bLengthChange":false,
+            }
+        );
+    });
+
 </script>
 <script type = "text/javascript">
     $("#change").click(function () {
