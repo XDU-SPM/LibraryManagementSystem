@@ -70,17 +70,9 @@ public class LibrarianUserController
     @RequestMapping(value = "/librarian/librarian_managereader", method = RequestMethod.GET)
     public String librarian_managereader(Model model)
     {
+        model.addAttribute("set", userService.showAllUser(RoleUtil.ROLE_READER_CHECK));
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
         return "librarian/librarian_managereader";
-    }
-
-    @RequestMapping(value = "/librarian/deleteReader", method = RequestMethod.GET)
-    public String deleteReader(int id, Model model)
-    {
-        model.addAttribute("status", userService.deleteUser(id));
-        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
-        model.addAttribute("username", userService.getUser().getUsername());
-        return "";
     }
 }

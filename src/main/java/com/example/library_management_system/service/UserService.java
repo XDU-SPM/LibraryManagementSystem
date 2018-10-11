@@ -6,9 +6,7 @@ import com.example.library_management_system.utils.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -17,10 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.mail.MessagingException;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class UserService
@@ -49,7 +44,10 @@ public class UserService
     @Autowired
     private UserBookDAO userBookDAO;
 
-    @Value("${static.path}")
+    @Autowired
+    private GithubAvatarGenerator githubAvatarGenerator;
+
+    @Value("${root.path}")
     private String rootPath;
 
     public User getUser()
@@ -69,7 +67,7 @@ public class UserService
         user.getRoles().add(role);
         userDAO.save(user);
 
-        user.setAvatarPath(GithubAvatarGenerator.generateAvatar(user.getId()));
+        user.setAvatarPath(githubAvatarGenerator.generateAvatar(user.getId()));
         userDAO.save(user);
 
         if (RoleUtil.ROLE_READER_CHECK.equals(roleName))
@@ -203,7 +201,6 @@ public class UserService
             return -1;
 
 
-
         Set<UserBkunit> userBkunits = user.getUserBkunits();
 
         for (UserBkunit userBkunit : userBkunits)
@@ -254,9 +251,7 @@ public class UserService
 
     public Page<User> showAllUser(int start, int size, String role)
     {
-        start = start < 0 ? 0 : start;
-        Sort sort = new Sort(Sort.Direction.ASC, "id");
-        Pageable pageable = PageRequest.of(start, size, sort);
+        Pageable pageable = PageableUtil.pageable(true, "id", start, size);
         Page<User> users;
         if (role != null)
         {
@@ -266,22 +261,40 @@ public class UserService
         else
             users = userDAO.findAll(pageable);
         for (User user : users)
-        {
-            Iterator<Role> iterator = user.getRoles().iterator();
-            switch (iterator.next().getId())
-            {
-                case 2:
-                    user.setRole("admin");
-                    break;
-                case 4:
-                    user.setRole("reader");
-                    break;
-                case 5:
-                    user.setRole("librarian");
-                    break;
-            }
-        }
+            addRole(user);
         return users;
+    }
+
+    public List<User> showAllUser(String role)
+    {
+        List<User> users;
+        if (role != null)
+        {
+            Role r = roleDAO.findByName(role);
+            users = userDAO.findByRolesContaining(r);
+        }
+        else
+            users = userDAO.findAll();
+        for (User user : users)
+            addRole(user);
+        return users;
+    }
+
+    private void addRole(User user)
+    {
+        Iterator<Role> iterator = user.getRoles().iterator();
+        switch (iterator.next().getId())
+        {
+            case 2:
+                user.setRole("admin");
+                break;
+            case 4:
+                user.setRole("reader");
+                break;
+            case 5:
+                user.setRole("librarian");
+                break;
+        }
     }
 
     public User showUser(int id)
@@ -299,9 +312,9 @@ public class UserService
         User user = getUser();
         String fileName = file.getOriginalFilename();
         String type = fileName.substring(fileName.lastIndexOf('.'));
-        String filePath = "/upload/" + MD5Util.encode("" + System.currentTimeMillis() + user.getId()) + type;
+        String filePath = "" + MD5Util.encode("" + System.currentTimeMillis() + user.getId()) + type;
         FileUtil.saveFile(file, new File(rootPath + filePath));
-        user.setAvatarPath(".." + filePath);
+        user.setAvatarPath("../images/" + filePath);
         userDAO.save(user);
     }
 }

@@ -1,6 +1,7 @@
 package com.example.library_management_system.utils;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -12,12 +13,13 @@ import java.util.Random;
 
 import javax.imageio.ImageIO;
 
+@Component
 public class GithubAvatarGenerator
 {
-    @Value("${static.path}")
-    private static String rootPath;
+    @Value("${root.path}")
+    private String rootPath;
 
-    public static String generateAvatar(int id)
+    public String generateAvatar(int id)
     {
         int width = 100;// 每个小块的大小
         int grid = 5; // 5 x 5
@@ -47,7 +49,7 @@ public class GithubAvatarGenerator
         }
         _2d.dispose();
 
-        String filePath = "/upload/" + id + ".png";
+        String filePath = "" + id + ".png";
         try
         {
             ImageIO.write(img, "png", new File(rootPath + filePath));
@@ -56,10 +58,10 @@ public class GithubAvatarGenerator
         {
             e.printStackTrace();
         }
-        return ".." + filePath;
+        return "../images/" + filePath;
     }
 
-    private static Color RandomColor(int fc, int bc)
+    private Color RandomColor(int fc, int bc)
     {
         Random random = new Random();
         if (fc > 255) fc = 255;
@@ -70,7 +72,7 @@ public class GithubAvatarGenerator
         return new Color(r, g, b);
     }
 
-    private static char[] createIdent(int id)
+    private char[] createIdent(int id)
     {
         BigInteger bi_content = new BigInteger((id + System.currentTimeMillis() + "").getBytes());
         BigInteger bi = new BigInteger(id + "identicon" + id, 36);
