@@ -11,6 +11,8 @@ $(function(){
         if (document.readyState == 'complete') {
             if(value==="1"){
                 Microsoft.Translator.Widget.Translate('zh-CHS', 'en', onProgress, onError, onComplete, onRestoreOriginal, 2000);
+                // Microsoft.Translator.Widget.domTranslator.showHighlight = false;
+                // Microsoft.Translator.Widget.domTranslator.showTooltips = false;
             }
         }
     }
@@ -32,5 +34,5 @@ function translate(){
     }else{
         sessionStorage.setItem("language", "1");
     }
-    window.location.reload();//ˢ�µ�ǰҳ��.
+    window.location.reload();//ˢ�µ�ǰҳ��.
 }

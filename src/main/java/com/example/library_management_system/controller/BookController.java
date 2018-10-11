@@ -18,11 +18,11 @@ public class BookController
 
     @RequestMapping(value = {"/searchBook", "/reader/searchBook"}, method = RequestMethod.GET)
     @ResponseBody
-    public Page<Book> searchBook(String string, int type,
+    public Page<Book> searchBook(String string,
                                  @RequestParam(value = "start", defaultValue = "0") int start,
                                  @RequestParam(value = "size", defaultValue = "10") int size)
     {
-        return bookService.searchBook(string, type, start, size);
+        return bookService.searchBook(string, start, size);
     }
 
     @RequestMapping(path = {"/reader/showbook", "/showbook"}, method = RequestMethod.GET)

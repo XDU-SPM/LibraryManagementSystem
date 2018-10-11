@@ -64,11 +64,11 @@ public class LibrarianBookController
     }
 
     @RequestMapping(value = "/librarian/searchBook", method = RequestMethod.GET)
-    public String searchBook(String string, int type, Model model,
+    public String searchBook(String string, Model model,
                              @RequestParam(value = "start", defaultValue = "0") int start,
                              @RequestParam(value = "size", defaultValue = "10") int size)
     {
-        model.addAttribute("page", bookService.searchBook(string, type, start, size));
+        model.addAttribute("page", bookService.searchBook(string, start, size));
         return "";
     }
 
@@ -104,11 +104,10 @@ public class LibrarianBookController
     }
 
     @RequestMapping(value = "/librarian/librarian_history", method = RequestMethod.GET)
-    public String librarian_history(Model model, @RequestParam(value = "start", defaultValue = "0") int start,
-                                    @RequestParam(value = "size", defaultValue = "10") int size)
+    public String librarian_history(Model model)
     {
-        model.addAttribute("page1", librarianBookService.getBkunitOperatingHistory(start, size, UserBkunitUtil.BORROWED, true));
-        model.addAttribute("page2", librarianBookService.getBkunitOperatingHistory(start, size, UserBkunitUtil.RETURNED, true));
+        model.addAttribute("set1", librarianBookService.getBkunitOperatingHistory(UserBkunitUtil.BORROWED, true));
+        model.addAttribute("set2", librarianBookService.getBkunitOperatingHistory(UserBkunitUtil.RETURNED, true));
         return "librarian/librarian_history";
     }
 
