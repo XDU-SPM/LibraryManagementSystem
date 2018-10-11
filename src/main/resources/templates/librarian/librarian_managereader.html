@@ -203,7 +203,7 @@
                                     <td>
                                         <div class = "am-btn-toolbar">
                                             <div class = "am-btn-group am-btn-group-xs">
-                                                <button class = "am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
+                                                <button class = "am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" onclick="deleterow(this)">
                                                     <span class = "am-icon-trash-o"><a th:href="@{deleteaccount(id=${user.id},start=${page.number})}">删除</a></span>
                                                 </button>
                                             </div>
@@ -276,7 +276,26 @@
             }
         );
     });
-
+    function deleterow(r) {
+        var i = r.parentNode.rowIndex;
+        $.ajax(
+            {
+                method: 'GET',
+                url: "checkUser",
+                data: i,
+                success: function (data) {
+                    if (data.status == 0) {
+                        document.getElementById('readerlist').deleteRow(i);
+                        status = false;
+                    }
+                    else
+                    {
+                        alert("删除失败");
+                    }
+                }
+            }
+        );
+    }
 </script>
 <script type = "text/javascript">
     $("#change").click(function () {
