@@ -28,6 +28,7 @@ public class LibrarianUserController
     {
         userService.registerService(reader, RoleUtil.ROLE_READER_CHECK);
         model.addAttribute("status", true);
+        model.addAttribute("registerMoney", globalUtilService.getRegisterMoney());
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
         return "/librarian/librarian_addreader";
