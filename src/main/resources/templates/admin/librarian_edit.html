@@ -55,7 +55,7 @@
                     <li class = "am-active"><a href = "#">2. 去火星</a></li>
                     <li><a href = "#">3. 还是回地球</a></li>
                     <li class = "am-disabled"><a href = "#">4. 下地狱</a></li>
-                    <li class = "am-divider"></li>
+                    <li class = "am-divider">jjj</li>
                     <li><a href = "#">5. 桥头一回首</a></li>
                 </ul>
             </li>
@@ -92,8 +92,10 @@
     <div class = "admin-sidebar am-offcanvas" id = "admin-offcanvas">
         <div class = "am-offcanvas-bar admin-offcanvas-bar">
             <div class = "user-info">
-                <img class = "am-img-circle am-img-thumbnail am-center" src = "assets/img/admin.jpg" alt = ""/>
-                <p style = "text-align: center">管理员</p>
+                <img class = "am-img-circle am-img-thumbnail am-center" width="200" height="200"
+                     th:src= "${avatarPath}"
+                     alt = ""/>
+                <p style = "text-align: center" th:text="${username}">Admin</p>
             </div>
 
             <ul class = "am-list admin-sidebar-list">
@@ -204,7 +206,7 @@
 <script src = "assets/js/test.js">
 </script>
 <script type = "text/javascript" th:inline = "javascript">
-    $("#change").click(function () {
+    $("#change").click(function ()
         translate();
     });
 
