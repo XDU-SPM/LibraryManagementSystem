@@ -23,14 +23,18 @@ public class LibrarianController
     private LibrarianUserService librarianUserService;
 
     @RequestMapping(value = "/librarian/librarian_borrow", method = RequestMethod.GET)
-    public String librarian_librarian_borrow()
+    public String librarian_librarian_borrow(Model model)
     {
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "librarian/librarian_borrow";
     }
 
     @RequestMapping(value = "/librarian/librarian_return", method = RequestMethod.GET)
-    public String librarian_librarian_return()
+    public String librarian_librarian_return(Model model)
     {
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "librarian/librarian_return";
     }
 
@@ -46,6 +50,8 @@ public class LibrarianController
         model.addAttribute("availableNumber", statusNum[1]);
         model.addAttribute("reserveNumber", statusNum[2]);
         model.addAttribute("dayBorrowReturns", librarianBookService.dayBorrowReturns());
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "librarian/librarian_homepage";
     }
 
@@ -53,6 +59,8 @@ public class LibrarianController
     public String librarian_librarian_user(Model model)
     {
         model.addAttribute("user", userService.getUser());
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "librarian/librarian_user";
     }
 
@@ -61,6 +69,8 @@ public class LibrarianController
     {
         userService.saveUser(user);
         model.addAttribute("status", true);
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "redirect:librarian_user";
     }
 }

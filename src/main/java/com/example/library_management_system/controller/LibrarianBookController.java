@@ -3,6 +3,7 @@ package com.example.library_management_system.controller;
 import com.example.library_management_system.bean.Book;
 import com.example.library_management_system.service.BookService;
 import com.example.library_management_system.service.LibrarianBookService;
+import com.example.library_management_system.service.UserService;
 import com.example.library_management_system.utils.UserBkunitUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,10 +25,15 @@ public class LibrarianBookController
     @Autowired
     private BookService bookService;
 
+    @Autowired
+    private UserService userService;
+
     @RequestMapping(path = "/librarian/deletebook", method = RequestMethod.GET)
-    public String deleteBkunit(String id, int start)
+    public String deleteBkunit(String id, int start, Model model)
     {
         librarianBookService.deleteBkunit(id);
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "redirect:librarian_table?start=" + start;
     }
 
@@ -36,6 +42,8 @@ public class LibrarianBookController
     {
         Set<String> ids = librarianBookService.addBkunit(book, category);
         model.addAttribute("ids", ids);
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "redirect:librarian_table";
     }
 
@@ -45,6 +53,8 @@ public class LibrarianBookController
     {
         Page<Bkunit> page = librarianBookService.showBkunit(start, size);
         model.addAttribute("page", page);
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "librarian/librarian_table";
     }
 
@@ -53,13 +63,17 @@ public class LibrarianBookController
     {
         Book book = bookService.bookInfo(isbn);
         model.addAttribute("book", book);
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "/librarian/librarian_book";
     }
 
     @RequestMapping(value = "/librarian/saveBook", method = RequestMethod.POST)
-    public String saveBook(Book book)
+    public String saveBook(Book book, Model model)
     {
         librarianBookService.saveBook(book);
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "redirect:librarian_book?isbn=" + book.getIsbn();
     }
 
@@ -69,13 +83,17 @@ public class LibrarianBookController
                              @RequestParam(value = "size", defaultValue = "10") int size)
     {
         model.addAttribute("page", bookService.searchBook(string, start, size));
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "";
     }
 
     @RequestMapping(value = "/librarian/addBookCategory", method = RequestMethod.POST)
-    public String addBookCategory(String isbn, String category)
+    public String addBookCategory(String isbn, String category, Model model)
     {
         librarianBookService.addBookCategory(isbn, category);
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "";
     }
 
@@ -84,6 +102,8 @@ public class LibrarianBookController
     {
         int status = librarianBookService.lend(id, username);
         model.addAttribute("status", status);
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "librarian/librarian_borrow";
     }
 
@@ -92,6 +112,8 @@ public class LibrarianBookController
     {
         int status = librarianBookService.returnBook(id, damage);
         model.addAttribute("status", status);
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "/librarian/librarian_return";
     }
 
@@ -100,6 +122,8 @@ public class LibrarianBookController
                               @RequestParam(value = "size", defaultValue = "10") int size)
     {
         model.addAttribute("page", librarianBookService.getReserves(start, size));
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "librarian/librarian_record";
     }
 
@@ -108,6 +132,8 @@ public class LibrarianBookController
     {
         model.addAttribute("set1", librarianBookService.getBkunitOperatingHistory(UserBkunitUtil.BORROWED, true));
         model.addAttribute("set2", librarianBookService.getBkunitOperatingHistory(UserBkunitUtil.RETURNED, true));
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "librarian/librarian_history";
     }
 
@@ -116,6 +142,8 @@ public class LibrarianBookController
                                               @RequestParam(value = "size", defaultValue = "10") int size)
     {
         model.addAttribute("page", librarianBookService.getBkunitOperatingHistory(start, size, UserBkunitUtil.DELETE, true));
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "librarian/librarian_deletebookhistory";
     }
 }

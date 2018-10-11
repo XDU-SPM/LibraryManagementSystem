@@ -73,7 +73,7 @@ public class UserController
     @RequestMapping(value = "/admin/home", method = RequestMethod.GET)
     public String adminHome()
     {
-        return "admin/permission_change";
+        return "redirect:permission_change";
     }
 
     @RequestMapping(value = "/librarian/home", method = RequestMethod.GET)

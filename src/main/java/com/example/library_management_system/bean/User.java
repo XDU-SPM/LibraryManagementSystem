@@ -18,6 +18,7 @@ public class User
     private String password;
     private String name;
     private String email;
+    private String avatarPath;
 
     private double money;
 
@@ -202,5 +203,15 @@ public class User
     public void setUserBooks(Set<UserBook> userBooks)
     {
         this.userBooks = userBooks;
+    }
+
+    public String getAvatarPath()
+    {
+        return avatarPath;
+    }
+
+    public void setAvatarPath(String avatarPath)
+    {
+        this.avatarPath = avatarPath;
     }
 }

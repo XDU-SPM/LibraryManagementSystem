@@ -21,6 +21,8 @@ public class ReaderController
     public String reader_reader_search(Model model)
     {
         model.addAttribute("page", bookService.showBook(0, 8, null));
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "reader/reader_search";
     }
 
@@ -29,12 +31,16 @@ public class ReaderController
     {
         User reader = userService.getUser();
         model.addAttribute("user", reader);
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "reader/reader_information";
     }
 
     @RequestMapping(value = "/reader/reader_message", method = RequestMethod.GET)
-    public String reader_reader_message()
+    public String reader_reader_message(Model model)
     {
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "reader/reader_message";
     }
 
@@ -42,6 +48,8 @@ public class ReaderController
     public String reader_book_details(String isbn, Model model)
     {
         model.addAttribute("book", bookService.bookInfo(isbn));
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "reader/book_details";
     }
 
@@ -49,6 +57,8 @@ public class ReaderController
     public String reader_reader_comment(String isbn, Model model)
     {
         model.addAttribute("isbn", isbn);
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "reader/reader_comment";
     }
 
@@ -57,6 +67,8 @@ public class ReaderController
     {
         userService.saveUser(user);
         model.addAttribute("status", 1);
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "redirect:reader_information";
     }
 }

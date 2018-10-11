@@ -4,6 +4,7 @@ import com.example.library_management_system.bean.*;
 import com.example.library_management_system.dao.*;
 import com.example.library_management_system.utils.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -11,8 +12,10 @@ import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.mail.MessagingException;
+import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.util.Calendar;
 import java.util.Date;
@@ -46,6 +49,9 @@ public class UserService
     @Autowired
     private UserBookDAO userBookDAO;
 
+    @Value("${static.path}")
+    private String rootPath;
+
     public User getUser()
     {
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -61,6 +67,9 @@ public class UserService
             user.setPassword(UserUtil.LIBRARIAN_PASSWORD_DEFAULT);
         Role role = roleDAO.findByName(roleName);
         user.getRoles().add(role);
+        userDAO.save(user);
+
+        user.setAvatarPath(GithubAvatarGenerator.generateAvatar(user.getId()));
         userDAO.save(user);
 
         if (RoleUtil.ROLE_READER_CHECK.equals(roleName))
@@ -283,5 +292,16 @@ public class UserService
     public boolean userExist(String username)
     {
         return userDAO.findByUsername(username) != null;
+    }
+
+    public void modifyAvatarPath(MultipartFile file)
+    {
+        User user = getUser();
+        String fileName = file.getOriginalFilename();
+        String type = fileName.substring(fileName.lastIndexOf('.'));
+        String filePath = "/upload/" + MD5Util.encode("" + System.currentTimeMillis() + user.getId()) + type;
+        FileUtil.saveFile(file, new File(rootPath + filePath));
+        user.setAvatarPath(".." + filePath);
+        userDAO.save(user);
     }
 }
