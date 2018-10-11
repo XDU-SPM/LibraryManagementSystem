@@ -48,11 +48,9 @@ public class LibrarianBookController
     }
 
     @RequestMapping(path = "/librarian/librarian_table", method = RequestMethod.GET)
-    public String showBkunit(Model model, @RequestParam(value = "start", defaultValue = "0") int start,
-                             @RequestParam(value = "size", defaultValue = "10") int size)
+    public String showBkunit(Model model)
     {
-        Page<Bkunit> page = librarianBookService.showBkunit(start, size);
-        model.addAttribute("page", page);
+        model.addAttribute("page", librarianBookService.showBkunit());
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
         return "librarian/librarian_table";

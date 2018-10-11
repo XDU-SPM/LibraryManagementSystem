@@ -106,6 +106,11 @@ public class LibrarianBookService
         return bkunitDAO.findAllByStatusNot(BkunitUtil.LOST, pageable);
     }
 
+    public Set<Bkunit> showBkunit()
+    {
+        return bkunitDAO.findAllByStatusNot(BkunitUtil.LOST);
+    }
+
     public void saveBook(Book tmp)
     {
         Book book = bookDAO.findByIsbn(tmp.getIsbn());
