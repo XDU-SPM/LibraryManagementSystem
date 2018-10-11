@@ -4,6 +4,7 @@ import com.example.library_management_system.bean.Book;
 import com.example.library_management_system.service.BookService;
 import com.example.library_management_system.service.LibrarianBookService;
 import com.example.library_management_system.service.UserService;
+import com.example.library_management_system.utils.Status;
 import com.example.library_management_system.utils.UserBkunitUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Set;
 
@@ -27,12 +29,11 @@ public class LibrarianBookController
     private UserService userService;
 
     @RequestMapping(path = "/librarian/deletebook", method = RequestMethod.GET)
-    public String deleteBkunit(String id, int start, Model model)
+    @ResponseBody
+    public Status deleteBkunit(String id)
     {
         librarianBookService.deleteBkunit(id);
-        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
-        model.addAttribute("username", userService.getUser().getUsername());
-        return "redirect:librarian_table?start=" + start;
+        return new Status(0);
     }
 
     @RequestMapping(path = "/librarian/addbook", method = RequestMethod.POST)
@@ -134,10 +135,9 @@ public class LibrarianBookController
     }
 
     @RequestMapping(value = "/librarian/librarian_deletebookhistory", method = RequestMethod.GET)
-    public String librarian_deletebookhistory(Model model, @RequestParam(value = "start", defaultValue = "0") int start,
-                                              @RequestParam(value = "size", defaultValue = "10") int size)
+    public String librarian_deletebookhistory(Model model)
     {
-        model.addAttribute("page", librarianBookService.getBkunitOperatingHistory(start, size, UserBkunitUtil.DELETE, true));
+        model.addAttribute("set", librarianBookService.getBkunitOperatingHistory(UserBkunitUtil.DELETE, true));
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
         return "librarian/librarian_deletebookhistory";
