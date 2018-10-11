@@ -203,8 +203,13 @@
                                     <td>
                                         <div class = "am-btn-toolbar">
                                             <div class = "am-btn-group am-btn-group-xs">
+<<<<<<< HEAD
                                                 <button class = "am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" onclick="deleterow(this)">
-                                                    <span class = "am-icon-trash-o"><a th:href="@{deleteaccount(id=${user.id},start=${page.number})}">删除</a></span>
+                                                    <span class = "am-icon-trash-o"></span>
+=======
+                                                <button class = "am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" th:onclick="'javascript:deleteuser('+${user.id}+'); deleterow(this)'">
+                                                    <span class = "am-icon-trash-o">删除</span>
+>>>>>>> 431ff69a20574b50a77a6bbd6d880ae754510aa1
                                                 </button>
                                             </div>
                                         </div>
@@ -244,30 +249,14 @@
 <script src = "assets/js/amazeui.min.js"></script>
 <script src = "assets/js/app.js"></script>
 
-<script th:inline = "javascript">
-    isOk();
 
-    console.log('233');
-    console.log([${state}]);
-
-    function isOk() {
-        if ([${state}] == null) {
-        }
-        else {
-            if ([${state}]) {
-                alert("创建成功！");
-            }
-            else
-                alert("创建失败！");
-        }
-    }
-</script>
 
 <script type = "text/javascript" src = "assets/js/charts/echarts.min.js"></script>
-<script type = "text/javascript" src = "assets/js/charts/pieChart.js"></script>
 <script src = "assets/js/test.js"></script>
 <script src = "dist/amazeui.datatables.min.js"></script>
-<script>
+<script >
+    let status = false;
+
     $(function () {
         $('#readerlist').DataTable(
             {
@@ -276,17 +265,24 @@
             }
         );
     });
+
     function deleterow(r) {
         var i = r.parentNode.rowIndex;
+        if (status) {
+            document.getElementById('readerlist').deleteRow(i);
+        }
+    }
+
+    function deleteuser(id) {
         $.ajax(
             {
                 method: 'GET',
-                url: "checkUser",
-                data: i,
+                url: "deleteReader",
+                data: {id: id},
                 success: function (data) {
                     if (data.status == 0) {
-                        document.getElementById('readerlist').deleteRow(i);
-                        status = false;
+                        alert("删除成功");
+                        status = true;
                     }
                     else
                     {

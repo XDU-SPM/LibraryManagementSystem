@@ -16,6 +16,9 @@ public class AdminController
     @Autowired
     private AdminService adminService;
 
+    @Autowired
+    private UserService userService;
+
     /*@RequestMapping(value = "admin/reader_create", method = RequestMethod.GET)
     public String admin_reader_create()
     {
@@ -23,14 +26,18 @@ public class AdminController
     }*/
 
     @RequestMapping(value = "admin/librarian_create", method = RequestMethod.GET)
-    public String admin_librarian_create()
+    public String admin_librarian_create(Model model)
     {
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "admin/librarian_create";
     }
 
     @RequestMapping(value = "admin/permission_change", method = RequestMethod.GET)
-    public String admin_permission_change()
+    public String admin_permission_change(Model model)
     {
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "admin/permission_change";
     }
 
@@ -39,6 +46,8 @@ public class AdminController
     {
         adminService.modifyRegisterMoney(money);
         model.addAttribute("status", true);
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "admin/permission_change";
     }
 
@@ -47,6 +56,8 @@ public class AdminController
     {
         adminService.modifyMaxBorrowDays(days);
         model.addAttribute("status", true);
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "admin/permission_change";
     }
 
@@ -55,6 +66,8 @@ public class AdminController
     {
         adminService.modifyMaxBorrowNum(num);
         model.addAttribute("status", true);
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "admin/permission_change";
     }
 
@@ -63,6 +76,8 @@ public class AdminController
     {
         adminService.modifyOverdueMoney(money);
         model.addAttribute("status", true);
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "admin/permission_change";
     }
 
@@ -70,18 +85,24 @@ public class AdminController
     public String modifyPassword(String oldPassword, String newPassword, Model model)
     {
         model.addAttribute("status", adminService.modifyPassword(oldPassword, newPassword));
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "";
     }
 
     @RequestMapping(value = "/admin/librarian_edit", method = RequestMethod.GET)
-    public String librarian_edit()
+    public String librarian_edit(Model model)
     {
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "admin/librarian_edit";
     }
 
     @RequestMapping(value = "/admin/password_change", method = RequestMethod.GET)
-    public String password_change()
+    public String password_change(Model model)
     {
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "admin/password_change";
     }
 }

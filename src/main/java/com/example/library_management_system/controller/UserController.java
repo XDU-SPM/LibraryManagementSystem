@@ -73,7 +73,7 @@ public class UserController
     @RequestMapping(value = "/admin/home", method = RequestMethod.GET)
     public String adminHome()
     {
-        return "admin/permission_change";
+        return "redirect:permission_change";
     }
 
     @RequestMapping(value = "/librarian/home", method = RequestMethod.GET)
@@ -151,5 +151,12 @@ public class UserController
     public String admin_login()
     {
         return "admin_login";
+    }
+
+    @RequestMapping(value = "/librarian/deleteReader", method = RequestMethod.GET)
+    @ResponseBody
+    public Status deleteReader(int id)
+    {
+        return new Status(userService.deleteUser(id));
     }
 }

@@ -34,6 +34,8 @@ public class ReaderBookController
         model.addAttribute("page1", readerBookService.queryReservedBooks(0, 5));
         model.addAttribute("page2", readerBookService.queryBorrowedBooks(0, 5));
         model.addAttribute("page3", readerBookService.queryReturnedBooks(0, 5));
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "reader/reader_condition";
     }
 
@@ -80,6 +82,8 @@ public class ReaderBookController
     public String appointment(int id, Model model)
     {
         model.addAttribute("userBook", readerBookService.appointment(id));
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "reader/appointment";
     }
 
@@ -89,6 +93,8 @@ public class ReaderBookController
     {
         Page<UserFavoriteBook> page = readerBookService.queryFavoriteBooks(start, size);
         model.addAttribute("page", page);
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "queryFavoriteBooks";
     }
 
@@ -97,6 +103,8 @@ public class ReaderBookController
     {
         readerBookService.addFavoriteBook(isbn);
         model.addAttribute("status", true);
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "addFavoriteBook";
     }
 
@@ -105,6 +113,8 @@ public class ReaderBookController
     {
         readerBookService.deleteFavoriteBook(isbn);
         model.addAttribute("state", true);
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "deleteFavoriteBook";
     }
 
@@ -113,6 +123,8 @@ public class ReaderBookController
     {
         readerBookService.writeReview(isbn, review, title);
         model.addAttribute("status", true);
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "reader/reader_comment";
     }
 
@@ -122,6 +134,8 @@ public class ReaderBookController
     {
         Page<Review> page = readerBookService.bookReview(start, size, isbn);
         model.addAttribute("page", page);
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "bookReview";
     }
 
@@ -130,6 +144,8 @@ public class ReaderBookController
     {
         readerBookService.deleteReview(rid);
         model.addAttribute("status", true);
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "deleteReview";
     }
 }
