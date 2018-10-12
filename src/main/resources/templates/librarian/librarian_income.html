@@ -286,7 +286,7 @@
                 trigger: 'axis'
             },
             legend: {
-                data: ['Borrow', 'Return']
+                data:['Fine','Deposit']
             },
             grid: {
                 left: '3%',
@@ -309,14 +309,14 @@
             },
             series: [
                 {
-                    name: 'Borrow',
-                    type: 'line',
+                    name:'Fine',
+                    type:'line',
                     stack: '总量1',
                     data: finedata
                 },
                 {
-                    name: 'Return',
-                    type: 'line',
+                    name:'Deposit',
+                    type:'line',
                     stack: '总量2',
                     data: depositdata
                 }
@@ -353,7 +353,7 @@
                 mydata=data;
                 for(var num=0;num<12;num++)
                 {
-                    datedata.push(date2str(data[num].date,"MM-dd"));
+                    datedata.push(date2str(data[num].date,"MM"));
                     finedata.push(data[num].fine);
                     depositdata.push(data[num].deposit);
                 }
