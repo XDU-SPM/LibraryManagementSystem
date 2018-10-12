@@ -107,7 +107,7 @@ public class Timer
             User user = userBkunit.getUser();
             Bkunit bkunit = userBkunit.getBkunit();
             String context = user.getUsername() + ", " + bkunit.getBook().getTitle();
-            String subject = "233";
+            String subject = "Book Overdue";
             try
             {
                 MailUtil.sendmail(user.getEmail(), context, subject);
