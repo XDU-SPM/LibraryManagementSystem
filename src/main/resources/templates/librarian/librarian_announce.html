@@ -323,12 +323,12 @@
         $('#add_announce').on('click', function () {
             $('#my-prompt1').modal({
                 relatedTarget: this,
-                // onConfirm: function (e) {
-                //     alert('创建成功')
-                // },
-                // onCancel: function (e) {
-                //
-                // }
+                onConfirm: function (e) {
+                    alert('创建成功')
+                },
+                onCancel: function (e) {
+
+                }
             });
         });
     });
