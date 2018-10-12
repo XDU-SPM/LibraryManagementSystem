@@ -222,7 +222,7 @@
 
         <div class = "am-modal am-modal-prompt" tabindex = "-1" id = "my-prompt1">
             <div class = "am-modal-dialog">
-                <div class = "am-modal-hd">添加图书</div>
+                <div class = "am-modal-hd">Add Announce</div>
                 <form class = "am-modal-bd am-form am-form-horizontal" method = "post" action = "addAnnouncement"
                       enctype = "multipart/form-data">
                     <div class = "am-form-group">
@@ -253,16 +253,15 @@
         </div>
         <div class = "am-modal am-modal-prompt" tabindex = "-1" id = "my-prompt2">
             <div class = "am-modal-dialog">
-                <div class = "am-modal-hd">添加图书</div>
+                <div class = "am-modal-hd">Edit Announce</div>
                 <form class = "am-modal-bd am-form am-form-horizontal" method = "post" action = "addbook"
                       enctype = "multipart/form-data">
                     <div class = "am-form-group">
                         <label for = "id2" class = "am-u-sm-3 am-form-label" readonly = "readonly">ID</label>
                         <div class = "am-u-sm-9">
-                            <input type = "text" id = "id2" placeholder = "id" name = "">
+                            <input type = "text" id = "id2" placeholder = "id" name = "" readonly="readonly">
                         </div>
                     </div>
-
 
                     <div class = "am-form-group">
                         <label for = "title" class = "am-u-sm-3 am-form-label">标题</label>
@@ -271,13 +270,11 @@
                         </div>
                     </div>
 
-
                     <div class = "am-form-group">
                         <label for = "content" class = "am-u-sm-3 am-form-label">内容</label>
                         <div class = "am-u-sm-9">
                             <!--<input type = "text" id = "content" placeholder = "内容 / Content" name = "brief">-->
-                            <textarea id = "content2" placeholder = "内容 / Content" name = "brief" cols = "10"
-                                      rows = "3">
+                            <textarea id = "content2"  name = "content" cols = "10" rows = "3">
                             </textarea>
                         </div>
                     </div>
@@ -345,8 +342,7 @@
 </script>
 <script th:inline = "javascript">
     function modify(id, title, content) {
-        alert("1");
-        console.log(id);
+        console.log(content);
         $('#my-prompt2').modal(
             {
                 relatedTarget: this
@@ -354,7 +350,7 @@
         );
         $('#id2').attr("value", id);
         $('#title2').attr("value", title);
-        $('#content2').attr("value", content);
+        document.getElementById("content2").value=content;
     }
 </script>
 </body>
