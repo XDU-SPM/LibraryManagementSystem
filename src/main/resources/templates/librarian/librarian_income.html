@@ -266,6 +266,11 @@
 <script type = "text/javascript" src = "assets/js/charts/echarts.min.js"></script>
 
 <script>
+    var mydata = [];
+    var datedata = [];
+    var finedata = [];
+    var depositdata = [];
+    var option;
     (function(){
 
 
@@ -296,7 +301,7 @@
             xAxis: {
                 type: 'category',
                 boundaryGap: false,
-                data: mydata
+                data: datedata
             },
             yAxis: {
                 type: 'value'
@@ -306,13 +311,13 @@
                     name:'Borrow',
                     type:'line',
                     stack: '总量1',
-                    data:mydata
+                    data:finedata
                 },
                 {
                     name:'Return',
                     type:'line',
                     stack: '总量2',
-                    data:mydata
+                    data:depositdata
                 }
             ]
         };
@@ -325,11 +330,7 @@
         return y.replace(/(y+|M+|d+|h+|m+|s+)/g,function(v) {return ((v.length>1?"0":"")+eval('z.'+v.slice(-1))).slice(-(v.length>2?v.length:2))});
     }
 
-    var mydata = [];
-    var datedata = [];
-    var finedata = [];
-    var depositdata = [];
-    var option;
+
     function getbyyear() {
         var year = $('#year').val();
         console.log(year);
