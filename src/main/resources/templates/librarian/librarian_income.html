@@ -164,8 +164,9 @@
             <hr/>
             <div class = "am-tabs am-margin" data-am-tabs>
                 <ul class = "am-tabs-nav am-nav am-nav-tabs">
-                    <li class = "am-active"><a href = "#tab1">借书统计</a></li>
-                    <li><a href = "#tab2">归还统计</a></li>
+                    <li class = "am-active"><a href = "#tab1">Every Day</a></li>
+                    <li><a href = "#tab2">Every Month</a></li>
+                    <li><a href="#tab3">Every Week</a></li>
                 </ul>
                 <div class = "am-tabs-bd">
                     <div class = "am-tab-panel am-fade am-in am-active" id = "tab1">
@@ -213,6 +214,29 @@
                             </div>
                         </div>
                     </div>
+                    <div class = "am-tab-panel am-fade am-in am-active" id = "tab3">
+                        <div class = "am-g am-center am-padding">
+
+                            <table class = "am-table am-table-striped am-table-hover am-table-compact "
+                                   id = "income_week">
+                                <thead>
+                                <tr>
+                                    <th class = "table-date">WeekDate</th>
+                                    <th class = "table-fine">Fine</th>
+                                    <th class = "table-deposit">Deposit</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each = "record:${set}">
+                                    <td th:text = "${record.date}"></td>
+                                    <td th:text = "${record.fine}"></td>
+                                    <td th:text = "${record.deposit}"></td>
+                                </tr>
+                            </table>
+
+                        </div>
+
+                    </div>
 
 
                 </div>
@@ -247,6 +271,14 @@
 <script>
     $(function () {
         $('#income_history').DataTable(
+            {
+                "ordering": false,
+                "bLengthChange": false,
+            }
+        );
+    });
+    $(function () {
+        $('#income_week').DataTable(
             {
                 "ordering": false,
                 "bLengthChange": false,
@@ -447,25 +479,25 @@
                 alert("发生错误，请稍后再试！");
             }
         });
-        $.ajax({
-            type: "get",
-            data: {year:year},
-            url: "getWeekIncome",
-            success: function (data) {
-                mydata = data;
-                console.log(data);
-                for (var num = 0; num < data.len(); num++)
-                {
-                    var date = data[num].date;
-                    var deposit = data[num].deposit;
-                    var fine = data[num].fine;
-                    data_week.push([date,deposit]);
-                }
-            },
-            error: function (data) {
-                alert("发生错误，请稍后再试！");
-            }
-        });
+        // $.ajax({
+        //     type: "get",
+        //     data: {year:year},
+        //     url: "getWeekIncome",
+        //     success: function (data) {
+        //         mydata = data;
+        //         console.log(data);
+        //         for (var num = 0; num < data.len(); num++)
+        //         {
+        //             var date = data[num].date;
+        //             var deposit = data[num].deposit;
+        //             var fine = data[num].fine;
+        //             data_week.push([date,deposit]);
+        //         }
+        //     },
+        //     error: function (data) {
+        //         alert("发生错误，请稍后再试！");
+        //     }
+        // });
     }
 
     console.log(mydata);
