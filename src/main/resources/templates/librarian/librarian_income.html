@@ -350,9 +350,10 @@
             data: {year: year},
             url: "getMonthIncome",
             success: function (data) {
-                mydata = data;
-                for (var num = 0; num < 12; num++) {
-                    datedata.push(data[num].date);
+                mydata=data;
+                for(var num=0;num<12;num++)
+                {
+                    datedata.push(date2str(data[num].date,"MM-dd"));
                     finedata.push(data[num].fine);
                     depositdata.push(data[num].deposit);
                 }
