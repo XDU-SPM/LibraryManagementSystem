@@ -180,7 +180,7 @@
 
             <div class = "am-g">
                 <div class = "am-u-sm-12">
-                    <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "booklist">
+                    <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "announce">
                         <thead>
                         <tr>
                             <th class = "table-id">ID</th>
@@ -208,17 +208,7 @@
                             </td>
                         </tr>
                     </table>
-                    <div class = "am-cf">
-                        <p th:text="'共有'+${page.numberOfElements}+'条数据'"></p>
-                        <div class = "am-fr">
-                            <ul class = "am-pagination">
-                                <li><a th:href = "@{librarian_table(start=0)}">首页</a></li>
-                                <li><a th:href = "@{librarian_table(start=${page.number}-1)}">上一页</a></li>
-                                <li><a th:href = "@{librarian_table(start=${page.number}+1)}">下一页</a></li>
-                                <li><a th:href="@{librarian_table(start=${page.totalPages})}">末页</a></li>
-                            </ul>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -356,7 +346,17 @@
     }
 </script>
 <script type = "text/javascript" src = "assets/js/test.js"></script>
-
+<script th:inline="javascript" src = "dist/amazeui.datatables.js"></script>
+<script>
+    $(function () {
+        $('#announce').DataTable(
+            {
+                "ordering":false,
+                "bLengthChange":false,
+            }
+        );
+    })
+</script>
 
 <script type = "text/javascript">
     $("#change").click(function () {
