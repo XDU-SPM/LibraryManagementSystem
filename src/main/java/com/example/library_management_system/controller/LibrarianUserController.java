@@ -51,14 +51,6 @@ public class LibrarianUserController
         return "librarian/librarian_income";
     }
 
-    @RequestMapping(value = "/librarian/librarian_fine", method = RequestMethod.GET)
-    public String librarian_fine(Model model)
-    {
-        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
-        model.addAttribute("username", userService.getUser().getUsername());
-        return "librarian/librarian_fine";
-    }
-
     @RequestMapping(value = "/librarian/librarian_addreader", method = RequestMethod.GET)
     public String librarian_addreader(Model model)
     {
@@ -87,16 +79,20 @@ public class LibrarianUserController
     }
 
     @RequestMapping(value = "/librarian/librarian_fine", method = RequestMethod.GET)
-    public String getPaidAccounts(int uid)
+    public String getPaidAccounts(int uid, Model model)
     {
-        librarianUserService.getPaidAccounts(uid);
+        model.addAttribute("set", librarianUserService.getPaidAccounts(uid));
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "librarian/librarian_fine";
     }
 
     @RequestMapping(value = "/librarian/librarian_fine2", method = RequestMethod.GET)
-    public String getUnPaidAccounts(int uid)
+    public String getUnPaidAccounts(int uid, Model model)
     {
-        librarianUserService.getUnPaidAccounts(uid);
+        model.addAttribute("set", librarianUserService.getUnPaidAccounts(uid));
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "librarian/librarian_fine2";
     }
 }
