@@ -114,20 +114,19 @@
 
                 <li><a href = "permission_change"><span class = "am-icon-eraser"></span> 修改权限</a></li>
 
-                <li><a href = "#"><span class = "am-icon-comment"></span> 发布公告</a></li>
             </ul>
 
             <div class = "am-panel am-panel-default admin-sidebar-panel">
                 <div class = "am-panel-bd">
                     <p><span class = "am-icon-bookmark"></span> 公告</p>
-                    <p>时光静好，与君语；细水流年，与君同。—— Amaze UI</p>
+                    <p>时光静好，与君语；细水流年，与君同。</p>
                 </div>
             </div>
 
             <div class = "am-panel am-panel-default admin-sidebar-panel">
                 <div class = "am-panel-bd">
                     <p><span class = "am-icon-tag"></span> wiki</p>
-                    <p>Welcome to the Amaze UI wiki!</p>
+                    <p>Welcome to the Biboliosoft wiki!</p>
                 </div>
             </div>
         </div>
@@ -149,6 +148,7 @@
                     <li class = "am-active"><a href = "#tab1">借阅上限</a></li>
                     <li><a href = "#tab2">借阅时间</a></li>
                     <li><a href = "#tab3">借阅押金</a></li>
+                    <li><a href = "#tab4">逾期罚金</a></li>
                 </ul>
 
                 <div class = "am-tabs-bd">
@@ -212,6 +212,31 @@
                                         </div>
                                         <div class = "am-u-sm-8 am-u-md-4">
                                             <input type = "text" class = "am-input-sm" placeholder = "请输入押金金额"
+                                                   name = "money">
+                                        </div>
+                                        <div class = "am-hide-sm-only am-u-md-6"></div>
+                                    </div>
+
+                                    <div class = "am-g am-margin-top-sm">
+                                        <div class = "am-u-sm-10 am-u-sm-push-2">
+                                            <button type = "submit" class = "am-btn am-btn-primary ">修改</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class = "am-tab-panel am-fade am-in " id = "tab4">
+                        <div class = "am-g am-margin-top">
+                            <form action = "modifyOverdueMoney" method = "post">
+                                <div class = "am-form am-form-horizontal">
+                                    <div class = "am-g am-margin-top">
+                                        <div class = "am-u-sm-4 am-u-md-2 am-text-right">
+                                            逾期罚金
+                                        </div>
+                                        <div class = "am-u-sm-8 am-u-md-4">
+                                            <input type = "text" class = "am-input-sm" placeholder = "请输入逾期罚金"
                                                    name = "money">
                                         </div>
                                         <div class = "am-hide-sm-only am-u-md-6"></div>
