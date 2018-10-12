@@ -183,7 +183,7 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each = "record:${set}">
-                                    <td th:text = "${record.date}"></td>
+                                    <td th:text="${#dates.format(record.date,'yyyy-MM-dd')}"></td>
                                     <td th:text = "${record.fine}"></td>
                                     <td th:text = "${record.deposit}"></td>
                                 </tr>
@@ -228,7 +228,7 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each = "record:${set2}">
-                                    <td th:text = "${record.date}"></td>
+                                    <td th:text="${#dates.format(record.date,'yyyy-MM-dd')}"></td>
                                     <td th:text = "${record.fine}"></td>
                                     <td th:text = "${record.deposit}"></td>
                                 </tr>
