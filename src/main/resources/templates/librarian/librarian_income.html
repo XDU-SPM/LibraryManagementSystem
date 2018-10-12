@@ -174,16 +174,16 @@
                             <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "income_history">
                                 <thead>
                                 <tr>
-                                    <th class = "table-id">Date</th>
-                                    <th class = "table-buid">Fine</th>
-                                    <th class = "table-title">Deposit</th>
+                                    <th class = "table-date">Date</th>
+                                    <th class = "table-fine">Fine</th>
+                                    <th class = "table-deposit">Deposit</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr th:each = "record:${set}">
                                     <td th:text="${record.date}"></td>
                                     <td th:text = "${record.fine}"></td>
-                                    <td class = "am-hide-sm-only" th:text = "${record.deposit}"></td>
+                                    <td th:text = "${record.deposit}"></td>
                                 </tr>
                             </table>
 
