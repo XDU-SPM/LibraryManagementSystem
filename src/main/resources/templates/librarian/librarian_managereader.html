@@ -207,8 +207,7 @@
                                 <td>
                                     <div class = "am-btn-toolbar">
                                         <div class = "am-btn-group am-btn-group-xs">
-                                            <button class = "am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only delete"
-                                                    th:onclick = "'javascript:deleteuser('+${user.id}+')'">
+                                            <button class = "am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only delete">
                                                 <span class = "am-icon-trash-o">删除</span>
                                             </button>
                                         </div>
@@ -251,8 +250,6 @@
 <script src = "assets/js/test.js"></script>
 <script src = "dist/amazeui.datatables.min.js"></script>
 <script>
-    let status = false;
-
     $(function () {
         $('#readerlist').DataTable(
             {
@@ -264,11 +261,16 @@
 
     $(function(){
         $("table#readerlist tbody").on('click', 'button.delete', function () {
-            $('#readerlist').DataTable().row($(this).parents('tr')).remove().draw();
+            let id = $('#readerlist').DataTable().rows($('#readerlist').DataTable().row($(this).parents('tr'))).data()[0][0];
+            deleteuser(id, $(this));
         })
     });
 
-    function deleteuser(id) {
+    function fun(val) {
+        $('#readerlist').DataTable().row(val.parents('tr')).remove().draw();
+    }
+
+    function deleteuser(id, val) {
         $.ajax(
             {
                 method: 'GET',
@@ -277,7 +279,7 @@
                 success: function (data) {
                     if (data.status == 0) {
                         alert("删除成功");
-                        // document.getElementById('readlist').deleteRow(id);
+                        fun(val);
                     }
                     else {
                         alert("删除失败");
