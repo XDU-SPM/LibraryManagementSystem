@@ -154,8 +154,8 @@
 
 
             <div class = "am-cf am-padding am-padding-bottom-0">
-                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">借阅记录</strong> /
-                    <small>BorrowRecord</small>
+                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">Unpaid Fine</strong> /
+                    <small>待支付罚金</small>
                 </div>
             </div>
 
@@ -182,19 +182,21 @@
                     <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "record">
                         <thead>
                         <tr>
-                            <th class = "table-id">编号</th>
-                            <th class = "table-title">标题</th>
-                            <th class = "table-isbn">ISBN</th>
-                            <th class = "table-author am-hide-sm-only">用户名</th>
-                            <th class = "table-publisher">预约时间</th>
-                            <th class = "table-date am-hide-sm-only">预约状态</th>
+                            <th class = "table-id">ID</th>
+                            <th class = "table-uid">UID</th>
+                            <th class = "table-isbn">username</th>
+                            <th class = "table-money am-hide-sm-only">Money</th>
+                            <th class = "table-bid">bookID</th>
+                            <th class = "table-style ">style</th>
+                            <th class = "table-date am-hide-sm-only" >Date</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr th:each = "record:${set}" >
                             <td th:text = "${record.id}"></td>
-                            <td ><a th:text = "${record.book.title}" th:href="@{librarian_book(isbn=${record.book.isbn})}"></a></td>
-                            <td th:text = "${record.book.isbn}"></td>
+                            <td ><a th:text = "${record.uid}" th:href="@{librarian_user(id=${record.uid})}"></a></td>
+                            <td ><a th:text = "${record.username}" th:href="@{librarian_user(id=${record.uid})}"></a></td>
+                            <td th:text = "${record.money}"></td>
                             <td class = "am-hide-sm-only" th:text = "${record.user.username}"></td>
                             <td class = "am-hide-sm-only" th:text = "${record.borrowDate}"></td>
                             <td class = "am-hide-sm-only" th:text = "${record.status}"></td>
