@@ -196,7 +196,7 @@
                         <tr th:each = "announce:${set}">
                             <td th:text = "${announce.id}"></td>
                             <td>
-                                <a th:text = "${announce.title}"  th:onclick="|javascript:modify(${announce.id},${announce.title},${announce.content})|"></a>
+                                <a th:text = "${announce.title}"  th:onclick="'javascript:modify(\''+${announce.id}+'\',\''+${announce.title}+'\',\''+${announce.content}+'\')'"></a>
                             </td>
                             <td th:text = "${announce.username}"></td>
                             <td class = "am-hide-sm-only" th:text = "${announce.content}"></td>
