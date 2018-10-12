@@ -273,10 +273,22 @@
     }
 
     var mydata = [];
-    for(var i=0;i<12;i++)
-    {
-        mydata.push('11')
+    var option;
+    function getbyyear(year) {
+        $.ajax({
+            type: "get",
+            data: {year:year},
+            url: "getMonthIncome",
+            success: function (data) {
+                mydata=data;
+                echarts.init(document.getElementById("income_month")).setOption(option);
+            },
+            error: function (data) {
+                alert("发生错误，请稍后再试！");
+            }
+        });
     }
+
     console.log(mydata);
 
 
