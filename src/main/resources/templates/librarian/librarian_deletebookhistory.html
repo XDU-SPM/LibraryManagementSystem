@@ -91,10 +91,10 @@
     <div class = "admin-sidebar am-offcanvas" id = "admin-offcanvas">
         <div class = "am-offcanvas-bar admin-offcanvas-bar">
             <div class = "user-info">
-                <img class = "am-img-circle am-img-thumbnail am-center"
-                     src = "http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/200/h/200/q/80"
+                <img class = "am-img-circle am-img-thumbnail am-center" width="200" height="200"
+                     th:src= "${avatarPath}"
                      alt = ""/>
-                <p style = "text-align: center">纯洁神王</p>
+                <p style = "text-align: center" th:text="${username}">纯洁神王</p>
             </div>
 
             <ul class = "am-list admin-sidebar-list">
@@ -196,27 +196,16 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each = "record:${page}" >
+                        <tr th:each = "record:${set}" >
                             <td th:text = "${record.id}"></td>
                             <td th:text = "${record.buid}"></td>
                             <td th:text = "${record.bookName}"></td>
                             <!--<td ><a th:text = "${record.bkunit.book.isbn}" th:href="@{librarian_book(isbn=${record.bkunit.book.isbn})}"></a></td>-->
-                            <td class = "am-hide-sm-only"><a th:text = "${record.user.username}" th:href="@{librarian_user(username=${record.user.uername})}"></a></td>
+                            <td class = "am-hide-sm-only"><a th:text = "${record.username}" th:href="@{librarian_user(username=${record.username})}"></a></td>
                             <td class = "am-hide-sm-only" th:text = "${record.uid}"></td>
                             <td class = "am-hide-sm-only" th:text = "${record.date}"></td>
                         </tr>
                     </table>
-                    <div class = "am-cf">
-                        <p th:text="'共有'+${page.numberOfElements}+'条数据'"></p>
-                        <div class = "am-fr">
-                            <ul class = "am-pagination">
-                                <li><a th:href = "@{librarian_deletebookhistory(start=0)}">首页</a></li>
-                                <li><a th:href = "@{librarian_deletebookhistory(start=${page.number}-1)}">上一页</a></li>
-                                <li><a th:href = "@{librarian_deletebookhistory(start=${page.number}+1)}">下一页</a></li>
-                                <li><a th:href="@{librarian_deletebookhistory(start=${page.totalPages})}">末页</a></li>
-                            </ul>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -239,16 +228,17 @@
 <!--[if (gte IE 9)|!(IE)]><!-->
 <script src = "assets/js/jquery.min.js"></script>
 <!--<![endif]-->
-<!--<script>-->
-<!--$(function () {-->
-<!--$('#booklist').DataTable(-->
-<!--{-->
-<!--"ordering":false,-->
-<!--"bLengthChange":false,-->
-<!--}-->
-<!--);-->
-<!--})-->
-<!--</script>-->
+<script th:inline="javascript" src = "dist/amazeui.datatables.js"></script>
+<script>
+$(function () {
+$('#booklist').DataTable(
+{
+"ordering":false,
+"bLengthChange":false,
+}
+);
+})
+</script>
 
 <script src = "dist/amazeui.datatables.min.js"></script>
 <script src = "assets/js/amazeui.min.js"></script>

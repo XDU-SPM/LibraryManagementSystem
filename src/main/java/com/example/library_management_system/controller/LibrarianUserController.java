@@ -28,25 +28,34 @@ public class LibrarianUserController
     {
         userService.registerService(reader, RoleUtil.ROLE_READER_CHECK);
         model.addAttribute("status", true);
-        return "/librarian/librarian_create";
+        model.addAttribute("registerMoney", globalUtilService.getRegisterMoney());
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
+        return "/librarian/librarian_addreader";
     }
 
     @RequestMapping(value = "/librarian/payFine", method = RequestMethod.POST)
     public String payFine(double money, String username, Model model)
     {
         model.addAttribute("status", librarianUserService.payFine(money, username));
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "";
     }
 
     @RequestMapping(value = "/librarian/librarian_income", method = RequestMethod.GET)
-    public String librarian_income()
+    public String librarian_income(Model model)
     {
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "librarian/librarian_income";
     }
 
     @RequestMapping(value = "/librarian/librarian_fine", method = RequestMethod.GET)
-    public String librarian_fine()
+    public String librarian_fine(Model model)
     {
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "librarian/librarian_fine";
     }
 
@@ -54,19 +63,26 @@ public class LibrarianUserController
     public String librarian_addreader(Model model)
     {
         model.addAttribute("registerMoney", globalUtilService.getRegisterMoney());
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "librarian/librarian_addreader";
     }
 
     @RequestMapping(value = "/librarian/librarian_managereader", method = RequestMethod.GET)
-    public String librarian_managereader()
+    public String librarian_managereader(Model model)
     {
+        model.addAttribute("set", userService.showAllUser(RoleUtil.ROLE_READER_CHECK));
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "librarian/librarian_managereader";
     }
 
-    @RequestMapping(value = "/librarian/deleteReader", method = RequestMethod.GET)
-    public String deleteReader(int id, Model model)
+    @RequestMapping(value = "/librarian/librarian_readerinfo", method = RequestMethod.GET)
+    public String librarian_readerinfo(Model model, int id)
     {
-        model.addAttribute("status", userService.deleteUser(id));
-        return "";
+        model.addAttribute("user", userService.showUser(id));
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
+        return "/librarian/librarian_readerinfo";
     }
 }

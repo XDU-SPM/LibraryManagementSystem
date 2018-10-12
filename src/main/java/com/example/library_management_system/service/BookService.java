@@ -28,22 +28,11 @@ public class BookService
     @Autowired
     private CategoryDAO categoryDAO;
 
-    public Page<Book> searchBook(String string, int type, int start, int size)
+    public Page<Book> searchBook(String string, int start, int size)
     {
-        start = start < 0 ? 0 : start;
-        Sort sort = new Sort(Sort.Direction.DESC, "frequency");
-        Pageable pageable = PageRequest.of(start, size, sort);
-        string = "%" + string + "%";
-        switch (type)
-        {
-            case 1:     // isbn
-                return bookDAO.findByIsbnLike(string, pageable);
-            case 2:     // title
-                return bookDAO.findByTitleLike(string, pageable);
-            case 3:     // author
-                return bookDAO.findByAuthorLike(string, pageable);
-        }
-        return null;
+        Pageable pageable = PageableUtil.pageable(false, "frequency", start, size);
+        string = "%" + string.trim() + "%";
+        return bookDAO.findByIsbnLikeOrTitleLikeOrAuthorLike(string, string, string, pageable);
     }
 
     public Book bookInfo(String isbn)

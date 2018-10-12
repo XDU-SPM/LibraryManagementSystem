@@ -14,10 +14,22 @@ File -> New -> Project From Exiting Sources -> (目录下的) pom.xml
 
 启动：`rabbitmq-plugins.bat enable rabbitmq_management`
 
-​	浏览器中访问：`http://localhost:15672`
+	浏览器中访问：`http://localhost:15672`
 
 关闭：`rabbitmq-plugins.bat disable rabbitmq_management`
 
 username: guest
 
 password: guest
+
+### Linux Mysql 存入中文数据
+
+报错：java.sql.SQLException: Illegal mix of collations (latin1_swedish_ci,IMPLICIT) and (utf8_general_ci,COERCIBLE) for operation '='
+
+解决：
+
+```
+// (application.properties)防止出现Java中连接数据库时汉字都变成问号问题
+spring.datasource.url=jdbc:mysql://localhost:3306/library?useUnicode=true&characterEncoding=utf8
+```
+

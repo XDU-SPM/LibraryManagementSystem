@@ -4,7 +4,6 @@ import com.example.library_management_system.bean.Role;
 import com.example.library_management_system.bean.User;
 import com.example.library_management_system.service.BookService;
 import com.example.library_management_system.service.GlobalUtilService;
-import com.example.library_management_system.service.LibrarianBookService;
 import com.example.library_management_system.service.UserService;
 import com.example.library_management_system.utils.RoleUtil;
 import com.example.library_management_system.utils.Status;
@@ -26,9 +25,6 @@ public class UserController
 
     @Autowired
     private GlobalUtilService globalUtilService;
-
-    @Autowired
-    private LibrarianBookService librarianBookService;
 
     @Autowired
     private BookService bookService;
@@ -77,7 +73,7 @@ public class UserController
     @RequestMapping(value = "/admin/home", method = RequestMethod.GET)
     public String adminHome()
     {
-        return "admin/permission_change";
+        return "redirect:permission_change";
     }
 
     @RequestMapping(value = "/librarian/home", method = RequestMethod.GET)
@@ -85,21 +81,6 @@ public class UserController
     {
         return "redirect:librarian_homepage";
     }
-
-    /*@RequestMapping(value = "/reader/register", method = RequestMethod.POST)
-    public String readerRegister(User reader)
-    {
-        userService.registerService(reader, RoleUtil.ROLE_READER_CHECK);
-        return "login";
-    }*/
-
-    /*@RequestMapping(value = "/admin/reader_register", method = RequestMethod.POST)
-    public String adminReaderRegister(User reader, Model model)
-    {
-        userService.registerService(reader, RoleUtil.ROLE_READER_CHECK);
-        model.addAttribute("status", true);
-        return "admin/reader_create";
-    }*/
 
     @RequestMapping(value = "/admin/register", method = RequestMethod.POST)
     @ResponseBody
@@ -136,11 +117,12 @@ public class UserController
         return new Status(userService.renew(id) ? 1 : 0, globalUtilService.getMaxBorrowDays());
     }
 
-    @RequestMapping(value = "/forgetPassword", method = RequestMethod.GET)
-    @ResponseBody
-    public Status forgetPassword(String username)
+    @RequestMapping(value = "/forgetPassword", method = RequestMethod.POST)
+    public String forgetPassword(String username, Model model)
     {
-        return new Status(userService.forgetPassword(username));
+        System.out.println(username);
+        model.addAttribute("status", userService.forgetPassword(username));
+        return "forgetPassword";
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
@@ -162,7 +144,19 @@ public class UserController
     @RequestMapping(value = "/forget_password", method = RequestMethod.GET)
     public String forget_password()
     {
-        System.out.println(233);
         return "forgetPassword";
+    }
+
+    @RequestMapping(value = "/admin_login", method = RequestMethod.GET)
+    public String admin_login()
+    {
+        return "admin_login";
+    }
+
+    @RequestMapping(value = "/librarian/deleteReader", method = RequestMethod.GET)
+    @ResponseBody
+    public Status deleteReader(int id)
+    {
+        return new Status(userService.deleteUser(id));
     }
 }

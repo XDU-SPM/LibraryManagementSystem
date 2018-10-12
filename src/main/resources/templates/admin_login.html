@@ -11,7 +11,7 @@
     <link rel = "stylesheet" href = "assets/css/amazeui.min.css"/>
     <script src = "http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
     &lt;!&ndash;<script src = "https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>&ndash;&gt;
-    <style type="text/css">
+    <style type = "text/css">
         .header {
             text-align: center;
         }
@@ -36,7 +36,7 @@
             background-size: 125px 24px;
         }
 
-        .mystyle{
+        .mystyle {
             /*position: absolute;
             margin-top: 60px;
             margin-left: 650px;*/
@@ -47,7 +47,7 @@
 <header class = "am-topbar am-topbar-inverse admin-header">
 
     <div class = "am-topbar-brand">
-        <a href = "/visitor-main"  class = "am-text-ir">BiblioSoft</a>
+        <a href = "/visitor-main" class = "am-text-ir">BiblioSoft</a>
     </div>
     <div class = "am-collapse am-topbar-collapse" id = "topbar-collapse">
         <ul class = "am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
@@ -63,15 +63,17 @@
     <div style = "text-align: center" class = "am-text-primary am-text-lg"><h2>LOGIN</h2></div>
     <hr>
     <br>
-    <form method = "post" class="mystyle" name="myform" action="##">
-        <label for = "username" >username:</label>
-        <input name = "username" size="width:250px;" id = "username" value = "" >
+    <form method = "post" class = "mystyle" name = "myform" action = "login">
+        <label for = "username">username:</label>
+        <input name = "username" size = "width:250px;" id = "username" value = "">
         <br><br>
-        <label for = "password" >password:</label>
-        <input type = "password"  size="width:250px;"  autocomplete="new-password"  name = "password" id = "password" value = "">
+        <label for = "password">password:</label>
+        <input type = "password" size = "width:250px;" autocomplete = "new-password" name = "password" id = "password"
+               value = "">
         <br><br>
         <div class = "am-cf">
-            <input type = "submit" name = ""  id="loginbun" onclick="shake(); return validateForm();" value = "login" class = "am-btn am-btn-primary am-btn-sm  ">
+            <input type = "submit" name = "" id = "loginbun" onclick = "shake(); return validateForm();" value = "login"
+                   class = "am-btn am-btn-primary am-btn-sm  ">
             <br><br><br>
             <a>forget password&nbsp</a>
         </div>
@@ -84,20 +86,21 @@
 </footer>
 
 
-<script type="text/javascript">
+<script type = "text/javascript">
     function shake() {
-        var classval=document.getElementById("loginbun").getAttribute("class");
-        classval=classval.concat(" am-animation-shake");
-        document.getElementById("loginbun").setAttribute("class",classval);
+        var classval = document.getElementById("loginbun").getAttribute("class");
+        classval = classval.concat(" am-animation-shake");
+        document.getElementById("loginbun").setAttribute("class", classval);
     }
+
     function validateForm() {
-        var x=document.forms["myform"]["username"].value;
-        if(x==null || x==""){
+        var x = document.forms["myform"]["username"].value;
+        if (x == null || x == "") {
             alert("please input username");
             return false;
         }
-        var y=document.forms["myform"]["password"].value;
-        if(y==null || y==""){
+        var y = document.forms["myform"]["password"].value;
+        if (y == null || y == "") {
             alert("please input password");
             return false;
         }

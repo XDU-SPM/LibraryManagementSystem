@@ -46,7 +46,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
         http
                 .authorizeRequests()
                 .antMatchers("/", "/visitor-main", "/checkUser").permitAll()
-                .antMatchers("/", "/forget_password", "/showbook", "/searchBook").permitAll()
+                .antMatchers("/", "/forget_password", "/showbook", "/searchBook", "/forgetPassword", "/admin_login").permitAll()
                 .antMatchers("/assets/**").permitAll()
                 .antMatchers("/dist/**").permitAll()
                 .antMatchers("/upload/**").permitAll()

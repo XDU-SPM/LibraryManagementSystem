@@ -18,11 +18,18 @@ public class User
     private String password;
     private String name;
     private String email;
+    private String avatarPath;
 
     private double money;
 
     @Transient
     private String role;
+
+    @Transient
+    private double paidFine;
+
+    @Transient
+    private double unPaidFine;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
     @JsonIgnore
@@ -202,5 +209,35 @@ public class User
     public void setUserBooks(Set<UserBook> userBooks)
     {
         this.userBooks = userBooks;
+    }
+
+    public String getAvatarPath()
+    {
+        return avatarPath;
+    }
+
+    public void setAvatarPath(String avatarPath)
+    {
+        this.avatarPath = avatarPath;
+    }
+
+    public double getPaidFine()
+    {
+        return paidFine;
+    }
+
+    public void setPaidFine(double paidFine)
+    {
+        this.paidFine = paidFine;
+    }
+
+    public double getUnPaidFine()
+    {
+        return unPaidFine;
+    }
+
+    public void setUnPaidFine(double unPaidFine)
+    {
+        this.unPaidFine = unPaidFine;
     }
 }

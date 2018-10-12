@@ -1,41 +1,40 @@
 package com.example.library_management_system.utils;
 
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class OneMonthApart
+public class OneWeekApart
 {
     private Date before;
     private Date after;
 
-    public OneMonthApart()
+    public OneWeekApart()
     {
         before = new Date();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(before);
-        getBeginMonth(calendar);
+        getBeginWeek(calendar);
         before = calendar.getTime();
-        calendar.add(Calendar.MONTH, 1);
+        calendar.add(Calendar.WEEK_OF_MONTH, 1);
         after = calendar.getTime();
     }
 
-    public static void getBeginMonth(Calendar calendar)
+    public static void getBeginWeek(Calendar calendar)
     {
-        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        calendar.set(Calendar.DAY_OF_WEEK, 1);
         calendar.set(Calendar.HOUR_OF_DAY, 0);
         calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MILLISECOND, 0);
     }
 
-    public void setLastMonth()
+    public void setLastWeek()
     {
         after = before;
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(before);
-        calendar.add(Calendar.MONTH, -1);
+        calendar.add(Calendar.WEEK_OF_MONTH, -1);
         before = calendar.getTime();
     }
 
@@ -51,12 +50,12 @@ public class OneMonthApart
 
     public static void main(String[] args)
     {
-        OneMonthApart oneMonthApart = new OneMonthApart();
+        OneWeekApart oneWeekApart = new OneWeekApart();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss SSS");
-        System.out.println(sdf.format(oneMonthApart.getBefore()));
-        System.out.println(sdf.format(oneMonthApart.getAfter()));
-        oneMonthApart.setLastMonth();
-        System.out.println(sdf.format(oneMonthApart.getBefore()));
-        System.out.println(sdf.format(oneMonthApart.getAfter()));
+        System.out.println(sdf.format(oneWeekApart.getBefore()));
+        System.out.println(sdf.format(oneWeekApart.getAfter()));
+        oneWeekApart.setLastWeek();
+        System.out.println(sdf.format(oneWeekApart.getBefore()));
+        System.out.println(sdf.format(oneWeekApart.getAfter()));
     }
 }

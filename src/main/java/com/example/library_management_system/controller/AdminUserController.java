@@ -26,6 +26,8 @@ public class AdminUserController
     {
         userService.registerService(librarian, RoleUtil.ROLE_LIBRARIAN_CHECK);
         model.addAttribute("status", true);
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "admin/librarian_create";
     }
 
@@ -41,14 +43,18 @@ public class AdminUserController
                                      @RequestParam(value = "size", defaultValue = "10") int size)
     {
         model.addAttribute("page", userService.showAllUser(start, size, RoleUtil.ROLE_LIBRARIAN_CHECK));
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "admin/delete_users";
     }
 
     @RequestMapping(value = "/admin/deleteaccount", method = RequestMethod.GET)
-    public String deleteUser(int id, int start)
+    public String deleteUser(int id, int start, Model model)
     {
         System.out.println(id);
         userService.deleteUser(id);
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "redirect:delete_users?start=" + start;
     }
 
@@ -56,6 +62,18 @@ public class AdminUserController
     public String getLibrarianPassword(int id, Model model)
     {
         model.addAttribute("librarianPassword", adminUserService.getLibrarianPassword(id));
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "";
+    }
+
+    @RequestMapping(value = "/admin/saveLibrarian", method = RequestMethod.POST)
+    public String saveLibrarian(User librarian, Model model)
+    {
+        adminUserService.saveLibrarian(librarian);
+        model.addAttribute("status", true);
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
+        return "admin/librarian_edit";
     }
 }

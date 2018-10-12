@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserBookDAO extends JpaRepository<UserBook, Integer>
 {
-    UserBook findByUserAndBook(User user, Book book);
+    UserBook findByUserAndBookAndStatus(User user, Book book, int status);
 
     Page<UserBook> findAllByUserAndStatus(User user, int status, Pageable pageable);
 

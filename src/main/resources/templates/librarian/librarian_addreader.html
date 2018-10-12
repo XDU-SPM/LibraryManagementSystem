@@ -92,10 +92,10 @@
     <div class = "admin-sidebar am-offcanvas" id = "admin-offcanvas">
         <div class = "am-offcanvas-bar admin-offcanvas-bar">
             <div class = "user-info">
-                <img class = "am-img-circle am-img-thumbnail am-center"
-                     src = "http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/200/h/200/q/80"
+                <img class = "am-img-circle am-img-thumbnail am-center" width="200" height="200"
+                     th:src= "${avatarPath}"
                      alt = ""/>
-                <p style = "text-align: center">纯洁神王</p>
+                <p style = "text-align: center" th:text="${username}">纯洁神王</p>
             </div>
 
             <ul class = "am-list admin-sidebar-list">
@@ -110,11 +110,11 @@
                         <li><a href = "librarian_borrow"><span class = "am-icon-leaf"></span> 借阅</a></li>
                         <li><a href = "librarian_return"><span class = "am-icon-mail-reply"></span> 归还</a></li>
                         <li><a href = "librarian_table"><span class = "am-icon-book"></span> 管理图书</a></li>
-                        <li><a href = "librarian_deletebookhistory"><span class="am-icon-trash"> 删除记录</span></a></li>
+                        <li><a href = "librarian_deletebookhistory"><span class = "am-icon-trash"> 删除记录</span></a></li>
                         </li>
                     </ul>
                 </li>
-                <li class="admin-parent">
+                <li class = "admin-parent">
                     <a class = "am-cf" data-am-collapse = "{target: '#collapse-nav2'}"><span
                             class = "am-icon-user"></span> 管理读者 <span
                             class = "am-icon-angle-right am-fr am-margin-right"></span></a>
@@ -123,7 +123,7 @@
                         <li><a href = "librarian_managereader"><span class = "am-icon-pencil"></span> 管理读者</a></li>
                     </ul>
                 </li>
-                <li class="admin-parent">
+                <li class = "admin-parent">
                     <a class = "am-cf" data-am-collapse = "{target: '#collapse-nav3'}"><span
                             class = "am-icon-table"></span> 记录 <span
                             class = "am-icon-angle-right am-fr am-margin-right"></span></a>
@@ -131,7 +131,7 @@
                         <li><a href = "librarian_record"><span class = "am-icon-book"></span> 预约记录</a></li>
                         <li><a href = "librarian_history"><span class = "am-icon-book"></span> 借阅记录</a></li>
                         <li><a href = "librarian_income"><span class = "am-icon-money"></span> 收入记录 </a></li>
-                        <li><a href = "librarian_fine"><span class="am-icon-bolt"></span> 罚金记录</a></li>
+                        <li><a href = "librarian_fine"><span class = "am-icon-bolt"></span> 罚金记录</a></li>
                     </ul>
                 </li>
                 <li><a href = "librarian_announce"><span class = "am-icon-comment"></span> 发布公告</a></li>
@@ -169,27 +169,19 @@
 
 
                 <div class = "am-u-sm-12 am-u-md-8 ">
-                    <form class = "am-form am-form-horizontal" action = "reader_register" method = "post">
+                    <form class = "am-form am-form-horizontal" action = "readerRegister" method = "post">
                         <div class = "am-form-group">
                             <label for = "reader-username" class = "am-u-sm-3 am-form-label">用户名</label>
                             <div class = "am-u-sm-9">
                                 <input type = "text" id = "reader-username" placeholder = "输入用户名/Username"
-                                       name = "username">
-                            </div>
-                        </div>
-
-                        <div class="am-form-group">
-                            <label for = "deposit" class = "am-u-sm-3 am-form-label">保证金</label>
-                            <div class="am-u-sm-9">
-                                <input id = "deposit" readonly="readonly" th:value="${deposit}" type="number">
+                                       name = "username" required>
                             </div>
                         </div>
 
                         <div class = "am-form-group">
-                            <label for = "reader-password" class = "am-u-sm-3 am-form-label">密码</label>
+                            <label for = "deposit" class = "am-u-sm-3 am-form-label">保证金</label>
                             <div class = "am-u-sm-9">
-                                <input type = "password" id = "reader-password" placeholder = "输入密码/Password"
-                                       name = "password" value="12345678">
+                                <input id = "deposit" readonly = "readonly" th:value = "${registerMoney}" type = "text">
                             </div>
                         </div>
 
@@ -203,7 +195,7 @@
                         <div class = "am-form-group">
                             <label for = "reader-email" class = "am-u-sm-3 am-form-label">邮箱</label>
                             <div class = "am-u-sm-9">
-                                <input type = "text" id = "reader-email" placeholder = "输入邮箱/Email" name = "email">
+                                <input type = "email" id = "reader-email" placeholder = "输入邮箱/Email" name = "email">
                             </div>
                         </div>
 
