@@ -30,4 +30,19 @@ public class AnnouncementService
         announcement.setDate(new Date());
         announcementDAO.save(announcement);
     }
+
+    public void modifyAnnouncement(Announcement tmp)
+    {
+        Announcement announcement = announcementDAO.findById(tmp.getId()).get();
+        announcement.setDate(new Date());
+        announcement.setUsername(userService.getUser().getUsername());
+        announcement.setTitle(tmp.getTitle());
+        announcement.setContent(tmp.getContent());
+        announcementDAO.save(announcement);
+    }
+
+    public void deleteAnnouncement(int id)
+    {
+        announcementDAO.deleteById(id);
+    }
 }

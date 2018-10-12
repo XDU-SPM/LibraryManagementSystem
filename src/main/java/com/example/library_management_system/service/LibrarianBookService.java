@@ -370,4 +370,14 @@ public class LibrarianBookService
         else
             bkunitOperatingHistory.setBookName(bookDAO.findByIsbn(bkunitOperatingHistory.getBuid()).getTitle());
     }
+
+    public Set<Account> getPaidAccounts()
+    {
+        return null;
+    }
+
+    public Set<Account> getUnPaidAccounts()
+    {
+        return null;
+    }
 }
