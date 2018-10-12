@@ -115,10 +115,9 @@ public class LibrarianBookController
     }
 
     @RequestMapping(value = "/librarian/librarian_record", method = RequestMethod.GET)
-    public String getReserves(Model model, @RequestParam(value = "start", defaultValue = "0") int start,
-                              @RequestParam(value = "size", defaultValue = "10") int size)
+    public String getReserves(Model model)
     {
-        model.addAttribute("page", librarianBookService.getReserves(start, size));
+        model.addAttribute("set", librarianBookService.getReserves());
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
         return "librarian/librarian_record";

@@ -340,6 +340,11 @@ public class LibrarianBookService
         return userBookDAO.findAllByStatusBetween(UserBookUtil.RESERVATION, UserBookUtil.RESERVATION_CANCEL, pageable);
     }
 
+    public Set<UserBook> getReserves()
+    {
+        return userBookDAO.findAllByStatusOrStatusOrStatusOrStatus(UserBkunitUtil.BORROWED, UserBookUtil.RESERVATION, UserBookUtil.RESERVATION_FAIL, UserBookUtil.RESERVATION_CANCEL);
+    }
+
     public Set<BkunitOperatingHistory> getBkunitOperatingHistory(int status, boolean bkunit)
     {
         Set<BkunitOperatingHistory> bkunitOperatingHistories = bkunitOperatingHistoryDAO.findAllByStatus(status);
