@@ -342,7 +342,7 @@
                 mydata=data;
                 for(var num=0;num<12;num++)
                 {
-                    datedata.push(data[num].date);
+                    datedata.push(date2str(data[num].date,"MM-dd"));
                     finedata.push(data[num].fine);
                     depositdata.push(data[num].deposit);
                 }
