@@ -354,5 +354,36 @@
         document.getElementById("content2").value=content;
     }
 </script>
+<script>
+    $(function(){
+        $("table#announce tbody").on('click', 'button.delete', function () {
+            let id = $('#announce').DataTable().rows($('#announce').DataTable().row($(this).parents('tr'))).data()[0][0];
+            deletemy(id, $(this));
+        })
+    });
+
+    function fun(val) {
+        $('#announce').DataTable().row(val.parents('tr')).remove().draw();
+    }
+
+    function deletemy(id, val) {
+        $.ajax(
+            {
+                method: 'GET',
+                url: "deleteReader",
+                data: {id: id},
+                success: function (data) {
+                    if (data.status == 0) {
+                        alert("删除成功");
+                        fun(val);
+                    }
+                    else {
+                        alert("删除失败");
+                    }
+                }
+            }
+        );
+    }
+</script>
 </body>
 </html>
