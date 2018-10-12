@@ -266,35 +266,6 @@
 <script type = "text/javascript" src = "assets/js/charts/echarts.min.js"></script>
 
 <script>
-    function date2str(x,y) {
-        x1 = new Date(x);
-        var z ={y:x1.getFullYear(),M:x1.getMonth()+1,d:x1.getDate(),h:x1.getHours(),m:x1.getMinutes(),s:x1.getSeconds()};
-        return y.replace(/(y+|M+|d+|h+|m+|s+)/g,function(v) {return ((v.length>1?"0":"")+eval('z.'+v.slice(-1))).slice(-(v.length>2?v.length:2))});
-    }
-
-    var mydata = [];
-    var option;
-    function getbyyear() {
-        var year = $('#year').val();
-        console.log(year);
-        $.ajax({
-            type: "get",
-            data: {year:year},
-            url: "getMonthIncome",
-            success: function (data) {
-                mydata=data;
-                echarts.init(document.getElementById("income_month")).setOption(option);
-            },
-            error: function (data) {
-                alert("发生错误，请稍后再试！");
-            }
-        });
-    }
-
-    console.log(mydata);
-
-
-
     (function(){
 
 
@@ -348,6 +319,45 @@
 
         myChart.setOption(option);
     })();
+    function date2str(x,y) {
+        x1 = new Date(x);
+        var z ={y:x1.getFullYear(),M:x1.getMonth()+1,d:x1.getDate(),h:x1.getHours(),m:x1.getMinutes(),s:x1.getSeconds()};
+        return y.replace(/(y+|M+|d+|h+|m+|s+)/g,function(v) {return ((v.length>1?"0":"")+eval('z.'+v.slice(-1))).slice(-(v.length>2?v.length:2))});
+    }
+
+    var mydata = [];
+    var datedata = [];
+    var finedata = [];
+    var depositdata = [];
+    var option;
+    function getbyyear() {
+        var year = $('#year').val();
+        console.log(year);
+        $.ajax({
+            type: "get",
+            data: {year:year},
+            url: "getMonthIncome",
+            success: function (data) {
+                mydata=data;
+                for(var num=0;num<12;num++)
+                {
+                    datedata.push(data[num].date);
+                    finedata.push(data[num].fine);
+                    depositdata.push(data[num].deposit);
+                }
+                echarts.init(document.getElementById("income_month")).setOption(option);
+            },
+            error: function (data) {
+                alert("发生错误，请稍后再试！");
+            }
+        });
+    }
+
+    console.log(mydata);
+
+
+
+
 </script>
 
 <script type = "text/javascript">
