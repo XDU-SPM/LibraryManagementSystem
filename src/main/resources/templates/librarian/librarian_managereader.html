@@ -203,8 +203,8 @@
                                 </td>
                                 <td class = "am-hide-sm-only" th:text = "${user.name}"></td>
                                 <td class = "am-hide-sm-only" th:text = "${user.email}"></td>
-                                <td class = "am-hide-sm-only" th:text = "${user.paidFine}"></td>
-                                <td class = "am-hide-sm-only" th:text = "${user.unPaidFine}"></td>
+                                <td class = "am-hide-sm-only" ><a th:text = "${user.paidFine}" th:href="@{librarian_fine(uid=${user.id})}"></a></td>
+                                <td class = "am-hide-sm-only" ><a th:text = "${user.unPaidFine}" th:href="@{librarian_fine2(uid=${user.id})}"></a></td>
                                 <td>
                                     <div class = "am-btn-toolbar">
                                         <div class = "am-btn-group am-btn-group-xs">
