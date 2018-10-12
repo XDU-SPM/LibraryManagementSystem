@@ -42,6 +42,9 @@ public class ReaderBookService
     @Autowired
     private ReviewDAO reviewDAO;
 
+    @Autowired
+    private GlobalUtilService globalUtilService;
+
     public List<MonthBorrow> monthBorrows()
     {
         User reader = userService.getUser();
@@ -176,5 +179,28 @@ public class ReaderBookService
         review.setBook(null);
         review.setUser(null);
         reviewDAO.delete(review);
+    }
+
+    public int renew(int id)
+    {
+        UserBkunit userBkunit = userBkunitDAO.findById(id);
+
+        if (userBkunit.getStatus() == UserBkunitUtil.RENEW)
+            return -1;
+
+        if (userBkunit.getStatus() == UserBkunitUtil.OVERDUE)
+            return -2;
+
+        if (userBkunit.getStatus() != UserBkunitUtil.BORROWED)
+            return -3;
+
+        userBkunit.setStatus(UserBkunitUtil.RENEW);
+        Date borrowDate = userBkunit.getBorrowDate();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(borrowDate);
+        calendar.add(Calendar.DATE, 2 * globalUtilService.getMaxBorrowDays());
+        userBkunit.setReturnDate(calendar.getTime());
+        userBkunitDAO.save(userBkunit);
+        return 0;
     }
 }

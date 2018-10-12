@@ -148,4 +148,11 @@ public class ReaderBookController
         model.addAttribute("username", userService.getUser().getUsername());
         return "deleteReview";
     }
+
+    @RequestMapping(value = "/reader/renew", method = RequestMethod.GET)
+    @ResponseBody
+    public Status renew(int id)
+    {
+        return new Status(readerBookService.renew(id), globalUtilService.getMaxBorrowDays());
+    }
 }

@@ -1,14 +1,11 @@
 package com.example.library_management_system.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import com.example.library_management_system.service.*;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import com.example.library_management_system.bean.*;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class AdminController
@@ -18,12 +15,6 @@ public class AdminController
 
     @Autowired
     private UserService userService;
-
-    /*@RequestMapping(value = "admin/reader_create", method = RequestMethod.GET)
-    public String admin_reader_create()
-    {
-        return "admin/reader_create";
-    }*/
 
     @RequestMapping(value = "admin/librarian_create", method = RequestMethod.GET)
     public String admin_librarian_create(Model model)
@@ -84,10 +75,10 @@ public class AdminController
     @RequestMapping(value = "/admin/modifyPassword", method = RequestMethod.POST)
     public String modifyPassword(String oldPassword, String newPassword, Model model)
     {
-        model.addAttribute("status", adminService.modifyPassword(oldPassword, newPassword));
+        model.addAttribute("status", userService.modifyPassword(oldPassword, newPassword) ? 1 : 0);
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
-        return "";
+        return "admin/password_change";
     }
 
     @RequestMapping(value = "/admin/librarian_edit", method = RequestMethod.GET)

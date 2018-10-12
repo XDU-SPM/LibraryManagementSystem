@@ -374,7 +374,7 @@
                 data: {id: book_id},
                 url: "reserveCancel",
                 success: function (data) {
-                    if (data.status == 1){
+                    if (data.status == 0){
                         alert("成功取消！");
                         getOnePageBook1_2(0);
                         $('#book-appointment').empty();
@@ -399,10 +399,14 @@
                 data: {id: book_id},
                 url: "renew",
                 success: function (data) {
-                    if (data.status == 1)
+                    if (data.status == 0)
                         alert("成功续借，归还时间延后" + data.number + "天！");
-                    else
+                    else if (data.status == -1)
                         alert("续借失败，只能续借一次！");
+                    else if (data.status == -2)
+                        alert("续借失败，本书的借阅期限已到期！");
+                    else
+                        alert("续借失败，发生了未知的错误！");
                     getOnePageBook2_2(0);
                 },
                 error: function (data) {

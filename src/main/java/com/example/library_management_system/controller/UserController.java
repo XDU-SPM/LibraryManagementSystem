@@ -3,7 +3,6 @@ package com.example.library_management_system.controller;
 import com.example.library_management_system.bean.Role;
 import com.example.library_management_system.bean.User;
 import com.example.library_management_system.service.BookService;
-import com.example.library_management_system.service.GlobalUtilService;
 import com.example.library_management_system.service.UserService;
 import com.example.library_management_system.utils.RoleUtil;
 import com.example.library_management_system.utils.Status;
@@ -22,9 +21,6 @@ public class UserController
 {
     @Autowired
     private UserService userService;
-
-    @Autowired
-    private GlobalUtilService globalUtilService;
 
     @Autowired
     private BookService bookService;
@@ -98,39 +94,12 @@ public class UserController
         return librarian;
     }
 
-    /*@RequestMapping(value = "/admin/accept", method = RequestMethod.GET)
-    @ResponseBody
-    public Message accept(int id)
-    {
-        String role = userService.accept(id);
-        if (RoleUtil.ROLE_READER_CHECK.equals(role))
-            return new Message("readerHome");
-        else if (RoleUtil.ROLE_LIBRARIAN_CHECK.equals(role))
-            return new Message("librarianHome");
-        return null;
-    }*/
-
-    @RequestMapping(value = "/reader/renew", method = RequestMethod.GET)
-    @ResponseBody
-    public Status renew(int id)
-    {
-        return new Status(userService.renew(id) ? 1 : 0, globalUtilService.getMaxBorrowDays());
-    }
-
     @RequestMapping(value = "/forgetPassword", method = RequestMethod.POST)
     public String forgetPassword(String username, Model model)
     {
         System.out.println(username);
         model.addAttribute("status", userService.forgetPassword(username));
         return "forgetPassword";
-    }
-
-    @RequestMapping(value = "", method = RequestMethod.POST)
-    @ResponseBody
-    public Status modifyPassword(String password)
-    {
-        userService.modifyPassword(password);
-        return new Status(1);
     }
 
     @RequestMapping(value = {"/librarian/checkUser", "/reader/checkUser", "/checkUser", "/admin/checkUser"}, method = RequestMethod.GET)
