@@ -191,16 +191,18 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <!--th:href = "@{librarian_announce(id=${announce.id})}"-->
                         <tr th:each = "announce:${set}">
                             <td th:text = "${announce.id}"></td>
-                            <td><a th:text = "${announce.title}" th:href = "@{librarian_announce(id=${announce.id})}"
-                                   <!--th:onclick = "modify(${announce.id},${announce.title},${announce.content})"-->></a></td>
+                            <td>
+                                <a th:text = "${announce.title}"  th:onclick="|javascript:modify(${announce.id},${announce.title},${announce.content})|"></a>
+                            </td>
                             <td th:text = "${announce.username}"></td>
                             <td class = "am-hide-sm-only" th:text = "${announce.content}"></td>
                             <td>
                                 <div class = "am-btn-toolbar">
                                     <div class = "am-btn-group am-btn-group-xs">
-                                        <button class = "am-btn am-btn-default am-btn-xs am-text-secondary" ><a
+                                        <button class = "am-btn am-btn-default am-btn-xs am-text-secondary close" ><a
                                                 class = "am-icon-close" >删除</a>
                                         </button>
                                     </div>
@@ -255,7 +257,7 @@
                 <form class = "am-modal-bd am-form am-form-horizontal" method = "post" action = "addbook"
                       enctype = "multipart/form-data">
                     <div class = "am-form-group">
-                        <label for = "id" class = "am-u-sm-3 am-form-label" readonly = "readonly">ID</label>
+                        <label for = "id2" class = "am-u-sm-3 am-form-label" readonly = "readonly">ID</label>
                         <div class = "am-u-sm-9">
                             <input type = "text" id = "id2" placeholder = "id" name = "">
                         </div>
@@ -323,18 +325,6 @@
         });
     });
 </script>
-<script th:inline = "javascript">
-    function modify(id, title, content) {
-        $('#my-prompt2').modal(
-            {
-                relatedTarget: this
-            }
-        );
-        $('#id2').attr("value", id);
-        $('#title2').attr("value", title);
-        $('#content2').attr("value", content);
-    }
-</script>
 <script type = "text/javascript" src = "assets/js/test.js"></script>
 <script th:inline = "javascript" src = "dist/amazeui.datatables.js"></script>
 <script>
@@ -353,6 +343,19 @@
         translate();
     })
 </script>
-
+<script th:inline = "javascript">
+    function modify(id, title, content) {
+        alert("1");
+        console.log(id);
+        $('#my-prompt2').modal(
+            {
+                relatedTarget: this
+            }
+        );
+        $('#id2').attr("value", id);
+        $('#title2').attr("value", title);
+        $('#content2').attr("value", content);
+    }
+</script>
 </body>
 </html>

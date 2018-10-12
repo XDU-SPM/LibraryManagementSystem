@@ -262,11 +262,7 @@
         );
     });
 
-    $(function(){
-        $("table#readerlist tbody").on('click', 'button.delete', function () {
-            $('#readerlist').DataTable().row($(this).parents('tr')).remove().draw();
-        })
-    });
+
 
     function deleteuser(id) {
         $.ajax(
@@ -277,6 +273,7 @@
                 success: function (data) {
                     if (data.status == 0) {
                         alert("删除成功");
+                        status = true;
                         // document.getElementById('readlist').deleteRow(id);
                     }
                     else {
@@ -286,6 +283,19 @@
             }
         );
     }
+
+    $(function(){
+        $("table#readerlist tbody").on('click', 'button.delete', function () {
+                // if(status){
+                //     $('#readerlist').DataTable().row($(this).parents('tr')).remove().draw();
+                //     status = false;
+                // }
+                console.log($('#readerlist').row($(this).parent('tr').children('td')));
+                console.log($('#readerlist').DataTable().row($(this).parent('tr')));
+                console.log($('#readerlist').DataTable().row($(this).parent('tr')).column(0).context);
+                console.log($('#readerlist').DataTable().row($(this).parent('tr')).data());
+        })
+    });
 </script>
 <script type = "text/javascript">
     $("#change").click(function () {
