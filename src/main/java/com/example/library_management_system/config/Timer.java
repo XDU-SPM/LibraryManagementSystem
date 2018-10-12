@@ -17,7 +17,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 @Component
 @EnableScheduling
@@ -47,6 +46,7 @@ public class Timer
     @Scheduled(cron = "0 0 0 * * ?")
     public void modifyUserBkunitState()
     {
+        System.out.println("in modifyUserBkunitState");
         List<UserBkunit> userBkunits = userBkunitDAO.findAllByStatusOrStatus(UserBkunitUtil.BORROWED, UserBkunitUtil.RENEW);
         Calendar now = Calendar.getInstance();
         for (UserBkunit userBkunit : userBkunits)
@@ -61,6 +61,7 @@ public class Timer
             overdue.add(Calendar.DATE, days);
             if (now.getTime().after(overdue.getTime()))
             {
+                System.out.println("in modifyUserBkunitState");
                 userBkunit.setStatus(UserBkunitUtil.OVERDUE);
                 userBkunitDAO.save(userBkunit);
 
@@ -75,9 +76,10 @@ public class Timer
      * Two books borrowed by one reader have expired.
      */
     @Transactional
-    @Scheduled(cron = "0 0 1 * * ?")
+    @Scheduled(cron = "0 1 0 * * ?")
     public void deduction()
     {
+        System.out.println("in deduction");
         List<User> users = userDAO.findAll();
         double money = globalUtilService.getOverdueMoney();
         for (User user : users)
@@ -85,6 +87,7 @@ public class Timer
             List<UserBkunit> userBkunits = userBkunitDAO.findAllByUserAndStatus(user, UserBkunitUtil.OVERDUE);
             for (UserBkunit userBkunit : userBkunits)
             {
+                System.out.println("in in deduction");
                 Account account = new Account(AccountUtil.OVERDUE, user.getId(), money, userBkunit.getBkunit().getId(), new Date());
                 accountDAO.save(account);
             }
@@ -93,15 +96,18 @@ public class Timer
         }
     }
 
-    @Scheduled(cron = "0 0 0 * * ?")
+    @Scheduled(cron = "0 1 0 * * ?")
     public void sendMail()
     {
+        System.out.println("in sendMail");
         List<UserBkunit> userBkunits = userBkunitDAO.findAllByStatus(UserBkunitUtil.OVERDUE);
         for (UserBkunit userBkunit : userBkunits)
         {
+            System.out.println("in in sendMail");
             User user = userBkunit.getUser();
-            String context = "";
-            String subject = "";
+            Bkunit bkunit = userBkunit.getBkunit();
+            String context = user.getUsername() + ", " + bkunit.getBook().getTitle();
+            String subject = "233";
             try
             {
                 MailUtil.sendmail(user.getEmail(), context, subject);
