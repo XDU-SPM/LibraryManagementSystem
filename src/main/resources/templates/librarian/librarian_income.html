@@ -371,13 +371,8 @@
             success: function (data) {
                 mydata=data;
                 console.log(data);
-                for(var num=0;num<52;num++)
-                {
-                    datedata.push(date2str(data[num].date,"MM"));
-                    finedata.push(data[num].fine);
-                    depositdata.push(data[num].deposit);
-                }
-                echarts.init(document.getElementById("income_month")).setOption(option);
+                
+
             },
             error: function (data) {
                 alert("发生错误，请稍后再试！");
