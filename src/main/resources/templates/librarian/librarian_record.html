@@ -59,12 +59,6 @@
             </li>
         </ul>
 
-        <form class = "am-topbar-form am-topbar-left am-form-inline" role = "search">
-            <div class = "am-form-group">
-                <input type = "text" class = "am-form-field am-input-sm" placeholder = "搜索">
-            </div>
-        </form>
-
         <div class = "am-collapse am-topbar-collapse" id = "topbar-collapse">
 
             <ul class = "am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
@@ -196,7 +190,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each = "record:${page}" >
+                        <tr th:each = "record:${set}" >
                             <td th:text = "${record.id}"></td>
                             <td ><a th:text = "${record.book.title}" th:href="@{librarian_book(isbn=${record.book.isbn})}"></a></td>
                             <td th:text = "${record.book.isbn}"></td>
@@ -205,17 +199,6 @@
                             <td class = "am-hide-sm-only" th:text = "${record.status}"></td>
                         </tr>
                     </table>
-                    <div class = "am-cf">
-                        <p th:text="'共有'+${page.numberOfElements}+'条数据'"></p>
-                        <div class = "am-fr">
-                            <ul class = "am-pagination">
-                                <li><a th:href = "@{librarian_table(start=0)}">首页</a></li>
-                                <li><a th:href = "@{librarian_table(start=${page.number}-1)}">上一页</a></li>
-                                <li><a th:href = "@{librarian_table(start=${page.number}+1)}">下一页</a></li>
-                                <li><a th:href="@{librarian_table(start=${page.totalPages})}">末页</a></li>
-                            </ul>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -238,21 +221,24 @@
 <!--[if (gte IE 9)|!(IE)]><!-->
 <script src = "assets/js/jquery.min.js"></script>
 <!--<![endif]-->
-<!--<script>-->
-<!--$(function () {-->
-<!--$('#booklist').DataTable(-->
-<!--{-->
-<!--"ordering":false,-->
-<!--"bLengthChange":false,-->
-<!--}-->
-<!--);-->
-<!--})-->
-<!--</script>-->
+
 
 <script src = "dist/amazeui.datatables.min.js"></script>
 <script src = "assets/js/amazeui.min.js"></script>
 <script src = "assets/js/app.js"></script>
+<script>
+    $(function () {
+        $('#record').DataTable(
+            {
+                "ordering":false,
+                "bLengthChange":false,
+            }
+        );
+    })
+</script>
+
 <script type="text/javascript">
+
     function checkNumber(theObj) {
         var reg = /[1-9]/;
         if (reg.test(theObj)) {
@@ -263,6 +249,10 @@
 
     function status(status){
         status=parseInt(status);
+        if(status==1)
+        {
+            return "预约成功"
+        }
         var array=["已预约", "预约失败", "取消预约"];
         return array[status-6];
     }
