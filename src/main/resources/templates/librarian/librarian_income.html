@@ -282,6 +282,7 @@
             data: {year:year},
             url: "getMonthIncome",
             success: function (data) {
+                console.log(data);
                 mydata=data;
                 echarts.init(document.getElementById("income_month")).setOption(option);
             },
