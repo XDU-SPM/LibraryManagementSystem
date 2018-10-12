@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" xmlns="http://www.w3.org/1999/html">
+<html lang = "en" xmlns:th = "http://www.thymeleaf.org"
+      xmlns:sec = "http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" xmlns = "http://www.w3.org/1999/html">
 <head>
     <meta charset = "UTF-8">
     <title>BiblioSoft</title>
@@ -91,10 +91,10 @@
     <div class = "admin-sidebar am-offcanvas" id = "admin-offcanvas">
         <div class = "am-offcanvas-bar admin-offcanvas-bar">
             <div class = "user-info">
-                <img class = "am-img-circle am-img-thumbnail am-center" width="200" height="200"
-                     th:src= "${avatarPath}"
+                <img class = "am-img-circle am-img-thumbnail am-center" width = "200" height = "200"
+                     th:src = "${avatarPath}"
                      alt = ""/>
-                <p style = "text-align: center" th:text="${username}">纯洁神王</p>
+                <p style = "text-align: center" th:text = "${username}">纯洁神王</p>
             </div>
 
             <ul class = "am-list admin-sidebar-list">
@@ -109,11 +109,11 @@
                         <li><a href = "librarian_borrow"><span class = "am-icon-leaf"></span> 借阅</a></li>
                         <li><a href = "librarian_return"><span class = "am-icon-mail-reply"></span> 归还</a></li>
                         <li><a href = "librarian_table"><span class = "am-icon-book"></span> 管理图书</a></li>
-                        <li><a href = "librarian_deletebookhistory"><span class="am-icon-trash"> 删除记录</span></a></li>
+                        <li><a href = "librarian_deletebookhistory"><span class = "am-icon-trash"> 删除记录</span></a></li>
                         </li>
                     </ul>
                 </li>
-                <li class="admin-parent">
+                <li class = "admin-parent">
                     <a class = "am-cf" data-am-collapse = "{target: '#collapse-nav2'}"><span
                             class = "am-icon-user"></span> 管理读者 <span
                             class = "am-icon-angle-right am-fr am-margin-right"></span></a>
@@ -122,7 +122,7 @@
                         <li><a href = "librarian_managereader"><span class = "am-icon-pencil"></span> 管理读者</a></li>
                     </ul>
                 </li>
-                <li class="admin-parent">
+                <li class = "admin-parent">
                     <a class = "am-cf" data-am-collapse = "{target: '#collapse-nav3'}"><span
                             class = "am-icon-table"></span> 记录 <span
                             class = "am-icon-angle-right am-fr am-margin-right"></span></a>
@@ -130,7 +130,7 @@
                         <li><a href = "librarian_record"><span class = "am-icon-book"></span> 预约记录</a></li>
                         <li><a href = "librarian_history"><span class = "am-icon-book"></span> 借阅记录</a></li>
                         <li><a href = "librarian_income"><span class = "am-icon-money"></span> 收入记录 </a></li>
-                        <li><a href = "librarian_fine"><span class="am-icon-bolt"></span> 罚金记录</a></li>
+                        <li><a href = "librarian_fine"><span class = "am-icon-bolt"></span> 罚金记录</a></li>
                     </ul>
                 </li>
                 <li><a href = "librarian_announce"><span class = "am-icon-comment"></span> 发布公告</a></li>
@@ -191,17 +191,18 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each = "announce:${page}">
+                        <tr th:each = "announce:${set}">
                             <td th:text = "${announce.id}"></td>
-                            <td ><a th:text = "${announce.title}" th:href="@{librarian_announce(id=${announce.id})}" th:onclick="modify(${announce.id},${announce.title},${announce.content})" ></a></td>
+                            <td><a th:text = "${announce.title}" th:href = "@{librarian_announce(id=${announce.id})}"
+                                   <!--th:onclick = "modify(${announce.id},${announce.title},${announce.content})"-->></a></td>
                             <td th:text = "${announce.username}"></td>
                             <td class = "am-hide-sm-only" th:text = "${announce.content}"></td>
                             <td>
                                 <div class = "am-btn-toolbar">
                                     <div class = "am-btn-group am-btn-group-xs">
-                                        <button class = "am-btn am-btn-default am-btn-xs am-text-secondary" ><a
-                                                th:href="@{deletebook(id=${bunit.id},start=${page.number})}"
-                                                class = "am-icon-close" >删除</a>
+                                        <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><a
+                                                th:href = "@{deletebook(id=${bunit.id},start=${page.number})}"
+                                                class = "am-icon-close">删除</a>
                                         </button>
                                     </div>
                                 </div>
@@ -221,15 +222,8 @@
         <div class = "am-modal am-modal-prompt" tabindex = "-1" id = "my-prompt1">
             <div class = "am-modal-dialog">
                 <div class = "am-modal-hd">添加图书</div>
-                <form class = "am-modal-bd am-form am-form-horizontal" method = "post" action = "addbook" enctype = "multipart/form-data">
-                    <div class = "am-form-group">
-                        <label for = "id" class = "am-u-sm-3 am-form-label" readonly="readonly">ID</label>
-                        <div class = "am-u-sm-9">
-                            <input type = "text" id = "id" placeholder = "id" name = "">
-                        </div>
-                    </div>
-
-
+                <form class = "am-modal-bd am-form am-form-horizontal" method = "post" action = "addAnnouncement"
+                      enctype = "multipart/form-data">
                     <div class = "am-form-group">
                         <label for = "title" class = "am-u-sm-3 am-form-label">标题</label>
                         <div class = "am-u-sm-9">
@@ -238,22 +232,20 @@
                     </div>
 
 
-
                     <div class = "am-form-group">
                         <label for = "content" class = "am-u-sm-3 am-form-label">内容</label>
                         <div class = "am-u-sm-9">
                             <!--<input type = "text" id = "content" placeholder = "内容 / Content" name = "brief">-->
-                            <textarea id = "content" placeholder = "内容 / Content" name = "brief" cols="10" rows="3">
+                            <textarea id = "content" placeholder = "内容 / Content" name = "content" cols = "10" rows = "3">
                             </textarea>
                         </div>
                     </div>
 
 
-
-
                     <div class = "am-modal-footer am-g">
                         <div class = "am-u-sm-7 am-u-sm-push-2 am-u-end">
-                            <input type = "submit" data-am-modal-confirm value = "确认/confirm" class = "am-btn am-btn-primary"></div>
+                            <input type = "submit" data-am-modal-confirm value = "确认/confirm"
+                                   class = "am-btn am-btn-primary"></div>
                     </div>
                 </form>
             </div>
@@ -261,9 +253,10 @@
         <div class = "am-modal am-modal-prompt" tabindex = "-1" id = "my-prompt2">
             <div class = "am-modal-dialog">
                 <div class = "am-modal-hd">添加图书</div>
-                <form class = "am-modal-bd am-form am-form-horizontal" method = "post" action = "addbook" enctype = "multipart/form-data">
+                <form class = "am-modal-bd am-form am-form-horizontal" method = "post" action = "addbook"
+                      enctype = "multipart/form-data">
                     <div class = "am-form-group">
-                        <label for = "id" class = "am-u-sm-3 am-form-label" readonly="readonly">ID</label>
+                        <label for = "id" class = "am-u-sm-3 am-form-label" readonly = "readonly">ID</label>
                         <div class = "am-u-sm-9">
                             <input type = "text" id = "id2" placeholder = "id" name = "">
                         </div>
@@ -278,22 +271,21 @@
                     </div>
 
 
-
                     <div class = "am-form-group">
                         <label for = "content" class = "am-u-sm-3 am-form-label">内容</label>
                         <div class = "am-u-sm-9">
                             <!--<input type = "text" id = "content" placeholder = "内容 / Content" name = "brief">-->
-                            <textarea id = "content2" placeholder = "内容 / Content" name = "brief" cols="10" rows="3">
+                            <textarea id = "content2" placeholder = "内容 / Content" name = "brief" cols = "10"
+                                      rows = "3">
                             </textarea>
                         </div>
                     </div>
 
 
-
-
                     <div class = "am-modal-footer am-g">
                         <div class = "am-u-sm-7 am-u-sm-push-2 am-u-end">
-                            <input type = "submit" data-am-modal-confirm value = "确认/confirm" class = "am-btn am-btn-primary"></div>
+                            <input type = "submit" data-am-modal-confirm value = "确认/confirm"
+                                   class = "am-btn am-btn-primary"></div>
                     </div>
                 </form>
             </div>
@@ -310,11 +302,10 @@
 <script src = "assets/js/amazeui.ie8polyfill.min.js"></script>
 <![endif]-->
 
-<script th:inline="javascript" src = "assets/js/jquery.min.js"></script>
+<script th:inline = "javascript" src = "assets/js/jquery.min.js"></script>
 
 
-
-<script th:inline="javascript" src = "dist/amazeui.datatables.js"></script>
+<script th:inline = "javascript" src = "dist/amazeui.datatables.js"></script>
 <script src = "assets/js/amazeui.min.js"></script>
 <script src = "assets/js/app.js"></script>
 
@@ -333,26 +324,26 @@
         });
     });
 </script>
-<script th:inline="javascript">
-    function modify(id,title,content) {
+<script th:inline = "javascript">
+    function modify(id, title, content) {
         $('#my-prompt2').modal(
             {
                 relatedTarget: this
             }
         );
-        $('#id2').attr("value",id);
-        $('#title2').attr("value",title);
-        $('#content2').attr("value",content);
+        $('#id2').attr("value", id);
+        $('#title2').attr("value", title);
+        $('#content2').attr("value", content);
     }
 </script>
 <script type = "text/javascript" src = "assets/js/test.js"></script>
-<script th:inline="javascript" src = "dist/amazeui.datatables.js"></script>
+<script th:inline = "javascript" src = "dist/amazeui.datatables.js"></script>
 <script>
     $(function () {
         $('#announce').DataTable(
             {
-                "ordering":false,
-                "bLengthChange":false,
+                "ordering": false,
+                "bLengthChange": false,
             }
         );
     })

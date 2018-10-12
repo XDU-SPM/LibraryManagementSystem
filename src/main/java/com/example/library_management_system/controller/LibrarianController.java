@@ -1,5 +1,6 @@
 package com.example.library_management_system.controller;
 
+import com.example.library_management_system.bean.Announcement;
 import com.example.library_management_system.bean.User;
 import com.example.library_management_system.service.AnnouncementService;
 import com.example.library_management_system.service.LibrarianBookService;
@@ -84,6 +85,17 @@ public class LibrarianController
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
         model.addAttribute("set", announcementService.getAnnouncements());
+        return "librarian/librarian_announce";
+    }
+
+    @RequestMapping(value = "/librarian/addAnnouncement", method = RequestMethod.POST)
+    public String addAnnouncement(Announcement announcement, Model model)
+    {
+        announcementService.addAnnouncement(announcement);
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
+        model.addAttribute("set", announcementService.getAnnouncements());
+        model.addAttribute("status", true);
         return "librarian/librarian_announce";
     }
 }
