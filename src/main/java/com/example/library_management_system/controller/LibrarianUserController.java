@@ -54,6 +54,7 @@ public class LibrarianUserController
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
         model.addAttribute("set", librarianUserService.getDayIncome());
+        model.addAttribute("set2", librarianUserService.getWeekIncome());
         return "librarian/librarian_income";
     }
 
