@@ -59,12 +59,6 @@
             </li>
         </ul>
 
-        <form class = "am-topbar-form am-topbar-left am-form-inline" role = "search">
-            <div class = "am-form-group">
-                <input type = "text" class = "am-form-field am-input-sm" placeholder = "搜索">
-            </div>
-        </form>
-
         <div class = "am-collapse am-topbar-collapse" id = "topbar-collapse">
 
             <ul class = "am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
@@ -255,6 +249,10 @@
 
     function status(status){
         status=parseInt(status);
+        if(status==1)
+        {
+            return "预约成功"
+        }
         var array=["已预约", "预约失败", "取消预约"];
         return array[status-6];
     }
