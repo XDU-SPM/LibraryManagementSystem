@@ -1,6 +1,7 @@
 package com.example.library_management_system.controller;
 
 import com.example.library_management_system.bean.User;
+import com.example.library_management_system.service.AnnouncementService;
 import com.example.library_management_system.service.LibrarianBookService;
 import com.example.library_management_system.service.LibrarianUserService;
 import com.example.library_management_system.service.UserService;
@@ -21,6 +22,9 @@ public class LibrarianController
 
     @Autowired
     private LibrarianUserService librarianUserService;
+
+    @Autowired
+    private AnnouncementService announcementService;
 
     @RequestMapping(value = "/librarian/librarian_borrow", method = RequestMethod.GET)
     public String librarian_librarian_borrow(Model model)
@@ -79,6 +83,7 @@ public class LibrarianController
     {
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
+        model.addAttribute("set", announcementService.getAnnouncements());
         return "librarian/librarian_announce";
     }
 }
