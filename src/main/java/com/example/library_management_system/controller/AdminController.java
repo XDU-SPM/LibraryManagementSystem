@@ -84,10 +84,10 @@ public class AdminController
     @RequestMapping(value = "/admin/modifyPassword", method = RequestMethod.POST)
     public String modifyPassword(String oldPassword, String newPassword, Model model)
     {
-        model.addAttribute("status", adminService.modifyPassword(oldPassword, newPassword));
+        model.addAttribute("status", userService.modifyPassword(oldPassword, newPassword) ? 1 : 0);
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
-        return "";
+        return "admin/password_change";
     }
 
     @RequestMapping(value = "/admin/librarian_edit", method = RequestMethod.GET)

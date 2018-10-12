@@ -45,14 +45,4 @@ public class AdminService
         globalUtil.setOVERDUE_MONEY(money);
         globalUtilDAO.save(globalUtil);
     }
-
-    public boolean modifyPassword(String oldPassword, String newPassword)
-    {
-        User admin = userService.getUser();
-        if (!admin.getPassword().equals(oldPassword))
-            return false;
-        admin.setPassword(newPassword);
-        userDAO.save(admin);
-        return true;
-    }
 }

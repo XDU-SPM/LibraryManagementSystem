@@ -71,4 +71,13 @@ public class ReaderController
         model.addAttribute("username", userService.getUser().getUsername());
         return "redirect:reader_information";
     }
+
+    @RequestMapping(value = "/reader/modifyPassword", method = RequestMethod.POST)
+    public String modifyPassword(String oldPassword, String newPassword, Model model)
+    {
+        model.addAttribute("status", userService.modifyPassword(oldPassword, newPassword));
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
+        return "reader/password_change";
+    }
 }
