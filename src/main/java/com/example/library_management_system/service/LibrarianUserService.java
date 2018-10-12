@@ -49,4 +49,49 @@ public class LibrarianUserService
         }
         return money;
     }
+
+    public Set<Account> getPaidAccounts(int uid)
+    {
+        Set<Account> accounts =  accountDAO.findAllByUidAndType(uid, AccountUtil.FINE);
+        for (Account account : accounts)
+        {
+            setStyle(account);
+            setUsername(account);
+        }
+        return accounts;
+    }
+
+    public Set<Account> getUnPaidAccounts(int uid)
+    {
+        Set<Account> accounts =  accountDAO.findAllByUidAndTypeBetween(uid, AccountUtil.OVERDUE, AccountUtil.DAMAGE);
+        for (Account account : accounts)
+        {
+            setStyle(account);
+            setUsername(account);
+        }
+        return accounts;
+    }
+
+    private void setUsername(Account account)
+    {
+        account.setUsername(userDAO.findById(account.getUid()).getUsername());
+    }
+
+    private void setStyle(Account account)
+    {
+        String style = null;
+        switch (account.getType())
+        {
+            case 2:
+                style = "fine";
+                break;
+            case 3:
+                style = "overdue";
+                break;
+            case 4:
+                style = "damage or lost";
+                break;
+        }
+        account.setStyle(style);
+    }
 }

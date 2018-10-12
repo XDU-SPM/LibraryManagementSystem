@@ -16,5 +16,5 @@ public interface AccountDAO extends JpaRepository<Account, Integer>
 
     Set<Account> findAllByUidAndBkidAndTypeAndDateBetween(int uid, String bkid, int type, Date before, Date after);
 
-    Set<Account> findAllByUidAndBkidAndTypeBetween(int uid, String bkid, int type1, int type2);
+    Set<Account> findAllByUidAndTypeBetween(int uid, int type1, int type2);
 }

@@ -85,4 +85,18 @@ public class LibrarianUserController
         model.addAttribute("username", userService.getUser().getUsername());
         return "/librarian/librarian_readerinfo";
     }
+
+    @RequestMapping(value = "/librarian/librarian_fine", method = RequestMethod.GET)
+    public String getPaidAccounts(int uid)
+    {
+        librarianUserService.getPaidAccounts(uid);
+        return "librarian/librarian_fine";
+    }
+
+    @RequestMapping(value = "/librarian/librarian_fine2", method = RequestMethod.GET)
+    public String getUnPaidAccounts(int uid)
+    {
+        librarianUserService.getUnPaidAccounts(uid);
+        return "librarian/librarian_fine2";
+    }
 }
