@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" xmlns="http://www.w3.org/1999/html">
+<html lang = "en" xmlns:th = "http://www.thymeleaf.org"
+      xmlns:sec = "http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" xmlns = "http://www.w3.org/1999/html">
 <head>
     <meta charset = "UTF-8">
     <title>BiblioSoft</title>
@@ -91,10 +91,10 @@
     <div class = "admin-sidebar am-offcanvas" id = "admin-offcanvas">
         <div class = "am-offcanvas-bar admin-offcanvas-bar">
             <div class = "user-info">
-                <img class = "am-img-circle am-img-thumbnail am-center" width="200" height="200"
-                     th:src= "${avatarPath}"
+                <img class = "am-img-circle am-img-thumbnail am-center" width = "200" height = "200"
+                     th:src = "${avatarPath}"
                      alt = ""/>
-                <p style = "text-align: center" th:text="${username}">纯洁神王</p>
+                <p style = "text-align: center" th:text = "${username}">纯洁神王</p>
             </div>
 
             <ul class = "am-list admin-sidebar-list">
@@ -110,11 +110,11 @@
                         <li><a href = "librarian_borrow"><span class = "am-icon-leaf"></span> 借阅</a></li>
                         <li><a href = "librarian_return"><span class = "am-icon-mail-reply"></span> 归还</a></li>
                         <li><a href = "librarian_table"><span class = "am-icon-book"></span> 管理图书</a></li>
-                        <li><a href = "librarian_deletebookhistory"><span class="am-icon-trash"> 删除记录</span></a></li>
+                        <li><a href = "librarian_deletebookhistory"><span class = "am-icon-trash"> 删除记录</span></a></li>
                         </li>
                     </ul>
                 </li>
-                <li class="admin-parent">
+                <li class = "admin-parent">
                     <a class = "am-cf" data-am-collapse = "{target: '#collapse-nav2'}"><span
                             class = "am-icon-user"></span> 管理读者 <span
                             class = "am-icon-angle-right am-fr am-margin-right"></span></a>
@@ -123,7 +123,7 @@
                         <li><a href = "librarian_managereader"><span class = "am-icon-pencil"></span> 管理读者</a></li>
                     </ul>
                 </li>
-                <li class="admin-parent">
+                <li class = "admin-parent">
                     <a class = "am-cf" data-am-collapse = "{target: '#collapse-nav3'}"><span
                             class = "am-icon-table"></span> 记录 <span
                             class = "am-icon-angle-right am-fr am-margin-right"></span></a>
@@ -131,7 +131,7 @@
                         <li><a href = "librarian_record"><span class = "am-icon-book"></span> 预约记录</a></li>
                         <li><a href = "librarian_history"><span class = "am-icon-book"></span> 借阅记录</a></li>
                         <li><a href = "librarian_income"><span class = "am-icon-money"></span> 收入记录 </a></li>
-                        <li><a href = "librarian_fine"><span class="am-icon-bolt"></span> 罚金记录</a></li>
+                        <li><a href = "librarian_fine"><span class = "am-icon-bolt"></span> 罚金记录</a></li>
                     </ul>
                 </li>
                 <li><a href = "librarian_announce"><span class = "am-icon-comment"></span> 发布公告</a></li>
@@ -169,9 +169,10 @@
                 </ul>
                 <div class = "am-tabs-bd">
                     <div class = "am-tab-panel am-fade am-in am-active" id = "tab1">
-                        <div class = "am-g am-center am-padding" >
+                        <div class = "am-g am-center am-padding">
 
-                            <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "income_history">
+                            <table class = "am-table am-table-striped am-table-hover am-table-compact "
+                                   id = "income_history">
                                 <thead>
                                 <tr>
                                     <th class = "table-date">Date</th>
@@ -181,7 +182,7 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each = "record:${set}">
-                                    <td th:text="${record.date}"></td>
+                                    <td th:text = "${record.date}"></td>
                                     <td th:text = "${record.fine}"></td>
                                     <td th:text = "${record.deposit}"></td>
                                 </tr>
@@ -191,17 +192,18 @@
 
                     </div>
                     <div class = "am-tab-panel am-fade am-in " id = "tab2">
-                        <div class="am-g">
+                        <div class = "am-g">
                             <div class = "am-input-group am-input-group-sm">
-                                <input name="string" id="year" type = "text" class = "am-form-field am-radius" value="Year">
+                                <input name = "string" id = "year" type = "text" class = "am-form-field am-radius"
+                                       value = "Year">
                                 <span class = "am-input-group-btn">
                             <button class = "am-btn am-btn-default am-icon-search am-radius" onclick = "getbyyear()"
-                                    type = "button" >确认</button>
+                                    type = "button">确认</button>
                             </span>
                             </div>
                         </div>
-                        <div class="am-g">
-                            <div class="am-u-sm-12 am-u-md-12">
+                        <div class = "am-g">
+                            <div class = "am-u-sm-12 am-u-md-12">
                                 <div id = "income_month" style = "width: 100%;height: 400px;"></div>
                             </div>
                         </div>
@@ -241,8 +243,8 @@
     $(function () {
         $('#income_history').DataTable(
             {
-                "ordering":false,
-                "bLengthChange":false,
+                "ordering": false,
+                "bLengthChange": false,
             }
         );
     });
@@ -271,8 +273,7 @@
     var finedata = [];
     var depositdata = [];
     var option;
-    (function(){
-
+    (function () {
 
 
         var myChart = echarts.init(document.getElementById("income_month"));
@@ -311,23 +312,33 @@
                     name:'Fine',
                     type:'line',
                     stack: '总量1',
-                    data:finedata
+                    data: finedata
                 },
                 {
                     name:'Deposit',
                     type:'line',
                     stack: '总量2',
-                    data:depositdata
+                    data: depositdata
                 }
             ]
         };
 
         myChart.setOption(option);
     })();
-    function date2str(x,y) {
+
+    function date2str(x, y) {
         x1 = new Date(x);
-        var z ={y:x1.getFullYear(),M:x1.getMonth()+1,d:x1.getDate(),h:x1.getHours(),m:x1.getMinutes(),s:x1.getSeconds()};
-        return y.replace(/(y+|M+|d+|h+|m+|s+)/g,function(v) {return ((v.length>1?"0":"")+eval('z.'+v.slice(-1))).slice(-(v.length>2?v.length:2))});
+        var z = {
+            y: x1.getFullYear(),
+            M: x1.getMonth() + 1,
+            d: x1.getDate(),
+            h: x1.getHours(),
+            m: x1.getMinutes(),
+            s: x1.getSeconds()
+        };
+        return y.replace(/(y+|M+|d+|h+|m+|s+)/g, function (v) {
+            return ((v.length > 1 ? "0" : "") + eval('z.' + v.slice(-1))).slice(-(v.length > 2 ? v.length : 2))
+        });
     }
 
 
@@ -336,7 +347,7 @@
         console.log(year);
         $.ajax({
             type: "get",
-            data: {year:year},
+            data: {year: year},
             url: "getMonthIncome",
             success: function (data) {
                 mydata=data;
@@ -346,6 +357,7 @@
                     finedata.push(data[num].fine);
                     depositdata.push(data[num].deposit);
                 }
+                console.log(datedata)
                 echarts.init(document.getElementById("income_month")).setOption(option);
             },
             error: function (data) {
@@ -369,8 +381,6 @@
     }
 
     console.log(mydata);
-
-
 
 
 </script>
