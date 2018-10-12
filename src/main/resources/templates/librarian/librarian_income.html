@@ -274,8 +274,8 @@
 
     var mydata = [];
     var option;
-    function getbyyear(year) {
-        year = $('#year').innerText;
+    function getbyyear() {
+        var year = $('#year').val();
         console.log(year);
         $.ajax({
             type: "get",
