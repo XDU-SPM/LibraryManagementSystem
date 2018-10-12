@@ -143,7 +143,7 @@ public class LibrarianUserService
         calendar.set(Calendar.YEAR, year);
         calendar.set(Calendar.MONTH, 0);
         OneMonthApart oneMonthApart = new OneMonthApart(calendar.getTime());
-        Set<Income> incomes = new HashSet<>();
+        Set<Income> incomes = new TreeSet<>();
         for (int i = 0; i < 12; i++)
         {
             Income income = new Income(oneMonthApart.getBefore());

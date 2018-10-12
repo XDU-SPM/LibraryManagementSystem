@@ -65,4 +65,9 @@ public class Income
     {
         this.date = date;
     }
+
+    public int compareTo(Income income)
+    {
+        return this.date.compareTo(income.date);
+    }
 }
