@@ -288,6 +288,19 @@
             }
         );
     }
+
+    $(function(){
+        $("table#readerlist tbody").on('click', 'button.delete', function () {
+                // if(status){
+                //     $('#readerlist').DataTable().row($(this).parents('tr')).remove().draw();
+                //     status = false;
+                // }
+                console.log($('#readerlist').row($(this).parent('tr').children('td')));
+                console.log($('#readerlist').DataTable().row($(this).parent('tr')));
+                console.log($('#readerlist').DataTable().row($(this).parent('tr')).column(0).context);
+                console.log($('#readerlist').DataTable().row($(this).parent('tr')).data());
+        })
+    });
 </script>
 <script type = "text/javascript">
     $("#change").click(function () {

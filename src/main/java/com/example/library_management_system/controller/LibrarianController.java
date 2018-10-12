@@ -107,4 +107,12 @@ public class LibrarianController
         model.addAttribute("username", userService.getUser().getUsername());
         return "librarian/password_change";
     }
+
+    @RequestMapping(value = "librarian/password_change", method = RequestMethod.GET)
+    public String password_change(Model model)
+    {
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
+        return "librarian/password_change";
+    }
 }
