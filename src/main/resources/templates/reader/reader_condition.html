@@ -42,8 +42,8 @@
 </head>
 <body>
 <!--[if lte IE 9]>
-<p class = "browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href = "http://browsehappy.com/"
-                                                                          target = "_blank">升级浏览器</a>
+<p class = "browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请
+    <a href = "http://browsehappy.com/" target = "_blank">升级浏览器</a>
     以获得更好的体验！</p>
 <![endif]-->
 
@@ -121,9 +121,10 @@
             <div class = "am-tabs am-margin" data-am-tabs>
                 <ul class = "am-tabs-nav am-nav am-nav-tabs">
                     <li class = "am-active"><a href = "#tab1">借书统计</a></li>
+                    <!--<li class = "am-active"><a href = "#tab2">借阅记录</a></li>-->
                     <li><a href = "#tab3">预约</a></li>
-                    <li><a href = "#tab4">未归还</a></li>
-                    <li><a href = "#tab5">已经归还</a></li>
+                    <li><a href = "#tab4">当前借阅</a></li>
+                    <li><a href = "#tab5">已归还</a></li>
                 </ul>
                 <div class = "am-tabs-bd">
                     <div class = "am-tab-panel am-fade am-in am-active" id = "tab1">
@@ -141,11 +142,12 @@
                             </ul>
                         </div>
                     </div>
-                    <div class = "am-tab-panel am-fade am-in " id = "tab2">
-                        <div class = "am-cf am-padding am-padding-bottom-0" >
-                            <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">借阅历史</strong></div>
-                        </div>
-                    </div>
+
+                    <!--<div class = "am-tab-panel am-fade am-in " id = "tab2">-->
+                        <!--<div class = "am-cf am-padding am-padding-bottom-0" >-->
+                            <!--<div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">借阅历史</strong></div>-->
+                        <!--</div>-->
+                    <!--</div>-->
 
                     <div class = "am-tab-panel am-fade am-in " id = "tab3">
                         <div class = "am-cf am-padding am-padding-bottom-0">
@@ -213,13 +215,11 @@
 
                     <div class = "am-tab-panel am-fade am-in " id = "tab4">
                         <div class = "am-cf am-padding am-padding-bottom-0">
-                            <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">未归还</strong></div>
+                            <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">当前借阅</strong></div>
                         </div>
                         <hr>
 
-                        <div class = "am-u-sm-12 am-u-md-3">
-
-                        </div>
+                        <div class = "am-u-sm-12 am-u-md-3"></div>
 
                         <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "booklist-2">
                             <thead>
@@ -275,7 +275,7 @@
                     </div>
                     <div class = "am-tab-panel am-fade am-in " id = "tab5">
                         <div class = "am-cf am-padding am-padding-bottom-0">
-                            <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">已经归还</strong></div>
+                            <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">已归还</strong></div>
                         </div>
                         <hr>
 
