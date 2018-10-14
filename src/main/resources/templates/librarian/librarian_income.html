@@ -156,8 +156,7 @@
     <div class = "admin-content">
         <div class = "admin-content-body">
             <div class = "am-cf am-padding am-padding-bottom-0">
-                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">Income History</strong> /
-                    <small>收入记录</small>
+                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg" th:text="#{incomehistory}"></strong>
                 </div>
             </div>
 
@@ -176,9 +175,9 @@
                                    id = "income_history">
                                 <thead>
                                 <tr>
-                                    <th class = "table-date">Date</th>
-                                    <th class = "table-fine">Fine</th>
-                                    <th class = "table-deposit">Deposit</th>
+                                    <th class = "table-date" th:text="#{date}">Date</th>
+                                    <th class = "table-fine" th:text="#{fine}"></th>
+                                    <th class = "table-deposit" th:text="#{deposit}"></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -199,7 +198,7 @@
                                        placeholder="year">
                                 <span class = "am-input-group-btn">
                             <button class = "am-btn am-btn-default am-icon-search am-radius" onclick = "getbyyear()"
-                                    type = "button">确认</button>
+                                    type = "button" th:text="#{comfirm}">确认</button>
                             </span>
                             </div>
                         </div>
@@ -221,9 +220,9 @@
                                    id = "income_week">
                                 <thead>
                                 <tr>
-                                    <th class = "table-date">WeekDate</th>
-                                    <th class = "table-fine">Fine</th>
-                                    <th class = "table-deposit">Deposit</th>
+                                    <th class = "table-date" th:text="#{weekdate}">WeekDate</th>
+                                    <th class = "table-fine" th:text="#{fine}">Fine</th>
+                                    <th class = "table-deposit" th:text="#{deposit}">Deposit</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -274,6 +273,16 @@
             {
                 "ordering": false,
                 "bLengthChange": false,
+                language:{
+                    "oPaginate": {
+                        "sFirst": "First",
+                        "sPrevious": "Pre",
+                        "sNext": "Next",
+                        "sLast": "Last",
+                    },
+                    "sSearch": "Search",
+                    "sInfo": " _START_ - _END_ ，In _TOTAL_"
+                }
             }
         );
     });
@@ -282,6 +291,16 @@
             {
                 "ordering": false,
                 "bLengthChange": false,
+                language:{
+                    "oPaginate": {
+                        "sFirst": "First",
+                        "sPrevious": "Pre",
+                        "sNext": "Next",
+                        "sLast": "Last",
+                    },
+                    "sSearch": "Search",
+                    "sInfo": " _START_ - _END_ ，In _TOTAL_"
+                }
             }
         );
     });
@@ -476,7 +495,7 @@
                 echarts.init(document.getElementById("income_month")).setOption(option);
             },
             error: function (data) {
-                alert("发生错误，请稍后再试！");
+                alert("Error");
             }
         });
         // $.ajax({

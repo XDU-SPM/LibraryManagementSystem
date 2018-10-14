@@ -154,8 +154,7 @@
 
 
             <div class = "am-cf am-padding am-padding-bottom-0">
-                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">Unpaid Fine</strong> /
-                    <small>待支付罚金</small>
+                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg" th:text="#{ufine}">Unpaid Fine</strong> /
                 </div>
             </div>
 
@@ -165,7 +164,7 @@
             <div class = "am-g am-g-fixed">
                 <div class = "am-u-sm-8 ">
                     <div class = "am-input-group am-input-group-sm">
-                        <a href="#" onclick="javascript:history.back(-1);">返回到上一页</a>
+                        <a href="#" onclick="javascript:history.back(-1);" th:text="#{p_zj}">返回到上一页</a>
                     </div>
                 </div>
 
@@ -179,13 +178,13 @@
                     <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "fine">
                         <thead>
                         <tr>
-                            <th class = "table-id">ID</th>
-                            <th class = "table-uid">UID</th>
-                            <th class = "table-isbn">username</th>
-                            <th class = "table-money am-hide-sm-only">Money</th>
-                            <th class = "table-bid">bookID</th>
-                            <th class = "table-style ">Type</th>
-                            <th class = "table-date am-hide-sm-only" >Date</th>
+                            <th class = "table-id" th:text="#{id}">ID</th>
+                            <th class = "table-uid" th:text="#{uid}">UID</th>
+                            <th class = "table-isbn" th:text="#{username}">username</th>
+                            <th class = "table-money am-hide-sm-only" th:text="#{money}">Money</th>
+                            <th class = "table-bid" th:text="#{bid}">bookID</th>
+                            <th class = "table-style " th:text="#{category}">Type</th>
+                            <th class = "table-date am-hide-sm-only" th:text="#{date}">Date</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -232,6 +231,16 @@
             {
                 "ordering":false,
                 "bLengthChange":false,
+                language:{
+                    "oPaginate": {
+                        "sFirst": "First",
+                        "sPrevious": "Pre",
+                        "sNext": "Next",
+                        "sLast": "Last",
+                    },
+                    "sSearch": "Search",
+                    "sInfo": " _START_ - _END_ ，In _TOTAL_"
+                }
             }
         );
     })
