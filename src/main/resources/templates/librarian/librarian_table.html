@@ -75,7 +75,7 @@
 
                 <li class = "am-dropdown" data-am-dropdown>
                     <a class = "am-dropdown-toggle" data-am-dropdown-toggle href = "javascript:;">
-                        <a th:href = "@{/logout}">注销</a>
+                        <a th:href = "@{/logout}" th:text="#{lg_yxy}">注销</a>
                     </a>
 
                 </li>
@@ -98,48 +98,48 @@
             </div>
 
             <ul class = "am-list admin-sidebar-list">
-                <li><a href = "librarian_homepage"><span class = "am-icon-home"></span> 首页</a></li>
-                <li><a href = "librarian_user" class = "am-cf"><span class = "am-icon-check"></span> 个人资料<span
+                <li><a href = "librarian_homepage"><span class = "am-icon-home"></span><span th:text="#{ho_yxy}"> 首页</span></a></li>
+                <li><a href = "librarian_user" class = "am-cf"><span class = "am-icon-check"></span><span th:text="#{pd_yxy}"> 个人资料</span><span
                         class = "am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
-                <li><a href = "password_change"><span class = "am-icon-eraser"></span> 修改密码</a></li>
+                <li><a href = "password_change"><span class = "am-icon-eraser"></span><span th:text="#{cp_yxy}"> 修改密码</span></a></li>
                 <li class = "admin-parent">
                     <a class = "am-cf" data-am-collapse = "{target: '#collapse-nav'}"><span
-                            class = "am-icon-file"></span> 管理图书 <span
+                            class = "am-icon-file"></span><span th:text="#{mb_yxy}"> 管理图书</span> <span
                             class = "am-icon-angle-right am-fr am-margin-right"></span></a>
                     <ul class = "am-list am-collapse admin-sidebar-sub am-in" id = "collapse-nav">
-                        <li><a href = "librarian_borrow"><span class = "am-icon-leaf"></span> 借阅</a></li>
-                        <li><a href = "librarian_return"><span class = "am-icon-mail-reply"></span> 归还</a></li>
-                        <li><a href = "librarian_table"><span class = "am-icon-book"></span> 管理图书</a></li>
-                        <li><a href = "librarian_deletebookhistory"><span class="am-icon-trash"> 删除记录</span></a></li>
+                        <li><a href = "librarian_borrow"><span class = "am-icon-leaf"></span><span th:text="#{bo_yxy}"> 借阅</span></a></li>
+                        <li><a href = "librarian_return"><span class = "am-icon-mail-reply"></span><span th:text="#{re_yxy}"> 归还</span></a></li>
+                        <li><a href = "librarian_table"><span class = "am-icon-book"></span><span th:text="#{mb_yxy}"> 管理图书</span></a></li>
+                        <li><a href = "librarian_deletebookhistory"><span class = "am-icon-trash"><span th:text="#{dr_yxy}"> 删除记录</span></span></a></li>
                         </li>
                     </ul>
                 </li>
-                <li class="admin-parent">
+                <li class = "admin-parent">
                     <a class = "am-cf" data-am-collapse = "{target: '#collapse-nav2'}"><span
-                            class = "am-icon-user"></span> 管理读者 <span
+                            class = "am-icon-user"></span><span th:text="#{mr_yxy}"> 管理读者 </span><span
                             class = "am-icon-angle-right am-fr am-margin-right"></span></a>
                     <ul class = "am-list am-collapse admin-sidebar-sub am-in" id = "collapse-nav2">
-                        <li><a href = "librarian_addreader"><span class = "am-icon-user-plus"></span> 增加读者</a></li>
-                        <li><a href = "librarian_managereader"><span class = "am-icon-pencil"></span> 管理读者</a></li>
+                        <li><a href = "librarian_addreader"><span class = "am-icon-user-plus"></span><span th:text="#{ar_yxy}"> 增加读者</span></a></li>
+                        <li><a href = "librarian_managereader"><span class = "am-icon-pencil"></span><span th:text="#{mr_yxy}"> 管理读者</span></a></li>
                     </ul>
                 </li>
-                <li class="admin-parent">
+                <li class = "admin-parent">
                     <a class = "am-cf" data-am-collapse = "{target: '#collapse-nav3'}"><span
-                            class = "am-icon-table"></span> 记录 <span
+                            class = "am-icon-table"></span><span th:text="#{rec_yxy}"> 记录 </span><span
                             class = "am-icon-angle-right am-fr am-margin-right"></span></a>
                     <ul class = "am-list am-collapse admin-sidebar-sub am-in" id = "collapse-nav3">
-                        <li><a href = "librarian_record"><span class = "am-icon-book"></span> 预约记录</a></li>
-                        <li><a href = "librarian_history"><span class = "am-icon-book"></span> 借阅记录</a></li>
-                        <li><a href = "librarian_income"><span class = "am-icon-money"></span> 收入记录 </a></li>
-                        <li><a href = "librarian_fine"><span class="am-icon-bolt"></span> 罚金记录</a></li>
+                        <li><a href = "librarian_record"><span class = "am-icon-book"></span><span th:text="#{rr_yxy}"> 预约记录</span></a></li>
+                        <li><a href = "librarian_history"><span class = "am-icon-book"></span><span th:text="#{br_yxy}"> 借阅记录</span></a></li>
+                        <li><a href = "librarian_income"><span class = "am-icon-money"></span><span th:text="#{ir_yxy}"> 收入记录 </span></a></li>
+                        <li><a href = "librarian_fine"><span class = "am-icon-bolt"></span><span th:text="#{fr_yxy}"> 罚金记录</span></a></li>
                     </ul>
                 </li>
-                <li><a href = "librarian_announce"><span class = "am-icon-comment"></span> 发布公告</a></li>
+                <li><a href = "librarian_announce"><span class = "am-icon-comment"></span><span th:text="#{an_yxy}"> 发布公告</span></a></li>
             </ul>
 
             <div class = "am-panel am-panel-default admin-sidebar-panel">
                 <div class = "am-panel-bd">
-                    <p><span class = "am-icon-bookmark"></span> 公告</p>
+                    <p><span class = "am-icon-bookmark"></span><span th:text="#{no_yxy}"> 公告</span></p>
                     <p>时光静好，与君语；细水流年，与君同。—— Amaze UI</p>
                 </div>
             </div>
@@ -156,7 +156,7 @@
     <div class = "admin-content">
         <div class = "admin-content-body">
             <div class = "am-cf am-padding am-padding-bottom-0">
-                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">书本清单</strong> /
+                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg" th:text="#{BookList_ysw}">书本清单</strong> /
                     <small>BookList</small>
                 </div>
             </div>
@@ -167,11 +167,11 @@
                 <div class = "am-u-sm-12 am-u-md-6">
                     <div class = "am-btn-toolbar">
                         <div class = "am-btn-group am-btn-group-xs">
-                            <button type = "button" class = "am-btn am-btn-default" id = "add-book"><span
-                                    class = "am-icon-plus"></span> 新增
+                            <button type = "button" class = "am-btn am-btn-default" id = "add-book" ><span
+                                    class = "am-icon-plus"></span> <span th:text="#{ni_ysw}">新增</span>
                             </button>
-                            <button type = "button" class = "am-btn am-btn-default"><span
-                                    class = "am-icon-trash-o"></span> 删除
+                            <button type = "button" class = "am-btn am-btn-default" ><span
+                                    class = "am-icon-trash-o"></span>  <span th:text="#{Delete}">删除</span>
                             </button>
                         </div>
                     </div>
@@ -187,14 +187,14 @@
                     <table class = "am-table am-table-striped am-table-hover table-main" id = "booklist">
                         <thead>
                         <tr>
-                            <th class = "table-id">书号</th>
-                            <th class = "table-title">标题</th>
+                            <th class = "table-id" th:text="#{Delete}">书号</th>
+                            <th class = "table-title" th:text="#{title_ysw}">标题</th>
                             <th class = "table-isbn">ISBN</th>
-                            <th class = "table-author am-hide-sm-only">作者</th>
-                            <th class = "table-publisher">出版社</th>
-                            <th class = "table-date am-hide-sm-only">出版日期</th>
-                            <th class = "table-positon am-hide-sm-only">位置</th>
-                            <th class = "table-set">操作</th>
+                            <th class = "table-author am-hide-sm-only" th:text="#{au44}">作者</th>
+                            <th class = "table-publisher" th:text="#{publisher}">出版社</th>
+                            <th class = "table-date am-hide-sm-only" th:text="#{pubdate}">出版日期</th>
+                            <th class = "table-positon am-hide-sm-only" th:text="#{bl44}">图书位置</th>
+                            <th class = "table-set" th:text="#{Operation}">操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -211,7 +211,7 @@
                                     <div class = "am-btn-group am-btn-group-xs">
                                         <button class = "am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only delete"
                                                 th:onclick = "'javascript:deletebook('+${bunit.id}+')'">
-                                            <span class = "am-icon-trash-o">删除</span>
+                                            <span class = "am-icon-trash-o" th:text="#{Delete}">删除</span>
                                         </button>
                                     </div>
                                 </div>
@@ -229,7 +229,7 @@
 
         <div class = "am-modal am-modal-prompt" tabindex = "-1" id = "my-prompt">
             <div class = "am-modal-dialog">
-                <div class = "am-modal-hd">添加图书</div>
+                <div class = "am-modal-hd" th:text="#{Addbook_ysw}">添加图书</div>
                 <form class = "am-modal-bd am-form am-form-horizontal" method = "post" action = "addbook" enctype = "multipart/form-data">
                     <div class = "am-form-group">
                         <label for = "isbn" class = "am-u-sm-3 am-form-label">ISBN</label>
@@ -240,69 +240,69 @@
 
 
                     <div class = "am-form-group">
-                        <label for = "title" class = "am-u-sm-3 am-form-label">书名</label>
+                        <label for = "title" class = "am-u-sm-3 am-form-label" th:text="#{btitle}">书名</label>
                         <div class = "am-u-sm-9">
-                            <input type = "text" id = "title" placeholder = "书名 / Title" name = "title">
+                            <input type = "text" id = "title" placeholder = "Title" name = "title">
                         </div>
                     </div>
 
 
                     <div class = "am-form-group">
-                        <label for = "author" class = "am-u-sm-3 am-form-label">作者</label>
+                        <label for = "author" class = "am-u-sm-3 am-form-label" th:text="#{au44}">作者</label>
                         <div class = "am-u-sm-9">
-                            <input type = "text" id = "author" placeholder = "作者 / Author" name = "author">
+                            <input type = "text" id = "author" placeholder = "Author" name = "author">
                         </div>
                     </div>
 
                     <div class = "am-form-group">
-                        <label for = "type" class = "am-u-sm-3 am-form-label">类别</label>
+                        <label for = "type" class = "am-u-sm-3 am-form-label" th:text="#{category}">类别</label>
                         <div class = "am-u-sm-9">
-                            <input type = "text" id = "type" placeholder = "类别 / Type" name = "category">
+                            <input type = "text" id = "type" placeholder = "Type" name = "category">
                         </div>
                     </div>
 
                     <div class = "am-form-group">
-                        <label for = "position" class = "am-u-sm-3 am-form-label">位置</label>
+                        <label for = "position" class = "am-u-sm-3 am-form-label" th:text="#{location}">位置</label>
                         <div class = "am-u-sm-9">
-                            <input type = "text" id = "position" placeholder = "位置 / position" name = "position">
+                            <input type = "text" id = "position" placeholder = "position" name = "position">
                         </div>
                     </div>
 
                     <div class = "am-form-group">
-                        <label for = "publisher" class = "am-u-sm-3 am-form-label">出版社</label>
+                        <label for = "publisher" class = "am-u-sm-3 am-form-label" th:text="#{publisher}">出版社</label>
                         <div class = "am-u-sm-9">
-                            <input type = "text" id = "publisher" placeholder = "出版社 / Publisher" name = "publisher">
+                            <input type = "text" id = "publisher" placeholder = "Publisher" name = "publisher">
                         </div>
                     </div>
 
                     <div class = "am-form-group ">
-                        <label for = "publish_time" class = "am-u-sm-3 am-form-label">出版时间</label>
+                        <label for = "publish_time" class = "am-u-sm-3 am-form-label" th:text="#{pubdate}">出版时间</label>
                         <div class = "am-u-sm-9">
-                            <input type = "text" id = "publish_time" placeholder = "出版时间 / Publish Time"
+                            <input type = "text" id = "publish_time" placeholder = "Publish Time"
                                    name = "publishDate">
                         </div>
                     </div>
 
 
                     <div class = "am-form-group">
-                        <label for = "number" class = "am-u-sm-3 am-form-label">数量</label>
+                        <label for = "number" class = "am-u-sm-3 am-form-label" th:text="#{num}">数量</label>
                         <div class = "am-u-sm-9">
-                            <input type = "number" id = "number" pattern = "[1-9][0-9]*" placeholder = "数量 / Number"
+                            <input type = "number" id = "number" pattern = "[1-9][0-9]*" placeholder = "Number"
                                    name = "number">
                         </div>
                     </div>
 
                     <div class = "am-form-group">
-                        <label for = "abstract" class = "am-u-sm-3 am-form-label">简介</label>
+                        <label for = "abstract" class = "am-u-sm-3 am-form-label" th:text="#{brief}">简介</label>
                         <div class = "am-u-sm-9">
-                            <input type = "text" id = "abstract" placeholder = "摘要 / Abstract" name = "brief">
+                            <input type = "text" id = "abstract" placeholder = "Abstract" name = "brief">
                         </div>
                     </div>
 
                     <div class = "am-form-group ">
-                        <label for = "price" class = "am-u-sm-3 am-form-label">价格</label>
+                        <label for = "price" class = "am-u-sm-3 am-form-label" th:text="#{price}">价格</label>
                         <div class = "am-u-sm-9">
-                            <input type = "text" id = "price" placeholder = "价格 / Price" name = "price">
+                            <input type = "text" id = "price" placeholder = "Price" name = "price">
                         </div>
                     </div>
 
@@ -315,7 +315,7 @@
 
                     <div class = "am-modal-footer am-g">
                         <div class = "am-u-sm-7 am-u-sm-push-2 am-u-end">
-                            <input type = "submit" data-am-modal-confirm value = "确认/confirm" class = "am-btn am-btn-primary"></div>
+                            <input type = "submit" data-am-modal-confirm th:value="#{submit}" class = "am-btn am-btn-primary"></div>
                     </div>
                 </form>
             </div>
