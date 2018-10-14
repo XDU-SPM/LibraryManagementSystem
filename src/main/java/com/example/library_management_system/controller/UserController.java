@@ -13,7 +13,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.Locale;
 import java.util.Set;
 
 @Controller
@@ -127,5 +130,17 @@ public class UserController
     public Status deleteReader(int id)
     {
         return new Status(userService.deleteUser(id));
+    }
+
+    @RequestMapping(value = {"/changeSessionLanguage", "/admin/changeSessionLanguage", "/reader/changeSessionLanguage", "/librarian/changeSessionLanguage"},
+            method = {RequestMethod.GET, RequestMethod.POST})
+    public String changeSessionLanguage(String lang, HttpServletRequest request, String page)
+    {
+        System.out.println(lang);
+        if ("zh".equals(lang))
+            request.getSession().setAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME, new Locale("zh", "CN"));
+        else if ("en".equals(lang))
+            request.getSession().setAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME, new Locale("en", "US"));
+        return "redirect:" + page;
     }
 }
