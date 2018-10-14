@@ -75,7 +75,7 @@
 
                 <li class = "am-dropdown" data-am-dropdown>
                     <a class = "am-dropdown-toggle" data-am-dropdown-toggle href = "javascript:;">
-                        <a th:href = "@{/logout}">注销</a>
+                        <a th:href = "@{/logout}" th:text="#{lg_yxy}">注销</a>
                     </a>
 
                 </li>
@@ -91,55 +91,55 @@
     <div class = "admin-sidebar am-offcanvas" id = "admin-offcanvas">
         <div class = "am-offcanvas-bar admin-offcanvas-bar">
             <div class = "user-info">
-                <img class = "am-img-circle am-img-thumbnail am-center" width = "200" height = "200"
-                     th:src = "${avatarPath}"
+                <img class = "am-img-circle am-img-thumbnail am-center" width="200" height="200"
+                     th:src= "${avatarPath}"
                      alt = ""/>
-                <p style = "text-align: center" th:text = "${username}">纯洁神王</p>
+                <p style = "text-align: center" th:text="${username}">纯洁神王</p>
             </div>
 
             <ul class = "am-list admin-sidebar-list">
-                <li><a href = "librarian_homepage"><span class = "am-icon-home"></span> 首页</a></li>
-                <li><a href = "librarian_user" class = "am-cf"><span class = "am-icon-check"></span> 个人资料<span
+                <li><a href = "librarian_homepage"><span class = "am-icon-home"></span><span th:text="#{ho_yxy}"> 首页</span></a></li>
+                <li><a href = "librarian_user" class = "am-cf"><span class = "am-icon-check"></span><span th:text="#{pd_yxy}"> 个人资料</span><span
                         class = "am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
-                <li><a href = "password_change"><span class = "am-icon-eraser"></span> 修改密码</a></li>
+                <li><a href = "password_change"><span class = "am-icon-eraser"></span><span th:text="#{cp_yxy}"> 修改密码</span></a></li>
                 <li class = "admin-parent">
                     <a class = "am-cf" data-am-collapse = "{target: '#collapse-nav'}"><span
-                            class = "am-icon-file"></span> 管理图书 <span
+                            class = "am-icon-file"></span><span th:text="#{mb_yxy}"> 管理图书</span> <span
                             class = "am-icon-angle-right am-fr am-margin-right"></span></a>
                     <ul class = "am-list am-collapse admin-sidebar-sub am-in" id = "collapse-nav">
-                        <li><a href = "librarian_borrow"><span class = "am-icon-leaf"></span> 借阅</a></li>
-                        <li><a href = "librarian_return"><span class = "am-icon-mail-reply"></span> 归还</a></li>
-                        <li><a href = "librarian_table"><span class = "am-icon-book"></span> 管理图书</a></li>
-                        <li><a href = "librarian_deletebookhistory"><span class = "am-icon-trash"> 删除记录</span></a></li>
+                        <li><a href = "librarian_borrow"><span class = "am-icon-leaf"></span><span th:text="#{bo_yxy}"> 借阅</span></a></li>
+                        <li><a href = "librarian_return"><span class = "am-icon-mail-reply"></span><span th:text="#{re_yxy}"> 归还</span></a></li>
+                        <li><a href = "librarian_table"><span class = "am-icon-book"></span><span th:text="#{mb_yxy}"> 管理图书</span></a></li>
+                        <li><a href = "librarian_deletebookhistory"><span class = "am-icon-trash"><span th:text="#{dr_yxy}"> 删除记录</span></span></a></li>
                         </li>
                     </ul>
                 </li>
                 <li class = "admin-parent">
                     <a class = "am-cf" data-am-collapse = "{target: '#collapse-nav2'}"><span
-                            class = "am-icon-user"></span> 管理读者 <span
+                            class = "am-icon-user"></span><span th:text="#{mr_yxy}"> 管理读者 </span><span
                             class = "am-icon-angle-right am-fr am-margin-right"></span></a>
                     <ul class = "am-list am-collapse admin-sidebar-sub am-in" id = "collapse-nav2">
-                        <li><a href = "librarian_addreader"><span class = "am-icon-user-plus"></span> 增加读者</a></li>
-                        <li><a href = "librarian_managereader"><span class = "am-icon-pencil"></span> 管理读者</a></li>
+                        <li><a href = "librarian_addreader"><span class = "am-icon-user-plus"></span><span th:text="#{ar_yxy}"> 增加读者</span></a></li>
+                        <li><a href = "librarian_managereader"><span class = "am-icon-pencil"></span><span th:text="#{mr_yxy}"> 管理读者</span></a></li>
                     </ul>
                 </li>
                 <li class = "admin-parent">
                     <a class = "am-cf" data-am-collapse = "{target: '#collapse-nav3'}"><span
-                            class = "am-icon-table"></span> 记录 <span
+                            class = "am-icon-table"></span><span th:text="#{rec_yxy}"> 记录 </span><span
                             class = "am-icon-angle-right am-fr am-margin-right"></span></a>
                     <ul class = "am-list am-collapse admin-sidebar-sub am-in" id = "collapse-nav3">
-                        <li><a href = "librarian_record"><span class = "am-icon-book"></span> 预约记录</a></li>
-                        <li><a href = "librarian_history"><span class = "am-icon-book"></span> 借阅记录</a></li>
-                        <li><a href = "librarian_income"><span class = "am-icon-money"></span> 收入记录 </a></li>
-                        <li><a href = "librarian_fine"><span class = "am-icon-bolt"></span> 罚金记录</a></li>
+                        <li><a href = "librarian_record"><span class = "am-icon-book"></span><span th:text="#{rr_yxy}"> 预约记录</span></a></li>
+                        <li><a href = "librarian_history"><span class = "am-icon-book"></span><span th:text="#{br_yxy}"> 借阅记录</span></a></li>
+                        <li><a href = "librarian_income"><span class = "am-icon-money"></span><span th:text="#{ir_yxy}"> 收入记录 </span></a></li>
+                        <li><a href = "librarian_fine"><span class = "am-icon-bolt"></span><span th:text="#{fr_yxy}"> 罚金记录</span></a></li>
                     </ul>
                 </li>
-                <li><a href = "librarian_announce"><span class = "am-icon-comment"></span> 发布公告</a></li>
+                <li><a href = "librarian_announce"><span class = "am-icon-comment"></span><span th:text="#{an_yxy}"> 发布公告</span></a></li>
             </ul>
 
             <div class = "am-panel am-panel-default admin-sidebar-panel">
                 <div class = "am-panel-bd">
-                    <p><span class = "am-icon-bookmark"></span> 公告</p>
+                    <p><span class = "am-icon-bookmark"></span><span th:text="#{no_yxy}"> 公告</span></p>
                     <p>时光静好，与君语；细水流年，与君同。—— Amaze UI</p>
                 </div>
             </div>

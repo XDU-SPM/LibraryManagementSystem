@@ -1,17 +1,11 @@
-<!doctype html>
-<html class = "no-js" xmlns:text-align = "http://www.w3.org/1999/xhtml"
-      xmlns:th = "http://www.thymeleaf.org"
+<!DOCTYPE html>
+<html lang = "en" xmlns:th = "http://www.thymeleaf.org"
       xmlns:sec = "http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
-    <meta charset = "utf-8">
-    <meta http-equiv = "X-UA-Compatible" content = "IE=edge">
-    <title>Bibliosoft</title>
-    <meta name = "description" content = "这是一个 help 页面">
-    <meta name = "keywords" content = "help">
-    <meta name = "viewport" content = "width=device-width, initial-scale=1">
-    <meta name = "renderer" content = "webkit">
-    <meta http-equiv = "Cache-Control" content = "no-siteapp"/>
-    <link rel = "icon" type = "image/jpg" href = "assets/i/head_logo.jpg">
+    <meta charset = "UTF-8">
+    <title>BiblioSoft</title>
+    <link rel = "icon" type = "image/png" href = "assets/i/favicon.png">
+    <link rel = "apple-touch-icon-precomposed" href = "assets/i/app-icon72x72@2x.png">
     <link rel = "stylesheet" href = "assets/css/amazeui.min.css"/>
     <link rel = "stylesheet" href = "assets/css/admin.css">
     <style>
@@ -32,15 +26,12 @@
             -webkit-background-size: 125px 24px;
             background-size: 125px 24px;
         }
+
+        .am-topbar-brand {
+        }
     </style>
 </head>
 <body>
-<!--[if lte IE 9]>
-<p class = "browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href = "http://browsehappy.com/"
-                                                                          target = "_blank">升级浏览器</a>
-    以获得更好的体验！</p>
-<![endif]-->
-
 <header class = "am-topbar am-topbar-inverse admin-header">
     <h1 class = "am-topbar-brand ">
         <a href = "#" class = "am-text-ir">BiblioSoft</a>
@@ -51,6 +42,30 @@
             class = "am-icon-bars"></span></button>
 
     <div class = "am-collapse am-topbar-collapse" id = "doc-topbar-collapse">
+        <ul class = "am-nav am-nav-pills am-topbar-nav">
+            <li class = "am-active"><a href = "#">首页</a></li>
+            <li><a href = "#">项目</a></li>
+            <li class = "am-dropdown" data-am-dropdown>
+                <a class = "am-dropdown-toggle" data-am-dropdown-toggle href = "javascript:;">
+                    下拉 <span class = "am-icon-caret-down"></span>
+                </a>
+                <ul class = "am-dropdown-content">
+                    <li class = "am-dropdown-header">标题</li>
+                    <li><a href = "#">1. 去月球</a></li>
+                    <li class = "am-active"><a href = "#">2. 去火星</a></li>
+                    <li><a href = "#">3. 还是回地球</a></li>
+                    <li class = "am-disabled"><a href = "#">4. 下地狱</a></li>
+                    <li class = "am-divider"></li>
+                    <li><a href = "#">5. 桥头一回首</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <form class = "am-topbar-form am-topbar-left am-form-inline" role = "search">
+            <div class = "am-form-group">
+                <input type = "text" class = "am-form-field am-input-sm" placeholder = "搜索">
+            </div>
+        </form>
 
         <div class = "am-collapse am-topbar-collapse" id = "topbar-collapse">
 
@@ -59,10 +74,9 @@
                 <li><a href = "javascript:;">
                     <button id = "change" class = "am-btn am-btn-primary am-btn-sm">中文/英文</button>
                 </a></li>
-
                 <li class = "am-dropdown" data-am-dropdown>
                     <a class = "am-dropdown-toggle" data-am-dropdown-toggle href = "javascript:;">
-                        <a th:href = "@{/logout}">注销</a>
+                        <a th:href = "@{/logout}" th:text="#{lg_yxy}">注销</a>
                     </a>
 
                 </li>
@@ -83,13 +97,14 @@
                      alt = ""/>
                 <p style = "text-align: center" th:text="${username}">Reader</p>
             </div>
+
             <ul class = "am-list admin-sidebar-list">
-                <li><a href = "reader_condition"><span class = "am-icon-bar-chart"></span> <span th:text="#{lis44}">借书信息统计</span></a></li>
-                <li><a href = "reader_search"><span class = "am-icon-search"></span><span th:text="#{sp44}"> 搜索页面</span></a></li>
-                <li><a href = "reader_information" class = "am-cf"><span class = "am-icon-check"></span> <span th:text="#{pd_yxy}">个人资料</span><span
+                <li><a href = "reader_condition"><span class = "am-icon-bar-chart"></span><span th:text="#{bis_yxy}"> 借书信息统计</span></a></li>
+                <li><a href = "reader_search"><span class = "am-icon-search"></span><span th:text="#{sfb_yxy}"> 搜索图书</span></a></li>
+                <li><a href = "reader_information" class = "am-cf"><span class = "am-icon-check"></span><span th:text="#{pd_yxy}"> 个人资料</span><span
                         class = "am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
-                <li><a href = "password_change"><span class = "am-icon-eraser"></span> <span th:text="#{cp_yxy}">修改密码</span></a></li>
-                <li><a href = "reader_message"><span class = "am-icon-commenting-o"></span> <span th:text="#{m44}">留言</span></a></li>
+                <li><a href = "password_change"><span class = "am-icon-eraser"></span><span th:text="#{cp_yxy}"> 修改密码</span></a></li>
+                <li><a href = "reader_message"><span class = "am-icon-commenting-o"></span><span th:text="#{lm_yxy}"> 留言</span></a></li>
             </ul>
 
             <div class = "am-panel am-panel-default admin-sidebar-panel">
