@@ -77,7 +77,7 @@
 
                 <li class = "am-dropdown" data-am-dropdown>
                     <a class = "am-dropdown-toggle" data-am-dropdown-toggle href = "javascript:;">
-                        <a th:href = "@{/logout}">注销</a>
+                        <a th:href = "@{/logout}" th:text="#{lg_yxy}">注销</a>
                     </a>
 
                 </li>
@@ -101,25 +101,25 @@
 
             <ul class = "am-list admin-sidebar-list">
 
-                <li><a href = "password_change"><span class = "am-icon-eraser"></span> 修改密码</a></li>
+                <li><a href = "password_change"><span class = "am-icon-eraser"></span><span th:text="#{cp_yxy}"> 修改密码</span> </a></li>
                 <li class = "admin-parent">
                     <a class = "am-cf" data-am-collapse = "{target: '#collapse-nav'}"><span
-                            class = "am-icon-file"></span> 管理用户<span
+                            class = "am-icon-file"></span> <span th:text="#{mu_ysw}"> 管理用户</span><span
                             class = "am-icon-angle-right am-fr am-margin-right"></span></a>
                     <ul class = "am-list am-collapse admin-sidebar-sub am-in" id = "collapse-nav">
-                        <li><a href = "librarian_create"><span class = "am-icon-user-plus"></span> 创建图书管理员</a></li>
-                        <li><a href = "librarian_edit"><span class = "am-icon-trash"></span> 编辑图书管理员</a></li>
-                        <li><a href = "delete_users"><span class = "am-icon-trash"></span> 删除图书管理员</a></li>
+                        <li><a href = "librarian_create"><span class = "am-icon-user-plus"></span><span th:text="#{cl_yxy}"> 创建图书管理员</span></a></li>
+                        <li><a href = "librarian_edit"><span class = "am-icon-trash"></span><span th:text="#{el_yxy}"> 编辑图书管理员</span></a></li>
+                        <li><a href = "delete_users"><span class = "am-icon-trash"></span><span th:text="#{dl_yxy}"> 删除图书管理员</span></a></li>
                     </ul>
 
                 </li>
-                <li><a href = "permission_change"><span class = "am-icon-eraser"></span> 修改权限</a></li>
+                <li><a href = "permission_change"><span class = "am-icon-eraser"></span><span th:text="#{mp_yxy}"> 修改权限</span></a></li>
 
             </ul>
 
             <div class = "am-panel am-panel-default admin-sidebar-panel">
                 <div class = "am-panel-bd">
-                    <p><span class = "am-icon-bookmark"></span> 公告</p>
+                    <p><span class = "am-icon-bookmark"></span><span th:text="#{no_yxy}"> 公告</span></p>
                     <p>时光静好，与君语；细水流年，与君同。</p>
                 </div>
             </div>

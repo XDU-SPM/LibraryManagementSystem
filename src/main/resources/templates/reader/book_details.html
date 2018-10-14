@@ -54,7 +54,7 @@
 
                 <li class = "am-dropdown" data-am-dropdown>
                     <a class = "am-dropdown-toggle" data-am-dropdown-toggle href = "javascript:;">
-                        <a th:href = "@{/logout}">注销</a>
+                        <a th:href = "@{/logout}" th:text="#{lg_yxy}">注销</a>
                     </a>
 
                 </li>
@@ -149,7 +149,7 @@
                 "                            <!--<h3 class=\"am-comment-title\">评论标题</h3>-->\n" +
                 "                            <div class = \"am-comment-meta\">\n" +
                 "                                <a href = \"#link-to-user\" class = \"am-comment-author\">" + x.user.username + "</a>\n" +
-                "                                评论于\n" +
+                "                                "+[[#{co_yxy}]]+"\n" +
                 "                                <time datetime = \"2013-07-27T04:54:29-07:00\" title = \"2013年7月27日 下午7:54 格林尼治标准时间+0800\">\n" +
                 "                                    " + date2str(x.date, "yyyy-MM-d h:m:s") + "\n" +
                 "                                </time>\n" +
