@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang = "en">
+=======
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head lang = "en" xmlns:th = "http://www.thymeleaf.org">
+>>>>>>> 1aa551ca2f24a3539d646d2ff0b1986416a78b9c
     <meta charset = "UTF-8">
     <title>admin login</title>
     <meta http-equiv = "X-UA-Compatible" content = "IE=edge">
@@ -52,7 +57,7 @@
     <div class = "am-collapse am-topbar-collapse" id = "topbar-collapse">
         <ul class = "am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
             <li><a href = "javascript:;">
-                <button id = "change" class = "am-btn am-btn-primary am-btn-sm">中文/英文</button>
+                <button id = "change" class = "am-btn am-btn-primary am-btn-sm"  th:text="#{ce_ysw}">中文/英文</button>
             </a></li>
         </ul>
     </div>

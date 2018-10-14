@@ -149,7 +149,7 @@
         <div class = "admin-content-body">
             <div class = "am-cf am-padding am-padding-bottom-0">
                 <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">Reader Info</strong> /
-                    <small>读者资料</small>
+                    <small th:text="#{ri_ysw}">读者资料</small>
                 </div>
             </div>
 
@@ -169,21 +169,21 @@
                         </div>
 
                         <div class = "am-form-group">
-                            <label for = "user-account" class = "am-u-sm-3 am-form-label">用户账号 / Account</label>
+                            <label for = "user-account" class = "am-u-sm-3 am-form-label" th:text="#{ua_ysw}">用户账号</label>
                             <div class = "am-u-sm-9">
                                 <input type = "tel" id = "user-account" th:value = "${user.username}" name = "username">
                             </div>
                         </div>
 
                         <div class = "am-form-group">
-                            <label for = "user-password" class = "am-u-sm-3 am-form-label">Password / 密码</label>
+                            <label for = "user-password" class = "am-u-sm-3 am-form-label" th:text="#{password_ysw﻿}"> 密码</label>
                             <div class = "am-u-sm-9">
                                 <input type = "password" id = "user-password" th:value = "${user.password}" name = "password">
                             </div>
                         </div>
 
                         <div class = "am-form-group">
-                            <label for = "user-name" class = "am-u-sm-3 am-form-label">Name / 姓名</label>
+                            <label for = "user-name" class = "am-u-sm-3 am-form-label" th:text="#{n_ysw}">姓名</label>
                             <div class = "am-u-sm-9">
                                 <input type = "text" id = "user-name" th:value = "${user.name}" name = "name">
                             </div>
@@ -192,7 +192,7 @@
 
 
                         <div class = "am-form-group">
-                            <label for = "user-email" class = "am-u-sm-3 am-form-label">电子邮件 / Email</label>
+                            <label for = "user-email" class = "am-u-sm-3 am-form-label" th:text="#{e_ysw}">电子邮件</label>
                             <div class = "am-u-sm-9">
                                 <input type = "email" id = "user-email" th:value = "${user.email}" name = "email">
                             </div>
@@ -201,7 +201,7 @@
 
                         <div class = "am-form-group">
                             <div class = "am-u-sm-9 am-u-sm-push-3">
-                                <button type = "submit" class = "am-btn am-btn-primary" onclick = "return check()">
+                                <button type = "submit" class = "am-btn am-btn-primary" onclick = "return check()" th:text="#{sc_ysw}">
                                     保存修改
                                 </button>
                             </div>

@@ -136,8 +136,7 @@
     <div class="admin-content">
         <div class="admin-content-body">
             <div class="am-cf am-padding am-padding-bottom-0">
-                <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">图书管理员编辑</strong> /
-                    <small>Librarian Edit</small>
+                <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg" th:text="#{el_yxy}"></strong>
                 </div>
             </div>
 
@@ -151,12 +150,11 @@
                         <div class="am-g am-margin-top">
                             <div class="am-form am-form-horizontal">
                                 <div class="am-g am-margin-top">
-                                    <div class="am-u-sm-4 am-u-md-2 am-text-right">
-                                        图书管理员
+                                    <div class="am-u-sm-4 am-u-md-2 am-text-right" th:text="#{librarian}">
                                     </div>
                                     <div class="am-u-sm-8 am-u-md-4">
                                         <input id="libra-account" type="text" class="am-input-sm"
-                                               placeholder="请输入图书管理员的账号"
+                                               th:placeholder="#{ila_zj}"
                                                name="num">
                                     </div>
                                     <div class="am-hide-sm-only am-u-md-6"></div>
@@ -165,7 +163,7 @@
                                 <div class="am-g am-margin-top-sm">
                                     <div class="am-u-sm-10 am-u-sm-push-2">
                                         <button class="am-btn am-btn-primary"
-                                                onclick="getLibrarian()">搜索
+                                                onclick="getLibrarian()" th:text="#{Search}">
                                         </button>
                                     </div>
                                 </div>

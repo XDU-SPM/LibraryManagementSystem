@@ -159,8 +159,7 @@
     <div class = "admin-content">
         <div class = "admin-content-body">
             <div class = "am-cf am-padding am-padding-bottom-0">
-                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">书本信息</strong> /
-                    <small>Book Information</small>
+                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg" th:text="#{bookinfo}">书本信息</strong> /
                 </div>
             </div>
 
@@ -182,7 +181,7 @@
                                         <div class = "am-form-group">
                                             <input type = "file" id = "user-pic">
                                             <p class = "am-form-help">请选择要上传的文件...</p>
-                                            <button type = "button" class = "am-btn am-btn-primary am-btn-xs">保存
+                                            <button type = "button" class = "am-btn am-btn-primary am-btn-xs" th:text="#{save}">保存
                                             </button>
                                         </div>
                                     </form>
@@ -197,50 +196,50 @@
                 <div class = "am-u-sm-12 am-u-md-8 am-u-md-pull-4">
                     <form class = "am-form am-form-horizontal" action = "saveBook" method = "post">
                         <div class = "am-form-group">
-                            <label for = "title" class = "am-u-sm-3 am-form-label">书名</label>
+                            <label for = "title" class = "am-u-sm-3 am-form-label" th:text="#{btitle}">书名</label>
                             <div class = "am-u-sm-9">
-                                <input type = "text" id = "title" placeholder = "书名 / Title" name = "title"
+                                <input type = "text" id = "title"  name = "title"
                                        th:value = "${book.title}">
                             </div>
                         </div>
 
                         <div class = "am-form-group">
-                            <label for = "isbn" class = "am-u-sm-3 am-form-label">ISBN</label>
+                            <label for = "isbn" class = "am-u-sm-3 am-form-label" th:text="#{isbn}">ISBN</label>
                             <div class = "am-u-sm-9">
-                                <input type = "text" id = "isbn" placeholder = "ISBN" name = "isbn" readonly
+                                <input type = "text" id = "isbn"  name = "isbn" readonly
                                        th:value = "${book.isbn}">
                             </div>
                         </div>
 
                         <div class = "am-form-group">
-                            <label for = "author" class = "am-u-sm-3 am-form-label">作者</label>
+                            <label for = "author" class = "am-u-sm-3 am-form-label" th:text="#{author}">作者</label>
                             <div class = "am-u-sm-9">
-                                <input type = "text" id = "author" placeholder = "作者 / Author" name = "author"
+                                <input type = "text" id = "author"  name = "author"
                                        th:value = "${book.author}">
                             </div>
                         </div>
 
 
                         <div class = "am-form-group">
-                            <label for = "position" class = "am-u-sm-3 am-form-label">位置</label>
+                            <label for = "position" class = "am-u-sm-3 am-form-label" th:text="#{location}">位置</label>
                             <div class = "am-u-sm-9">
-                                <input type = "text" id = "position" placeholder = "位置 / position" name = "position"
+                                <input type = "text" id = "position"  name = "position"
                                        th:value = "${book.position}">
                             </div>
                         </div>
 
                         <div class = "am-form-group">
-                            <label for = "publisher" class = "am-u-sm-3 am-form-label">出版社</label>
+                            <label for = "publisher" class = "am-u-sm-3 am-form-label" th:text="#{publisher}">出版社</label>
                             <div class = "am-u-sm-9">
-                                <input type = "text" id = "publisher" placeholder = "出版社 / Publisher" name = "publisher"
+                                <input type = "text" id = "publisher"  name = "publisher"
                                        th:value = "${book.publisher}">
                             </div>
                         </div>
 
                         <div class = "am-form-group">
-                            <label for = "publish_time" class = "am-u-sm-3 am-form-label">出版时间</label>
+                            <label for = "publish_time" class = "am-u-sm-3 am-form-label" th:text="#{pubdate}">出版时间</label>
                             <div class = "am-u-sm-9">
-                                <input type = "text" id = "publish_time" placeholder = "出版时间 / Publish Time "
+                                <input type = "text" id = "publish_time"
                                        th:value = "${book.publishDate}"
                                        name = "publishDate">
                             </div>
@@ -248,16 +247,16 @@
 
 
                         <div class = "am-form-group">
-                            <label for = "number" class = "am-u-sm-3 am-form-label">数量</label>
+                            <label for = "number" class = "am-u-sm-3 am-form-label" th:text="#{num}">数量</label>
                             <div class = "am-u-sm-9">
                                 <input type = "number" id = "number" readonly="readonly" pattern = "[1-9][0-9]*"
-                                       placeholder = "数量 / Number" th:value = "${book.number}"
+                                        th:value = "${book.number}"
                                        name = "number" min="0">
                             </div>
                         </div>
 
                         <div class = "am-form-group">
-                            <label for = "abstract" class = "am-u-sm-3 am-form-label">简介</label>
+                            <label for = "abstract" class = "am-u-sm-3 am-form-label" th:text="#{brief}">简介</label>
                             <div class = "am-u-sm-9">
                                 <!--<input type = "text" id = "abstract" placeholder = "摘要 / Abstract" name = "brief"-->
                                        <!--th:value = "${book.brief}">-->
@@ -267,16 +266,16 @@
                         </div>
 
                         <div class = "am-form-group">
-                            <label for = "price" class = "am-u-sm-3 am-form-label">价格</label>
+                            <label for = "price" class = "am-u-sm-3 am-form-label" th:text="#{price}">价格</label>
                             <div class = "am-u-sm-9">
-                                <input type = "text" id = "price" placeholder = "价格 / Price" name = "price"
+                                <input type = "text" id = "price"  name = "price"
                                        th:value = "${book.price}" min="0">
                             </div>
                         </div>
 
                         <div class = "am-form-group">
                             <div class = "am-u-sm-9 am-u-sm-push-3">
-                                <input type = "submit" class = "am-btn am-btn-primary" value = "保存修改/Save">
+                                <input type = "submit" class = "am-btn am-btn-primary" th:value ="#{save}">
                             </div>
                         </div>
                     </form>
