@@ -156,8 +156,7 @@
     <div class = "admin-content">
         <div class = "admin-content-body">
             <div class = "am-cf am-padding am-padding-bottom-0">
-                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">书本清单</strong> /
-                    <small>BookList</small>
+                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg" th:text="#{BookList_ysw}"></strong>
                 </div>
             </div>
 
@@ -168,7 +167,7 @@
                     <div class = "am-btn-toolbar">
                         <div class = "am-btn-group am-btn-group-xs">
                             <button type = "button" class = "am-btn am-btn-default" id = "add_announce"><span
-                                    class = "am-icon-plus"></span> 新增
+                                    class = "am-icon-plus"></span><span th:text="#{ni_ysw}"></span>
                             </button>
                         </div>
                     </div>
@@ -185,10 +184,10 @@
                         <thead>
                         <tr>
                             <th class = "table-id">ID</th>
-                            <th class = "table-title">标题</th>
-                            <th class = "table-librarian">管理员</th>
-                            <th class = "table-author am-hide-sm-only">内容</th>
-                            <th class = "table-set">操作</th>
+                            <th class = "table-title" th:text="#{ti44}"></th>
+                            <th class = "table-librarian" th:text="#{a_zj}"></th>
+                            <th class = "table-author am-hide-sm-only" th:text="#{c_zj}"></th>
+                            <th class = "table-set" th:text="#{Operation}"></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -203,8 +202,8 @@
                             <td>
                                 <div class = "am-btn-toolbar">
                                     <div class = "am-btn-group am-btn-group-xs">
-                                        <button class = "am-btn am-btn-default am-btn-xs am-text-secondary close" ><a
-                                                class = "am-icon-close" >删除</a>
+                                        <button class = "am-btn am-btn-default am-btn-xs am-text-secondary delete" ><a
+                                                class = "am-icon-close"  th:text="#{Delete}"></a>
                                         </button>
                                     </div>
                                 </div>
@@ -227,18 +226,18 @@
                 <form class = "am-modal-bd am-form am-form-horizontal" method = "post" action = "addAnnouncement"
                       enctype = "multipart/form-data">
                     <div class = "am-form-group">
-                        <label for = "title" class = "am-u-sm-3 am-form-label">标题</label>
+                        <label for = "title" class = "am-u-sm-3 am-form-label" th:text="#{ti44}"></label>
                         <div class = "am-u-sm-9">
-                            <input type = "text" id = "title" placeholder = "标题 / Title" name = "title">
+                            <input type = "text" id = "title" th:placeholder = "#{ti44}" name = "title">
                         </div>
                     </div>
 
 
                     <div class = "am-form-group">
-                        <label for = "content" class = "am-u-sm-3 am-form-label">内容</label>
+                        <label for = "content" class = "am-u-sm-3 am-form-label" th:text="#{c_zj}"></label>
                         <div class = "am-u-sm-9">
                             <!--<input type = "text" id = "content" placeholder = "内容 / Content" name = "brief">-->
-                            <textarea id = "content" placeholder = "内容 / Content" name = "content" cols = "10" rows = "3">
+                            <textarea id = "content" th:placeholder = "#{c_zj}" name = "content" cols = "10" rows = "3">
                             </textarea>
                         </div>
                     </div>
@@ -246,7 +245,7 @@
 
                     <div class = "am-modal-footer am-g">
                         <div class = "am-u-sm-7 am-u-sm-push-2 am-u-end">
-                            <input type = "submit" data-am-modal-confirm value = "确认/confirm"
+                            <input type = "submit" data-am-modal-confirm th.value = "#{confirm_zj}"
                                    class = "am-btn am-btn-primary"></div>
                     </div>
                 </form>
@@ -255,24 +254,24 @@
         <div class = "am-modal am-modal-prompt" tabindex = "-1" id = "my-prompt2">
             <div class = "am-modal-dialog">
                 <div class = "am-modal-hd">Edit Announce</div>
-                <form class = "am-modal-bd am-form am-form-horizontal" method = "post" action = "addbook"
+                <form class = "am-modal-bd am-form am-form-horizontal" method = "post" action = "modifyAnnouncement"
                       enctype = "multipart/form-data">
                     <div class = "am-form-group">
                         <label for = "id2" class = "am-u-sm-3 am-form-label" readonly = "readonly">ID</label>
                         <div class = "am-u-sm-9">
-                            <input type = "text" id = "id2" placeholder = "id" name = "" readonly="readonly">
+                            <input type = "text" id = "id2" placeholder = "id" name = "id" readonly="readonly">
                         </div>
                     </div>
 
                     <div class = "am-form-group">
-                        <label for = "title" class = "am-u-sm-3 am-form-label">标题</label>
+                        <label for = "title" class = "am-u-sm-3 am-form-label" th:text="#{ti44}"></label>
                         <div class = "am-u-sm-9">
-                            <input type = "text" id = "title2" placeholder = "标题 / Title" name = "title">
+                            <input type = "text" id = "title2" th:placeholder = "#{ti44}" name = "title">
                         </div>
                     </div>
 
                     <div class = "am-form-group">
-                        <label for = "content" class = "am-u-sm-3 am-form-label">内容</label>
+                        <label for = "content" class = "am-u-sm-3 am-form-label" th:text="#{c_zj}"></label>
                         <div class = "am-u-sm-9">
                             <!--<input type = "text" id = "content" placeholder = "内容 / Content" name = "brief">-->
                             <textarea id = "content2"  name = "content" cols = "10" rows = "3">
@@ -283,7 +282,7 @@
 
                     <div class = "am-modal-footer am-g">
                         <div class = "am-u-sm-7 am-u-sm-push-2 am-u-end">
-                            <input type = "submit" data-am-modal-confirm value = "确认/confirm"
+                            <input type = "submit" data-am-modal-confirm th.value = "#{confirm_zj}"
                                    class = "am-btn am-btn-primary"></div>
                     </div>
                 </form>
@@ -352,6 +351,37 @@
         $('#id2').attr("value", id);
         $('#title2').attr("value", title);
         document.getElementById("content2").value=content;
+    }
+</script>
+<script>
+    $(function(){
+        $("table#announce tbody").on('click', 'button.delete', function () {
+            let id = $('#announce').DataTable().rows($('#announce').DataTable().row($(this).parents('tr'))).data()[0][0];
+            deletemy(id, $(this));
+        })
+    });
+
+    function fun(val) {
+        $('#announce').DataTable().row(val.parents('tr')).remove().draw();
+    }
+
+    function deletemy(id, val) {
+        $.ajax(
+            {
+                method: 'GET',
+                url: "deleteAnnouncement",
+                data: {id: id},
+                success: function (data) {
+                    if (data.status == 1) {
+                        alert("删除成功");
+                        fun(val);
+                    }
+                    else {
+                        alert("删除失败");
+                    }
+                }
+            }
+        );
     }
 </script>
 </body>

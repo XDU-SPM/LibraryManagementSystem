@@ -107,7 +107,12 @@
                 <li><a href = "reader_message"><span class = "am-icon-commenting-o"></span><span th:text="#{lm_yxy}"> 留言</span></a></li>
             </ul>
 
-
+            <div class = "am-panel am-panel-default admin-sidebar-panel">
+                <div class = "am-panel-bd">
+                    <p><span class = "am-icon-bookmark"></span> <span th:text="#{no_yxy}">公告</span></p>
+                    <p th:text="#{tiqa44}">时光静好，与君语；细水流年，与君同。</p>
+                </div>
+            </div>
 
             <div class = "am-panel am-panel-default admin-sidebar-panel">
                 <div class = "am-panel-bd">
@@ -129,16 +134,16 @@
                         <input name="string" id="string" type = "text" class = "am-form-field am-radius">
                         <span class = "am-input-group-btn">
                             <button class = "am-btn am-btn-default am-icon-search am-radius" onclick = "getOnePageBook4_1()"
-                                    type = "button" >搜索</button>
+                                    type = "button" th:text="#{Search}" >搜索</button>
                         </span>
                     </div>
                     <div class = "am-input-group">
                         <select data-am-selected = "{btnSize: 'sm'}"  name="type" id="type">
                             <option value = "1">isbn</option>
-                            <option value = "2">书名</option>
-                            <option value = "3">作者</option>
+                            <option value = "2" th:text="#{btitle}">书名</option>
+                            <option value = "3" th:text="#{author}">作者</option>
                         </select>
-                        <small>（依据isbn\书名\作者搜索）</small>
+                        <small th:text="#{sbi44}">（依据isbn\书名\作者搜索）</small>
                     </div>
                 </div>
             </div>
@@ -147,7 +152,7 @@
             <div class = "am-g">
                 <div class = "am-u-sm-12">
                     <div class = "am-cf am-padding" id = "recom-book">
-                        <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">所有图书</strong></div>
+                        <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg" th:text="#{ab44}">所有图书</strong></div>
                         <form action = "" class = "am-topbar-right">
                             <select name = "test" data-am-selected>
                                 <option value = "a">产品</option>
@@ -166,12 +171,12 @@
                                     <a th:href="@{book_details(isbn=${book.isbn})}" class = "">
                                         <img th:src = "${book.coverPath}" height="326" />
                                         <h3 th:text="${book.title}" class = "am-gallery-title"></h3>
-                                        <div class = "am-gallery-desc">剩余：<strong th:text="${book.number}"></strong>本</div>
+                                        <div class = "am-gallery-desc"><span th:text="#{remain44}">剩余：</span><strong th:text="${book.number}"></strong><span th:text="#{books44}">本</span></div>
                                     </a>
-                                    <button th:if = "${book.number} eq 0" type = "button" class = "am-btn am-btn-primary am-round" disabled>
+                                    <button th:text="#{reserve44}" th:if = "${book.number} eq 0" type = "button" class = "am-btn am-btn-primary am-round" disabled>
                                         预约
                                     </button>
-                                    <button th:if = "${book.number} gt 0" type = "button" class = "am-btn am-btn-primary am-round" th:onclick="'javascript:book_reserve('+${book.isbn}+')'">
+                                    <button  th:text="#{reserve44}" th:if = "${book.number} gt 0" type = "button" class = "am-btn am-btn-primary am-round" th:onclick="'javascript:book_reserve('+${book.isbn}+')'">
                                         预约</button>
                                 </div>
                             </li>
@@ -179,13 +184,13 @@
                         </ul>
                         <hr>
                         <div class = "am-cf" id="table-paging">
-                            共 [[${page.totalElements}]] 条记录
+                            <span th:text="#{total44}">共</span> [[${page.totalElements}]] <span th:text="#{records44}">条记录</span>
                             <div class = "am-fr">
                                 <ul class = "am-pagination">
-                                    <li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook_1()">首页</button></li>
-                                    <li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook_2(-1)">上一页</button></li>
-                                    <li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook_2(1)">下一页</button></li>
-                                    <li><button type="button" class="am-btn am-btn-primary am-round" th:onclick = "'javascript:getOnePageBook_3('+${page.totalPages}+'-1)'">末页</button></li>
+                                    <li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook_1()" th:text="#{f_zj}">首页</button></li>
+                                    <li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook_2(-1)" th:text="#{p_zj}">上一页</button></li>
+                                    <li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook_2(1)" th:text="#{n_zj}">下一页</button></li>
+                                    <li><button type="button" class="am-btn am-btn-primary am-round" th:onclick = "'javascript:getOnePageBook_3('+${page.totalPages}+'-1)'" th:text="#{l_zj}">末页</button></li>
                                 </ul>
                             </div>
                         </div>

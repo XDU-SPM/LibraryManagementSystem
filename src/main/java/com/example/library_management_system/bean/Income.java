@@ -2,7 +2,7 @@ package com.example.library_management_system.bean;
 
 import java.util.Date;
 
-public class Income
+public class Income implements Comparable<Income>
 {
     private double fine;
     private double deposit;
@@ -12,11 +12,28 @@ public class Income
     {
     }
 
+    public Income(Date date)
+    {
+        this.fine = 0;
+        this.deposit = 0;
+        this.date = date;
+    }
+
     public Income(double fine, double deposit, Date date)
     {
         this.fine = fine;
         this.deposit = deposit;
         this.date = date;
+    }
+
+    public void addFine(double money)
+    {
+        this.fine += money;
+    }
+
+    public void addDeposit(double money)
+    {
+        this.deposit += money;
     }
 
     public double getFine()
@@ -47,5 +64,11 @@ public class Income
     public void setDate(Date date)
     {
         this.date = date;
+    }
+
+    @Override
+    public int compareTo(Income income)
+    {
+        return this.date.compareTo(income.date);
     }
 }

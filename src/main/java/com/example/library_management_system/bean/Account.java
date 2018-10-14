@@ -13,8 +13,15 @@ public class Account
     private int type;
     private int uid;
 
+    @Transient
+    private String username;
+
+    @Transient
+    private String style;
+
     private double money;
 
+    // buid
     private String bkid;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -92,5 +99,25 @@ public class Account
     public void setBkid(String bkid)
     {
         this.bkid = bkid;
+    }
+
+    public String getUsername()
+    {
+        return username;
+    }
+
+    public void setUsername(String username)
+    {
+        this.username = username;
+    }
+
+    public String getStyle()
+    {
+        return style;
+    }
+
+    public void setStyle(String style)
+    {
+        this.style = style;
     }
 }

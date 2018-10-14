@@ -1,6 +1,5 @@
 package com.example.library_management_system.utils;
 
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -12,9 +11,13 @@ public class OneMonthApart
 
     public OneMonthApart()
     {
-        before = new Date();
+        this(new Date());
+    }
+
+    public OneMonthApart(Date date)
+    {
         Calendar calendar = Calendar.getInstance();
-        calendar.setTime(before);
+        calendar.setTime(date);
         getBeginMonth(calendar);
         before = calendar.getTime();
         calendar.add(Calendar.MONTH, 1);
@@ -37,6 +40,15 @@ public class OneMonthApart
         calendar.setTime(before);
         calendar.add(Calendar.MONTH, -1);
         before = calendar.getTime();
+    }
+
+    public void setNextMonth()
+    {
+        before = after;
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(before);
+        calendar.add(Calendar.MONTH, 1);
+        after = calendar.getTime();
     }
 
     public Date getBefore()

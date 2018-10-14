@@ -1,5 +1,6 @@
 package com.example.library_management_system.controller;
 
+import com.example.library_management_system.bean.Income;
 import com.example.library_management_system.bean.User;
 import com.example.library_management_system.service.GlobalUtilService;
 import com.example.library_management_system.service.LibrarianUserService;
@@ -10,6 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.Collection;
+import java.util.Set;
 
 @Controller
 public class LibrarianUserController
@@ -48,15 +53,9 @@ public class LibrarianUserController
     {
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
+        model.addAttribute("set", librarianUserService.getDayIncome());
+        model.addAttribute("set2", librarianUserService.getWeekIncome());
         return "librarian/librarian_income";
-    }
-
-    @RequestMapping(value = "/librarian/librarian_fine", method = RequestMethod.GET)
-    public String librarian_fine(Model model)
-    {
-        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
-        model.addAttribute("username", userService.getUser().getUsername());
-        return "librarian/librarian_fine";
     }
 
     @RequestMapping(value = "/librarian/librarian_addreader", method = RequestMethod.GET)
@@ -84,5 +83,37 @@ public class LibrarianUserController
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
         return "/librarian/librarian_readerinfo";
+    }
+
+    @RequestMapping(value = "/librarian/librarian_fine", method = RequestMethod.GET)
+    public String getPaidAccounts(int uid, Model model)
+    {
+        model.addAttribute("set", librarianUserService.getPaidAccounts(uid));
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
+        return "librarian/librarian_fine";
+    }
+
+    @RequestMapping(value = "/librarian/librarian_fine2", method = RequestMethod.GET)
+    public String getUnPaidAccounts(int uid, Model model)
+    {
+        model.addAttribute("set", librarianUserService.getUnPaidAccounts(uid));
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
+        return "librarian/librarian_fine2";
+    }
+
+    @RequestMapping(value = "/librarian/getMonthIncome", method = RequestMethod.GET)
+    @ResponseBody
+    public Set<Income> getMonthIncome(int year)
+    {
+        return librarianUserService.getMonthIncome(year);
+    }
+
+    @RequestMapping(value = "/librarian/getWeekIncome", method = RequestMethod.GET)
+    @ResponseBody
+    public Collection<Income> getWeekIncome()
+    {
+        return librarianUserService.getWeekIncome();
     }
 }

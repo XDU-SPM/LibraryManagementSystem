@@ -333,12 +333,12 @@ option = {
     }
 }
 
-var data = [];
+var data = [[1,2],[2,3]];
 var now = +new Date(1997, 9, 3);
 var oneDay = 24 * 3600 * 1000;
 var value = Math.random() * 1000;
 for (var i = 0; i < 1000; i++) {
-    data.push(randomData());
+    data.push(["2018-3-4",100]);
 }
 
 option = {
@@ -347,11 +347,11 @@ option = {
     },
     tooltip: {
         trigger: 'axis',
-        formatter: function (params) {
-            params = params[0];
-            var date = new Date(params.name);
-            return date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear() + ' : ' + params.value[1];
-        },
+        // formatter: function (params) {
+        //     params = params[0];
+        //     var date = new Date(params.name);
+        //     return date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear() + ' : ' + params.value[1];
+        // },
         axisPointer: {
             animation: false
         }
@@ -379,12 +379,12 @@ option = {
 };
 
 	timeTicket = setInterval(function () {
-	
-	    for (var i = 0; i < 5; i++) {
+
+	    for (var i = 0; i < 1; i++) {
 	        data.shift();
-	        data.push(randomData());
+	        // data.push(randomData());
 	    }
-	
+
 	    trends.setOption({
 	        series: [{
 	            data: data

@@ -155,15 +155,16 @@
     <!-- sidebar end -->
     <div class = "admin-content">
         <div class = "admin-content-body">
-            <div class = "am-cf am-padding">
-                <!--   <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">首页</strong> /
-                       <small>一些常用模块</small>
-                   </div> -->
+            <div class = "am-cf am-padding am-padding-bottom-0">
+                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg" th:text="#{rb_t}">归还书籍</strong>
+                </div>
             </div>
+
+            <hr/>
             <div class = "am-tabs am-margin" data-am-tabs>
                 <ul class = "am-tabs-nav am-nav am-nav-tabs">
-                    <li class = "am-active"><a href = "#tab1">借书统计</a></li>
-                    <li><a href = "#tab2">归还统计</a></li>
+                    <li class = "am-active"><a href = "#tab1" th:text="#{bis_yxy}">借书统计</a></li>
+                    <li><a href = "#tab2" th:text="#{ris_t}">归还统计</a></li>
                 </ul>
                 <div class = "am-tabs-bd">
                     <div class = "am-tab-panel am-fade am-in am-active" id = "tab1">
@@ -172,12 +173,12 @@
                             <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "borrowHistory">
                                 <thead>
                                 <tr>
-                                    <th class = "table-id">ID</th>
-                                    <th class = "table-buid">书号</th>
-                                    <th class = "table-title">书名</th>
-                                    <th class = "table-uid">读者编号</th>
-                                    <th class = "table-reader am-hide-sm-only">读者</th>
-                                    <th class = "table-date am-hide-sm-only">借阅日期</th>
+                                    <th class = "table-id" th:text="#{id}">ID</th>
+                                    <th class = "table-buid" th:text="#{bid}">书号</th>
+                                    <th class = "table-title" th:text="#{btitle}">书名</th>
+                                    <th class = "table-uid" th:text="#{rid}">读者编号</th>
+                                    <th class = "table-reader am-hide-sm-only" th:text="#{username}">用户名</th>
+                                    <th class = "table-date am-hide-sm-only" th:text="#{date}">借阅日期</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -198,12 +199,12 @@
                         <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "returnHistory">
                             <thead>
                             <tr>
-                                <th class = "table-id">ID</th>
-                                <th class = "table-buid">书号</th>
-                                <th class = "table-title">书名</th>
-                                <th class = "table-uid">读者编号</th>
-                                <th class = "table-reader am-hide-sm-only">读者</th>
-                                <th class = "table-date am-hide-sm-only">借阅日期</th>
+                                <th class = "table-id" th:text="#{id}">ID</th>
+                                <th class = "table-buid" th:text="#{bid}">书号</th>
+                                <th class = "table-title" th:text="#{btitle}">书名</th>
+                                <th class = "table-uid" th:text="#{rid}">读者编号</th>
+                                <th class = "table-reader am-hide-sm-only" th:text="#{username}">读者</th>
+                                <th class = "table-date am-hide-sm-only" th:text="#{returndate}">归还日期</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -254,6 +255,16 @@
             {
                 "ordering":false,
                 "bLengthChange":false,
+                language:{
+                    "oPaginate": {
+                        "sFirst": "First",
+                        "sPrevious": "Pre",
+                        "sNext": "Next",
+                        "sLast": "Last",
+                    },
+                    "sSearch": "Search",
+                    "sInfo": " _START_ - _END_ ，In _TOTAL_"
+                }
             }
         );
     });
@@ -262,6 +273,16 @@
             {
                 "ordering":false,
                 "bLengthChange":false,
+                language:{
+                    "oPaginate": {
+                        "sFirst": "First",
+                        "sPrevious": "Pre",
+                        "sNext": "Next",
+                        "sLast": "Last",
+                    },
+                    "sSearch": "Search",
+                    "sInfo": " _START_ - _END_ ，In _TOTAL_"
+                }
             }
         );
     });

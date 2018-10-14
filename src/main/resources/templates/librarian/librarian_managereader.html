@@ -38,13 +38,13 @@
     </h1>
 
     <button class = "am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only"
-            data-am-collapse = "{target: '#doc-topbar-collapse'}"><span class = "am-sr-only">导航切换</span> <span
+            data-am-collapse = "{target: '#doc-topbar-collapse'}"><span class = "am-sr-only" th:text="">导航切换</span> <span
             class = "am-icon-bars"></span></button>
 
     <div class = "am-collapse am-topbar-collapse" id = "doc-topbar-collapse">
         <ul class = "am-nav am-nav-pills am-topbar-nav">
-            <li class = "am-active"><a href = "#">首页</a></li>
-            <li><a href = "#">项目</a></li>
+            <li class = "am-active"><a href = "#"  th:text="#{ho_yxy}">首页</a></li>
+            <li><a href = "#" th:text="#{p_ysw}">项目</a></li>
             <li class = "am-dropdown" data-am-dropdown>
                 <a class = "am-dropdown-toggle" data-am-dropdown-toggle href = "javascript:;">
                     下拉 <span class = "am-icon-caret-down"></span>
@@ -61,18 +61,14 @@
             </li>
         </ul>
 
-        <form class = "am-topbar-form am-topbar-left am-form-inline" role = "search">
-            <div class = "am-form-group">
-                <input type = "text" class = "am-form-field am-input-sm" placeholder = "搜索">
-            </div>
-        </form>
+
 
         <div class = "am-collapse am-topbar-collapse" id = "topbar-collapse">
 
             <ul class = "am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
 
                 <li><a href = "javascript:;">
-                    <button id = "change" class = "am-btn am-btn-primary am-btn-sm">中文/英文</button>
+                    <button id = "change" class = "am-btn am-btn-primary am-btn-sm" th:text="#{ce_ysw}">中文/英文</button>
                 </a></li>
 
                 <li class = "am-dropdown" data-am-dropdown>
@@ -160,7 +156,7 @@
         <div class = "admin-content-body">
             <div class = "am-cf am-padding am-padding-bottom-0">
                 <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">Manage reader</strong> /
-                    <small>管理用户</small>
+                    <small th:text="#{mu_ysw}">管理用户</small>
                 </div>
                 <div class = "am-g">
                     <div class = "am-u-sm-12 am-u-md-6">
@@ -188,12 +184,12 @@
                             <thead>
                             <tr>
                                 <th class = "table-id">ID</th>
-                                <th class = "table-title">用户名</th>
-                                <th class = "table-author am-hide-sm-only">姓名</th>
-                                <th class = "table-date am-hide-sm-only">邮箱</th>
-                                <th class = "table-money">已缴</th>
-                                <th class = "table-money">未缴</th>
-                                <th class = "table-set">操作</th>
+                                <th class = "table-title" th:text="#{﻿u_ysw">用户名</th>
+                                <th class = "table-author am-hide-sm-only" th:text="#{n_ysw}">姓名</th>
+                                <th class = "table-date am-hide-sm-only" th:text="#{e_ysw}">邮箱</th>
+                                <th class = "table-money" th:text="#{p_ysw}">已缴</th>
+                                <th class = "table-money" th:text="#{Unpaid_ysw}">未缴</th>
+                                <th class = "table-set" th:text="#{Operation_ysw}">操作</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -203,13 +199,13 @@
                                 </td>
                                 <td class = "am-hide-sm-only" th:text = "${user.name}"></td>
                                 <td class = "am-hide-sm-only" th:text = "${user.email}"></td>
-                                <td class = "am-hide-sm-only" th:text = "${user.paidFine}"></td>
-                                <td class = "am-hide-sm-only" th:text = "${user.unPaidFine}"></td>
+                                <td class = "am-hide-sm-only" ><a th:text = "${user.paidFine}" th:href="@{librarian_fine(uid=${user.id})}"></a></td>
+                                <td class = "am-hide-sm-only" ><a th:text = "${user.unPaidFine}" th:href="@{librarian_fine2(uid=${user.id})}"></a></td>
                                 <td>
                                     <div class = "am-btn-toolbar">
                                         <div class = "am-btn-group am-btn-group-xs">
                                             <button class = "am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only delete">
-                                                <span class = "am-icon-trash-o">删除</span>
+                                                <span class = "am-icon-trash-o" th:text="#{﻿delete_ysw}">删除</span>
                                             </button>
                                         </div>
                                     </div>
@@ -290,18 +286,7 @@
         );
     }
 
-    $(function(){
-        $("table#readerlist tbody").on('click', 'button.delete', function () {
-                // if(status){
-                //     $('#readerlist').DataTable().row($(this).parents('tr')).remove().draw();
-                //     status = false;
-                // }
-                console.log($('#readerlist').row($(this).parent('tr').children('td')));
-                console.log($('#readerlist').DataTable().row($(this).parent('tr')));
-                console.log($('#readerlist').DataTable().row($(this).parent('tr')).column(0).context);
-                console.log($('#readerlist').DataTable().row($(this).parent('tr')).data());
-        })
-    });
+
 </script>
 <script type = "text/javascript">
     $("#change").click(function () {

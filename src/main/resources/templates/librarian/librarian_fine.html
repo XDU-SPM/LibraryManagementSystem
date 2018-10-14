@@ -160,8 +160,7 @@
 
 
             <div class = "am-cf am-padding am-padding-bottom-0">
-                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">借阅记录</strong> /
-                    <small>BorrowRecord</small>
+                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg" th:text="#{ufine}">Unpaid Fine</strong> /
                 </div>
             </div>
 
@@ -171,10 +170,7 @@
             <div class = "am-g am-g-fixed">
                 <div class = "am-u-sm-8 ">
                     <div class = "am-input-group am-input-group-sm">
-                        <input type = "text" class = "am-form-field">
-                        <span class = "am-input-group-btn">
-						<button class = "am-btn am-btn-default" type = "button">搜索</button>
-					  </span>
+                        <a href="#" onclick="javascript:history.back(-1);" th:text="#{p_zj}">返回到上一页</a>
                     </div>
                 </div>
 
@@ -185,25 +181,27 @@
 
             <div class = "am-g" >
                 <div class = "am-u-sm-12">
-                    <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "record">
+                    <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "fine">
                         <thead>
                         <tr>
-                            <th class = "table-id">编号</th>
-                            <th class = "table-title">标题</th>
-                            <th class = "table-isbn">ISBN</th>
-                            <th class = "table-author am-hide-sm-only">用户名</th>
-                            <th class = "table-publisher">预约时间</th>
-                            <th class = "table-date am-hide-sm-only">预约状态</th>
+                            <th class = "table-id" th:text="#{id}">ID</th>
+                            <th class = "table-uid" th:text="#{uid}">UID</th>
+                            <th class = "table-isbn" th:text="#{username}">username</th>
+                            <th class = "table-money am-hide-sm-only" th:text="#{money}">Money</th>
+                            <th class = "table-bid" th:text="#{bid}">bookID</th>
+                            <th class = "table-style " th:text="#{category}">Type</th>
+                            <th class = "table-date am-hide-sm-only" th:text="#{date}">Date</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr th:each = "record:${set}" >
                             <td th:text = "${record.id}"></td>
-                            <td ><a th:text = "${record.book.title}" th:href="@{librarian_book(isbn=${record.book.isbn})}"></a></td>
-                            <td th:text = "${record.book.isbn}"></td>
-                            <td class = "am-hide-sm-only" th:text = "${record.user.username}"></td>
-                            <td class = "am-hide-sm-only" th:text = "${record.borrowDate}"></td>
-                            <td class = "am-hide-sm-only" th:text = "${record.status}"></td>
+                            <td ><a th:text = "${record.uid}" th:href="@{librarian_user(id=${record.uid})}"></a></td>
+                            <td ><a th:text = "${record.username}" th:href="@{librarian_user(id=${record.uid})}"></a></td>
+                            <td th:text = "${record.money}"></td>
+                            <td class = "am-hide-sm-only" th:text = "${record.bkid}"></td>
+                            <td class = "am-hide-sm-only" th:text = "${record.style}"></td>
+                            <td class = "am-hide-sm-only" th:text = "${record.date}"></td>
                         </tr>
                     </table>
                 </div>
@@ -235,10 +233,20 @@
 <script src = "assets/js/app.js"></script>
 <script>
     $(function () {
-        $('#record').DataTable(
+        $('#fine').DataTable(
             {
                 "ordering":false,
                 "bLengthChange":false,
+                language:{
+                    "oPaginate": {
+                        "sFirst": "First",
+                        "sPrevious": "Pre",
+                        "sNext": "Next",
+                        "sLast": "Last",
+                    },
+                    "sSearch": "Search",
+                    "sInfo": " _START_ - _END_ ，In _TOTAL_"
+                }
             }
         );
     })

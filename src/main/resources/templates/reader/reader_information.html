@@ -107,7 +107,12 @@
                 <li><a href = "reader_message"><span class = "am-icon-commenting-o"></span><span th:text="#{lm_yxy}"> 留言</span></a></li>
             </ul>
 
-
+            <div class = "am-panel am-panel-default admin-sidebar-panel">
+                <div class = "am-panel-bd">
+                    <p><span class = "am-icon-bookmark"></span> <span th:text="#{no_yxy}">公告<span></p>
+                    <p th:text="#{announcement44}">时光静好，与君语；细水流年，与君同。</p>
+                </div>
+            </div>
 
             <div class = "am-panel am-panel-default admin-sidebar-panel">
                 <div class = "am-panel-bd">
@@ -123,8 +128,7 @@
     <div class = "admin-content">
         <div class = "admin-content-body">
             <div class = "am-cf am-padding am-padding-bottom-0">
-                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">个人资料</strong> /
-                    <small>Personal information</small>
+                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg" th:text="#{pd_yxy}">个人资料</strong> /
                 </div>
             </div>
 
@@ -141,12 +145,12 @@
                                          alt = ""/>
                                 </div>
                                 <div class = "am-u-md-8">
-                                    <p>你可以使用<a href = "#">gravatar.com</a>提供的头像或者使用本地上传头像。 </p>
+                                    <p><span th:text="#{ycu44}">你可以使用<span><a href = "#">gravatar.com</a><span th:text="#{﻿pao44}">提供的头像或者使用本地上传头像。</span> </p>
                                     <form class = "am-form">
                                         <div class = "am-form-group">
                                             <input type = "file" id = "user-pic">
-                                            <p class = "am-form-help">请选择要上传的文件...</p>
-                                            <button type = "button" class = "am-btn am-btn-primary am-btn-xs">保存
+                                            <p class = "am-form-help" th:text="#{﻿pst44}">请选择要上传的文件...</p>
+                                            <button type = "button" class = "am-btn am-btn-primary am-btn-xs" th:text="#{save}">保存
                                             </button>
                                         </div>
                                     </form>
@@ -160,28 +164,28 @@
                 <div class = "am-u-sm-12 am-u-md-8 am-u-md-pull-4">
                     <form class = "am-form am-form-horizontal" action = "saveUser" method = "post">
                         <div class = "am-form-group">
-                            <label for = "user-account" class = "am-u-sm-3 am-form-label">用户账号 / Account</label>
+                            <label for = "user-account" class = "am-u-sm-3 am-form-label" th:text="#{ua_ysw}">用户账号 / Account</label>
                             <div class = "am-u-sm-9">
                                 <input type = "tel" id = "user-account" th:value = "${user.username}" name = "username">
                             </div>
                         </div>
 
                         <div class = "am-form-group">
-                            <label for = "user-name" class = "am-u-sm-3 am-form-label">姓名 / Name</label>
+                            <label for = "user-name" class = "am-u-sm-3 am-form-label" th:text="#{Name}">姓名 / Name</label>
                             <div class = "am-u-sm-9">
                                 <input type = "text" id = "user-name" th:value = "${user.name}" name = "name">
                             </div>
                         </div>
 
                         <div class = "am-form-group">
-                            <label for = "user-email" class = "am-u-sm-3 am-form-label">电子邮件 / Email</label>
+                            <label for = "user-email" class = "am-u-sm-3 am-form-label" th:text="#{email44}">电子邮件 / Email</label>
                             <div class = "am-u-sm-9">
                                 <input type = "email" id = "user-email" th:value = "${user.email}" name = "email">
                             </div>
                         </div>
 
                         <div class = "am-form-group">
-                            <label for = "user-balance" class = "am-u-sm-3 am-form-label">待交罚金(元) / Pending fine(CNY)</label>
+                            <label for = "user-balance" class = "am-u-sm-3 am-form-label" th:text="#{pf44}">待交罚金(元) / Pending fine(CNY)</label>
                             <div class = "am-u-sm-9">
                                 <input id = "user-balance" disabled>
                             </div>
@@ -189,7 +193,7 @@
 
                         <div class = "am-form-group">
                             <div class = "am-u-sm-9 am-u-sm-push-3">
-                                <button type = "submit" class = "am-btn am-btn-primary" onclick = "return check()">
+                                <button type = "submit" class = "am-btn am-btn-primary" onclick = "return check()" th:text="#{sc_ysw}">
                                     保存修改
                                 </button>
                             </div>

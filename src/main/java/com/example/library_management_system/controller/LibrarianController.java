@@ -6,11 +6,13 @@ import com.example.library_management_system.service.AnnouncementService;
 import com.example.library_management_system.service.LibrarianBookService;
 import com.example.library_management_system.service.LibrarianUserService;
 import com.example.library_management_system.service.UserService;
+import com.example.library_management_system.utils.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class LibrarianController
@@ -97,6 +99,21 @@ public class LibrarianController
         model.addAttribute("set", announcementService.getAnnouncements());
         model.addAttribute("status", true);
         return "librarian/librarian_announce";
+    }
+
+    @RequestMapping(value = "/librarian/modifyAnnouncement", method = RequestMethod.POST)
+    public String modifyAnnouncement(Announcement announcement)
+    {
+        announcementService.modifyAnnouncement(announcement);
+        return "redirect:librarian_announce";
+    }
+
+    @RequestMapping(value = "/librarian/deleteAnnouncement", method = RequestMethod.GET)
+    @ResponseBody
+    public Status deleteAnnouncement(int id)
+    {
+        announcementService.deleteAnnouncement(id);
+        return new Status(1);
     }
 
     @RequestMapping(value = "/librarian/modifyPassword", method = RequestMethod.POST)

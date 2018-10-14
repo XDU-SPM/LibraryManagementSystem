@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" xmlns="http://www.w3.org/1999/html">
+<html lang = "en" xmlns:th = "http://www.thymeleaf.org"
+      xmlns:sec = "http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" xmlns = "http://www.w3.org/1999/html">
 <head>
     <meta charset = "UTF-8">
     <title>BiblioSoft</title>
@@ -91,10 +91,10 @@
     <div class = "admin-sidebar am-offcanvas" id = "admin-offcanvas">
         <div class = "am-offcanvas-bar admin-offcanvas-bar">
             <div class = "user-info">
-                <img class = "am-img-circle am-img-thumbnail am-center" width="200" height="200"
-                     th:src= "${avatarPath}"
+                <img class = "am-img-circle am-img-thumbnail am-center" width = "200" height = "200"
+                     th:src = "${avatarPath}"
                      alt = ""/>
-                <p style = "text-align: center" th:text="${username}">纯洁神王</p>
+                <p style = "text-align: center" th:text = "${username}">纯洁神王</p>
             </div>
 
             <ul class = "am-list admin-sidebar-list">
@@ -156,182 +156,98 @@
     <div class = "admin-content">
         <div class = "admin-content-body">
             <div class = "am-cf am-padding am-padding-bottom-0">
-                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">书本清单</strong> /
-                    <small>BookList</small>
+                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg" th:text="#{incomehistory}"></strong>
                 </div>
             </div>
 
-            <hr>
+            <hr/>
+            <div class = "am-tabs am-margin" data-am-tabs>
+                <ul class = "am-tabs-nav am-nav am-nav-tabs">
+                    <li class = "am-active"><a href = "#tab1" th:text="#{ed}">Every Day</a></li>
+                    <li><a href = "#tab2" th:text="#{em}">Every Month</a></li>
+                    <li><a href="#tab3" th:text="#{ew}">Every Week</a></li>
+                </ul>
+                <div class = "am-tabs-bd">
+                    <div class = "am-tab-panel am-fade am-in am-active" id = "tab1">
+                        <div class = "am-g am-center am-padding">
 
-            <div class = "am-g">
-                <div class = "am-u-sm-12 am-u-md-6">
-                    <div class = "am-btn-toolbar">
-                        <div class = "am-btn-group am-btn-group-xs">
-                            <button type = "button" class = "am-btn am-btn-default" id = "add-book"><span
-                                    class = "am-icon-plus"></span> 新增
-                            </button>
-                            <button type = "button" class = "am-btn am-btn-default"><span
-                                    class = "am-icon-trash-o"></span> 删除
-                            </button>
+                            <table class = "am-table am-table-striped am-table-hover am-table-compact "
+                                   id = "income_history">
+                                <thead>
+                                <tr>
+                                    <th class = "table-date" th:text="#{date}">Date</th>
+                                    <th class = "table-fine" th:text="#{fine}"></th>
+                                    <th class = "table-deposit" th:text="#{deposit}"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each = "record:${set}">
+                                    <td th:text="${#dates.format(record.date,'yyyy-MM-dd')}"></td>
+                                    <td th:text = "${record.fine}"></td>
+                                    <td th:text = "${record.deposit}"></td>
+                                </tr>
+                            </table>
+
+                        </div>
+
+                    </div>
+                    <div class = "am-tab-panel am-fade am-in " id = "tab2">
+                        <div class = "am-g">
+                            <div class = "am-input-group am-input-group-sm">
+                                <input name = "string" id = "year" type = "text" class = "am-form-field am-radius"
+                                       placeholder="year">
+                                <span class = "am-input-group-btn">
+                            <button class = "am-btn am-btn-default am-icon-search am-radius" onclick = "getbyyear()"
+                                    type = "button" th:text="#{comfirm}">确认</button>
+                            </span>
+                            </div>
+                        </div>
+                        <div class = "am-g">
+                            <div class = "am-u-sm-12 am-u-md-12">
+                                <div id = "income_month" style = "width: 100%;height: 400px;"></div>
+                            </div>
+                        </div>
+                        <div class="am-g">
+                            <div class = "am-u-sm-12 am-u-md-12">
+                                <div id = "trends" style = "width: 100%;height: 400px;"></div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                    <div class = "am-tab-panel am-fade am-in am-active" id = "tab3">
+                        <div class = "am-g am-center am-padding">
 
-                <div class = "am-u-sm-12 am-u-md-3">
+                            <table class = "am-table am-table-striped am-table-hover am-table-compact "
+                                   id = "income_week">
+                                <thead>
+                                <tr>
+                                    <th class = "table-date" th:text="#{weekdate}">WeekDate</th>
+                                    <th class = "table-fine" th:text="#{fine}">Fine</th>
+                                    <th class = "table-deposit" th:text="#{deposit}">Deposit</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each = "record:${set2}">
+                                    <td th:text="${#dates.format(record.date,'yyyy-MM-dd')}"></td>
+                                    <td th:text = "${record.fine}"></td>
+                                    <td th:text = "${record.deposit}"></td>
+                                </tr>
+                            </table>
 
-                </div>
-            </div>
-
-            <div class = "am-g">
-                <div class = "am-u-sm-12">
-                    <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "booklist">
-                        <thead>
-                        <tr>
-                            <th class = "table-id">书号</th>
-                            <th class = "table-title">标题</th>
-                            <th class = "table-isbn">ISBN</th>
-                            <th class = "table-author am-hide-sm-only">作者</th>
-                            <th class = "table-publisher">出版社</th>
-                            <th class = "table-date am-hide-sm-only">出版日期</th>
-                            <th class = "table-positon am-hide-sm-only">位置</th>
-                            <th class = "table-set">操作</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each = "bunit:${page}">
-                            <td th:text = "${bunit.id}"></td>1
-                            <td ><a th:text = "${bunit.book.title}" th:href="@{librarian_book(isbn=${bunit.book.isbn})}"></a></td>
-                            <td th:text = "${bunit.book.isbn}"></td>
-                            <td class = "am-hide-sm-only" th:text = "${bunit.book.author}"></td>
-                            <td class = "am-hide-sm-only" th:text = "${bunit.book.publisher}"></td>
-                            <td class = "am-hide-sm-only" th:text = "${bunit.book.publishDate}"></td>
-                            <td th:text = "${bunit.book.position}"></td>
-                            <td>
-                                <div class = "am-btn-toolbar">
-                                    <div class = "am-btn-group am-btn-group-xs">
-                                        <button class = "am-btn am-btn-default am-btn-xs am-text-secondary" ><a
-                                                th:href="@{deletebook(id=${bunit.id},start=${page.number})}"
-                                                class = "am-icon-close" >删除</a>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
-                    <div class = "am-cf">
-                        <p th:text="'共有'+${page.numberOfElements}+'条数据'"></p>
-                        <div class = "am-fr">
-                            <ul class = "am-pagination">
-                                <li><a th:href = "@{librarian_table(start=0)}">首页</a></li>
-                                <li><a th:href = "@{librarian_table(start=${page.number}-1)}">上一页</a></li>
-                                <li><a th:href = "@{librarian_table(start=${page.number}+1)}">下一页</a></li>
-                                <li><a th:href="@{librarian_table(start=${page.totalPages})}">末页</a></li>
-                            </ul>
                         </div>
+
                     </div>
+
+
                 </div>
             </div>
         </div>
-
         <footer class = "admin-content-footer">
             <hr>
             <p class = "am-padding-left" style = "text-align: center">© 2018 Biboliosoft Online Library System</p>
         </footer>
-
-        <div class = "am-modal am-modal-prompt" tabindex = "-1" id = "my-prompt">
-            <div class = "am-modal-dialog">
-                <div class = "am-modal-hd">添加图书</div>
-                <form class = "am-modal-bd am-form am-form-horizontal" method = "post" action = "addbook" enctype = "multipart/form-data">
-                    <div class = "am-form-group">
-                        <label for = "title" class = "am-u-sm-3 am-form-label">书名</label>
-                        <div class = "am-u-sm-9">
-                            <input type = "text" id = "title" placeholder = "书名 / Title" name = "title">
-                        </div>
-                    </div>
-
-                    <div class = "am-form-group">
-                        <label for = "isbn" class = "am-u-sm-3 am-form-label">ISBN</label>
-                        <div class = "am-u-sm-9">
-                            <input type = "text" id = "isbn" placeholder = "ISBN" name = "isbn">
-                        </div>
-                    </div>
-
-                    <div class = "am-form-group">
-                        <label for = "author" class = "am-u-sm-3 am-form-label">作者</label>
-                        <div class = "am-u-sm-9">
-                            <input type = "text" id = "author" placeholder = "作者 / Author" name = "author">
-                        </div>
-                    </div>
-
-                    <div class = "am-form-group">
-                        <label for = "type" class = "am-u-sm-3 am-form-label">类别</label>
-                        <div class = "am-u-sm-9">
-                            <input type = "text" id = "type" placeholder = "类别 / Type" name = "category">
-                        </div>
-                    </div>
-
-                    <div class = "am-form-group">
-                        <label for = "position" class = "am-u-sm-3 am-form-label">位置</label>
-                        <div class = "am-u-sm-9">
-                            <input type = "text" id = "position" placeholder = "位置 / position" name = "position">
-                        </div>
-                    </div>
-
-                    <div class = "am-form-group">
-                        <label for = "publisher" class = "am-u-sm-3 am-form-label">出版社</label>
-                        <div class = "am-u-sm-9">
-                            <input type = "text" id = "publisher" placeholder = "出版社 / Publisher" name = "publisher">
-                        </div>
-                    </div>
-
-                    <div class = "am-form-group">
-                        <label for = "publish_time" class = "am-u-sm-3 am-form-label">出版时间</label>
-                        <div class = "am-u-sm-9">
-                            <input type = "text" id = "publish_time" placeholder = "出版时间 / Publish Time"
-                                   name = "publishDate">
-                        </div>
-                    </div>
-
-
-                    <div class = "am-form-group">
-                        <label for = "number" class = "am-u-sm-3 am-form-label">数量</label>
-                        <div class = "am-u-sm-9">
-                            <input type = "number" id = "number" pattern = "[1-9][0-9]*" placeholder = "数量 / Number"
-                                   name = "number">
-                        </div>
-                    </div>
-
-                    <div class = "am-form-group">
-                        <label for = "abstract" class = "am-u-sm-3 am-form-label">简介</label>
-                        <div class = "am-u-sm-9">
-                            <input type = "text" id = "abstract" placeholder = "摘要 / Abstract" name = "brief">
-                        </div>
-                    </div>
-
-                    <div class = "am-form-group">
-                        <label for = "price" class = "am-u-sm-3 am-form-label">价格</label>
-                        <div class = "am-u-sm-9">
-                            <input type = "text" id = "price" placeholder = "价格 / Price" name = "price">
-                        </div>
-                    </div>
-
-                    <div class = "am-form-group">
-                        <label for = "price" class = "am-u-sm-3 am-form-label">封面</label>
-                        <div class = "am-u-sm-9">
-                            <input type = "file" id = "user-pic" class = "am-modal-prompt-input" name = "file">
-                        </div>
-                    </div>
-
-
-                    <div class = "am-modal-footer am-g">
-                        <div class = "am-u-sm-7 am-u-sm-push-2 am-u-end">
-                            <input type = "submit" data-am-modal-confirm value = "确认/confirm" class = "am-btn am-btn-primary"></div>
-                    </div>
-                </form>
-            </div>
-        </div>
-
     </div>
+
+
     <!-- content end -->
 
 </div>
@@ -344,22 +260,51 @@
 <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!-->
 <script src = "assets/js/jquery.min.js"></script>
+
 <!--<![endif]-->
-<!--<script>-->
-<!--$(function () {-->
-<!--$('#booklist').DataTable(-->
-<!--{-->
-<!--"ordering":false,-->
-<!--"bLengthChange":false,-->
-<!--}-->
-<!--);-->
-<!--})-->
-<!--</script>-->
+
 
 <script src = "dist/amazeui.datatables.min.js"></script>
 <script src = "assets/js/amazeui.min.js"></script>
 <script src = "assets/js/app.js"></script>
-
+<script>
+    $(function () {
+        $('#income_history').DataTable(
+            {
+                "ordering": false,
+                "bLengthChange": false,
+                language:{
+                    "oPaginate": {
+                        "sFirst": "First",
+                        "sPrevious": "Pre",
+                        "sNext": "Next",
+                        "sLast": "Last",
+                    },
+                    "sSearch": "Search",
+                    "sInfo": " _START_ - _END_ ，In _TOTAL_"
+                }
+            }
+        );
+    });
+    $(function () {
+        $('#income_week').DataTable(
+            {
+                "ordering": false,
+                "bLengthChange": false,
+                language:{
+                    "oPaginate": {
+                        "sFirst": "First",
+                        "sPrevious": "Pre",
+                        "sNext": "Next",
+                        "sLast": "Last"
+                    },
+                    "sSearch": "Search",
+                    "sInfo": " _START_ - _END_ ，In _TOTAL_"
+                }
+            }
+        );
+    });
+</script>
 <script>
     $(function () {
         $('#add-book').on('click', function () {
@@ -376,7 +321,208 @@
     });
 </script>
 <script type = "text/javascript" src = "assets/js/test.js"></script>
+<script type = "text/javascript" src = "assets/js/charts/echarts.min.js"></script>
 
+<script>
+    var mydata = [];
+    var datedata = [];
+    var finedata = [];
+    var depositdata = [];
+    var data_week = [];
+    var option;
+    var option2;
+    (function () {
+
+
+        var myChart = echarts.init(document.getElementById("income_month"));
+
+        option = {
+            title: {
+                text: 'Borrow/Return'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data:['Fine','Deposit']
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            toolbox: {
+                feature: {
+                    saveAsImage: {}
+                }
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: datedata
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [
+                {
+                    name:'Fine',
+                    type:'line',
+                    stack: '总量1',
+                    data: finedata
+                },
+                {
+                    name:'Deposit',
+                    type:'line',
+                    stack: '总量2',
+                    data: depositdata
+                }
+            ]
+        };
+
+        myChart.setOption(option);
+    })();
+    // (function(){
+    //
+    //     var trends = echarts.init(document.getElementById("trends"));
+    //
+    //     function randomData() {
+    //         now = new Date(+now + oneDay);
+    //         value = value + Math.random() * 21 - 10;
+    //         return {
+    //             name: now.toString(),
+    //             value: [
+    //                 [now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/'),
+    //                 Math.round(value)
+    //             ]
+    //         }
+    //     }
+    //
+    //     var data = [];
+    //     var now = +new Date(1997, 9, 3);
+    //     var oneDay = 24 * 3600 * 1000;
+    //     var value = Math.random() * 1000;
+    //     for (var i = 0; i < 1000; i++) {
+    //         data.push(randomData());
+    //     }
+    //
+    //     option2 = {
+    //         title: {
+    //             text: '动态数据 + 时间坐标轴'
+    //         },
+    //         tooltip: {
+    //             trigger: 'axis',
+    //             // formatter: function (params) {
+    //             //     params = params[0];
+    //             //     var date = new Date(params.name);
+    //             //     return date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear() + ' : ' + params.value[1];
+    //             // },
+    //             axisPointer: {
+    //                 animation: false
+    //             }
+    //         },
+    //         xAxis: {
+    //             type: 'time',
+    //             splitLine: {
+    //                 show: false
+    //             }
+    //         },
+    //         yAxis: {
+    //             type: 'value',
+    //             boundaryGap: [0, '100%'],
+    //             splitLine: {
+    //                 show: false
+    //             }
+    //         },
+    //         series: [{
+    //             name: '模拟数据',
+    //             type: 'line',
+    //             showSymbol: false,
+    //             hoverAnimation: false,
+    //             data: data_week
+    //         }]
+    //     };
+    //
+    //     timeTicket = setInterval(function () {
+    //
+    //         for (var i = 0; i < 1; i++) {
+    //             data.shift();
+    //             //data.push(randomData());
+    //         }
+    //
+    //         trends.setOption({
+    //             series: [{
+    //                 data: data_week
+    //             }]
+    //         });
+    //     }, 1000);
+    //
+    //     trends.setOption(option2);
+    // })();
+    function date2str(x, y) {
+        x1 = new Date(x);
+        var z = {
+            y: x1.getFullYear(),
+            M: x1.getMonth() + 1,
+            d: x1.getDate(),
+            h: x1.getHours(),
+            m: x1.getMinutes(),
+            s: x1.getSeconds()
+        };
+        return y.replace(/(y+|M+|d+|h+|m+|s+)/g, function (v) {
+            return ((v.length > 1 ? "0" : "") + eval('z.' + v.slice(-1))).slice(-(v.length > 2 ? v.length : 2))
+        });
+    }
+
+
+    function getbyyear() {
+        var year = $('#year').val();
+        console.log(year);
+        $.ajax({
+            type: "get",
+            data: {year: year},
+            url: "getMonthIncome",
+            success: function (data) {
+                mydata=data;
+                for(var num=0;num<12;num++)
+                {
+                    datedata.push(date2str(data[num].date,"MM"));
+                    finedata.push(data[num].fine);
+                    depositdata.push(data[num].deposit);
+                }
+                console.log(datedata)
+                echarts.init(document.getElementById("income_month")).setOption(option);
+            },
+            error: function (data) {
+                alert("Error");
+            }
+        });
+        // $.ajax({
+        //     type: "get",
+        //     data: {year:year},
+        //     url: "getWeekIncome",
+        //     success: function (data) {
+        //         mydata = data;
+        //         console.log(data);
+        //         for (var num = 0; num < data.len(); num++)
+        //         {
+        //             var date = data[num].date;
+        //             var deposit = data[num].deposit;
+        //             var fine = data[num].fine;
+        //             data_week.push([date,deposit]);
+        //         }
+        //     },
+        //     error: function (data) {
+        //         alert("发生错误，请稍后再试！");
+        //     }
+        // });
+    }
+
+    console.log(mydata);
+
+
+</script>
 
 <script type = "text/javascript">
     $("#change").click(function () {
