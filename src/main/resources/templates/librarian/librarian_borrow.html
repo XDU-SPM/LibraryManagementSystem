@@ -173,14 +173,14 @@
                     <form class = "am-form am-form-horizontal" method = "post" action = "lend">
 
                         <div class = "am-form-group">
-                            <label for = "username" class = "am-u-sm-3 am-form-label">用户名</label>
+                            <label for = "username" class = "am-u-sm-3 am-form-label" th:text="#{username}">用户名</label>
                             <div class = "am-u-sm-9">
                                 <input type = "text" id = "username" placeholder = "用户名/Username" name = "username">
                             </div>
                         </div>
 
                         <div class = "am-form-group">
-                            <label for = "book-id" class = "am-u-sm-3 am-form-label">书号</label>
+                            <label for = "book-id" class = "am-u-sm-3 am-form-label" th:text="#{bid}">书号</label>
                             <div class = "am-u-sm-9">
                                 <input type = "text" id = "book-id" placeholder = "输入书号" name = "id">
                             </div>
@@ -188,7 +188,7 @@
 
                         <div class = "am-form-group">
                             <div class = "am-u-sm-9 am-u-sm-push-3">
-                                <input type = "submit" class = "am-btn am-btn-primary" value = "提交/Submit">
+                                <input type = "submit" class = "am-btn am-btn-primary" th:value = "#{submit}">
                             </div>
                         </div>
                     </form>
@@ -226,17 +226,17 @@
         if (status != 'null') {
             if (status==0)
             {
-                alert("借阅成功")
+                alert("OK")
             }
             else if (status==-1) {
-                alert("用户不存在");
+                alert("User does not exist");
             }
             else if(status==-2){
-                alert("用户借书已达到上限")
+                alert("The amount of borrowing reached the upper limit")
             }
             else if(status==-3)
             {
-                alert("此书本不存在")
+                alert("Book does not exist")
             }
         }
     }

@@ -172,25 +172,25 @@
 
                     <ul class = "am-avg-sm-1 am-avg-md-4 am-margin am-padding am-text-center admin-content-list ">
                         <li>
-                            <a href = "#" class = "am-text-success"><span
+                            <a href = "#" class = "am-text-success" th:text="#{tb_t}"><span
                                     class = "am-icon-btn am-icon-book"></span><br/>今日借阅<br/>
                                 <span th:text = "${todayBorrowNumber}"></span>
                             </a>
                         </li>
                         <li>
-                            <a href = "#" class = "am-text-warning"><span
+                            <a href = "#" class = "am-text-warning" th:text="#{on_t}"><span
                                 class = "am-icon-btn am-icon-clock-o"></span><br/>逾期人数<br/>
                                 <span th:text="${todayOverdueNumber}"></span>
                             </a>
                         </li>
                         <li>
-                            <a href = "#" class = "am-text-danger"><span
+                            <a href = "#" class = "am-text-danger" th:text="#{tr_t}"><span
                                 class = "am-icon-btn am-icon-recycle"></span><br/>今日归还<br/>
                             <span th:text="${todayReturnNumber}"></span>
                             </a>
                         </li>
                         <li>
-                            <a href = "librarian_income" class = "am-text-secondary"><span
+                            <a href = "librarian_income" class = "am-text-secondary" th:text="#{income}"><span
                                     class = "am-icon-btn am-icon-user-md"></span><br/>收入<br/>
                                 <span th:text = "${todayFineIncome}">100</span>
                             </a>
@@ -271,7 +271,7 @@
             },
             series : [
                 {
-                    name: '图书情况',
+                    name: 'Book Information',
                     type: 'pie',
                     radius : '55%',
                     center: ['50%', '60%'],
