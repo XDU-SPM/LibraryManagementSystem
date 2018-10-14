@@ -158,7 +158,7 @@
     <div class = "admin-content">
         <div class = "admin-content-body">
             <div class = "am-cf am-padding am-padding-bottom-0">
-                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">归还书籍</strong> /
+                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg" th:text="#{rb_ysw}">归还书籍</strong> /
                     <small>Return book</small>
                 </div>
             </div>
@@ -167,9 +167,9 @@
 
             <div class = "am-tabs am-margin" data-am-tabs>
                 <ul class = "am-tabs-nav am-nav am-nav-tabs">
-                    <li class = "am-active"><a href = "#tab1">还书</a></li>
-                    <li><a href = "#tab2">损坏登记</a></li>
-                    <li><a href = "#tab3">丢失登记</a></li>
+                    <li class = "am-active"><a href = "#tab1" th:text="#{rb1_ysw}">还书</a></li>
+                    <li><a href = "#tab2" th:text="#{dr_ysw}">损坏登记</a></li>
+                    <li><a href = "#tab3" th:text="#{lr_ysw}">丢失登记</a></li>
                 </ul>
 
                 <div class = "am-tabs-bd">
@@ -178,7 +178,7 @@
                             <form action = "return" method = "post">
                                 <div class = "am-form am-form-horizontal">
                                     <div class = "am-g am-margin-top">
-                                        <div class = "am-u-sm-4 am-u-md-2 am-text-right">
+                                        <div class = "am-u-sm-4 am-u-md-2 am-text-right" th:text="#{bn_ysw}">
                                             书号
                                         </div>
                                         <div class = "am-u-sm-8 am-u-md-4">
@@ -201,7 +201,7 @@
                     <div class = "am-tab-panel am-fade" id = "tab2">
                         <form class = "am-form" action = "return" method = "post">
                             <div class = "am-g am-margin-top">
-                                <div class = "am-u-sm-4 am-u-md-2 am-text-right">
+                                <div class = "am-u-sm-4 am-u-md-2 am-text-right" th:text="#{bn_ysw}">
                                     书号
                                 </div>
                                 <div class = "am-u-sm-8 am-u-md-4">
@@ -212,17 +212,17 @@
 
 
                             <div class = "am-g am-margin-top">
-                                <div class = "am-u-sm-4 am-u-md-2 am-text-right">损坏程度</div>
+                                <div class = "am-u-sm-4 am-u-md-2 am-text-right" th:text="#{﻿lod_ysw}">损坏程度</div>
                                 <div class = "am-u-sm-8 am-u-md-10">
                                     <div class = "am-btn-group" data-am-button>
                                         <label class = "am-btn am-btn-default am-btn-xs">
-                                            <input type = "radio" name = "damage" id = "option1" value = "1"> 轻微
+                                            <input type = "radio" name = "damage" id = "option1" value = "1" th:text="#{slight_ysw}"> 轻微
                                         </label>
                                         <label class = "am-btn am-btn-default am-btn-xs">
-                                            <input type = "radio" name = "damage" id = "option2" value = "2"> 中度
+                                            <input type = "radio" name = "damage" id = "option2" value = "2" th:text="#{medium_ysw}"> 中度
                                         </label>
                                         <label class = "am-btn am-btn-default am-btn-xs">
-                                            <input type = "radio" name = "damage" id = "option3" value = "3"> 严重
+                                            <input type = "radio" name = "damage" id = "option3" value = "3" th:text="#{heavy_ysw}"> 严重
                                         </label>
                                     </div>
                                 </div>
@@ -231,7 +231,7 @@
 
                             <div class = "am-g am-margin-top-sm">
                                 <div class = "am-u-sm-10 am-u-sm-push-2">
-                                    <input type = "submit" class = "am-btn am-btn-primary " value = "提交/submit">
+                                    <input type = "submit" class = "am-btn am-btn-primary " th:value = "#{}">
                                 </div>
                             </div>
 
@@ -242,7 +242,7 @@
                         <form class = "am-form" action = "return" method = "post">
                             <input type = "hidden" name = "damage" value = "4">
                             <div class = "am-g am-margin-top-sm">
-                                <div class = "am-u-sm-4 am-u-md-2 am-text-right">
+                                <div class = "am-u-sm-4 am-u-md-2 am-text-right" th:text="#{rs_ysw}">
                                     书号
                                 </div>
                                 <div class = "am-u-sm-8 am-u-md-4 am-u-end">
@@ -252,7 +252,7 @@
 
                             <div class = "am-g am-margin-top-sm">
                                 <div class = "am-u-sm-10 am-u-sm-push-2">
-                                    <input type = "submit" class = "am-btn am-btn-primary " value = "提交/submit">
+                                    <input type = "submit" class = "am-btn am-btn-primary " th:value = "#{submit}">
                                 </div>
                             </div>
                         </form>
