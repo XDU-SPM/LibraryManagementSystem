@@ -63,7 +63,7 @@
 
         <form class = "am-topbar-form am-topbar-left am-form-inline" role = "search">
             <div class = "am-form-group">
-                <input type = "text" class = "am-form-field am-input-sm" placeholder = "搜索">
+                <input type = "text" class = "am-form-field am-input-sm" th:placeholder = "#{Search}">
             </div>
         </form>
 
@@ -137,8 +137,7 @@
     <div class = "admin-content">
         <div class = "admin-content-body">
             <div class = "am-cf am-padding am-padding-bottom-0">
-                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">删除用户</strong> /
-                    <small>Delete User</small>
+                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg" th:text="#{DeleteUser} "></strong>
                 </div>
                 <div class = "am-g">
                     <div class = "am-u-sm-12 am-u-md-6">
@@ -152,7 +151,7 @@
                         <div class = "am-input-group am-input-group-sm">
                             <input type = "text" class = "am-form-field">
                             <span class = "am-input-group-btn">
-				            <button class = "am-btn am-btn-default" type = "button">搜索</button>
+				            <button class = "am-btn am-btn-default" type = "button" th:text="#{Search}"></button>
 				          </span>
                         </div>
                     </div>
@@ -172,11 +171,11 @@
                                 <thead>
                                 <tr>
                                     <th class = "table-id">ID</th>
-                                    <th class = "table-title">用户名</th>
-                                    <th class = "table-type">类别</th>
-                                    <th class = "table-author am-hide-sm-only">姓名</th>
-                                    <th class = "table-date am-hide-sm-only">邮箱</th>
-                                    <th class = "table-set">操作</th>
+                                    <th class = "table-title" th:text="#{Username}"></th>
+                                    <th class = "table-type" th:text="#{Role}"></th>
+                                    <th class = "table-author am-hide-sm-only" th:text="#{Name}"></th>
+                                    <th class = "table-date am-hide-sm-only" th:text="#{Email}"></th>
+                                    <th class = "table-set" th:text="#{Operation}"></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -191,7 +190,7 @@
                                             <div class = "am-btn-group am-btn-group-xs">
                                                 <button class = "am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
                                                     <span class = "am-icon-trash-o"><a
-                                                            th:href = "@{deleteaccount(id=${user.id},start=${page.number})}">删除</a></span>
+                                                            th:href = "@{deleteaccount(id=${user.id},start=${page.number})}" th:text="#{Delete}"></a></span>
                                                 </button>
                                             </div>
                                         </div>
@@ -201,13 +200,13 @@
                                 </tbody>
                             </table>
                             <div class = "am-cf">
-                                <p th:text = "'共有'+${page.numberOfElements}+'条数据'"></p>
+                                <p th:text = " #{g_zj}+${page.numberOfElements}+' ' + #{d_zj}"></p>
                                 <div class = "am-fr">
                                     <ul class = "am-pagination">
-                                        <li><a th:href = "@{delete_users(start=0)}">首页</a></li>
-                                        <li><a th:href = "@{delete_users(start=${page.number}-1)}">上一页</a></li>
-                                        <li><a th:href = "@{delete_users(start=${page.number}+1)}">下一页</a></li>
-                                        <li><a th:href = "@{delete_users(start=${page.totalPages})}">末页</a></li>
+                                        <li><a th:href = "@{delete_users(start=0)}" th:text="#{f_zj}"></a></li>
+                                        <li><a th:href = "@{delete_users(start=${page.number}-1)}" th:text="#{p_zj}"></a></li>
+                                        <li><a th:href = "@{delete_users(start=${page.number}+1)}" th:text="#{n_zj}"></a></li>
+                                        <li><a th:href = "@{delete_users(start=${page.totalPages})}" th:text="#{l_zj}"></a></li>
                                     </ul>
                                 </div>
                             </div>
