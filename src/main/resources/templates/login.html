@@ -172,7 +172,7 @@
 <!--新的登录界面-->
 
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en" class="no-js" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
@@ -246,16 +246,16 @@
         <div style = "text-align: center" class = "am-text-primary am-text-lg"><h2>LOGIN</h2></div>
         <br>
         <form method = "post" class="mystyle" name="myform" action="/login">
-            <label for = "username" >username:</label>
+            <label for = "username" th:text="#{username}">username:</label>
             <input name = "username" size="width:250px;" id = "username" value = "" required/>
             <br><br>
-            <label for = "password" >password:</label>
+            <label for = "password" th:text="#{password_ysw}" >password:</label>
             <input type = "password"  size="width:250px;"  autocomplete="new-password"  name = "password" id = "password" value = "" required/>
             <br><br>
             <div class = "am-cf">
-                <input type = "submit" name = ""  id="loginbun" onclick="shake(); " value = "login" class = "am-btn am-btn-primary am-btn-sm btn-loading-example " >
+                <input type = "submit" name = ""  id="loginbun" onclick="shake(); " th:value = "#{lo_yxy}" class = "am-btn am-btn-primary am-btn-sm btn-loading-example " >
                 <br><br><br>
-                <a href="/forget_password">forget password</a>&nbsp;&nbsp;&nbsp;<a href="/visitor-main">back to homepage</a>
+                <a href="/forget_password" th:text="#{fp44}">forget password</a>&nbsp;&nbsp;&nbsp;<a href="/visitor-main" th:text="#{bth44}">back to homepage</a>
             </div>
         </form>
     </div>

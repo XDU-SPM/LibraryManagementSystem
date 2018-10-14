@@ -1,4 +1,4 @@
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head lang = "en">
     <meta charset = "UTF-8">
     <title>admin login</title>
@@ -52,7 +52,7 @@
     <div class = "am-collapse am-topbar-collapse" id = "topbar-collapse">
         <ul class = "am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
             <li><a href = "javascript:;">
-                <button id = "change" class = "am-btn am-btn-primary am-btn-sm">中文/英文</button>
+                <button id = "change" class = "am-btn am-btn-primary am-btn-sm"  th:text="#{ce_ysw}">中文/英文</button>
             </a></li>
         </ul>
     </div>
@@ -64,18 +64,18 @@
     <hr>
     <br>
     <form method = "post" class = "mystyle" name = "myform" action = "login">
-        <label for = "username">username:</label>
+        <label for = "username" th:text="#{username}" >username:</label>
         <input name = "username" size = "width:250px;" id = "username" value = "">
         <br><br>
-        <label for = "password">password:</label>
+        <label for = "password" th:text="#{password_ysw}">password:</label>
         <input type = "password" size = "width:250px;" autocomplete = "new-password" name = "password" id = "password"
                value = "">
         <br><br>
         <div class = "am-cf">
-            <input type = "submit" name = "" id = "loginbun" onclick = "shake(); return validateForm();" value = "login"
+            <input type = "submit" name = "" id = "loginbun" onclick = "shake(); return validateForm();" th:value = "#{lo_yxy}"
                    class = "am-btn am-btn-primary am-btn-sm  ">
             <br><br><br>
-            <a>forget password&nbsp</a>
+            <a th:text="#{﻿fp44}">forget password</a>
         </div>
     </form>
 </div>

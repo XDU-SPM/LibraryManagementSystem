@@ -77,7 +77,7 @@
 
                 <li class = "am-dropdown" data-am-dropdown>
                     <a class = "am-dropdown-toggle" data-am-dropdown-toggle href = "javascript:;">
-                        <a th:href = "@{/logout}">注销</a>
+                        <a th:href = "@{/logout}" th:text="#{lg_yxy}">注销</a>
                     </a>
 
                 </li>
@@ -100,48 +100,48 @@
             </div>
 
             <ul class = "am-list admin-sidebar-list">
-                <li><a href = "librarian_homepage"><span class = "am-icon-home"></span> 首页</a></li>
-                <li><a href = "librarian_user" class = "am-cf"><span class = "am-icon-check"></span> 个人资料<span
+                <li><a href = "librarian_homepage"><span class = "am-icon-home"></span><span th:text="#{ho_yxy}"> 首页</span></a></li>
+                <li><a href = "librarian_user" class = "am-cf"><span class = "am-icon-check"></span><span th:text="#{pd_yxy}"> 个人资料</span><span
                         class = "am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
-                <li><a href = "password_change"><span class = "am-icon-eraser"></span> 修改密码</a></li>
+                <li><a href = "password_change"><span class = "am-icon-eraser"></span><span th:text="#{cp_yxy}"> 修改密码</span></a></li>
                 <li class = "admin-parent">
                     <a class = "am-cf" data-am-collapse = "{target: '#collapse-nav'}"><span
-                            class = "am-icon-file"></span> 管理图书 <span
+                            class = "am-icon-file"></span><span th:text="#{mb_yxy}"> 管理图书</span> <span
                             class = "am-icon-angle-right am-fr am-margin-right"></span></a>
                     <ul class = "am-list am-collapse admin-sidebar-sub am-in" id = "collapse-nav">
-                        <li><a href = "librarian_borrow"><span class = "am-icon-leaf"></span> 借阅</a></li>
-                        <li><a href = "librarian_return"><span class = "am-icon-mail-reply"></span> 归还</a></li>
-                        <li><a href = "librarian_table"><span class = "am-icon-book"></span> 管理图书</a></li>
-                        <li><a href = "librarian_deletebookhistory"><span class="am-icon-trash"> 删除记录</span></a></li>
+                        <li><a href = "librarian_borrow"><span class = "am-icon-leaf"></span><span th:text="#{bo_yxy}"> 借阅</span></a></li>
+                        <li><a href = "librarian_return"><span class = "am-icon-mail-reply"></span><span th:text="#{re_yxy}"> 归还</span></a></li>
+                        <li><a href = "librarian_table"><span class = "am-icon-book"></span><span th:text="#{mb_yxy}"> 管理图书</span></a></li>
+                        <li><a href = "librarian_deletebookhistory"><span class = "am-icon-trash"><span th:text="#{dr_yxy}"> 删除记录</span></span></a></li>
                         </li>
                     </ul>
                 </li>
-                <li class="admin-parent">
+                <li class = "admin-parent">
                     <a class = "am-cf" data-am-collapse = "{target: '#collapse-nav2'}"><span
-                            class = "am-icon-user"></span> 管理读者 <span
+                            class = "am-icon-user"></span><span th:text="#{mr_yxy}"> 管理读者 </span><span
                             class = "am-icon-angle-right am-fr am-margin-right"></span></a>
                     <ul class = "am-list am-collapse admin-sidebar-sub am-in" id = "collapse-nav2">
-                        <li><a href = "librarian_addreader"><span class = "am-icon-user-plus"></span> 增加读者</a></li>
-                        <li><a href = "librarian_managereader"><span class = "am-icon-pencil"></span> 管理读者</a></li>
+                        <li><a href = "librarian_addreader"><span class = "am-icon-user-plus"></span><span th:text="#{ar_yxy}"> 增加读者</span></a></li>
+                        <li><a href = "librarian_managereader"><span class = "am-icon-pencil"></span><span th:text="#{mr_yxy}"> 管理读者</span></a></li>
                     </ul>
                 </li>
-                <li class="admin-parent">
+                <li class = "admin-parent">
                     <a class = "am-cf" data-am-collapse = "{target: '#collapse-nav3'}"><span
-                            class = "am-icon-table"></span> 记录 <span
+                            class = "am-icon-table"></span><span th:text="#{rec_yxy}"> 记录 </span><span
                             class = "am-icon-angle-right am-fr am-margin-right"></span></a>
                     <ul class = "am-list am-collapse admin-sidebar-sub am-in" id = "collapse-nav3">
-                        <li><a href = "librarian_record"><span class = "am-icon-book"></span> 预约记录</a></li>
-                        <li><a href = "librarian_history"><span class = "am-icon-book"></span> 借阅记录</a></li>
-                        <li><a href = "librarian_income"><span class = "am-icon-money"></span> 收入记录 </a></li>
-                        <li><a href = "librarian_fine"><span class="am-icon-bolt"></span> 罚金记录</a></li>
+                        <li><a href = "librarian_record"><span class = "am-icon-book"></span><span th:text="#{rr_yxy}"> 预约记录</span></a></li>
+                        <li><a href = "librarian_history"><span class = "am-icon-book"></span><span th:text="#{br_yxy}"> 借阅记录</span></a></li>
+                        <li><a href = "librarian_income"><span class = "am-icon-money"></span><span th:text="#{ir_yxy}"> 收入记录 </span></a></li>
+                        <li><a href = "librarian_fine"><span class = "am-icon-bolt"></span><span th:text="#{fr_yxy}"> 罚金记录</span></a></li>
                     </ul>
                 </li>
-                <li><a href = "librarian_announce"><span class = "am-icon-comment"></span> 发布公告</a></li>
+                <li><a href = "librarian_announce"><span class = "am-icon-comment"></span><span th:text="#{an_yxy}"> 发布公告</span></a></li>
             </ul>
 
             <div class = "am-panel am-panel-default admin-sidebar-panel">
                 <div class = "am-panel-bd">
-                    <p><span class = "am-icon-bookmark"></span> 公告</p>
+                    <p><span class = "am-icon-bookmark"></span><span th:text="#{no_yxy}"> 公告</span></p>
                     <p>时光静好，与君语；细水流年，与君同。—— Amaze UI</p>
                 </div>
             </div>
@@ -159,7 +159,7 @@
     <div class = "admin-content">
         <div class = "admin-content-body">
             <div class = "am-cf am-padding am-padding-bottom-0">
-                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">个人资料</strong> /
+                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg" th:text="#{pd_yxy}">个人资料</strong> /
                     <small>Personal information</small>
                 </div>
             </div>
@@ -177,12 +177,12 @@
                                          alt = ""/>
                                 </div>
                                 <div class = "am-u-md-8">
-                                    <p>你可以使用<a href = "#">gravatar.com</a>提供的头像或者使用本地上传头像。 </p>
+                                    <p th:text="#{price}">你可以使用<a href = "#">gravatar.com</a><span th:text="#{pao44}">提供的头像或者使用本地上传头像。</span> </p>
                                     <form class = "am-form">
                                         <div class = "am-form-group">
                                             <input type = "file" id = "user-pic">
-                                            <p class = "am-form-help">请选择要上传的文件...</p>
-                                            <button type = "button" class = "am-btn am-btn-primary am-btn-xs">保存
+                                            <p class = "am-form-help" th:text="#{pst44}">请选择要上传的文件...</p>
+                                            <button type = "button" class = "am-btn am-btn-primary am-btn-xs" th:text="#{Save_ysw}">保存
                                             </button>
                                         </div>
                                     </form>
@@ -198,21 +198,21 @@
                     <form class = "am-form am-form-horizontal" method = "post" action = "saveUser">
 
                         <div class = "am-form-group">
-                            <label for = "username" class = "am-u-sm-3 am-form-label">用户名</label>
+                            <label for = "username" class = "am-u-sm-3 am-form-label" th:text="#{u_ysw}">用户名</label>
                             <div class = "am-u-sm-9">
                                 <input minlength="5" maxlength="20" type = "text" id = "username" placeholder = "用户名 / username" name = "username" th:value="${user.username}">
                             </div>
                         </div>
 
                         <div class = "am-form-group">
-                            <label for = "name" class = "am-u-sm-3 am-form-label">姓名</label>
+                            <label for = "name" class = "am-u-sm-3 am-form-label" th:text="#{n_ysw}">姓名</label>
                             <div class = "am-u-sm-9">
                                 <input type = "text" minlength="5" maxlength="20" id = "name" placeholder = "姓名 / Name" name = "name" th:value="${user.name}">
                             </div>
                         </div>
 
                         <div class = "am-form-group">
-                            <label for = "user-email" class = "am-u-sm-3 am-form-label">电子邮件</label>
+                            <label for = "user-email" class = "am-u-sm-3 am-form-label" th:text="#{e_ysw}">电子邮件</label>
                             <div class = "am-u-sm-9">
                                 <input type = "email" id = "user-email" placeholder = "输入你的电子邮件 / Email" name = "email"
                                        th:value = "${user.email}">
@@ -221,7 +221,7 @@
 
                         <div class = "am-form-group">
                             <div class = "am-u-sm-9 am-u-sm-push-3">
-                                <input type = "submit" class = "am-btn am-btn-primary" value = "保存修改/Save"
+                                <input type = "submit" class = "am-btn am-btn-primary" th:value = "#{Save_ysw}"
                                        onclick = "return check()">
                             </div>
                         </div>
