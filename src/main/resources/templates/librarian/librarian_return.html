@@ -163,7 +163,7 @@
 
                                     <div class = "am-g am-margin-top-sm">
                                         <div class = "am-u-sm-10 am-u-sm-push-2">
-                                            <input type = "submit" class = "am-btn am-btn-primary ">
+                                            <input type = "submit" class = "am-btn am-btn-primary " th:value = "#{submit}">
                                         </div>
                                     </div>
                                 </div>
@@ -179,7 +179,7 @@
                                     书号
                                 </div>
                                 <div class = "am-u-sm-8 am-u-md-4">
-                                    <input type = "text" class = "am-input-sm" name = "id">
+                                    <input type = "text" class = "am-input-sm" name = "id" >
                                 </div>
                                 <div class = "am-hide-sm-only am-u-md-6"></div>
                             </div>
@@ -205,7 +205,8 @@
 
                             <div class = "am-g am-margin-top-sm">
                                 <div class = "am-u-sm-10 am-u-sm-push-2">
-                                    <input type = "submit" class = "am-btn am-btn-primary " th:value = "#{submit}">
+                                    <button type = "submit" class = "am-btn am-btn-primary " th:text = "#{submit}"></button>
+
                                 </div>
                             </div>
 
