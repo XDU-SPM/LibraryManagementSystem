@@ -84,18 +84,18 @@
                 <p style = "text-align: center" th:text="${username}">Reader</p>
             </div>
             <ul class = "am-list admin-sidebar-list">
-                <li><a href = "reader_condition"><span class = "am-icon-bar-chart"></span> 借书信息统计</a></li>
-                <li><a href = "reader_search"><span class = "am-icon-search"></span> 搜索页面</a></li>
-                <li><a href = "reader_information" class = "am-cf"><span class = "am-icon-check"></span> 个人资料<span
+                <li><a href = "reader_condition"><span class = "am-icon-bar-chart"></span> <span th:text="#{lis44}">借书信息统计</span></a></li>
+                <li><a href = "reader_search"><span class = "am-icon-search"></span><span th:text="#{sp44}"> 搜索页面</span></a></li>
+                <li><a href = "reader_information" class = "am-cf"><span class = "am-icon-check"></span> <span th:text="#{pd_yxy}">个人资料</span><span
                         class = "am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
-                <li><a href = "password_change"><span class = "am-icon-eraser"></span> 修改密码</a></li>
-                <li><a href = "reader_message"><span class = "am-icon-commenting-o"></span> 留言</a></li>
+                <li><a href = "password_change"><span class = "am-icon-eraser"></span> <span th:text="#{cp_yxy}">修改密码</span></a></li>
+                <li><a href = "reader_message"><span class = "am-icon-commenting-o"></span> <span th:text="#{m44}">留言</span></a></li>
             </ul>
 
             <div class = "am-panel am-panel-default admin-sidebar-panel">
                 <div class = "am-panel-bd">
-                    <p><span class = "am-icon-bookmark"></span> 公告</p>
-                    <p>时光静好，与君语；细水流年，与君同。—— Amaze UI</p>
+                    <p><span class = "am-icon-bookmark"></span> <span th:text="#{no_yxy}">公告</span></p>
+                    <p th:text="#{tiqa44}">时光静好，与君语；细水流年，与君同。</p>
                 </div>
             </div>
 
@@ -116,24 +116,24 @@
                 <form class = "am-form">
                     <fieldset>
                         <div class = "am-cf am-padding">
-                            <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">请留言：</strong></div>
+                            <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg" th:text="#{plam44}">请留言：</strong></div>
                         </div>
 
                         <div class = "am-g am-margin-top">
                             <div class = "am-u-sm-4 am-u-md-2 am-text-right">
-                                <strong>
+                                <strong th:text="#{mt44}">
                                     留言标题
                                 </strong>
                             </div>
                             <div class = "am-u-sm-8 am-u-md-4">
                                 <input type = "text" class = "am-input-sm">
                             </div>
-                            <div class = "am-hide-sm-only am-u-md-6">*必填，不可重复</div>
+                            <div class = "am-hide-sm-only am-u-md-6" th:text="#{mfu44}">*必填，不可重复</div>
                         </div>
 
                         <div class = "am-g am-margin-top">
                             <div class = "am-u-sm-4 am-u-md-2 am-text-right">
-                                <strong>
+                                <strong th:text="#{ma44}">
                                     留言作者
                                 </strong>
                             </div>
@@ -144,29 +144,29 @@
 
                         <div class = "am-g am-margin-top">
                             <div class = "am-u-sm-4 am-u-md-2 am-text-right">
-                                <strong>
+                                <strong th:text="#{ca44}">
                                     内容摘要
                                 </strong>
                             </div>
                             <div class = "am-u-sm-8 am-u-md-4">
                                 <input type = "text" class = "am-input-sm">
                             </div>
-                            <div class = "am-u-sm-12 am-u-md-6">不填写则自动截取内容前255字符</div>
+                            <div class = "am-u-sm-12 am-u-md-6" th:text="#{dnf44}">不填写则自动截取内容前255字符</div>
                         </div>
 
                         <div class = "am-g am-margin-top-sm">
                             <div class = "am-u-sm-12 am-u-md-2 am-text-right admin-form-text">
-                                <strong>
+                                <strong th:text="#{cd44}">
                                     内容描述
                                 </strong>
                             </div>
                             <div class = "am-u-sm-12 am-u-md-10">
-                                <textarea rows = "10" placeholder = "请使用富文本编辑插件"></textarea>
+                                <textarea rows = "10" th:placeholder = "#{utrt44}"></textarea>
                             </div>
                         </div>
                         <hr/>
                         <p>
-                            <button type = "submit" class = "am-btn am-btn-default am-center">提交保存</button>
+                            <button type = "submit" class = "am-btn am-btn-default am-center" th:text="#{sts44}">提交保存</button>
                         </p>
                     </fieldset>
                 </form>
