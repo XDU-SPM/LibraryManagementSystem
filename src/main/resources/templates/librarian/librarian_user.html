@@ -150,7 +150,7 @@
                                          alt = ""/>
                                 </div>
                                 <div class = "am-u-md-8">
-                                    <p th:text="#{price}">你可以使用<a href = "#">gravatar.com</a><span th:text="#{pao44}">提供的头像或者使用本地上传头像。</span> </p>
+                                    <p th:text="#{ycu44}">你可以使用<a href = "#">gravatar.com</a><span th:text="#{pao44}">提供的头像或者使用本地上传头像。</span> </p>
                                     <form class = "am-form">
                                         <div class = "am-form-group">
                                             <input type = "file" id = "user-pic">
@@ -173,21 +173,21 @@
                         <div class = "am-form-group">
                             <label for = "username" class = "am-u-sm-3 am-form-label" th:text="#{u_ysw}">用户名</label>
                             <div class = "am-u-sm-9">
-                                <input minlength="5" maxlength="20" type = "text" id = "username" placeholder = "用户名 / username" name = "username" th:value="${user.username}">
+                                <input minlength="5" maxlength="20" type = "text" id = "username" th:placeholder = "#{username}" name = "username" th:value="${user.username}">
                             </div>
                         </div>
 
                         <div class = "am-form-group">
                             <label for = "name" class = "am-u-sm-3 am-form-label" th:text="#{n_ysw}">姓名</label>
                             <div class = "am-u-sm-9">
-                                <input type = "text" minlength="5" maxlength="20" id = "name" placeholder = "姓名 / Name" name = "name" th:value="${user.name}">
+                                    <input type = "text" minlength="5" maxlength="20" id = "name" th:placeholder = "#{Name}" name = "name" th:value="${user.name}">
                             </div>
                         </div>
 
                         <div class = "am-form-group">
                             <label for = "user-email" class = "am-u-sm-3 am-form-label" th:text="#{e_ysw}">电子邮件</label>
                             <div class = "am-u-sm-9">
-                                <input type = "email" id = "user-email" placeholder = "输入你的电子邮件 / Email" name = "email"
+                                <input type = "email" id = "user-email" th:placeholder = "#{ie_zj}" name = "email"
                                        th:value = "${user.email}">
                             </div>
                         </div>

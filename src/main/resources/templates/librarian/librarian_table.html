@@ -313,12 +313,24 @@
 <script th:inline="javascript" src = "dist/amazeui.datatables.js"></script>
 <script src = "assets/js/amazeui.min.js"></script>
 <script src = "assets/js/app.js"></script>
-<script>
+<script th:inline="javascript">
     $(document).ready(function(){
         $("#booklist").DataTable(
             {
                 "ordering":false,
                 "bLengthChange":false,
+                language:{
+                    "oPaginate": {
+                        "sFirst": "First",
+                        "sPrevious": [[#{n_zj}]],
+                        "sNext": [[#{n_zj}]],
+                        "sLast": "Last"
+                    },
+                    "sSearch": [[#{Search}]],
+                    "sInfo": " _START_ - _END_ ，In _TOTAL_",
+                    "sInfoEmpty": "0",
+                    "sInfoFiltered": "(from _MAX_ )",
+                }
             }
         );
 
