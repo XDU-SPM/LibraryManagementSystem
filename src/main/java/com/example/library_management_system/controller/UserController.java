@@ -31,7 +31,7 @@ public class UserController
     @RequestMapping(value = {"/", "/visitor-main"}, method = RequestMethod.GET)
     public String main(Model model)
     {
-        model.addAttribute("page", bookService.showBook(0, 8, null));
+        model.addAttribute("page", bookService.showBook(0, 12, null));
         return "visitor-main";
     }
 
