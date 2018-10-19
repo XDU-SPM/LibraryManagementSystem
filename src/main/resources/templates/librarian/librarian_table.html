@@ -8,7 +8,8 @@
     <link rel = "apple-touch-icon-precomposed" href = "assets/i/app-icon72x72@2x.png">
     <link rel = "stylesheet" href = "assets/css/amazeui.min.css"/>
     <link rel = "stylesheet" href = "assets/css/admin.css">
-    <link rel = "stylesheet" href = "//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+    <link rel = "stylesheet" href="dist/amazeui.datatables.css">
+    <!--<link rel = "stylesheet" href = "//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">-->
     <style>
         .am-table {
 
@@ -157,7 +158,7 @@
 
             <div class = "am-g">
                 <div class = "am-u-sm-12">
-                    <table class = "am-table am-table-striped am-table-hover table-main" id = "booklist">
+                    <table class = "am-table am-table-striped am-table-hover .am-table-compact" id = "booklist">
                         <thead>
                         <tr>
                             <th class = "table-id" th:text="#{Delete}">书号</th>
@@ -311,6 +312,7 @@
 
 
 <script th:inline="javascript" src = "dist/amazeui.datatables.js"></script>
+<!--<script th:inline="javascript" src = "//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>-->
 <script src = "assets/js/amazeui.min.js"></script>
 <script src = "assets/js/app.js"></script>
 <script th:inline="javascript">
@@ -319,10 +321,11 @@
             {
                 "ordering":false,
                 "bLengthChange":false,
+                // "pagingType": "full",
                 language:{
                     "oPaginate": {
                         "sFirst": "First",
-                        "sPrevious": [[#{n_zj}]],
+                        "sPrevious": [[#{p_zj}]],
                         "sNext": [[#{n_zj}]],
                         "sLast": "Last"
                     },
