@@ -20,7 +20,7 @@ public class ReaderController
     @RequestMapping(value = "/reader/reader_search", method = RequestMethod.GET)
     public String reader_reader_search(Model model)
     {
-        model.addAttribute("page", bookService.showBook(0, 8, null));
+        model.addAttribute("page", bookService.showBook(0, 12, null));
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
         return "reader/reader_search";
