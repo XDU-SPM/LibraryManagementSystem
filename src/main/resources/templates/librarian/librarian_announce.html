@@ -297,12 +297,25 @@
 </script>
 <script type = "text/javascript" src = "assets/js/test.js"></script>
 <script th:inline = "javascript" src = "dist/amazeui.datatables.js"></script>
-<script>
+<script th:inline="javascript">
     $(function () {
         $('#announce').DataTable(
             {
                 "ordering": false,
                 "bLengthChange": false,
+                language:{
+                    "oPaginate": {
+                        "sFirst": "First",
+                        "sPrevious": [[#{p_zj}]],
+                        "sNext": [[#{n_zj}]],
+                        "sLast": "Last",
+                    },
+                    "sSearch": [[#{Search}]],
+                    "sInfo": " _START_ - _END_ ，In _TOTAL_",
+                    "sInfoEmpty": "0",
+                    "sInfoFiltered": "(from _MAX_ )",
+                    "sEmptyTable": "",
+                }
             }
         );
     })

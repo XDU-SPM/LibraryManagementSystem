@@ -73,206 +73,209 @@
             </div>
 
 
-        <ul class = "am-list admin-sidebar-list">
+            <ul class = "am-list admin-sidebar-list">
 
-            <li><a href = "password_change"><span class = "am-icon-eraser"></span><span th:text="#{cp_yxy}"> 修改密码</span> </a></li>
-            <li class = "admin-parent">
-                <a class = "am-cf" data-am-collapse = "{target: '#collapse-nav'}"><span
-                        class = "am-icon-file"></span> <span th:text="#{mu_ysw}"> 管理用户</span><span
-                        class = "am-icon-angle-right am-fr am-margin-right"></span></a>
-                <ul class = "am-list am-collapse admin-sidebar-sub am-in" id = "collapse-nav">
-                    <li><a href = "librarian_create"><span class = "am-icon-user-plus"></span><span th:text="#{cl_yxy}"> 创建图书管理员</span></a></li>
-                    <li><a href = "librarian_edit"><span class = "am-icon-trash"></span><span th:text="#{el_yxy}"> 编辑图书管理员</span></a></li>
-                    <li><a href = "delete_users"><span class = "am-icon-trash"></span><span th:text="#{dl_yxy}"> 删除图书管理员</span></a></li>
-                </ul>
+                <li><a href = "password_change"><span class = "am-icon-eraser"></span><span th:text="#{cp_yxy}"> 修改密码</span> </a></li>
+                <li class = "admin-parent">
+                    <a class = "am-cf" data-am-collapse = "{target: '#collapse-nav'}"><span
+                            class = "am-icon-file"></span> <span th:text="#{mu_ysw}"> 管理用户</span><span
+                            class = "am-icon-angle-right am-fr am-margin-right"></span></a>
+                    <ul class = "am-list am-collapse admin-sidebar-sub am-in" id = "collapse-nav">
+                        <li><a href = "librarian_create"><span class = "am-icon-user-plus"></span><span th:text="#{cl_yxy}"> 创建图书管理员</span></a></li>
+                        <li><a href = "librarian_edit"><span class = "am-icon-trash"></span><span th:text="#{el_yxy}"> 编辑图书管理员</span></a></li>
+                        <li><a href = "delete_users"><span class = "am-icon-trash"></span><span th:text="#{dl_yxy}"> 删除图书管理员</span></a></li>
+                    </ul>
 
-            </li>
-            <li><a href = "permission_change"><span class = "am-icon-eraser"></span><span th:text="#{mp_yxy}"> 修改权限</span></a></li>
+                </li>
+                <li><a href = "permission_change"><span class = "am-icon-eraser"></span><span th:text="#{mp_yxy}"> 修改权限</span></a></li>
 
-        </ul>
+            </ul>
 
-        <div class = "am-panel am-panel-default admin-sidebar-panel">
-            <div class = "am-panel-bd">
-                <p><span class = "am-icon-bookmark"></span><span th:text="#{no_yxy}"> 公告</span></p>
-                <p>时光静好，与君语；细水流年，与君同。</p>
+            <div class = "am-panel am-panel-default admin-sidebar-panel">
+                <div class = "am-panel-bd">
+                    <p><span class = "am-icon-bookmark"></span><span th:text="#{no_yxy}"> 公告</span></p>
+                    <p>时光静好，与君语；细水流年，与君同。</p>
+                </div>
             </div>
-        </div>
 
-        <div class = "am-panel am-panel-default admin-sidebar-panel">
-            <div class = "am-panel-bd">
-                <p><span class = "am-icon-tag"></span> wiki</p>
-                <p>Welcome to the Biboliosoft wiki!</p>
+            <div class = "am-panel am-panel-default admin-sidebar-panel">
+                <div class = "am-panel-bd">
+                    <p><span class = "am-icon-tag"></span> wiki</p>
+                    <p>Welcome to the Biboliosoft wiki!</p>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!-- sidebar end -->
+    <!-- sidebar end -->
     <!-- content start -->
     <div class = "admin-content">
         <div class = "admin-content-body">
             <div class = "am-cf am-padding am-padding-bottom-0">
                 <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg" th:text="#{ChangePermission}"></strong>
-            </div>
-
-            <hr/>
-
-            <div class = "am-tabs am-margin" data-am-tabs>
-                <ul class = "am-tabs-nav am-nav am-nav-tabs">
-                    <li class = "am-active"><a href = "#tab1" th:text="#{BorrowUpperLimit}"></a></li>
-                    <li><a href = "#tab2" th:text="#{BorrowTime}"></a></li>
-                    <li><a href = "#tab3" th:text="#{BorrowDeposit}"></a></li>
-                    <li><a href = "#tab4" th:text="#{op_zj}"></a></li>
-                </ul>
-
-                <div class = "am-tabs-bd">
-                    <div class = "am-tab-panel am-fade am-in am-active" id = "tab1">
-                        <div class = "am-g am-margin-top">
-                            <form method = "post" action = "modifyMaxBorrowNum">
-                                <div class = "am-form am-form-horizontal">
-                                    <div class = "am-g am-margin-top">
-                                        <div class = "am-u-sm-4 am-u-md-2 am-text-right" th:text="#{bn_zj}">
-
-                                        </div>
-                                        <div class = "am-u-sm-8 am-u-md-4">
-                                            <input type = "text" class = "am-input-sm" th:placeholder = "#{ibn_zj}"
-                                                   name = "num">
-                                        </div>
-                                        <div class = "am-hide-sm-only am-u-md-6"></div>
-                                    </div>
-
-                                    <div class = "am-g am-margin-top-sm">
-                                        <div class = "am-u-sm-10 am-u-sm-push-2">
-                                            <button type = "submit" class = "am-btn am-btn-primary " th:text="#{m_zj}"></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class = "am-tab-panel am-fade am-in " id = "tab2">
-                        <div class = "am-g am-margin-top">
-                            <form action = "modifyMaxBorrowDays" method = "post">
-                                <div class = "am-form am-form-horizontal">
-                                    <div class = "am-g am-margin-top">
-                                        <div class = "am-u-sm-4 am-u-md-2 am-text-right" th:text="#{BorrowTime}">
-
-                                        </div>
-                                        <div class = "am-u-sm-8 am-u-md-4">
-                                            <input type = "text" class = "am-input-sm" th:placeholder = "#{ibd_zj}"
-                                                   name = "days">
-                                        </div>
-                                        <div class = "am-hide-sm-only am-u-md-6"></div>
-                                    </div>
-
-                                    <div class = "am-g am-margin-top-sm">
-                                        <div class = "am-u-sm-10 am-u-sm-push-2">
-                                            <button type = "submit" class = "am-btn am-btn-primary " th:text="#{m_zj}"></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class = "am-tab-panel am-fade am-in " id = "tab3">
-                        <div class = "am-g am-margin-top">
-                            <form action = "modifyRegisterMoney" method = "post">
-                                <div class = "am-form am-form-horizontal">
-                                    <div class = "am-g am-margin-top">
-                                        <div class = "am-u-sm-4 am-u-md-2 am-text-right" th:text="#{da_zj}">
-
-                                        </div>
-                                        <div class = "am-u-sm-8 am-u-md-4">
-                                            <input type = "text" class = "am-input-sm" th:placeholder = "#{ida_zj}"
-                                                   name = "money">
-                                        </div>
-                                        <div class = "am-hide-sm-only am-u-md-6"></div>
-                                    </div>
-
-                                    <div class = "am-g am-margin-top-sm">
-                                        <div class = "am-u-sm-10 am-u-sm-push-2">
-                                            <button type = "submit" class = "am-btn am-btn-primary " th:text="#{m_zj}"></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class = "am-tab-panel am-fade am-in " id = "tab4">
-                        <div class = "am-g am-margin-top">
-                            <form action = "modifyOverdueMoney" method = "post">
-                                <div class = "am-form am-form-horizontal">
-                                    <div class = "am-g am-margin-top">
-                                        <div class = "am-u-sm-4 am-u-md-2 am-text-right" th:text="op_zj">
-
-                                        </div>
-                                        <div class = "am-u-sm-8 am-u-md-4">
-                                            <input type = "text" class = "am-input-sm" th:placeholder = "iop_zj"
-                                                   name = "money">
-                                        </div>
-                                        <div class = "am-hide-sm-only am-u-md-6"></div>
-                                    </div>
-
-                                    <div class = "am-g am-margin-top-sm">
-                                        <div class = "am-u-sm-10 am-u-sm-push-2">
-                                            <button type = "submit" class = "am-btn am-btn-primary " th:text="#{m_zj}"></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
                 </div>
+
+                <hr/>
+                <br>
+
+                <div class = "am-tabs am-margin" data-am-tabs>
+                    <ul class = "am-tabs-nav am-nav am-nav-tabs">
+                        <li class = "am-active"><a href = "#tab1" th:text="#{BorrowUpperLimit}"></a></li>
+                        <li><a href = "#tab2" th:text="#{BorrowTime}"></a></li>
+                        <li><a href = "#tab3" th:text="#{BorrowDeposit}"></a></li>
+                        <li><a href = "#tab4" th:text="#{op_zj}"></a></li>
+                    </ul>
+
+                    <div class = "am-tabs-bd">
+                        <div class = "am-tab-panel am-fade am-in am-active" id = "tab1">
+                            <div class = "am-g am-margin-top">
+                                <form method = "post" action = "modifyMaxBorrowNum">
+                                    <div class = "am-form am-form-horizontal">
+                                        <div class = "am-g am-margin-top">
+                                            <div class = "am-u-sm-4 am-u-md-2 am-text-right" th:text="#{bn_zj}">
+
+                                            </div>
+                                            <div class = "am-u-sm-8 am-u-md-4">
+                                                <input type = "text" class = "am-input-sm" th:placeholder = "#{ibn_zj}"
+                                                       name = "num">
+                                            </div>
+                                            <div class = "am-hide-sm-only am-u-md-6"></div>
+                                        </div>
+
+                                        <div class = "am-g am-margin-top-sm">
+                                            <div class = "am-u-sm-10 am-u-sm-push-2">
+                                                <button type = "submit" class = "am-btn am-btn-primary " th:text="#{m_zj}"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class = "am-tab-panel am-fade am-in " id = "tab2">
+                            <div class = "am-g am-margin-top">
+                                <form action = "modifyMaxBorrowDays" method = "post">
+                                    <div class = "am-form am-form-horizontal">
+                                        <div class = "am-g am-margin-top">
+                                            <div class = "am-u-sm-4 am-u-md-2 am-text-right" th:text="#{BorrowTime}">
+
+                                            </div>
+                                            <div class = "am-u-sm-8 am-u-md-4">
+                                                <input type = "text" class = "am-input-sm" th:placeholder = "#{ibd_zj}"
+                                                       name = "days">
+                                            </div>
+                                            <div class = "am-hide-sm-only am-u-md-6"></div>
+                                        </div>
+
+                                        <div class = "am-g am-margin-top-sm">
+                                            <div class = "am-u-sm-10 am-u-sm-push-2">
+                                                <button type = "submit" class = "am-btn am-btn-primary " th:text="#{m_zj}"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class = "am-tab-panel am-fade am-in " id = "tab3">
+                            <div class = "am-g am-margin-top">
+                                <form action = "modifyRegisterMoney" method = "post">
+                                    <div class = "am-form am-form-horizontal">
+                                        <div class = "am-g am-margin-top">
+                                            <div class = "am-u-sm-4 am-u-md-2 am-text-right" th:text="#{da_zj}">
+
+                                            </div>
+                                            <div class = "am-u-sm-8 am-u-md-4">
+                                                <input type = "text" class = "am-input-sm" th:placeholder = "#{ida_zj}"
+                                                       name = "money">
+                                            </div>
+                                            <div class = "am-hide-sm-only am-u-md-6"></div>
+                                        </div>
+
+                                        <div class = "am-g am-margin-top-sm">
+                                            <div class = "am-u-sm-10 am-u-sm-push-2">
+                                                <button type = "submit" class = "am-btn am-btn-primary " th:text="#{m_zj}"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+
+                        <div class = "am-tab-panel am-fade am-in " id = "tab4">
+                            <div class = "am-g am-margin-top">
+                                <form action = "modifyOverdueMoney" method = "post">
+                                    <div class = "am-form am-form-horizontal">
+                                        <div class = "am-g am-margin-top">
+                                            <div class = "am-u-sm-4 am-u-md-2 am-text-right" th:text="#{op_zj}">
+
+                                            </div>
+                                            <div class = "am-u-sm-8 am-u-md-4">
+                                                <input type = "text" class = "am-input-sm" th:placeholder = "#{iop_zj}"
+                                                       name = "money">
+                                            </div>
+                                            <div class = "am-hide-sm-only am-u-md-6"></div>
+
+                                        </div>
+
+                                        <div class = "am-g am-margin-top-sm">
+                                            <div class = "am-u-sm-10 am-u-sm-push-2">
+                                                <button type = "submit" class = "am-btn am-btn-primary " th:text="#{m_zj}"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
             </div>
 
+            <footer class = "admin-content-footer am-footer-desktop am-footer-fixed">
+                <hr>
+                <p class = "am-padding-left" style = "text-align: center">© 2018 Biboliosoft Online Library System</p>
+            </footer>
 
         </div>
-
-        <footer class = "admin-content-footer am-footer-desktop am-footer-fixed">
-            <hr>
-            <p class = "am-padding-left" style = "text-align: center">© 2018 Biboliosoft Online Library System</p>
-        </footer>
+        <!-- content end -->
 
     </div>
-    <!-- content end -->
-
-</div>
 
 
-<!--[if lt IE 9]>
-<script src = "assets/js/amazeui.ie8polyfill.min.js"></script>
-<![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!-->
-<script src = "assets/js/jquery.min.js"></script>
-<!--<![endif]-->
-<script src = "assets/js/amazeui.min.js"></script>
-<script src = "assets/js/app.js"></script>
-<script type = "text/javascript" src = "assets/js/charts/echarts.min.js"></script>
-<script type = "text/javascript" src = "assets/js/charts/pieChart.js"></script>
-<script src = "assets/js/test.js">
-</script>
-<script type = "text/javascript" th:inline = "javascript">
-    $("#change").click(function () {
-        translate();
-    });
+    <!--[if lt IE 9]>
+    <script src = "assets/js/amazeui.ie8polyfill.min.js"></script>
+    <![endif]-->
+    <!--[if (gte IE 9)|!(IE)]><!-->
+    <script src = "assets/js/jquery.min.js"></script>
+    <!--<![endif]-->
+    <script src = "assets/js/amazeui.min.js"></script>
+    <script src = "assets/js/app.js"></script>
+    <script type = "text/javascript" src = "assets/js/charts/echarts.min.js"></script>
+    <script type = "text/javascript" src = "assets/js/charts/pieChart.js"></script>
+    <script src = "assets/js/test.js">
+    </script>
+    <script type = "text/javascript" th:inline = "javascript">
+        $("#change").click(function () {
+            translate();
+        });
 
-    var status = [[${status}]];
+        var status = [[${status}]];
 
-    function isOk() {
-        if (status != 'null') {
-            if (status) {
-                alert("修改成功！");
+        function isOk() {
+            if (status != 'null') {
+                if (status) {
+                    alert("修改成功！");
+                }
+                else
+                    alert("修改失败！");
+                status = null;
             }
-            else
-                alert("修改失败！");
-            status = null;
         }
-    }
 
-    isOk();
-</script>
+        isOk();
+    </script>
 </body>
 </html>

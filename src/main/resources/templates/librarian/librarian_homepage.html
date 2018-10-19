@@ -115,7 +115,7 @@
             <div class = "am-panel am-panel-default admin-sidebar-panel">
                 <div class = "am-panel-bd">
                     <p><span class = "am-icon-bookmark"></span><span th:text="#{no_yxy}"> 公告</span></p>
-                    <p>时光静好，与君语；细水流年，与君同。—— Amaze UI</p>
+                    <p th:text="#{announcement44}">时光静好，与君语；细水流年，与君同。</p>
                 </div>
             </div>
 
@@ -145,26 +145,26 @@
 
                     <ul class = "am-avg-sm-1 am-avg-md-4 am-margin am-padding am-text-center admin-content-list ">
                         <li>
-                            <a href = "#" class = "am-text-success" th:text="#{tb_t}"><span
-                                    class = "am-icon-btn am-icon-book"></span><br/>今日借阅<br/>
+                            <a href = "#" class = "am-text-success" ><span
+                                    class = "am-icon-btn am-icon-book"></span><br/><span th:text="#{tb_t}">今日借阅</span><br/>
                                 <span th:text = "${todayBorrowNumber}"></span>
                             </a>
                         </li>
                         <li>
-                            <a href = "#" class = "am-text-warning" th:text="#{on_t}"><span
-                                class = "am-icon-btn am-icon-clock-o"></span><br/>逾期人数<br/>
+                            <a href = "#" class = "am-text-warning" ><span
+                                    class = "am-icon-btn am-icon-clock-o"></span><br/><span th:text="#{on_t}">逾期人数</span><br/>
                                 <span th:text="${todayOverdueNumber}"></span>
                             </a>
                         </li>
                         <li>
-                            <a href = "#" class = "am-text-danger" th:text="#{tr_t}"><span
-                                class = "am-icon-btn am-icon-recycle"></span><br/>今日归还<br/>
+                            <a href = "#" class = "am-text-danger" ><span
+                                    class = "am-icon-btn am-icon-recycle"></span><br/><span th:text="#{tr_t}">今日归还</span><br/>
                             <span th:text="${todayReturnNumber}"></span>
                             </a>
                         </li>
                         <li>
-                            <a href = "librarian_income" class = "am-text-secondary" th:text="#{income}"><span
-                                    class = "am-icon-btn am-icon-user-md"></span><br/>收入<br/>
+                            <a href = "librarian_income" class = "am-text-secondary" ><span
+                                    class = "am-icon-btn am-icon-user-md"></span><br/><span th:text="#{income}">收入</span><br/>
                                 <span th:text = "${todayFineIncome}">100</span>
                             </a>
                         </li>

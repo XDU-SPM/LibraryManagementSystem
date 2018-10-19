@@ -145,7 +145,7 @@
                                 <thead>
                                 <tr>
                                     <th class = "table-id">ID</th>
-                                    <th class = "table-title" th:text="#{Username}"></th>
+                                    <th class = "table-title" th:text="#{username}"></th>
                                     <th class = "table-type" th:text="#{Role}"></th>
                                     <th class = "table-author am-hide-sm-only" th:text="#{Name}"></th>
                                     <th class = "table-date am-hide-sm-only" th:text="#{Email}"></th>
@@ -174,7 +174,7 @@
                                 </tbody>
                             </table>
                             <div class = "am-cf">
-                                <p th:text = " #{g_zj}+${page.numberOfElements}+' ' + #{d_zj}"></p>
+                                <p th:text = " #{g_zj}+' '+${page.numberOfElements}+' ' + #{d_zj}"></p>
                                 <div class = "am-fr">
                                     <ul class = "am-pagination">
                                         <li><a th:href = "@{delete_users(start=0)}" th:text="#{f_zj}"></a></li>

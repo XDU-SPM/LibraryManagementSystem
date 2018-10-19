@@ -143,12 +143,8 @@
 
             <div class = "am-g am-g-fixed">
                 <div class = "am-u-sm-8 ">
-                    <div class = "am-input-group am-input-group-sm">
-                        <a href="#" onclick="javascript:history.back(-1);">返回到上一页</a>
-                    </div>
+                        <a href="#" onclick="javascript:history.back(-1);" th:text="#{p_zj}">返回到上一页</a>
                 </div>
-
-
             </div>
 
             <hr>
@@ -161,10 +157,10 @@
                             <th class = "table-id" th:text="#{id}">ID</th>
                             <th class = "table-uid" th:text="#{rid}">UID</th>
                             <th class = "table-isbn" th:text="#{username}">username</th>
-                            <th class = "table-money am-hide-sm-only" th:text="#{money}">Money</th>
+                            <th class = "table-money \" th:text="#{money}">Money</th>
                             <th class = "table-bid" th:text="#{bid}">bookID</th>
                             <th class = "table-style " th:text="#{category}">Type</th>
-                            <th class = "table-date am-hide-sm-only" th:text="#{date}">Date</th>
+                            <th class = "table-date \" th:text="#{date}">Date</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -173,9 +169,9 @@
                             <td ><a th:text = "${record.uid}" th:href="@{librarian_user(id=${record.uid})}"></a></td>
                             <td ><a th:text = "${record.username}" th:href="@{librarian_user(id=${record.uid})}"></a></td>
                             <td th:text = "${record.money}"></td>
-                            <td class = "am-hide-sm-only" th:text = "${record.bkid}"></td>
-                            <td class = "am-hide-sm-only" th:text = "${record.style}"></td>
-                            <td class = "am-hide-sm-only" th:text = "${record.date}"></td>
+                            <td  th:text = "${record.bkid}"></td>
+                            <td  th:text = "${record.style}"></td>
+                            <td  th:text = "${record.date}"></td>
                         </tr>
                     </table>
                 </div>
@@ -205,7 +201,7 @@
 <script src = "dist/amazeui.datatables.min.js"></script>
 <script src = "assets/js/amazeui.min.js"></script>
 <script src = "assets/js/app.js"></script>
-<script>
+<script th:inline="javascript">
     $(function () {
         $('#fine').DataTable(
             {
@@ -214,12 +210,14 @@
                 language:{
                     "oPaginate": {
                         "sFirst": "First",
-                        "sPrevious": "Pre",
-                        "sNext": "Next",
+                        "sPrevious": [[#{p_zj}]],
+                        "sNext": [[#{n_zj}]],
                         "sLast": "Last",
                     },
-                    "sSearch": "Search",
-                    "sInfo": " _START_ - _END_ ，In _TOTAL_"
+                    "sInfo": " _START_ - _END_ ，In _TOTAL_",
+                    "sInfoEmpty": "0",
+                    "sInfoFiltered": "(from _MAX_ )",
+                    "sSearch": [[#{Search}]],
                 }
             }
         );

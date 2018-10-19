@@ -151,8 +151,8 @@
                             <th class = "table-id" th:text="#{id}">编号</th>
                             <th class = "table-id" th:text="#{bid}">书号</th>
                             <th class = "table-title" th:text="#{btitle}">书名</th>
-                            <th class = "table-librarian am-hide-sm-only" th:text="#{librarian}">管理员</th>
-                            <th class = "table-librarianid am-hide-sm-only" th:text="#{libid}">管理员id</th>
+                            <th class = "table-librarian " th:text="#{librarian}">管理员</th>
+                            <th class = "table-librarianid " th:text="#{libid}">管理员id</th>
                             <th class = "table-deleteDate" th:text="#{deletedate}">删除时间</th>
                         </tr>
                         </thead>
@@ -162,9 +162,9 @@
                             <td th:text = "${record.buid}"></td>
                             <td th:text = "${record.bookName}"></td>
                             <!--<td ><a th:text = "${record.bkunit.book.isbn}" th:href="@{librarian_book(isbn=${record.bkunit.book.isbn})}"></a></td>-->
-                            <td class = "am-hide-sm-only"><a th:text = "${record.username}" th:href="@{librarian_user(username=${record.username})}"></a></td>
-                            <td class = "am-hide-sm-only" th:text = "${record.uid}"></td>
-                            <td class = "am-hide-sm-only" th:text = "${record.date}"></td>
+                            <td ><a th:text = "${record.username}" th:href="@{librarian_user(username=${record.username})}"></a></td>
+                            <td  th:text = "${record.uid}"></td>
+                            <td  th:text = "${record.date}"></td>
                         </tr>
                     </table>
                 </div>
@@ -203,8 +203,11 @@ $('#record').DataTable(
                 "sNext": [[#{n_zj}]],
                 "sLast": "Last",
             },
-            "sSearch": "Search",
-            "sInfo": " _START_ - _END_ ，In _TOTAL_"
+            "sSearch": [[#{Search}]],
+            "sInfo": " _START_ - _END_ ，In _TOTAL_",
+            "sInfoEmpty": "0",
+            "sInfoFiltered": "(from _MAX_ )",
+            "sEmptyTable": "",
         }
     }
     );

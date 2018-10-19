@@ -240,7 +240,7 @@
 <script src = "dist/amazeui.datatables.min.js"></script>
 <script src = "assets/js/amazeui.min.js"></script>
 <script src = "assets/js/app.js"></script>
-<script>
+<script th:inline="javascript">
     $(function () {
         $('#income_history').DataTable(
             {
@@ -249,12 +249,14 @@
                 language:{
                     "oPaginate": {
                         "sFirst": "First",
-                        "sPrevious": "Pre",
-                        "sNext": "Next",
+                        "sPrevious": [[#{p_zj}]],
+                        "sNext": [[#{n_zj}]],
                         "sLast": "Last",
                     },
-                    "sSearch": "Search",
-                    "sInfo": " _START_ - _END_ ，In _TOTAL_"
+                    "sSearch": [[#{Search}]],
+                    "sInfo": " _START_ - _END_ ，In _TOTAL_",
+                    "sInfoEmpty": "0",
+                    "sInfoFiltered": "(from _MAX_ )",
                 }
             }
         );
@@ -267,12 +269,14 @@
                 language:{
                     "oPaginate": {
                         "sFirst": "First",
-                        "sPrevious": "Pre",
-                        "sNext": "Next",
+                        "sPrevious": [[#{n_zj}]],
+                        "sNext": [[#{n_zj}]],
                         "sLast": "Last"
                     },
-                    "sSearch": "Search",
-                    "sInfo": " _START_ - _END_ ，In _TOTAL_"
+                    "sSearch": [[#{Search}]],
+                    "sInfo": " _START_ - _END_ ，In _TOTAL_",
+                    "sInfoEmpty": "0",
+                    "sInfoFiltered": "(from _MAX_ )",
                 }
             }
         );
