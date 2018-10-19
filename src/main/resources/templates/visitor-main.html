@@ -280,7 +280,7 @@
 </script>
 <script>
     function book_reserve(book_isbn) {
-        var res = confirm("确认预约？");
+        var res = confirm("Confirm appointment?");
         if (res == true) {
             $.ajax({
                 type: "get",
@@ -288,13 +288,13 @@
                 url: "reserve",
                 success: function (data) {
                     if (data != null)
-                        alert("成功预约！");
+                        alert("Successful appointment!");
                     else
-                        alert("预约失败，请稍后再试！");
+                        alert("Reservation failed. Please try again later.");
                     getOnePageBook_2(0);
                 },
                 error: function (data) {
-                    alert("发生错误，请稍后再试！");
+                    alert("An error occurred. Please try again later.");
                 }
             });
         }
@@ -423,10 +423,10 @@
                     "                            " + [[#{total44}]] + " " + data.totalElements + " " + [[#{records44}]] + "\n" +
                     "                            <div class = \"am-fr\">\n" +
                     "                                <ul class = \"am-pagination\">\n" +
-                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_1()\">" + [[#{f_zj}]] + "</button></li>\n" +
-                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(-1)\">" + [[#{p_zj}]] + "</button></li>\n" +
-                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(1)\">" + [[#{n_zj}]] + "</button></li>\n" +
-                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_3()\">" + [[#{l_zj}]] + "</button></li>\n" +
+                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook4_1()\">" + [[#{f_zj}]] + "</button></li>\n" +
+                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook4_2(-1)\">" + [[#{p_zj}]] + "</button></li>\n" +
+                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook4_2(1)\">" + [[#{n_zj}]] + "</button></li>\n" +
+                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook4_3()\">" + [[#{l_zj}]] + "</button></li>\n" +
                     "                                </ul>\n" +
                     "                            </div>\n" +
                     "                        </div>"
@@ -470,10 +470,10 @@
                         "                            " + [[#{total44}]] + " " + data.totalElements + " " + [[#{records44}]] + "\n" +
                         "                            <div class = \"am-fr\">\n" +
                         "                                <ul class = \"am-pagination\">\n" +
-                        "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_1()\">" + [[#{f_zj}]] + "</button></li>\n" +
-                        "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(-1)\">" + [[#{p_zj}]] + "</button></li>\n" +
-                        "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(1)\">" + [[#{n_zj}]] + "</button></li>\n" +
-                        "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_3()\">" + [[#{l_zj}]] + "</button></li>\n" +
+                        "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook4_1()\">" + [[#{f_zj}]] + "</button></li>\n" +
+                        "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook4_2(-1)\">" + [[#{p_zj}]] + "</button></li>\n" +
+                        "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook4_2(1)\">" + [[#{n_zj}]] + "</button></li>\n" +
+                        "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook4_3()\">" + [[#{l_zj}]] + "</button></li>\n" +
                         "                                </ul>\n" +
                         "                            </div>\n" +
                         "                        </div>"
@@ -511,10 +511,10 @@
                     "                            " + [[#{total44}]] + " " + data.totalElements + " " + [[#{records44}]] + "\n" +
                     "                            <div class = \"am-fr\">\n" +
                     "                                <ul class = \"am-pagination\">\n" +
-                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_1()\">" + [[#{f_zj}]] + "</button></li>\n" +
-                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(-1)\">" + [[#{p_zj}]] + "</button></li>\n" +
-                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(1)\">" + [[#{n_zj}]] + "</button></li>\n" +
-                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_3()\">" + [[#{l_zj}]] + "</button></li>\n" +
+                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook4_1()\">" + [[#{f_zj}]] + "</button></li>\n" +
+                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook4_2(-1)\">" + [[#{p_zj}]] + "</button></li>\n" +
+                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook4_2(1)\">" + [[#{n_zj}]] + "</button></li>\n" +
+                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook4_3()\">" + [[#{l_zj}]] + "</button></li>\n" +
                     "                                </ul>\n" +
                     "                            </div>\n" +
                     "                        </div>"
