@@ -92,15 +92,8 @@
 
         <div class = "am-collapse am-topbar-collapse" id = "topbar-collapse">
 
+
             <ul class = "am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
-
-                <li>
-                    <select onchange="window.location=this.value;">
-                        <option value="?language=english&pagename=visitor-main">英文</option>
-                        <option value="?language=chinese&pagename=visitor-main">中文</option>
-                    </select>
-                </li>
-
                 <li class = "am-dropdown" data-am-dropdown>
                     <a class = "am-dropdown-toggle" data-am-dropdown-toggle href = "javascript:;">
                         <a href = "/login" th:text = "#{lo_yxy}">登录</a>
@@ -111,7 +104,15 @@
         </div>
 
     </div>
+
 </header>
+<div class="am-cf">
+    <select data-am-selected="{btnSize: 'sm',btnStyle: 'primary'}}" class="am-fr" onchange="window.location=this.value;">
+        <option value="##?language=english&pagename=visitor-main">ENGLISH</option>
+        <option value="##?language=chinese&pagename=visitor-main">中文</option>
+    </select>
+</div>
+
 
 <!-- banner start -->
 <div class = "am-g am-g-fixed blog-fixed am-u-sm-centered blog-article-margin">
