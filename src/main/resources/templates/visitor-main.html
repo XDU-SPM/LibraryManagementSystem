@@ -2,25 +2,25 @@
 <html class = "no-js" xmlns:th = "http://www.thymeleaf.org"
       xmlns:sec = "http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
-    <meta charset="utf-8">
-    <meta name="referrer" content="no-referrer"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta charset = "utf-8">
+    <meta name = "referrer" content = "no-referrer"/>
+    <meta http-equiv = "X-UA-Compatible" content = "IE=edge">
+    <meta name = "description" content = "">
+    <meta name = "keywords" content = "">
+    <meta name = "viewport" content = "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>Bibliosoft</title>
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name = "renderer" content = "webkit">
+    <meta http-equiv = "Cache-Control" content = "no-siteapp"/>
     <link rel = "icon" type = "image/jpg" href = "assets/i/head_logo.jpg">
-    <meta name="mobile-web-app-capable" content="yes">
-    <link rel="icon" sizes="192x192" href="assets/i/app-icon72x72@2x.png">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+    <meta name = "mobile-web-app-capable" content = "yes">
+    <link rel = "icon" sizes = "192x192" href = "assets/i/app-icon72x72@2x.png">
+    <meta name = "apple-mobile-web-app-capable" content = "yes">
+    <meta name = "apple-mobile-web-app-status-bar-style" content = "black">
+    <meta name = "apple-mobile-web-app-title" content = "Amaze UI"/>
     <link rel = "apple-touch-icon-precomposed" href = "assets/i/app-icon72x72@2x.png">
-    <meta name="msapplication-TileColor" content="#0e90d2">
-    <link rel="stylesheet" href="assets/css/amazeui.min.css">
-    <link rel="stylesheet" href="assets/css/app.css">
+    <meta name = "msapplication-TileColor" content = "#0e90d2">
+    <link rel = "stylesheet" href = "assets/css/amazeui.min.css">
+    <link rel = "stylesheet" href = "assets/css/app.css">
     <link rel = "stylesheet" href = "assets/css/admin.css">
     <script src = "http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
 
@@ -28,9 +28,11 @@
         .am-form-group {
             text-align: left;
         }
+
         .am-topbar {
             /*background-color: black;*/
         }
+
         .am-topbar .am-text-ir {
             display: block;
             margin-right: 10px;
@@ -43,7 +45,7 @@
     </style>
 </head>
 
-<body id="blog">
+<body id = "blog">
 
 <!--<nav class="am-g am-g-fixed blog-fixed blog-nav">
     <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only blog-button" data-am-collapse="{target: '#blog-collapse'}" ><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
@@ -98,7 +100,7 @@
 
                 <li class = "am-dropdown" data-am-dropdown>
                     <a class = "am-dropdown-toggle" data-am-dropdown-toggle href = "javascript:;">
-                        <a href = "/login" th:text="#{lo_yxy}">登录</a>
+                        <a href = "/login" th:text = "#{lo_yxy}">登录</a>
                     </a>
                 </li>
 
@@ -109,15 +111,16 @@
 </header>
 
 <!-- banner start -->
-<div class="am-g am-g-fixed blog-fixed am-u-sm-centered blog-article-margin">
-    <div data-am-widget="slider" class="am-slider am-slider-b1" data-am-slider='{&quot;controlNav&quot;:false}' >
-        <ul class="am-slides">
+<div class = "am-g am-g-fixed blog-fixed am-u-sm-centered blog-article-margin">
+    <div data-am-widget = "slider" class = "am-slider am-slider-b1" data-am-slider = '{&quot;controlNav&quot;:false}'>
+        <ul class = "am-slides">
             <li>
-                <img src="assets/i/b1.jpg">
-                <div class="blog-slider-desc am-slider-desc ">
-                    <div class="blog-text-center blog-slider-con">
-                        <span><p class="am-text-secondary">Bibliosoft&nbsp;<span th:text="#{no_yxy}">公告</span></p></span>
-                        <h1 class="blog-h-margin"><a href="">书籍是人类知识的总结。书籍是全世界的营养品。</a></h1>
+                <img src = "assets/i/b1.jpg">
+                <div class = "blog-slider-desc am-slider-desc ">
+                    <div class = "blog-text-center blog-slider-con">
+                        <span><p class = "am-text-secondary">Bibliosoft&nbsp;<span
+                                th:text = "#{no_yxy}">公告</span></p></span>
+                        <h1 class = "blog-h-margin"><a href = "">书籍是人类知识的总结。书籍是全世界的营养品。</a></h1>
                         <!--<p>那时候刚好下着雨，柏油路面湿冷冷的，还闪烁着青、黄、红颜色的灯火。</p>-->
                         <!--<span class="blog-bor">2015/10/9</span>-->
 
@@ -126,11 +129,11 @@
                 </div>
             </li>
             <li>
-                <img src="assets/i/b2.jpg">
-                <div class="am-slider-desc blog-slider-desc">
-                    <div class="blog-text-center blog-slider-con">
-                        <span><p class="am-text-secondary">Bibliosoft&nbsp;公告</p></span>
-                        <h1 class="blog-h-margin"><a href="">任何时候我也不会满足，越是多读书，就越是深刻地感到不满足，越感到自己知识贫乏。</a></h1>
+                <img src = "assets/i/b2.jpg">
+                <div class = "am-slider-desc blog-slider-desc">
+                    <div class = "blog-text-center blog-slider-con">
+                        <span><p class = "am-text-secondary">Bibliosoft&nbsp;公告</p></span>
+                        <h1 class = "blog-h-margin"><a href = "">任何时候我也不会满足，越是多读书，就越是深刻地感到不满足，越感到自己知识贫乏。</a></h1>
                         <!--<p>那时候刚好下着雨，柏油路面湿冷冷的，还闪烁着青、黄、红颜色的灯火。-->
                         <!--</p>-->
                         <!--<span>2015/10/9</span>-->
@@ -139,11 +142,11 @@
                 </div>
             </li>
             <li>
-                <img src="assets/i/b3.jpg">
-                <div class="am-slider-desc blog-slider-desc">
-                    <div class="blog-text-center blog-slider-con">
-                        <span><p class="am-text-secondary">Bibliosoft&nbsp;公告</p></span>
-                        <h1 class="blog-h-margin"><a href="">书籍是在时代的波涛中航行的思想之船，它小心翼翼地把珍贵的货物运送给一代又一代。</a></h1>
+                <img src = "assets/i/b3.jpg">
+                <div class = "am-slider-desc blog-slider-desc">
+                    <div class = "blog-text-center blog-slider-con">
+                        <span><p class = "am-text-secondary">Bibliosoft&nbsp;公告</p></span>
+                        <h1 class = "blog-h-margin"><a href = "">书籍是在时代的波涛中航行的思想之船，它小心翼翼地把珍贵的货物运送给一代又一代。</a></h1>
                         <!--<p>那时候刚好下着雨，柏油路面湿冷冷的，还闪烁着青、黄、红颜色的灯火。-->
                         <!--</p>-->
                         <!--<span>2015/10/9</span>-->
@@ -151,11 +154,11 @@
                 </div>
             </li>
             <li>
-                <img src="assets/i/b2.jpg">
-                <div class="am-slider-desc blog-slider-desc">
-                    <div class="blog-text-center blog-slider-con">
-                        <span><p class="am-text-secondary">Bibliosoft&nbsp;公告</p></span>
-                        <h1 class="blog-h-margin"><a href="">我读书越多，书籍就使我和世界越接近，生活对我也变得越加光明和有意义。</a></h1>
+                <img src = "assets/i/b2.jpg">
+                <div class = "am-slider-desc blog-slider-desc">
+                    <div class = "blog-text-center blog-slider-con">
+                        <span><p class = "am-text-secondary">Bibliosoft&nbsp;公告</p></span>
+                        <h1 class = "blog-h-margin"><a href = "">我读书越多，书籍就使我和世界越接近，生活对我也变得越加光明和有意义。</a></h1>
                         <!--<p>那时候刚好下着雨，柏油路面湿冷冷的，还闪烁着青、黄、红颜色的灯火。-->
                         <!--</p>-->
                         <!--<span>2015/10/9</span>-->
@@ -169,71 +172,79 @@
 <hr>
 <!--搜索框-->
 <!--<div class="admin-content">-->
-    <!--<div class="admin-content-body">-->
-        <div class = "am-g am-padding">
-            <div class = "am-u-sm-12 am-u-md-6 am-u-md-centered">
-                <div class = "am-input-group am-input-group-sm">
-                    <input name="string" id="string" type = "text" class = "am-form-field am-radius">
-                    <span class = "am-input-group-btn">
-                            <button class = "am-btn am-btn-default am-icon-search am-radius am-btn-primary" onclick = "getOnePageBook4_1()"
-                                    type = "button" ><span th:text="#{search_ysw}">搜索</span></button>
+<!--<div class="admin-content-body">-->
+<div class = "am-g am-padding">
+    <div class = "am-u-sm-12 am-u-md-6 am-u-md-centered">
+        <div class = "am-input-group am-input-group-sm">
+            <input name = "string" id = "string" type = "text" class = "am-form-field am-radius">
+            <span class = "am-input-group-btn">
+                            <button class = "am-btn am-btn-default am-icon-search am-radius am-btn-primary"
+                                    onclick = "getOnePageBook4_1()"
+                                    type = "button"><span th:text = "#{search_ysw}">搜索</span></button>
                         </span>
-                </div>
-                <div class = "am-input-group">
-                    <select data-am-selected = "{btnSize: 'sm'}"  name="type" id="type">
-                        <option value = "1">isbn</option>
-                        <option value = "2"><span th:text="#{btitle}">书名</span></option>
-                        <option value = "3"><span th:text="#{author}">作者</span></option>
-                    </select>
-                    <small th:text="#{sbi44}">（依据isbn\书名\作者搜索）</small>
-                </div>
+        </div>
+    </div>
+</div>
+
+<div class = "am-g">
+    <div class = "am-u-sm-12">
+        <div class = "am-cf am-padding" id = "recom-book">
+            <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg" th:text = "#{ab44}">所有图书</strong>
             </div>
         </div>
-
-        <div class = "am-g">
-            <div class = "am-u-sm-12">
-                <div class = "am-cf am-padding" id = "recom-book">
-                    <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg" th:text="#{ab44}">所有图书</strong></div>
-                </div>
-                <form class = "am-form">
-                    <ul data-am-widget = "gallery" id="all-books" class = "am-gallery am-avg-sm-2
+        <form class = "am-form">
+            <ul data-am-widget = "gallery" id = "all-books" class = "am-gallery am-avg-sm-2
           am-avg-md-4 am-avg-lg-6 am-gallery-bordered" data-am-gallery = "{  }">
-                        <li th:each = "book:${page}">
-                            <div class = "am-gallery-item">
-                                <a th:href="@{book_details(isbn=${book.isbn})}" class = "">
-                                    <img th:src = "${book.coverPath}" height="326" />
-                                    <h3 th:text="${book.title}" class = "am-gallery-title"></h3>
-                                    <div class = "am-gallery-desc"><span th:text="#{remain44}">剩余：</span><strong th:text="${book.number}"></strong><span th:text="#{books44}">本</span></div>
-                                </a>
-                            </div>
-                        </li>
-
-                    </ul>
-                    <hr>
-                    <div class = "am-cf" id="table-paging">
-                        <span th:text="#{total44}">共</span> [[${page.totalElements}]] <span th:text="#{records44}">条记录</span>
-                        <div class = "am-fr">
-                            <ul class = "am-pagination">
-                                <li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook_1()"><span th:text="#{f_zj}">首页</span></button></li>
-                                <li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook_2(-1)"><span th:text="#{p_zj}">上一页</span></button></li>
-                                <li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook_2(1)"><span th:text="#{n_zj}">下一页</span></button></li>
-                                <li><button type="button" class="am-btn am-btn-primary am-round" th:onclick = "'javascript:getOnePageBook_3('+${page.totalPages}+'-1)'"><span th:text="#{l_zj}">末页</span></button></li>
-                            </ul>
-                        </div>
+                <li th:each = "book:${page}">
+                    <div class = "am-gallery-item">
+                        <a th:href = "@{book_details(isbn=${book.isbn})}" class = "">
+                            <img th:src = "${book.coverPath}" height = "326"/>
+                            <h3 th:text = "${book.title}" class = "am-gallery-title"></h3>
+                            <div class = "am-gallery-desc"><span th:text = "#{remain44} + '&nbsp'">剩余：</span><strong
+                                    th:text = "${book.number}"></strong><span th:text = "'&nbsp' + #{books44}">本</span></div>
+                        </a>
                     </div>
-                </form>
-            </div>
+                </li>
 
-        </div>
-    <!--</div>-->
+            </ul>
+            <hr>
+            <div class = "am-cf" id = "table-paging">
+                <span th:text = "#{total44}">共</span> [[${page.totalElements}]] <span
+                    th:text = "#{records44}">条记录</span>
+                <div class = "am-fr">
+                    <ul class = "am-pagination">
+                        <li>
+                            <button type = "button" class = "am-btn am-btn-primary am-round"
+                                    onclick = "getOnePageBook_1()"><span th:text = "#{f_zj}">首页</span></button>
+                        </li>
+                        <li>
+                            <button type = "button" class = "am-btn am-btn-primary am-round"
+                                    onclick = "getOnePageBook_2(-1)"><span th:text = "#{p_zj}">上一页</span></button>
+                        </li>
+                        <li>
+                            <button type = "button" class = "am-btn am-btn-primary am-round"
+                                    onclick = "getOnePageBook_2(1)"><span th:text = "#{n_zj}">下一页</span></button>
+                        </li>
+                        <li>
+                            <button type = "button" class = "am-btn am-btn-primary am-round"
+                                    th:onclick = "'javascript:getOnePageBook_3('+${page.totalPages}+'-1)'"><span
+                                    th:text = "#{l_zj}">末页</span></button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+<!--</div>-->
 <!--</div>-->
 
 
-<div class="am-cf">
-    <button data-am-smooth-scroll="{speed:2000}" class="am-btn am-btn-primary am-fr  am-round"><span th:text="#{bt_yxy}">回到顶部</span></button>
+<div class = "am-cf">
+    <button data-am-smooth-scroll = "{speed:2000}" class = "am-btn am-btn-primary am-fr  am-round"><span
+            th:text = "#{bt_yxy}">回到顶部</span></button>
 </div>
-
-
 
 <footer class = " am-cf">
     <hr>
@@ -241,22 +252,22 @@
 </footer>
 
 
-
 <script type = "text/javascript">
+
     $("#change").click(function () {
         translate();
     })
 </script>
 
 <!--[if (gte IE 9)|!(IE)]><!-->
-<script src="assets/js/jquery.min.js"></script>
+<script src = "assets/js/jquery.min.js"></script>
 <!--<![endif]-->
 <!--[if lte IE 8 ]>
-<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
-<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
-<script src="assets/js/amazeui.ie8polyfill.min.js"></script>
+<script src = "http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script src = "http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src = "assets/js/amazeui.ie8polyfill.min.js"></script>
 <![endif]-->
-<script src="assets/js/amazeui.min.js"></script>
+<script src = "assets/js/amazeui.min.js"></script>
 <!-- <script src="assets/js/app.js"></script> -->
 <script type = "text/javascript" src = "assets/js/test.js"></script>
 <script type = "text/javascript" color = "50,177,108" opacity = "1" zIndex = "-1" count = "100"
@@ -270,13 +281,13 @@
 <script>
     function book_reserve(book_isbn) {
         var res = confirm("确认预约？");
-        if(res == true){
+        if (res == true) {
             $.ajax({
                 type: "get",
                 data: {isbn: book_isbn},
                 url: "reserve",
                 success: function (data) {
-                    if(data!=null)
+                    if (data != null)
                         alert("成功预约！");
                     else
                         alert("预约失败，请稍后再试！");
@@ -289,8 +300,7 @@
         }
     }
 </script>
-<script>
-
+<script th:inline="javascript">
     var pageNumber = 0;
 
     function getOnePageBook_1() {
@@ -305,14 +315,14 @@
                 for (var i = 0; i < data.content.length; i++) {
                     str += "<li>\n" +
                         "                                <div class = \"am-gallery-item\">\n" +
-                        "                                    <a href=\"book_details?isbn="+data.content[i].isbn+"\" class = \"\">\n" +
-                        "                                        <img src = \""+data.content[i].coverPath+"\" height=\"326\" />\n" +
-                        "                                        <h3 class = \"am-gallery-title\">"+data.content[i].title+"</h3>\n" +
-                        "                                        <div class = \"am-gallery-desc\">"+[[#{remain44}]]+"<strong>"+data.content[i].number+"</strong>"+[[#{books44}]]+"</div>\n" +
+                        "                                    <a href=\"book_details?isbn=" + data.content[i].isbn + "\" class = \"\">\n" +
+                        "                                        <img src = \"" + data.content[i].coverPath + "\" height=\"326\" />\n" +
+                        "                                        <h3 class = \"am-gallery-title\">" + data.content[i].title + "</h3>\n" +
+                        "                                        <div class = \"am-gallery-desc\">" + [[#{remain44}]] + "&nbsp;" + "<strong>" + data.content[i].number + "</strong>" + "&nbsp;" + [[#{books44}]] + "</div>\n" +
                         "                                    </a>\n";
-                    if(data.content[i].number == 0)
-                    str+= "                                </div>\n" +
-                        "                            </li>"
+                    if (data.content[i].number == 0)
+                        str += "                                </div>\n" +
+                            "                            </li>"
                 }
                 $('#all-books').html(str);
             }
@@ -324,7 +334,7 @@
         if (pageNumber < 0)
             pageNumber = 0;
         else if (pageNumber >= [[${page.totalPages}]])
-            pageNumber = [[${page.totalPages}]]-1;
+            pageNumber = [[${page.totalPages}]] - 1;
         else
             $.ajax({
                 type: "get",
@@ -336,13 +346,13 @@
                     for (var i = 0; i < data.content.length; i++) {
                         str += "<li>\n" +
                             "                                <div class = \"am-gallery-item\">\n" +
-                            "                                    <a href=\"book_details?isbn="+data.content[i].isbn+"\" class = \"\">\n" +
-                            "                                        <img src = \""+data.content[i].coverPath+"\" height=\"326\" />\n" +
-                            "                                        <h3 class = \"am-gallery-title\">"+data.content[i].title+"</h3>\n" +
-                            "                                        <div class = \"am-gallery-desc\">"+[[#{remain44}]]+"<strong>"+data.content[i].number+"</strong>"+[[#{books44}]]+"</div>\n" +
+                            "                                    <a href=\"book_details?isbn=" + data.content[i].isbn + "\" class = \"\">\n" +
+                            "                                        <img src = \"" + data.content[i].coverPath + "\" height=\"326\" />\n" +
+                            "                                        <h3 class = \"am-gallery-title\">" + data.content[i].title + "</h3>\n" +
+                            "                                        <div class = \"am-gallery-desc\">" + [[#{remain44}]] + "&nbsp;" + "<strong>" + data.content[i].number + "</strong>" + "&nbsp;" + [[#{books44}]] + "</div>\n" +
                             "                                    </a>\n";
-                        if(data.content[i].number == 0)
-                            str+= "                                </div>\n" +
+                        if (data.content[i].number == 0)
+                            str += "                                </div>\n" +
                                 "                            </li>"
                     }
                     $('#all-books').html(str);
@@ -351,7 +361,6 @@
     }
 
     function getOnePageBook_3(end) {
-        console.log('233');
         pageNumber = end;
         $.ajax({
             type: "get",
@@ -364,13 +373,13 @@
                 for (var i = 0; i < data.content.length; i++) {
                     str += "<li>\n" +
                         "                                <div class = \"am-gallery-item\">\n" +
-                        "                                    <a href=\"book_details?isbn="+data.content[i].isbn+"\" class = \"\">\n" +
-                        "                                        <img src = \""+data.content[i].coverPath+"\" height=\"326\" />\n" +
-                        "                                        <h3 class = \"am-gallery-title\">"+data.content[i].title+"</h3>\n" +
-                        "                                        <div class = \"am-gallery-desc\">"+[[#{remain44}]]+"<strong>"+data.content[i].number+"</strong>"+[[#{books44}]]+"</div>\n" +
+                        "                                    <a href=\"book_details?isbn=" + data.content[i].isbn + "\" class = \"\">\n" +
+                        "                                        <img src = \"" + data.content[i].coverPath + "\" height=\"326\" />\n" +
+                        "                                        <h3 class = \"am-gallery-title\">" + data.content[i].title + "</h3>\n" +
+                        "                                        <div class = \"am-gallery-desc\">" + [[#{remain44}]] + "&nbsp;" + "<strong>" + data.content[i].number + "</strong>" + "&nbsp;" + [[#{books44}]] + "</div>\n" +
                         "                                    </a>\n";
-                    if(data.content[i].number == 0)
-                        str+= "                                </div>\n" +
+                    if (data.content[i].number == 0)
+                        str += "                                </div>\n" +
                             "                            </li>"
                 }
                 $('#all-books').html(str);
@@ -379,20 +388,20 @@
     }
 </script>
 
-<script>
+<script th:inline="javascript">
     var totalPage4 = 0;
     var pageNumber4 = 0;
 
+    console.log("233");
+
     function getOnePageBook4_1() {
         pageNumber4 = 0;
-        var myselect=document.getElementById("type");
-        var index=myselect.selectedIndex;
-        var inputDoc=document.getElementById("string");
-        var string=inputDoc.value;
+        var inputDoc = document.getElementById("string");
+        var string = inputDoc.value;
         $.ajax({
             type: "get",
             url: "searchBook",
-            data: {string: string,type: myselect.options[index].value, start: 0, size: 12},
+            data: {string: string, start: 0, size: 12},
             success: function (data) {
                 console.log(data);
                 var str = "";
@@ -401,23 +410,23 @@
                 for (var i = 0; i < data.content.length; i++) {
                     str += "<li>\n" +
                         "                                <div class = \"am-gallery-item\">\n" +
-                        "                                    <a href=\"book_details?isbn="+data.content[i].isbn+"\" class = \"\">\n" +
-                        "                                        <img src = \""+data.content[i].coverPath+"\" height=\"326\" />\n" +
-                        "                                        <h3 class = \"am-gallery-title\">"+data.content[i].title+"</h3>\n" +
-                        "                                        <div class = \"am-gallery-desc\">"+[[#{remain44}]]+"<strong>"+data.content[i].number+"</strong>"+[[#{books44}]]+"</div>\n" +
+                        "                                    <a href=\"book_details?isbn=" + data.content[i].isbn + "\" class = \"\">\n" +
+                        "                                        <img src = \"" + data.content[i].coverPath + "\" height=\"326\" />\n" +
+                        "                                        <h3 class = \"am-gallery-title\">" + data.content[i].title + "</h3>\n" +
+                        "                                        <div class = \"am-gallery-desc\">" + [[#{remain44}]] + "&nbsp;" + "<strong>" + data.content[i].number + "</strong>" + "&nbsp;" + [[#{books44}]] + "</div>\n" +
                         "                                    </a>\n";
-                    str+= "                                </div>\n" +
+                    str += "                                </div>\n" +
                         "                            </li>"
                 }
                 var str1 = "";
                 str1 += "<div class = \"am-cf\" id=\"table-paging\">\n" +
-                    "                            "+[[#{total44}]]+" "+data.totalElements+" "+[[#{records44}]]+"\n" +
+                    "                            " + [[#{total44}]] + " " + data.totalElements + " " + [[#{records44}]] + "\n" +
                     "                            <div class = \"am-fr\">\n" +
                     "                                <ul class = \"am-pagination\">\n" +
-                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_1()\">"+[[#{f_zj}]]+"</button></li>\n" +
-                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(-1)\">"+[[#{p_zj}]]+"</button></li>\n" +
-                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(1)\">"+[[#{n_zj}]]+"</button></li>\n" +
-                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_3()\">"+[[#{l_zj}]]+"</button></li>\n" +
+                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_1()\">" + [[#{f_zj}]] + "</button></li>\n" +
+                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(-1)\">" + [[#{p_zj}]] + "</button></li>\n" +
+                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(1)\">" + [[#{n_zj}]] + "</button></li>\n" +
+                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_3()\">" + [[#{l_zj}]] + "</button></li>\n" +
                     "                                </ul>\n" +
                     "                            </div>\n" +
                     "                        </div>"
@@ -430,43 +439,41 @@
 
     function getOnePageBook4_2(temp) {
         pageNumber4 += temp;
-        var myselect=document.getElementById("type");
-        var index=myselect.selectedIndex;
-        var inputDoc=document.getElementById("string");
-        var string=inputDoc.value;
+        var inputDoc = document.getElementById("string");
+        var string = inputDoc.value;
 
         if (pageNumber4 < 0)
             pageNumber4 = 0;
         else if (pageNumber4 >= totalPage4)
-            pageNumber4 = totalPage4-1;
+            pageNumber4 = totalPage4 - 1;
         else
             $.ajax({
                 type: "get",
                 url: "searchBook",
-                data: {string:string,type: myselect.options[index].value, start: pageNumber4, size: 12},
+                data: {string: string, start: pageNumber4, size: 12},
                 success: function (data) {
                     var str = '';
                     $('#all-books').empty();
                     for (var i = 0; i < data.content.length; i++) {
                         str += "<li>\n" +
                             "                                <div class = \"am-gallery-item\">\n" +
-                            "                                    <a href=\"book_details?isbn="+data.content[i].isbn+"\" class = \"\">\n" +
-                            "                                        <img src = \""+data.content[i].coverPath+"\" height=\"326\" />\n" +
-                            "                                        <h3 class = \"am-gallery-title\">"+data.content[i].title+"</h3>\n" +
-                            "                                        <div class = \"am-gallery-desc\">"+[[#{remain44}]]+"<strong>"+data.content[i].number+"</strong>"+[[#{books44}]]+"</div>\n" +
+                            "                                    <a href=\"book_details?isbn=" + data.content[i].isbn + "\" class = \"\">\n" +
+                            "                                        <img src = \"" + data.content[i].coverPath + "\" height=\"326\" />\n" +
+                            "                                        <h3 class = \"am-gallery-title\">" + data.content[i].title + "</h3>\n" +
+                            "                                        <div class = \"am-gallery-desc\">" + [[#{remain44}]] + "&nbsp;" + "<strong>" + data.content[i].number + "</strong>" + "&nbsp;" + [[#{books44}]] + "</div>\n" +
                             "                                    </a>\n";
-                        str+= "                                </div>\n" +
+                        str += "                                </div>\n" +
                             "                            </li>"
                     }
                     var str1 = "";
                     str1 += "<div class = \"am-cf\" id=\"table-paging\">\n" +
-                        "                            "+[[#{total44}]]+" "+data.totalElements+" "+[[#{records44}]]+"\n" +
+                        "                            " + [[#{total44}]] + " " + data.totalElements + " " + [[#{records44}]] + "\n" +
                         "                            <div class = \"am-fr\">\n" +
                         "                                <ul class = \"am-pagination\">\n" +
-                        "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_1()\">"+[[#{f_zj}]]+"</button></li>\n" +
-                        "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(-1)\">"+[[#{p_zj}]]+"</button></li>\n" +
-                        "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(1)\">"+[[#{n_zj}]]+"</button></li>\n" +
-                        "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_3()\">"+[[#{l_zj}]]+"</button></li>\n" +
+                        "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_1()\">" + [[#{f_zj}]] + "</button></li>\n" +
+                        "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(-1)\">" + [[#{p_zj}]] + "</button></li>\n" +
+                        "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(1)\">" + [[#{n_zj}]] + "</button></li>\n" +
+                        "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_3()\">" + [[#{l_zj}]] + "</button></li>\n" +
                         "                                </ul>\n" +
                         "                            </div>\n" +
                         "                        </div>"
@@ -478,38 +485,36 @@
     }
 
     function getOnePageBook4_3() {
-        pageNumber4 = totalPage4-1;
-        var myselect=document.getElementById("type");
-        var index=myselect.selectedIndex;
-        var inputDoc=document.getElementById("string");
-        var string=inputDoc.value;
+        pageNumber4 = totalPage4 - 1;
+        var inputDoc = document.getElementById("string");
+        var string = inputDoc.value;
         $.ajax({
             type: "get",
             url: "searchBook",
-            data: {string:string,type: myselect.options[index].value, start: pageNumber4, size: 12},
+            data: {string: string, start: pageNumber4, size: 12},
             success: function (data) {
                 var str = '';
                 $('#all-books').empty();
                 for (var i = 0; i < data.content.length; i++) {
                     str += "<li>\n" +
                         "                                <div class = \"am-gallery-item\">\n" +
-                        "                                    <a href=\"book_details?isbn="+data.content[i].isbn+"\" class = \"\">\n" +
-                        "                                        <img src = \""+data.content[i].coverPath+"\" height=\"326\" />\n" +
-                        "                                        <h3 class = \"am-gallery-title\">"+data.content[i].title+"</h3>\n" +
-                        "                                        <div class = \"am-gallery-desc\">"+[[#{remain44}]]+"<strong>"+data.content[i].number+"</strong>"+[[#{books44}]]+"</div>\n" +
+                        "                                    <a href=\"book_details?isbn=" + data.content[i].isbn + "\" class = \"\">\n" +
+                        "                                        <img src = \"" + data.content[i].coverPath + "\" height=\"326\" />\n" +
+                        "                                        <h3 class = \"am-gallery-title\">" + data.content[i].title + "</h3>\n" +
+                        "                                        <div class = \"am-gallery-desc\">" + [[#{remain44}]] + "&nbsp;" + "<strong>" + data.content[i].number + "</strong>" + "&nbsp;" + [[#{books44}]] + "</div>\n" +
                         "                                    </a>\n";
-                    str+= "                                </div>\n" +
+                    str += "                                </div>\n" +
                         "                            </li>"
                 }
                 var str1 = "";
                 str1 += "<div class = \"am-cf\" id=\"table-paging\">\n" +
-                    "                            "+[[#{total44}]]+" "+data.totalElements+" "+[[#{records44}]]+"\n" +
+                    "                            " + [[#{total44}]] + " " + data.totalElements + " " + [[#{records44}]] + "\n" +
                     "                            <div class = \"am-fr\">\n" +
                     "                                <ul class = \"am-pagination\">\n" +
-                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_1()\">"+[[#{f_zj}]]+"</button></li>\n" +
-                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(-1)\">"+[[#{p_zj}]]+"</button></li>\n" +
-                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(1)\">"+[[#{n_zj}]]+"</button></li>\n" +
-                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_3()\">"+[[#{l_zj}]]+"</button></li>\n" +
+                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_1()\">" + [[#{f_zj}]] + "</button></li>\n" +
+                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(-1)\">" + [[#{p_zj}]] + "</button></li>\n" +
+                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(1)\">" + [[#{n_zj}]] + "</button></li>\n" +
+                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_3()\">" + [[#{l_zj}]] + "</button></li>\n" +
                     "                                </ul>\n" +
                     "                            </div>\n" +
                     "                        </div>"

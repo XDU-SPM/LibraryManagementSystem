@@ -41,7 +41,7 @@
                 <ul class = "am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
 
                     <li><a href = "javascript:;">
-                        <button id = "change" class = "am-btn am-btn-primary am-btn-sm">中文/英文</button>
+                        <button id = "change" class = "am-btn am-btn-primary am-btn-sm" th:text="#{ce_ysw}">中文/英文</button>
                     </a></li>
 
                     <li class = "am-dropdown" data-am-dropdown>
@@ -61,12 +61,13 @@
         <div class="am-g am-intro-bd">
             <div class="am-intro-left am-u-sm-5"><img th:src="${userBook.book.coverPath}" alt="" /></div>
             <div class="am-intro-right am-u-sm-7">
-                <h2 class="am-intro-more am-intro-right ">倒计时：<span id="count-down"></span></h2>
-                <h2>书名</h2>
+                <h2 class="am-intro-more am-intro-right "><span th:text="#{tofd_ysw}">倒计时：</span></h2>
+                <p id="count-down"></p>
+                <h2 th:text="#{btitle}">书名</h2>
                 <p th:text="${userBook.book.title}"></p>
-                <h2>作者</h2>
+                <h2 th:text="#{au44}">作者</h2>
                 <p th:text="${userBook.book.author}"></p>
-                <h2>简介</h2>
+                <h2 th:text="#{brief}">简介</h2>
                 <p th:text="${userBook.book.brief}"></p>
             </div>
         </div>
