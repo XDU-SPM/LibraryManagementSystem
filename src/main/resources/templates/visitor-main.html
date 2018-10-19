@@ -92,9 +92,12 @@
 
             <ul class = "am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
 
-                <li><a href = "javascript:;">
-                    <button id = "change" class = "am-btn am-btn-primary am-btn-sm">中文/英文</button>
-                </a></li>
+                <li>
+                    <select onchange="window.location=this.value;">
+                        <option value="?language=english&pagename=visitor-main">英文</option>
+                        <option value="?language=chinese&pagename=visitor-main">中文</option>
+                    </select>
+                </li>
 
                 <li class = "am-dropdown" data-am-dropdown>
                     <a class = "am-dropdown-toggle" data-am-dropdown-toggle href = "javascript:;">
