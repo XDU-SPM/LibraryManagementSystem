@@ -194,7 +194,7 @@
 </script>
 <script>
     function book_reserve(book_isbn) {
-        var res = confirm("确认预约？");
+        var res = confirm("Confirm appointment?");
         if(res == true){
             $.ajax({
                 type: "get",
@@ -202,13 +202,13 @@
                 url: "reserve",
                 success: function (data) {
                     if(data!=null)
-                        alert("成功预约！");
+                        alert("Successful appointment!");
                     else
-                        alert("预约失败，请稍后再试！");
+                        alert("Reservation failed. Please try again later.");
                     getOnePageBook_2(0);
                 },
                 error: function (data) {
-                    alert("发生错误，请稍后再试！");
+                    alert("An error occurred. Please try again later.");
                 }
             });
         }
@@ -326,14 +326,12 @@
 
     function getOnePageBook4_1() {
         pageNumber4 = 0;
-        var myselect=document.getElementById("type");
-        var index=myselect.selectedIndex;
         var inputDoc=document.getElementById("string");
         var string=inputDoc.value;
         $.ajax({
             type: "get",
             url: "searchBook",
-            data: {string: string,type: myselect.options[index].value, start: 0, size: 12},
+            data: {string: string, start: 0, size: 12},
             success: function (data) {
                 console.log(data);
                 var str = "";
@@ -362,10 +360,10 @@
                     "                            "+[[#{total44}]]+" "+data.totalElements+" "+[[#{records44}]]+"\n" +
                     "                            <div class = \"am-fr\">\n" +
                     "                                <ul class = \"am-pagination\">\n" +
-                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_1()\">"+[[#{ho_yxy}]]+"</button></li>\n" +
-                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(-1)\">"+[[#{p_zj}]]+"</button></li>\n" +
-                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(1)\">"+[[#{n_zj}]]+"</button></li>\n" +
-                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_3()\">"+[[#{l_zj}]]+"</button></li>\n" +
+                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook4_1()\">"+[[#{ho_yxy}]]+"</button></li>\n" +
+                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook4_2(-1)\">"+[[#{p_zj}]]+"</button></li>\n" +
+                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook4_2(1)\">"+[[#{n_zj}]]+"</button></li>\n" +
+                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook4_3()\">"+[[#{l_zj}]]+"</button></li>\n" +
                     "                                </ul>\n" +
                     "                            </div>\n" +
                     "                        </div>"
@@ -378,8 +376,6 @@
 
     function getOnePageBook4_2(temp) {
         pageNumber4 += temp;
-        var myselect=document.getElementById("type");
-        var index=myselect.selectedIndex;
         var inputDoc=document.getElementById("string");
         var string=inputDoc.value;
 
@@ -391,7 +387,7 @@
             $.ajax({
                 type: "get",
                 url: "searchBook",
-                data: {string:string,type: myselect.options[index].value, start: pageNumber4, size: 12},
+                data: {string:string, start: pageNumber4, size: 12},
                 success: function (data) {
                     var str = '';
                     $('#all-books').empty();
@@ -418,10 +414,10 @@
                         "                            "+[[#{total44}]]+" "+data.totalElements+" "+[[#{records44}]]+"\n" +
                         "                            <div class = \"am-fr\">\n" +
                         "                                <ul class = \"am-pagination\">\n" +
-                        "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_1()\">"+[[#{ho_yxy}]]+"</button></li>\n" +
-                        "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(-1)\">"+[[#{p_zj}]]+"</button></li>\n" +
-                        "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(1)\">"+[[#{n_zj}]]+"</button></li>\n" +
-                        "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_3()\">"+[[#{l_zj}]]+"</button></li>\n" +
+                        "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook4_1()\">"+[[#{ho_yxy}]]+"</button></li>\n" +
+                        "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook4_2(-1)\">"+[[#{p_zj}]]+"</button></li>\n" +
+                        "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook4_2(1)\">"+[[#{n_zj}]]+"</button></li>\n" +
+                        "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook4_3()\">"+[[#{l_zj}]]+"</button></li>\n" +
                         "                                </ul>\n" +
                         "                            </div>\n" +
                         "                        </div>"
@@ -434,14 +430,12 @@
 
     function getOnePageBook4_3() {
         pageNumber4 = totalPage4-1;
-        var myselect=document.getElementById("type");
-        var index=myselect.selectedIndex;
         var inputDoc=document.getElementById("string");
         var string=inputDoc.value;
         $.ajax({
             type: "get",
             url: "searchBook",
-            data: {string:string,type: myselect.options[index].value, start: pageNumber4, size: 12},
+            data: {string:string, start: pageNumber4, size: 12},
             success: function (data) {
                 var str = '';
                 $('#all-books').empty();
@@ -468,10 +462,10 @@
                     "                            "+[[#{total44}]]+" "+data.totalElements+" "+[[#{records44}]]+"\n" +
                     "                            <div class = \"am-fr\">\n" +
                     "                                <ul class = \"am-pagination\">\n" +
-                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_1()\">"+[[#{ho_yxy}]]+"</button></li>\n" +
-                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(-1)\">"+[[#{p_zj}]]+"</button></li>\n" +
-                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(1)\">"+[[#{n_zj}]]+"</button></li>\n" +
-                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_3()\">"+[[#{l_zj}]]+"</button></li>\n" +
+                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook4_1()\">"+[[#{ho_yxy}]]+"</button></li>\n" +
+                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook4_2(-1)\">"+[[#{p_zj}]]+"</button></li>\n" +
+                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook4_2(1)\">"+[[#{n_zj}]]+"</button></li>\n" +
+                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook4_3()\">"+[[#{l_zj}]]+"</button></li>\n" +
                     "                                </ul>\n" +
                     "                            </div>\n" +
                     "                        </div>"
