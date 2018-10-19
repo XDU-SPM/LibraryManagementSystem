@@ -49,7 +49,7 @@
                 </a></li>
                 <li class = "am-dropdown" data-am-dropdown>
                     <a class = "am-dropdown-toggle" data-am-dropdown-toggle href = "javascript:;">
-                        <a th:href = "@{/logout}" th:text="#{lg_yxy}">注销</a>
+                        <a th:href = "@{/logout}" th:text = "#{lg_yxy}">注销</a>
                     </a>
 
                 </li>
@@ -65,25 +65,30 @@
     <div class = "admin-sidebar am-offcanvas" id = "admin-offcanvas">
         <div class = "am-offcanvas-bar admin-offcanvas-bar">
             <div class = "user-info">
-                <img class = "am-img-circle am-img-thumbnail am-center" width="200" height="200"
-                     th:src= "${avatarPath}"
+                <img class = "am-img-circle am-img-thumbnail am-center" width = "200" height = "200"
+                     th:src = "${avatarPath}"
                      alt = ""/>
-                <p style = "text-align: center" th:text="${username}">Reader</p>
+                <p style = "text-align: center" th:text = "${username}">Reader</p>
             </div>
 
             <ul class = "am-list admin-sidebar-list">
-                <li><a href = "reader_condition"><span class = "am-icon-bar-chart"></span><span th:text="#{bis_yxy}"> 借书信息统计</span></a></li>
-                <li><a href = "reader_search"><span class = "am-icon-search"></span><span th:text="#{sfb_yxy}"> 搜索图书</span></a></li>
-                <li><a href = "reader_information" class = "am-cf"><span class = "am-icon-check"></span><span th:text="#{pd_yxy}"> 个人资料</span><span
+                <li><a href = "reader_condition"><span class = "am-icon-bar-chart"></span><span th:text = "#{bis_yxy}"> 借书信息统计</span></a>
+                </li>
+                <li><a href = "reader_search"><span class = "am-icon-search"></span><span
+                        th:text = "#{sfb_yxy}"> 搜索图书</span></a></li>
+                <li><a href = "reader_information" class = "am-cf"><span class = "am-icon-check"></span><span
+                        th:text = "#{pd_yxy}"> 个人资料</span><span
                         class = "am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
-                <li><a href = "password_change"><span class = "am-icon-eraser"></span><span th:text="#{cp_yxy}"> 修改密码</span></a></li>
-                <li><a href = "reader_message"><span class = "am-icon-commenting-o"></span><span th:text="#{lm_yxy}"> 留言</span></a></li>
+                <li><a href = "password_change"><span class = "am-icon-eraser"></span><span
+                        th:text = "#{cp_yxy}"> 修改密码</span></a></li>
+                <li><a href = "reader_message"><span class = "am-icon-commenting-o"></span><span th:text = "#{lm_yxy}"> 留言</span></a>
+                </li>
             </ul>
 
             <div class = "am-panel am-panel-default admin-sidebar-panel">
                 <div class = "am-panel-bd">
-                    <p><span class = "am-icon-bookmark"></span> <span th:text="#{no_yxy}">公告</span></p>
-                    <p th:text="#{tiqa44}">时光静好，与君语；细水流年，与君同。</p>
+                    <p><span class = "am-icon-bookmark"></span> <span th:text = "#{no_yxy}">公告</span></p>
+                    <p th:text = "#{tiqa44}">时光静好，与君语；细水流年，与君同。</p>
                 </div>
             </div>
 
@@ -104,10 +109,11 @@
             <div class = "am-g am-padding">
                 <div class = "am-u-sm-12 am-u-md-6 am-u-md-centered">
                     <div class = "am-input-group am-input-group-sm">
-                        <input name="string" id="string" type = "text" class = "am-form-field am-radius">
+                        <input name = "string" id = "string" type = "text" class = "am-form-field am-radius">
                         <span class = "am-input-group-btn">
-                            <button class = "am-btn am-btn-default am-icon-search am-radius" onclick = "getOnePageBook4_1()"
-                                    type = "button" th:text="#{Search}" >搜索</button>
+                            <button class = "am-btn am-btn-default am-icon-search am-radius"
+                                    onclick = "getOnePageBook4_1()"
+                                    type = "button" th:text = "#{Search}">搜索</button>
                         </span>
                     </div>
                 </div>
@@ -117,36 +123,62 @@
             <div class = "am-g">
                 <div class = "am-u-sm-12">
                     <div class = "am-cf am-padding" id = "recom-book">
-                        <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg" th:text="#{ab44}">所有图书</strong></div>
+                        <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg"
+                                                           th:text = "#{ab44}">所有图书</strong></div>
                     </div>
                     <form class = "am-form">
-                        <ul data-am-widget = "gallery" id="all-books" class = "am-gallery am-avg-sm-2
-  am-avg-md-4 am-avg-lg-6 am-gallery-bordered" data-am-gallery = "{  }">
+                        <ul data-am-widget = "gallery" id = "all-books"
+                            class = "am-gallery am-avg-sm-2 am-avg-md-4 am-avg-lg-6 am-gallery-bordered"
+                            data-am-gallery = "{  }">
                             <li th:each = "book:${page}">
                                 <div class = "am-gallery-item">
-                                    <a th:href="@{book_details(isbn=${book.isbn})}" class = "">
-                                        <img th:src = "${book.coverPath}" height="326" />
-                                        <h3 th:text="${book.title}" class = "am-gallery-title"></h3>
-                                        <div class = "am-gallery-desc"><span th:text="#{remain44}+'&nbsp;'">剩余：</span><strong th:text="${book.number}"></strong><span th:text="'&nbsp'+ #{books44}">本</span></div>
+                                    <a th:href = "@{book_details(isbn=${book.isbn})}" class = "">
+                                        <img th:src = "${book.coverPath}" height = "326"/>
+                                        <h3 th:text = "${book.title}" class = "am-gallery-title"></h3>
+                                        <div class = "am-gallery-desc"><span th:text = "#{remain44}+'&nbsp;'">剩余：</span><strong
+                                                th:text = "${book.number}"></strong><span
+                                                th:text = "'&nbsp'+ #{books44}">本</span></div>
                                     </a>
-                                    <button th:text="#{reserve44}" th:if = "${book.number} eq 0" type = "button" class = "am-btn am-btn-primary am-round" disabled>
+                                    <button th:text = "#{reserve44}" th:if = "${book.number} eq 0" type = "button"
+                                            class = "am-btn am-btn-primary am-round" disabled>
                                         预约
                                     </button>
-                                    <button  th:text="#{reserve44}" th:if = "${book.number} gt 0" type = "button" class = "am-btn am-btn-primary am-round" th:onclick="'javascript:book_reserve('+${book.isbn}+')'">
-                                        预约</button>
+                                    <button th:text = "#{reserve44}" th:if = "${book.number} gt 0" type = "button"
+                                            class = "am-btn am-btn-primary am-round"
+                                            th:onclick = "'javascript:book_reserve('+${book.isbn}+')'">
+                                        预约
+                                    </button>
                                 </div>
                             </li>
 
                         </ul>
                         <hr>
-                        <div class = "am-cf" id="table-paging">
-                            <span th:text="#{total44}">共</span> [[${page.totalElements}]] <span th:text="#{records44}">条记录</span>
+                        <div class = "am-cf" id = "table-paging">
+                            <span th:text = "#{total44}">共</span> [[${page.totalElements}]] <span
+                                th:text = "#{records44}">条记录</span>
                             <div class = "am-fr">
                                 <ul class = "am-pagination">
-                                    <li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook_1()" th:text="#{f_zj}">首页</button></li>
-                                    <li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook_2(-1)" th:text="#{p_zj}">上一页</button></li>
-                                    <li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook_2(1)" th:text="#{n_zj}">下一页</button></li>
-                                    <li><button type="button" class="am-btn am-btn-primary am-round" th:onclick = "'javascript:getOnePageBook_3('+${page.totalPages}+'-1)'" th:text="#{l_zj}">末页</button></li>
+                                    <li>
+                                        <button type = "button" class = "am-btn am-btn-primary am-round"
+                                                onclick = "getOnePageBook_1()" th:text = "#{f_zj}">首页
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button type = "button" class = "am-btn am-btn-primary am-round"
+                                                onclick = "getOnePageBook_2(-1)" th:text = "#{p_zj}">上一页
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button type = "button" class = "am-btn am-btn-primary am-round"
+                                                onclick = "getOnePageBook_2(1)" th:text = "#{n_zj}">下一页
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button type = "button" class = "am-btn am-btn-primary am-round"
+                                                th:onclick = "'javascript:getOnePageBook_3('+${page.totalPages}+'-1)'"
+                                                th:text = "#{l_zj}">末页
+                                        </button>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -183,8 +215,8 @@
 <script type = "text/javascript" src = "assets/js/test.js"></script>
 <script>
     function clear() {
-            $('#recom-book').empty();
-            $('#table-paging').empty();
+        $('#recom-book').empty();
+        $('#table-paging').empty();
     }
 </script>
 <script type = "text/javascript">
@@ -195,13 +227,13 @@
 <script>
     function book_reserve(book_isbn) {
         var res = confirm("确认预约？");
-        if(res == true){
+        if (res == true) {
             $.ajax({
                 type: "get",
                 data: {isbn: book_isbn},
                 url: "reserve",
                 success: function (data) {
-                    if(data!=null)
+                    if (data != null)
                         alert("成功预约！");
                     else
                         alert("预约失败，请稍后再试！");
@@ -214,7 +246,7 @@
         }
     }
 </script>
-<script th:inline="javascript">
+<script th:inline = "javascript">
 
     var pageNumber = 0;
 
@@ -230,19 +262,19 @@
                 for (var i = 0; i < data.content.length; i++) {
                     str += "<li>\n" +
                         "                                <div class = \"am-gallery-item\">\n" +
-                        "                                    <a href=\"book_details?isbn="+data.content[i].isbn+"\" class = \"\">\n" +
-                        "                                        <img src = \""+data.content[i].coverPath+"\" height=\"326\" />\n" +
-                        "                                        <h3 class = \"am-gallery-title\">"+data.content[i].title+"</h3>\n" +
-                        "                                        <div class = \"am-gallery-desc\">"+[[#{remains44}]]+"&nbsp;"+"<strong>"+data.content[i].number+"</strong>"+"&nbsp;"+[[#{books44}]]+"</div>\n" +
+                        "                                    <a href=\"book_details?isbn=" + data.content[i].isbn + "\" class = \"\">\n" +
+                        "                                        <img src = \"" + data.content[i].coverPath + "\" height=\"326\" />\n" +
+                        "                                        <h3 class = \"am-gallery-title\">" + data.content[i].title + "</h3>\n" +
+                        "                                        <div class = \"am-gallery-desc\">" + [[#{remain44}]] + "&nbsp;" + "<strong>" + data.content[i].number + "</strong>" + "&nbsp;" + [[#{books44}]] + "</div>\n" +
                         "                                    </a>\n";
-                    if(data.content[i].number == 0)
-                        str+="                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" disabled>\n" +
-                        "                                        "+[[#{reserve44}]]+"\n" +
-                        "                                    </button>\n"
+                    if (data.content[i].number == 0)
+                        str += "                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" disabled>\n" +
+                            "                                        " + [[#{reserve44}]] + "\n" +
+                            "                                    </button>\n"
                     else
-                        str+="                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" onclick=\"book_reserve(data.content[i].isbn)\">\n" +
-                        "                                        "+[[#{reserve44}]]+"</button>\n"
-                    str+= "                                </div>\n" +
+                        str += "                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" onclick=\"book_reserve(data.content[i].isbn)\">\n" +
+                            "                                        " + [[#{reserve44}]] + "</button>\n"
+                    str += "                                </div>\n" +
                         "                            </li>"
                 }
                 $('#all-books').html(str);
@@ -255,7 +287,7 @@
         if (pageNumber < 0)
             pageNumber = 0;
         else if (pageNumber >= [[${page.totalPages}]])
-            pageNumber = [[${page.totalPages}]]-1;
+            pageNumber = [[${page.totalPages}]] - 1;
         else
             $.ajax({
                 type: "get",
@@ -267,19 +299,19 @@
                     for (var i = 0; i < data.content.length; i++) {
                         str += "<li>\n" +
                             "                                <div class = \"am-gallery-item\">\n" +
-                            "                                    <a href=\"book_details?isbn="+data.content[i].isbn+"\" class = \"\">\n" +
-                            "                                        <img src = \""+data.content[i].coverPath+"\" height=\"326\" />\n" +
-                            "                                        <h3 class = \"am-gallery-title\">"+data.content[i].title+"</h3>\n" +
-                            "                                        <div class = \"am-gallery-desc\">"+[[#{remains44}]]+"&nbsp;"+"<strong>"+data.content[i].number+"</strong>"+"&nbsp;"+[[#{books44}]]+"</div>\n" +
+                            "                                    <a href=\"book_details?isbn=" + data.content[i].isbn + "\" class = \"\">\n" +
+                            "                                        <img src = \"" + data.content[i].coverPath + "\" height=\"326\" />\n" +
+                            "                                        <h3 class = \"am-gallery-title\">" + data.content[i].title + "</h3>\n" +
+                            "                                        <div class = \"am-gallery-desc\">" + [[#{remain44}]] + "&nbsp;" + "<strong>" + data.content[i].number + "</strong>" + "&nbsp;" + [[#{books44}]] + "</div>\n" +
                             "                                    </a>\n";
-                        if(data.content[i].number == 0)
-                            str+="                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" disabled>\n" +
-                                "                                        "+[[#{reserve44}]]+"\n" +
+                        if (data.content[i].number == 0)
+                            str += "                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" disabled>\n" +
+                                "                                        " + [[#{reserve44}]] + "\n" +
                                 "                                    </button>\n"
                         else
-                            str+="                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" onclick=\"book_reserve(data.content[i].isbn)\">\n" +
-                                "                                        "+[[#{reserve44}]]+"</button>\n"
-                        str+= "                                </div>\n" +
+                            str += "                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" onclick=\"book_reserve(data.content[i].isbn)\">\n" +
+                                "                                        " + [[#{reserve44}]] + "</button>\n"
+                        str += "                                </div>\n" +
                             "                            </li>"
                     }
                     $('#all-books').html(str);
@@ -299,19 +331,19 @@
                 for (var i = 0; i < data.content.length; i++) {
                     str += "<li>\n" +
                         "                                <div class = \"am-gallery-item\">\n" +
-                        "                                    <a href=\"book_details?isbn="+data.content[i].isbn+"\" class = \"\">\n" +
-                        "                                        <img src = \""+data.content[i].coverPath+"\" height=\"326\" />\n" +
-                        "                                        <h3 class = \"am-gallery-title\">"+data.content[i].title+"</h3>\n" +
-                        "                                        <div class = \"am-gallery-desc\">"+[[#{remains44}]]+"&nbsp;"+"<strong>"+data.content[i].number+"</strong>"+"&nbsp;"+[[#{books44}]]+"</div>\n" +
+                        "                                    <a href=\"book_details?isbn=" + data.content[i].isbn + "\" class = \"\">\n" +
+                        "                                        <img src = \"" + data.content[i].coverPath + "\" height=\"326\" />\n" +
+                        "                                        <h3 class = \"am-gallery-title\">" + data.content[i].title + "</h3>\n" +
+                        "                                        <div class = \"am-gallery-desc\">" + [[#{remain44}]] + "&nbsp;" + "<strong>" + data.content[i].number + "</strong>" + "&nbsp;" + [[#{books44}]] + "</div>\n" +
                         "                                    </a>\n";
-                    if(data.content[i].number == 0)
-                        str+="                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" disabled>\n" +
-                            "                                        "+[[#{reserve44}]]+"\n" +
+                    if (data.content[i].number == 0)
+                        str += "                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" disabled>\n" +
+                            "                                        " + [[#{reserve44}]] + "\n" +
                             "                                    </button>\n"
                     else
-                        str+="                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" onclick=\"book_reserve(data.content[i].isbn)\">\n" +
-                            "                                        "+[[#{reserve44}]]+"</button>\n"
-                    str+= "                                </div>\n" +
+                        str += "                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" onclick=\"book_reserve(data.content[i].isbn)\">\n" +
+                            "                                        " + [[#{reserve44}]] + "</button>\n"
+                    str += "                                </div>\n" +
                         "                            </li>"
                 }
                 $('#all-books').html(str);
@@ -320,20 +352,20 @@
     }
 </script>
 
-<script th:inline="javascript">
+<script th:inline = "javascript">
     var totalPage4 = 0;
     var pageNumber4 = 0;
 
     function getOnePageBook4_1() {
         pageNumber4 = 0;
-        var myselect=document.getElementById("type");
-        var index=myselect.selectedIndex;
-        var inputDoc=document.getElementById("string");
-        var string=inputDoc.value;
+        var myselect = document.getElementById("type");
+        var index = myselect.selectedIndex;
+        var inputDoc = document.getElementById("string");
+        var string = inputDoc.value;
         $.ajax({
             type: "get",
             url: "searchBook",
-            data: {string: string,type: myselect.options[index].value, start: 0, size: 12},
+            data: {string: string, type: myselect.options[index].value, start: 0, size: 12},
             success: function (data) {
                 console.log(data);
                 var str = "";
@@ -342,30 +374,30 @@
                 for (var i = 0; i < data.content.length; i++) {
                     str += "<li>\n" +
                         "                                <div class = \"am-gallery-item\">\n" +
-                        "                                    <a href=\"book_details?isbn="+data.content[i].isbn+"\" class = \"\">\n" +
-                        "                                        <img src = \""+data.content[i].coverPath+"\" height=\"326\" />\n" +
-                        "                                        <h3 class = \"am-gallery-title\">"+data.content[i].title+"</h3>\n" +
-                        "                                        <div class = \"am-gallery-desc\">"+[[#{remains44}]]+"&nbsp;"+"<strong>"+data.content[i].number+"</strong>"+"&nbsp;"+[[#{books44}]]+"</div>\n" +
+                        "                                    <a href=\"book_details?isbn=" + data.content[i].isbn + "\" class = \"\">\n" +
+                        "                                        <img src = \"" + data.content[i].coverPath + "\" height=\"326\" />\n" +
+                        "                                        <h3 class = \"am-gallery-title\">" + data.content[i].title + "</h3>\n" +
+                        "                                        <div class = \"am-gallery-desc\">" + [[#{remain44}]] + "&nbsp;" + "<strong>" + data.content[i].number + "</strong>" + "&nbsp;" + [[#{books44}]] + "</div>\n" +
                         "                                    </a>\n";
-                    if(data.content[i].number == 0)
-                        str+="                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" disabled>\n" +
-                            "                                        "+[[#{reserve44}]]+"\n" +
+                    if (data.content[i].number == 0)
+                        str += "                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" disabled>\n" +
+                            "                                        " + [[#{reserve44}]] + "\n" +
                             "                                    </button>\n"
                     else
-                        str+="                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" onclick=\"book_reserve(data.content[i].isbn)\">\n" +
-                            "                                        "+[[#{reserve44}]]+"</button>\n"
-                    str+= "                                </div>\n" +
+                        str += "                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" onclick=\"book_reserve(data.content[i].isbn)\">\n" +
+                            "                                        " + [[#{reserve44}]] + "</button>\n"
+                    str += "                                </div>\n" +
                         "                            </li>"
                 }
                 var str1 = "";
                 str1 += "<div class = \"am-cf\" id=\"table-paging\">\n" +
-                    "                            "+[[#{total44}]]+" "+data.totalElements+" "+[[#{records44}]]+"\n" +
+                    "                            " + [[#{total44}]] + " " + data.totalElements + " " + [[#{records44}]] + "\n" +
                     "                            <div class = \"am-fr\">\n" +
                     "                                <ul class = \"am-pagination\">\n" +
-                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_1()\">"+[[#{ho_yxy}]]+"</button></li>\n" +
-                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(-1)\">"+[[#{p_zj}]]+"</button></li>\n" +
-                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(1)\">"+[[#{n_zj}]]+"</button></li>\n" +
-                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_3()\">"+[[#{l_zj}]]+"</button></li>\n" +
+                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_1()\">" + [[#{ho_yxy}]] + "</button></li>\n" +
+                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(-1)\">" + [[#{p_zj}]] + "</button></li>\n" +
+                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(1)\">" + [[#{n_zj}]] + "</button></li>\n" +
+                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_3()\">" + [[#{l_zj}]] + "</button></li>\n" +
                     "                                </ul>\n" +
                     "                            </div>\n" +
                     "                        </div>"
@@ -378,50 +410,50 @@
 
     function getOnePageBook4_2(temp) {
         pageNumber4 += temp;
-        var myselect=document.getElementById("type");
-        var index=myselect.selectedIndex;
-        var inputDoc=document.getElementById("string");
-        var string=inputDoc.value;
+        var myselect = document.getElementById("type");
+        var index = myselect.selectedIndex;
+        var inputDoc = document.getElementById("string");
+        var string = inputDoc.value;
 
         if (pageNumber4 < 0)
             pageNumber4 = 0;
         else if (pageNumber4 >= totalPage4)
-            pageNumber4 = totalPage4-1;
+            pageNumber4 = totalPage4 - 1;
         else
             $.ajax({
                 type: "get",
                 url: "searchBook",
-                data: {string:string,type: myselect.options[index].value, start: pageNumber4, size: 12},
+                data: {string: string, type: myselect.options[index].value, start: pageNumber4, size: 12},
                 success: function (data) {
                     var str = '';
                     $('#all-books').empty();
                     for (var i = 0; i < data.content.length; i++) {
                         str += "<li>\n" +
                             "                                <div class = \"am-gallery-item\">\n" +
-                            "                                    <a href=\"book_details?isbn="+data.content[i].isbn+"\" class = \"\">\n" +
-                            "                                        <img src = \""+data.content[i].coverPath+"\" height=\"326\" />\n" +
-                            "                                        <h3 class = \"am-gallery-title\">"+data.content[i].title+"</h3>\n" +
-                            "                                        <div class = \"am-gallery-desc\">"+[[#{remains44}]]+"&nbsp;"+"<strong>"+data.content[i].number+"</strong>"+"&nbsp;"+[[#{books44}]]+"</div>\n" +
+                            "                                    <a href=\"book_details?isbn=" + data.content[i].isbn + "\" class = \"\">\n" +
+                            "                                        <img src = \"" + data.content[i].coverPath + "\" height=\"326\" />\n" +
+                            "                                        <h3 class = \"am-gallery-title\">" + data.content[i].title + "</h3>\n" +
+                            "                                        <div class = \"am-gallery-desc\">" + [[#{remain44}]] + "&nbsp;" + "<strong>" + data.content[i].number + "</strong>" + "&nbsp;" + [[#{books44}]] + "</div>\n" +
                             "                                    </a>\n";
-                        if(data.content[i].number == 0)
-                            str+="                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" disabled>\n" +
-                                "                                        "+[[#{reserve44}]]+"\n" +
+                        if (data.content[i].number == 0)
+                            str += "                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" disabled>\n" +
+                                "                                        " + [[#{reserve44}]] + "\n" +
                                 "                                    </button>\n"
                         else
-                            str+="                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" onclick=\"book_reserve(data.content[i].isbn)\">\n" +
-                                "                                        "+[[#{reserve44}]]+"</button>\n"
-                        str+= "                                </div>\n" +
+                            str += "                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" onclick=\"book_reserve(data.content[i].isbn)\">\n" +
+                                "                                        " + [[#{reserve44}]] + "</button>\n"
+                        str += "                                </div>\n" +
                             "                            </li>"
                     }
                     var str1 = "";
                     str1 += "<div class = \"am-cf\" id=\"table-paging\">\n" +
-                        "                            "+[[#{total44}]]+" "+data.totalElements+" "+[[#{records44}]]+"\n" +
+                        "                            " + [[#{total44}]] + " " + data.totalElements + " " + [[#{records44}]] + "\n" +
                         "                            <div class = \"am-fr\">\n" +
                         "                                <ul class = \"am-pagination\">\n" +
-                        "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_1()\">"+[[#{ho_yxy}]]+"</button></li>\n" +
-                        "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(-1)\">"+[[#{p_zj}]]+"</button></li>\n" +
-                        "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(1)\">"+[[#{n_zj}]]+"</button></li>\n" +
-                        "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_3()\">"+[[#{l_zj}]]+"</button></li>\n" +
+                        "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_1()\">" + [[#{ho_yxy}]] + "</button></li>\n" +
+                        "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(-1)\">" + [[#{p_zj}]] + "</button></li>\n" +
+                        "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(1)\">" + [[#{n_zj}]] + "</button></li>\n" +
+                        "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_3()\">" + [[#{l_zj}]] + "</button></li>\n" +
                         "                                </ul>\n" +
                         "                            </div>\n" +
                         "                        </div>"
@@ -433,45 +465,45 @@
     }
 
     function getOnePageBook4_3() {
-        pageNumber4 = totalPage4-1;
-        var myselect=document.getElementById("type");
-        var index=myselect.selectedIndex;
-        var inputDoc=document.getElementById("string");
-        var string=inputDoc.value;
+        pageNumber4 = totalPage4 - 1;
+        var myselect = document.getElementById("type");
+        var index = myselect.selectedIndex;
+        var inputDoc = document.getElementById("string");
+        var string = inputDoc.value;
         $.ajax({
             type: "get",
             url: "searchBook",
-            data: {string:string,type: myselect.options[index].value, start: pageNumber4, size: 12},
+            data: {string: string, type: myselect.options[index].value, start: pageNumber4, size: 12},
             success: function (data) {
                 var str = '';
                 $('#all-books').empty();
                 for (var i = 0; i < data.content.length; i++) {
                     str += "<li>\n" +
                         "                                <div class = \"am-gallery-item\">\n" +
-                        "                                    <a href=\"book_details?isbn="+data.content[i].isbn+"\" class = \"\">\n" +
-                        "                                        <img src = \""+data.content[i].coverPath+"\" height=\"326\" />\n" +
-                        "                                        <h3 class = \"am-gallery-title\">"+data.content[i].title+"</h3>\n" +
-                        "                                        <div class = \"am-gallery-desc\">"+[[#{remains44}]]+"&nbsp;"+"<strong>"+data.content[i].number+"</strong>"+"&nbsp;"+[[#{books44}]]+"</div>\n" +
+                        "                                    <a href=\"book_details?isbn=" + data.content[i].isbn + "\" class = \"\">\n" +
+                        "                                        <img src = \"" + data.content[i].coverPath + "\" height=\"326\" />\n" +
+                        "                                        <h3 class = \"am-gallery-title\">" + data.content[i].title + "</h3>\n" +
+                        "                                        <div class = \"am-gallery-desc\">" + [[#{remain44}]] + "&nbsp;" + "<strong>" + data.content[i].number + "</strong>" + "&nbsp;" + [[#{books44}]] + "</div>\n" +
                         "                                    </a>\n";
-                    if(data.content[i].number == 0)
-                        str+="                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" disabled>\n" +
-                            "                                        "+[[#{reserve44}]]+"\n" +
+                    if (data.content[i].number == 0)
+                        str += "                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" disabled>\n" +
+                            "                                        " + [[#{reserve44}]] + "\n" +
                             "                                    </button>\n"
                     else
-                        str+="                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" onclick=\"book_reserve(data.content[i].isbn)\">\n" +
-                            "                                        "+[[#{reserve44}]]+"</button>\n"
-                    str+= "                                </div>\n" +
+                        str += "                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" onclick=\"book_reserve(data.content[i].isbn)\">\n" +
+                            "                                        " + [[#{reserve44}]] + "</button>\n"
+                    str += "                                </div>\n" +
                         "                            </li>"
                 }
                 var str1 = "";
                 str1 += "<div class = \"am-cf\" id=\"table-paging\">\n" +
-                    "                            "+[[#{total44}]]+" "+data.totalElements+" "+[[#{records44}]]+"\n" +
+                    "                            " + [[#{total44}]] + " " + data.totalElements + " " + [[#{records44}]] + "\n" +
                     "                            <div class = \"am-fr\">\n" +
                     "                                <ul class = \"am-pagination\">\n" +
-                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_1()\">"+[[#{ho_yxy}]]+"</button></li>\n" +
-                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(-1)\">"+[[#{p_zj}]]+"</button></li>\n" +
-                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(1)\">"+[[#{n_zj}]]+"</button></li>\n" +
-                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_3()\">"+[[#{l_zj}]]+"</button></li>\n" +
+                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_1()\">" + [[#{ho_yxy}]] + "</button></li>\n" +
+                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(-1)\">" + [[#{p_zj}]] + "</button></li>\n" +
+                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_2(1)\">" + [[#{n_zj}]] + "</button></li>\n" +
+                    "                                    <li><button type=\"button\" class=\"am-btn am-btn-primary am-round\" onclick = \"getOnePageBook_3()\">" + [[#{l_zj}]] + "</button></li>\n" +
                     "                                </ul>\n" +
                     "                            </div>\n" +
                     "                        </div>"
