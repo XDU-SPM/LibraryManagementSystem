@@ -5,7 +5,6 @@
     <meta charset = "UTF-8">
     <title>BiblioSoft</title>
     <link rel = "icon" type = "image/png" href = "assets/i/favicon.png">
-    <link rel = "apple-touch-icon-precomposed" href = "assets/i/app-icon72x72@2x.png">
     <link rel = "stylesheet" href = "assets/css/amazeui.min.css"/>
     <link rel = "stylesheet" href = "assets/css/admin.css">
     <style>
@@ -349,7 +348,7 @@
 <script th:inline = "javascript">
     var appointment_number = [[${page1.totalElements}]];
     function cancel_appointment(book_id) {
-        var res = confirm("Confirm cancellation?");
+        var res = confirm([[#{cc}]]);
         if (res == true) {
             $.ajax({
                 type: "get",
@@ -357,24 +356,24 @@
                 url: "reserveCancel",
                 success: function (data) {
                     if (data.status == 1){
-                        alert("Successful cancellation!");
+                        alert([[#{suc_can}]]);
                         getOnePageBook1_2(0);
                         $('#book-appointment').empty();
                         appointment_number--;
                         $('#book-appointment').html(appointment_number);
                     }
                     else
-                        alert("Failure to cancellation, your appointment is invalid!");
+                        alert([[#{ftcya}]]);
                 },
                 error: function (data) {
-                    alert("An error occurred. Please try again later.");
+                    alert([[#{aeoptal}]]);
                 }
             });
         }
     }
 
     function book_renew(book_id) {
-        var res = confirm("Confirm renewal?");
+        var res = confirm([[#{con_ren}]]);
         if (res == true) {
             $.ajax({
                 type: "get",
@@ -382,17 +381,17 @@
                 url: "renew",
                 success: function (data) {
                     if (data.status == 0)
-                        alert("Successful renewal，Increase" + data.number + "days！");
+                        alert([[#{sec_ren}]] + data.number + [[#{day}]]);
                     else if (data.status == -1)
-                        alert("Failure to renewal，just once!");
+                        alert([[#{ftrjo}]]);
                     else if (data.status == -2)
-                        alert("Failure to renewal，expired！");
+                        alert([[#{ftre}]]);
                     else
-                        alert("Failure to renewal，An unknown error has occurred！");
+                        alert([[#{ftraue}]]);
                     getOnePageBook2_2(0);
                 },
                 error: function (data) {
-                    alert("An error occurred. Please try it again later！");
+                    alert([[#{aeoptal}]]);
                 }
             });
         }

@@ -224,9 +224,9 @@
         if([[${status}]] == null)
             return;
         if ([[${status}]])
-            alert("Successful change!");
+            alert([[#{suc_chan}]]);
         else
-            alert("Failure to change!");
+            alert([[#{ft_chan}]]);
     }
 </script>
 <script>
@@ -254,7 +254,7 @@
 
     function check() {
         if (!status) {
-            alert("The username has been registered!");
+            alert([[#{tuhbr}]]);
             return false;
         }
         return true;

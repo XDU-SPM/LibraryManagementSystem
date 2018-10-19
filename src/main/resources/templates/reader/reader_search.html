@@ -226,7 +226,7 @@
 </script>
 <script th:inline="javascript">
     function book_reserve(book_isbn) {
-        var res = confirm("Confirm appointment?");
+        var res = confirm([[#{con_appoint}]]);
         if(res == true){
             $.ajax({
                 type: "get",
@@ -236,11 +236,11 @@
                     if(data!=null)
                         alert([[#{Successful_appointment}]]);
                     else
-                        alert("Reservation failed. Please try again later.");
+                        alert([[#{rfptal}]]);
                     getOnePageBook_2(0);
                 },
                 error: function (data) {
-                    alert("An error occurred. Please try again later.");
+                    alert([[#{aeoptal}]]);
                 }
             });
         }

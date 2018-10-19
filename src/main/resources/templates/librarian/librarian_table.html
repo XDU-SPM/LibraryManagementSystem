@@ -158,16 +158,16 @@
 
             <div class = "am-g">
                 <div class = "am-u-sm-12">
-                    <table class = "am-table am-table-striped am-table-hover .am-table-compact" id = "booklist">
+                    <table class = "am-table am-table-striped am-table-hover " id = "booklist">
                         <thead>
                         <tr>
-                            <th class = "table-id" th:text="#{Delete}">书号</th>
+                            <th class = "table-id" th:text="#{id}">书号</th>
                             <th class = "table-title" th:text="#{title_ysw}">标题</th>
                             <th class = "table-isbn">ISBN</th>
-                            <th class = "table-author am-hide-sm-only" th:text="#{au44}">作者</th>
+                            <th class = "table-author " th:text="#{au44}">作者</th>
                             <th class = "table-publisher" th:text="#{publisher}">出版社</th>
-                            <th class = "table-date am-hide-sm-only" th:text="#{pubdate}">出版日期</th>
-                            <th class = "table-positon am-hide-sm-only" th:text="#{bl44}">图书位置</th>
+                            <th class = "table-date " th:text="#{pubdate}">出版日期</th>
+                            <th class = "table-positon " th:text="#{bl44}">图书位置</th>
                             <th class = "table-set" th:text="#{Operation}">操作</th>
                         </tr>
                         </thead>
@@ -176,9 +176,9 @@
                             <td th:text = "${bunit.id}"></td>
                             <td ><a th:text = "${bunit.book.title}" th:href="@{librarian_book(isbn=${bunit.book.isbn})}"></a></td>
                             <td th:text = "${bunit.book.isbn}"></td>
-                            <td class = "am-hide-sm-only" th:text = "${bunit.book.author}"></td>
-                            <td class = "am-hide-sm-only" th:text = "${bunit.book.publisher}"></td>
-                            <td class = "am-hide-sm-only" th:text = "${bunit.book.publishDate}"></td>
+                            <td  th:text = "${bunit.book.author}"></td>
+                            <td  th:text = "${bunit.book.publisher}"></td>
+                            <td th:text = "${bunit.book.publishDate}"></td>
                             <td th:text = "${bunit.book.position}"></td>
                             <td>
                                 <div class = "am-btn-toolbar">
