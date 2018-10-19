@@ -150,7 +150,7 @@
             <hr/>
 
 
-            <div class = "card-box">
+
                 <!-- Row start -->
 
                 <!-- Row end -->
@@ -163,8 +163,8 @@
                             <tr>
                                 <th class = "table-id">ID</th>
                                 <th class = "table-title" th:text="#{u_ysw}">用户名</th>
-                                <th class = "table-author am-hide-sm-only" th:text="#{n_ysw}">姓名</th>
-                                <th class = "table-date am-hide-sm-only" th:text="#{e_ysw}">邮箱</th>
+                                <th class = "table-author " th:text="#{n_ysw}">姓名</th>
+                                <th class = "table-date " th:text="#{e_ysw}">邮箱</th>
                                 <th class = "table-money" th:text="#{Paid}">已缴</th>
                                 <th class = "table-money" th:text="#{Unpaid_ysw}">未缴</th>
                                 <th class = "table-set" th:text="#{Operation_ysw}">操作</th>
@@ -175,10 +175,10 @@
                                 <td th:text = "${user.id}"></td>
                                 <td><a th:text = "${user.username}" th:href = "@{librarian_readerinfo(id=${user.id})}"></a>
                                 </td>
-                                <td class = "am-hide-sm-only" th:text = "${user.name}"></td>
-                                <td class = "am-hide-sm-only" th:text = "${user.email}"></td>
-                                <td class = "am-hide-sm-only" ><a th:text = "${user.paidFine}" th:href="@{librarian_fine(uid=${user.id})}"></a></td>
-                                <td class = "am-hide-sm-only" ><a th:text = "${user.unPaidFine}" th:href="@{librarian_fine2(uid=${user.id})}"></a></td>
+                                <td  th:text = "${user.name}"></td>
+                                <td  th:text = "${user.email}"></td>
+                                <td  ><a th:text = "${user.paidFine}" th:href="@{librarian_fine(uid=${user.id})}"></a></td>
+                                <td  ><a th:text = "${user.unPaidFine}" th:href="@{librarian_fine2(uid=${user.id})}"></a></td>
                                 <td>
                                     <div class = "am-btn-toolbar">
                                         <div class = "am-btn-group am-btn-group-xs">
@@ -197,7 +197,7 @@
                 </div>
                 <!-- Row end -->
 
-            </div>
+
 
 
         </div>
@@ -221,7 +221,7 @@
 <script src = "assets/js/app.js"></script>
 
 
-<script type = "text/javascript" src = "assets/js/charts/echarts.min.js"></script>
+<!--<script type = "text/javascript" src = "assets/js/charts/echarts.min.js"></script>-->
 <script src = "assets/js/test.js"></script>
 <script src = "dist/amazeui.datatables.min.js"></script>
 <script th:inline="javascript">
@@ -240,7 +240,7 @@
                     "sSearch": [[#{Search}]],
                     "sInfo": " _START_ - _END_ ，In _TOTAL_",
                     "sInfoEmpty": "0",
-                    "sInfoFiltered": "(from _MAX_ )",
+                    "sInfoFiltered": "(from _MAX_ )"
                 }
             }
         );
