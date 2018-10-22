@@ -171,7 +171,7 @@
                                             罚金
                                         </div>
                                         <div class = "am-u-sm-8 am-u-md-4">
-                                            <input type = "text" class = "am-input-sm" name = "fine" readonly="readonly" id="fine1">
+                                            <input type = "text" class = "am-input-sm" name = "money" readonly="readonly" id="fine1">
                                         </div>
                                         <div class = "am-hide-sm-only am-u-md-6"></div>
                                     </div>
@@ -223,7 +223,7 @@
                                     罚金
                                 </div>
                                 <div class = "am-u-sm-8 am-u-md-4">
-                                    <input type = "text" class = "am-input-sm" name = "fine" readonly="readonly" id="fine2">
+                                    <input type = "text" class = "am-input-sm" name = "money" readonly="readonly" id="fine2">
                                 </div>
                                 <div class = "am-hide-sm-only am-u-md-6"></div>
                             </div>
@@ -255,7 +255,7 @@
                                     罚金
                                 </div>
                                 <div class = "am-u-sm-8 am-u-md-4">
-                                    <input type = "text" class = "am-input-sm" name = "fine" readonly="readonly" id="fine3">
+                                    <input type = "text" class = "am-input-sm" name = "money" readonly="readonly" id="fine3">
                                 </div>
                                 <div class = "am-hide-sm-only am-u-md-6"></div>
                             </div>
@@ -303,7 +303,7 @@
             var p_id = $(this).find("input").val();
             p_id=parseInt(p_id);
             var pers=[0.1,0.5,0.9];
-            var fmoney =pers[p_id-1]*all_money - per*all_money;
+            var fmoney =pers[p_id-1]*all_money - per*all_money+overdue_money;
             $("#fine2").attr("value",fmoney);
         });
     });
@@ -329,6 +329,7 @@
 <script th:inline="javascript">
     var all_money;
     var per;
+    var overdue_money;
     $(function () {
         $("#bid1").blur(function () {
             var id = $(this).val();
@@ -355,9 +356,10 @@
                     url: "getReturnMessage",
                     data: {id:id,damage:0},
                     success: function (data) {
-                        $("#fine2").attr("value",data.bkunitPrice);
-                        all_money=data.bkunitPrice;
+                        $("#fine2").attr("value",data.overdueMoney);
                         per=data.damagePercentage;
+                        all_money=data.bkunitPrice;
+                        overdue_money=data.overdueMoney;
                     }
                 }
             );
