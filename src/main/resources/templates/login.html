@@ -193,6 +193,10 @@
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=PT+Sans:400,700'>
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/supersized.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 
     <style type="text/css">
         .header {
@@ -228,22 +232,10 @@
     </style>
 </head>
 <body>
-<!--<header class = "am-topbar am-topbar-inverse admin-header">
 
-    <div class = "am-topbar-brand">
-        <a href = "/visitor-main"  class = "am-text-ir">BiblioSoft</a>
-    </div>
-    <div class = "am-collapse am-topbar-collapse" id = "topbar-collapse">
-        <ul class = "am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
-            <li><a href = "javascript:;">
-                <button id = "change" class = "am-btn am-btn-primary am-btn-sm">中文/英文</button>
-            </a></li>
-        </ul>
-    </div>
-</header>-->
 <div class="page-container">
     <div class = "am-g">
-        <div style = "text-align: center" class = "am-text-primary am-text-lg"><h2>LOGIN</h2></div>
+        <div style = "text-align: center" class = "am-text-primary am-text-lg"><h2 th:text="#{lo_yxy}">LOGIN</h2></div>
         <br>
         <form method = "post" class="mystyle" name="myform" action="/login">
             <label for = "username" th:text="#{username}">username:</label>
@@ -252,11 +244,11 @@
             <label for = "password" th:text="#{password_ysw}" >password:</label>
             <input type = "password"  size="width:250px;"  autocomplete="new-password"  name = "password" id = "password" value = "" required/>
             <br><br>
-            <div class = "am-cf">
+
                 <input type = "submit" name = ""  id="loginbun" onclick="shake(); " th:value = "#{lo_yxy}" class = "am-btn am-btn-primary am-btn-sm btn-loading-example " >
                 <br><br><br>
                 <a href="/forget_password" th:text="#{fp44}">forget password</a>&nbsp;&nbsp;&nbsp;<a href="/visitor-main" th:text="#{bth44}">back to homepage</a>
-            </div>
+   
         </form>
     </div>
 </div>
@@ -265,12 +257,6 @@
     <p class = "am-padding-left" style = "text-align: center">© 2018 Biboliosoft Online Library System</p>
 </footer>
 
-<!-- Javascript -->
-<script type = "text/javascript">
-    $("#change").click(function () {
-        translate();
-    })
-</script>
 <script type="text/javascript">
     function shake() {
         var classval=document.getElementById("loginbun").getAttribute("class");
