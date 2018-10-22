@@ -112,6 +112,7 @@
                     <li><a href = "#tab3" th:text="#{reserve44}">预约</a></li>
                     <li><a href = "#tab4" th:text="#{cbg44}">当前借阅</a></li>
                     <li><a href = "#tab5" th:text="#{hbr44}">已归还</a></li>
+                    <li><a href = "#tab6">收藏</a></li>
                 </ul>
                 <div class = "am-tabs-bd">
                     <div class = "am-tab-panel am-fade am-in am-active" id = "tab1">
@@ -316,6 +317,55 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class = "am-tab-panel am-fade am-in " id = "tab6">
+                        <div class = "am-cf am-padding am-padding-bottom-0">
+                            <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg" >收藏</strong></div>
+                        </div>
+                        <hr>
+
+                        <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "booklist-4">
+                            <thead>
+                            <tr>
+                                <th class = "table-title" th:text="#{ti44}">标题</th>
+                                <th class = "table-author" th:text="#{author}">作者</th>
+                                <th class = "table-set" th:text="#{Operation}">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody id = "bk-table-4">
+                            <tr th:each = "book:${page4}">
+
+                                <td><a th:href = "@{book_details(isbn=${book.isbn})}"
+                                       th:text = "${book.title}"></a></td>
+
+                                <td th:text = "${book.author}"></td>
+                                <td>
+                                    <div class = "am-btn-toolbar">
+                                        <div class = "am-btn-group am-btn-group-xs">
+                                            <a th:href = "@{reader_comment(isbn=${book.isbn})}">
+                                                <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><span
+                                                        class = "am-icon-pencil-square-o"></span> <span >取消收藏</span>
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <br>
+                        <!--<div class = "am-cf">-->
+                            <!--<span th:text="#{total44}">共</span> [[${page3.totalElements}]]  <span th:text="#{records44}">条记录</span>-->
+                            <!--<div class = "am-fr">-->
+                                <!--<ul class = "am-pagination">-->
+                                    <!--<li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook3_1()" th:text="#{f_zj}">首页</button></li>-->
+                                    <!--<li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook3_2(-1)" th:text="#{p_zj}">上一页</button></li>-->
+                                    <!--<li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook3_2(1)" th:text="#{n_zj}">下一页</button></li>-->
+                                    <!--<li><button type="button" class="am-btn am-btn-primary am-round" th:onclick = "'javascript:getOnePageBook3_3('+${page4.totalPages}+'-1)'" th:text="#{l_zj}">末页</button></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    </div>
                     </div>
                 </div>
             </div>
@@ -496,13 +546,19 @@
     }
 </script>
 <script>
+//    var x = [[#{BorrowedNumber}]]+'';
+    var x = 'BorrowedNumber';
+//    var y = [[#{RemainNumber}]]+'';
+    var y = 'RemainNumber';
+//    console.log([[#{RemainNumber}]]);
+    console.log([[#{comment44}]])
     var data =
         [{
-            item: 'BorrowedNumber',
+            item: x,
             count: [[${borrowedNumber}]],
             percent: [[${borrowedNumber}]] / ([[${borrowedNumber}]] + [[${RemainNumber}]])
         }, {
-            item: 'RemainNumber',
+            item: y,
             count: [[${RemainNumber}]],
             percent: [[${RemainNumber}]] / ([[${borrowedNumber}]] + [[${RemainNumber}]])
         }];
@@ -830,7 +886,7 @@
                         "                                </div>\n" +
                         "                            </div>\n" +
                         "                        </td>\n" +
-                        "                    </tr>"
+                        "                    </tr>";
                 }
                 $('#bk-table-1').html(str);
             }
@@ -839,6 +895,7 @@
 
     function getOnePageBook1_2(temp) {
         pageNumber1 += temp;
+        console.log("233");
         if (pageNumber1 < 0)
             pageNumber1 = 0;
         else if (pageNumber1 >= [[${page1.totalPages}]])
@@ -852,6 +909,8 @@
                     var str = '';
                     $('#bk-table-1').empty();
                     for (var i = 0; i < data.content.length; i++) {
+                        console.log(data.content.length);
+                        console.log([[#{view44}]]);
                         str += "<tr>\n" +
                             "\n" +
                             "                        <td><a href = \"book_details?isbn="+data.content[i].book.isbn+"\">"+data.content[i].book.title+"</a></td>\n" +
@@ -865,18 +924,20 @@
                             "                                <div class = \"am-btn-group am-btn-group-xs\">\n" +
                             "                                    <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"\n" +
                             "                                            onclick = \"cancel_appointment("+data.content[i].id+")\">\n" +
-                            "                                        <span class = \"am-icon-pencil-square-o\"></span>"+[[#{cancel44}]]+" \n" +
+                            "                                        <span class = \"am-icon-pencil-square-o\"></span>"+"Cancel"+" \n" +
                             "                                    </button>\n" +
                             "                                    <a href = \"appointment?id="+data.content[i].id+"\">\n" +
                             "                                        <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"><span\n" +
-                            "                                                class = \"am-icon-pencil-square-o\"></span> "+[[#{view44}]]+"\n" +
+                            "                                                class = \"am-icon-pencil-square-o\"></span> "+"View"+"\n" +
                             "                                        </button>\n" +
                             "                                    </a>\n" +
                             "                                </div>\n" +
                             "                            </div>\n" +
                             "                        </td>\n" +
-                            "                    </tr>"
+                            "                    </tr>";
+                        console.log(str);
                     }
+                    console.log(str);
                     $('#bk-table-1').html(str);
                 }
             });
