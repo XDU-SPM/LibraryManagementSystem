@@ -118,7 +118,6 @@ public class UserService
 
         if (!user.getPassword().equals(oldPassword))
             return false;
-        System.out.println(233);
         user.setPassword(newPassword);
         userDAO.save(user);
         return true;
@@ -251,9 +250,12 @@ public class UserService
         return userDAO.findById(id);
     }
 
-    public boolean userExist(String username)
+    public boolean userExist(String username, int id)
     {
-        return userDAO.findByUsername(username) != null;
+        User user = userDAO.findByUsername(username);
+        if (user == null)
+            return true;
+        return user.getId() == id;
     }
 
     public void modifyAvatarPath(MultipartFile file)

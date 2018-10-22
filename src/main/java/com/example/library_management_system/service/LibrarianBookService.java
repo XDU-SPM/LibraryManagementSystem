@@ -1,6 +1,7 @@
 package com.example.library_management_system.service;
 
 import com.example.library_management_system.bean.*;
+import com.example.library_management_system.controller.LocaleMessageSourceService;
 import com.example.library_management_system.dao.*;
 import com.example.library_management_system.utils.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import javax.annotation.Resource;
 import java.util.*;
 
 @Service
@@ -51,6 +53,9 @@ public class LibrarianBookService
 
     @Autowired
     private ReturnHistoryDAO returnHistoryDAO;
+
+    @Resource
+    private LocaleMessageSourceService localeMessageSourceService;
 
     public Set<String> addBkunit(Book book, String categoryName)
     {
@@ -108,7 +113,23 @@ public class LibrarianBookService
 
     public Set<Bkunit> showBkunit()
     {
-        return bkunitDAO.findAllByStatusNot(BkunitUtil.LOST);
+        Set<Bkunit> set = bkunitDAO.findAllByStatusNot(BkunitUtil.LOST);
+        for (Bkunit bkunit : set)
+            setBkunitStatus(bkunit);
+        return set;
+    }
+
+    private void setBkunitStatus(Bkunit bkunit)
+    {
+        switch (bkunit.getStatus())
+        {
+            case BkunitUtil.BORROWED:
+                bkunit.setStatus1(localeMessageSourceService.getMessage("borrowedStatus"));
+                break;
+            case BkunitUtil.NORMAL:
+                bkunit.setStatus1(localeMessageSourceService.getMessage("normalStatus"));
+                break;
+        }
     }
 
     public void saveBook(Book tmp)

@@ -181,7 +181,7 @@
                             <td th:text = "${record.book.isbn}"></td>
                             <td class = "am-hide-sm-only" th:text = "${record.user.username}"></td>
                             <td class = "am-hide-sm-only" th:text = "${record.borrowDate}"></td>
-                            <td class = "am-hide-sm-only" th:text = "${record.status}"></td>
+                            <td class = "am-hide-sm-only" th:text = "${record.status1}"></td>
                         </tr>
                     </table>
                 </div>
@@ -235,7 +235,7 @@
     })
 </script>
 
-<script type="text/javascript">
+<script th:inline="javascript">
 
     function checkNumber(theObj) {
         var reg = /[1-9]/;
@@ -251,8 +251,9 @@
         {
             return "预约成功"
         }
-        //var array=["已预约", "预约失败", "取消预约"];
-        var array=[[[${reserved}]],[[${reaseve_f}]], [[${reserve_c}]]];
+        var array=["已预约", "预约失败", "取消预约"];
+        //var array=[[[${reserved}]],[[${reaseve_f}]], [[${reserve_c}]]];
+        console.log(array);
         return array[status-6];
     }
 
