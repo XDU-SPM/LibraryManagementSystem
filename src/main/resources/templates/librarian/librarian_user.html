@@ -177,6 +177,13 @@
                     <form class = "am-form am-form-horizontal" method = "post" action = "saveUser">
 
                         <div class = "am-form-group">
+                            <label for = "user-id" class = "am-u-sm-3 am-form-label">ID</label>
+                            <div class = "am-u-sm-9">
+                                <input type = "text" id = "user-id" th:value = "${user.id}" name = "id" readonly="readonly">
+                            </div>
+                        </div>
+
+                        <div class = "am-form-group">
                             <label for = "username" class = "am-u-sm-3 am-form-label" th:text="#{u_ysw}">用户名</label>
                             <div class = "am-u-sm-9">
                                 <input minlength="5" maxlength="20" type = "text" id = "username" th:placeholder = "#{username}" name = "username" th:value="${user.username}">
@@ -241,12 +248,13 @@
 
     $(function () {
         $("#username").blur(function () {
-            var params = $(this).serialize();
+            var username = $(this).val();
+            var id=$("#user-id").val();
             $.ajax(
                 {
                     method: 'GET',
                     url: "checkUser",
-                    data: params,
+                    data: {username:username,id:id},
                     success: function (data) {
                         if (data.status == 0) {
                             status = false;
