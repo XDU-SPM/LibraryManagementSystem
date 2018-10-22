@@ -235,6 +235,37 @@
             alert([[#{ft_chan}]]);
     }
 </script>
+
+<script th:inline="javascript">
+    let status = true;
+
+    $(function () {
+        $("#user-account").blur(function () {
+            var params = $(this).serialize();
+            $.ajax(
+                {
+                    method: 'GET',
+                    url: "checkUser",
+                    data: params,
+                    success: function (data) {
+                        if (data.status == 0) {
+                            status = false;
+                        }
+                        else
+                            status = true;
+                    }
+                }
+            );
+        })
+    });
+
+    function check() {
+        if (!status) {
+            alert([[#{tuhbr}]]);
+            return false;
+        }
+        return true;
+    }
 <script>
 
 </script>
