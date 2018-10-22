@@ -21,6 +21,8 @@ public class Bkunit
     private int status;
     private int damageStatus;
 
+    private String position;
+
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "bkid")
     private Book book;
@@ -91,5 +93,15 @@ public class Bkunit
     public void setDamageStatus(int damageStatus)
     {
         this.damageStatus = damageStatus;
+    }
+
+    public String getPosition()
+    {
+        return position;
+    }
+
+    public void setPosition(String position)
+    {
+        this.position = position;
     }
 }

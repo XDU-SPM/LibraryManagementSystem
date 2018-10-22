@@ -311,15 +311,8 @@ public class LibrarianBookService
 
         double damageMoney = bkunit.getBook().getPrice() * (punishmentDAO.findById(damageStatus).get().getRate() - punishmentDAO.findById(bkunit.getDamageStatus()).get().getRate());
 
-        try
-        {
-            if (damageMoney < 0)
-                throw new Exception("The damage money is negative");
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+        if (damageMoney < 0)
+            return -4;
 
         if (damageMoney != 0)
         {
@@ -343,15 +336,8 @@ public class LibrarianBookService
         reader.addMoney(overdueMoney);
         userBkunitDAO.save(userBkunit);
 
-        try
-        {
-            if (money != damageMoney + overdueMoney)
-                throw new Exception("The money is error");
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+        if (money != damageMoney + overdueMoney)
+            return -4;
 
         ReturnHistory returnHistory = new ReturnHistory(reader.getId(), userBkunit, damageMoney + overdueMoney);
         returnHistoryDAO.save(returnHistory);
