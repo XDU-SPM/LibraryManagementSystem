@@ -86,6 +86,7 @@ public class ReaderController
     {
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
+        model.addAttribute("status", 1);
         return "reader/password_change";
     }
 }
