@@ -172,7 +172,7 @@
                             <th class = "table-isbn">ISBN</th>
                             <th class = "table-author " th:text="#{au44}">作者</th>
                             <th class = "table-publisher" th:text="#{publisher}">出版社</th>
-                            <th class = "table-date " th:text="#{pubdate}">出版日期</th>
+                            <th class = "table-date " th:text="#{state}">出版日期</th>
                             <th class = "table-positon " th:text="#{bl44}">图书位置</th>
                             <th class = "table-set" th:text="#{Operation}">操作</th>
                         </tr>
@@ -184,7 +184,7 @@
                             <td th:text = "${bunit.book.isbn}"></td>
                             <td  th:text = "${bunit.book.author}"></td>
                             <td  th:text = "${bunit.book.publisher}"></td>
-                            <td th:text = "${bunit.book.publishDate}"></td>
+                            <td th:text = "${bunit.status}"></td>
                             <td th:text = "${bunit.book.position}"></td>
                             <td>
                                 <div class = "am-btn-toolbar">
@@ -325,7 +325,7 @@
     $(document).ready(function(){
         $("#booklist").DataTable(
             {
-                "ordering":false,
+                //"ordering":false,
                 "bLengthChange":false,
                 // "pagingType": "full",
                 language:{
@@ -338,7 +338,7 @@
                     "sSearch": [[#{Search}]],
                     "sInfo": " _START_ - _END_ ，In _TOTAL_",
                     "sInfoEmpty": "0",
-                    "sInfoFiltered": "(from _MAX_ )",
+                    "sInfoFiltered": "(from _MAX_ )"
                 }
             }
         );
