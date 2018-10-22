@@ -44,6 +44,7 @@
 
             <ul class = "am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
 
+
                 <li class="am-dropdown" data-am-dropdown>
                     <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
                         <span th:text="#{lan44}">语言</span> <span class="am-icon-caret-down"></span>
@@ -53,6 +54,7 @@
                         <li><a href="changeSessionLanguage?lang=en&page=librarian_addreader">ENGLISH</a></li>
                     </ul>
                 </li>
+
 
                 <li class = "am-dropdown" data-am-dropdown>
                     <a class = "am-dropdown-toggle" data-am-dropdown-toggle href = "javascript:;">
@@ -112,7 +114,7 @@
                         <li><a href = "librarian_record"><span class = "am-icon-book"></span><span th:text="#{rr_yxy}"> 预约记录</span></a></li>
                         <li><a href = "librarian_history"><span class = "am-icon-book"></span><span th:text="#{br_yxy}"> 借阅记录</span></a></li>
                         <li><a href = "librarian_income"><span class = "am-icon-money"></span><span th:text="#{ir_yxy}"> 收入记录 </span></a></li>
-                        <li><a href = "librarian_fine"><span class = "am-icon-bolt"></span><span th:text="#{fr_yxy}"> 罚金记录</span></a></li>
+                        <!--<li><a href = "librarian_fine"><span class = "am-icon-bolt"></span><span th:text="#{fr_yxy}"> 罚金记录</span></a></li>-->
                     </ul>
                 </li>
                 <li><a href = "librarian_announce"><span class = "am-icon-comment"></span><span th:text="#{an_yxy}"> 发布公告</span></a></li>
@@ -121,16 +123,16 @@
             <div class = "am-panel am-panel-default admin-sidebar-panel">
                 <div class = "am-panel-bd">
                     <p><span class = "am-icon-bookmark"></span><span th:text="#{no_yxy}"> 公告</span></p>
-                    <p>时光静好，与君语；细水流年，与君同。—— Amaze UI</p>
+                    <p th:text="#{announcement44}">时光静好，与君语；细水流年，与君同。—— Amaze UI</p>
                 </div>
             </div>
 
-            <div class = "am-panel am-panel-default admin-sidebar-panel">
+           <!-- <div class = "am-panel am-panel-default admin-sidebar-panel">
                 <div class = "am-panel-bd">
                     <p><span class = "am-icon-tag"></span> wiki</p>
                     <p>Welcome to the Amaze UI wiki!</p>
                 </div>
-            </div>
+            </div>-->
         </div>
     </div>
     <!-- sidebar end -->
@@ -227,8 +229,7 @@
     isOk();
 </script>
 
-<script type = "text/javascript" src = "assets/js/charts/echarts.min.js"></script>
-<script type = "text/javascript" src = "assets/js/charts/pieChart.js"></script>
+
 <script src = "assets/js/test.js">
 </script>
 <script type = "text/javascript">
@@ -237,7 +238,7 @@
     })
 </script>
 
-<script>
+<script th:inline="javascript">
     let status = true;
 
     $(function () {
@@ -262,7 +263,7 @@
 
     function check() {
         if (!status) {
-            alert("该用户名已经被注册");
+            alert([[#{tuhbr}]]);
             return false;
         }
         return true;

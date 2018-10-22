@@ -114,7 +114,6 @@ public class UserService
 
     public boolean modifyPassword(String oldPassword, String newPassword)
     {
-        System.out.println(oldPassword + " " + newPassword);
         User user = getUser();
 
         if (!user.getPassword().equals(oldPassword))

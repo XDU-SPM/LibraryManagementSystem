@@ -124,7 +124,7 @@
                         <li><a href = "librarian_record"><span class = "am-icon-book"></span><span th:text="#{rr_yxy}"> 预约记录</span></a></li>
                         <li><a href = "librarian_history"><span class = "am-icon-book"></span><span th:text="#{br_yxy}"> 借阅记录</span></a></li>
                         <li><a href = "librarian_income"><span class = "am-icon-money"></span><span th:text="#{ir_yxy}"> 收入记录 </span></a></li>
-                        <li><a href = "librarian_fine"><span class = "am-icon-bolt"></span><span th:text="#{fr_yxy}"> 罚金记录</span></a></li>
+                        <!--<li><a href = "librarian_fine"><span class = "am-icon-bolt"></span><span th:text="#{fr_yxy}"> 罚金记录</span></a></li>-->
                     </ul>
                 </li>
                 <li><a href = "librarian_announce"><span class = "am-icon-comment"></span><span th:text="#{an_yxy}"> 发布公告</span></a></li>
@@ -242,30 +242,19 @@
 <script src = "assets/js/app.js"></script>
 <script src = "https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
 <script type = "text/javascript" src = "assets/js/test.js"></script>
-<script>
-    getMoney();
-    function getMoney() {
-        var money = 0 - [[${user.money}]];
-        document.getElementById("user-balance").value = money;
-    }
-</script>
-<script type = "text/javascript" th:inline = "javascript">
-    $("#change").click(function () {
-        translate();
-    })
-</script>
+
 <script th:inline="javascript">
     isOk();
     function isOk() {
         if([[${status}]] == null)
             return;
         if ([[${status}]])
-            alert("修改成功！");
+            alert([[#{notice_success}]]);
         else
-            alert("修改失败！");
+            alert([[#{fail}]]);
     }
 </script>
-<script>
+<script th:inline="javascript">
     let status = true;
 
     $(function () {
@@ -290,7 +279,7 @@
 
     function check() {
         if (!status) {
-            alert("该用户名已经被注册");
+            alert([[#{tuhbr}]]);
             return false;
         }
         return true;

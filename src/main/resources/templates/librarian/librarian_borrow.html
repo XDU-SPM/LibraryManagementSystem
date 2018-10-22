@@ -112,7 +112,7 @@
                         <li><a href = "librarian_record"><span class = "am-icon-book"></span><span th:text="#{rr_yxy}"> 预约记录</span></a></li>
                         <li><a href = "librarian_history"><span class = "am-icon-book"></span><span th:text="#{br_yxy}"> 借阅记录</span></a></li>
                         <li><a href = "librarian_income"><span class = "am-icon-money"></span><span th:text="#{ir_yxy}"> 收入记录 </span></a></li>
-                        <li><a href = "librarian_fine"><span class = "am-icon-bolt"></span><span th:text="#{fr_yxy}"> 罚金记录</span></a></li>
+                        <!--<li><a href = "librarian_fine"><span class = "am-icon-bolt"></span><span th:text="#{fr_yxy}"> 罚金记录</span></a></li>-->
                     </ul>
                 </li>
                 <li><a href = "librarian_announce"><span class = "am-icon-comment"></span><span th:text="#{an_yxy}"> 发布公告</span></a></li>
@@ -121,16 +121,16 @@
             <div class = "am-panel am-panel-default admin-sidebar-panel">
                 <div class = "am-panel-bd">
                     <p><span class = "am-icon-bookmark"></span><span th:text="#{no_yxy}"> 公告</span></p>
-                    <p>时光静好，与君语；细水流年，与君同。—— Amaze UI</p>
+                    <p th:text="#{announcement44}">时光静好，与君语；细水流年，与君同。—— Amaze UI</p>
                 </div>
             </div>
 
-            <div class = "am-panel am-panel-default admin-sidebar-panel">
+           <!-- <div class = "am-panel am-panel-default admin-sidebar-panel">
                 <div class = "am-panel-bd">
                     <p><span class = "am-icon-tag"></span> wiki</p>
                     <p>Welcome to the Amaze UI wiki!</p>
                 </div>
-            </div>
+            </div>-->
         </div>
     </div>
     <!-- sidebar end -->
@@ -199,22 +199,23 @@
 
 <script th:inline = "javascript">
     var status = [[${status}]];
+    console.log(status);
 
     function isOk() {
         if (status != 'null') {
             if (status==0)
             {
-                alert("OK")
+                alert([[#{notice_success}]])
             }
             else if (status==-1) {
-                alert("User does not exist");
+                alert([[#{borrow_1}]]);
             }
             else if(status==-2){
-                alert("The amount of borrowing reached the upper limit")
+                alert([[#{borrow_2}]]);
             }
             else if(status==-3)
             {
-                alert("Book does not exist")
+                alert([[#{borrow_3}]]);
             }
         }
     }

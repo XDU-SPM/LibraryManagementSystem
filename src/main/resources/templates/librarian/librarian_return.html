@@ -112,7 +112,7 @@
                         <li><a href = "librarian_record"><span class = "am-icon-book"></span><span th:text="#{rr_yxy}"> 预约记录</span></a></li>
                         <li><a href = "librarian_history"><span class = "am-icon-book"></span><span th:text="#{br_yxy}"> 借阅记录</span></a></li>
                         <li><a href = "librarian_income"><span class = "am-icon-money"></span><span th:text="#{ir_yxy}"> 收入记录 </span></a></li>
-                        <li><a href = "librarian_fine"><span class = "am-icon-bolt"></span><span th:text="#{fr_yxy}"> 罚金记录</span></a></li>
+                        <!--<li><a href = "librarian_fine"><span class = "am-icon-bolt"></span><span th:text="#{fr_yxy}"> 罚金记录</span></a></li>-->
                     </ul>
                 </li>
                 <li><a href = "librarian_announce"><span class = "am-icon-comment"></span><span th:text="#{an_yxy}"> 发布公告</span></a></li>
@@ -121,16 +121,16 @@
             <div class = "am-panel am-panel-default admin-sidebar-panel">
                 <div class = "am-panel-bd">
                     <p><span class = "am-icon-bookmark"></span><span th:text="#{no_yxy}"> 公告</span></p>
-                    <p>时光静好，与君语；细水流年，与君同。—— Amaze UI</p>
+                    <p th:text="#{announcement44}">时光静好，与君语；细水流年，与君同。—— Amaze UI</p>
                 </div>
             </div>
 
-            <div class = "am-panel am-panel-default admin-sidebar-panel">
+          <!--  <div class = "am-panel am-panel-default admin-sidebar-panel">
                 <div class = "am-panel-bd">
                     <p><span class = "am-icon-tag"></span> wiki</p>
                     <p>Welcome to the Amaze UI wiki!</p>
                 </div>
-            </div>
+            </div>-->
         </div>
     </div>
     <!-- sidebar end -->
@@ -171,7 +171,7 @@
                                             罚金
                                         </div>
                                         <div class = "am-u-sm-8 am-u-md-4">
-                                            <input type = "text" class = "am-input-sm" name = "fine" readonly="readonly" id="fine1">
+                                            <input type = "text" class = "am-input-sm" name = "money" readonly="readonly" id="fine1">
                                         </div>
                                         <div class = "am-hide-sm-only am-u-md-6"></div>
                                     </div>
@@ -223,7 +223,7 @@
                                     罚金
                                 </div>
                                 <div class = "am-u-sm-8 am-u-md-4">
-                                    <input type = "text" class = "am-input-sm" name = "fine" readonly="readonly" id="fine2">
+                                    <input type = "text" class = "am-input-sm" name = "money" readonly="readonly" id="fine2">
                                 </div>
                                 <div class = "am-hide-sm-only am-u-md-6"></div>
                             </div>
@@ -255,7 +255,7 @@
                                     罚金
                                 </div>
                                 <div class = "am-u-sm-8 am-u-md-4">
-                                    <input type = "text" class = "am-input-sm" name = "fine" readonly="readonly" id="fine3">
+                                    <input type = "text" class = "am-input-sm" name = "money" readonly="readonly" id="fine3">
                                 </div>
                                 <div class = "am-hide-sm-only am-u-md-6"></div>
                             </div>
@@ -300,39 +300,50 @@
 
     $(function(){
         $(".radio").click(function(){
-            alert("您是..." + $(this).find("input").val());
-            $("#fine2").attr("value",$(this).find("input").val())
+            var p_id = $(this).find("input").val();
+            p_id=parseInt(p_id);
+            var pers=[0.1,0.5,0.9];
+            var fmoney =pers[p_id-1]*all_money - per*all_money+overdue_money;
+            $("#fine2").attr("value",fmoney);
         });
     });
 
     function isOk() {
         if(status==0){
-            alert("OK")
+            alert([[#{notice_success}]])
         }
         else if(status==-1){
-            alert("No such book")
+            alert([[#{borrow_3}]])
         }
         else if(status==-2){
-            alert("This book was not loaned")
+            alert([[#{return_2}]])
+        }
+        else if(status==-3)
+        {
+            alert([[#{return_3}]])
+        }
+        else {
+            alert([[#{error_t}]])
         }
     }
 
     isOk();
 </script>
 <script th:inline="javascript">
+    var all_money;
+    var per;
+    var overdue_money;
     $(function () {
         $("#bid1").blur(function () {
-            var params = $(this).serialize();
-            console.log(params);
-            alert(params);
-            $("#fine1").attr("value",params);
+            var id = $(this).val();
             $.ajax(
                 {
-                    method: 'GET',
-                    url: "checkUser",
-                    data: params,
+                    method: 'POST',
+                    url: "getReturnMessage",
+                    data: {id:id,damage:0},
                     success: function (data) {
-                        $("#fine1").attr("value",data);
+                        console.log(data.bkunitPrice);
+                        $("#fine1").attr("value",data.overdueMoney);
                     }
                 }
             );
@@ -341,15 +352,17 @@
 
     $(function () {
         $("#bid2").blur(function () {
-            var params = $(this).serialize();
-            console.log(params);
+            var id = $(this).val();
             $.ajax(
                 {
-                    method: 'GET',
-                    url: "checkUser",
-                    data: params,
+                    method: 'POST',
+                    url: "getReturnMessage",
+                    data: {id:id,damage:0},
                     success: function (data) {
-                        $("#fine2").attr("value",data);
+                        $("#fine2").attr("value",data.overdueMoney);
+                        per=data.damagePercentage;
+                        all_money=data.bkunitPrice;
+                        overdue_money=data.overdueMoney;
                     }
                 }
             );
@@ -358,15 +371,14 @@
 
     $(function () {
         $("#bid3").blur(function () {
-            var params = $(this).serialize();
-            console.log(params);
+            var id = $(this).val();
             $.ajax(
                 {
-                    method: 'GET',
-                    url: "checkUser",
-                    data: params,
+                    method: 'POST',
+                    url: "getReturnMessage",
+                    data: {id:id,damage:0},
                     success: function (data) {
-                        $("#fine3").attr("value",data);
+                        $("#fine3").attr("value",data.bkunitPrice+data.overdueMoney);
                     }
                 }
             );

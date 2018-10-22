@@ -61,7 +61,7 @@ public class Timer
             overdue.add(Calendar.DATE, days);
             if (now.getTime().after(overdue.getTime()))
             {
-                System.out.println("in modifyUserBkunitState");
+                System.out.println("in in modifyUserBkunitState");
                 userBkunit.setStatus(UserBkunitUtil.OVERDUE);
                 userBkunitDAO.save(userBkunit);
 

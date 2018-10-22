@@ -130,7 +130,6 @@ public class LibrarianController
     {
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
-        model.addAttribute("status", 1);
         return "librarian/password_change";
     }
 }

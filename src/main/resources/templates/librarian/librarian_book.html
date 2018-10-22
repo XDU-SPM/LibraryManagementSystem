@@ -112,7 +112,7 @@
                         <li><a href = "librarian_record"><span class = "am-icon-book"></span><span th:text="#{rr_yxy}"> 预约记录</span></a></li>
                         <li><a href = "librarian_history"><span class = "am-icon-book"></span><span th:text="#{br_yxy}"> 借阅记录</span></a></li>
                         <li><a href = "librarian_income"><span class = "am-icon-money"></span><span th:text="#{ir_yxy}"> 收入记录 </span></a></li>
-                        <li><a href = "librarian_fine"><span class = "am-icon-bolt"></span><span th:text="#{fr_yxy}"> 罚金记录</span></a></li>
+                        <!--<li><a href = "librarian_fine"><span class = "am-icon-bolt"></span><span th:text="#{fr_yxy}"> 罚金记录</span></a></li>-->
                     </ul>
                 </li>
                 <li><a href = "librarian_announce"><span class = "am-icon-comment"></span><span th:text="#{an_yxy}"> 发布公告</span></a></li>
@@ -125,12 +125,7 @@
                 </div>
             </div>
 
-            <div class = "am-panel am-panel-default admin-sidebar-panel">
-                <div class = "am-panel-bd">
-                    <p><span class = "am-icon-tag"></span> wiki</p>
-                    <p>Welcome to the Amaze UI wiki!</p>
-                </div>
-            </div>
+
         </div>
     </div>
     <!-- sidebar end -->
@@ -216,6 +211,21 @@
                         </div>
 
                         <div class = "am-form-group">
+                            <label for = "category" class = "am-u-sm-3 am-form-label" th:text="#{category}">类别</label>
+                            <div class = "am-u-sm-9" id="container">
+                                <span class="am-badge am-badge-secondary am-round  am-text-sm" id="1">童话书</span>
+                                <span class="am-badge am-badge-secondary am-round  am-text-sm">科幻书</span>
+                                <span class="am-badge am-badge-secondary am-round  am-text-sm">童话书</span>
+                                <span class="am-badge am-badge-secondary am-round  am-text-sm">科幻书</span>
+                                <span class="am-badge am-badge-secondary am-round  am-text-sm">童话书</span>
+                                <span class="am-badge am-badge-secondary am-round  am-text-sm">科幻书</span>
+                                <span class="am-badge am-badge-secondary am-round  am-text-sm">童话书</span>
+                                <span class="am-badge am-badge-secondary am-round  am-text-sm">科幻书</span>
+                                <!--<input type = "text" id = "category"  name = "category">-->
+                            </div>
+                        </div>
+
+                        <div class = "am-form-group">
                             <label for = "publish_time" class = "am-u-sm-3 am-form-label" th:text="#{pubdate}">出版时间</label>
                             <div class = "am-u-sm-9">
                                 <input type = "text" id = "publish_time"
@@ -281,6 +291,23 @@
 <script th:inline="javascript">
     console.log([[${book.brief}]]);
     document.getElementById("abstract").value=[[${book.brief}]];
+
+    var categories = [[${book.categories}]];
+
+    console.log([[${book.categories}]]);
+    console.log(categories);
+
+    var span=$("<span>");
+    span.attr('class','')
+    $('#container').append($link);
+    for(var i=0;i<categories.length;i++)
+    {
+        console.log(categories[i]);
+        var name = categories[i].name;
+        var id = categories[i].id;
+        var str="<span class=\"am-badge am-badge-secondary am-round  am-text-sm\">童话书</span>"
+    }
+
 </script>
 <script type = "text/javascript" src = "assets/js/test.js"></script>
 <script type = "text/javascript">
