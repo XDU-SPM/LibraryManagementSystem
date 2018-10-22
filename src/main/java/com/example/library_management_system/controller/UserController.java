@@ -107,9 +107,9 @@ public class UserController
 
     @RequestMapping(value = {"/librarian/checkUser", "/reader/checkUser", "/checkUser", "/admin/checkUser"}, method = RequestMethod.GET)
     @ResponseBody
-    public Status userExist(String username)
+    public Status userExist(String username, int id)
     {
-        boolean status = userService.userExist(username);
+        boolean status = userService.userExist(username, id);
         return new Status(status ? 0 : 1);
     }
 

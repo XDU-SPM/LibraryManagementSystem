@@ -21,6 +21,9 @@ public class Bkunit
     private int status;
     private int damageStatus;
 
+    @Transient
+    private String status1;
+
     private String position;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -103,5 +106,15 @@ public class Bkunit
     public void setPosition(String position)
     {
         this.position = position;
+    }
+
+    public String getStatus1()
+    {
+        return status1;
+    }
+
+    public void setStatus1(String status1)
+    {
+        this.status1 = status1;
     }
 }
