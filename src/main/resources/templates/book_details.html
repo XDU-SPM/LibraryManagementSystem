@@ -45,9 +45,15 @@
 
             <ul class = "am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
 
-                <li><a href = "javascript:;">
-                    <button id = "change" class = "am-btn am-btn-primary am-btn-sm">中文/英文</button>
-                </a></li>
+                <li class="am-dropdown" data-am-dropdown>
+                    <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+                        <span th:text="#{lan44}">语言</span> <span class="am-icon-caret-down"></span>
+                    </a>
+                    <ul class="am-dropdown-content">
+                        <li><a href="changeSessionLanguage?lang=zh&page=book_details">中文</a></li>
+                        <li><a href="changeSessionLanguage?lang=en&page=book_details">ENGLISH</a></li>
+                    </ul>
+                </li>
 
                 <li class = "am-dropdown" data-am-dropdown>
                     <a class = "am-dropdown-toggle" data-am-dropdown-toggle href = "javascript:;">

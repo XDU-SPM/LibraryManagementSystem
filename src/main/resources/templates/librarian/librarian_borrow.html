@@ -44,9 +44,15 @@
 
             <ul class = "am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
 
-                <li><a href = "javascript:;">
-                    <button id = "change" class = "am-btn am-btn-primary am-btn-sm">中文/英文</button>
-                </a></li>
+                <li class="am-dropdown" data-am-dropdown>
+                    <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+                        <span th:text="#{lan44}">语言</span> <span class="am-icon-caret-down"></span>
+                    </a>
+                    <ul class="am-dropdown-content">
+                        <li><a href="changeSessionLanguage?lang=zh&page=librarian_borrow">中文</a></li>
+                        <li><a href="changeSessionLanguage?lang=en&page=librarian_borrow">ENGLISH</a></li>
+                    </ul>
+                </li>
 
                 <li class = "am-dropdown" data-am-dropdown>
                     <a class = "am-dropdown-toggle" data-am-dropdown-toggle href = "javascript:;">
@@ -198,17 +204,17 @@
         if (status != 'null') {
             if (status==0)
             {
-                alert("OK")
+                alert([[#{notice_success}]])
             }
             else if (status==-1) {
-                alert("User does not exist");
+                alert([[#{borrow_1}]]);
             }
             else if(status==-2){
-                alert("The amount of borrowing reached the upper limit")
+                alert([[#{borrow_2}]]);
             }
             else if(status==-3)
             {
-                alert("Book does not exist")
+                alert([[#{borrow_3}]]);
             }
         }
     }

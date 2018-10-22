@@ -119,7 +119,7 @@ public class LibrarianController
     @RequestMapping(value = "/librarian/modifyPassword", method = RequestMethod.POST)
     public String modifyPassword(String oldPassword, String newPassword, Model model)
     {
-        model.addAttribute("status", userService.modifyPassword(oldPassword, newPassword));
+        model.addAttribute("status", userService.modifyPassword(oldPassword, newPassword) ? 1 : 0);
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
         return "librarian/password_change";
