@@ -96,4 +96,12 @@ public class AdminController
         model.addAttribute("username", userService.getUser().getUsername());
         return "admin/password_change";
     }
+
+    @RequestMapping(value = "/admin/retrieve_password", method = RequestMethod.GET)
+    public String retrieve_password(Model model)
+    {
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
+        return "admin/retrieve_password";
+    }
 }
