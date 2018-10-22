@@ -271,11 +271,19 @@
                 data: {id: id},
                 success: function (data) {
                     if (data.status == 0) {
-                        alert("删除成功");
+                        alert([[#{notice_success}]]);
                         fun(val);
                     }
+                    else if(data.status==-1)
+                    {
+                        alert([[#{mr_n_1}]])
+                    }
+                    else if(data.status==-2)
+                    {
+                        alert([[#{mr_n_2}]])
+                    }
                     else {
-                        alert("删除失败");
+                        alert([[#{error_t}]]);
                     }
                 }
             }
