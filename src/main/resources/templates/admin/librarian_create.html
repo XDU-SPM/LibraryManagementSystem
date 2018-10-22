@@ -188,10 +188,12 @@
     function isOk() {
         if (status != 'null') {
             if (status) {
-                alert("创建成功！");
+//                alert("创建成功！");
+                alert([[#{as}]]);
             }
             else
-                alert("创建失败！");
+//                alert("创建失败！");
+                alert([[#{af}]]);
         }
     }
 
@@ -233,7 +235,8 @@
 
     function check() {
         if (!status) {
-            alert("该用户名已经被注册");
+//            alert("该用户名已经被注册");
+            alert([[#{tuhbr}]]);
             return false;
         }
         return true;
