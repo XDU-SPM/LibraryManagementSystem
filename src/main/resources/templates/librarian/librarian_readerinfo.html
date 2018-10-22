@@ -259,12 +259,13 @@
 
     $(function () {
         $("#user-account").blur(function () {
-            var params = $(this).serialize();
+            var id = $("#user-id").val();
+            var username=$(this).val();
             $.ajax(
                 {
                     method: 'GET',
                     url: "checkUser",
-                    data: params,
+                    data: {username:username,id:id},
                     success: function (data) {
                         if (data.status == 0) {
                             status = false;
