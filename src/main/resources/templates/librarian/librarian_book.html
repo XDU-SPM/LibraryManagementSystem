@@ -212,15 +212,16 @@
 
                         <div class = "am-form-group">
                             <label for = "category" class = "am-u-sm-3 am-form-label" th:text="#{category}">类别</label>
-                            <div class = "am-u-sm-9">
-                                <!--<input type = "text" id = "category"  name = "category"-->
-                                       <!--th:value = "${book.categories}">-->
-                                <select multiple data-am-selected>
-                                    <option value="a">Apple</option>
-                                    <option value="b">Banana</option>
-                                    <option value="o">Orange</option>
-                                    <option value="m">Mango</option>
-                                </select>
+                            <div class = "am-u-sm-9" id="container">
+                                <span class="am-badge am-badge-secondary am-round  am-text-sm" id="1">童话书</span>
+                                <span class="am-badge am-badge-secondary am-round  am-text-sm">科幻书</span>
+                                <span class="am-badge am-badge-secondary am-round  am-text-sm">童话书</span>
+                                <span class="am-badge am-badge-secondary am-round  am-text-sm">科幻书</span>
+                                <span class="am-badge am-badge-secondary am-round  am-text-sm">童话书</span>
+                                <span class="am-badge am-badge-secondary am-round  am-text-sm">科幻书</span>
+                                <span class="am-badge am-badge-secondary am-round  am-text-sm">童话书</span>
+                                <span class="am-badge am-badge-secondary am-round  am-text-sm">科幻书</span>
+                                <!--<input type = "text" id = "category"  name = "category">-->
                             </div>
                         </div>
 
@@ -290,6 +291,23 @@
 <script th:inline="javascript">
     console.log([[${book.brief}]]);
     document.getElementById("abstract").value=[[${book.brief}]];
+
+    var categories = [[${book.categories}]];
+
+    console.log([[${book.categories}]]);
+    console.log(categories);
+
+    var span=$("<span>");
+    span.attr('class','')
+    $('#container').append($link);
+    for(var i=0;i<categories.length;i++)
+    {
+        console.log(categories[i]);
+        var name = categories[i].name;
+        var id = categories[i].id;
+        var str="<span class=\"am-badge am-badge-secondary am-round  am-text-sm\">童话书</span>"
+    }
+
 </script>
 <script type = "text/javascript" src = "assets/js/test.js"></script>
 <script type = "text/javascript">
