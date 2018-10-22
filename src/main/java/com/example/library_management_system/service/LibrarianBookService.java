@@ -170,6 +170,9 @@ public class LibrarianBookService
             return -3;
         Bkunit bkunit = optional.get();
 
+        if (bkunit.getStatus() == BkunitUtil.BORROWED)
+            return -4;
+
         if (bkunit.getStatus() != BkunitUtil.NORMAL)
             return -5;
 

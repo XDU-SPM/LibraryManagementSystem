@@ -254,8 +254,8 @@ public class UserService
     {
         User user = userDAO.findByUsername(username);
         if (user == null)
-            return true;
-        return user.getId() == id;
+            return false;
+        return user.getId() != id;
     }
 
     public void modifyAvatarPath(MultipartFile file)
