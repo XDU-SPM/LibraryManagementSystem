@@ -113,7 +113,7 @@
 <script src = "https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
 <script type = "text/javascript" src = "assets/js/test.js"></script>
 
-<script>
+<script th:inline="javascript">
     isOk();
     function isOk() {
         if([[${status}]] == null)
