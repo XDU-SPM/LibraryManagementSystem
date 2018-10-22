@@ -211,10 +211,10 @@
     function isOk() {
         if (status != 'null') {
             if (status) {
-                alert("创建成功！");
+                alert([[#{notice_success}]]);
             }
             else
-                alert("创建失败！");
+                alert([[#{fail}]]);
         }
     }
 
