@@ -61,8 +61,8 @@
                         <span th:text="#{lan44}">语言</span> <span class="am-icon-caret-down"></span>
                     </a>
                     <ul class="am-dropdown-content">
-                        <li><a href="changeSessionLanguage?lang=zh&page=visitor-main">中文</a></li>
-                        <li><a href="changeSessionLanguage?lang=en&page=visitor-main">ENGLISH</a></li>
+                        <li><a href="changeSessionLanguage?lang=zh&page=librarian_readerinfo">中文</a></li>
+                        <li><a href="changeSessionLanguage?lang=en&page=librarian_readerinfo">ENGLISH</a></li>
                     </ul>
                 </li>
 
@@ -260,12 +260,12 @@
         if([[${status}]] == null)
             return;
         if ([[${status}]])
-            alert("修改成功！");
+            alert([[#{notice_success}]]);
         else
-            alert("修改失败！");
+            alert([[#{fail}]]);
     }
 </script>
-<script>
+<script th:inline="javascript">
     let status = true;
 
     $(function () {
@@ -290,7 +290,7 @@
 
     function check() {
         if (!status) {
-            alert("该用户名已经被注册");
+            alert([[#{tuhbr}]]);
             return false;
         }
         return true;

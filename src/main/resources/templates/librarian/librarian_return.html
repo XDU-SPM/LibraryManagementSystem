@@ -49,8 +49,8 @@
                         <span th:text="#{lan44}">语言</span> <span class="am-icon-caret-down"></span>
                     </a>
                     <ul class="am-dropdown-content">
-                        <li><a href="changeSessionLanguage?lang=zh&page=visitor-main">中文</a></li>
-                        <li><a href="changeSessionLanguage?lang=en&page=visitor-main">ENGLISH</a></li>
+                        <li><a href="changeSessionLanguage?lang=zh&page=librarian_return">中文</a></li>
+                        <li><a href="changeSessionLanguage?lang=en&page=librarian_return">ENGLISH</a></li>
                     </ul>
                 </li>
 
@@ -307,13 +307,17 @@
 
     function isOk() {
         if(status==0){
-            alert("OK")
+            alert([[#{notice_success}]])
         }
         else if(status==-1){
-            alert("No such book")
+            alert([[#{borrow_3}]])
         }
         else if(status==-2){
-            alert("This book was not loaned")
+            alert([[#{return_2}]])
+        }
+        else if(status==-3)
+        {
+            alert([[#{return_3}]])
         }
     }
 
