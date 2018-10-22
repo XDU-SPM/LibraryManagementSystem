@@ -3,10 +3,14 @@ package com.example.library_management_system.service;
 import com.example.library_management_system.bean.Announcement;
 import com.example.library_management_system.bean.User;
 import com.example.library_management_system.dao.AnnouncementDAO;
+import com.example.library_management_system.utils.PageableUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -44,5 +48,13 @@ public class AnnouncementService
     public void deleteAnnouncement(int id)
     {
         announcementDAO.deleteById(id);
+    }
+
+    public Announcement getRecentAnnouncement()
+    {
+        Pageable pageable = PageableUtil.pageable(false, "date", 0, 1);
+        Page<Announcement> page = announcementDAO.findAll(pageable);
+        Iterator<Announcement> iterator = page.iterator();
+        return iterator.next();
     }
 }
