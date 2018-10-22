@@ -170,7 +170,7 @@
                             <th class = "table-id" th:text="#{id}">书号</th>
                             <th class = "table-title" th:text="#{title_ysw}">标题</th>
                             <th class = "table-isbn">ISBN</th>
-                            <th class = "table-author " th:text="#{au44}">作者</th>
+                            <!--<th class = "table-author " th:text="#{au44}">作者</th>-->
                             <th class = "table-publisher" th:text="#{publisher}">出版社</th>
                             <th class = "table-date " th:text="#{state}">出版日期</th>
                             <th class = "table-positon " th:text="#{bl44}">图书位置</th>
@@ -182,7 +182,7 @@
                             <td th:text = "${bunit.id}"></td>
                             <td ><a th:text = "${bunit.book.title}" th:href="@{librarian_book(isbn=${bunit.book.isbn})}"></a></td>
                             <td th:text = "${bunit.book.isbn}"></td>
-                            <td  th:text = "${bunit.book.author}"></td>
+                            <!--<td  th:text = "${bunit.book.author}"></td>-->
                             <td  th:text = "${bunit.book.publisher}"></td>
                             <td th:text = "${bunit.status}"></td>
                             <td th:text = "${bunit.book.position}"></td>

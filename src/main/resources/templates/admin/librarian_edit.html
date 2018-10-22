@@ -202,17 +202,19 @@
     function isOk() {
         if (status != 'null') {
             if (status) {
-                alert("修改成功！");
+//                alert("修改成功！");
+                alert([[#{sec_chan}]]);
             }
             else
-                alert("修改失败！");
+//                alert("修改失败！");
+                alert([[#{ft_chan}]]);
             status = null;
         }
     }
 
     isOk();
 </script>
-<script>
+<script th:inline="javascript">
     function getLibrarian() {
         var inputDoc = document.getElementById("libra-account");
         var libraAccount = inputDoc.value;
@@ -225,21 +227,21 @@
                 str = "<form class = \"am-form am-form-horizontal\" action = \"saveLibrarian\" method = \"post\">\n" +
                     "                        <input type=\"hidden\" value=\"" + data.id + "\" name = \"id\">\n>" +
                     "                        <div class = \"am-form-group\">\n" +
-                    "                            <label for = \"user-account\" class = \"am-u-sm-3 am-form-label\">用户账号 / Account</label>\n" +
+                    "                            <label for = \"user-account\" class = \"am-u-sm-3 am-form-label\">[[#{ua_ysw}]]</label>\n" +
                     "                            <div class = \"am-u-sm-9\">\n" +
                     "                                <input type = \"tel\" id = \"user-account\" value = \"" + data.username + "\" name = \"username\">\n" +
                     "                            </div>\n" +
                     "                        </div>\n" +
                     "\n" +
                     "                        <div class = \"am-form-group\">\n" +
-                    "                            <label for = \"user-name\" class = \"am-u-sm-3 am-form-label\">姓名 / Name</label>\n" +
+                    "                            <label for = \"user-name\" class = \"am-u-sm-3 am-form-label\">[[#{Name}]]</label>\n" +
                     "                            <div class = \"am-u-sm-9\">\n" +
                     "                                <input type = \"text\" id = \"user-name\" value = \"" + data.name + "\" name = \"name\">\n" +
                     "                            </div>\n" +
                     "                        </div>\n" +
                     "\n" +
                     "                        <div class = \"am-form-group\">\n" +
-                    "                            <label for = \"user-email\" class = \"am-u-sm-3 am-form-label\">电子邮件 / Email</label>\n" +
+                    "                            <label for = \"user-email\" class = \"am-u-sm-3 am-form-label\">[[#{email44}]]</label>\n" +
                     "                            <div class = \"am-u-sm-9\">\n" +
                     "                                <input type = \"email\" id = \"user-email\" value = \"" + data.email + "\" name = \"email\">\n" +
                     "                            </div>\n" +
@@ -248,7 +250,7 @@
                     "                        <div class = \"am-form-group\">\n" +
                     "                            <div class = \"am-u-sm-9 am-u-sm-push-3\">\n" +
                     "                                <button type = \"submit\" class = \"am-btn am-btn-primary\" onclick = \"return check()\">\n" +
-                    "                                    保存修改\n" +
+                    "                                    [[#{save}]]\n" +
                     "                                </button>\n" +
                     "                            </div>\n" +
                     "                        </div>\n" +
@@ -258,7 +260,7 @@
         });
     }
 </script>
-<script>
+<script th:inline="javascript">
     let status = true;
 
     $(function () {
@@ -283,7 +285,8 @@
 
     function check() {
         if (!status) {
-            alert("该用户名已经被注册");
+//            alert("该用户名已经被注册");
+            alert([[#{tuhbr}]]);
             return false;
         }
         return true;
