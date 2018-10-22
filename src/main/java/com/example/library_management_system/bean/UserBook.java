@@ -19,6 +19,9 @@ public class UserBook
 
     private int status;
 
+    @Transient
+    private String status1;
+
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "uid")
     private User user;
@@ -98,5 +101,15 @@ public class UserBook
     public void setBook(Book book)
     {
         this.book = book;
+    }
+
+    public String getStatus1()
+    {
+        return status1;
+    }
+
+    public void setStatus1(String status1)
+    {
+        this.status1 = status1;
     }
 }
