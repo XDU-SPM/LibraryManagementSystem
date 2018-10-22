@@ -193,17 +193,103 @@ public class LibrarianBookService
         return 0;
     }
 
-    /**
-     * reader 是拿着书过来的，因此不存在书不存在的情况
-     *
-     * @param id
-     * @param damage
-     * @return
-     */
-    public int returnBook(String id, int damage)
+    public ReturnMessage getReturnMessage(String id, int damage)
+    {
+        return new ReturnMessage(getBkunitOverdueMoney(id), getDamagePercentage(damage), getBkunitPrice(id));
+    }
+
+    private double getBkunitOverdueMoney(String id)
     {
         id = id.trim();
-        Bkunit bkunit = bkunitDAO.findById(id).get();
+        Optional<Bkunit> optional = bkunitDAO.findById(id);
+        if (!optional.isPresent())
+            return 0;
+
+        Bkunit bkunit = optional.get();
+        if (bkunit.getStatus() != BkunitUtil.BORROWED)
+            return 0;
+
+        UserBkunit userBkunit = userBkunitDAO.findByBkunitAndStatusBetween(bkunit, UserBkunitUtil.BORROWED, UserBkunitUtil.RENEW);
+        User reader = userBkunit.getUser();
+
+        Date now = new Date();
+        Set<Account> accounts = accountDAO.findAllByUidAndBkidAndTypeAndDateBetween(reader.getId(), bkunit.getId(), AccountUtil.OVERDUE, userBkunit.getBorrowDate(), now);
+        double overdueMoney = 0;
+        for (Account account : accounts)
+            overdueMoney += account.getMoney();
+        return overdueMoney;
+    }
+
+    private double getDamagePercentage(int damage)
+    {
+        return punishmentDAO.findById(damage2status(damage)).get().getRate();
+    }
+
+    private double getBkunitPrice(String id)
+    {
+        id = id.trim();
+        Optional<Bkunit> optional = bkunitDAO.findById(id);
+        if (!optional.isPresent())
+            return 0;
+
+        Bkunit bkunit = optional.get();
+        return bkunit.getBook().getPrice();
+    }
+
+    private int damage2status(int damage)
+    {
+        switch (damage)
+        {
+            case 0:
+                return BkunitUtil.NO_DAMAGE;
+            case 1:
+                return BkunitUtil.MILD_DAMAGE;
+            case 2:
+                return BkunitUtil.MODERATE_DAMAGE;
+            case 3:
+                return BkunitUtil.MAJOR_DAMAGE;
+            case 4:
+                return BkunitUtil.LOST;
+        }
+        return 0;
+    }
+
+    public int returnBook(String id, int damage, double money)
+    {
+        id = id.trim();
+        Optional<Bkunit> optional = bkunitDAO.findById(id);
+        if (!optional.isPresent())
+            return -1;
+
+        Bkunit bkunit = optional.get();
+
+        if (bkunit.getStatus() == BkunitUtil.LOST)
+        {
+            UserBkunit userBkunit = userBkunitDAO.findByBkunitAndStatusBetween(bkunit, UserBkunitUtil.BORROWED, UserBkunitUtil.RENEW);
+            User reader = userBkunit.getUser();
+            reader.addBookNumber(-1);
+
+            Date now = new Date();
+            userBkunit.setReturnDate(now);
+            userBkunit.setStatus(UserBkunitUtil.RETURNED);
+
+            BkunitOperatingHistory bkunitOperatingHistory = new BkunitOperatingHistory(now, reader.getId(), bkunit.getId(), UserBkunitUtil.RETURNED);
+            bkunitOperatingHistoryDAO.save(bkunitOperatingHistory);
+
+            Set<Account> accounts = accountDAO.findAllByUidAndBkidAndTypeAndDateBetween(reader.getId(), bkunit.getId(), AccountUtil.OVERDUE, userBkunit.getBorrowDate(), now);
+            double overdueMoney = 0;
+            for (Account account : accounts)
+                overdueMoney += account.getMoney();
+
+            reader.addMoney(overdueMoney);
+            userBkunitDAO.save(userBkunit);
+
+            ReturnHistory returnHistory = new ReturnHistory(reader.getId(), userBkunit, 0);
+            returnHistoryDAO.save(returnHistory);
+
+            return -3;
+        }
+
         if (bkunit.getStatus() != BkunitUtil.BORROWED)
             return -2;
 
@@ -214,43 +300,37 @@ public class LibrarianBookService
         User reader = userBkunit.getUser();
         bkunit.setStatus(BkunitUtil.NORMAL);
         reader.addBookNumber(-1);
-        int damageStatus = 0;
-        switch (damage)
-        {
-            case 0:
-                damageStatus = BkunitUtil.NO_DAMAGE;
-                break;
-            case 1:
-                damageStatus = BkunitUtil.MILD_DAMAGE;
-                break;
-            case 2:
-                damageStatus = BkunitUtil.MODERATE_DAMAGE;
-                break;
-            case 3:
-                damageStatus = BkunitUtil.MAJOR_DAMAGE;
-                break;
-            case 4:
-                damageStatus = BkunitUtil.LOST;
-                bkunit.setStatus(BkunitUtil.LOST);
-                book.addNumber(-1);
-                break;
-        }
 
+        int damageStatus = damage2status(damage);
+        if (damageStatus == BkunitUtil.LOST)
+        {
+            bkunit.setStatus(BkunitUtil.LOST);
+            book.addNumber(-1);
+        }
         bookDAO.save(book);
 
         double damageMoney = bkunit.getBook().getPrice() * (punishmentDAO.findById(damageStatus).get().getRate() - punishmentDAO.findById(bkunit.getDamageStatus()).get().getRate());
+
+        try
+        {
+            if (damageMoney < 0)
+                throw new Exception("The damage money is negative");
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
         if (damageMoney != 0)
         {
             Account account = new Account(AccountUtil.DAMAGE, reader.getId(), damageMoney, id, new Date());
             accountDAO.save(account);
         }
-        reader.addMoney(-damageMoney);
-        bkunit.setDamageStatus(damageStatus);
-        userBkunit.setReturnDate(new Date());
-        userBkunit.setStatus(UserBkunitUtil.RETURNED);
-        userBkunitDAO.save(userBkunit);
-
+//        reader.addMoney(-damageMoney);
         Date now = new Date();
+        bkunit.setDamageStatus(damageStatus);
+        userBkunit.setReturnDate(now);
+        userBkunit.setStatus(UserBkunitUtil.RETURNED);
 
         BkunitOperatingHistory bkunitOperatingHistory = new BkunitOperatingHistory(now, reader.getId(), bkunit.getId(), UserBkunitUtil.RETURNED);
         bkunitOperatingHistoryDAO.save(bkunitOperatingHistory);
@@ -259,6 +339,19 @@ public class LibrarianBookService
         double overdueMoney = 0;
         for (Account account : accounts)
             overdueMoney += account.getMoney();
+
+        reader.addMoney(overdueMoney);
+        userBkunitDAO.save(userBkunit);
+
+        try
+        {
+            if (money != damageMoney + overdueMoney)
+                throw new Exception("The money is error");
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
 
         ReturnHistory returnHistory = new ReturnHistory(reader.getId(), userBkunit, damageMoney + overdueMoney);
         returnHistoryDAO.save(returnHistory);

@@ -94,7 +94,6 @@ public class AdminController
     {
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
-        model.addAttribute("status", 1);
         return "admin/password_change";
     }
 }

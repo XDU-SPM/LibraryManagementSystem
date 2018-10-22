@@ -1,6 +1,7 @@
 package com.example.library_management_system.controller;
 
 import com.example.library_management_system.bean.Book;
+import com.example.library_management_system.bean.ReturnMessage;
 import com.example.library_management_system.service.BookService;
 import com.example.library_management_system.service.LibrarianBookService;
 import com.example.library_management_system.service.UserService;
@@ -104,10 +105,17 @@ public class LibrarianBookController
         return "librarian/librarian_borrow";
     }
 
-    @RequestMapping(value = "/librarian/return", method = RequestMethod.POST)
-    public String returnBook(Model model, String id, @RequestParam(value = "damage", defaultValue = "0") int damage)
+    @RequestMapping(value = "/librarian/getReturnMessage", method = RequestMethod.POST)
+    @ResponseBody
+    public ReturnMessage getReturnMessage(String id, int damage)
     {
-        int status = librarianBookService.returnBook(id, damage);
+        return librarianBookService.getReturnMessage(id, damage);
+    }
+
+    @RequestMapping(value = "/librarian/return", method = RequestMethod.POST)
+    public String returnBook(Model model, String id, @RequestParam(value = "damage", defaultValue = "0") int damage, double money)
+    {
+        int status = librarianBookService.returnBook(id, damage, money);
         model.addAttribute("status", status);
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
