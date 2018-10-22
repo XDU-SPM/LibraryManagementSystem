@@ -300,8 +300,11 @@
 
     $(function(){
         $(".radio").click(function(){
-            alert("您是..." + $(this).find("input").val());
-            $("#fine2").attr("value",$(this).find("input").val())
+            var p_id = $(this).find("input").val();
+            p_id=parseInt(p_id);
+            var pers=[0.1,0.5,0.9];
+            var fmoney =pers[p_id-1]*all_money - per*all_money;
+            $("#fine2").attr("value",fmoney);
         });
     });
 
@@ -324,19 +327,19 @@
     isOk();
 </script>
 <script th:inline="javascript">
+    var all_money;
+    var per;
     $(function () {
         $("#bid1").blur(function () {
-            var params = $(this).serialize();
-            console.log(params);
-            alert(params);
-            $("#fine1").attr("value",params);
+            var id = $(this).val();
             $.ajax(
                 {
-                    method: 'GET',
-                    url: "checkUser",
-                    data: params,
+                    method: 'POST',
+                    url: "getReturnMessage",
+                    data: {id:id,damage:0},
                     success: function (data) {
-                        $("#fine1").attr("value",data);
+                        console.log(data.bkunitPrice);
+                        $("#fine1").attr("value",data.overdueMoney);
                     }
                 }
             );
@@ -345,15 +348,16 @@
 
     $(function () {
         $("#bid2").blur(function () {
-            var params = $(this).serialize();
-            console.log(params);
+            var id = $(this).val();
             $.ajax(
                 {
-                    method: 'GET',
-                    url: "checkUser",
-                    data: params,
+                    method: 'POST',
+                    url: "getReturnMessage",
+                    data: {id:id,damage:0},
                     success: function (data) {
-                        $("#fine2").attr("value",data);
+                        $("#fine2").attr("value",data.bkunitPrice);
+                        all_money=data.bkunitPrice;
+                        per=data.damagePercentage;
                     }
                 }
             );
@@ -362,15 +366,14 @@
 
     $(function () {
         $("#bid3").blur(function () {
-            var params = $(this).serialize();
-            console.log(params);
+            var id = $(this).val();
             $.ajax(
                 {
-                    method: 'GET',
+                    method: 'POST',
                     url: "getReturnMessage",
-                    data: params,
+                    data: {id:id,damage:0},
                     success: function (data) {
-                        $("#fine3").attr("value",data);
+                        $("#fine3").attr("value",data.bkunitPrice);
                     }
                 }
             );

@@ -216,6 +216,14 @@
                         </div>
 
                         <div class = "am-form-group">
+                            <label for = "publisher" class = "am-u-sm-3 am-form-label" th:text="#{category}">类别</label>
+                            <div class = "am-u-sm-9">
+                                <input type = "text" id = "category"  name = "category"
+                                       th:value = "${book.categorys}">
+                            </div>
+                        </div>
+
+                        <div class = "am-form-group">
                             <label for = "publish_time" class = "am-u-sm-3 am-form-label" th:text="#{pubdate}">出版时间</label>
                             <div class = "am-u-sm-9">
                                 <input type = "text" id = "publish_time"
