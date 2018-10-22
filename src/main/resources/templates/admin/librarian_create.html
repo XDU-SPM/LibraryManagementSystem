@@ -207,7 +207,7 @@
     })
 </script>
 
-<script>
+<script th:inline="javascript">
     let status = true;
 
     $(function () {
@@ -232,7 +232,6 @@
 
     function check() {
         if (!status) {
-//            alert("该用户名已经被注册");
             alert([[#{tuhbr}]]);
             return false;
         }
