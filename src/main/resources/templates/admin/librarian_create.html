@@ -129,10 +129,10 @@
                 <div class = "am-u-sm-12 am-u-md-8 ">
                     <form class = "am-form am-form-horizontal" action = "librarian_register" method = "post">
                         <div class = "am-form-group">
-                            <label for = "librarian-username" class = "am-u-sm-3 am-form-label" id = "un" th:text="#{username}"></label>
+                            <label for = "librarian-username" class = "am-u-sm-3 am-form-label"  th:text="#{username}"></label>
                             <div class = "am-u-sm-9">
                                 <input type = "text" id = "librarian-username" th:placeholder = "#{iun_zj}"
-                                       name = "username">
+                                       name = "username" required>
                             </div>
                         </div>
 
@@ -215,6 +215,7 @@
                     success: function (data) {
                         if (data.status == 0) {
                             status = false;
+                            check();
                         }
                         else
                             status = true;
