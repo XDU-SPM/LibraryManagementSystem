@@ -213,7 +213,7 @@
 
     isOk();
 </script>
-<script>
+<script th:inline="javascript">
     function getLibrarian() {
         var inputDoc = document.getElementById("libra-account");
         var libraAccount = inputDoc.value;
@@ -259,7 +259,7 @@
         });
     }
 </script>
-<script>
+<script th:inline="javascript">
     let status = true;
 
     $(function () {
