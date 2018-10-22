@@ -128,6 +128,7 @@
 
 
 
+
             <div class = "am-u-sm-12 am-u-md-8 ">
                 <form class = "am-form am-form-horizontal" action = "librarian_register" method = "post">
                     <div class = "am-form-group">
@@ -135,7 +136,7 @@
                         <div class = "am-u-sm-9">
                             <input type = "text" id = "librarian-username" th:placeholder = "#{iun_zj}"
                                    name = "username">
-
+                            
                         </div>
                     </div>
 
@@ -221,6 +222,7 @@
                     success: function (data) {
                         if (data.status == 0) {
                             status = false;
+                            check();
                         }
                         else
                             status = true;
