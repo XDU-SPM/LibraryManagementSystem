@@ -375,7 +375,7 @@
                     url: "getReturnMessage",
                     data: {id:id,damage:0},
                     success: function (data) {
-                        $("#fine3").attr("value",data.bkunitPrice);
+                        $("#fine3").attr("value",data.bkunitPrice+data.overdueMoney);
                     }
                 }
             );

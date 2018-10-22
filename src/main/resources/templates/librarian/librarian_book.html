@@ -125,12 +125,7 @@
                 </div>
             </div>
 
-            <div class = "am-panel am-panel-default admin-sidebar-panel">
-                <div class = "am-panel-bd">
-                    <p><span class = "am-icon-tag"></span> wiki</p>
-                    <p>Welcome to the Amaze UI wiki!</p>
-                </div>
-            </div>
+
         </div>
     </div>
     <!-- sidebar end -->
@@ -218,8 +213,14 @@
                         <div class = "am-form-group">
                             <label for = "category" class = "am-u-sm-3 am-form-label" th:text="#{category}">类别</label>
                             <div class = "am-u-sm-9">
-                                <input type = "text" id = "category"  name = "category"
-                                       th:value = "${book.categories}">
+                                <!--<input type = "text" id = "category"  name = "category"-->
+                                       <!--th:value = "${book.categories}">-->
+                                <select multiple data-am-selected>
+                                    <option value="a">Apple</option>
+                                    <option value="b">Banana</option>
+                                    <option value="o">Orange</option>
+                                    <option value="m">Mango</option>
+                                </select>
                             </div>
                         </div>
 
