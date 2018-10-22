@@ -186,7 +186,8 @@
                         <div class = "am-form-group">
                             <label for = "username" class = "am-u-sm-3 am-form-label" th:text="#{u_ysw}">用户名</label>
                             <div class = "am-u-sm-9">
-                                <input minlength="5" maxlength="20" type = "text" id = "username" th:placeholder = "#{username}" name = "username" th:value="${user.username}">
+                                <input minlength="5" maxlength="20" type = "text" id = "username" th:placeholder = "#{username}" name = "username" th:value="${user.username}"
+                                readonly="readonly">
                             </div>
                         </div>
 
@@ -207,8 +208,7 @@
 
                         <div class = "am-form-group">
                             <div class = "am-u-sm-9 am-u-sm-push-3">
-                                <input type = "submit" class = "am-btn am-btn-primary" th:value = "#{Save_ysw}"
-                                       onclick = "return check()">
+                                <input type = "submit" class = "am-btn am-btn-primary" th:value = "#{Save_ysw}">
                             </div>
                         </div>
                     </form>
@@ -244,36 +244,36 @@
     })
 </script>
 <script>
-    let status = true;
-
-    $(function () {
-        $("#username").blur(function () {
-            var username = $(this).val();
-            var id=$("#user-id").val();
-            $.ajax(
-                {
-                    method: 'GET',
-                    url: "checkUser",
-                    data: {username:username,id:id},
-                    success: function (data) {
-                        if (data.status == 0) {
-                            status = false;
-                        }
-                        else
-                            status = true;
-                    }
-                }
-            );
-        })
-    });
-
-    function check() {
-        if (!status) {
-            alert([[#{tuhbr}]]);
-            return false;
-        }
-        return true;
-    }
+    // let status = true;
+    //
+    // $(function () {
+    //     $("#username").blur(function () {
+    //         var username = $(this).val();
+    //         var id=$("#user-id").val();
+    //         $.ajax(
+    //             {
+    //                 method: 'GET',
+    //                 url: "checkUser",
+    //                 data: {username:username,id:id},
+    //                 success: function (data) {
+    //                     if (data.status == 0) {
+    //                         status = false;
+    //                     }
+    //                     else
+    //                         status = true;
+    //                 }
+    //             }
+    //         );
+    //     })
+    // });
+    //
+    // function check() {
+    //     if (!status) {
+    //         alert([[#{tuhbr}]]);
+    //         return false;
+    //     }
+    //     return true;
+    // }
 </script>
 </body>
 </html>

@@ -147,7 +147,7 @@
                         <div class = "am-form-group">
                             <label for = "user-account" class = "am-u-sm-3 am-form-label" th:text="#{ua_ysw}">用户账号 / Account</label>
                             <div class = "am-u-sm-9">
-                                <input type = "tel" id = "user-account" th:value = "${user.username}" name = "username">
+                                <input type = "tel" id = "user-account" th:value = "${user.username}" name = "username" readonly="readonly">
                             </div>
                         </div>
 
@@ -174,7 +174,7 @@
 
                         <div class = "am-form-group">
                             <div class = "am-u-sm-9 am-u-sm-push-3">
-                                <button type = "submit" class = "am-btn am-btn-primary" onclick = "return check()" th:text="#{sc_ysw}">
+                                <button type = "submit" class = "am-btn am-btn-primary"  th:text="#{sc_ysw}">
                                     保存修改
                                 </button>
                             </div>
@@ -236,35 +236,7 @@
     }
 </script>
 <script>
-    let status = true;
 
-    $(function () {
-        $("#user-account").blur(function () {
-            var params = $(this).serialize();
-            $.ajax(
-                {
-                    method: 'GET',
-                    url: "checkUser",
-                    data: params,
-                    success: function (data) {
-                        if (data.status == 0) {
-                            status = false;
-                        }
-                        else
-                            status = true;
-                    }
-                }
-            );
-        })
-    });
-
-    function check() {
-        if (!status) {
-            alert([[#{tuhbr}]]);
-            return false;
-        }
-        return true;
-    }
 </script>
 </body>
 </html>
