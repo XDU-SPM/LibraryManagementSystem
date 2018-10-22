@@ -233,8 +233,8 @@
 </head>
 <body>
 
-<div class="page-container">
-    <div class = "am-g">
+<!--<div class="page-container">
+    <div >
         <div style = "text-align: center" class = "am-text-primary am-text-lg"><h2 th:text="#{lo_yxy}">LOGIN</h2></div>
         <br>
         <form method = "post" class="mystyle" name="myform" action="/login">
@@ -248,10 +248,22 @@
                 <input type = "submit" name = ""  id="loginbun" onclick="shake(); " th:value = "#{lo_yxy}" class = "am-btn am-btn-primary am-btn-sm btn-loading-example " >
                 <br><br><br>
                 <a href="/forget_password" th:text="#{fp44}">forget password</a>&nbsp;&nbsp;&nbsp;<a href="/visitor-main" th:text="#{bth44}">back to homepage</a>
-   
+
         </form>
     </div>
+</div>-->
+<div class="page-container">
+    <h1>Login</h1>
+    <form method = "post" class="mystyle" name="myform" action="/login">
+        <input type="text" name="username" class="username" th:placeholder="#{username}">
+        <input type="password" name="password" class="password" th:placeholder="#{password_ysw}">
+        <button type="submit" onclick="shake();" th:value = "#{lo_yxy}">login</button>
+    </form>
+
+    <br><br><br>
+    <a href="/forget_password" th:text="#{fp44}">forget password</a>&nbsp;&nbsp;&nbsp;<a href="/visitor-main" th:text="#{bth44}">back to homepage</a>
 </div>
+
 <br><br><br>
 <footer class = "admin-content-footer">
     <p class = "am-padding-left" style = "text-align: center">© 2018 Biboliosoft Online Library System</p>

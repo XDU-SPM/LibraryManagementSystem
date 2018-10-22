@@ -3,6 +3,7 @@ package com.example.library_management_system.service;
 import com.example.library_management_system.bean.Account;
 import com.example.library_management_system.bean.Income;
 import com.example.library_management_system.bean.User;
+import com.example.library_management_system.controller.LocaleMessageSourceService;
 import com.example.library_management_system.dao.AccountDAO;
 import com.example.library_management_system.dao.UserDAO;
 import com.example.library_management_system.utils.AccountUtil;
@@ -12,6 +13,7 @@ import com.example.library_management_system.utils.OneWeekApart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.*;
 
 @Service
@@ -22,6 +24,9 @@ public class LibrarianUserService
 
     @Autowired
     private AccountDAO accountDAO;
+
+    @Resource
+    private LocaleMessageSourceService localeMessageSourceService;
 
     public int payFine(double money, String username)
     {
@@ -85,13 +90,13 @@ public class LibrarianUserService
         switch (account.getType())
         {
             case 2:
-                style = "fine";
+                style = localeMessageSourceService.getMessage("fineType");
                 break;
             case 3:
-                style = "overdue";
+                style = localeMessageSourceService.getMessage("overdueType");
                 break;
             case 4:
-                style = "damage or lost";
+                style = localeMessageSourceService.getMessage("damageOrLostType");
                 break;
         }
         account.setStyle(style);
