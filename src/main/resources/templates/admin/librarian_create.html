@@ -201,12 +201,6 @@
 
 <script src = "assets/js/test.js">
 </script>
-<script type = "text/javascript">
-    $("#change").click(function () {
-        translate();
-    })
-</script>
-
 <script>
     let status = true;
 
@@ -231,7 +225,7 @@
     });
 
     function check() {
-        if (!status) {
+        if (!status){
 //            alert("该用户名已经被注册");
             alert([[#{tuhbr}]]);
             return false;
