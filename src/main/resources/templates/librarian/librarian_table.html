@@ -327,6 +327,7 @@
         $("#booklist").DataTable(
             {
                 "order": [a],
+                "ordering":false,
                 //"ordering":false,
                 "bLengthChange":false,
                 // "pagingType": "full",
@@ -340,7 +341,7 @@
                     "sSearch": [[#{Search}]],
                     "sInfo": " _START_ - _END_ ，In _TOTAL_",
                     "sInfoEmpty": "0",
-                    "sInfoFiltered": "(from _MAX_ )",
+                    "sInfoFiltered": "(from _MAX_ )"
                 }
             }
         );
