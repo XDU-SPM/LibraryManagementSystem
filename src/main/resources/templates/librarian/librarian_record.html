@@ -139,8 +139,7 @@
 
 
             <div class = "am-cf am-padding am-padding-bottom-0">
-                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg" th:text="#{br_ysw}">借阅记录</strong> /
-                    <small>BorrowRecord</small>
+                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg" th:text="#{rr_yxy}">借阅记录</strong>
                 </div>
             </div>
 
@@ -251,7 +250,8 @@
         {
             return "预约成功"
         }
-        var array=["已预约", "预约失败", "取消预约"];
+        //var array=["已预约", "预约失败", "取消预约"];
+        var array=[[[${reserved}]],[[${reaseve_f}]], [[${reserve_c}]]];
         return array[status-6];
     }
 

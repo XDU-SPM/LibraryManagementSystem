@@ -172,7 +172,7 @@
                             <th class = "table-isbn">ISBN</th>
                             <th class = "table-author " th:text="#{au44}">作者</th>
                             <th class = "table-publisher" th:text="#{publisher}">出版社</th>
-                            <th class = "table-date " th:text="#{pubdate}">出版日期</th>
+                            <th class = "table-date " th:text="#{state}">出版日期</th>
                             <th class = "table-positon " th:text="#{bl44}">图书位置</th>
                             <th class = "table-set" th:text="#{Operation}">操作</th>
                         </tr>
@@ -184,7 +184,7 @@
                             <td th:text = "${bunit.book.isbn}"></td>
                             <td  th:text = "${bunit.book.author}"></td>
                             <td  th:text = "${bunit.book.publisher}"></td>
-                            <td th:text = "${bunit.book.publishDate}"></td>
+                            <td th:text = "${bunit.status}"></td>
                             <td th:text = "${bunit.book.position}"></td>
                             <td>
                                 <div class = "am-btn-toolbar">
@@ -322,10 +322,12 @@
 <script src = "assets/js/amazeui.min.js"></script>
 <script src = "assets/js/app.js"></script>
 <script th:inline="javascript">
+    var a=[ 0,"desc"];
     $(document).ready(function(){
         $("#booklist").DataTable(
             {
-                "ordering":false,
+                "order": [a],
+                //"ordering":false,
                 "bLengthChange":false,
                 // "pagingType": "full",
                 language:{
