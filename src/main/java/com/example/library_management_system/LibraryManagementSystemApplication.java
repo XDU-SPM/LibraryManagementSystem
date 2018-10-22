@@ -16,8 +16,8 @@ public class LibraryManagementSystemApplication
     {
         SessionLocaleResolver slr = new SessionLocaleResolver();
 
-        slr.setDefaultLocale(Locale.CHINA);
-//        slr.setDefaultLocale(Locale.US);
+//        slr.setDefaultLocale(Locale.CHINA);
+        slr.setDefaultLocale(Locale.US);
         return slr;
     }
 
