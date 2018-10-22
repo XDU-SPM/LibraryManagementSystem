@@ -225,6 +225,11 @@
     });
 
     function check() {
+        var isnull=document.getElementById("librarian-name").value();
+        if(isnull==" " || isnull==null){
+            window.alert([[#{pouser}}]])
+            return false;
+        }
         if (!status) {
             alert([[#{tuhbr}]]);
             return false;
