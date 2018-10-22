@@ -916,8 +916,6 @@
                     var str = '';
                     $('#bk-table-1').empty();
                     for (var i = 0; i < data.content.length; i++) {
-                        console.log(data.content.length);
-                        console.log([[#{view44}]]);
                         str += "<tr>\n" +
                             "\n" +
                             "                        <td><a href = \"book_details?isbn="+data.content[i].book.isbn+"\">"+data.content[i].book.title+"</a></td>\n" +
@@ -931,11 +929,11 @@
                             "                                <div class = \"am-btn-group am-btn-group-xs\">\n" +
                             "                                    <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"\n" +
                             "                                            onclick = \"cancel_appointment("+data.content[i].id+")\">\n" +
-                            "                                        <span class = \"am-icon-pencil-square-o\"></span>"+"Cancel"+" \n" +
+                            "                                        <span class = \"am-icon-pencil-square-o\"></span>"+[[#{cancel44}]]+" \n" +
                             "                                    </button>\n" +
                             "                                    <a href = \"appointment?id="+data.content[i].id+"\">\n" +
                             "                                        <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"><span\n" +
-                            "                                                class = \"am-icon-pencil-square-o\"></span> "+"View"+"\n" +
+                            "                                                class = \"am-icon-pencil-square-o\"></span> "+[[#{view44}]]+"\n" +
                             "                                        </button>\n" +
                             "                                    </a>\n" +
                             "                                </div>\n" +
