@@ -3,9 +3,11 @@
       xmlns:sec = "http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset = "UTF-8">
+    <meta name = "referrer" content = "no-referrer"/>
     <title>BiblioSoft</title>
     <link rel = "icon" type = "image/png" href = "assets/i/favicon.png">
     <link rel = "stylesheet" href = "assets/css/amazeui.min.css"/>
+    <link rel = "stylesheet" href = "assets/css/app.css">
     <link rel = "stylesheet" href = "assets/css/admin.css">
     <style>
         .am-form-group {
@@ -107,6 +109,25 @@
     <!-- content start -->
     <div class = "admin-content">
         <div class = "admin-content-body">
+            <!-- banner start -->
+            <div class = "am-g am-g-fixed blog-fixed am-u-sm-centered blog-article-margin">
+                <div data-am-widget = "slider" class = "am-slider am-slider-b1" data-am-slider = '{&quot;controlNav&quot;:false}'>
+                    <ul th:each="notice:${page4}" class = "am-slides">
+                        <li>
+                            <img src = "assets/i/b1.jpg">
+                            <div class = "blog-slider-desc am-slider-desc ">
+                                <div class = "blog-text-center blog-slider-con">
+                        <span><p class = "am-text-secondary am-text-xl"><span
+                                th:text = "#{no_yxy}" >公告</span></p></span>
+                                    <h1 class = "blog-h-margin"><a th:href="@{Notice(id=${notice.id})}" th:text="${notice.title}"></a></h1>
+
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
             <div class = "am-cf am-padding">
              <!--   <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg">首页</strong> /
                     <small>一些常用模块</small>

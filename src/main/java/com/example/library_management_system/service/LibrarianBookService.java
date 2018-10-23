@@ -170,6 +170,9 @@ public class LibrarianBookService
             return -3;
         Bkunit bkunit = optional.get();
 
+        if (bkunit.getStatus() == BkunitUtil.BORROWED)
+            return -4;
+
         if (bkunit.getStatus() != BkunitUtil.NORMAL)
             return -5;
 
@@ -360,6 +363,9 @@ public class LibrarianBookService
         if (money != damageMoney + overdueMoney)
             return -4;
 
+        Account account = new Account(AccountUtil.FINE, reader.getId(), damageMoney + overdueMoney, null, new Date());
+        accountDAO.save(account);
+
         ReturnHistory returnHistory = new ReturnHistory(reader.getId(), userBkunit, damageMoney + overdueMoney);
         returnHistoryDAO.save(returnHistory);
 
@@ -442,7 +448,29 @@ public class LibrarianBookService
 
     public Set<UserBook> getReserves()
     {
-        return userBookDAO.findAllByStatusOrStatusOrStatusOrStatus(UserBkunitUtil.BORROWED, UserBookUtil.RESERVATION, UserBookUtil.RESERVATION_FAIL, UserBookUtil.RESERVATION_CANCEL);
+        Set<UserBook> set = userBookDAO.findAllByStatusOrStatusOrStatusOrStatus(UserBkunitUtil.BORROWED, UserBookUtil.RESERVATION, UserBookUtil.RESERVATION_FAIL, UserBookUtil.RESERVATION_CANCEL);
+        for (UserBook userBook : set)
+            setUserBookStatus(userBook);
+        return set;
+    }
+
+    private void setUserBookStatus(UserBook userBook)
+    {
+        switch (userBook.getStatus())
+        {
+            case UserBookUtil.RESERVATION:
+                userBook.setStatus1(localeMessageSourceService.getMessage("reservation"));
+                break;
+            case UserBookUtil.RESERVATION_FAIL:
+                userBook.setStatus1(localeMessageSourceService.getMessage("reservation_fail"));
+                break;
+            case UserBookUtil.RESERVATION_CANCEL:
+                userBook.setStatus1(localeMessageSourceService.getMessage("reservation_cancel"));
+                break;
+            case UserBkunitUtil.BORROWED:
+                userBook.setStatus1(localeMessageSourceService.getMessage("reservation_success"));
+                break;
+        }
     }
 
     public Set<BkunitOperatingHistory> getBkunitOperatingHistory(int status, boolean bkunit)

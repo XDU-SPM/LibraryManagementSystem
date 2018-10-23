@@ -254,7 +254,7 @@ public class UserService
     {
         User user = userDAO.findByUsername(username);
         if (user == null)
-            return true;
+            return false;
         return user.getId() != id;
     }
 
