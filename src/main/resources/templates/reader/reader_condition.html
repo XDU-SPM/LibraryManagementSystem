@@ -112,8 +112,8 @@
             <!-- banner start -->
             <div class = "am-g am-g-fixed blog-fixed am-u-sm-centered blog-article-margin">
                 <div data-am-widget = "slider" class = "am-slider am-slider-b1" data-am-slider = '{&quot;controlNav&quot;:false}'>
-                    <ul th:each="notice:${page4}" class = "am-slides">
-                        <li>
+                    <ul class = "am-slides">
+                        <li th:each="notice:${page4}">
                             <img src = "assets/i/b1.jpg">
                             <div class = "blog-slider-desc am-slider-desc ">
                                 <div class = "blog-text-center blog-slider-con">
@@ -346,54 +346,54 @@
                         </div>
                     </div>
 
-                    <!--<div class = "am-tab-panel am-fade am-in " id = "tab6">-->
-                        <!--<div class = "am-cf am-padding am-padding-bottom-0">-->
-                            <!--<div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg" >收藏</strong></div>-->
-                        <!--</div>-->
-                        <!--<hr>-->
+                    <div class = "am-tab-panel am-fade am-in " id = "tab6">
+                        <div class = "am-cf am-padding am-padding-bottom-0">
+                            <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg" >收藏</strong></div>
+                        </div>
+                        <hr>
 
-                        <!--<table class = "am-table am-table-striped am-table-hover am-table-compact " id = "booklist-4">-->
-                            <!--<thead>-->
-                            <!--<tr>-->
-                                <!--<th class = "table-title" th:text="#{ti44}">标题</th>-->
-                                <!--<th class = "table-author" th:text="#{author}">作者</th>-->
-                                <!--<th class = "table-set" th:text="#{Operation}">操作</th>-->
-                            <!--</tr>-->
-                            <!--</thead>-->
-                            <!--<tbody id = "bk-table-4">-->
-                            <!--<tr th:each = "book:${page4}">-->
+                        <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "booklist-5">
+                            <thead>
+                            <tr>
+                                <th class = "table-title" th:text="#{ti44}">标题</th>
+                                <th class = "table-author" th:text="#{author}">作者</th>
+                                <th class = "table-set" th:text="#{Operation}">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody id = "bk-table-5">
+                            <tr th:each = "fbook:${page5}">
 
-                                <!--<td><a th:href = "@{book_details(isbn=${book.isbn})}"-->
-                                       <!--th:text = "${book.title}"></a></td>-->
+                                <td><a th:href = "@{book_details(isbn=${fbook.book.isbn})}"
+                                       th:text = "${fbook.book.title}"></a></td>
 
-                                <!--<td th:text = "${book.author}"></td>-->
-                                <!--<td>-->
-                                    <!--<div class = "am-btn-toolbar">-->
-                                        <!--<div class = "am-btn-group am-btn-group-xs">-->
-                                            <!--<a th:href = "@{reader_comment(isbn=${book.isbn})}">-->
-                                                <!--<button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><span-->
-                                                        <!--class = "am-icon-pencil-square-o"></span> <span >取消收藏</span>-->
-                                                <!--</button>-->
-                                            <!--</a>-->
-                                        <!--</div>-->
-                                    <!--</div>-->
-                                <!--</td>-->
-                            <!--</tr>-->
-                            <!--</tbody>-->
-                        <!--</table>-->
-                        <!--<br>-->
-                        <!--&lt;!&ndash;<div class = "am-cf">&ndash;&gt;-->
-                            <!--&lt;!&ndash;<span th:text="#{total44}">共</span> [[${page3.totalElements}]]  <span th:text="#{records44}">条记录</span>&ndash;&gt;-->
-                            <!--&lt;!&ndash;<div class = "am-fr">&ndash;&gt;-->
-                                <!--&lt;!&ndash;<ul class = "am-pagination">&ndash;&gt;-->
-                                    <!--&lt;!&ndash;<li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook3_1()" th:text="#{f_zj}">首页</button></li>&ndash;&gt;-->
-                                    <!--&lt;!&ndash;<li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook3_2(-1)" th:text="#{p_zj}">上一页</button></li>&ndash;&gt;-->
-                                    <!--&lt;!&ndash;<li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook3_2(1)" th:text="#{n_zj}">下一页</button></li>&ndash;&gt;-->
-                                    <!--&lt;!&ndash;<li><button type="button" class="am-btn am-btn-primary am-round" th:onclick = "'javascript:getOnePageBook3_3('+${page4.totalPages}+'-1)'" th:text="#{l_zj}">末页</button></li>&ndash;&gt;-->
-                                <!--&lt;!&ndash;</ul>&ndash;&gt;-->
-                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                    <!--</div>-->
+                                <td th:text = "${fbook.book.author}"></td>
+                                <td>
+                                    <div class = "am-btn-toolbar">
+                                        <div class = "am-btn-group am-btn-group-xs">
+                                            <a th:href = "@{cancel_collect(isbn=${fbook.book.isbn})}">
+                                                <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><span
+                                                        class = "am-icon-pencil-square-o"></span> <span >取消收藏</span>
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <br>
+                        <div class = "am-cf">
+                            <span th:text="#{total44}">共</span> <span id="book-collect">[[${page5.totalElements}]]</span>  <span th:text="#{records44}">条记录</span>
+                            <div class = "am-fr">
+                                <ul class = "am-pagination">
+                                    <li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook5_1()" th:text="#{f_zj}">首页</button></li>
+                                    <li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook5_2(-1)" th:text="#{p_zj}">上一页</button></li>
+                                    <li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook5_2(1)" th:text="#{n_zj}">下一页</button></li>
+                                    <li><button type="button" class="am-btn am-btn-primary am-round" th:onclick = "'javascript:getOnePageBook5_3('+${page4.totalPages}+'-1)'" th:text="#{l_zj}">末页</button></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -448,6 +448,32 @@
                     }
                     else
                         alert([[#{ftcya}]]);
+                },
+                error: function (data) {
+                    alert([[#{aeoptal}]]);
+                }
+            });
+        }
+    }
+
+    var collect_number = [[${page5.totalElements}]];
+    function cancel_appointment(isbn) {
+        var res = confirm("确认取消？");
+        if (res == true) {
+            $.ajax({
+                type: "get",
+                data: {isbn: isbn},
+                url: "reserveCancel",
+                success: function (data) {
+                    if (data.status == 1){
+                        alert("取消成功！");
+                        getOnePageBook5_2(0);
+                        $('#book-collect').empty();
+                        collect_number--;
+                        $('#book-collect').html(collect_number);
+                    }
+                    else
+                        alert("取消失败！");
                 },
                 error: function (data) {
                     alert([[#{aeoptal}]]);
@@ -626,6 +652,119 @@
         stroke: '#fff'
     });
     chart.render();
+</script>
+
+<script th:inline="javascript">
+
+    var pageNumber5 = 0;
+
+    function getOnePageBook5_1() {
+        pageNumber5 = 0;
+        $.ajax({
+            type: "get",
+            url: "collectBooks",
+            data: {start: 0, size: 5, status: 3},
+            success: function (data) {
+                var str = "";
+                $('#bk-table-5').empty();
+                for (var i = 0; i < data.content.length; i++) {
+                    str += "<tr>\n" +
+                        "\n" +
+                        "                                <td><a th:href = \"@{book_details(isbn=${"+data.content[i].book.isbn+"})}\"\n" +
+                        "                                       th:text = \"${"+data.content[i].book.title+"}\"></a></td>\n" +
+                        "\n" +
+                        "                                <td th:text = \"${"+data.content[i].book.author+"}\"></td>\n" +
+                        "                                <td>\n" +
+                        "                                    <div class = \"am-btn-toolbar\">\n" +
+                        "                                        <div class = \"am-btn-group am-btn-group-xs\">\n" +
+                        "                                            <a th:href = \"@{cancel_collect(isbn=${"+data.content[i].book.isbn+"})}\">\n" +
+                        "                                                <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"><span\n" +
+                        "                                                        class = \"am-icon-pencil-square-o\"></span> <span >取消收藏</span>\n" +
+                        "                                                </button>\n" +
+                        "                                            </a>\n" +
+                        "                                        </div>\n" +
+                        "                                    </div>\n" +
+                        "                                </td>\n" +
+                        "                            </tr>"
+                }
+                $('#bk-table-5').html(str);
+            }
+        });
+    }
+
+    function getOnePageBook5_2(temp) {
+        pageNumber5 += temp;
+        if (pageNumber5 < 0)
+            pageNumber5 = 0;
+        else if (pageNumber5 >= [[${page3.totalPages}]])
+            pageNumber5 = [[${page3.totalPages}]]-1;
+        else
+            $.ajax({
+                type: "get",
+                url: "collectBooks",
+                data: {start: pageNumber5, size: 5, status: 3},
+                success: function (data) {
+                    var str = '';
+                    $('#bk-table-5').empty();
+                    for (var i = 0; i < data.content.length; i++) {
+                        str += "<tr>\n" +
+                            "\n" +
+                            "                                <td><a th:href = \"@{book_details(isbn=${"+data.content[i].book.isbn+"})}\"\n" +
+                            "                                       th:text = \"${"+data.content[i].book.title+"}\"></a></td>\n" +
+                            "\n" +
+                            "                                <td th:text = \"${"+data.content[i].book.author+"}\"></td>\n" +
+                            "                                <td>\n" +
+                            "                                    <div class = \"am-btn-toolbar\">\n" +
+                            "                                        <div class = \"am-btn-group am-btn-group-xs\">\n" +
+                            "                                            <a th:href = \"@{cancel_collect(isbn=${"+data.content[i].book.isbn+"})}\">\n" +
+                            "                                                <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"><span\n" +
+                            "                                                        class = \"am-icon-pencil-square-o\"></span> <span >取消收藏</span>\n" +
+                            "                                                </button>\n" +
+                            "                                            </a>\n" +
+                            "                                        </div>\n" +
+                            "                                    </div>\n" +
+                            "                                </td>\n" +
+                            "                            </tr>"
+                    }
+                    $('#bk-table-5').html(str);
+                }
+            });
+    }
+
+    function getOnePageBook5_3(end) {
+        pageNumber5 = end;
+        $.ajax({
+            type: "get",
+            url: "collectBooks",
+            data: {start: end, size: 5, status: 3},
+            success: function (data) {
+                console.log(data);
+                var str = '';
+                $('#bk-table-5').empty();
+                for (var i = 0; i < data.content.length; i++) {
+                    str += "<tr>\n" +
+                        "\n" +
+                        "                                <td><a th:href = \"@{book_details(isbn=${"+data.content[i].book.isbn+"})}\"\n" +
+                        "                                       th:text = \"${"+data.content[i].book.title+"}\"></a></td>\n" +
+                        "\n" +
+                        "                                <td th:text = \"${"+data.content[i].book.author+"}\"></td>\n" +
+                        "                                <td>\n" +
+                        "                                    <div class = \"am-btn-toolbar\">\n" +
+                        "                                        <div class = \"am-btn-group am-btn-group-xs\">\n" +
+                        "                                            <a th:href = \"@{cancel_collect(isbn=${"+data.content[i].book.isbn+"})}\">\n" +
+                        "                                                <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"><span\n" +
+                        "                                                        class = \"am-icon-pencil-square-o\"></span> <span >取消收藏</span>\n" +
+                        "                                                </button>\n" +
+                        "                                            </a>\n" +
+                        "                                        </div>\n" +
+                        "                                    </div>\n" +
+                        "                                </td>\n" +
+                        "                            </tr>"
+                }
+                $('#bk-table-5').html(str);
+            }
+        });
+    }
 </script>
 
 <script th:inline="javascript">
