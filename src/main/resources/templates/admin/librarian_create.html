@@ -214,17 +214,20 @@
     $(function () {
         $("#librarian-username").blur(function () {
             var username = $(this).val();
+            console.log(username);
             $.ajax(
                 {
                     method: 'GET',
                     url: "checkUser",
                     data: {username:username,id:-1},
                     success: function (data) {
+                        console.log(data);
                         if (data.status == 0) {
                             status = false;
                         }
                         else
                             status = true;
+                        console.log(status);
                     }
                 }
             );

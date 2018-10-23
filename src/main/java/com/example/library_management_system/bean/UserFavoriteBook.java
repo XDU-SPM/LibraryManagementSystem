@@ -8,7 +8,6 @@ import javax.persistence.*;
  * @ description as bellow.
  * 读者(用户)的收藏夹列表
  */
-
 @Entity
 @Table(name = "user_favoriteBook")
 public class UserFavoriteBook
