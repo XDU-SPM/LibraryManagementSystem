@@ -44,13 +44,13 @@
 
             <ul class = "am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
 
-                <li class="am-dropdown" data-am-dropdown>
-                    <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-                        <span th:text="#{lan44}">语言</span> <span class="am-icon-caret-down"></span>
+                <li class = "am-dropdown" data-am-dropdown>
+                    <a class = "am-dropdown-toggle" data-am-dropdown-toggle href = "javascript:;">
+                        <span th:text = "#{lan44}">语言</span> <span class = "am-icon-caret-down"></span>
                     </a>
-                    <ul class="am-dropdown-content">
-                        <li><a href="changeSessionLanguage?lang=zh&page=librarian_edit">中文</a></li>
-                        <li><a href="changeSessionLanguage?lang=en&page=librarian_edit">ENGLISH</a></li>
+                    <ul class = "am-dropdown-content">
+                        <li><a href = "changeSessionLanguage?lang=zh&page=librarian_edit">中文</a></li>
+                        <li><a href = "changeSessionLanguage?lang=en&page=librarian_edit">ENGLISH</a></li>
                     </ul>
                 </li>
                 <li class = "am-dropdown" data-am-dropdown>
@@ -93,7 +93,8 @@
                         </li>
                         <li><a href = "delete_users"><span class = "am-icon-trash"></span><span th:text = "#{dl_yxy}"> 删除图书管理员</span></a>
                         </li>
-                        <li><a href = "retrieve_password"><span class = "am-icon-mail-reply"></span><span th:text="#{fp_yxy}"> 找回密码</span></a></li>
+                        <li><a href = "retrieve_password"><span class = "am-icon-mail-reply"></span><span
+                                th:text = "#{fp_yxy}"> 找回密码</span></a></li>
                     </ul>
 
                 </li>
@@ -105,7 +106,7 @@
             <div class = "am-panel am-panel-default admin-sidebar-panel">
                 <div class = "am-panel-bd">
                     <p><span class = "am-icon-bookmark"></span><span th:text = "#{no_yxy}"> 公告</span></p>
-                    <p><span th:text="#{tiqa44}">时光静好，与君语；细水流年，与君同。</span></p>
+                    <p><span th:text = "#{tiqa44}">时光静好，与君语；细水流年，与君同。</span></p>
                 </div>
             </div>
 
@@ -189,13 +190,11 @@
 <script src = "assets/js/app.js"></script>
 <script type = "text/javascript" src = "assets/js/charts/echarts.min.js"></script>
 <script type = "text/javascript" src = "assets/js/charts/pieChart.js"></script>
-<script src = "assets/js/test.js">
-</script>
+<script src = "assets/js/test.js"></script>
 <script type = "text/javascript" th:inline = "javascript">
     $("#change").click(function () {
         translate();
-    })
-    ;
+    });
 
     var status = [[${status}]];
 
@@ -213,8 +212,12 @@
     }
 
     isOk();
+    console.log([[#{ua_ysw}]]);
+    console.log([[#{Name}]]);
+    console.log([[#{email44}]]);
+    console.log([[#{save}]]);
 </script>
-<script th:inline="javascript">
+<script th:inline = "javascript">
     function getLibrarian() {
         var inputDoc = document.getElementById("libra-account");
         var libraAccount = inputDoc.value;
@@ -227,21 +230,24 @@
                 str = "<form class = \"am-form am-form-horizontal\" action = \"saveLibrarian\" method = \"post\">\n" +
                     "                        <input type=\"hidden\" value=\"" + data.id + "\" name = \"id\">\n>" +
                     "                        <div class = \"am-form-group\">\n" +
-                    "                            <label for = \"user-account\" class = \"am-u-sm-3 am-form-label\">[[#{ua_ysw}]]</label>\n" +
+                    "                            <label for = \"user-account\" class = \"am-u-sm-3 am-form-label\">" + [[#{ua_ysw}]] + "</label>\n" +
+                    // "                            <label for = \"user-account\" class = \"am-u-sm-3 am-form-label\">user account</label>\n" +
                     "                            <div class = \"am-u-sm-9\">\n" +
-                    "                                <input type = \"tel\" id = \"user-account\" value = \"" + data.username + "\" name = \"username\">\n" +
+                    "                                <input type = \"tel\" id = \"user-account\" value = \"" + data.username + "\" name = \"username\" readonly>\n" +
                     "                            </div>\n" +
                     "                        </div>\n" +
                     "\n" +
                     "                        <div class = \"am-form-group\">\n" +
-                    "                            <label for = \"user-name\" class = \"am-u-sm-3 am-form-label\">[[#{Name}]]</label>\n" +
+                    "                            <label for = \"user-name\" class = \"am-u-sm-3 am-form-label\">" + [[#{Name}]] + "</label>\n" +
+                    // "                            <label for = \"user-name\" class = \"am-u-sm-3 am-form-label\">Name</label>\n" +
                     "                            <div class = \"am-u-sm-9\">\n" +
                     "                                <input type = \"text\" id = \"user-name\" value = \"" + data.name + "\" name = \"name\">\n" +
                     "                            </div>\n" +
                     "                        </div>\n" +
                     "\n" +
                     "                        <div class = \"am-form-group\">\n" +
-                    "                            <label for = \"user-email\" class = \"am-u-sm-3 am-form-label\">[[#{email44}]]</label>\n" +
+                    "                            <label for = \"user-email\" class = \"am-u-sm-3 am-form-label\">" + [[#{email44}]] + "</label>\n" +
+                    // "                            <label for = \"user-email\" class = \"am-u-sm-3 am-form-label\">Email</label>\n" +
                     "                            <div class = \"am-u-sm-9\">\n" +
                     "                                <input type = \"email\" id = \"user-email\" value = \"" + data.email + "\" name = \"email\">\n" +
                     "                            </div>\n" +
@@ -249,8 +255,8 @@
                     "\n" +
                     "                        <div class = \"am-form-group\">\n" +
                     "                            <div class = \"am-u-sm-9 am-u-sm-push-3\">\n" +
-                    "                                <button type = \"submit\" class = \"am-btn am-btn-primary\" onclick = \"return check()\">\n" +
-                    "                                    [[#{save}]]\n" +
+                    "                                <button type = \"submit\" class = \"am-btn am-btn-primary\" onclick = \"return check()\">\n" + [[#{save}]] +
+                    // "                                    Save\n" +
                     "                                </button>\n" +
                     "                            </div>\n" +
                     "                        </div>\n" +
@@ -260,7 +266,7 @@
         });
     }
 </script>
-<script th:inline="javascript">
+<script th:inline = "javascript">
     let status = true;
 
     $(function () {

@@ -76,4 +76,11 @@ public class AdminUserController
         model.addAttribute("username", userService.getUser().getUsername());
         return "admin/librarian_edit";
     }
+
+    @RequestMapping(value = "/admin/findPassword", method = RequestMethod.POST)
+    public String findPassword(String username, Model model)
+    {
+        model.addAttribute("status", adminUserService.findPassword(username));
+        return "/admin/retrieve_password";
+    }
 }

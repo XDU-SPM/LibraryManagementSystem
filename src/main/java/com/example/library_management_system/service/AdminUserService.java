@@ -26,4 +26,10 @@ public class AdminUserService
 
         userDAO.save(user);
     }
+
+    public String findPassword(String username)
+    {
+        User user = userDAO.findByUsername(username);
+        return user.getPassword();
+    }
 }
