@@ -69,5 +69,7 @@
 */
 function createBarcode(showDiv,textValue,barcodeType){
     var divElement = document.getElementById(showDiv);
-    divElement.innerHTML = code128(textValue,barcodeType);
+    var li = document.createElement("li");
+    li.innerHTML=code128(textValue,barcodeType);
+    divElement.appendChild(li);
 }
