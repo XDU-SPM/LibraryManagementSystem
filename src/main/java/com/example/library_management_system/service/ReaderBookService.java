@@ -133,7 +133,7 @@ public class ReaderBookService
     public Page<UserFavoriteBook> queryFavoriteBooks(int start, int size)
     {
         User reader = userService.getUser();
-        Pageable pageable = PageableUtil.pageable(false, "borrowDate", start, size);
+        Pageable pageable = PageableUtil.pageable(false, "id", start, size);
         return userFavoriteBookDAO.findAllByUser(reader, pageable);
     }
 
@@ -198,5 +198,12 @@ public class ReaderBookService
         userBkunit.setReturnDate(calendar.getTime());
         userBkunitDAO.save(userBkunit);
         return 0;
+    }
+
+    public boolean isFavoriteBook(String isbn)
+    {
+        User user = userService.getUser();
+        Book book = bookDAO.findByIsbn(isbn);
+        return userFavoriteBookDAO.findByUserAndBook(user, book) != null;
     }
 }

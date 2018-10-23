@@ -41,6 +41,7 @@ public class ReaderBookController
         model.addAttribute("page2", readerBookService.queryBorrowedBooks(0, 5));
         model.addAttribute("page3", readerBookService.queryReturnedBooks(0, 5));
         model.addAttribute("page4", announcementService.getRecentAnnouncement(4));
+        model.addAttribute("page5", readerBookService.queryFavoriteBooks(0, 5));
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
         return "reader/reader_condition";
@@ -94,35 +95,28 @@ public class ReaderBookController
         return "reader/appointment";
     }
 
-    @RequestMapping(value = "/reader/favoriteBooks", method = RequestMethod.GET)
-    public String queryFavoriteBooks(Model model, @RequestParam(value = "start", defaultValue = "0") int start,
-                                     @RequestParam(value = "size", defaultValue = "10") int size)
+    @RequestMapping(value = "/reader/collectBooks", method = RequestMethod.GET)
+    @ResponseBody
+    public Page<UserFavoriteBook> queryFavoriteBooks(@RequestParam(value = "start", defaultValue = "0") int start,
+                                                     @RequestParam(value = "size", defaultValue = "5") int size)
     {
-        Page<UserFavoriteBook> page = readerBookService.queryFavoriteBooks(start, size);
-        model.addAttribute("page", page);
-        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
-        model.addAttribute("username", userService.getUser().getUsername());
-        return "queryFavoriteBooks";
+        return readerBookService.queryFavoriteBooks(start, size);
     }
 
-    @RequestMapping(value = "/reader/addFavoriteBooks", method = RequestMethod.GET)
-    public String addFavoriteBook(Model model, String isbn)
+    @RequestMapping(value = "/reader/collect", method = RequestMethod.GET)
+    @ResponseBody
+    public Status addFavoriteBook(String isbn)
     {
         readerBookService.addFavoriteBook(isbn);
-        model.addAttribute("status", true);
-        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
-        model.addAttribute("username", userService.getUser().getUsername());
-        return "addFavoriteBook";
+        return new Status(0);
     }
 
-    @RequestMapping(value = "/reader/deleteFavoriteBooks", method = RequestMethod.GET)
-    public String deleteFavoriteBook(Model model, String isbn)
+    @RequestMapping(value = "/reader/cancel_collect", method = RequestMethod.GET)
+    @ResponseBody
+    public Status deleteFavoriteBook(String isbn)
     {
         readerBookService.deleteFavoriteBook(isbn);
-        model.addAttribute("state", true);
-        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
-        model.addAttribute("username", userService.getUser().getUsername());
-        return "deleteFavoriteBook";
+        return new Status(0);
     }
 
     @RequestMapping(value = "/reader/writeReview", method = RequestMethod.POST)
@@ -167,6 +161,7 @@ public class ReaderBookController
     public String reader_book_details(String isbn, Model model)
     {
         model.addAttribute("book", bookService.bookInfo(isbn));
+        model.addAttribute("status", readerBookService.isFavoriteBook(isbn) ? 0 : 1);
         return "book_details";
     }
 }
