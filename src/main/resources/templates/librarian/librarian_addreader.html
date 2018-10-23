@@ -244,6 +244,7 @@
     $(function () {
         $("#reader-username").blur(function () {
             var username = $(this).val();
+            console.log(username);
             $.ajax(
                 {
                     method: 'GET',
@@ -255,6 +256,7 @@
                         }
                         else
                             status = true;
+                        console.log(status);
                     }
                 }
             );
@@ -262,6 +264,7 @@
     });
 
     function check() {
+        console.log("233");
         if (!status) {
             alert([[#{tuhbr}]]);
             return false;

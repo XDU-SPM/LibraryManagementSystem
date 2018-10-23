@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        div,ul,li{margin: 0;padding: 0}/*先初始化一下默认样式*/
+        a{text-decoration: none;color: #222;}
+        .notice {
+             width: 50%;
+             margin: 20px 10px;
+            font-size: 14px;
+            line-height: 30px;
+            background-color: #fff;
+            box-shadow: 0 0 4px #ccc;
+            height: 30px;
+            overflow: hidden;
+        }
+
+
+        .notice ul li {
+             list-style: none;
+             line-height: 30px;
+             display: block;
+             margin-left: 80px;
+        }
+
+
+        .notice a {
+             float: left;
+             display: inline-block;
+             width: 70%;
+             margin-left: 20px;
+             text-decoration: none;
+        }
+
+
+        .notice a:first-child {
+             overflow: hidden;
+             text-overflow: ellipsis;
+             white-space: nowrap;
+        }
+
+
+        .notice a span {
+             color: #999;
+             font-size: 12px;
+             margin-right: 10px;
+        }
+
+
+        .more {
+            position: absolute;
+            top: 27px;
+            left: 633px;
+            width: auto;
+            font-size: 12px;
+            color: #ff9900;
+        }
+
+
+        .new-notice {
+            position: absolute;
+            top: 23px;
+            left: 33px;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+<span class="new-notice">最新公告：</span>
+<br>
+<div class="notice">
+    <ul>
+        <li>
+            <a href="#"><span>2018-5-31</span>
+                第1条公告第1条公告第一条公告第一条公告第一条公告第一条公告第一条公告第一条公告
+            </a>
+        </li>
+        <li>
+            <a href="#"><span>2018-5-31</span>
+                第2条公告第2条公告第一条公告第一条公告第一条公告第一条公告第一条公告第一条公告
+            </a>
+        </li>
+        <li>
+            <a href="#"><span>2018-5-31</span>
+                第3条公告第3条公告第一条公告第一条公告第一条公告第一条公告第一条公告第一条公告
+            </a>
+        </li>
+        <li>
+            <a href="#"><span>2018-5-31</span>
+                第4条公告第4条公告第一条公告第一条公告第一条公告第一条公告第一条公告第一条公告
+            </a>
+        </li>
+    </ul>
+</div>
+<a href="#">更多公告>></a>
+
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    /*
+    * 参数说明
+    * obj      : 动画的节点，本例中是ul
+    * top      : 动画的高度，本例中是-35px;注意向上滚动是负数
+    * time     : 动画的速度，即完成动画所用时间，本例中是500毫秒，即marginTop从0到-35px耗时500毫秒
+    * function : 回调函数，每次动画完成，marginTop归零，并把此时第一条信息添加到列表最后;
+    *
+    */
+    function noticeUp(obj,top,time) {
+        $(obj).animate({
+            marginTop: top
+        }, time, function () {
+            $(this).css({marginTop:"0"}).find(":first").appendTo(this);
+        })
+    };
+
+    $(function () {
+        // 调用 公告滚动函数
+        setInterval("noticeUp('.notice ul','-35px',500)", 2000);
+    });
+</script>
+</body>
+</html>
