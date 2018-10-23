@@ -10,7 +10,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -50,11 +49,14 @@ public class AnnouncementService
         announcementDAO.deleteById(id);
     }
 
-    public Announcement getRecentAnnouncement()
+    public Page<Announcement> getRecentAnnouncement(int size)
     {
-        Pageable pageable = PageableUtil.pageable(false, "date", 0, 1);
-        Page<Announcement> page = announcementDAO.findAll(pageable);
-        Iterator<Announcement> iterator = page.iterator();
-        return iterator.next();
+        Pageable pageable = PageableUtil.pageable(false, "date", 0, size);
+        return announcementDAO.findAll(pageable);
+    }
+
+    public Announcement getAnnouncement(int id)
+    {
+        return announcementDAO.findById(id).get();
     }
 }

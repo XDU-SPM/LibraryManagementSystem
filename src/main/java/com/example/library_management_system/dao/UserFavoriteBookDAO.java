@@ -13,7 +13,4 @@ public interface UserFavoriteBookDAO extends JpaRepository<UserFavoriteBook, Int
     Page<UserFavoriteBook> findAllByUser(User reader, Pageable pageable);
 
     UserFavoriteBook findByUserAndBook(User reader, Book book);
-
-
-
 }
