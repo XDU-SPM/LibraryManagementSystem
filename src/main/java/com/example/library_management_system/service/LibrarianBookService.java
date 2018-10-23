@@ -363,6 +363,9 @@ public class LibrarianBookService
         if (money != damageMoney + overdueMoney)
             return -4;
 
+        Account account = new Account(AccountUtil.FINE, reader.getId(), damageMoney + overdueMoney, null, new Date());
+        accountDAO.save(account);
+
         ReturnHistory returnHistory = new ReturnHistory(reader.getId(), userBkunit, damageMoney + overdueMoney);
         returnHistoryDAO.save(returnHistory);
 
