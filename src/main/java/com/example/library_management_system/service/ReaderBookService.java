@@ -141,12 +141,8 @@ public class ReaderBookService
     {
         Book book = bookDAO.findByIsbn(isbn);
         User reader = userService.getUser();
-        UserFavoriteBook fb = userFavoriteBookDAO.findByUserAndBook(reader, book);
-        if (fb == null)
-        {
-            fb = new UserFavoriteBook(book, reader);
-            userFavoriteBookDAO.save(fb);
-        }
+        UserFavoriteBook fb = new UserFavoriteBook(book, reader);
+        userFavoriteBookDAO.save(fb);
     }
 
     public void deleteFavoriteBook(String isbn)

@@ -24,6 +24,12 @@ public class ReaderBookController
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private AnnouncementService announcementService;
+
+    @Autowired
+    private BookService bookService;
+
     @RequestMapping(value = "/reader/reader_condition", method = RequestMethod.GET)
     public String reader_reader_condition(Model model)
     {
@@ -34,6 +40,7 @@ public class ReaderBookController
         model.addAttribute("page1", readerBookService.queryReservedBooks(0, 5));
         model.addAttribute("page2", readerBookService.queryBorrowedBooks(0, 5));
         model.addAttribute("page3", readerBookService.queryReturnedBooks(0, 5));
+        model.addAttribute("page4", announcementService.getRecentAnnouncement(4));
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
         return "reader/reader_condition";
@@ -154,5 +161,12 @@ public class ReaderBookController
     public Status renew(int id)
     {
         return new Status(readerBookService.renew(id), globalUtilService.getMaxBorrowDays());
+    }
+
+    @RequestMapping(value = "/book_details", method = RequestMethod.GET)
+    public String reader_book_details(String isbn, Model model)
+    {
+        model.addAttribute("book", bookService.bookInfo(isbn));
+        return "book_details";
     }
 }
