@@ -1,0 +1,47 @@
+<span style="font-family:Microsoft YaHei;font-size:14px;"><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jsbarcode测试</title>
+    <!--百度jQuery引用地址-->
+    <script src = "assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="dist/JsBarcode.all.js"></script>
+</head>
+<body>
+    <!--方式1-->
+    <svg id="barcode"></svg>
+    <hr>
+    <!--方式2-->
+    <canvas id="canvas"></canvas>
+    <hr>
+    <!--方式3-->
+    <img id="bcode"/>
+    <hr>
+    <div id="test"></div>
+    <hr>
+    <script>
+        var count=0;
+        $("#barcode").JsBarcode('Hi!');//or JsBarcode("#barcode", "Hi!");
+
+        $("#canvas").JsBarcode('Hello world!');//or JsBarcode("#barcode", "Hello world!");
+
+        $("#bcode").JsBarcode("I'm bwju!");//or JsBarcode("#barcode", "I'm bwju!");
+
+        var para=document.createElement("img");
+        para.setAttribute('id','code');
+        var test = document.getElementById('test');
+        test.appendChild(para);
+        $("#code").JsBarcode("12345");
+
+        function f(div,content) {
+            var para=document.createElement("img");
+
+            para.setAttribute('id','code');
+            var test = document.getElementById('test');
+            test.appendChild(para);
+            $("#code").JsBarcode("12345");
+        }
+
+    </script>
+</body>
+</html></span>
