@@ -162,6 +162,7 @@ public class ReaderBookController
     {
         model.addAttribute("book", bookService.bookInfo(isbn));
         model.addAttribute("status", readerBookService.isFavoriteBook(isbn) ? 0 : 1);
+        System.out.println(readerBookService.isFavoriteBook(isbn) ? 0 : 1);
         return "book_details";
     }
 }

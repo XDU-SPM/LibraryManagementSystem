@@ -18,6 +18,9 @@ public class ReaderController
     private BookService bookService;
 
     @Autowired
+    private ReaderBookService readerBookService;
+
+    @Autowired
     private AnnouncementService announcementService;
 
     @RequestMapping(value = "/reader/reader_search", method = RequestMethod.GET)
@@ -53,6 +56,7 @@ public class ReaderController
         model.addAttribute("book", bookService.bookInfo(isbn));
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
+        model.addAttribute("status", readerBookService.isFavoriteBook(isbn) ? 0 : 1);
         return "reader/book_details";
     }
 

@@ -50,8 +50,8 @@
                         <span th:text="#{lan44}">语言</span> <span class="am-icon-caret-down"></span>
                     </a>
                     <ul class="am-dropdown-content">
-                        <li><a href="changeSessionLanguage?lang=zh&page=book_detail">中文</a></li>
-                        <li><a href="changeSessionLanguage?lang=en&page=book_detail">ENGLISH</a></li>
+                        <li><a href="changeSessionLanguage?lang=zh&page=book_details">中文</a></li>
+                        <li><a href="changeSessionLanguage?lang=en&page=book_details">ENGLISH</a></li>
                     </ul>
                 </li>
 
@@ -117,13 +117,13 @@
         <br>
 
         <div class="am-u-sm-centered am-u-md-centered am-u-lg-centered">
-            <button th:text = "#{reserve44}" th:if = "${status} eq 0" type = "button"
-                    class = "am-btn am-btn-primary am-round" disabled>
+            <button th:if = "${status} eq 0" type = "button"
+                    class = "am-btn am-btn-primary am-round" th:text="#{collect}" disabled>
                 收藏
             </button>
-            <button id="button_collect" th:text = "#{reserve44}" th:if = "${status} gt 0" type = "button"
+            <button id="button_collect" th:if = "${status} ne 0" type = "button"
                     class = "am-btn am-btn-primary am-round"
-                    th:onclick = "'javascript:book_collect('+${book.isbn}+')'">
+                    th:onclick = "'javascript:book_collect('+${book.isbn}+')'" th:text="#{collect}">
                 收藏
             </button>
         </div>
@@ -148,6 +148,8 @@
 <script type = "text/javascript" src = "assets/js/test.js"></script>
 <script th:inline = "javascript">
     iteSetOfReview();
+    console.log([[${status}]]);
+    console.log([[${book}]]);
 
     function iteSetOfReview() {
         var str = "";
@@ -209,11 +211,11 @@
             url: "collect",
             success: function (data) {
                 if(data!=null){
-                    alert("收藏成功！");
+                    alert([[#{sccg_yxy}]]);
                     $('#button_collect').attr('disabled',"true");
                 }
                 else
-                    alert("收藏失败！");
+                    alert([[#{scsb_yxy}]]);
             },
             error: function (data) {
                 alert([[#{aeoptal}]]);
