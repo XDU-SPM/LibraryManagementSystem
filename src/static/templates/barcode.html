@@ -13,17 +13,8 @@
     <script th:inline="javascript">
         // console.log([[${ids}]]);
         var count=0;
-        $("#barcode").JsBarcode('Hi!');//or JsBarcode("#barcode", "Hi!");
 
-        $("#canvas").JsBarcode('Hello world!');//or JsBarcode("#barcode", "Hello world!");
-
-        $("#bcode").JsBarcode("I'm bwju!");//or JsBarcode("#barcode", "I'm bwju!");
-
-        // var para=document.createElement("img");
-        // para.setAttribute('id','code');
-        // var test = document.getElementById('test');
-        // test.appendChild(para);
-        // $("#code").JsBarcode("12345");
+        var brcodes = document.getElementById('brcodes');
 
 
         function f(div,content) {
@@ -31,13 +22,14 @@
             var s_id=count+"";
             count++;
             para.setAttribute('id',s_id);
-            var brcodes = document.getElementById('brcodes');
             brcodes.appendChild(para);
             s_id2="#"+s_id;
             $(s_id2).JsBarcode(content);
         }
 
-        f("barcodes","12345")
+        f("barcodes","12345");
+        var hr=document.createElement("hr");
+        brcodes.appendChild(hr);
         f("barcodes","1234567");
 
     </script>
