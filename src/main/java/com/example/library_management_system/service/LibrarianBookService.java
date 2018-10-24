@@ -494,9 +494,23 @@ public class LibrarianBookService
 
     private void updateBkunitOperatingHistory(BkunitOperatingHistory bkunitOperatingHistory, boolean bkunit)
     {
-        bkunitOperatingHistory.setUsername(userDAO.findById(bkunitOperatingHistory.getUid()).getUsername());
+        String username;
+        User user;
+        if ((user = userDAO.findById(bkunitOperatingHistory.getUid())) == null)
+            username = localeMessageSourceService.getMessage("bedeleted");
+        else
+            username = user.getUsername();
+        bkunitOperatingHistory.setUsername(username);
         if (bkunit)
-            bkunitOperatingHistory.setBookName(bkunitDAO.findById(bkunitOperatingHistory.getBuid()).get().getBook().getTitle());
+        {
+            Optional<Bkunit> optional = bkunitDAO.findById(bkunitOperatingHistory.getBuid());
+            String bookName;
+            if (!optional.isPresent())
+                bookName = localeMessageSourceService.getMessage("bedeleted");
+            else
+                bookName = optional.get().getBook().getTitle();
+            bkunitOperatingHistory.setBookName(bookName);
+        }
         else
             bkunitOperatingHistory.setBookName(bookDAO.findByIsbn(bkunitOperatingHistory.getBuid()).getTitle());
     }
