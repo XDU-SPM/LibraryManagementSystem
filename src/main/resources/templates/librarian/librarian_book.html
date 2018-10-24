@@ -6,6 +6,7 @@
     <title>BiblioSoft</title>
     <link rel = "icon" type = "image/png" href = "assets/i/favicon.png">
     <link rel = "apple-touch-icon-precomposed" href = "assets/i/app-icon72x72@2x.png">
+    <script src = "assets/js/jquery.min.js"></script>
     <link rel = "stylesheet" href = "assets/css/amazeui.min.css"/>
     <link rel = "stylesheet" href = "assets/css/admin.css">
     <style>
@@ -147,7 +148,7 @@
         <div class = "admin-content-body">
             <div class = "am-cf am-padding am-padding-bottom-0">
                 <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg"
-                                                   th:text = "#{bookinfo}">书本信息</strong> /
+                                                   th:text = "#{bookinfo}">书本信息</strong>
                 </div>
             </div>
 
@@ -157,25 +158,9 @@
                 <div class = "am-u-sm-12 am-u-md-4 am-u-md-push-8">
                     <div class = "am-panel am-panel-default">
                         <div class = "am-panel-bd">
-                            <div class = "am-g">
-                                <div class = "am-u-md-4">
-                                    <img class = "am-img-circle am-img-thumbnail" width = "200" height = "200"
-                                         src = "http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/200/h/200/q/80"
-                                         alt = ""/>
-                                </div>
-                                <div class = "am-u-md-8">
-                                    <p th:text = "#{ubcp_zj}">上传图书封面 </p>
-                                    <form class = "am-form">
-                                        <div class = "am-form-group">
-                                            <input type = "file" id = "user-pic">
-                                            <p class = "am-form-help" th:text = "#{pst44}">请选择要上传的文件...</p>
-                                            <button type = "button" class = "am-btn am-btn-primary am-btn-xs"
-                                                    th:text = "#{save}">保存
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
+
+                            <img id="barcode" />
+
                         </div>
                     </div>
 
@@ -184,6 +169,14 @@
 
                 <div class = "am-u-sm-12 am-u-md-8 am-u-md-pull-4">
                     <form class = "am-form am-form-horizontal" action = "saveBook" method = "post">
+                        <div class = "am-form-group">
+                            <label for = "id" class = "am-u-sm-3 am-form-label" th:text = "#{id}">ID</label>
+                            <div class = "am-u-sm-9">
+                                <input type = "text" id = "id" name = "id" readonly="readonly"
+                                       th:value = "${id}">
+                            </div>
+                        </div>
+
                         <div class = "am-form-group">
                             <label for = "title" class = "am-u-sm-3 am-form-label" th:text = "#{btitle}">书名</label>
                             <div class = "am-u-sm-9">
@@ -293,7 +286,6 @@
             <hr>
             <p class = "am-padding-left" style = "text-align: center">© 2018 Biboliosoft Online Library System</p>
         </footer>
-
     </div>
     <!-- content end -->
 
@@ -304,33 +296,32 @@
 <script src = "assets/js/jquery.min.js"></script>
 <!--<![endif]-->
 <script src = "assets/js/amazeui.min.js"></script>
+<script src="dist/JsBarcode.all.js"></script>
 <script src = "assets/js/app.js"></script>
+<script th:inline="javascript">
+    console.log([[${id}]]);
+    var id=[[${id}]];
+    $("#barcode").JsBarcode(id);
+</script>
 <script th:inline = "javascript">
     console.log([[${book.brief}]]);
     document.getElementById("abstract").value = [[${book.brief}]];
 
-    var categories = [[${book.categories}]];
-
-    console.log([[${book.categories}]]);
-    console.log(categories);
-
-    var span = $("<span>");
-    span.attr('class', '')
-    $('#container').append($link);
-    for (var i = 0; i < categories.length; i++) {
-        console.log(categories[i]);
-        var name = categories[i].name;
-        var id = categories[i].id;
-        var str = "<span class=\"am-badge am-badge-secondary am-round  am-text-sm\">童话书</span>"
-    }
+    // var categories = [[${book.categories}]];
+    // console.log([[${book.categories}]]);
+    // console.log(categories);
+    //
+    // var span = $("<span>");
+    // span.attr('class', '')
+    // $('#container').append($link);
+    // for (var i = 0; i < categories.length; i++) {
+    //     console.log(categories[i]);
+    //     var name = categories[i].name;
+    //     var id = categories[i].id;
+    //     var str = "<span class=\"am-badge am-badge-secondary am-round  am-text-sm\">童话书</span>"
+    //}
 
 </script>
-<script type = "text/javascript" src = "assets/js/test.js"></script>
 <script type = "text/javascript" src = "assets/js/switch_language.js"></script>
-<script type = "text/javascript">
-    $("#change").click(function () {
-        translate();
-    })
-</script>
 </body>
 </html>

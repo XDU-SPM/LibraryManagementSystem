@@ -105,12 +105,7 @@
                 </div>
             </div>
 
-            <div class = "am-panel am-panel-default admin-sidebar-panel">
-                <div class = "am-panel-bd">
-                    <p><span class = "am-icon-tag"></span> wiki</p>
-                    <p>Welcome to the Biboliosoft wiki!</p>
-                </div>
-            </div>
+
         </div>
     </div>
     <!-- sidebar end -->
@@ -142,7 +137,7 @@
 
                                             </div>
                                             <div class = "am-u-sm-8 am-u-md-4">
-                                                <input type = "text" class = "am-input-sm" th:placeholder = "#{ibn_zj}"
+                                                <input type = "text" class = "am-input-sm" th:placeholder = "#{ibn_zj}" th:value="${maxBorrowNum}"
                                                        name = "num">
                                             </div>
                                             <div class = "am-hide-sm-only am-u-md-6"></div>
@@ -167,7 +162,7 @@
 
                                             </div>
                                             <div class = "am-u-sm-8 am-u-md-4">
-                                                <input type = "text" class = "am-input-sm" th:placeholder = "#{ibd_zj}"
+                                                <input type = "text" class = "am-input-sm" th:placeholder = "#{ibd_zj}" th:value="${maxBorrowDays}"
                                                        name = "days">
                                             </div>
                                             <div class = "am-hide-sm-only am-u-md-6"></div>
@@ -192,7 +187,7 @@
 
                                             </div>
                                             <div class = "am-u-sm-8 am-u-md-4">
-                                                <input type = "text" class = "am-input-sm" th:placeholder = "#{ida_zj}"
+                                                <input type = "text" class = "am-input-sm" th:placeholder = "#{ida_zj}" th:value="${registerMoney}"
                                                        name = "money">
                                             </div>
                                             <div class = "am-hide-sm-only am-u-md-6"></div>
@@ -218,7 +213,7 @@
 
                                             </div>
                                             <div class = "am-u-sm-8 am-u-md-4">
-                                                <input type = "text" class = "am-input-sm" th:placeholder = "#{iop_zj}"
+                                                <input type = "text" class = "am-input-sm" th:placeholder = "#{iop_zj}" th:value="${overdueMoney}"
                                                        name = "money">
                                             </div>
                                             <div class = "am-hide-sm-only am-u-md-6"></div>

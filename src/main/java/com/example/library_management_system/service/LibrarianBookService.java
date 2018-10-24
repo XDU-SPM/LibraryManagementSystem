@@ -92,10 +92,12 @@ public class LibrarianBookService
     public void deleteBkunit(String id)
     {
         Bkunit bkunit = bkunitDAO.findById(id).get();
+        int status = bkunit.getStatus();
         bkunit.setStatus(BkunitUtil.LOST);
 
         Book book = bkunit.getBook();
-        book.addNumber(-1);
+        if (status == BkunitUtil.NORMAL)
+            book.addNumber(-1);
         bookDAO.save(book);
 
         bkunitDAO.save(bkunit);

@@ -40,6 +40,11 @@ public class BookService
         return bookDAO.findByIsbn(isbn);
     }
 
+    public Book bookInfo1(String id)
+    {
+        return bkunitDAO.findById(id).get().getBook();
+    }
+
     public Bkunit searchBkunit(String id)
     {
         Optional<Bkunit> bkunitOptional = bkunitDAO.findById(id);

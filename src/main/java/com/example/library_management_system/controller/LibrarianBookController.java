@@ -57,22 +57,23 @@ public class LibrarianBookController
     }
 
     @RequestMapping(path = "/librarian/librarian_book", method = RequestMethod.GET)
-    public String bookInfo(String isbn, Model model)
+    public String bookInfo(String id, Model model)
     {
-        Book book = bookService.bookInfo(isbn);
+        Book book = bookService.bookInfo1(id);
         model.addAttribute("book", book);
+        model.addAttribute("id", id);
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
         return "/librarian/librarian_book";
     }
 
     @RequestMapping(value = "/librarian/saveBook", method = RequestMethod.POST)
-    public String saveBook(Book book, Model model)
+    public String saveBook(Book book, Model model, String id)
     {
         librarianBookService.saveBook(book);
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
-        return "redirect:librarian_book?isbn=" + book.getIsbn();
+        return "redirect:librarian_book?id=" + id;
     }
 
     @RequestMapping(value = "/librarian/searchBook", method = RequestMethod.GET)

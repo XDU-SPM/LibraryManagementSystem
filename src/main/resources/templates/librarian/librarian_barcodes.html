@@ -14,11 +14,7 @@
         console.log([[${ids}]]);
         var ids=[[${ids}]];
         var count=0;
-        $("#barcode").JsBarcode('Hi!');//or JsBarcode("#barcode", "Hi!");
-
-        $("#canvas").JsBarcode('Hello world!');//or JsBarcode("#barcode", "Hello world!");
-
-        $("#bcode").JsBarcode("I'm bwju!");//or JsBarcode("#barcode", "I'm bwju!");
+        var brcodes = document.getElementById('brcodes');
 
         // var para=document.createElement("img");
         // para.setAttribute('id','code');
@@ -32,7 +28,6 @@
             var s_id=count+"";
             count++;
             para.setAttribute('id',s_id);
-            var brcodes = document.getElementById('brcodes');
             brcodes.appendChild(para);
             s_id2="#"+s_id;
             $(s_id2).JsBarcode(content);
@@ -42,6 +37,8 @@
         {
             console.log(ids[i]);
             f("barcodes",ids[i]);
+            var hr=document.createElement("hr");
+            brcodes.appendChild(hr);
         }
     </script>
 </body>
