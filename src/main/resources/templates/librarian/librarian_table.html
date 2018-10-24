@@ -180,7 +180,7 @@
                         <tbody>
                         <tr th:each = "bunit:${set}">
                             <td th:text = "${bunit.id}"></td>
-                            <td ><a th:text = "${bunit.book.title}" th:href="@{librarian_book(isbn=${bunit.book.isbn})}"></a></td>
+                            <td ><a th:text = "${bunit.book.title}" th:href="@{librarian_book(id=${bunit.id})}"></a></td>
                             <td th:text = "${bunit.book.isbn}"></td>
                             <!--<td  th:text = "${bunit.book.author}"></td>-->
                             <td  th:text = "${bunit.book.publisher}"></td>
