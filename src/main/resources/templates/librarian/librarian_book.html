@@ -6,6 +6,8 @@
     <title>BiblioSoft</title>
     <link rel = "icon" type = "image/png" href = "assets/i/favicon.png">
     <link rel = "apple-touch-icon-precomposed" href = "assets/i/app-icon72x72@2x.png">
+    <script src = "assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="dist/JsBarcode.all.js"></script>
     <link rel = "stylesheet" href = "assets/css/amazeui.min.css"/>
     <link rel = "stylesheet" href = "assets/css/admin.css">
     <style>
@@ -158,22 +160,8 @@
                     <div class = "am-panel am-panel-default">
                         <div class = "am-panel-bd">
                             <div class = "am-g">
-                                <div class = "am-u-md-4">
-                                    <img class = "am-img-circle am-img-thumbnail" width = "200" height = "200"
-                                         src = "http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/200/h/200/q/80"
-                                         alt = ""/>
-                                </div>
-                                <div class = "am-u-md-8">
-                                    <p th:text = "#{ubcp_zj}">上传图书封面 </p>
-                                    <form class = "am-form">
-                                        <div class = "am-form-group">
-                                            <input type = "file" id = "user-pic">
-                                            <p class = "am-form-help" th:text = "#{pst44}">请选择要上传的文件...</p>
-                                            <button type = "button" class = "am-btn am-btn-primary am-btn-xs"
-                                                    th:text = "#{save}">保存
-                                            </button>
-                                        </div>
-                                    </form>
+                                <div id="barcode">
+
                                 </div>
                             </div>
                         </div>
@@ -306,7 +294,8 @@
 <script src = "assets/js/amazeui.min.js"></script>
 <script src = "assets/js/app.js"></script>
 <script th:inline="javascript">
-    console.log()
+    console.log([[${id}]]);
+    $("#barcode").JsBarcode(id);
 </script>
 <script th:inline = "javascript">
     console.log([[${book.brief}]]);
