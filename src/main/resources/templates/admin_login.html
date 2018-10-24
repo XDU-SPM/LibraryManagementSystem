@@ -10,7 +10,7 @@
     <link rel = "icon" type = "image/jpg" href = "/assets/i/head_logo.jpg">
     <link rel = "stylesheet" href = "assets/css/amazeui.min.css"/>
     <script src = "http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
-    &lt;!&ndash;<script src = "https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>&ndash;&gt;
+    <script src = "https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
     <style type = "text/css">
         .header {
             text-align: center;
@@ -49,24 +49,26 @@
     <div class = "am-topbar-brand">
         <a href = "/visitor-main" class = "am-text-ir">BiblioSoft</a>
     </div>
-    <div class = "am-collapse am-topbar-collapse" id = "topbar-collapse">
-        <ul class = "am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
-            <li class="am-dropdown" data-am-dropdown>
-                <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-                    <span th:text="#{lan44}">语言</span> <span class="am-icon-caret-down"></span>
-                </a>
-                <ul class="am-dropdown-content">
-                    <li><a href = "changeSessionLanguage?lang=zh">中文</a></li>
-                    <li><a href = "changeSessionLanguage?lang=en">ENGLISH</a></li>
-                </ul>
-            </li>
-        </ul>
+    <div class = "am-collapse am-topbar-collapse" id = "doc-topbar-collapse">
+        <div class = "am-collapse am-topbar-collapse" id = "topbar-collapse">
+            <ul class = "am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
+                <li class="am-dropdown" data-am-dropdown>
+                    <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+                        <span th:text="#{lan44}">语言</span> <span class="am-icon-caret-down"></span>
+                    </a>
+                    <ul class="am-dropdown-content">
+                        <li><a href = "changeSessionLanguage?lang=zh">中文</a></li>
+                        <li><a href = "changeSessionLanguage?lang=en">ENGLISH</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
     </div>
 </header>
 <body>
 <hr>
 <div class = "am-g">
-    <div style = "text-align: center" class = "am-text-primary am-text-lg"><h2>LOGIN</h2></div>
+    <div style = "text-align: center" class = "am-text-primary am-text-lg"><h2 th:text="#{adminlogin}">LOGIN</h2></div>
     <hr>
     <br>
     <form method = "post" class = "mystyle" name = "myform" action = "login">
@@ -81,7 +83,7 @@
             <input type = "submit" name = "" id = "loginbun" onclick = "shake(); return validateForm();" th:value = "#{lo_yxy}"
                    class = "am-btn am-btn-primary am-btn-sm  ">
             <br><br><br>
-            <a th:text="#{﻿fp44}">forget password</a>
+
         </div>
     </form>
 </div>

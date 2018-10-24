@@ -42,6 +42,25 @@
     <div class = "am-collapse am-topbar-collapse" id = "doc-topbar-collapse">
 
         <div class = "am-collapse am-topbar-collapse" id = "topbar-collapse">
+            <ul class = "am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
+                <li class="am-dropdown" data-am-dropdown>
+                    <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+                        <span th:text="#{lan44}">语言</span> <span class="am-icon-caret-down"></span>
+                    </a>
+                    <ul class="am-dropdown-content">
+                        <li><a href = "changeSessionLanguage1?lang=zh&page=visitor-main">中文</a></li>
+                        <li><a href = "changeSessionLanguage1?lang=en&page=visitor-main">ENGLISH</a></li>
+                    </ul>
+                </li>
+                <li class = "am-dropdown" data-am-dropdown>
+                    <a class = "am-dropdown-toggle" data-am-dropdown-toggle href = "javascript:;">
+                        <a th:href = "@{/logout}" th:text = "#{lg_yxy}">注销</a>
+                    </a>
+
+                </li>
+            </ul>
+        </div>
+        <!--<div class = "am-collapse am-topbar-collapse" id = "topbar-collapse">
 
             <ul class = "am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
 
@@ -49,18 +68,11 @@
                     <a class = "am-dropdown-toggle" data-am-dropdown-toggle href = "javascript:;">
                         <span th:text = "#{lan44}">语言</span> <span class = "am-icon-caret-down"></span>
                     </a>
-<<<<<<< HEAD
                     <ul class="am-dropdown-content">
                         <li><a href="changeSessionLanguage?lang=zh&page=book_details">中文</a></li>
                         <li><a href="changeSessionLanguage?lang=en&page=book_details">ENGLISH</a></li>
-=======
-                    <ul class = "am-dropdown-content">
-                        <li><a href = "changeSessionLanguage?lang=zh">中文</a></li>
-                        <li><a href = "changeSessionLanguage?lang=en">ENGLISH</a></li>
->>>>>>> feac54d5ba1625c587c07d1934666bf416eec3f6
                     </ul>
                 </li>
-
                 <li class = "am-dropdown" data-am-dropdown>
                     <a class = "am-dropdown-toggle" data-am-dropdown-toggle href = "javascript:;">
                         <a th:href = "@{/logout}" th:text = "#{lg_yxy}">注销</a>
@@ -69,7 +81,7 @@
                 </li>
 
             </ul>
-        </div>
+        </div>-->
 
     </div>
 </header>
