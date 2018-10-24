@@ -7,7 +7,6 @@
     <link rel = "icon" type = "image/png" href = "assets/i/favicon.png">
     <link rel = "apple-touch-icon-precomposed" href = "assets/i/app-icon72x72@2x.png">
     <script src = "assets/js/jquery.min.js"></script>
-    <script type="text/javascript" src="dist/JsBarcode.all.js"></script>
     <link rel = "stylesheet" href = "assets/css/amazeui.min.css"/>
     <link rel = "stylesheet" href = "assets/css/admin.css">
     <style>
@@ -149,7 +148,7 @@
         <div class = "admin-content-body">
             <div class = "am-cf am-padding am-padding-bottom-0">
                 <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg"
-                                                   th:text = "#{bookinfo}">书本信息</strong> /
+                                                   th:text = "#{bookinfo}">书本信息</strong>
                 </div>
             </div>
 
@@ -160,9 +159,7 @@
                     <div class = "am-panel am-panel-default">
                         <div class = "am-panel-bd">
                             <div class = "am-g">
-                                <div id="">
-                                    <img id="imgcode" />
-                                </div>
+                                    <img id="barcode" />
                             </div>
                         </div>
                     </div>
@@ -281,7 +278,6 @@
             <hr>
             <p class = "am-padding-left" style = "text-align: center">© 2018 Biboliosoft Online Library System</p>
         </footer>
-
     </div>
     <!-- content end -->
 
@@ -292,13 +288,15 @@
 <script src = "assets/js/jquery.min.js"></script>
 <!--<![endif]-->
 <script src = "assets/js/amazeui.min.js"></script>
+<script src="dist/JsBarcode.all.js"></script>
 <script src = "assets/js/app.js"></script>
 <script th:inline="javascript">
     console.log([[${id}]]);
+    var id=[[${id}]];
     $("#barcode").JsBarcode(id);
 </script>
 <script th:inline = "javascript">
-    console.log([[${book.brief}]]);
+    //console.log([[${book.brief}]]);
     document.getElementById("abstract").value = [[${book.brief}]];
 
     var categories = [[${book.categories}]];
