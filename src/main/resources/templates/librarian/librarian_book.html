@@ -158,9 +158,9 @@
                 <div class = "am-u-sm-12 am-u-md-4 am-u-md-push-8">
                     <div class = "am-panel am-panel-default">
                         <div class = "am-panel-bd">
-                            <div class = "am-g">
-                                    <img id="barcode" />
-                            </div>
+
+                            <img id="barcode" />
+
                         </div>
                     </div>
 
@@ -296,22 +296,22 @@
     $("#barcode").JsBarcode(id);
 </script>
 <script th:inline = "javascript">
-    //console.log([[${book.brief}]]);
+    console.log([[${book.brief}]]);
     document.getElementById("abstract").value = [[${book.brief}]];
 
-    var categories = [[${book.categories}]];
-    console.log([[${book.categories}]]);
-    console.log(categories);
-
-    var span = $("<span>");
-    span.attr('class', '')
-    $('#container').append($link);
-    for (var i = 0; i < categories.length; i++) {
-        console.log(categories[i]);
-        var name = categories[i].name;
-        var id = categories[i].id;
-        var str = "<span class=\"am-badge am-badge-secondary am-round  am-text-sm\">童话书</span>"
-    }
+    // var categories = [[${book.categories}]];
+    // console.log([[${book.categories}]]);
+    // console.log(categories);
+    //
+    // var span = $("<span>");
+    // span.attr('class', '')
+    // $('#container').append($link);
+    // for (var i = 0; i < categories.length; i++) {
+    //     console.log(categories[i]);
+    //     var name = categories[i].name;
+    //     var id = categories[i].id;
+    //     var str = "<span class=\"am-badge am-badge-secondary am-round  am-text-sm\">童话书</span>"
+    //}
 
 </script>
 <script type = "text/javascript" src = "assets/js/switch_language.js"></script>
