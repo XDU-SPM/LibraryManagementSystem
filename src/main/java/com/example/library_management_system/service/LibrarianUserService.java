@@ -44,11 +44,22 @@ public class LibrarianUserService
         return 1;
     }
 
+    public void saveReader(User tmp)
+    {
+        User user = userDAO.findById(tmp.getId());
+
+        user.setUsername(tmp.getUsername());
+        user.setName(tmp.getName());
+        user.setEmail(tmp.getEmail());
+
+        userDAO.save(user);
+    }
+
     // TODO: 2018/10/10 bug
     public double todayFineIncome()
     {
         OneDayApart oneDayApart = new OneDayApart();
-        Set<Account> accounts = accountDAO.findAllByDateBetween(oneDayApart.getBefore(), oneDayApart.getAfter());
+        Set<Account> accounts = accountDAO.findAllByTypeBetweenAndDateBetween(AccountUtil.FINE, AccountUtil.DEPOSIT, oneDayApart.getBefore(), oneDayApart.getAfter());
         double money = 0;
         for (Account account : accounts)
         {

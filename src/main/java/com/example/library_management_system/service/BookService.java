@@ -35,9 +35,9 @@ public class BookService
         return bookDAO.findByIsbnLikeOrTitleLikeOrAuthorLike(string, string, string, pageable);
     }
 
-    public Book bookInfo(String isbn)
+    public Book bookInfo(String id)
     {
-        return bookDAO.findByIsbn(isbn);
+        return bkunitDAO.findById(id).get().getBook();
     }
 
     public Bkunit searchBkunit(String id)
