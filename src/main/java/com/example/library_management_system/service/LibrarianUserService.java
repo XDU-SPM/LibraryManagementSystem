@@ -55,7 +55,6 @@ public class LibrarianUserService
         userDAO.save(user);
     }
 
-    // TODO: 2018/10/10 bug
     public double todayFineIncome()
     {
         OneDayApart oneDayApart = new OneDayApart();
