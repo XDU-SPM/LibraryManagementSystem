@@ -57,10 +57,11 @@ public class LibrarianBookController
     }
 
     @RequestMapping(path = "/librarian/librarian_book", method = RequestMethod.GET)
-    public String bookInfo(String isbn, Model model)
+    public String bookInfo(String id, Model model)
     {
-        Book book = bookService.bookInfo(isbn);
+        Book book = bookService.bookInfo(id);
         model.addAttribute("book", book);
+        model.addAttribute("id", id);
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
         return "/librarian/librarian_book";

@@ -46,7 +46,7 @@ public class AdminController
         model.addAttribute("status", true);
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
-        return "admin/permission_change";
+        return "redirect:permission_change";
     }
 
     @RequestMapping(value = "/admin/modifyMaxBorrowDays", method = RequestMethod.POST)
@@ -56,7 +56,7 @@ public class AdminController
         model.addAttribute("status", true);
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
-        return "admin/permission_change";
+        return "redirect:permission_change";
     }
 
     @RequestMapping(value = "/admin/modifyMaxBorrowNum", method = RequestMethod.POST)
@@ -66,7 +66,7 @@ public class AdminController
         model.addAttribute("status", true);
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
-        return "admin/permission_change";
+        return "redirect:permission_change";
     }
 
     @RequestMapping(value = "/admin/modifyOverdueMoney", method = RequestMethod.POST)
@@ -76,7 +76,7 @@ public class AdminController
         model.addAttribute("status", true);
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
-        return "admin/permission_change";
+        return "redirect:permission_change";
     }
 
     @RequestMapping(value = "/admin/modifyPassword", method = RequestMethod.POST)

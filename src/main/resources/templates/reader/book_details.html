@@ -49,15 +49,9 @@
                     <a class = "am-dropdown-toggle" data-am-dropdown-toggle href = "javascript:;">
                         <span th:text = "#{lan44}">语言</span> <span class = "am-icon-caret-down"></span>
                     </a>
-<<<<<<< HEAD
-                    <ul class="am-dropdown-content">
-                        <li><a href="changeSessionLanguage?lang=zh&page=book_details">中文</a></li>
-                        <li><a href="changeSessionLanguage?lang=en&page=book_details">ENGLISH</a></li>
-=======
                     <ul class = "am-dropdown-content">
-                        <li><a href = "changeSessionLanguage?lang=zh">中文</a></li>
-                        <li><a href = "changeSessionLanguage?lang=en">ENGLISH</a></li>
->>>>>>> feac54d5ba1625c587c07d1934666bf416eec3f6
+                        <li><a href = "changeSessionLanguage?lang=zh&page=book_details">中文</a></li>
+                        <li><a href = "changeSessionLanguage?lang=en&page=book_details">ENGLISH</a></li>
                     </ul>
                 </li>
 
@@ -122,14 +116,14 @@
         </div>
         <br>
 
-        <div class="am-u-sm-centered am-u-md-centered am-u-lg-centered">
+        <div class = "am-u-sm-centered am-u-md-centered am-u-lg-centered">
             <button th:if = "${status} eq 0" type = "button"
-                    class = "am-btn am-btn-primary am-round" th:text="#{collect}" disabled>
+                    class = "am-btn am-btn-primary am-round" th:text = "#{collect}" disabled>
                 收藏
             </button>
-            <button id="button_collect" th:if = "${status} ne 0" type = "button"
+            <button id = "button_collect" th:if = "${status} ne 0" type = "button"
                     class = "am-btn am-btn-primary am-round"
-                    th:onclick = "'javascript:book_collect('+${book.isbn}+')'" th:text="#{collect}">
+                    th:onclick = "'javascript:book_collect('+${book.isbn}+')'" th:text = "#{collect}">
                 收藏
             </button>
         </div>
@@ -211,16 +205,16 @@
         translate();
     })
 </script>
-<script th:inline="javascript">
+<script th:inline = "javascript">
     function book_collect(book_isbn) {
         $.ajax({
             type: "get",
             data: {isbn: book_isbn},
             url: "collect",
             success: function (data) {
-                if(data!=null){
+                if (data != null) {
                     alert([[#{sccg_yxy}]]);
-                    $('#button_collect').attr('disabled',"true");
+                    $('#button_collect').attr('disabled', "true");
                 }
                 else
                     alert([[#{scsb_yxy}]]);
