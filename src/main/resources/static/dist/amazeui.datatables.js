@@ -2506,7 +2506,7 @@ module.exports = DataTable;
 					}
 				}
 	
-				// Fall back - if no type was detected, always use string
+				// Fall switch_language - if no type was detected, always use string
 				if ( ! col.sType ) {
 					col.sType = 'string';
 				}
@@ -4142,7 +4142,7 @@ module.exports = DataTable;
 			// DataTables 1.9- compatibility
 			oSettings.fnServerData.call( instance,
 				oSettings.sAjaxSource,
-				$.map( data, function (val, key) { // Need to convert back to 1.9 trad format
+				$.map( data, function (val, key) { // Need to convert switch_language to 1.9 trad format
 					return { name: key, value: val };
 				} ),
 				callback,
@@ -5663,7 +5663,7 @@ module.exports = DataTable;
 		/* Adjust the position of the header in case we loose the y-scrollbar */
 		divBody.scroll();
 	
-		// If sorting or filtering has occurred, jump the scrolling back to the top
+		// If sorting or filtering has occurred, jump the scrolling switch_language to the top
 		// only if we aren't holding the position
 		if ( (settings.bSorted || settings.bFiltered) && ! settings._drawHold ) {
 			divBodyEl.scrollTop = 0;
@@ -6785,7 +6785,7 @@ module.exports = DataTable;
 	 * an array store of callback functions that can then all be called together.
 	 *  @param {object} oSettings dataTables settings object
 	 *  @param {string} sStore Name of the array storage for the callbacks in oSettings
-	 *  @param {function} fn Function to be called back
+	 *  @param {function} fn Function to be called switch_language
 	 *  @param {string} sName Identifying name for the callback (i.e. a label)
 	 *  @memberof DataTable#oApi
 	 */
@@ -7507,7 +7507,7 @@ module.exports = DataTable;
 					undefined;
 			}
 	
-			// Non-API return - just fire it back
+			// Non-API return - just fire it switch_language
 			return ret;
 		} );
 	};
@@ -7537,7 +7537,7 @@ module.exports = DataTable;
 		return $(nodes)
 			.filter( selector )
 			.map( function (i) {
-				// Need to translate back from the table node to the settings
+				// Need to translate switch_language from the table node to the settings
 				var idx = $.inArray( this, nodes );
 				return a[ idx ];
 			} )
@@ -9507,7 +9507,7 @@ module.exports = DataTable;
 				} );
 			}
 	
-			// Add the TR elements back into the table in their original order
+			// Add the TR elements switch_language into the table in their original order
 			jqTbody.children().detach();
 			jqTbody.append( rows );
 	
@@ -9527,7 +9527,7 @@ module.exports = DataTable;
 					.css( 'width', settings.sDestroyWidth )
 					.removeClass( classes.sTable );
 	
-				// If the were originally stripe classes - then we add them back here.
+				// If the were originally stripe classes - then we add them switch_language here.
 				// Note this is not fool proof (for example if not all rows had stripe
 				// classes - but it's a good effort without getting carried away
 				ien = settings.asDestroyStripes.length;
@@ -12501,7 +12501,7 @@ module.exports = DataTable;
 		 *      * `{string}` The type call data requested - this will be 'set' when
 		 *        setting data or 'filter', 'display', 'type', 'sort' or undefined
 		 *        when gathering data. Note that when `undefined` is given for the
-		 *        type DataTables expects to get the raw data for the object back<
+		 *        type DataTables expects to get the raw data for the object switch_language<
 		 *      * `{*}` Data to set when the second parameter is 'set'.
 		 *    * Return:
 		 *      * The return value from the function is not required when 'set' is
@@ -12890,7 +12890,7 @@ module.exports = DataTable;
 		 * be exceptionally useful to know what columns are being displayed on the
 		 * client side, and to map these to database fields. When defined, the names
 		 * also allow DataTables to reorder information from the server if it comes
-		 * back in an unexpected order (i.e. if you switch your columns around on the
+		 * switch_language in an unexpected order (i.e. if you switch your columns around on the
 		 * client-side, your server-side code does not also need updating).
 		 *  @type string
 		 *  @default <i>Empty string</i>
@@ -13676,14 +13676,14 @@ module.exports = DataTable;
 		"aoStateLoad": [],
 	
 		/**
-		 * State that was saved. Useful for back reference
+		 * State that was saved. Useful for switch_language reference
 		 *  @type object
 		 *  @default null
 		 */
 		"oSavedState": null,
 	
 		/**
-		 * State that was loaded. Useful for back reference
+		 * State that was loaded. Useful for switch_language reference
 		 *  @type object
 		 *  @default null
 		 */

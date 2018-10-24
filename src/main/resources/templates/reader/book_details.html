@@ -32,7 +32,7 @@
 
     </style>
 </head>
-<body background="assets/img/background.jpg">
+<body background = "assets/img/background.jpg">
 <header class = "am-topbar am-topbar-inverse admin-header">
     <h1 class = "am-topbar-brand ">
         <a href = "#" class = "am-text-ir">BiblioSoft</a>
@@ -45,19 +45,25 @@
 
             <ul class = "am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
 
-                <li class="am-dropdown" data-am-dropdown>
-                    <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-                        <span th:text="#{lan44}">语言</span> <span class="am-icon-caret-down"></span>
+                <li class = "am-dropdown" data-am-dropdown>
+                    <a class = "am-dropdown-toggle" data-am-dropdown-toggle href = "javascript:;">
+                        <span th:text = "#{lan44}">语言</span> <span class = "am-icon-caret-down"></span>
                     </a>
+<<<<<<< HEAD
                     <ul class="am-dropdown-content">
-                        <li><a href="changeSessionLanguage?lang=zh&page=book_detail">中文</a></li>
-                        <li><a href="changeSessionLanguage?lang=en&page=book_detail">ENGLISH</a></li>
+                        <li><a href="changeSessionLanguage?lang=zh&page=book_details">中文</a></li>
+                        <li><a href="changeSessionLanguage?lang=en&page=book_details">ENGLISH</a></li>
+=======
+                    <ul class = "am-dropdown-content">
+                        <li><a href = "changeSessionLanguage?lang=zh">中文</a></li>
+                        <li><a href = "changeSessionLanguage?lang=en">ENGLISH</a></li>
+>>>>>>> feac54d5ba1625c587c07d1934666bf416eec3f6
                     </ul>
                 </li>
 
                 <li class = "am-dropdown" data-am-dropdown>
                     <a class = "am-dropdown-toggle" data-am-dropdown-toggle href = "javascript:;">
-                        <a th:href = "@{/logout}" th:text="#{lg_yxy}">注销</a>
+                        <a th:href = "@{/logout}" th:text = "#{lg_yxy}">注销</a>
                     </a>
 
                 </li>
@@ -81,62 +87,63 @@
 
 <div class = "am-g">
     <div class = "am-u-lg-6 am-u-md-8 am-u-sm-centered">
-        <h3 th:text="#{btitle}">书名</h3>
+        <h3 th:text = "#{btitle}">书名</h3>
         <hr>
         <div class = "am-text-bottom">
             [[${book.title}]]
         </div>
         <br>
 
-        <h3 th:text="#{author}">作者</h3>
+        <h3 th:text = "#{author}">作者</h3>
         <hr>
         <div class = "am-text-bottom">
             [[${book.author}]]
         </div>
         <br>
 
-        <h3 th:text="#{publisher}">出版社</h3>
+        <h3 th:text = "#{publisher}">出版社</h3>
         <hr>
         <div class = "am-text-bottom">
             [[${book.publisher}]]
         </div>
         <br>
 
-        <h3 th:text="#{bl44}">图书位置</h3>
+        <h3 th:text = "#{bl44}">图书位置</h3>
         <hr>
         <div class = "am-text-bottom">
             [[${book.position}]]
         </div>
         <br>
 
-        <h3 th:text="#{brief}">简介</h3>
+        <h3 th:text = "#{brief}">简介</h3>
         <hr>
         <div class = "am-text-bottom">
             [[${book.brief}]]
         </div>
         <br>
 
+        <div class="am-u-sm-centered am-u-md-centered am-u-lg-centered">
+            <button th:if = "${status} eq 0" type = "button"
+                    class = "am-btn am-btn-primary am-round" th:text="#{collect}" disabled>
+                收藏
+            </button>
+            <button id="button_collect" th:if = "${status} ne 0" type = "button"
+                    class = "am-btn am-btn-primary am-round"
+                    th:onclick = "'javascript:book_collect('+${book.isbn}+')'" th:text="#{collect}">
+                收藏
+            </button>
+        </div>
+
         <hr>
 
         <div class = "am-cf am-padding">
-            <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg" th:text="#{pe44}">大众评价：</strong></div>
+            <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg" th:text = "#{pe44}">大众评价：</strong>
+            </div>
         </div>
 
         <ul class = "am-comments-list am-comments-list-flip" id = "book-review">
 
         </ul>
-
-        <div class="am-u-sm-centered am-u-md-centered am-u-lg-centered">
-            <button th:text = "#{reserve44}" th:if = "${book.number} eq 0" type = "button"
-                    class = "am-btn am-btn-primary am-round" disabled>
-                收藏
-            </button>
-            <button th:text = "#{reserve44}" th:if = "${book.number} gt 0" type = "button"
-                    class = "am-btn am-btn-primary am-round"
-                    th:onclick = "'javascript:book_reserve('+${book.isbn}+')'">
-                收藏
-            </button>
-        </div>
 
         <footer>
             <hr>
@@ -146,8 +153,11 @@
 </div>
 <script src = "https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
 <script type = "text/javascript" src = "assets/js/test.js"></script>
+<script type = "text/javascript" src = "assets/js/switch_language.js"></script>
 <script th:inline = "javascript">
     iteSetOfReview();
+    console.log([[${status}]]);
+    console.log([[${book}]]);
 
     function iteSetOfReview() {
         var str = "";
@@ -164,7 +174,7 @@
                 "                            <!--<h3 class=\"am-comment-title\">评论标题</h3>-->\n" +
                 "                            <div class = \"am-comment-meta\">\n" +
                 "                                <a href = \"#link-to-user\" class = \"am-comment-author\">" + x.user.username + "</a>\n" +
-                "                                "+[[#{co_yxy}]]+"\n" +
+                "                                " + [[#{co_yxy}]] + "\n" +
                 "                                <time datetime = \"2013-07-27T04:54:29-07:00\" title = \"2013年7月27日 下午7:54 格林尼治标准时间+0800\">\n" +
                 "                                    " + date2str(x.date, "yyyy-MM-d h:m:s") + "\n" +
                 "                                </time>\n" +
@@ -200,6 +210,26 @@
     $("#change").click(function () {
         translate();
     })
+</script>
+<script th:inline="javascript">
+    function book_collect(book_isbn) {
+        $.ajax({
+            type: "get",
+            data: {isbn: book_isbn},
+            url: "collect",
+            success: function (data) {
+                if(data!=null){
+                    alert([[#{sccg_yxy}]]);
+                    $('#button_collect').attr('disabled',"true");
+                }
+                else
+                    alert([[#{scsb_yxy}]]);
+            },
+            error: function (data) {
+                alert([[#{aeoptal}]]);
+            }
+        });
+    }
 </script>
 </body>
 </html>

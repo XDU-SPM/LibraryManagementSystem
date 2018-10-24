@@ -44,7 +44,7 @@ public class LibrarianBookController
         model.addAttribute("ids", ids);
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
-        return "redirect:librarian_table";
+        return "librarian/librarian_barcodes";
     }
 
     @RequestMapping(path = "/librarian/librarian_table", method = RequestMethod.GET)

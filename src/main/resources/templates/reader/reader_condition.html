@@ -50,8 +50,8 @@
                         <span th:text="#{lan44}">语言</span> <span class="am-icon-caret-down"></span>
                     </a>
                     <ul class="am-dropdown-content">
-                        <li><a href="changeSessionLanguage?lang=zh&page=reader_condition">中文</a></li>
-                        <li><a href="changeSessionLanguage?lang=en&page=reader_condition">ENGLISH</a></li>
+                        <li><a href = "changeSessionLanguage1?lang=zh&page=reader_condition">中文</a></li>
+                        <li><a href = "changeSessionLanguage1?lang=en&page=reader_condition">ENGLISH</a></li>
                     </ul>
                 </li>
                 <li class = "am-dropdown" data-am-dropdown>
@@ -112,8 +112,8 @@
             <!-- banner start -->
             <div class = "am-g am-g-fixed blog-fixed am-u-sm-centered blog-article-margin">
                 <div data-am-widget = "slider" class = "am-slider am-slider-b1" data-am-slider = '{&quot;controlNav&quot;:false}'>
-                    <ul th:each="notice:${page4}" class = "am-slides">
-                        <li>
+                    <ul class = "am-slides">
+                        <li th:each="notice:${page4}">
                             <img src = "assets/i/b1.jpg">
                             <div class = "blog-slider-desc am-slider-desc ">
                                 <div class = "blog-text-center blog-slider-con">
@@ -140,7 +140,7 @@
                     <li><a href = "#tab3" th:text="#{reserve44}">预约</a></li>
                     <li><a href = "#tab4" th:text="#{cbg44}">当前借阅</a></li>
                     <li><a href = "#tab5" th:text="#{hbr44}">已归还</a></li>
-                    <!--<li><a href = "#tab6">收藏</a></li>-->
+                    <li><a href = "#tab6" th:text="#{collect}">收藏</a></li>
                 </ul>
                 <div class = "am-tabs-bd">
                     <div class = "am-tab-panel am-fade am-in am-active" id = "tab1">
@@ -346,54 +346,54 @@
                         </div>
                     </div>
 
-                    <!--<div class = "am-tab-panel am-fade am-in " id = "tab6">-->
-                        <!--<div class = "am-cf am-padding am-padding-bottom-0">-->
-                            <!--<div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg" >收藏</strong></div>-->
-                        <!--</div>-->
-                        <!--<hr>-->
+                    <div class = "am-tab-panel am-fade am-in " id = "tab6">
+                        <div class = "am-cf am-padding am-padding-bottom-0">
+                            <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg" th:text="#{collect}" >收藏</strong></div>
+                        </div>
+                        <hr>
 
-                        <!--<table class = "am-table am-table-striped am-table-hover am-table-compact " id = "booklist-4">-->
-                            <!--<thead>-->
-                            <!--<tr>-->
-                                <!--<th class = "table-title" th:text="#{ti44}">标题</th>-->
-                                <!--<th class = "table-author" th:text="#{author}">作者</th>-->
-                                <!--<th class = "table-set" th:text="#{Operation}">操作</th>-->
-                            <!--</tr>-->
-                            <!--</thead>-->
-                            <!--<tbody id = "bk-table-4">-->
-                            <!--<tr th:each = "book:${page4}">-->
+                        <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "booklist-5">
+                            <thead>
+                            <tr>
+                                <th class = "table-title" th:text="#{ti44}">标题</th>
+                                <th class = "table-author" th:text="#{author}">作者</th>
+                                <th class = "table-set" th:text="#{Operation}">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody id = "bk-table-5">
+                            <tr th:each = "fbook:${page5}">
 
-                                <!--<td><a th:href = "@{book_details(isbn=${book.isbn})}"-->
-                                       <!--th:text = "${book.title}"></a></td>-->
+                                <td><a th:href = "@{book_details(isbn=${fbook.book.isbn})}"
+                                       th:text = "${fbook.book.title}"></a></td>
 
-                                <!--<td th:text = "${book.author}"></td>-->
-                                <!--<td>-->
-                                    <!--<div class = "am-btn-toolbar">-->
-                                        <!--<div class = "am-btn-group am-btn-group-xs">-->
-                                            <!--<a th:href = "@{reader_comment(isbn=${book.isbn})}">-->
-                                                <!--<button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><span-->
-                                                        <!--class = "am-icon-pencil-square-o"></span> <span >取消收藏</span>-->
-                                                <!--</button>-->
-                                            <!--</a>-->
-                                        <!--</div>-->
-                                    <!--</div>-->
-                                <!--</td>-->
-                            <!--</tr>-->
-                            <!--</tbody>-->
-                        <!--</table>-->
-                        <!--<br>-->
-                        <!--&lt;!&ndash;<div class = "am-cf">&ndash;&gt;-->
-                            <!--&lt;!&ndash;<span th:text="#{total44}">共</span> [[${page3.totalElements}]]  <span th:text="#{records44}">条记录</span>&ndash;&gt;-->
-                            <!--&lt;!&ndash;<div class = "am-fr">&ndash;&gt;-->
-                                <!--&lt;!&ndash;<ul class = "am-pagination">&ndash;&gt;-->
-                                    <!--&lt;!&ndash;<li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook3_1()" th:text="#{f_zj}">首页</button></li>&ndash;&gt;-->
-                                    <!--&lt;!&ndash;<li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook3_2(-1)" th:text="#{p_zj}">上一页</button></li>&ndash;&gt;-->
-                                    <!--&lt;!&ndash;<li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook3_2(1)" th:text="#{n_zj}">下一页</button></li>&ndash;&gt;-->
-                                    <!--&lt;!&ndash;<li><button type="button" class="am-btn am-btn-primary am-round" th:onclick = "'javascript:getOnePageBook3_3('+${page4.totalPages}+'-1)'" th:text="#{l_zj}">末页</button></li>&ndash;&gt;-->
-                                <!--&lt;!&ndash;</ul>&ndash;&gt;-->
-                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                    <!--</div>-->
+                                <td th:text = "${fbook.book.author}"></td>
+                                <td>
+                                    <div class = "am-btn-toolbar">
+                                        <div class = "am-btn-group am-btn-group-xs">
+                                            <a th:onclick = "'javascript:cancel_collect('+${fbook.book.isbn}+')'">
+                                                <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><span
+                                                        class = "am-icon-pencil-square-o"></span> <span th:text="#{cancel_collect}">取消收藏</span>
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <br>
+                        <div class = "am-cf">
+                            <span th:text="#{total44}">共</span> <span id="book-collect">[[${page5.totalElements}]]</span>  <span th:text="#{records44}">条记录</span>
+                            <div class = "am-fr">
+                                <ul class = "am-pagination">
+                                    <li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook5_1()" th:text="#{f_zj}">首页</button></li>
+                                    <li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook5_2(-1)" th:text="#{p_zj}">上一页</button></li>
+                                    <li><button type="button" class="am-btn am-btn-primary am-round" onclick = "getOnePageBook5_2(1)" th:text="#{n_zj}">下一页</button></li>
+                                    <li><button type="button" class="am-btn am-btn-primary am-round" th:onclick = "'javascript:getOnePageBook5_3('+${page5.totalPages}+'-1)'" th:text="#{l_zj}">末页</button></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -428,6 +428,7 @@
 <script src = "https://gw.alipayobjects.com/os/antv/pkg/_antv.data-set-0.9.6/dist/data-set.min.js"></script>
 <script src = "https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
 <script type = "text/javascript" src = "assets/js/test.js"></script>
+<script type = "text/javascript" src = "assets/js/switch_language.js"></script>
 
 <script th:inline = "javascript">
     var appointment_number = [[${page1.totalElements}]];
@@ -456,6 +457,33 @@
         }
     }
 
+    var collect_number = [[${page5.totalElements}]];
+    function cancel_collect(isbn) {
+        var res = confirm([[#{cc}]]);
+        if (res == true) {
+            $.ajax({
+                type: "get",
+                data: {isbn: isbn},
+                url: "cancel_collect",
+                success: function (data) {
+                    if (data.status == 0){
+                        alert([[#{suc_can}]]);
+                        getOnePageBook5_2(0);
+                        console.log("2333");
+                        $('#book-collect').empty();
+                        collect_number--;
+                        $('#book-collect').html(collect_number);
+                    }
+                    else
+                        alert([[#{qxsb_yxy}]]);
+                },
+                error: function (data) {
+                    alert([[#{aeoptal}]]);
+                }
+            });
+        }
+    }
+
     function book_renew(book_id) {
         var res = confirm([[#{con_ren}]]);
         if (res == true) {
@@ -464,15 +492,16 @@
                 data: {id: book_id},
                 url: "renew",
                 success: function (data) {
-                    if (data.status == 0)
+                    if (data.status == 0) {
                         alert([[#{sec_ren}]] + data.number + [[#{day}]]);
+                        getOnePageBook2_2(0);
+                    }
                     else if (data.status == -1)
                         alert([[#{ftrjo}]]);
                     else if (data.status == -2)
                         alert([[#{ftre}]]);
                     else
                         alert([[#{ftraue}]]);
-                    getOnePageBook2_2(0);
                 },
                 error: function (data) {
                     alert([[#{aeoptal}]]);
@@ -630,14 +659,128 @@
 
 <script th:inline="javascript">
 
+    var pageNumber5 = 0;
+
+    function getOnePageBook5_1() {
+        pageNumber5 = 0;
+        $.ajax({
+            type: "get",
+            url: "collectBooks",
+            data: {start: 0, size: 5},
+            success: function (data) {
+                var str = "";
+                $('#bk-table-5').empty();
+                for (var i = 0; i < data.content.length; i++) {
+                    str += "<tr>\n" +
+                        "\n" +
+                        "                                <td><a th:href = \"book_details?isbn="+data.content[i].book.isbn+"\">"+data.content[i].book.title+"</a></td>\n" +
+                        "\n" +
+                        "                                <td>"+data.content[i].book.author+"</td>\n" +
+                        "                                <td>\n" +
+                        "                                    <div class = \"am-btn-toolbar\">\n" +
+                        "                                        <div class = \"am-btn-group am-btn-group-xs\">\n" +
+                        "                                            <a th:href = \"cancel_collect?isbn="+data.content[i].book.isbn+"\">\n" +
+                        "                                                <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"><span\n" +
+                        "                                                        class = \"am-icon-pencil-square-o\"></span> <span >"+[[#{cancel_collect}]]+"</span>\n" +
+                        "                                                </button>\n" +
+                        "                                            </a>\n" +
+                        "                                        </div>\n" +
+                        "                                    </div>\n" +
+                        "                                </td>\n" +
+                        "                            </tr>"
+                }
+                $('#bk-table-5').html(str);
+            }
+        });
+    }
+
+    function getOnePageBook5_2(temp) {
+        pageNumber5 += temp;
+        console.log(pageNumber5);
+        if (pageNumber5 < 0)
+            pageNumber5 = 0;
+        else if (pageNumber5 >= [[${page5.totalPages}]])
+            pageNumber5 = [[${page5.totalPages}]]-1;
+        else
+            $.ajax({
+                type: "get",
+                url: "collectBooks",
+                data: {start: pageNumber5, size: 5},
+                success: function (data) {
+                    console.log(data);
+                    var str = '';
+                    $('#bk-table-5').empty();
+                    for (var i = 0; i < data.content.length; i++) {
+                        str += "<tr>\n" +
+                            "\n" +
+                            "                                <td><a th:href = \"book_details?isbn="+data.content[i].book.isbn+"\">"+data.content[i].book.title+"</a></td>\n" +
+                            "\n" +
+                            "                                <td>"+data.content[i].book.author+"</td>\n" +
+                            "                                <td>\n" +
+                            "                                    <div class = \"am-btn-toolbar\">\n" +
+                            "                                        <div class = \"am-btn-group am-btn-group-xs\">\n" +
+                            "                                            <a th:href = \"cancel_collect?isbn="+data.content[i].book.isbn+"\">\n" +
+                            "                                                <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"><span\n" +
+                            "                                                        class = \"am-icon-pencil-square-o\"></span> <span >"+[[#{cancel_collect}]]+"</span>\n" +
+                            "                                                </button>\n" +
+                            "                                            </a>\n" +
+                            "                                        </div>\n" +
+                            "                                    </div>\n" +
+                            "                                </td>\n" +
+                            "                            </tr>"
+                    }
+                    $('#bk-table-5').html(str);
+                }
+            });
+    }
+
+    function getOnePageBook5_3(end) {
+        pageNumber5 = end;
+        $.ajax({
+            type: "get",
+            url: "collectBooks",
+            data: {start: end, size: 5},
+            success: function (data) {
+                console.log(data);
+                var str = '';
+                $('#bk-table-5').empty();
+                for (var i = 0; i < data.content.length; i++) {
+                    str += "<tr>\n" +
+                        "\n" +
+                        "                                <td><a th:href = \"book_details?isbn="+data.content[i].book.isbn+"\">"+data.content[i].book.title+"</a></td>\n" +
+                        "\n" +
+                        "                                <td>"+data.content[i].book.author+"</td>\n" +
+                        "                                <td>\n" +
+                        "                                    <div class = \"am-btn-toolbar\">\n" +
+                        "                                        <div class = \"am-btn-group am-btn-group-xs\">\n" +
+                        "                                            <a th:href = \"cancel_collect?isbn="+data.content[i].book.isbn+"\">\n" +
+                        "                                                <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"><span\n" +
+                        "                                                        class = \"am-icon-pencil-square-o\"></span> <span >"+[[#{cancel_collect}]]+"</span>\n" +
+                        "                                                </button>\n" +
+                        "                                            </a>\n" +
+                        "                                        </div>\n" +
+                        "                                    </div>\n" +
+                        "                                </td>\n" +
+                        "                            </tr>"
+                }
+                $('#bk-table-5').html(str);
+            }
+        });
+    }
+</script>
+
+<script th:inline="javascript">
+
     var pageNumber3 = 0;
+
+    console.log(222222222);
 
     function getOnePageBook3_1() {
         pageNumber3 = 0;
         $.ajax({
             type: "get",
             url: "returnedBooks",
-            data: {start: 0, size: 5, status: 3},
+            data: {start: 0, size: 5},
             success: function (data) {
                 var str = "";
                 $('#bk-table-3').empty();
@@ -679,7 +822,7 @@
             $.ajax({
                 type: "get",
                 url: "returnedBooks",
-                data: {start: pageNumber3, size: 5, status: 3},
+                data: {start: pageNumber3, size: 5},
                 success: function (data) {
                     var str = '';
                     $('#bk-table-3').empty();
@@ -716,7 +859,7 @@
         $.ajax({
             type: "get",
             url: "returnedBooks",
-            data: {start: end, size: 5, status: 3},
+            data: {start: end, size: 5},
             success: function (data) {
                 console.log(data);
                 var str = '';
@@ -749,101 +892,18 @@
         });
     }
 </script>
+
 <script th:inline="javascript">
 
     var pageNumber2 = 0;
 
+    console.log("333333");
     function getOnePageBook2_1() {
         pageNumber2 = 0;
         $.ajax({
             type: "get",
             url: "borrowedBooks",
-            data: {start: 0, size: 5, status: 2},
-            success: function (data) {
-                var str = '';
-                $('#bk-table-2').empty();
-                for (var i = 0; i < data.content.length; i++) {
-                    str += "<tr>\n" +
-                        "\n" +
-                        "                    <td>"+data.content[i].bkunit.id+"</td>\n" +
-                        "                    <td><a href = \"book_details?isbn="+data.content[i].bkunit.book.isbn+"\">"+data.content[i].bkunit.book.title+"</a></td>\n" +
-                        "\n" +
-                        "                    <td>"+data.content[i].bkunit.book.author+"</td>\n" +
-                        "                    <td class = \"am-hide-sm-only\">"+data.content[i].borrowDate+"</td>\n" +
-                        "                    <td class = \"am-hide-sm-only\">"+data.content[i].returnDate+"</td>\n" +
-                        "                    <td>\n" +
-                        "                        <div class = \"am-btn-toolbar\">\n" +
-                        "                            <div class = \"am-btn-group am-btn-group-xs\">\n" +
-                        "                                <a href = \"reader_comment?isbn="+data.content[i].bkunit.book.isbn+"\">\n" +
-                        "                                    <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"><span\n" +
-                        "                                            class = \"am-icon-pencil-square-o\"></span> "+[[#{comment44}]]+"\n" +
-                        "                                    </button>\n" +
-                        "                                    <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"\n" +
-                        "                                            onclick = \"book_renew("+data.content[i].id+")\">\n" +
-                        "                                        <span class = \"am-icon-pencil-square-o\"></span> "+#{renew44}+"\n" +
-                        "                                    </button>\n" +
-                        "                                </a>\n" +
-                        "                            </div>\n" +
-                        "                        </div>\n" +
-                        "                    </td>\n" +
-                        "                </tr>"
-                }
-                $('#bk-table-2').html(str);
-            }
-        });
-    }
-
-    function getOnePageBook2_2(temp) {
-        pageNumber2 += temp;
-        if (pageNumber2 < 0)
-            pageNumber2 = 0;
-        else if (pageNumber2 >= [[${page2.totalPages}]])
-            pageNumber2 = [[${page2.totalPages}]]-1;
-        else
-            $.ajax({
-                type: "get",
-                url: "borrowedBooks",
-                data: {start: pageNumber2, size: 5, status: 2},
-                success: function (data) {
-                    var str = '';
-                    $('#bk-table-2').empty();
-                    for (var i = 0; i < data.content.length; i++) {
-                        str += "<tr>\n" +
-                            "\n" +
-                            "                    <td>"+data.content[i].bkunit.id+"</td>\n" +
-                            "                    <td><a href = \"book_details?isbn="+data.content[i].bkunit.book.isbn+"\">"+data.content[i].bkunit.book.title+"</a></td>\n" +
-                            "\n" +
-                            "                    <td>"+data.content[i].bkunit.book.author+"</td>\n" +
-                            "                    <td class = \"am-hide-sm-only\">"+data.content[i].borrowDate+"</td>\n" +
-                            "                    <td class = \"am-hide-sm-only\">"+data.content[i].returnDate+"</td>\n" +
-                            "                    <td>\n" +
-                            "                        <div class = \"am-btn-toolbar\">\n" +
-                            "                            <div class = \"am-btn-group am-btn-group-xs\">\n" +
-                            "                                <a href = \"reader_comment?isbn="+data.content[i].bkunit.book.isbn+"\">\n" +
-                            "                                    <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"><span\n" +
-                            "                                            class = \"am-icon-pencil-square-o\"></span> "+[[#{comment44}]]+"\n" +
-                            "                                    </button>\n" +
-                            "                                    <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"\n" +
-                            "                                            onclick = \"book_renew("+data.content[i].id+")\">\n" +
-                            "                                        <span class = \"am-icon-pencil-square-o\"></span> "+[[#{renew44}]]+"\n" +
-                            "                                    </button>\n" +
-                            "                                </a>\n" +
-                            "                            </div>\n" +
-                            "                        </div>\n" +
-                            "                    </td>\n" +
-                            "                </tr>"
-                    }
-                    $('#bk-table-2').html(str);
-                }
-            });
-    }
-
-    function getOnePageBook2_3(end) {
-        pageNumber2 = end;
-        $.ajax({
-            type: "get",
-            url: "borrowedBooks",
-            data: {start: end, size: 5, status: 2},
+            data: {start: 0, size: 5},
             success: function (data) {
                 var str = '';
                 $('#bk-table-2').empty();
@@ -871,7 +931,92 @@
                         "                            </div>\n" +
                         "                        </div>\n" +
                         "                    </td>\n" +
-                        "                </tr>"
+                        "                </tr>";
+                }
+                $('#bk-table-2').html(str);
+            }
+        });
+    }
+
+    function getOnePageBook2_2(temp) {
+        pageNumber2 += temp;
+        if (pageNumber2 < 0)
+            pageNumber2 = 0;
+        else if (pageNumber2 >= [[${page2.totalPages}]])
+            pageNumber2 = [[${page2.totalPages}]]-1;
+        else
+            $.ajax({
+                type: "get",
+                url: "borrowedBooks",
+                data: {start: pageNumber2, size: 5},
+                success: function (data) {
+                    var str = '';
+                    $('#bk-table-2').empty();
+                    for (var i = 0; i < data.content.length; i++) {
+                        str += "<tr>\n" +
+                            "\n" +
+                            "                    <td>"+data.content[i].bkunit.id+"</td>\n" +
+                            "                    <td><a href = \"book_details?isbn="+data.content[i].bkunit.book.isbn+"\">"+data.content[i].bkunit.book.title+"</a></td>\n" +
+                            "\n" +
+                            "                    <td>"+data.content[i].bkunit.book.author+"</td>\n" +
+                            "                    <td class = \"am-hide-sm-only\">"+data.content[i].borrowDate+"</td>\n" +
+                            "                    <td class = \"am-hide-sm-only\">"+data.content[i].returnDate+"</td>\n" +
+                            "                    <td>\n" +
+                            "                        <div class = \"am-btn-toolbar\">\n" +
+                            "                            <div class = \"am-btn-group am-btn-group-xs\">\n" +
+                            "                                <a href = \"reader_comment?isbn="+data.content[i].bkunit.book.isbn+"\">\n" +
+                            "                                    <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"><span\n" +
+                            "                                            class = \"am-icon-pencil-square-o\"></span> "+[[#{comment44}]]+"\n" +
+                            "                                    </button>\n" +
+                            "                                    <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"\n" +
+                            "                                            onclick = \"book_renew("+data.content[i].id+")\">\n" +
+                            "                                        <span class = \"am-icon-pencil-square-o\"></span> "+[[#{renew44}]]+"\n" +
+                            "                                    </button>\n" +
+                            "                                </a>\n" +
+                            "                            </div>\n" +
+                            "                        </div>\n" +
+                            "                    </td>\n" +
+                            "                </tr>";
+                    }
+                    $('#bk-table-2').html(str);
+                }
+            });
+    }
+
+    function getOnePageBook2_3(end) {
+        pageNumber2 = end;
+        $.ajax({
+            type: "get",
+            url: "borrowedBooks",
+            data: {start: end, size: 5},
+            success: function (data) {
+                var str = '';
+                $('#bk-table-2').empty();
+                for (var i = 0; i < data.content.length; i++) {
+                    str += "<tr>\n" +
+                        "\n" +
+                        "                    <td>"+data.content[i].bkunit.id+"</td>\n" +
+                        "                    <td><a href = \"book_details?isbn="+data.content[i].bkunit.book.isbn+"\">"+data.content[i].bkunit.book.title+"</a></td>\n" +
+                        "\n" +
+                        "                    <td>"+data.content[i].bkunit.book.author+"</td>\n" +
+                        "                    <td class = \"am-hide-sm-only\">"+data.content[i].borrowDate+"</td>\n" +
+                        "                    <td class = \"am-hide-sm-only\">"+data.content[i].returnDate+"</td>\n" +
+                        "                    <td>\n" +
+                        "                        <div class = \"am-btn-toolbar\">\n" +
+                        "                            <div class = \"am-btn-group am-btn-group-xs\">\n" +
+                        "                                <a href = \"reader_comment?isbn="+data.content[i].bkunit.book.isbn+"\">\n" +
+                        "                                    <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"><span\n" +
+                        "                                            class = \"am-icon-pencil-square-o\"></span> "+[[#{comment44}]]+"\n" +
+                        "                                    </button>\n" +
+                        "                                    <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"\n" +
+                        "                                            onclick = \"book_renew("+data.content[i].id+")\">\n" +
+                        "                                        <span class = \"am-icon-pencil-square-o\"></span> "+[[#{renew44}]]+"\n" +
+                        "                                    </button>\n" +
+                        "                                </a>\n" +
+                        "                            </div>\n" +
+                        "                        </div>\n" +
+                        "                    </td>\n" +
+                        "                </tr>";
                 }
                 $('#bk-table-2').html(str);
             }
@@ -881,12 +1026,14 @@
 <script th:inline="javascript">
     var pageNumber1 = 0;
 
+    console.log("4444444");
+
     function getOnePageBook1_1() {
         pageNumber1 = 0;
         $.ajax({
             type: "get",
             url: "reservedBooks",
-            data: {start: 0, size: 5, status: 1},
+            data: {start: 0, size: 5},
             success: function (data) {
                 var str = '';
                 $('#bk-table-1').empty();
@@ -932,7 +1079,7 @@
             $.ajax({
                 type: "get",
                 url: "reservedBooks",
-                data: {start: pageNumber1, size: 5, status: 1},
+                data: {start: pageNumber1, size: 5},
                 success: function (data) {
                     var str = '';
                     $('#bk-table-1').empty();
@@ -972,7 +1119,7 @@
         $.ajax({
             type: "get",
             url: "reservedBooks",
-            data: {start: end, size: 5, status: 1},
+            data: {start: end, size: 5},
             success: function (data) {
                 var str = '';
                 $('#bk-table-1').empty();

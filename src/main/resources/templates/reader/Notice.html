@@ -50,8 +50,13 @@
                         <span th:text="#{lan44}">语言</span> <span class="am-icon-caret-down"></span>
                     </a>
                     <ul class="am-dropdown-content">
-                        <li><a href="changeSessionLanguage?lang=zh&page=book_detail">中文</a></li>
-                        <li><a href="changeSessionLanguage?lang=en&page=book_detail">ENGLISH</a></li>
+<<<<<<< HEAD
+                        <li><a href="changeSessionLanguage?lang=zh&page=Notice">中文</a></li>
+                        <li><a href="changeSessionLanguage?lang=en&page=Notice">ENGLISH</a></li>
+=======
+                        <li><a href = "changeSessionLanguage?lang=zh">中文</a></li>
+                        <li><a href = "changeSessionLanguage?lang=en">ENGLISH</a></li>
+>>>>>>> feac54d5ba1625c587c07d1934666bf416eec3f6
                     </ul>
                 </li>
 
@@ -74,14 +79,14 @@
         <h3 th:text="#{btitle}">标题</h3>
         <hr>
         <div class = "am-text-bottom">
-            [[${annoucement.title}]]
+            [[${announcement.title}]]
         </div>
         <br>
 
-        <h3 th:text="#{author}">内容</h3>
+        <h3 th:text="#{c_zj}">Content</h3>
         <hr>
         <div class = "am-text-bottom">
-            [[${annoucement.content}]]
+            [[${announcement.content}]]
         </div>
 
         <footer>
@@ -92,5 +97,6 @@
 </div>
 <script src = "https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
 <script type = "text/javascript" src = "assets/js/test.js"></script>
+<script type = "text/javascript" src = "assets/js/switch_language.js"></script>
 </body>
 </html>
