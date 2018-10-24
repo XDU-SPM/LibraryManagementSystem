@@ -2178,10 +2178,10 @@ function addCombinator( matcher, combinator, base ) {
 						if ( (oldCache = uniqueCache[ dir ]) &&
 							oldCache[ 0 ] === dirruns && oldCache[ 1 ] === doneName ) {
 
-							// Assign to newCache so results back-propagate to previous elements
+							// Assign to newCache so results switch_language-propagate to previous elements
 							return (newCache[ 2 ] = oldCache[ 2 ]);
 						} else {
-							// Reuse newcache so results back-propagate to previous elements
+							// Reuse newcache so results switch_language-propagate to previous elements
 							uniqueCache[ dir ] = newCache;
 
 							// A match means we're done; a fail means we have to keep checking
@@ -2281,7 +2281,7 @@ function setMatcher( preFilter, selector, matcher, postFilter, postFinder, postS
 			temp = condense( matcherOut, postMap );
 			postFilter( temp, [], context, xml );
 
-			// Un-match failing elements by moving them back to matcherIn
+			// Un-match failing elements by moving them switch_language to matcherIn
 			i = temp.length;
 			while ( i-- ) {
 				if ( (elem = temp[i]) ) {
@@ -2861,7 +2861,7 @@ var rootjQuery,
 				if ( match[ 1 ] ) {
 					context = context instanceof jQuery ? context[ 0 ] : context;
 
-					// Option to run scripts is true for back-compat
+					// Option to run scripts is true for switch_language-compat
 					// Intentionally let the error be thrown if parseHTML is not present
 					jQuery.merge( this, jQuery.parseHTML(
 						match[ 1 ],
@@ -3389,7 +3389,7 @@ jQuery.extend( {
 			},
 			deferred = {};
 
-		// Keep pipe for back-compat
+		// Keep pipe for switch_language-compat
 		promise.pipe = promise.then;
 
 		// Add list-specific methods
@@ -5719,7 +5719,7 @@ var documentElement = document.documentElement;
 		boxSizingReliableVal = divStyle.width === "4px";
 
 		// Support: Android 4.0 - 4.3 only
-		// Some styles come back with percentage values, even though they shouldn't
+		// Some styles come switch_language with percentage values, even though they shouldn't
 		div.style.marginRight = "50%";
 		pixelMarginRightVal = divStyle.marginRight === "4px";
 
@@ -5799,7 +5799,7 @@ function curCSS( elem, name, computed ) {
 	ret = computed ? computed.getPropertyValue( name ) || computed[ name ] : undefined;
 
 	// Support: Opera 12.1x only
-	// Fall back to style even without computed
+	// Fall switch_language to style even without computed
 	// computed is undefined for elems on document fragments
 	if ( ( ret === "" || ret === undefined ) && !jQuery.contains( elem.ownerDocument, elem ) ) {
 		ret = jQuery.style( elem, name );
@@ -5979,7 +5979,7 @@ function getWidthOrHeight( elem, name, extra ) {
 	// MathML - https://bugzilla.mozilla.org/show_bug.cgi?id=491668
 	if ( val <= 0 || val == null ) {
 
-		// Fall back to computed then uncomputed css if necessary
+		// Fall switch_language to computed then uncomputed css if necessary
 		val = curCSS( elem, name, styles );
 		if ( val < 0 || val == null ) {
 			val = elem.style[ name ];
@@ -5991,7 +5991,7 @@ function getWidthOrHeight( elem, name, extra ) {
 		}
 
 		// Check for style in case a browser which returns unreliable values
-		// for getComputedStyle silently falls back to the reliable elem.style
+		// for getComputedStyle silently falls switch_language to the reliable elem.style
 		valueIsBorderBox = isBorderBox &&
 			( support.boxSizingReliable() || val === elem.style[ name ] );
 
@@ -6080,7 +6080,7 @@ jQuery.extend( {
 			get: function( elem, computed ) {
 				if ( computed ) {
 
-					// We should always get a number back from opacity
+					// We should always get a number switch_language from opacity
 					var ret = curCSS( elem, "opacity" );
 					return ret === "" ? "1" : ret;
 				}
@@ -6424,7 +6424,7 @@ Tween.propHooks = {
 		},
 		set: function( tween ) {
 
-			// Use step hook for back compat.
+			// Use step hook for switch_language compat.
 			// Use cssHook if its there.
 			// Use .style if available and use plain properties where available.
 			if ( jQuery.fx.step[ tween.prop ] ) {
@@ -7514,8 +7514,8 @@ jQuery.fn.extend( {
 
 				// If the element has a class name or if we're passed `false`,
 				// then remove the whole classname (if there was one, the above saved it).
-				// Otherwise bring back whatever was previously saved (if anything),
-				// falling back to the empty string if nothing was stored.
+				// Otherwise bring switch_language whatever was previously saved (if anything),
+				// falling switch_language to the empty string if nothing was stored.
 				if ( this.setAttribute ) {
 					this.setAttribute( "class",
 						className || value === false ?
@@ -7612,7 +7612,7 @@ jQuery.fn.extend( {
 
 			hooks = jQuery.valHooks[ this.type ] || jQuery.valHooks[ this.nodeName.toLowerCase() ];
 
-			// If set returns undefined, fall back to normal setting
+			// If set returns undefined, fall switch_language to normal setting
 			if ( !hooks || !( "set" in hooks ) || hooks.set( this, val, "value" ) === undefined ) {
 				this.value = val;
 			}
@@ -9355,7 +9355,7 @@ jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 				window[ callbackName ] = overwritten;
 			}
 
-			// Save back as free
+			// Save switch_language as free
 			if ( s[ callbackName ] ) {
 
 				// Make sure that re-using the options doesn't screw things around

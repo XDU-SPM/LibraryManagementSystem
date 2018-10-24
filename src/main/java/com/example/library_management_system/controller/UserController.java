@@ -133,7 +133,20 @@ public class UserController
     }
 
     @RequestMapping(value = {"/changeSessionLanguage", "/admin/changeSessionLanguage", "/reader/changeSessionLanguage", "/librarian/changeSessionLanguage"},
-            method = {RequestMethod.GET, RequestMethod.POST})
+            method = RequestMethod.GET)
+    public String changeSessionLanguage(String lang, HttpServletRequest request)
+    {
+        String url = request.getHeader("referer");
+        System.out.println(url);
+        if ("zh".equals(lang))
+            request.getSession().setAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME, new Locale("zh", "CN"));
+        else if ("en".equals(lang))
+            request.getSession().setAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME, new Locale("en", "US"));
+        return "redirect:" + url;
+    }
+
+    @RequestMapping(value = {"/changeSessionLanguage1", "/admin/changeSessionLanguage1", "/reader/changeSessionLanguage1", "/librarian/changeSessionLanguage1"},
+            method = RequestMethod.GET)
     public String changeSessionLanguage(String lang, HttpServletRequest request, String page)
     {
         if ("zh".equals(lang))

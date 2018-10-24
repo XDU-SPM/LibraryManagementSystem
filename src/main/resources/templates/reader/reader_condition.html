@@ -50,8 +50,8 @@
                         <span th:text="#{lan44}">语言</span> <span class="am-icon-caret-down"></span>
                     </a>
                     <ul class="am-dropdown-content">
-                        <li><a href="changeSessionLanguage?lang=zh&page=reader_condition">中文</a></li>
-                        <li><a href="changeSessionLanguage?lang=en&page=reader_condition">ENGLISH</a></li>
+                        <li><a href = "changeSessionLanguage1?lang=zh&page=reader_condition">中文</a></li>
+                        <li><a href = "changeSessionLanguage1?lang=en&page=reader_condition">ENGLISH</a></li>
                     </ul>
                 </li>
                 <li class = "am-dropdown" data-am-dropdown>
@@ -428,6 +428,7 @@
 <script src = "https://gw.alipayobjects.com/os/antv/pkg/_antv.data-set-0.9.6/dist/data-set.min.js"></script>
 <script src = "https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
 <script type = "text/javascript" src = "assets/js/test.js"></script>
+<script type = "text/javascript" src = "assets/js/switch_language.js"></script>
 
 <script th:inline = "javascript">
     var appointment_number = [[${page1.totalElements}]];

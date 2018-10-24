@@ -44,19 +44,19 @@
 
             <ul class = "am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
 
-                <li class="am-dropdown" data-am-dropdown>
-                    <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-                        <span th:text="#{lan44}">语言</span> <span class="am-icon-caret-down"></span>
+                <li class = "am-dropdown" data-am-dropdown>
+                    <a class = "am-dropdown-toggle" data-am-dropdown-toggle href = "javascript:;">
+                        <span th:text = "#{lan44}">语言</span> <span class = "am-icon-caret-down"></span>
                     </a>
-                    <ul class="am-dropdown-content">
-                        <li><a href="changeSessionLanguage?lang=zh&page=librarian_book">中文</a></li>
-                        <li><a href="changeSessionLanguage?lang=en&page=librarian_book">ENGLISH</a></li>
+                    <ul class = "am-dropdown-content">
+                        <li><a href = "changeSessionLanguage?lang=zh">中文</a></li>
+                        <li><a href = "changeSessionLanguage?lang=en">ENGLISH</a></li>
                     </ul>
                 </li>
 
                 <li class = "am-dropdown" data-am-dropdown>
                     <a class = "am-dropdown-toggle" data-am-dropdown-toggle href = "javascript:;">
-                        <a th:href = "@{/logout}" th:text="#{lg_yxy}">注销</a>
+                        <a th:href = "@{/logout}" th:text = "#{lg_yxy}">注销</a>
                     </a>
 
                 </li>
@@ -72,55 +72,68 @@
     <div class = "admin-sidebar am-offcanvas" id = "admin-offcanvas">
         <div class = "am-offcanvas-bar admin-offcanvas-bar">
             <div class = "user-info">
-                <img class = "am-img-circle am-img-thumbnail am-center" width="200" height="200"
-                     th:src= "${avatarPath}"
+                <img class = "am-img-circle am-img-thumbnail am-center" width = "200" height = "200"
+                     th:src = "${avatarPath}"
                      alt = ""/>
-                <p style = "text-align: center" th:text="${username}">纯洁神王</p>
+                <p style = "text-align: center" th:text = "${username}">纯洁神王</p>
             </div>
 
             <ul class = "am-list admin-sidebar-list">
-                <li><a href = "librarian_homepage"><span class = "am-icon-home"></span><span th:text="#{ho_yxy}"> 首页</span></a></li>
-                <li><a href = "librarian_user" class = "am-cf"><span class = "am-icon-check"></span><span th:text="#{pd_yxy}"> 个人资料</span><span
+                <li><a href = "librarian_homepage"><span class = "am-icon-home"></span><span
+                        th:text = "#{ho_yxy}"> 首页</span></a></li>
+                <li><a href = "librarian_user" class = "am-cf"><span class = "am-icon-check"></span><span
+                        th:text = "#{pd_yxy}"> 个人资料</span><span
                         class = "am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
-                <li><a href = "password_change"><span class = "am-icon-eraser"></span><span th:text="#{cp_yxy}"> 修改密码</span></a></li>
+                <li><a href = "password_change"><span class = "am-icon-eraser"></span><span
+                        th:text = "#{cp_yxy}"> 修改密码</span></a></li>
                 <li class = "admin-parent">
                     <a class = "am-cf" data-am-collapse = "{target: '#collapse-nav'}"><span
-                            class = "am-icon-file"></span><span th:text="#{mb_yxy}"> 管理图书</span> <span
+                            class = "am-icon-file"></span><span th:text = "#{mb_yxy}"> 管理图书</span> <span
                             class = "am-icon-angle-right am-fr am-margin-right"></span></a>
                     <ul class = "am-list am-collapse admin-sidebar-sub am-in" id = "collapse-nav">
-                        <li><a href = "librarian_borrow"><span class = "am-icon-leaf"></span><span th:text="#{bo_yxy}"> 借阅</span></a></li>
-                        <li><a href = "librarian_return"><span class = "am-icon-mail-reply"></span><span th:text="#{re_yxy}"> 归还</span></a></li>
-                        <li><a href = "librarian_table"><span class = "am-icon-book"></span><span th:text="#{mb_yxy}"> 管理图书</span></a></li>
-                        <li><a href = "librarian_deletebookhistory"><span class = "am-icon-trash"><span th:text="#{dr_yxy}"> 删除记录</span></span></a></li>
+                        <li><a href = "librarian_borrow"><span class = "am-icon-leaf"></span><span
+                                th:text = "#{bo_yxy}"> 借阅</span></a></li>
+                        <li><a href = "librarian_return"><span class = "am-icon-mail-reply"></span><span
+                                th:text = "#{re_yxy}"> 归还</span></a></li>
+                        <li><a href = "librarian_table"><span class = "am-icon-book"></span><span th:text = "#{mb_yxy}"> 管理图书</span></a>
+                        </li>
+                        <li><a href = "librarian_deletebookhistory"><span class = "am-icon-trash"><span
+                                th:text = "#{dr_yxy}"> 删除记录</span></span></a></li>
                         </li>
                     </ul>
                 </li>
                 <li class = "admin-parent">
                     <a class = "am-cf" data-am-collapse = "{target: '#collapse-nav2'}"><span
-                            class = "am-icon-user"></span><span th:text="#{mr_yxy}"> 管理读者 </span><span
+                            class = "am-icon-user"></span><span th:text = "#{mr_yxy}"> 管理读者 </span><span
                             class = "am-icon-angle-right am-fr am-margin-right"></span></a>
                     <ul class = "am-list am-collapse admin-sidebar-sub am-in" id = "collapse-nav2">
-                        <li><a href = "librarian_addreader"><span class = "am-icon-user-plus"></span><span th:text="#{ar_yxy}"> 增加读者</span></a></li>
-                        <li><a href = "librarian_managereader"><span class = "am-icon-pencil"></span><span th:text="#{mr_yxy}"> 管理读者</span></a></li>
+                        <li><a href = "librarian_addreader"><span class = "am-icon-user-plus"></span><span
+                                th:text = "#{ar_yxy}"> 增加读者</span></a></li>
+                        <li><a href = "librarian_managereader"><span class = "am-icon-pencil"></span><span
+                                th:text = "#{mr_yxy}"> 管理读者</span></a></li>
                     </ul>
                 </li>
                 <li class = "admin-parent">
                     <a class = "am-cf" data-am-collapse = "{target: '#collapse-nav3'}"><span
-                            class = "am-icon-table"></span><span th:text="#{rec_yxy}"> 记录 </span><span
+                            class = "am-icon-table"></span><span th:text = "#{rec_yxy}"> 记录 </span><span
                             class = "am-icon-angle-right am-fr am-margin-right"></span></a>
                     <ul class = "am-list am-collapse admin-sidebar-sub am-in" id = "collapse-nav3">
-                        <li><a href = "librarian_record"><span class = "am-icon-book"></span><span th:text="#{rr_yxy}"> 预约记录</span></a></li>
-                        <li><a href = "librarian_history"><span class = "am-icon-book"></span><span th:text="#{br_yxy}"> 借阅记录</span></a></li>
-                        <li><a href = "librarian_income"><span class = "am-icon-money"></span><span th:text="#{ir_yxy}"> 收入记录 </span></a></li>
+                        <li><a href = "librarian_record"><span class = "am-icon-book"></span><span
+                                th:text = "#{rr_yxy}"> 预约记录</span></a></li>
+                        <li><a href = "librarian_history"><span class = "am-icon-book"></span><span
+                                th:text = "#{br_yxy}"> 借阅记录</span></a></li>
+                        <li><a href = "librarian_income"><span class = "am-icon-money"></span><span
+                                th:text = "#{ir_yxy}"> 收入记录 </span></a></li>
                         <!--<li><a href = "librarian_fine"><span class = "am-icon-bolt"></span><span th:text="#{fr_yxy}"> 罚金记录</span></a></li>-->
                     </ul>
                 </li>
-                <li><a href = "librarian_announce"><span class = "am-icon-comment"></span><span th:text="#{an_yxy}"> 发布公告</span></a></li>
+                <li><a href = "librarian_announce"><span class = "am-icon-comment"></span><span th:text = "#{an_yxy}"> 发布公告</span></a>
+                </li>
             </ul>
 
             <div class = "am-panel am-panel-default admin-sidebar-panel">
                 <div class = "am-panel-bd">
-                    <p><span class = "am-icon-bookmark"></span><span th:text="#{no_yxy}"> 公告</span></p>
+                    <p><span class = "am-icon-bookmark"></span><span th:text = "#{no_yxy}"> 公告</span></p>
                     <p>时光静好，与君语；细水流年，与君同。—— Amaze UI</p>
                 </div>
             </div>
@@ -133,7 +146,8 @@
     <div class = "admin-content">
         <div class = "admin-content-body">
             <div class = "am-cf am-padding am-padding-bottom-0">
-                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg" th:text="#{bookinfo}">书本信息</strong> /
+                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg"
+                                                   th:text = "#{bookinfo}">书本信息</strong> /
                 </div>
             </div>
 
@@ -150,12 +164,13 @@
                                          alt = ""/>
                                 </div>
                                 <div class = "am-u-md-8">
-                                    <p th:text="#{ubcp_zj}">上传图书封面 </p>
+                                    <p th:text = "#{ubcp_zj}">上传图书封面 </p>
                                     <form class = "am-form">
                                         <div class = "am-form-group">
                                             <input type = "file" id = "user-pic">
-                                            <p class = "am-form-help" th:text="#{pst44}">请选择要上传的文件...</p>
-                                            <button type = "button" class = "am-btn am-btn-primary am-btn-xs" th:text="#{save}">保存
+                                            <p class = "am-form-help" th:text = "#{pst44}">请选择要上传的文件...</p>
+                                            <button type = "button" class = "am-btn am-btn-primary am-btn-xs"
+                                                    th:text = "#{save}">保存
                                             </button>
                                         </div>
                                     </form>
@@ -170,63 +185,65 @@
                 <div class = "am-u-sm-12 am-u-md-8 am-u-md-pull-4">
                     <form class = "am-form am-form-horizontal" action = "saveBook" method = "post">
                         <div class = "am-form-group">
-                            <label for = "title" class = "am-u-sm-3 am-form-label" th:text="#{btitle}">书名</label>
+                            <label for = "title" class = "am-u-sm-3 am-form-label" th:text = "#{btitle}">书名</label>
                             <div class = "am-u-sm-9">
-                                <input type = "text" id = "title"  name = "title"
+                                <input type = "text" id = "title" name = "title"
                                        th:value = "${book.title}">
                             </div>
                         </div>
 
                         <div class = "am-form-group">
-                            <label for = "isbn" class = "am-u-sm-3 am-form-label" th:text="#{isbn}">ISBN</label>
+                            <label for = "isbn" class = "am-u-sm-3 am-form-label" th:text = "#{isbn}">ISBN</label>
                             <div class = "am-u-sm-9">
-                                <input type = "text" id = "isbn"  name = "isbn" readonly
+                                <input type = "text" id = "isbn" name = "isbn" readonly
                                        th:value = "${book.isbn}">
                             </div>
                         </div>
 
                         <div class = "am-form-group">
-                            <label for = "author" class = "am-u-sm-3 am-form-label" th:text="#{author}">作者</label>
+                            <label for = "author" class = "am-u-sm-3 am-form-label" th:text = "#{author}">作者</label>
                             <div class = "am-u-sm-9">
-                                <input type = "text" id = "author"  name = "author"
+                                <input type = "text" id = "author" name = "author"
                                        th:value = "${book.author}">
                             </div>
                         </div>
 
 
                         <div class = "am-form-group">
-                            <label for = "position" class = "am-u-sm-3 am-form-label" th:text="#{location}">位置</label>
+                            <label for = "position" class = "am-u-sm-3 am-form-label" th:text = "#{location}">位置</label>
                             <div class = "am-u-sm-9">
-                                <input type = "text" id = "position"  name = "position"
+                                <input type = "text" id = "position" name = "position"
                                        th:value = "${book.position}">
                             </div>
                         </div>
 
                         <div class = "am-form-group">
-                            <label for = "publisher" class = "am-u-sm-3 am-form-label" th:text="#{publisher}">出版社</label>
+                            <label for = "publisher" class = "am-u-sm-3 am-form-label"
+                                   th:text = "#{publisher}">出版社</label>
                             <div class = "am-u-sm-9">
-                                <input type = "text" id = "publisher"  name = "publisher"
+                                <input type = "text" id = "publisher" name = "publisher"
                                        th:value = "${book.publisher}">
                             </div>
                         </div>
 
                         <!--<div class = "am-form-group">-->
-                            <!--<label for = "category" class = "am-u-sm-3 am-form-label" th:text="#{category}">类别</label>-->
-                            <!--<div class = "am-u-sm-9" id="container">-->
-                                <!--<span class="am-badge am-badge-secondary am-round  am-text-sm" id="1">童话书</span>-->
-                                <!--<span class="am-badge am-badge-secondary am-round  am-text-sm">科幻书</span>-->
-                                <!--<span class="am-badge am-badge-secondary am-round  am-text-sm">童话书</span>-->
-                                <!--<span class="am-badge am-badge-secondary am-round  am-text-sm">科幻书</span>-->
-                                <!--<span class="am-badge am-badge-secondary am-round  am-text-sm">童话书</span>-->
-                                <!--<span class="am-badge am-badge-secondary am-round  am-text-sm">科幻书</span>-->
-                                <!--<span class="am-badge am-badge-secondary am-round  am-text-sm">童话书</span>-->
-                                <!--<span class="am-badge am-badge-secondary am-round  am-text-sm">科幻书</span>-->
-                                <!--&lt;!&ndash;<input type = "text" id = "category"  name = "category">&ndash;&gt;-->
-                            <!--</div>-->
+                        <!--<label for = "category" class = "am-u-sm-3 am-form-label" th:text="#{category}">类别</label>-->
+                        <!--<div class = "am-u-sm-9" id="container">-->
+                        <!--<span class="am-badge am-badge-secondary am-round  am-text-sm" id="1">童话书</span>-->
+                        <!--<span class="am-badge am-badge-secondary am-round  am-text-sm">科幻书</span>-->
+                        <!--<span class="am-badge am-badge-secondary am-round  am-text-sm">童话书</span>-->
+                        <!--<span class="am-badge am-badge-secondary am-round  am-text-sm">科幻书</span>-->
+                        <!--<span class="am-badge am-badge-secondary am-round  am-text-sm">童话书</span>-->
+                        <!--<span class="am-badge am-badge-secondary am-round  am-text-sm">科幻书</span>-->
+                        <!--<span class="am-badge am-badge-secondary am-round  am-text-sm">童话书</span>-->
+                        <!--<span class="am-badge am-badge-secondary am-round  am-text-sm">科幻书</span>-->
+                        <!--&lt;!&ndash;<input type = "text" id = "category"  name = "category">&ndash;&gt;-->
+                        <!--</div>-->
                         <!--</div>-->
 
                         <div class = "am-form-group">
-                            <label for = "publish_time" class = "am-u-sm-3 am-form-label" th:text="#{pubdate}">出版时间</label>
+                            <label for = "publish_time" class = "am-u-sm-3 am-form-label"
+                                   th:text = "#{pubdate}">出版时间</label>
                             <div class = "am-u-sm-9">
                                 <input type = "text" id = "publish_time"
                                        th:value = "${book.publishDate}"
@@ -236,35 +253,35 @@
 
 
                         <div class = "am-form-group">
-                            <label for = "number" class = "am-u-sm-3 am-form-label" th:text="#{num}">数量</label>
+                            <label for = "number" class = "am-u-sm-3 am-form-label" th:text = "#{num}">数量</label>
                             <div class = "am-u-sm-9">
-                                <input type = "number" id = "number" readonly="readonly" pattern = "[1-9][0-9]*"
-                                        th:value = "${book.number}"
-                                       name = "number" min="0">
+                                <input type = "number" id = "number" readonly = "readonly" pattern = "[1-9][0-9]*"
+                                       th:value = "${book.number}"
+                                       name = "number" min = "0">
                             </div>
                         </div>
 
                         <div class = "am-form-group">
-                            <label for = "abstract" class = "am-u-sm-3 am-form-label" th:text="#{brief}">简介</label>
+                            <label for = "abstract" class = "am-u-sm-3 am-form-label" th:text = "#{brief}">简介</label>
                             <div class = "am-u-sm-9">
                                 <!--<input type = "text" id = "abstract" placeholder = "摘要 / Abstract" name = "brief"-->
-                                       <!--th:value = "${book.brief}">-->
-                                <textarea rows="3" cols="20"  name="brief" id="abstract">
+                                <!--th:value = "${book.brief}">-->
+                                <textarea rows = "3" cols = "20" name = "brief" id = "abstract">
                                 </textarea>
                             </div>
                         </div>
 
                         <div class = "am-form-group">
-                            <label for = "price" class = "am-u-sm-3 am-form-label" th:text="#{price}">价格</label>
+                            <label for = "price" class = "am-u-sm-3 am-form-label" th:text = "#{price}">价格</label>
                             <div class = "am-u-sm-9">
-                                <input type = "text" id = "price"  name = "price"
-                                       th:value = "${book.price}" min="0">
+                                <input type = "text" id = "price" name = "price"
+                                       th:value = "${book.price}" min = "0">
                             </div>
                         </div>
 
                         <div class = "am-form-group">
                             <div class = "am-u-sm-9 am-u-sm-push-3">
-                                <input type = "submit" class = "am-btn am-btn-primary" th:value ="#{save}">
+                                <input type = "submit" class = "am-btn am-btn-primary" th:value = "#{save}">
                             </div>
                         </div>
                     </form>
@@ -288,28 +305,28 @@
 <!--<![endif]-->
 <script src = "assets/js/amazeui.min.js"></script>
 <script src = "assets/js/app.js"></script>
-<script th:inline="javascript">
+<script th:inline = "javascript">
     console.log([[${book.brief}]]);
-    document.getElementById("abstract").value=[[${book.brief}]];
+    document.getElementById("abstract").value = [[${book.brief}]];
 
     var categories = [[${book.categories}]];
 
     console.log([[${book.categories}]]);
     console.log(categories);
 
-    var span=$("<span>");
-    span.attr('class','')
+    var span = $("<span>");
+    span.attr('class', '')
     $('#container').append($link);
-    for(var i=0;i<categories.length;i++)
-    {
+    for (var i = 0; i < categories.length; i++) {
         console.log(categories[i]);
         var name = categories[i].name;
         var id = categories[i].id;
-        var str="<span class=\"am-badge am-badge-secondary am-round  am-text-sm\">童话书</span>"
+        var str = "<span class=\"am-badge am-badge-secondary am-round  am-text-sm\">童话书</span>"
     }
 
 </script>
 <script type = "text/javascript" src = "assets/js/test.js"></script>
+<script type = "text/javascript" src = "assets/js/switch_language.js"></script>
 <script type = "text/javascript">
     $("#change").click(function () {
         translate();
