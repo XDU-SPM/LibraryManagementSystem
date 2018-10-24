@@ -16,6 +16,9 @@ public class AdminController
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private GlobalUtilService globalUtilService;
+
     @RequestMapping(value = "admin/librarian_create", method = RequestMethod.GET)
     public String admin_librarian_create(Model model)
     {
@@ -29,6 +32,10 @@ public class AdminController
     {
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
+        model.addAttribute("registerMoney", globalUtilService.getRegisterMoney());
+        model.addAttribute("maxBorrowDays", globalUtilService.getMaxBorrowDays());
+        model.addAttribute("maxBorrowNum", globalUtilService.getMaxBorrowNum());
+        model.addAttribute("overdueMoney", globalUtilService.getOverdueMoney());
         return "admin/permission_change";
     }
 
