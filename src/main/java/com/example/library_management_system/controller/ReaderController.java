@@ -17,6 +17,12 @@ public class ReaderController
     @Autowired
     private BookService bookService;
 
+    @Autowired
+    private ReaderBookService readerBookService;
+
+    @Autowired
+    private AnnouncementService announcementService;
+
     @RequestMapping(value = "/reader/reader_search", method = RequestMethod.GET)
     public String reader_reader_search(Model model)
     {
@@ -50,6 +56,7 @@ public class ReaderController
         model.addAttribute("book", bookService.bookInfo(isbn));
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
+        model.addAttribute("status", readerBookService.isFavoriteBook(isbn) ? 0 : 1);
         return "reader/book_details";
     }
 
@@ -87,5 +94,12 @@ public class ReaderController
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
         return "reader/password_change";
+    }
+
+    @RequestMapping(value = "/reader/Notice", method = RequestMethod.GET)
+    public String Notice(int id, Model model)
+    {
+        model.addAttribute("announcement", announcementService.getAnnouncement(id));
+        return "reader/Notice";
     }
 }

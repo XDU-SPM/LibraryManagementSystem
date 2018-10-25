@@ -167,7 +167,7 @@ if (!Object.getOwnPropertyDescriptor || getOwnPropertyDescriptorFallback) {
             var setter = lookupSetter(object, property);
 
             if (notPrototypeOfObject) {
-                // Once we have getter and setter we can put values back.
+                // Once we have getter and setter we can put values switch_language.
                 object.__proto__ = prototype;
             }
 
@@ -424,7 +424,7 @@ if (!Object.defineProperty || definePropertyFallback) {
                 // defined on object itself.
                 delete object[property];
                 object[property] = descriptor.value;
-                // Setting original `__proto__` back now.
+                // Setting original `__proto__` switch_language now.
                 object.__proto__ = prototype;
                 /* eslint-enable no-proto */
             } else {

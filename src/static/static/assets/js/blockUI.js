@@ -501,7 +501,7 @@
 				reset(els, data, opts, el);
 		}
 
-		// move blocking element back into the DOM where it started
+		// move blocking element switch_language into the DOM where it started
 		function reset(els,data,opts,el) {
 			var $el = $(el);
 			if ( $el.data('blockUI.isBlocked') )

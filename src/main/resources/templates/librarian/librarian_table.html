@@ -48,8 +48,8 @@
                         <span th:text="#{lan44}">语言</span> <span class="am-icon-caret-down"></span>
                     </a>
                     <ul class="am-dropdown-content">
-                        <li><a href="changeSessionLanguage?lang=zh&page=librarian_table">中文</a></li>
-                        <li><a href="changeSessionLanguage?lang=en&page=librarian_table">ENGLISH</a></li>
+                        <li><a href = "changeSessionLanguage?lang=zh">中文</a></li>
+                        <li><a href = "changeSessionLanguage?lang=en">ENGLISH</a></li>
                     </ul>
                 </li>
 
@@ -180,7 +180,7 @@
                         <tbody>
                         <tr th:each = "bunit:${set}">
                             <td th:text = "${bunit.id}"></td>
-                            <td ><a th:text = "${bunit.book.title}" th:href="@{librarian_book(isbn=${bunit.book.isbn})}"></a></td>
+                            <td ><a th:text = "${bunit.book.title}" th:href="@{librarian_book(id=${bunit.id})}"></a></td>
                             <td th:text = "${bunit.book.isbn}"></td>
                             <!--<td  th:text = "${bunit.book.author}"></td>-->
                             <td  th:text = "${bunit.book.publisher}"></td>
@@ -295,7 +295,7 @@
 
                     <div class = "am-modal-footer am-g">
                         <div class = "am-u-sm-7 am-u-sm-push-2 am-u-end">
-                            <input type = "submit" data-am-modal-confirm th:value="#{submit}" class = "am-btn am-btn-primary" onclick="window.open('http:www.baidu.com')"></div>
+                            <input type = "submit" data-am-modal-confirm th:value="#{submit}" class = "am-btn am-btn-primary"></div>
                     </div>
                 </form>
             </div>
@@ -321,6 +321,7 @@
 <!--<script th:inline="javascript" src = "//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>-->
 <script src = "assets/js/amazeui.min.js"></script>
 <script src = "assets/js/app.js"></script>
+<script type = "text/javascript" src = "assets/js/switch_language.js"></script>
 <script th:inline="javascript">
     var a=[ 0,"desc"];
     $(document).ready(function(){

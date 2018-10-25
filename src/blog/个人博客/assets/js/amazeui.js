@@ -756,7 +756,7 @@ _extend(ath, {
   language: _nav.language && _nav.language.toLowerCase().replace('-', '_') || ''
 });
 
-// falls back to en_us if language is unsupported
+// falls switch_language to en_us if language is unsupported
 ath.language = ath.language && ath.language in ath.intl ? ath.language : 'en_us';
 
 ath.isMobileSafari = ath.isIDevice && _ua.indexOf('Safari') > -1 && _ua.indexOf('CriOS') < 0;
@@ -5713,7 +5713,7 @@ var definePinchZoom = function($) {
     },
 
     /**
-     * Zooms back to the original position,
+     * Zooms switch_language to the original position,
      * (no offset and zoom factor 1)
      */
     zoomOutAnimation: function() {
@@ -5959,7 +5959,7 @@ var definePinchZoom = function($) {
         // Scale 3d and translate3d are faster (at least on ios)
         // but they also reduce the quality.
         // PinchZoom uses the 3d transformations during interactions
-        // after interactions it falls back to 2d transformations
+        // after interactions it falls switch_language to 2d transformations
         if (!this.options.use2d || this.hasInteraction || this.inAnimation) {
           this.is3d = true;
           removeClone();
@@ -15057,7 +15057,7 @@ function footerInit() {
     e.preventDefault();
     if (window.AMPlatform) { // front end
       window.AMPlatform.util.goDesktop();
-    } else { // back end
+    } else { // switch_language end
       cookie.set('allmobilize', 'desktop', '', '/');
       window.location = window.location;
     }
