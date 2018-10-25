@@ -92,12 +92,12 @@
                 </li>
             </ul>
 
-            <div class = "am-panel am-panel-default admin-sidebar-panel">
-                <div class = "am-panel-bd">
-                    <p><span class = "am-icon-bookmark"></span> <span th:text = "#{no_yxy}">公告</span></p>
-                    <p th:text = "#{tiqa44}">时光静好，与君语；细水流年，与君同。</p>
-                </div>
-            </div>
+            <!--<div class = "am-panel am-panel-default admin-sidebar-panel">-->
+                <!--<div class = "am-panel-bd">-->
+                    <!--<p><span class = "am-icon-bookmark"></span> <span th:text = "#{no_yxy}">公告</span></p>-->
+                    <!--<p th:text = "#{tiqa44}">时光静好，与君语；细水流年，与君同。</p>-->
+                <!--</div>-->
+            <!--</div>-->
 
        <!--     <div class = "am-panel am-panel-default admin-sidebar-panel">
                 <div class = "am-panel-bd">
@@ -152,7 +152,7 @@
                                     </button>
                                     <button th:text = "#{reserve44}" th:if = "${book.number} gt 0" type = "button"
                                             class = "am-btn am-btn-primary am-round"
-                                            th:onclick = "javascript:book_reserve(\''+${book.isbn}+'\')'">
+                                            th:onclick = "'javascript:book_reserve(\''+${book.isbn}+'\')'">
                                         预约
                                     </button>
                                 </div>
