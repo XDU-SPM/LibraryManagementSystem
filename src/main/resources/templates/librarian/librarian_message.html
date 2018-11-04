@@ -150,9 +150,8 @@
                         <tr>
                             <th class = "table-id">ID</th>
                             <th class = "table-title" th:text="#{ti44}"></th>
-                            <th class = "table-librarian" th:text="#{a_zj}"></th>
+                            <th class = "table-librarian" th:text="#{username}"></th>
                             <th class="table-date" th:text="#{date}"></th>
-                            <th class = "table-set" th:text="#{Operation}"></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -164,15 +163,6 @@
                             </td>
                             <td th:text = "${announce.username}"></td>
                             <td th:text="${#dates.format(announce.date,'yyyy-MM-dd')}"></td>
-                            <td>
-                                <div class = "am-btn-toolbar">
-                                    <div class = "am-btn-group am-btn-group-xs">
-                                        <button class = "am-btn am-btn-default am-btn-xs am-text-secondary delete" ><a
-                                                class = "am-icon-close"  th:text="#{Delete}"></a>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
                         </tr>
                     </table>
 
@@ -199,7 +189,7 @@
                     <div class = "am-form-group">
                         <label for = "title2" class = "am-u-sm-3 am-form-label" th:text="#{ti44}"></label>
                         <div class = "am-u-sm-9">
-                            <input type = "text" id = "title2" th:placeholder = "#{ti44}" name = "title">
+                            <input type = "text" id = "title2" th:placeholder = "#{ti44}" name = "title" readonly="readonly">
                         </div>
                     </div>
 
@@ -207,7 +197,7 @@
                         <label for = "content2" class = "am-u-sm-3 am-form-label" th:text="#{c_zj}"></label>
                         <div class = "am-u-sm-9">
                             <!--<input type = "text" id = "content" placeholder = "内容 / Content" name = "brief">-->
-                            <textarea id = "content2"  name = "content" cols = "10" rows = "3">
+                            <textarea id = "content2"  name = "content" cols = "10" rows = "3" readonly="readonly">
                             </textarea>
                         </div>
                     </div>
