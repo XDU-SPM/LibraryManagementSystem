@@ -60,7 +60,10 @@ public class UserService
     {
 //        user.setPassword(MD5Util.encode(user.getPassword()));
         if (RoleUtil.ROLE_READER_CHECK.equals(roleName))
+        {
             user.setPassword(UserUtil.READER_PASSWORD_DEFAULT);
+            user.setNumber(String.valueOf(System.currentTimeMillis()));
+        }
         else if (RoleUtil.ROLE_LIBRARIAN_CHECK.equals(roleName))
             user.setPassword(UserUtil.LIBRARIAN_PASSWORD_DEFAULT);
         Role role = roleDAO.findByName(roleName);

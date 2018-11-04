@@ -35,6 +35,8 @@ public class Book
     // 空闲书的数量
     private int number;
 
+    private String category;
+
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "book_category",
@@ -279,5 +281,15 @@ public class Book
     public void setUserBooks(Set<UserBook> userBooks)
     {
         this.userBooks = userBooks;
+    }
+
+    public String getCategory()
+    {
+        return category;
+    }
+
+    public void setCategory(String category)
+    {
+        this.category = category;
     }
 }

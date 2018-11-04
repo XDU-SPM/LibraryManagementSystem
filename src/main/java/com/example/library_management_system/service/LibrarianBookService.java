@@ -57,21 +57,21 @@ public class LibrarianBookService
     @Resource
     private LocaleMessageSourceService localeMessageSourceService;
 
-    public Set<String> addBkunit(Book book, String categoryName)
+    public Set<String> addBkunit(Book book)
     {
         Book book1 = bookDAO.findByIsbn(book.getIsbn());
         if (book1 == null)
         {
             book1 = book;
 
-            Category category = categoryDAO.findByName(categoryName);
+            /*Category category = categoryDAO.findByName(categoryName);
             if (category == null)
             {
                 category = new Category(categoryName);
                 categoryDAO.save(category);
             }
 
-            book1.getCategories().add(category);
+            book1.getCategories().add(category);*/
             bookDAO.save(book1);
         }
         else
@@ -145,6 +145,7 @@ public class LibrarianBookService
         book.setPublishDate(tmp.getPublishDate());
         book.setBrief(tmp.getBrief());
         book.setPrice(tmp.getPrice());
+        book.setCategory(tmp.getCategory());
 
         bookDAO.save(book);
     }

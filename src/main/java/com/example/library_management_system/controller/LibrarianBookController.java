@@ -38,9 +38,9 @@ public class LibrarianBookController
     }
 
     @RequestMapping(path = "/librarian/addbook", method = RequestMethod.POST)
-    public String addBkunit(Book book, String category, Model model)
+    public String addBkunit(Book book, Model model)
     {
-        Set<String> ids = librarianBookService.addBkunit(book, category);
+        Set<String> ids = librarianBookService.addBkunit(book);
         model.addAttribute("ids", ids);
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
