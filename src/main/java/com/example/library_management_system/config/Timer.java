@@ -32,9 +32,6 @@ public class Timer
     private UserDAO userDAO;
 
     @Autowired
-    private GlobalUtilDAO globalUtilDAO;
-
-    @Autowired
     private BkunitOperatingHistoryDAO bkunitOperatingHistoryDAO;
 
     @Autowired
@@ -52,13 +49,7 @@ public class Timer
         for (UserBkunit userBkunit : userBkunits)
         {
             Calendar overdue = Calendar.getInstance();
-            overdue.setTime(userBkunit.getBorrowDate());
-            int days;
-            if (userBkunit.getStatus() == UserBkunitUtil.BORROWED)
-                days =  globalUtilDAO.findById(1).get().getMAX_BORROW_DAYS();
-            else
-                days = globalUtilDAO.findById(1).get().getMAX_BORROW_DAYS() * 2;
-            overdue.add(Calendar.DATE, days);
+            overdue.setTime(userBkunit.getReturnDate());
             if (now.getTime().after(overdue.getTime()))
             {
                 System.out.println("in in modifyUserBkunitState");
@@ -106,7 +97,7 @@ public class Timer
             System.out.println("in in sendMail");
             User user = userBkunit.getUser();
             Bkunit bkunit = userBkunit.getBkunit();
-            String context = user.getUsername() + ", " + bkunit.getBook().getTitle();
+            String context = user.getUsername() + ", your book " + bkunit.getBook().getTitle() + "(" + bkunit.getId() + ") has expired";
             String subject = "Book Overdue";
             try
             {

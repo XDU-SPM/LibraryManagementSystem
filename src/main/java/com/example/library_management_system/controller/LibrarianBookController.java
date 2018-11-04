@@ -97,9 +97,9 @@ public class LibrarianBookController
     }
 
     @RequestMapping(value = "/librarian/lend", method = RequestMethod.POST)
-    public String lend(Model model, String id, String username)
+    public String lend(Model model, String id, String number)
     {
-        int status = librarianBookService.lend(id, username);
+        int status = librarianBookService.lend(id, number);
         model.addAttribute("status", status);
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());

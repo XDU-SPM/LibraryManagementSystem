@@ -155,12 +155,12 @@ public class LibrarianBookService
      * 系统一定会为 reader 把书留下，因此不会存在这本书被预约的情况
      *
      * @param id
-     * @param username
+     * @param number
      * @return
      */
-    public int lend(String id, String username)
+    public int lend(String id, String number)
     {
-        User reader = userDAO.findByUsername(username);
+        User reader = userDAO.findByNumber(number);
         if (reader == null)
             return -1;
 
@@ -494,9 +494,23 @@ public class LibrarianBookService
 
     private void updateBkunitOperatingHistory(BkunitOperatingHistory bkunitOperatingHistory, boolean bkunit)
     {
-        bkunitOperatingHistory.setUsername(userDAO.findById(bkunitOperatingHistory.getUid()).getUsername());
+        String username;
+        User user;
+        if ((user = userDAO.findById(bkunitOperatingHistory.getUid())) == null)
+            username = localeMessageSourceService.getMessage("bedeleted");
+        else
+            username = user.getUsername();
+        bkunitOperatingHistory.setUsername(username);
         if (bkunit)
-            bkunitOperatingHistory.setBookName(bkunitDAO.findById(bkunitOperatingHistory.getBuid()).get().getBook().getTitle());
+        {
+            Optional<Bkunit> optional = bkunitDAO.findById(bkunitOperatingHistory.getBuid());
+            String bookName;
+            if (!optional.isPresent())
+                bookName = localeMessageSourceService.getMessage("bedeleted");
+            else
+                bookName = optional.get().getBook().getTitle();
+            bkunitOperatingHistory.setBookName(bookName);
+        }
         else
             bkunitOperatingHistory.setBookName(bookDAO.findByIsbn(bkunitOperatingHistory.getBuid()).getTitle());
     }
