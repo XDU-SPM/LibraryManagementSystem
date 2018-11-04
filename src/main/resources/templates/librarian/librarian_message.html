@@ -115,48 +115,33 @@
                     </ul>
                 </li>
                 <li><a href = "librarian_announce"><span class = "am-icon-comment"></span><span th:text="#{an_yxy}"> 发布公告</span></a></li>
+                <li><a href = "librarian_message"><span class = "am-icon-comment"></span><span th:text="#{m44}"> 留言 </span></a></li>
             </ul>
 
             <!--<div class = "am-panel am-panel-default admin-sidebar-panel">-->
-                <!--<div class = "am-panel-bd">-->
-                    <!--<p><span class = "am-icon-bookmark"></span><span th:text="#{no_yxy}"> 公告</span></p>-->
-                    <!--<p th:text="#{announcement44}">时光静好，与君语；细水流年，与君同。—— Amaze UI</p>-->
-                <!--</div>-->
+            <!--<div class = "am-panel-bd">-->
+            <!--<p><span class = "am-icon-bookmark"></span><span th:text="#{no_yxy}"> 公告</span></p>-->
+            <!--<p th:text="#{announcement44}">时光静好，与君语；细水流年，与君同。—— Amaze UI</p>-->
+            <!--</div>-->
             <!--</div>-->
 
-           <!-- <div class = "am-panel am-panel-default admin-sidebar-panel">
-                <div class = "am-panel-bd">
-                    <p><span class = "am-icon-tag"></span> wiki</p>
-                    <p>Welcome to the Amaze UI wiki!</p>
-                </div>
-            </div>-->
+            <!-- <div class = "am-panel am-panel-default admin-sidebar-panel">
+                 <div class = "am-panel-bd">
+                     <p><span class = "am-icon-tag"></span> wiki</p>
+                     <p>Welcome to the Amaze UI wiki!</p>
+                 </div>
+             </div>-->
         </div>
     </div>
     <!-- sidebar end -->
     <div class = "admin-content">
         <div class = "admin-content-body">
             <div class = "am-cf am-padding am-padding-bottom-0">
-                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg" th:text="#{announcement}"></strong>
+                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg" th:text="#{m44}"></strong>
                 </div>
             </div>
 
             <hr>
-
-            <div class = "am-g">
-                <div class = "am-u-sm-12 am-u-md-6">
-                    <div class = "am-btn-toolbar">
-                        <div class = "am-btn-group am-btn-group-xs">
-                            <button type = "button" class = "am-btn am-btn-default" id = "add_announce"><span
-                                    class = "am-icon-plus"></span><span th:text="#{ni_ysw}"></span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class = "am-u-sm-12 am-u-md-3">
-
-                </div>
-            </div>
 
             <div class = "am-g">
                 <div class = "am-u-sm-12">
@@ -166,7 +151,7 @@
                             <th class = "table-id">ID</th>
                             <th class = "table-title" th:text="#{ti44}"></th>
                             <th class = "table-librarian" th:text="#{a_zj}"></th>
-                            <!--<th class = "table-author am-hide-sm-only" th:text="#{c_zj}"></th>-->
+                            <th class="table-date" th:text="#{date}"></th>
                             <th class = "table-set" th:text="#{Operation}"></th>
                         </tr>
                         </thead>
@@ -178,7 +163,7 @@
                                 <a th:text = "${announce.title}"  th:onclick="'javascript:modify(\''+${announce.id}+'\',\''+${announce.title}+'\',\''+${announce.content}+'\')'"></a>
                             </td>
                             <td th:text = "${announce.username}"></td>
-                            <!--<td class = "am-hide-sm-only" th:text = "${announce.content}"></td>-->
+                            <td th:text ="${announce.date}"></td>
                             <td>
                                 <div class = "am-btn-toolbar">
                                     <div class = "am-btn-group am-btn-group-xs">
@@ -200,40 +185,9 @@
             <p class = "am-padding-left" style = "text-align: center">© 2018 Biboliosoft Online Library System</p>
         </footer>
 
-        <div class = "am-modal am-modal-prompt" tabindex = "-1" id = "my-prompt1">
-            <div class = "am-modal-dialog">
-                <div class = "am-modal-hd">Add Announce</div>
-                <form class = "am-modal-bd am-form am-form-horizontal" method = "post" action = "addAnnouncement"
-                      enctype = "multipart/form-data">
-                    <div class = "am-form-group">
-                        <label for = "title" class = "am-u-sm-3 am-form-label" th:text="#{ti44}"></label>
-                        <div class = "am-u-sm-9">
-                            <input type = "text" id = "title" th:placeholder = "#{ti44}" name = "title">
-                        </div>
-                    </div>
-
-
-                    <div class = "am-form-group">
-                        <label for = "content" class = "am-u-sm-3 am-form-label" th:text="#{c_zj}"></label>
-                        <div class = "am-u-sm-9">
-                            <!--<input type = "text" id = "content" placeholder = "内容 / Content" name = "brief">-->
-                            <textarea id = "content" th:placeholder = "#{c_zj}" name = "content" cols = "10" rows = "3">
-                            </textarea>
-                        </div>
-                    </div>
-
-
-                    <div class = "am-modal-footer am-g">
-                        <div class = "am-u-sm-7 am-u-sm-push-2 am-u-end">
-                            <input type = "submit" data-am-modal-confirm th.value = "#{confirm_zj}"
-                                   class = "am-btn am-btn-primary"></div>
-                    </div>
-                </form>
-            </div>
-        </div>
         <div class = "am-modal am-modal-prompt" tabindex = "-1" id = "my-prompt2">
             <div class = "am-modal-dialog">
-                <div class = "am-modal-hd">Edit Announce</div>
+                <div class = "am-modal-hd">Message</div>
                 <form class = "am-modal-bd am-form am-form-horizontal" method = "post" action = "modifyAnnouncement"
                       enctype = "multipart/form-data">
                     <div class = "am-form-group">
@@ -260,10 +214,8 @@
                     </div>
 
 
-                    <div class = "am-modal-footer am-g">
-                        <div class = "am-u-sm-7 am-u-sm-push-2 am-u-end">
-                            <input type = "submit" data-am-modal-confirm th.value = "#{confirm_zj}"
-                                   class = "am-btn am-btn-primary"></div>
+                    <div class="am-modal-footer">
+                        <span class="am-modal-btn" data-am-modal-cancel>取消</span>
                     </div>
                 </form>
             </div>
@@ -288,21 +240,7 @@
 <script src = "assets/js/app.js"></script>
 <script type = "text/javascript" src = "assets/js/switch_language.js"></script>
 
-<script>
-    $(function () {
-        $('#add_announce').on('click', function () {
-            $('#my-prompt1').modal({
-                relatedTarget: this,
-                onConfirm: function (e) {
-                    alert([[#{notice_success}]])
-                },
-                onCancel: function (e) {
 
-                }
-            });
-        });
-    });
-</script>
 <script type = "text/javascript" src = "assets/js/test.js"></script>
 <script th:inline = "javascript" src = "dist/amazeui.datatables.js"></script>
 <script th:inline="javascript">
