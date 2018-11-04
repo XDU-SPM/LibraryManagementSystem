@@ -146,6 +146,13 @@
                         </div>
 
                         <div class = "am-form-group">
+                            <label for = "user-account" class = "am-u-sm-3 am-form-label">ID</label>
+                            <div class = "am-u-sm-9">
+                                <input type = "tel" id = "user-id" th:value = "${user.number}" name = "id" readonly="readonly">
+                            </div>
+                        </div>
+
+                        <div class = "am-form-group">
                             <label for = "user-balance" class = "am-u-sm-3 am-form-label" th:text="#{pf44}">待交罚金(元) / Pending fine(CNY)</label>
                             <div class = "am-u-sm-9">
                                 <input id = "user-balance" disabled>
