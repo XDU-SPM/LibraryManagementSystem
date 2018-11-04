@@ -115,6 +115,7 @@
 
             <div class = "am-g">
                 <div class = "am-u-sm-12 am-u-md-4 am-u-md-push-8">
+
                     <!--<div class = "am-panel am-panel-default">-->
                         <!--<div class = "am-panel-bd">-->
                             <!--<div class = "am-g">-->
@@ -213,6 +214,12 @@
 <script src = "https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
 <script type = "text/javascript" src = "assets/js/test.js"></script>
 <script type = "text/javascript" src = "assets/js/switch_language.js"></script>
+<script src="dist/JsBarcode.all.js"></script>
+<script th:inline="javascript">
+    console.log([[${user.number}]]);
+    var id=[[${user.number}]];
+    $("#barcode").JsBarcode(id);
+</script>
 <script>
     getMoney();
     function getMoney() {
@@ -267,8 +274,7 @@
         }
         return true;
     }
-<script>
-
 </script>
+
 </body>
 </html>
