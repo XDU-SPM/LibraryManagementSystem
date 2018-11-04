@@ -285,10 +285,9 @@ public class LibrarianBookService
     {
         id = id.trim();
         Optional<Bkunit> optional = bkunitDAO.findById(id);
-        if (!optional.isPresent())
+        Bkunit bkunit;
+        if (!optional.isPresent() || (bkunit = optional.get()).getStatus() == BkunitUtil.LOST)
             return -1;
-
-        Bkunit bkunit = optional.get();
 
         if (bkunit.getStatus() == BkunitUtil.LOST)
         {
