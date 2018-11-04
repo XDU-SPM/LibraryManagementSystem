@@ -285,13 +285,18 @@ public class LibrarianBookService
     {
         id = id.trim();
         Optional<Bkunit> optional = bkunitDAO.findById(id);
-        Bkunit bkunit;
-        if (!optional.isPresent() || (bkunit = optional.get()).getStatus() == BkunitUtil.LOST)
+        if (!optional.isPresent())
             return -1;
+
+        Bkunit bkunit = optional.get();
 
         if (bkunit.getStatus() == BkunitUtil.LOST)
         {
             UserBkunit userBkunit = userBkunitDAO.findByBkunitAndStatusBetween(bkunit, UserBkunitUtil.BORROWED, UserBkunitUtil.RENEW);
+
+            if (userBkunit == null)
+                return -2;
+
             User reader = userBkunit.getUser();
             reader.addBookNumber(-1);
 
