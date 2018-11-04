@@ -14,6 +14,8 @@ public class User
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    private String number;
+
     private String username;
     private String password;
     private String name;
@@ -69,6 +71,7 @@ public class User
     public User(String username, String password)
     {
         this();
+        this.number = String.valueOf(System.currentTimeMillis());
         this.username = username;
         this.password = password;
     }
@@ -239,5 +242,15 @@ public class User
     public void setUnPaidFine(double unPaidFine)
     {
         this.unPaidFine = unPaidFine;
+    }
+
+    public String getNumber()
+    {
+        return number;
+    }
+
+    public void setNumber(String number)
+    {
+        this.number = number;
     }
 }

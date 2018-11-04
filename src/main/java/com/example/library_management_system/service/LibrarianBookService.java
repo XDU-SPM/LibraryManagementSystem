@@ -155,12 +155,12 @@ public class LibrarianBookService
      * 系统一定会为 reader 把书留下，因此不会存在这本书被预约的情况
      *
      * @param id
-     * @param username
+     * @param number
      * @return
      */
-    public int lend(String id, String username)
+    public int lend(String id, String number)
     {
-        User reader = userDAO.findByUsername(username);
+        User reader = userDAO.findByNumber(number);
         if (reader == null)
             return -1;
 

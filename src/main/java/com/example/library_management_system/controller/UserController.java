@@ -137,7 +137,6 @@ public class UserController
     public String changeSessionLanguage(String lang, HttpServletRequest request)
     {
         String url = request.getHeader("referer");
-        System.out.println(url);
         if ("zh".equals(lang))
             request.getSession().setAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME, new Locale("zh", "CN"));
         else if ("en".equals(lang))
