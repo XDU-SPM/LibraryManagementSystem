@@ -163,7 +163,7 @@
                                 <a th:text = "${announce.title}"  th:onclick="'javascript:modify(\''+${announce.id}+'\',\''+${announce.title}+'\',\''+${announce.content}+'\')'"></a>
                             </td>
                             <td th:text = "${announce.username}"></td>
-                            <td th:text ="${announce.date}"></td>
+                            <td th:text="${#dates.format(announce.date,'yyyy-MM-dd')}"></td>
                             <td>
                                 <div class = "am-btn-toolbar">
                                     <div class = "am-btn-group am-btn-group-xs">
