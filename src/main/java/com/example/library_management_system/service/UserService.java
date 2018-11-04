@@ -102,7 +102,9 @@ public class UserService
 
         try
         {
-            MailUtil.sendmail(user.getEmail(), user.getPassword(), "password");
+            String context =  "We heard that you lost your Bibliosoft password. Sorry about that! <br>  But don’t worry! You can use the following password to login your account: "+ user.getPassword()+" <br><br>Thanks, <br>" +
+                    " Your friends at Bibliosoft";
+            MailUtil.sendmail(user.getEmail(), context, "[Bibliosoft]Retrieve password");
         }
         catch (MessagingException e)
         {

@@ -135,7 +135,7 @@
                 <ul class = "am-tabs-nav am-nav am-nav-tabs">
                     <li class = "am-active"><a href = "#tab1" th:text="#{bs44}">借书统计</a></li>
                     <!--<li class = "am-active"><a href = "#tab2">借阅记录</a></li>-->
-                    <li><a href = "#tab3" th:text="#{reserve44}">预约</a></li>
+                    <li><a href = "#tab3" th:text="#{reservation}">预约</a></li>
                     <li><a href = "#tab4" th:text="#{cbg44}">当前借阅</a></li>
                     <li><a href = "#tab5" th:text="#{hbr44}">已归还</a></li>
                     <li><a href = "#tab6" th:text="#{collect}">收藏</a></li>
@@ -165,7 +165,7 @@
 
                     <div class = "am-tab-panel am-fade am-in " id = "tab3">
                         <div class = "am-cf am-padding am-padding-bottom-0">
-                            <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg" th:text="#{reserve44}">预约</strong></div>
+                            <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg" th:text="#{reservation}">预约</strong></div>
                         </div>
                         <hr>
 
@@ -1023,8 +1023,6 @@
 </script>
 <script th:inline="javascript">
     var pageNumber1 = 0;
-
-    console.log("4444444");
 
     function getOnePageBook1_1() {
         pageNumber1 = 0;

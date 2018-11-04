@@ -97,7 +97,7 @@ public class Timer
             System.out.println("in in sendMail");
             User user = userBkunit.getUser();
             Bkunit bkunit = userBkunit.getBkunit();
-            String context = user.getUsername() + ", your book " + bkunit.getBook().getTitle() + "(" + bkunit.getId() + ") has expired";
+            String context = user.getUsername() + ", your book " + bkunit.getBook().getTitle() + "(" + bkunit.getId() + ") has expired.Please return/renew it in time.";
             String subject = "Book Overdue";
             try
             {
