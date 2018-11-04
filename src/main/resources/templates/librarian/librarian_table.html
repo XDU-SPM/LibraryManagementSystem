@@ -6,7 +6,7 @@
     <title>BiblioSoft</title>
     <link rel = "icon" type = "image/png" href = "assets/i/favicon.png">
     <link rel = "apple-touch-icon-precomposed" href = "assets/i/app-icon72x72@2x.png">
-    <link rel = "stylesheet" href = "assets/css/amazeui.min.css"/>
+    <link rel = "stylesheet" href = "assets/css/amazeui.min.css">
     <link rel = "stylesheet" href = "assets/css/admin.css">
     <link rel = "stylesheet" href="dist/amazeui.datatables.css">
     <!--<link rel = "stylesheet" href = "//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">-->
@@ -267,7 +267,7 @@
                     <div class = "am-form-group">
                         <label for = "number" class = "am-u-sm-3 am-form-label" th:text="#{num}">数量</label>
                         <div class = "am-u-sm-9">
-                            <select data-am-selected="{maxHeight: 100}" id="number" name="number" typeof="number">
+                            <select data-am-selected="{maxHeight: 100,btnWidth: '300px',btnSize: 'sm',}" id="number" name="number" typeof="number">
                                 <script>
                                     for(var i=1;i<=100;i++){
                                         document.write("<option value='"+i+"'>"+i+"</option>");
