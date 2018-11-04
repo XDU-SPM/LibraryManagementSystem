@@ -44,18 +44,18 @@
 
             <ul class = "am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
 
-                <li class="am-dropdown" data-am-dropdown>
-                    <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-                        <span th:text="#{lan44}">语言</span> <span class="am-icon-caret-down"></span>
+                <li class = "am-dropdown" data-am-dropdown>
+                    <a class = "am-dropdown-toggle" data-am-dropdown-toggle href = "javascript:;">
+                        <span th:text = "#{lan44}">语言</span> <span class = "am-icon-caret-down"></span>
                     </a>
-                    <ul class="am-dropdown-content">
+                    <ul class = "am-dropdown-content">
                         <li><a href = "changeSessionLanguage?lang=zh">中文</a></li>
                         <li><a href = "changeSessionLanguage?lang=en">ENGLISH</a></li>
                     </ul>
                 </li>
                 <li class = "am-dropdown" data-am-dropdown>
                     <a class = "am-dropdown-toggle" data-am-dropdown-toggle href = "javascript:;">
-                        <a th:href = "@{/logout}" th:text="#{lg_yxy}">注销</a>
+                        <a th:href = "@{/logout}" th:text = "#{lg_yxy}">注销</a>
                     </a>
 
                 </li>
@@ -71,34 +71,39 @@
     <div class = "admin-sidebar am-offcanvas" id = "admin-offcanvas">
         <div class = "am-offcanvas-bar admin-offcanvas-bar">
             <div class = "user-info">
-                <img class = "am-img-circle am-img-thumbnail am-center" width="150" height="150"
-                     th:src= "${avatarPath}"
+                <img class = "am-img-circle am-img-thumbnail am-center" width = "150" height = "150"
+                     th:src = "${avatarPath}"
                      alt = ""/>
-                <p style = "text-align: center" th:text="${username}">Reader</p>
+                <p style = "text-align: center" th:text = "${username}">Reader</p>
             </div>
 
             <ul class = "am-list admin-sidebar-list">
-                <li><a href = "reader_condition"><span class = "am-icon-bar-chart"></span><span th:text="#{bis_yxy}"> 借书信息统计</span></a></li>
-                <li><a href = "reader_search"><span class = "am-icon-search"></span><span th:text="#{sfb_yxy}"> 搜索图书</span></a></li>
-                <li><a href = "reader_information" class = "am-cf"><span class = "am-icon-check"></span><span th:text="#{pd_yxy}"> 个人资料</span><span
+                <li><a href = "reader_condition"><span class = "am-icon-bar-chart"></span><span th:text = "#{bis_yxy}"> 借书信息统计</span></a>
+                </li>
+                <li><a href = "reader_search"><span class = "am-icon-search"></span><span
+                        th:text = "#{sfb_yxy}"> 搜索图书</span></a></li>
+                <li><a href = "reader_information" class = "am-cf"><span class = "am-icon-check"></span><span
+                        th:text = "#{pd_yxy}"> 个人资料</span><span
                         class = "am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
-                <li><a href = "password_change"><span class = "am-icon-eraser"></span><span th:text="#{cp_yxy}"> 修改密码</span></a></li>
-                <li><a href = "reader_message"><span class = "am-icon-commenting-o"></span><span th:text="#{lm_yxy}"> 留言</span></a></li>
+                <li><a href = "password_change"><span class = "am-icon-eraser"></span><span
+                        th:text = "#{cp_yxy}"> 修改密码</span></a></li>
+                <li><a href = "reader_message"><span class = "am-icon-commenting-o"></span><span th:text = "#{lm_yxy}"> 留言</span></a>
+                </li>
             </ul>
 
             <!--<div class = "am-panel am-panel-default admin-sidebar-panel">-->
-                <!--<div class = "am-panel-bd">-->
-                    <!--<p><span class = "am-icon-bookmark"></span> <span th:text="#{no_yxy}">公告</span></p>-->
-                    <!--<p th:text="#{tiqa44}">时光静好，与君语；细水流年，与君同。</p>-->
-                <!--</div>-->
+            <!--<div class = "am-panel-bd">-->
+            <!--<p><span class = "am-icon-bookmark"></span> <span th:text="#{no_yxy}">公告</span></p>-->
+            <!--<p th:text="#{tiqa44}">时光静好，与君语；细水流年，与君同。</p>-->
+            <!--</div>-->
             <!--</div>-->
 
-         <!--   <div class = "am-panel am-panel-default admin-sidebar-panel">
-                <div class = "am-panel-bd">
-                    <p><span class = "am-icon-tag"></span> wiki</p>
-                    <p>Welcome to the Amaze UI wiki!</p>
-                </div>
-            </div>-->
+            <!--   <div class = "am-panel am-panel-default admin-sidebar-panel">
+                   <div class = "am-panel-bd">
+                       <p><span class = "am-icon-tag"></span> wiki</p>
+                       <p>Welcome to the Amaze UI wiki!</p>
+                   </div>
+               </div>-->
         </div>
     </div>
     <!-- sidebar end -->
@@ -107,60 +112,40 @@
     <div class = "admin-content">
         <div class = "admin-content-body">
             <div class = "am-tab-panel am-fade am-in am-active">
-                <form class = "am-form">
+                <form class = "am-form" action = "addMessage" method = "post">
                     <fieldset>
                         <div class = "am-cf am-padding">
-                            <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg" th:text="#{plam44}">请留言：</strong></div>
+                            <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg"
+                                                               th:text = "#{plam44}">请留言：</strong></div>
                         </div>
 
                         <div class = "am-g am-margin-top">
                             <div class = "am-u-sm-4 am-u-md-2 am-text-right">
-                                <strong th:text="#{mt44}">
+                                <strong th:text = "#{mt44}">
                                     留言标题
                                 </strong>
                             </div>
                             <div class = "am-u-sm-8 am-u-md-4">
-                                <input type = "text" class = "am-input-sm">
+                                <input type = "text" class = "am-input-sm" name = "title">
                             </div>
-                            <div class = "am-hide-sm-only am-u-md-6" th:text="#{mfu44}">*必填，不可重复</div>
-                        </div>
-
-                        <div class = "am-g am-margin-top">
-                            <div class = "am-u-sm-4 am-u-md-2 am-text-right">
-                                <strong th:text="#{ma44}">
-                                    留言作者
-                                </strong>
-                            </div>
-                            <div class = "am-u-sm-8 am-u-md-4 am-u-end col-end">
-                                <input type = "text" class = "am-input-sm">
-                            </div>
-                        </div>
-
-                        <div class = "am-g am-margin-top">
-                            <div class = "am-u-sm-4 am-u-md-2 am-text-right">
-                                <strong th:text="#{ca44}">
-                                    内容摘要
-                                </strong>
-                            </div>
-                            <div class = "am-u-sm-8 am-u-md-4">
-                                <input type = "text" class = "am-input-sm">
-                            </div>
-                            <div class = "am-u-sm-12 am-u-md-6" th:text="#{dnf44}">不填写则自动截取内容前255字符</div>
+                            <div class = "am-hide-sm-only am-u-md-6" th:text = "#{mfu44}">*必填，不可重复</div>
                         </div>
 
                         <div class = "am-g am-margin-top-sm">
                             <div class = "am-u-sm-12 am-u-md-2 am-text-right admin-form-text">
-                                <strong th:text="#{cd44}">
+                                <strong th:text = "#{cd44}">
                                     内容描述
                                 </strong>
                             </div>
                             <div class = "am-u-sm-12 am-u-md-10">
-                                <textarea rows = "10" th:placeholder = "#{utrt44}"></textarea>
+                                <textarea rows = "10" th:placeholder = "#{utrt44}" name = "content"></textarea>
                             </div>
                         </div>
                         <hr/>
                         <p>
-                            <button type = "submit" class = "am-btn am-btn-default am-center" th:text="#{sts44}">提交保存</button>
+                            <button type = "submit" class = "am-btn am-btn-default am-center" th:text = "#{sts44}">
+                                提交保存
+                            </button>
                         </p>
                     </fieldset>
                 </form>

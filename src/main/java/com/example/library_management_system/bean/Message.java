@@ -13,6 +13,9 @@ public class Message
     private int uid;
     private String title;
 
+    @Transient
+    private String username;
+
     @Lob
     private String content;
 
@@ -79,5 +82,15 @@ public class Message
     public void setDate(Date date)
     {
         this.date = date;
+    }
+
+    public String getUsername()
+    {
+        return username;
+    }
+
+    public void setUsername(String username)
+    {
+        this.username = username;
     }
 }

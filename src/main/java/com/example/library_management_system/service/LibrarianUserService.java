@@ -2,9 +2,11 @@ package com.example.library_management_system.service;
 
 import com.example.library_management_system.bean.Account;
 import com.example.library_management_system.bean.Income;
+import com.example.library_management_system.bean.Message;
 import com.example.library_management_system.bean.User;
 import com.example.library_management_system.controller.LocaleMessageSourceService;
 import com.example.library_management_system.dao.AccountDAO;
+import com.example.library_management_system.dao.MessageDAO;
 import com.example.library_management_system.dao.UserDAO;
 import com.example.library_management_system.utils.AccountUtil;
 import com.example.library_management_system.utils.OneDayApart;
@@ -24,6 +26,9 @@ public class LibrarianUserService
 
     @Autowired
     private AccountDAO accountDAO;
+
+    @Autowired
+    private MessageDAO messageDAO;
 
     @Resource
     private LocaleMessageSourceService localeMessageSourceService;
@@ -174,5 +179,18 @@ public class LibrarianUserService
             oneMonthApart.setNextMonth();
         }
         return incomes;
+    }
+
+    public List<Message> getMessages()
+    {
+        List<Message> messages = messageDAO.findAll();
+        for (Message message : messages)
+            setUsername(message);
+        return messages;
+    }
+
+    private void setUsername(Message message)
+    {
+        message.setUsername(userDAO.findById(message.getUid()).getUsername());
     }
 }

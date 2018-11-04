@@ -31,7 +31,8 @@ public class LibrarianUserController
     @RequestMapping(value = "/librarian/readerRegister", method = RequestMethod.POST)
     public String readerRegister(User reader, Model model)
     {
-        userService.registerService(reader, RoleUtil.ROLE_READER_CHECK);
+        String number = userService.registerService(reader, RoleUtil.ROLE_READER_CHECK);
+        model.addAttribute("number", number);
         model.addAttribute("status", true);
         model.addAttribute("registerMoney", globalUtilService.getRegisterMoney());
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());

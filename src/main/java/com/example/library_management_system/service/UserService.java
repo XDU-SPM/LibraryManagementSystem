@@ -56,7 +56,7 @@ public class UserService
         return userDAO.findByUsername(userDetails.getUsername());
     }
 
-    public void registerService(User user, String roleName)
+    public String registerService(User user, String roleName)
     {
 //        user.setPassword(MD5Util.encode(user.getPassword()));
         if (RoleUtil.ROLE_READER_CHECK.equals(roleName))
@@ -78,6 +78,8 @@ public class UserService
             Account account = new Account(AccountUtil.DEPOSIT, user.getId(), globalUtilService.getRegisterMoney(), null, new Date());
             accountDAO.save(account);
         }
+
+        return user.getNumber();
     }
 
     public void saveUser(User tmp)

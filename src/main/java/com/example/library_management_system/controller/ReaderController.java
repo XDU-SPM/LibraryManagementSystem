@@ -1,5 +1,6 @@
 package com.example.library_management_system.controller;
 
+import com.example.library_management_system.bean.Message;
 import com.example.library_management_system.bean.User;
 import com.example.library_management_system.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -101,5 +102,12 @@ public class ReaderController
     {
         model.addAttribute("announcement", announcementService.getAnnouncement(id));
         return "reader/Notice";
+    }
+
+    @RequestMapping(value = "/reader/addMessage", method = RequestMethod.POST)
+    public String addMessage(Message message)
+    {
+        readerBookService.addMessage(message);
+        return "redirect:reader_message";
     }
 }

@@ -45,6 +45,9 @@ public class ReaderBookService
     @Autowired
     private GlobalUtilService globalUtilService;
 
+    @Autowired
+    private MessageDAO messageDAO;
+
     public List<MonthBorrow> monthBorrows()
     {
         User reader = userService.getUser();
@@ -205,5 +208,12 @@ public class ReaderBookService
         User user = userService.getUser();
         Book book = bookDAO.findByIsbn(isbn);
         return userFavoriteBookDAO.findByUserAndBook(user, book) != null;
+    }
+
+    public void addMessage(Message message)
+    {
+        message.setUid(userService.getUser().getId());
+        message.setDate(new Date());
+        messageDAO.save(message);
     }
 }
