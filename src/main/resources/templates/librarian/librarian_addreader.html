@@ -149,8 +149,15 @@
 
             <div class = "am-g">
 
+                <div class = "am-u-sm-12 am-u-md-4 am-u-md-push-8">
+                    <div class = "am-panel am-panel-default">
+                        <div class = "am-panel-bd">
+                            <img id="barcode" />
+                        </div>
+                    </div>
+                </div>
 
-                <div class = "am-u-sm-12 am-u-md-8 ">
+                <div class = "am-u-sm-12 am-u-md-8 am-u-md-pull-4">
                     <form class = "am-form am-form-horizontal" action = "readerRegister" method = "post">
                         <div class = "am-form-group">
                             <label for = "reader-username" class = "am-u-sm-3 am-form-label" th:text="#{username}"></label>
@@ -212,6 +219,7 @@
 <!--<![endif]-->
 <script src = "assets/js/amazeui.min.js"></script>
 <script src = "assets/js/app.js"></script>
+<script src="dist/JsBarcode.all.js"></script>
 <script type = "text/javascript" src = "assets/js/switch_language.js"></script>
 
 <script th:inline = "javascript">
@@ -221,6 +229,9 @@
         if (status != 'null') {
             if (status) {
                 alert([[#{notice_success}]]);
+                console.log([[${id}]]);
+                var id=[[${id}]];
+                $("#barcode").JsBarcode(id);
             }
             else
                 alert([[#{fail}]]);
@@ -265,7 +276,6 @@
     });
 
     function check() {
-        console.log("233");
         if (!status) {
             alert([[#{tuhbr}]]);
             return false;
@@ -273,5 +283,7 @@
         return true;
     }
 </script>
+
+
 </body>
 </html>
