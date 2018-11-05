@@ -1,123 +1,102 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <style type="text/css">
-        div,ul,li{margin: 0;padding: 0}/*先初始化一下默认样式*/
-        a{text-decoration: none;color: #222;}
-        .notice {
-             width: 50%;
-             margin: 20px 10px;
-            font-size: 14px;
-            line-height: 30px;
-            background-color: #fff;
-            box-shadow: 0 0 4px #ccc;
-            height: 30px;
-            overflow: hidden;
+<html xmlns:th = "http://www.thymeleaf.org"
+      xmlns:sec = "http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head lang = "en">
+    <meta charset = "UTF-8">
+    <title>Bibliosoft</title>
+    <meta http-equiv = "X-UA-Compatible" content = "IE=edge">
+    <meta name = "viewport" content = "width=device-width, initial-scale=1">
+    <meta name = "format-detection" content = "telephone=no">
+    <meta name = "renderer" content = "webkit">
+    <meta http-equiv = "Cache-Control" content = "no-siteapp"/>
+    <link rel = "alternate icon" type = "image/jpg" href = "assets/i/head_logo.jpg">
+    <link rel = "stylesheet" href = "assets/css/amazeui.min.css"/>
+    <style>
+        .am-form-group {
+            text-align: left;
         }
 
-
-        .notice ul li {
-             list-style: none;
-             line-height: 30px;
-             display: block;
-             margin-left: 80px;
+        .am-topbar {
+            /*background-color: black;*/
         }
 
-
-        .notice a {
-             float: left;
-             display: inline-block;
-             width: 70%;
-             margin-left: 20px;
-             text-decoration: none;
+        .am-topbar .am-text-ir {
+            display: block;
+            margin-right: 10px;
+            height: 50px;
+            width: 125px;
+            background: url(assets/i/logo.jpg) no-repeat left center;
+            -webkit-background-size: 125px 24px;
+            background-size: 125px 24px;
         }
 
-
-        .notice a:first-child {
-             overflow: hidden;
-             text-overflow: ellipsis;
-             white-space: nowrap;
-        }
-
-
-        .notice a span {
-             color: #999;
-             font-size: 12px;
-             margin-right: 10px;
-        }
-
-
-        .more {
-            position: absolute;
-            top: 27px;
-            left: 633px;
-            width: auto;
-            font-size: 12px;
-            color: #ff9900;
-        }
-
-
-        .new-notice {
-            position: absolute;
-            top: 23px;
-            left: 33px;
-            color: #aaa;
-        }
     </style>
 </head>
-<body>
-<span class="new-notice">最新公告：</span>
-<br>
-<div class="notice">
-    <ul>
-        <li>
-            <a href="#"><span>2018-5-31</span>
-                第1条公告第1条公告第一条公告第一条公告第一条公告第一条公告第一条公告第一条公告
-            </a>
-        </li>
-        <li>
-            <a href="#"><span>2018-5-31</span>
-                第2条公告第2条公告第一条公告第一条公告第一条公告第一条公告第一条公告第一条公告
-            </a>
-        </li>
-        <li>
-            <a href="#"><span>2018-5-31</span>
-                第3条公告第3条公告第一条公告第一条公告第一条公告第一条公告第一条公告第一条公告
-            </a>
-        </li>
-        <li>
-            <a href="#"><span>2018-5-31</span>
-                第4条公告第4条公告第一条公告第一条公告第一条公告第一条公告第一条公告第一条公告
-            </a>
-        </li>
-    </ul>
+<body background="assets/img/background.jpg">
+<header class = "am-topbar am-topbar-inverse admin-header">
+    <h1 class = "am-topbar-brand ">
+        <a href = "#" class = "am-text-ir">BiblioSoft</a>
+    </h1>
+
+
+    <div class = "am-collapse am-topbar-collapse" id = "doc-topbar-collapse">
+
+        <div class = "am-collapse am-topbar-collapse" id = "topbar-collapse">
+
+            <ul class = "am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
+
+                <li class="am-dropdown" data-am-dropdown>
+                    <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+                        <span th:text="#{lan44}">语言</span> <span class="am-icon-caret-down"></span>
+                    </a>
+                    <ul class="am-dropdown-content">
+<<<<<<< HEAD
+                        <li><a href="changeSessionLanguage?lang=zh&page=Notice">中文</a></li>
+                        <li><a href="changeSessionLanguage?lang=en&page=Notice">ENGLISH</a></li>
+=======
+                        <li><a href = "changeSessionLanguage?lang=zh">中文</a></li>
+                        <li><a href = "changeSessionLanguage?lang=en">ENGLISH</a></li>
+>>>>>>> feac54d5ba1625c587c07d1934666bf416eec3f6
+                    </ul>
+                </li>
+
+                <li class = "am-dropdown" data-am-dropdown>
+                    <a class = "am-dropdown-toggle" data-am-dropdown-toggle href = "javascript:;">
+                        <a th:href = "@{/logout}" th:text="#{lg_yxy}">注销</a>
+                    </a>
+
+                </li>
+
+            </ul>
+        </div>
+
+    </div>
+</header>
+
+
+<div class = "am-g">
+    <div class = "am-u-lg-6 am-u-md-8 am-u-sm-centered">
+        <h3 th:text="#{btitle}">标题</h3>
+        <hr>
+        <div class = "am-text-bottom">
+            [[${announcement.title}]]
+        </div>
+        <br>
+
+        <h3 th:text="#{c_zj}">Content</h3>
+        <hr>
+        <div class = "am-text-bottom">
+            [[${announcement.content}]]
+        </div>
+
+        <footer>
+            <hr>
+            <p class = "am-padding-left" style = "text-align: center">© 2018 Bibliosoft Online Library System</p>
+        </footer>
+    </div>
 </div>
-<a href="#">更多公告>></a>
-
-<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-<script>
-    /*
-    * 参数说明
-    * obj      : 动画的节点，本例中是ul
-    * top      : 动画的高度，本例中是-35px;注意向上滚动是负数
-    * time     : 动画的速度，即完成动画所用时间，本例中是500毫秒，即marginTop从0到-35px耗时500毫秒
-    * function : 回调函数，每次动画完成，marginTop归零，并把此时第一条信息添加到列表最后;
-    *
-    */
-    function noticeUp(obj,top,time) {
-        $(obj).animate({
-            marginTop: top
-        }, time, function () {
-            $(this).css({marginTop:"0"}).find(":first").appendTo(this);
-        })
-    };
-
-    $(function () {
-        // 调用 公告滚动函数
-        setInterval("noticeUp('.notice ul','-35px',500)", 2000);
-    });
-</script>
+<script src = "https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script type = "text/javascript" src = "assets/js/test.js"></script>
+<script type = "text/javascript" src = "assets/js/switch_language.js"></script>
 </body>
 </html>
