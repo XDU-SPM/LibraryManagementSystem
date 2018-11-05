@@ -348,11 +348,11 @@
         document.getElementById("content2").value=content;
     }
 </script>
-<script>
+<script th:inline="javascript">
     $(function(){
         $("table#announce tbody").on('click', 'button.delete', function () {
             let id = $('#announce').DataTable().rows($('#announce').DataTable().row($(this).parents('tr'))).data()[0][0];
-            deletemy(id, $(this));
+            deletemy(id,$(this));
         })
     });
 
