@@ -71,14 +71,21 @@ public class LibrarianController
         return "librarian/librarian_user";
     }
 
-    @RequestMapping(value = "librarian/saveUser", method = RequestMethod.POST)
-    public String saveUser(User user, Model model)
+    @RequestMapping(value = "librarian/saveReader", method = RequestMethod.POST)
+    public String saveReader(User user, Model model)
     {
         librarianUserService.saveReader(user);
         model.addAttribute("status", true);
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
         return "redirect:librarian_readerinfo?id=" + user.getId();
+    }
+
+    @RequestMapping(value = "/librarian/saveUser", method = RequestMethod.POST)
+    public String saveUser(User user)
+    {
+        userService.saveUser(user);
+        return "redirect:librarian_user";
     }
 
     @RequestMapping(value = "/librarian/librarian_announce", method = RequestMethod.GET)

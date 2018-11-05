@@ -79,46 +79,14 @@
 <div class = "am-g am-g-fixed blog-fixed am-u-sm-centered blog-article-margin">
     <div data-am-widget = "slider" class = "am-slider am-slider-b1" data-am-slider = '{&quot;controlNav&quot;:false}'>
         <ul class = "am-slides">
-            <li>
+            <li th:each="notice:${page4}">
                 <img src = "assets/i/b1.jpg">
                 <div class = "blog-slider-desc am-slider-desc ">
                     <div class = "blog-text-center blog-slider-con">
-                        <span><p class = "am-text-secondary"><span
-                                th:text = "#{no_yxy}">公告</span></p></span>
-                        <h1 class = "blog-h-margin"><a th:text="#{notice1}">书籍是人类知识的总结。书籍是全世界的营养品。</a></h1>
+                        <span><p class = "am-text-secondary am-text-xl"><span
+                                th:text = "#{no_yxy}" >公告</span></p></span>
+                        <h1 class = "blog-h-margin"><a th:href="@{Notice(id=${notice.id})}" th:text="${notice.title}"></a></h1>
 
-                        <br><br>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <img src = "assets/i/b2.jpg">
-                <div class = "am-slider-desc blog-slider-desc">
-                    <div class = "blog-text-center blog-slider-con">
-                        <span><p class = "am-text-secondary"><span
-                                th:text = "#{no_yxy}">公告</span></p></span>
-                        <h1 class = "blog-h-margin"><a href = "" th:text="#{notice2}">任何时候我也不会满足，越是多读书，就越是深刻地感到不满足，越感到自己知识贫乏。</a></h1>
-
-                    </div>
-                </div>
-            </li>
-            <li>
-                <img src = "assets/i/b3.jpg">
-                <div class = "am-slider-desc blog-slider-desc">
-                    <div class = "blog-text-center blog-slider-con">
-                        <span><p class = "am-text-secondary"><span
-                                th:text = "#{no_yxy}">公告</span></p></span>
-                        <h1 class = "blog-h-margin"><a th:text="#{notice3}">书籍是在时代的波涛中航行的思想之船，它小心翼翼地把珍贵的货物运送给一代又一代。</a></h1>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <img src = "assets/i/b2.jpg">
-                <div class = "am-slider-desc blog-slider-desc">
-                    <div class = "blog-text-center blog-slider-con">
-                        <span><p class = "am-text-secondary"><span
-                                th:text = "#{no_yxy}">公告</span></p></span>
-                        <h1 class = "blog-h-margin"><a th:text="#{notice1}">书籍是人类知识的总结。书籍是全世界的营养品。</a></h1>
                     </div>
                 </div>
             </li>
