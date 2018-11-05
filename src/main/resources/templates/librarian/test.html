@@ -14,7 +14,42 @@
         id="doc-prompt-toggle">
     Prompt
 </button>
-
+<div class="am-panel-group" id="accordion">
+    <div class="am-panel am-panel-default">
+        <div class="am-panel-hd">
+            <h4 class="am-panel-title" data-am-collapse="{parent: '#accordion', target: '#do-not-say-1'}">
+                ...
+            </h4>
+        </div>
+        <div id="do-not-say-1" class="am-panel-collapse am-collapse am-in">
+            <div class="am-panel-bd">
+                ...
+            </div>
+        </div>
+    </div>
+    <div class="am-panel am-panel-default">
+        <div class="am-panel-hd">
+            <h4 class="am-panel-title" data-am-collapse="{parent: '#accordion', target: '#do-not-say-2'}">
+                ...
+            </h4>
+        </div>
+        <div id="do-not-say-2" class="am-panel-collapse am-collapse">
+            <div class="am-panel-bd">
+                ...
+            </div>
+        </div>
+    </div>
+    <div class="am-panel am-panel-default">
+        <div class="am-panel-hd">
+            <h4 class="am-panel-title" data-am-collapse="{parent: '#accordion', target: '#do-not-say-3'}">...</h4>
+        </div>
+        <div id="do-not-say-3" class="am-panel-collapse am-collapse">
+            <div class="am-panel-bd">
+                ...
+            </div>
+        </div>
+    </div>
+</div>
 <div class="am-modal am-modal-prompt" tabindex="-1" id="my-prompt">
     <div class = "am-modal-dialog">
         <div class = "am-modal-hd" th:text="#{Addbook_ysw}">添加图书</div>
