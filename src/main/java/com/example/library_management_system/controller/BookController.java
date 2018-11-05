@@ -4,6 +4,7 @@ import com.example.library_management_system.bean.Book;
 import com.example.library_management_system.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -25,5 +26,12 @@ public class BookController
                                @RequestParam(value = "size", defaultValue = "10") int size, String category)
     {
         return bookService.showBook(start, size, category);
+    }
+
+    @RequestMapping(value = "/book_details", method = RequestMethod.GET)
+    public String reader_book_details(String isbn, Model model)
+    {
+        model.addAttribute("book", bookService.bookInfo(isbn));
+        return "book_details";
     }
 }
