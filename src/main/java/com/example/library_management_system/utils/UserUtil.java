@@ -5,4 +5,7 @@ public class UserUtil
     public final static String
             READER_PASSWORD_DEFAULT = "12345678",
             LIBRARIAN_PASSWORD_DEFAULT = "00010001";
+
+    public final static int
+            NOTIFY_DAY = 5;
 }

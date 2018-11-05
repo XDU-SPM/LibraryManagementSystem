@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.mail.MessagingException;
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -48,6 +49,7 @@ public class Timer
         Calendar now = Calendar.getInstance();
         for (UserBkunit userBkunit : userBkunits)
         {
+            User user = userBkunit.getUser();
             Calendar overdue = Calendar.getInstance();
             overdue.setTime(userBkunit.getReturnDate());
             if (now.getTime().after(overdue.getTime()))
@@ -58,6 +60,31 @@ public class Timer
 
                 BkunitOperatingHistory bkunitOperatingHistory = new BkunitOperatingHistory(new Date(), userBkunit.getUser().getId(), userBkunit.getBkunit().getId(), UserBkunitUtil.OVERDUE);
                 bkunitOperatingHistoryDAO.save(bkunitOperatingHistory);
+            }
+            else if (user.getNotifyDay() > 0)
+            {
+                Calendar notify = Calendar.getInstance();
+                notify.setTime(now.getTime());
+                notify.add(Calendar.DATE, user.getNotifyDay());
+                if (notify.getTime().after(overdue.getTime()))
+                {
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss SSS");
+                    Bkunit bkunit = userBkunit.getBkunit();
+                    String context = user.getUsername() + ", your book " + bkunit.getBook().getTitle() + "(" + bkunit.getId() + ") will expire in " + sdf.format(overdue.getTime()) + ". Please return/renew it in time.";
+                    String subject = "Book Overdue";
+                    try
+                    {
+                        MailUtil.sendmail(user.getEmail(), context, subject);
+                    }
+                    catch (MessagingException e)
+                    {
+                        e.printStackTrace();
+                    }
+                    catch (UnsupportedEncodingException e)
+                    {
+                        e.printStackTrace();
+                    }
+                }
             }
         }
     }
@@ -97,7 +124,7 @@ public class Timer
             System.out.println("in in sendMail");
             User user = userBkunit.getUser();
             Bkunit bkunit = userBkunit.getBkunit();
-            String context = user.getUsername() + ", your book " + bkunit.getBook().getTitle() + "(" + bkunit.getId() + ") has expired.Please return/renew it in time.";
+            String context = user.getUsername() + ", your book " + bkunit.getBook().getTitle() + "(" + bkunit.getId() + ") has expired. Please return it in time.";
             String subject = "Book Overdue";
             try
             {

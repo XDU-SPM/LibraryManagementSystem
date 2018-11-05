@@ -85,7 +85,7 @@
                     <a class = "am-cf" data-am-collapse = "{target: '#collapse-nav'}"><span
                             class = "am-icon-file"></span><span th:text="#{mb_yxy}"> 管理图书</span> <span
                             class = "am-icon-angle-right am-fr am-margin-right"></span></a>
-                    <ul class = "am-list am-collapse admin-sidebar-sub am-in" id = "collapse-nav">
+                    <ul class = "am-list am-collapse admin-sidebar-sub" id = "collapse-nav">
                         <li><a href = "librarian_borrow"><span class = "am-icon-leaf"></span><span th:text="#{bo_yxy}"> 借阅</span></a></li>
                         <li><a href = "librarian_return"><span class = "am-icon-mail-reply"></span><span th:text="#{re_yxy}"> 归还</span></a></li>
                         <li><a href = "librarian_table"><span class = "am-icon-book"></span><span th:text="#{mb_yxy}"> 管理图书</span></a></li>
@@ -97,7 +97,7 @@
                     <a class = "am-cf" data-am-collapse = "{target: '#collapse-nav2'}"><span
                             class = "am-icon-user"></span><span th:text="#{mr_yxy}"> 管理读者 </span><span
                             class = "am-icon-angle-right am-fr am-margin-right"></span></a>
-                    <ul class = "am-list am-collapse admin-sidebar-sub am-in" id = "collapse-nav2">
+                    <ul class = "am-list am-collapse admin-sidebar-sub" id = "collapse-nav2">
                         <li><a href = "librarian_addreader"><span class = "am-icon-user-plus"></span><span th:text="#{ar_yxy}"> 增加读者</span></a></li>
                         <li><a href = "librarian_managereader"><span class = "am-icon-pencil"></span><span th:text="#{mr_yxy}"> 管理读者</span></a></li>
                     </ul>
@@ -118,18 +118,18 @@
             </ul>
 
             <!--<div class = "am-panel am-panel-default admin-sidebar-panel">-->
-                <!--<div class = "am-panel-bd">-->
-                    <!--<p><span class = "am-icon-bookmark"></span><span th:text="#{no_yxy}"> 公告</span></p>-->
-                    <!--<p th:text="#{announcement44}">时光静好，与君语；细水流年，与君同。—— Amaze UI</p>-->
-                <!--</div>-->
+            <!--<div class = "am-panel-bd">-->
+            <!--<p><span class = "am-icon-bookmark"></span><span th:text="#{no_yxy}"> 公告</span></p>-->
+            <!--<p th:text="#{announcement44}">时光静好，与君语；细水流年，与君同。</p>-->
+            <!--</div>-->
             <!--</div>-->
 
-            <!--<div class = "am-panel am-panel-default admin-sidebar-panel">
-                <div class = "am-panel-bd">
-                    <p><span class = "am-icon-tag"></span> wiki</p>
-                    <p>Welcome to the Amaze UI wiki!</p>
-                </div>
-            </div>-->
+            <!-- <div class = "am-panel am-panel-default admin-sidebar-panel">
+                 <div class = "am-panel-bd">
+                     <p><span class = "am-icon-tag"></span> wiki</p>
+                     <p>Welcome to the Amaze UI wiki!</p>
+                 </div>
+             </div>-->
         </div>
     </div>
     <!-- sidebar end -->
@@ -167,7 +167,8 @@
                         <tbody>
                         <tr th:each = "record:${set}" >
                             <td th:text = "${record.id}"></td>
-                            <td ><a th:text = "${record.book.title}" th:href="@{librarian_book(isbn=${record.book.isbn})}"></a></td>
+                            <td th:text = "${record.book.title}"></td>
+                            <!--<a th:text = "${record.book.title}" th:href="@{librarian_book(isbn=${record.book.isbn})}"></a>-->
                             <td th:text = "${record.book.isbn}"></td>
                             <td class = "am-hide-sm-only" th:text = "${record.user.username}"></td>
                             <td class = "am-hide-sm-only" th:text = "${record.borrowDate}"></td>
@@ -211,7 +212,7 @@
                 language:{
                     "oPaginate": {
                         "sFirst": "First",
-                        "sPrevious": [[#{n_zj}]],
+                        "sPrevious": [[#{p_zj}]],
                         "sNext": [[#{n_zj}]],
                         "sLast": "Last"
                     },
