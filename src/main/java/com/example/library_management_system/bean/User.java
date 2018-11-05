@@ -24,6 +24,8 @@ public class User
 
     private double money;
 
+    private int notifyDay;
+
     @Transient
     private String role;
 
@@ -252,5 +254,15 @@ public class User
     public void setNumber(String number)
     {
         this.number = number;
+    }
+
+    public int getNotifyDay()
+    {
+        return notifyDay;
+    }
+
+    public void setNotifyDay(int notifyDay)
+    {
+        this.notifyDay = notifyDay;
     }
 }

@@ -63,6 +63,7 @@ public class UserService
         {
             user.setPassword(UserUtil.READER_PASSWORD_DEFAULT);
             user.setNumber(String.valueOf(System.currentTimeMillis()));
+            user.setNotifyDay(UserUtil.NOTIFY_DAY);
         }
         else if (RoleUtil.ROLE_LIBRARIAN_CHECK.equals(roleName))
             user.setPassword(UserUtil.LIBRARIAN_PASSWORD_DEFAULT);
