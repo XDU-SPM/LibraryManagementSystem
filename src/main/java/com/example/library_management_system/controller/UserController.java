@@ -159,4 +159,11 @@ public class UserController
             request.getSession().setAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME, new Locale("en", "US"));
         return "redirect:" + page;
     }
+
+    @RequestMapping(value = "/Notice", method = RequestMethod.GET)
+    public String Notice(int id, Model model)
+    {
+        model.addAttribute("announcement", announcementService.getAnnouncement(id));
+        return "Notice";
+    }
 }

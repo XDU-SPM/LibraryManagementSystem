@@ -90,6 +90,7 @@ public class UserService
         user.setUsername(tmp.getUsername());
         user.setName(tmp.getName());
         user.setEmail(tmp.getEmail());
+        user.setNotifyDay(tmp.getNotifyDay());
 
         userDAO.save(user);
     }
