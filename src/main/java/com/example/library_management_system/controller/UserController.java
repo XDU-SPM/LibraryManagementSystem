@@ -2,6 +2,7 @@ package com.example.library_management_system.controller;
 
 import com.example.library_management_system.bean.Role;
 import com.example.library_management_system.bean.User;
+import com.example.library_management_system.service.AnnouncementService;
 import com.example.library_management_system.service.BookService;
 import com.example.library_management_system.service.UserService;
 import com.example.library_management_system.utils.RoleUtil;
@@ -28,10 +29,14 @@ public class UserController
     @Autowired
     private BookService bookService;
 
+    @Autowired
+    private AnnouncementService announcementService;
+
     @RequestMapping(value = {"/", "/visitor-main"}, method = RequestMethod.GET)
     public String main(Model model)
     {
         model.addAttribute("page", bookService.showBook(0, 12, null));
+        model.addAttribute("page4", announcementService.getRecentAnnouncement(4));
         return "visitor-main";
     }
 
