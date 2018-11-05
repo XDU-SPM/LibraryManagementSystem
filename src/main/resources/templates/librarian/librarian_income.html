@@ -470,6 +470,9 @@
             url: "getMonthIncome",
             success: function (data) {
                 mydata=data;
+                datedata.splice(0,datedata.length);
+                finedata.splice(0,finedata.length);
+                depositdata.splice(0,depositdata.length);
                 for(var num=0;num<12;num++)
                 {
                     datedata.push(date2str(data[num].date,"MM"));
