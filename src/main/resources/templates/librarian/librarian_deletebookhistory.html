@@ -168,8 +168,9 @@
                             <td th:text = "${record.id}"></td>
                             <td th:text = "${record.buid}"></td>
                             <td th:text = "${record.bookName}"></td>
+                            <td th:text="${record.username}"></td>
                             <!--<td ><a th:text = "${record.bkunit.book.isbn}" th:href="@{librarian_book(isbn=${record.bkunit.book.isbn})}"></a></td>-->
-                            <td ><a th:text = "${record.username}" th:href="@{librarian_user(username=${record.username})}"></a></td>
+                            <!--<td ><a th:text = "${record.username}" th:href="@{librarian_user(username=${record.username})}"></a></td>-->
                             <td  th:text = "${record.uid}"></td>
                             <td  th:text = "${record.date}"></td>
                         </tr>
