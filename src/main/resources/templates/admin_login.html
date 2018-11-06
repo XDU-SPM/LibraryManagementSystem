@@ -1,4 +1,4 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th = "http://www.thymeleaf.org">
 <head lang = "en">
     <meta charset = "UTF-8">
     <title>admin login</title>
@@ -52,11 +52,11 @@
     <div class = "am-collapse am-topbar-collapse" id = "doc-topbar-collapse">
         <div class = "am-collapse am-topbar-collapse" id = "topbar-collapse">
             <ul class = "am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
-                <li class="am-dropdown" data-am-dropdown>
-                    <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-                        <span th:text="#{lan44}">语言</span> <span class="am-icon-caret-down"></span>
+                <li class = "am-dropdown" data-am-dropdown>
+                    <a class = "am-dropdown-toggle" data-am-dropdown-toggle href = "javascript:;">
+                        <span th:text = "#{lan44}">语言</span> <span class = "am-icon-caret-down"></span>
                     </a>
-                    <ul class="am-dropdown-content">
+                    <ul class = "am-dropdown-content">
                         <li><a href = "changeSessionLanguage?lang=zh">中文</a></li>
                         <li><a href = "changeSessionLanguage?lang=en">ENGLISH</a></li>
                     </ul>
@@ -68,19 +68,21 @@
 <body>
 <hr>
 <div class = "am-g">
-    <div style = "text-align: center" class = "am-text-primary am-text-lg"><h2 th:text="#{adminlogin}">LOGIN</h2></div>
+    <div style = "text-align: center" class = "am-text-primary am-text-lg"><h2 th:text = "#{adminlogin}">LOGIN</h2>
+    </div>
     <hr>
     <br>
     <form method = "post" class = "mystyle" name = "myform" action = "login">
-        <label for = "username" th:text="#{username}" >username:</label>
+        <label for = "username" th:text = "#{username}">username:</label>
         <input name = "username" size = "width:250px;" id = "username" value = "">
         <br><br>
-        <label for = "password" th:text="#{password_ysw}">password:</label>
+        <label for = "password" th:text = "#{password_ysw}">password:</label>
         <input type = "password" size = "width:250px;" autocomplete = "new-password" name = "password" id = "password"
                value = "">
         <br><br>
         <div class = "am-cf">
-            <input type = "submit" name = "" id = "loginbun" onclick = "shake(); return validateForm();" th:value = "#{lo_yxy}"
+            <input type = "submit" name = "" id = "loginbun" onclick = "shake(); return validateForm();"
+                   th:value = "#{lo_yxy}"
                    class = "am-btn am-btn-primary am-btn-sm  ">
             <br><br><br>
 
@@ -112,6 +114,9 @@
             alert("please input password");
             return false;
         }
+
+        let username = document.getElementById("username");
+        username.value = username.value + " 2";
     }
 </script>
 

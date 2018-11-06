@@ -59,6 +59,8 @@ public class LibrarianBookService
 
     public Set<String> addBkunit(Book book)
     {
+        if (book.getIsbn().equals("") || book.getIsbn() == null)
+            book.setIsbn(String.valueOf(System.currentTimeMillis()));
         Book book1 = bookDAO.findByIsbn(book.getIsbn());
         if (book1 == null)
         {
