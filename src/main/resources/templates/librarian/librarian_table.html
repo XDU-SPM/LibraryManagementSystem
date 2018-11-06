@@ -151,6 +151,12 @@
                             <button type = "button" class = "am-btn am-btn-default" id = "add-book" ><span
                                     class = "am-icon-plus"></span> <span th:text="#{ni_ysw}">新增</span>
                             </button>
+                            <button type = "button" class = "am-btn am-btn-default" id = "tocategory" onclick="location.href='http://www.baidu.com'">
+                                <span class = "am-icon-table"></span> <span th:text="#{location}">位置</span>
+                            </button>
+                            <button type = "button" class = "am-btn am-btn-default" id = "toposition" onclick="location.href='http://www.baidu.com'">
+                                <span class = "am-icon-book"></span> <span th:text="#{category}">类别</span>
+                            </button>
                             <!--<button type = "button" class = "am-btn am-btn-default" ><span-->
                                     <!--class = "am-icon-trash-o"></span>  <span th:text="#{Delete}">删除</span>-->
                             <!--</button>-->
@@ -170,8 +176,8 @@
                         <tr>
                             <th class = "table-id" th:text="#{id}">书号</th>
                             <th class = "table-title" th:text="#{title_ysw}">标题</th>
-                            <th class = "table-isbn">ISBN</th>
-                            <!--<th class = "table-author " th:text="#{au44}">作者</th>-->
+                            <!--<th class = "table-isbn">ISBN</th>-->
+                            <th class = "table-author " th:text="#{au44}">作者</th>
                             <th class = "table-publisher" th:text="#{publisher}">出版社</th>
                             <th class = "table-date " th:text="#{state}">出版日期</th>
                             <th class = "table-positon " th:text="#{bl44}">图书位置</th>
@@ -182,11 +188,11 @@
                         <tr th:each = "bunit:${set}">
                             <td th:text = "${bunit.id}"></td>
                             <td ><a th:text = "${bunit.book.title}" th:href="@{librarian_book(id=${bunit.id})}"></a></td>
-                            <td th:text = "${bunit.book.isbn}"></td>
-                            <!--<td  th:text = "${bunit.book.author}"></td>-->
+                            <!--<td th:text = "${bunit.book.isbn}"></td>-->
+                            <td  th:text = "${bunit.book.author}"></td>
                             <td  th:text = "${bunit.book.publisher}"></td>
-                            <td th:text = "${bunit.status1}"></td>
-                            <td th:text = "${bunit.book.position}"></td>
+                            <td  th:text = "${bunit.status1}"></td>
+                            <td  th:text = "${bunit.book.position}"></td>
                             <td>
                                 <div class = "am-btn-toolbar">
                                     <div class = "am-btn-group am-btn-group-xs">
@@ -254,9 +260,9 @@
                         <label for = "position" class = "am-u-sm-3 am-form-label" th:text="#{location}">位置</label>
                         <div class = "am-u-sm-9">
                             <!--<input type = "text" id = "position" placeholder = "position" name = "position">-->
-                            <select data-am-selected="{maxHeight: 100,btnWidth: '360px',btnSize: 'sm',}" id="position" name="position" typeof="text">
+                            <select data-am-selected="{maxHeight: 100,btnWidth: '360px',btnSize: 'sm',btnStyle: 'am-btn am-btn-default'}" id="position" name="position" typeof="text" placeholder="A-302">
                                 <script th:inline="javascript">
-                                    var categories=["story","programming"];
+                                    var categories=["A-301","A-302"];
                                     for(var i=0;i<categories.length;i++){
                                         document.write("<option value='"+categories[i]+"'>"+categories[i]+"</option>");
                                     }
