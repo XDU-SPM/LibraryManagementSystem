@@ -93,6 +93,7 @@
             var hours = diff_date.getHours() - 8;
             var minutes = diff_date.getMinutes();
             var seconds = diff_date.getSeconds();
+            document.getElementById("count-down").innerHTML = hours+":"+minutes+":"+seconds;
             function show(){
                 //判断时间到了没
                 if(hours==0&&seconds==0&&minutes==0){
