@@ -46,26 +46,16 @@ public class UserController
         if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("anonymousUser"))  // Has logged in
         {
             Set<Role> roles = userService.getUser().getRoles();
-            if (roleContainsString(roles, RoleUtil.ROLE_ADMIN))
+            if (RoleUtil.roleContainsString(roles, RoleUtil.ROLE_ADMIN))
                 return "redirect:admin/home";
-            else if (roleContainsString(roles, RoleUtil.ROLE_READER) || roleContainsString(roles, RoleUtil.ROLE_READER_CHECK))
+            else if (RoleUtil.roleContainsString(roles, RoleUtil.ROLE_READER) || RoleUtil.roleContainsString(roles, RoleUtil.ROLE_READER_CHECK))
                 return "redirect:reader/home";
-            else if (roleContainsString(roles, RoleUtil.ROLE_LIBRARIAN) || roleContainsString(roles, RoleUtil.ROLE_LIBRARIAN_CHECK))
+            else if (RoleUtil.roleContainsString(roles, RoleUtil.ROLE_LIBRARIAN) || RoleUtil.roleContainsString(roles, RoleUtil.ROLE_LIBRARIAN_CHECK))
                 return "redirect:librarian/home";
             else
                 return "login";
         }
         return "login";
-    }
-
-    private boolean roleContainsString(Set<Role> roles, String string)
-    {
-        for (Role role : roles)
-        {
-            if (string.equals(role.getName()))
-                return true;
-        }
-        return false;
     }
 
     @RequestMapping(value = "/reader/home", method = RequestMethod.GET)

@@ -156,13 +156,4 @@ public class ReaderBookController
     {
         return new Status(readerBookService.renew(id), globalUtilService.getMaxBorrowDays());
     }
-
-    @RequestMapping(value = "/book_details", method = RequestMethod.GET)
-    public String reader_book_details(String isbn, Model model)
-    {
-        model.addAttribute("book", bookService.bookInfo(isbn));
-//        model.addAttribute("status", readerBookService.isFavoriteBook(isbn) ? 0 : 1);
-//        System.out.println(readerBookService.isFavoriteBook(isbn) ? 0 : 1);
-        return "book_details";
-    }
 }
