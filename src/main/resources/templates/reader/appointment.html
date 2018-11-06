@@ -68,7 +68,7 @@
             <div class="am-intro-left am-u-sm-5"><img th:src="${userBook.book.coverPath}" alt="" /></div>
             <div class="am-intro-right am-u-sm-7">
                 <h2 class="am-intro-more am-intro-right "><span th:text="#{tofd_ysw}">倒计时：</span></h2>
-                <p id="count-down"></p>
+                <p id="count-down">2:00:00</p>
                 <h2 th:text="#{btitle}">书名</h2>
                 <p th:text="${userBook.book.title}"></p>
                 <h2 th:text="#{au44}">作者</h2>
@@ -87,7 +87,6 @@
     <script type="text/javascript" th:inline="javascript">
         window.onload = function(){
             var timer = null;
-            // 定义倒计时的时间(倒计时1分钟10秒)
             var expire_date = new Date([[${userBook.returnDate}]]);
             var current_date = new Date();
             var diff_date = new Date(expire_date-current_date)
@@ -112,7 +111,6 @@
                 }
                 minutes = (minutes+"").length==1?"0"+minutes:minutes;//(minutes+"")是将其数据类型转换成字符串类型
                 seconds = (seconds+"").length==1?"0"+seconds:seconds;
-                console.log(hours+":"+minutes+":"+seconds);
                 document.getElementById("count-down").innerHTML = hours+":"+minutes+":"+seconds;
             }
             //开启定时器
