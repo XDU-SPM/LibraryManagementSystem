@@ -141,7 +141,7 @@
             </div>
 
             <hr/>
-            <div class = "am-tabs am-margin" data-am-tabs>
+            <div class = "am-tabs am-margin" data-am-tabs="{noSwipe: 1}">
                 <ul class = "am-tabs-nav am-nav am-nav-tabs">
                     <li class = "am-active"><a href = "#tab1" th:text="#{bis_yxy}">借书统计</a></li>
                     <li><a href = "#tab2" th:text="#{ris_t}">归还统计</a></li>
@@ -149,7 +149,6 @@
                 <div class = "am-tabs-bd">
                     <div class = "am-tab-panel am-fade am-in am-active" id = "tab1">
                         <div class = "am-g am-center am-padding" >
-
                             <table class = "am-table am-table-striped am-table-hover am-table-compact am-table-main " id = "borrowHistory">
                                 <thead>
                                 <tr>

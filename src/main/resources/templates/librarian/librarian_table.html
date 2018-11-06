@@ -236,16 +236,32 @@
                     </div>
 
                     <div class = "am-form-group">
-                        <label for = "type" class = "am-u-sm-3 am-form-label" th:text="#{category}">类别</label>
+                        <label for = "category" class = "am-u-sm-3 am-form-label" th:text="#{category}">类别</label>
                         <div class = "am-u-sm-9">
-                            <input type = "text" id = "type" placeholder = "Type" name = "category">
+                            <!--<input type = "text" id = "type" placeholder = "Type" name = "category">-->
+                            <select data-am-selected="{maxHeight: 100,btnWidth: '360px',btnSize: 'sm',}" id="category" name="category" typeof="text">
+                                <script th:inline="javascript">
+                                    var categories=["story","programming"];
+                                    for(var i=0;i<categories.length;i++){
+                                        document.write("<option value='"+categories[i]+"'>"+categories[i]+"</option>");
+                                    }
+                                </script>
+                            </select>
                         </div>
                     </div>
 
                     <div class = "am-form-group">
                         <label for = "position" class = "am-u-sm-3 am-form-label" th:text="#{location}">位置</label>
                         <div class = "am-u-sm-9">
-                            <input type = "text" id = "position" placeholder = "position" name = "position">
+                            <!--<input type = "text" id = "position" placeholder = "position" name = "position">-->
+                            <select data-am-selected="{maxHeight: 100,btnWidth: '360px',btnSize: 'sm',}" id="position" name="position" typeof="text">
+                                <script th:inline="javascript">
+                                    var categories=["story","programming"];
+                                    for(var i=0;i<categories.length;i++){
+                                        document.write("<option value='"+categories[i]+"'>"+categories[i]+"</option>");
+                                    }
+                                </script>
+                            </select>
                         </div>
                     </div>
 
@@ -269,7 +285,7 @@
                         <label for = "number" class = "am-u-sm-3 am-form-label" th:text="#{num}">数量</label>
                         <div class = "am-u-sm-9">
                             <select data-am-selected="{maxHeight: 100,btnWidth: '360px',btnSize: 'sm',}" id="number" name="number" typeof="number">
-                                <script>
+                                <script th:inline="javascript">
                                     for(var i=1;i<=100;i++){
                                         document.write("<option value='"+i+"'>"+i+"</option>");
                                     }
