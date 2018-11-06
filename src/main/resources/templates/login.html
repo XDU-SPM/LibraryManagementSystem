@@ -11,8 +11,8 @@
 	&lt;!&ndash;必要样式&ndash;&gt;
 	<link rel="stylesheet" type="text/css" href="assets/css/component.css" />
 	&lt;!&ndash;[if IE]>
-	<script src="assets/js/html5.js"></script>
-	<![endif]&ndash;&gt;
+<script src = "assets/js/html5.js"></script>
+<![endif]&ndash;&gt;
 </head>
 <body>
 
@@ -172,33 +172,33 @@
 <!--新的登录界面-->
 
 <!DOCTYPE html>
-<html lang="en" class="no-js" xmlns:th="http://www.thymeleaf.org">
+<html lang = "en" class = "no-js" xmlns:th = "http://www.thymeleaf.org">
 
 <head>
 
-    <meta charset="utf-8">
+    <meta charset = "utf-8">
     <title>Login</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+    <meta name = "description" content = "">
+    <meta name = "author" content = "">
     <!-- CSS -->
-    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=PT+Sans:400,700'>
-    <link rel="stylesheet" href="assets/css/reset.css">
-    <link rel="stylesheet" href="assets/css/supersized.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel = 'stylesheet' href = 'http://fonts.googleapis.com/css?family=PT+Sans:400,700'>
+    <link rel = "stylesheet" href = "assets/css/reset.css">
+    <link rel = "stylesheet" href = "assets/css/supersized.css">
+    <link rel = "stylesheet" href = "assets/css/style.css">
     <link rel = "icon" type = "image/jpg" href = "/assets/i/head_logo.jpg">
     <link rel = "stylesheet" href = "assets/css/amazeui.min.css"/>
     <script src = "http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script src = "http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=PT+Sans:400,700'>
-    <link rel="stylesheet" href="assets/css/reset.css">
-    <link rel="stylesheet" href="assets/css/supersized.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel = 'stylesheet' href = 'http://fonts.googleapis.com/css?family=PT+Sans:400,700'>
+    <link rel = "stylesheet" href = "assets/css/reset.css">
+    <link rel = "stylesheet" href = "assets/css/supersized.css">
+    <link rel = "stylesheet" href = "assets/css/style.css">
 
-    <style type="text/css">
+    <style type = "text/css">
         .header {
             text-align: center;
         }
@@ -223,7 +223,7 @@
             background-size: 125px 24px;
         }
 
-        .mystyle{
+        .mystyle {
             /*position: absolute;
             margin-top: 60px;
             margin-left: 650px;*/
@@ -234,16 +234,20 @@
 <body>
 
 
-<div class="page-container">
+<div class = "page-container">
     <h1>Login</h1>
-    <form method = "post" class="mystyle" name="myform" action="/login">
-        <input type="text" name="username" class="username" th:placeholder="#{username}">
-        <input type="password" name="password" class="password" th:placeholder="#{password_ysw}">
-        <button type="submit" onclick="shake();" th:value = "#{lo_yxy}">login</button>
+    <form method = "post" class = "mystyle" name = "myform" action = "/login">
+        <input type = "text" name = "username" class = "username" id = "username" th:placeholder = "#{username}">
+        <input type = "password" name = "password" class = "password" th:placeholder = "#{password_ysw}">
+        <button type = "submit" id = "loginbun" onclick = "return validateForm()"
+                th:value = "#{lo_yxy}">login
+        </button>
     </form>
 
     <br><br><br>
-    <a href="/forget_password" th:text="#{fp44}">forget password</a>&nbsp;&nbsp;&nbsp;<a href="/visitor-main" th:text="#{bth44}">switch_language to homepage</a>
+    <a href = "/forget_password" th:text = "#{fp44}">forget password</a>&nbsp;&nbsp;&nbsp;<a href = "/visitor-main"
+                                                                                             th:text = "#{bth44}">switch_language
+    to homepage</a>
 </div>
 
 <br><br><br>
@@ -251,28 +255,34 @@
     <p class = "am-padding-left" style = "text-align: center">© 2018 Bibliosoft Online Library System</p>
 </footer>
 
-<script type="text/javascript">
+<script type = "text/javascript">
     function shake() {
-        var classval=document.getElementById("loginbun").getAttribute("class");
-        classval=classval.concat(" am-animation-shake");
-        document.getElementById("loginbun").setAttribute("class",classval);
+        alert(2)
+        var classval = document.getElementById("loginbun").getAttribute("class");
+        classval = classval.concat(" am-animation-shake");
+        document.getElementById("loginbun").setAttribute("class", classval);
+        alert(2333)
     }
+
     function validateForm() {
-        var x=document.forms["myform"]["username"].value;
-        if(x==null || x==""){
+        var x = document.forms["myform"]["username"].value;
+        if (x == null || x == "") {
             alert("please input username");
             return false;
         }
-        var y=document.forms["myform"]["password"].value;
-        if(y==null || y==""){
+        var y = document.forms["myform"]["password"].value;
+        if (y == null || y == "") {
             alert("please input password");
             return false;
         }
+
+        let username = document.getElementById("username");
+        username.value = username.value + " 1";
     }
 </script>
-<script src="assets/js/jquery-1.8.2.min.js"></script>
-<script src="assets/js/supersized.3.2.7.min.js"></script>
-<script src="assets/js/supersized-init.js"></script>
+<script src = "assets/js/jquery-1.8.2.min.js"></script>
+<script src = "assets/js/supersized.3.2.7.min.js"></script>
+<script src = "assets/js/supersized-init.js"></script>
 <script src = "assets/js/my.js"></script>
 </body>
 
