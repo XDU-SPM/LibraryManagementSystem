@@ -205,23 +205,24 @@
 
     function isOk() {
         if (status != 'null') {
-            if (status==0)
-            {
+            if (status == 0) {
                 alert([[#{notice_success}]])
             }
-            else if (status==-1) {
+            else if (status == -1) {
                 alert([[#{borrow_1}]]);
             }
-            else if(status==-2){
+            else if (status == -2) {
                 alert([[#{borrow_2}]]);
             }
-            else if(status==-3)
-            {
+            else if (status == -3) {
                 alert([[#{borrow_3}]]);
             }
-            else if(status==-4)
-            {
+            else if (status == -4) {
                 alert([[#{borrow_4}]])
+            }
+            else if (status == -5)
+            {
+                alert([[#{borrow_5}]])
             }
         }
     }
