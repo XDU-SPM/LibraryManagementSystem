@@ -45,6 +45,14 @@ public class Book
     )
     private Set<Category> categories;
 
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "book_location",
+            joinColumns = @JoinColumn(name = "bkid"),
+            inverseJoinColumns = @JoinColumn(name = "lid")
+    )
+    private Set<Location> locations;
+
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "book")
     @JsonIgnore
     private Set<UserFavoriteBook> userFavoriteBooks;
@@ -68,6 +76,7 @@ public class Book
         this.reviews = new HashSet<>();
         this.bkunits = new HashSet<>();
         this.userBooks = new HashSet<>();
+        this.locations = new HashSet<>();
     }
 
     public Book(String isbn)
@@ -291,5 +300,15 @@ public class Book
     public void setCategory(String category)
     {
         this.category = category;
+    }
+
+    public Set<Location> getLocations()
+    {
+        return locations;
+    }
+
+    public void setLocations(Set<Location> locations)
+    {
+        this.locations = locations;
     }
 }

@@ -30,17 +30,22 @@ public class Bkunit
     @JoinColumn(name = "bkid")
     private Book book;
 
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "lid")
+    private Location location;
+
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "bkunit")
     @JsonIgnore
     private Set<UserBkunit> userBkunits;
 
-    public Bkunit(String id, Book book)
+    public Bkunit(String id, Book book, Location location)
     {
         this();
         this.id = id;
         this.status = BkunitUtil.NORMAL;
         this.book = book;
         this.damageStatus = BkunitUtil.NO_DAMAGE;
+        this.location = location;
     }
 
     public Bkunit()
@@ -116,5 +121,15 @@ public class Bkunit
     public void setStatus1(String status1)
     {
         this.status1 = status1;
+    }
+
+    public Location getLocation()
+    {
+        return location;
+    }
+
+    public void setLocation(Location location)
+    {
+        this.location = location;
     }
 }

@@ -70,7 +70,7 @@ public class LibrarianBookController
     @RequestMapping(value = "/librarian/saveBook", method = RequestMethod.POST)
     public String saveBook(Book book, Model model, String id)
     {
-        librarianBookService.saveBook(book);
+        librarianBookService.saveBook(book, id);
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
         return "redirect:librarian_book?id=" + id;
@@ -91,6 +91,33 @@ public class LibrarianBookController
     public String addBookCategory(String isbn, String category, Model model)
     {
         librarianBookService.addBookCategory(isbn, category);
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
+        return "";
+    }
+
+    @RequestMapping(value = "/librarian/removeBookCategory", method = RequestMethod.POST)
+    public String removeBookCategory(String isbn, String category, Model model)
+    {
+        librarianBookService.removeBookCategory(isbn, category);
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
+        return "";
+    }
+
+    @RequestMapping(value = "/librarian/addBookLocation", method = RequestMethod.POST)
+    public String addBookLocation(String isbn, String location, Model model)
+    {
+        librarianBookService.addBookLocation(isbn, location);
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
+        return "";
+    }
+
+    @RequestMapping(value = "/librarian/removeBookLocation", method = RequestMethod.POST)
+    public String removeBookLocation(String isbn, String location, Model model)
+    {
+        librarianBookService.removeBookLocation(isbn, location);
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
         return "";

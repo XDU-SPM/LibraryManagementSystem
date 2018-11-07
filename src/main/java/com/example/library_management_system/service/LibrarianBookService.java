@@ -54,6 +54,9 @@ public class LibrarianBookService
     @Autowired
     private ReturnHistoryDAO returnHistoryDAO;
 
+    @Autowired
+    private LocationDAO locationDAO;
+
     @Resource
     private LocaleMessageSourceService localeMessageSourceService;
 
@@ -61,6 +64,7 @@ public class LibrarianBookService
     {
         if (book.getIsbn().equals("") || book.getIsbn() == null)
             book.setIsbn(String.valueOf(System.currentTimeMillis()));
+        book.setIsbn(book.getIsbn().trim());
         Book book1 = bookDAO.findByIsbn(book.getIsbn());
         if (book1 == null)
         {
@@ -81,11 +85,12 @@ public class LibrarianBookService
 
         Set<String> ids = new HashSet<>();
         int number = book.getNumber();
+        Location location = locationDAO.findByName(book.getPosition());
         for (int i = 0; i < number; i++)
         {
             String id = BkunitUtil.generateBarCode();
             ids.add(id);
-            Bkunit bkunit = new Bkunit(id, book1);
+            Bkunit bkunit = new Bkunit(id, book1, location);
             bkunitDAO.save(bkunit);
         }
         return ids;
@@ -136,18 +141,26 @@ public class LibrarianBookService
         }
     }
 
-    public void saveBook(Book tmp)
+    public void saveBook(Book tmp, String id)
     {
         Book book = bookDAO.findByIsbn(tmp.getIsbn());
 
         book.setTitle(tmp.getTitle());
         book.setAuthor(tmp.getAuthor());
-        book.setPosition(tmp.getPosition());
+//        book.setPosition(tmp.getPosition());
         book.setPublisher(tmp.getPublisher());
         book.setPublishDate(tmp.getPublishDate());
         book.setBrief(tmp.getBrief());
         book.setPrice(tmp.getPrice());
         book.setCategory(tmp.getCategory());
+
+        Bkunit bkunit = bkunitDAO.findById(id).get();
+        if (!bkunit.getLocation().getName().equals(tmp.getPosition()))
+        {
+            Location location = locationDAO.findByName(tmp.getPosition());
+            bkunit.setLocation(location);
+            bkunitDAO.save(bkunit);
+        }
 
         bookDAO.save(book);
     }
@@ -392,6 +405,42 @@ public class LibrarianBookService
 
         Book book = bookDAO.findByIsbn(isbn);
         book.getCategories().add(category);
+        bookDAO.save(book);
+    }
+
+    public void removeBookCategory(String isbn, String categoryName)
+    {
+        Category category = categoryDAO.findByName(categoryName);
+        if (category == null)
+            return;
+
+        Book book = bookDAO.findByIsbn(isbn);
+        book.getCategories().remove(category);
+        bookDAO.save(book);
+    }
+
+    public void addBookLocation(String isbn, String locationName)
+    {
+        Location location = locationDAO.findByName(locationName);
+        if (location == null)
+        {
+            location = new Location(locationName);
+            locationDAO.save(location);
+        }
+
+        Book book = bookDAO.findByIsbn(isbn);
+        book.getLocations().add(location);
+        bookDAO.save(book);
+    }
+
+    public void removeBookLocation(String isbn, String locationName)
+    {
+        Location location = locationDAO.findByName(locationName);
+        if (location == null)
+            return;
+
+        Book book = bookDAO.findByIsbn(isbn);
+        book.getLocations().remove(location);
         bookDAO.save(book);
     }
 
