@@ -137,7 +137,7 @@
     <div class = "admin-content">
         <div class = "admin-content-body">
             <div class = "am-cf am-padding am-padding-bottom-0">
-                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg" th:text="#{announcement}"></strong>
+                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg" th:text="#{location}"></strong>
                 </div>
             </div>
 
@@ -147,7 +147,7 @@
                 <div class = "am-u-sm-12 am-u-md-6">
                     <div class = "am-btn-toolbar">
                         <div class = "am-btn-group am-btn-group-xs">
-                            <button type = "button" class = "am-btn am-btn-default" id = "add_announce"><span
+                            <button type = "button" class = "am-btn am-btn-default" id = "add_location"><span
                                     class = "am-icon-plus"></span><span th:text="#{ni_ysw}"></span>
                             </button>
                         </div>
@@ -161,25 +161,20 @@
 
             <div class = "am-g">
                 <div class = "am-u-sm-12">
-                    <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "announce">
+                    <table class = "am-table am-table-striped am-table-hover am-table-compact" id = "locations">
                         <thead>
                         <tr>
                             <th class = "table-id">ID</th>
-                            <th class = "table-title" th:text="#{ti44}"></th>
-                            <th class = "table-librarian" th:text="#{a_zj}"></th>
-                            <!--<th class = "table-author am-hide-sm-only" th:text="#{c_zj}"></th>-->
+                            <th class = "table-location" th:text="#{location}"></th>
                             <th class = "table-set" th:text="#{Operation}"></th>
                         </tr>
                         </thead>
                         <tbody>
-                        <!--th:href = "@{librarian_announce(id=${announce.id})}"-->
-                        <tr th:each = "announce:${set}">
-                            <td th:text = "${announce.id}"></td>
+                        <tr th:each = "location:${set}">
+                            <td th:text = "${location.id}"></td>
                             <td>
-                                <a th:text = "${announce.title}"  th:onclick="'javascript:modify(\''+${announce.id}+'\',\''+${announce.title}+'\',\''+${announce.content}+'\')'"></a>
+                                <a th:text = "${location.name}"  th:onclick="'javascript:modify(\''+${location.id}+'\',\''+${location.name}+'\')'"></a>
                             </td>
-                            <td th:text = "${announce.username}"></td>
-                            <!--<td class = "am-hide-sm-only" th:text = "${announce.content}"></td>-->
                             <td>
                                 <div class = "am-btn-toolbar">
                                     <div class = "am-btn-group am-btn-group-xs">
@@ -203,30 +198,19 @@
 
         <div class = "am-modal am-modal-prompt" tabindex = "-1" id = "my-prompt1">
             <div class = "am-modal-dialog">
-                <div class = "am-modal-hd">Add Announce</div>
-                <form class = "am-modal-bd am-form am-form-horizontal" method = "post" action = "addAnnouncement"
+                <div class = "am-modal-hd" th:text="#{ni_ysw}">Add Announce</div>
+                <form class = "am-modal-bd am-form am-form-horizontal" method = "post" action = "addLocation"
                       enctype = "multipart/form-data">
                     <div class = "am-form-group">
-                        <label for = "title" class = "am-u-sm-3 am-form-label" th:text="#{ti44}"></label>
+                        <label for = "location" class = "am-u-sm-3 am-form-label" th:text="#{location}"></label>
                         <div class = "am-u-sm-9">
-                            <input type = "text" id = "title" th:placeholder = "#{ti44}" name = "title">
+                            <input type = "text" id = "location"  name = "location">
                         </div>
                     </div>
-
-
-                    <div class = "am-form-group">
-                        <label for = "content" class = "am-u-sm-3 am-form-label" th:text="#{c_zj}"></label>
-                        <div class = "am-u-sm-9">
-                            <!--<input type = "text" id = "content" placeholder = "内容 / Content" name = "brief">-->
-                            <textarea id = "content" th:placeholder = "#{c_zj}" name = "content" cols = "10" rows = "3">
-                            </textarea>
-                        </div>
-                    </div>
-
 
                     <div class = "am-modal-footer am-g">
                         <div class = "am-u-sm-7 am-u-sm-push-2 am-u-end">
-                            <input type = "submit" data-am-modal-confirm th.value = "#{confirm_zj}"
+                            <input type = "submit" data-am-modal-confirm th:value = "#{confirm_zj}"
                                    class = "am-btn am-btn-primary"></div>
                     </div>
                 </form>
@@ -234,8 +218,8 @@
         </div>
         <div class = "am-modal am-modal-prompt" tabindex = "-1" id = "my-prompt2">
             <div class = "am-modal-dialog">
-                <div class = "am-modal-hd">Edit Announce</div>
-                <form class = "am-modal-bd am-form am-form-horizontal" method = "post" action = "modifyAnnouncement"
+                <div class = "am-modal-hd" th:text="#{modify}">Edit</div>
+                <form class = "am-modal-bd am-form am-form-horizontal" method = "post" action = "modifyLocation"
                       enctype = "multipart/form-data">
                     <div class = "am-form-group">
                         <label for = "id2" class = "am-u-sm-3 am-form-label" readonly = "readonly">ID</label>
@@ -245,25 +229,15 @@
                     </div>
 
                     <div class = "am-form-group">
-                        <label for = "title2" class = "am-u-sm-3 am-form-label" th:text="#{ti44}"></label>
+                        <label for = "location2" class = "am-u-sm-3 am-form-label" th:text="#{location}"></label>
                         <div class = "am-u-sm-9">
-                            <input type = "text" id = "title2" th:placeholder = "#{ti44}" name = "title">
+                            <input type = "text" id = "location2" th:placeholder = "#{location}" name = "location">
                         </div>
                     </div>
-
-                    <div class = "am-form-group">
-                        <label for = "content2" class = "am-u-sm-3 am-form-label" th:text="#{c_zj}"></label>
-                        <div class = "am-u-sm-9">
-                            <!--<input type = "text" id = "content" placeholder = "内容 / Content" name = "brief">-->
-                            <textarea id = "content2"  name = "content" cols = "10" rows = "3">
-                            </textarea>
-                        </div>
-                    </div>
-
 
                     <div class = "am-modal-footer am-g">
                         <div class = "am-u-sm-7 am-u-sm-push-2 am-u-end">
-                            <input type = "submit" data-am-modal-confirm th.value = "#{confirm_zj}"
+                            <input type = "submit" data-am-modal-confirm th:value = "#{confirm_zj}"
                                    class = "am-btn am-btn-primary"></div>
                     </div>
                 </form>
@@ -291,7 +265,7 @@
 
 <script>
     $(function () {
-        $('#add_announce').on('click', function () {
+        $('#add_location').on('click', function () {
             $('#my-prompt1').modal({
                 relatedTarget: this,
                 onConfirm: function (e) {
@@ -308,7 +282,7 @@
 <script th:inline = "javascript" src = "dist/amazeui.datatables.js"></script>
 <script th:inline="javascript">
     $(function () {
-        $('#announce').DataTable(
+        $('#locations').DataTable(
             {
                 "ordering": false,
                 "bLengthChange": false,
@@ -336,35 +310,33 @@
     })
 </script>
 <script th:inline = "javascript">
-    function modify(id, title, content) {
-        console.log(content);
+    function modify(id, name) {
         $('#my-prompt2').modal(
             {
                 relatedTarget: this
             }
         );
         $('#id2').attr("value", id);
-        $('#title2').attr("value", title);
-        document.getElementById("content2").value=content;
+        $('#location2').attr("value", name);
     }
 </script>
 <script th:inline="javascript">
     $(function(){
-        $("table#announce tbody").on('click', 'button.delete', function () {
-            let id = $('#announce').DataTable().rows($('#announce').DataTable().row($(this).parents('tr'))).data()[0][0];
+        $("table#locations tbody").on('click', 'button.delete', function () {
+            let id = $('#locations').DataTable().rows($('#locations').DataTable().row($(this).parents('tr'))).data()[0][0];
             deletemy(id,$(this));
         })
     });
 
     function fun(val) {
-        $('#announce').DataTable().row(val.parents('tr')).remove().draw();
+        $('#locations').DataTable().row(val.parents('tr')).remove().draw();
     }
 
     function deletemy(id, val) {
         $.ajax(
             {
                 method: 'GET',
-                url: "deleteAnnouncement",
+                url: "deleteLocation",
                 data: {id: id},
                 success: function (data) {
                     if (data.status == 1) {
