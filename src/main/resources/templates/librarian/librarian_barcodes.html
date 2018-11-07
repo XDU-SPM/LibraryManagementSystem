@@ -8,8 +8,12 @@
     <script type="text/javascript" src="dist/JsBarcode.all.js"></script>
 </head>
 <body>
-    <div id="brcodes"></div>
+
+    <div class = "am-cf am-padding am-padding-bottom-0">
+        <a href="#" onclick="javascript:history.back(-1);">Go Back</a>
+    </div>
     <hr>
+    <div id="brcodes"></div>
     <script th:inline="javascript">
         console.log([[${ids}]]);
         var ids=[[${ids}]];
