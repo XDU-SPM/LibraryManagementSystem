@@ -194,8 +194,16 @@
                         <div class = "am-form-group">
                             <label for = "position" class = "am-u-sm-3 am-form-label" th:text = "#{location}">位置</label>
                             <div class = "am-u-sm-9">
-                                <input type = "text" id = "position" name = "position"
-                                       th:value = "${book.position}">
+                                <!--<input type = "text" id = "position" name = "position"-->
+                                       <!--th:value = "${book.position}">-->
+                                <select data-am-selected="{searchBox: 1,maxHeight: 100,btnWidth: '565px'}" id="position" name="position" typeof="text">
+                                    <script th:inline="javascript">
+                                        var categories=["A-301","A-302"];
+                                        for(var i=0;i<categories.length;i++){
+                                            document.write("<option value='"+categories[i]+"'>"+categories[i]+"</option>");
+                                        }
+                                    </script>
+                                </select>
                             </div>
                         </div>
 
@@ -212,10 +220,18 @@
 
                         <div class = "am-form-group">
                             <label for = "category" class = "am-u-sm-3 am-form-label"
-                                   th:text = "#{category}">出版社</label>
+                                   th:text = "#{category}">类别</label>
                             <div class = "am-u-sm-9">
-                                <input type = "text" id = "category" name = "category"
-                                       th:value = "${book.category}">
+                                <!--<input type = "text" id = "category" name = "category"-->
+                                       <!--th:value = "${book.category}">-->
+                                <select data-am-selected="{searchBox: 1,maxHeight: 100,btnWidth: '565px'}" id="category" name="category" typeof="text">
+                                    <script th:inline="javascript">
+                                        var categories=["story","programming"];
+                                        for(var i=0;i<categories.length;i++){
+                                            document.write("<option value='"+categories[i]+"'>"+categories[i]+"</option>");
+                                        }
+                                    </script>
+                                </select>
                             </div>
                         </div>
 
@@ -269,8 +285,8 @@
                         <div class = "am-form-group">
                             <label for = "price" class = "am-u-sm-3 am-form-label" th:text = "#{price}">价格</label>
                             <div class = "am-u-sm-9">
-                                <input type = "text" id = "price" name = "price"
-                                       th:value = "${book.price}" min = "0">
+                                <input type = "number" id = "price" name = "price"
+                                       th:value = "${book.price}" min = "0" step="0.01">
                             </div>
                         </div>
 

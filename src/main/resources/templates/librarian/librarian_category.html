@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" xmlns="http://www.w3.org/1999/html">
+<html lang = "en" xmlns:th = "http://www.thymeleaf.org"
+      xmlns:sec = "http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" xmlns = "http://www.w3.org/1999/html">
 <head>
     <meta charset = "UTF-8">
     <title>BiblioSoft</title>
     <link rel = "icon" type = "image/png" href = "assets/i/favicon.png">
     <link rel = "apple-touch-icon-precomposed" href = "assets/i/app-icon72x72@2x.png">
-    <link rel = "stylesheet" href = "assets/css/amazeui.min.css">
+    <link rel = "stylesheet" href = "assets/css/amazeui.min.css"/>
     <link rel = "stylesheet" href = "assets/css/admin.css">
     <link rel = "stylesheet" href="dist/amazeui.datatables.css">
     <!--<link rel = "stylesheet" href = "//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">-->
@@ -86,7 +86,7 @@
                     <a class = "am-cf" data-am-collapse = "{target: '#collapse-nav'}"><span
                             class = "am-icon-file"></span><span th:text="#{mb_yxy}"> 管理图书</span> <span
                             class = "am-icon-angle-right am-fr am-margin-right"></span></a>
-                    <ul class = "am-list am-collapse admin-sidebar-sub am-in" id = "collapse-nav">
+                    <ul class = "am-list am-collapse admin-sidebar-sub" id = "collapse-nav">
                         <li><a href = "librarian_borrow"><span class = "am-icon-leaf"></span><span th:text="#{bo_yxy}"> 借阅</span></a></li>
                         <li><a href = "librarian_return"><span class = "am-icon-mail-reply"></span><span th:text="#{re_yxy}"> 归还</span></a></li>
                         <li><a href = "librarian_table"><span class = "am-icon-book"></span><span th:text="#{mb_yxy}"> 管理图书</span></a></li>
@@ -137,8 +137,7 @@
     <div class = "admin-content">
         <div class = "admin-content-body">
             <div class = "am-cf am-padding am-padding-bottom-0">
-                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg" th:text="#{BookList_ysw}">书本清单</strong> /
-                    <small>BookList</small>
+                <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg" th:text="#{location}"></strong>
                 </div>
             </div>
 
@@ -148,18 +147,9 @@
                 <div class = "am-u-sm-12 am-u-md-6">
                     <div class = "am-btn-toolbar">
                         <div class = "am-btn-group am-btn-group-xs">
-                            <button type = "button" class = "am-btn am-btn-default" id = "add-book" ><span
-                                    class = "am-icon-plus"></span> <span th:text="#{ni_ysw}">新增</span>
+                            <button type = "button" class = "am-btn am-btn-default" id = "add_category"><span
+                                    class = "am-icon-plus"></span><span th:text="#{ni_ysw}"></span>
                             </button>
-                            <button type = "button" class = "am-btn am-btn-default" id = "tocategory" onclick="location.href='http://www.baidu.com'">
-                                <span class = "am-icon-table"></span> <span th:text="#{location}">位置</span>
-                            </button>
-                            <button type = "button" class = "am-btn am-btn-default" id = "toposition" onclick="location.href='http://www.baidu.com'">
-                                <span class = "am-icon-book"></span> <span th:text="#{category}">类别</span>
-                            </button>
-                            <!--<button type = "button" class = "am-btn am-btn-default" ><span-->
-                                    <!--class = "am-icon-trash-o"></span>  <span th:text="#{Delete}">删除</span>-->
-                            <!--</button>-->
                         </div>
                     </div>
                 </div>
@@ -171,40 +161,32 @@
 
             <div class = "am-g">
                 <div class = "am-u-sm-12">
-                    <table class = "am-table am-table-striped am-table-hover " id = "booklist">
+                    <table class = "am-table am-table-striped am-table-hover am-table-compact" id = "categories">
                         <thead>
                         <tr>
-                            <th class = "table-id" th:text="#{id}">书号</th>
-                            <th class = "table-title" th:text="#{title_ysw}">标题</th>
-                            <!--<th class = "table-isbn">ISBN</th>-->
-                            <th class = "table-author " th:text="#{au44}">作者</th>
-                            <th class = "table-publisher" th:text="#{publisher}">出版社</th>
-                            <th class = "table-date " th:text="#{state}">出版日期</th>
-                            <th class = "table-positon " th:text="#{bl44}">图书位置</th>
-                            <th class = "table-set" th:text="#{Operation}">操作</th>
+                            <th class = "table-id">ID</th>
+                            <th class = "table-category" th:text="#{category}"></th>
+                            <th class = "table-set" th:text="#{Operation}"></th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each = "bunit:${set}">
-                            <td th:text = "${bunit.id}"></td>
-                            <td ><a th:text = "${bunit.book.title}" th:href="@{librarian_book(id=${bunit.id})}"></a></td>
-                            <!--<td th:text = "${bunit.book.isbn}"></td>-->
-                            <td  th:text = "${bunit.book.author}"></td>
-                            <td  th:text = "${bunit.book.publisher}"></td>
-                            <td  th:text = "${bunit.status1}"></td>
-                            <td  th:text = "${bunit.book.position}"></td>
+                        <tr th:each = "category:${set}">
+                            <td th:text = "${category.id}"></td>
+                            <td>
+                                <a th:text = "${category.name}"  th:onclick="'javascript:modify(\''+${category.id}+'\',\''+${category.title}+'\',\''+${categoty.content}+'\')'"></a>
+                            </td>
                             <td>
                                 <div class = "am-btn-toolbar">
                                     <div class = "am-btn-group am-btn-group-xs">
-                                        <button class = "am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only delete"
-                                                th:onclick = "'javascript:deletebook('+${bunit.id}+')'">
-                                            <span class = "am-icon-trash-o" th:text="#{Delete}">删除</span>
+                                        <button class = "am-btn am-btn-default am-btn-xs am-text-secondary delete" ><a
+                                                class = "am-icon-close"  th:text="#{Delete}"></a>
                                         </button>
                                     </div>
                                 </div>
                             </td>
                         </tr>
                     </table>
+
                 </div>
             </div>
         </div>
@@ -214,121 +196,74 @@
             <p class = "am-padding-left" style = "text-align: center">© 2018 Bibliosoft Online Library System</p>
         </footer>
 
-        <div class = "am-modal am-modal-prompt" tabindex = "-1" id = "my-prompt">
+        <div class = "am-modal am-modal-prompt" tabindex = "-1" id = "my-prompt1">
             <div class = "am-modal-dialog">
-                <div class = "am-modal-hd" th:text="#{Addbook_ysw}">添加图书</div>
-                <form class = "am-modal-bd am-form am-form-horizontal" method = "post" action = "addbook" enctype = "multipart/form-data">
+                <div class = "am-modal-hd">Add Announce</div>
+                <form class = "am-modal-bd am-form am-form-horizontal" method = "post" action = "addCategory"
+                      enctype = "multipart/form-data">
                     <div class = "am-form-group">
-                        <label for = "isbn" class = "am-u-sm-3 am-form-label">ISBN</label>
+                        <label for = "title" class = "am-u-sm-3 am-form-label" th:text="#{ti44}"></label>
                         <div class = "am-u-sm-9">
-                            <input type = "text" id = "isbn" placeholder = "ISBN" name = "isbn">
-                        </div>
-                    </div>
-
-
-                    <div class = "am-form-group">
-                        <label for = "title" class = "am-u-sm-3 am-form-label" th:text="#{btitle}">书名</label>
-                        <div class = "am-u-sm-9">
-                            <input type = "text" id = "title" placeholder = "Title" name = "title">
+                            <input type = "text" id = "title" th:placeholder = "#{ti44}" name = "title">
                         </div>
                     </div>
 
 
                     <div class = "am-form-group">
-                        <label for = "author" class = "am-u-sm-3 am-form-label" th:text="#{au44}">作者</label>
+                        <label for = "content" class = "am-u-sm-3 am-form-label" th:text="#{c_zj}"></label>
                         <div class = "am-u-sm-9">
-                            <input type = "text" id = "author" placeholder = "Author" name = "author">
-                        </div>
-                    </div>
-
-                    <div class = "am-form-group">
-                        <label for = "category" class = "am-u-sm-3 am-form-label" th:text="#{category}">类别</label>
-                        <div class = "am-u-sm-9">
-                            <!--<input type = "text" id = "type" placeholder = "Type" name = "category">-->
-                            <select data-am-selected="{searchBox: 1,maxHeight: 100,btnWidth: '360px',btnSize: 'sm',}" id="category" name="category" typeof="text">
-                                <script th:inline="javascript">
-                                    var categories=["story","programming"];
-                                    for(var i=0;i<categories.length;i++){
-                                        document.write("<option value='"+categories[i]+"'>"+categories[i]+"</option>");
-                                    }
-                                </script>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class = "am-form-group">
-                        <label for = "position" class = "am-u-sm-3 am-form-label" th:text="#{location}">位置</label>
-                        <div class = "am-u-sm-9">
-                            <!--<input type = "text" id = "position" placeholder = "position" name = "position">-->
-                            <select data-am-selected="{searchBox: 1,maxHeight: 150,btnWidth: '360px',btnSize: 'sm',btnStyle: 'am-btn am-btn-default'}" id="position" name="position" typeof="text" placeholder="A-302">
-                                <script th:inline="javascript">
-                                    var categories=["A-301","A-302"];
-                                    for(var i=0;i<categories.length;i++){
-                                        document.write("<option value='"+categories[i]+"'>"+categories[i]+"</option>");
-                                    }
-                                </script>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class = "am-form-group">
-                        <label for = "publisher" class = "am-u-sm-3 am-form-label" th:text="#{publisher}">出版社</label>
-                        <div class = "am-u-sm-9">
-                            <input type = "text" id = "publisher" placeholder = "Publisher" name = "publisher">
-                        </div>
-                    </div>
-
-                    <div class = "am-form-group ">
-                        <label for = "publish_time" class = "am-u-sm-3 am-form-label" th:text="#{pubdate}">出版时间</label>
-                        <div class = "am-u-sm-9">
-                            <input type = "text" id = "publish_time" placeholder = "Publish Time"
-                                   name = "publishDate">
-                        </div>
-                    </div>
-
-
-                    <div class = "am-form-group">
-                        <label for = "number" class = "am-u-sm-3 am-form-label" th:text="#{num}">数量</label>
-                        <div class = "am-u-sm-9">
-                            <select data-am-selected="{maxHeight: 100,btnWidth: '360px',btnSize: 'sm',}" id="number" name="number" typeof="number">
-                                <script th:inline="javascript">
-                                    for(var i=1;i<=100;i++){
-                                        document.write("<option value='"+i+"'>"+i+"</option>");
-                                    }
-                                </script>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class = "am-form-group">
-                        <label for = "abstract" class = "am-u-sm-3 am-form-label" th:text="#{brief}">简介</label>
-                        <div class = "am-u-sm-9">
-                            <input type = "text" id = "abstract" placeholder = "Abstract" name = "brief">
-                        </div>
-                    </div>
-
-                    <div class = "am-form-group ">
-                        <label for = "price" class = "am-u-sm-3 am-form-label" th:text="#{price}">价格</label>
-                        <div class = "am-u-sm-9">
-                            <input type = "number" id = "price" placeholder = "Price" name = "price" min = "0" step="0.01">
-                        </div>
-                    </div>
-
-                    <div class = "am-form-group am-hide">
-                        <div class = "am-u-sm-9 ">
-                            <input type="text"  id = "cover" class = "am-modal-prompt-input" name = "coverPath">
+                            <!--<input type = "text" id = "content" placeholder = "内容 / Content" name = "brief">-->
+                            <textarea id = "content" th:placeholder = "#{c_zj}" name = "content" cols = "10" rows = "3">
+                            </textarea>
                         </div>
                     </div>
 
 
                     <div class = "am-modal-footer am-g">
                         <div class = "am-u-sm-7 am-u-sm-push-2 am-u-end">
-                            <input type = "submit" data-am-modal-confirm th:value="#{submit}" class = "am-btn am-btn-primary"></div>
+                            <input type = "submit" data-am-modal-confirm th.value = "#{confirm_zj}"
+                                   class = "am-btn am-btn-primary"></div>
                     </div>
                 </form>
             </div>
         </div>
+        <div class = "am-modal am-modal-prompt" tabindex = "-1" id = "my-prompt2">
+            <div class = "am-modal-dialog">
+                <div class = "am-modal-hd">Edit Announce</div>
+                <form class = "am-modal-bd am-form am-form-horizontal" method = "post" action = "modifyCategory"
+                      enctype = "multipart/form-data">
+                    <div class = "am-form-group">
+                        <label for = "id2" class = "am-u-sm-3 am-form-label" readonly = "readonly">ID</label>
+                        <div class = "am-u-sm-9">
+                            <input type = "text" id = "id2" placeholder = "id" name = "id" readonly="readonly">
+                        </div>
+                    </div>
 
+                    <div class = "am-form-group">
+                        <label for = "title2" class = "am-u-sm-3 am-form-label" th:text="#{ti44}"></label>
+                        <div class = "am-u-sm-9">
+                            <input type = "text" id = "title2" th:placeholder = "#{ti44}" name = "title">
+                        </div>
+                    </div>
+
+                    <div class = "am-form-group">
+                        <label for = "content2" class = "am-u-sm-3 am-form-label" th:text="#{c_zj}"></label>
+                        <div class = "am-u-sm-9">
+                            <!--<input type = "text" id = "content" placeholder = "内容 / Content" name = "brief">-->
+                            <textarea id = "content2"  name = "content" cols = "10" rows = "3">
+                            </textarea>
+                        </div>
+                    </div>
+
+
+                    <div class = "am-modal-footer am-g">
+                        <div class = "am-u-sm-7 am-u-sm-push-2 am-u-end">
+                            <input type = "submit" data-am-modal-confirm th.value = "#{confirm_zj}"
+                                   class = "am-btn am-btn-primary"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
     <!-- content end -->
 
@@ -341,25 +276,37 @@
 <script src = "assets/js/amazeui.ie8polyfill.min.js"></script>
 <![endif]-->
 
-<script th:inline="javascript" src = "assets/js/jquery.min.js"></script>
+<script th:inline = "javascript" src = "assets/js/jquery.min.js"></script>
 
 
-
-<script th:inline="javascript" src = "dist/amazeui.datatables.js"></script>
-<!--<script th:inline="javascript" src = "//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>-->
+<script th:inline = "javascript" src = "dist/amazeui.datatables.js"></script>
 <script src = "assets/js/amazeui.min.js"></script>
 <script src = "assets/js/app.js"></script>
 <script type = "text/javascript" src = "assets/js/switch_language.js"></script>
+
+<script>
+    $(function () {
+        $('#add_category').on('click', function () {
+            $('#my-prompt1').modal({
+                relatedTarget: this,
+                onConfirm: function (e) {
+                    alert([[#{notice_success}]])
+                },
+                onCancel: function (e) {
+
+                }
+            });
+        });
+    });
+</script>
+<script type = "text/javascript" src = "assets/js/test.js"></script>
+<script th:inline = "javascript" src = "dist/amazeui.datatables.js"></script>
 <script th:inline="javascript">
-    var a=[ 0,"desc"];
-    $(document).ready(function(){
-        $("#booklist").DataTable(
+    $(function () {
+        $('#categories').DataTable(
             {
-                "order": [a],
-                // "ordering":false,
-                //"ordering":false,
-                "bLengthChange":false,
-                // "pagingType": "full",
+                "ordering": false,
+                "bLengthChange": false,
                 language:{
                     "oPaginate": {
                         "sFirst": "First",
@@ -370,68 +317,54 @@
                     "sSearch": [[#{Search}]],
                     "sInfo": " _START_ - _END_ ，In _TOTAL_",
                     "sInfoEmpty": "0",
-                    "sInfoFiltered": "(from _MAX_ )"
+                    "sInfoFiltered": "(from _MAX_ )",
+                    "sEmptyTable": " ",
                 }
             }
         );
-
-    });
+    })
 </script>
-<script>
-    $(function () {
-        $('#add-book').on('click', function () {
-            $('#my-prompt').modal({
-                relatedTarget: this,
-                // onConfirm: function (e) {
-                //     alert('创建成功')
-                // },
-                // onCancel: function (e) {
-                //
-                // }
-            });
-        });
-    });
+
+<script type = "text/javascript">
+    $("#change").click(function () {
+        translate();
+    })
+</script>
+<script th:inline = "javascript">
+    function modify(id, title, content) {
+        console.log(content);
+        $('#my-prompt2').modal(
+            {
+                relatedTarget: this
+            }
+        );
+        $('#id2').attr("value", id);
+        $('#title2').attr("value", title);
+        document.getElementById("content2").value=content;
+    }
 </script>
 <script th:inline="javascript">
-    function getBook(isbn) {
-        var url = 'https://api.douban.com/v2/book/isbn/'+isbn;
-        $.ajax({
-            url: url,
-            dataType: 'jsonp',
-            success:function (data) {
-                console.log(data);
-                $("#title").attr("value",data.title.toString());
-                $("#author").attr("value",data.author.toString());
-                $("#publish_time").attr("value",data.pubdate.toString());
-                $("#publisher").attr("value",data.publisher.toString());
-                $("#abstract").attr("value",data.summary);
-                $("#cover").attr("value",data.image);
-                $("#price").attr("value",data.price.replace(/[^0-9|.]/ig,""));
-            }
-        });
-    }
-    $("#isbn").blur(function () {
-        var isbn = $(this).val();
-        getBook(isbn);
-
-    })
-
     $(function(){
-        $("table#booklist tbody").on('click', 'button.delete', function () {
-            $('#booklist').DataTable().row($(this).parents('tr')).remove().draw();
+        $("table#categories tbody").on('click', 'button.delete', function () {
+            let id = $('#categories').DataTable().rows($('#categories').DataTable().row($(this).parents('tr'))).data()[0][0];
+            deletemy(id,$(this));
         })
     });
 
-    function deletebook(id) {
+    function fun(val) {
+        $('#categories').DataTable().row(val.parents('tr')).remove().draw();
+    }
+
+    function deletemy(id, val) {
         $.ajax(
             {
                 method: 'GET',
-                url: "deletebook",
+                url: "deleteCategory",
                 data: {id: id},
                 success: function (data) {
-                    if (data.status == 0) {
+                    if (data.status == 1) {
                         alert([[#{notice_success}]]);
-                        // document.getElementById('readlist').deleteRow(id);
+                        fun(val);
                     }
                     else {
                         alert([[#{fail}]]);
@@ -441,15 +374,5 @@
         );
     }
 </script>
-<script type = "text/javascript" src = "assets/js/test.js"></script>
-
-
-<script type = "text/javascript">
-    $("#change").click(function () {
-        translate();
-    })
-</script>
-
 </body>
 </html>
-
