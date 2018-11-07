@@ -78,8 +78,8 @@
                     <thead>
                     <tr>
                         <th class = "table-title">ID</th>
-                        <th class = "table-author">位置</th>
-                        <th class = "table-publisher">被借状态</th>
+                        <th class = "table-author" th:text = "#{location}">位置</th>
+                        <th class = "table-publisher" th:text = "#{state}">状态</th>
                     </tr>
                     </thead>
                     <tbody id = "bk-table-1">
@@ -88,9 +88,9 @@
                         <td th:text = "${bkunit.id}"></td>
 
                         <td th:text = "${bkunit.location}"></td>
-                        <td th:if="${bkunit.status} eq 1">已被借</td>
-                        <td th:if="${bkunit.status} eq 2">未借</td>
-                        <td th:if="${bkunit.status} eq 4">丢失</td>
+                        <td th:if="${bkunit.status} eq 1" th:text = "#{hbb_yxy}">已被借</td>
+                        <td th:if="${bkunit.status} eq 2" th:text = "#{nb_yxy}">未借</td>
+                        <td th:if="${bkunit.status} eq 4" th:text = "#{lose_yxy}">丢失</td>
                     </tr>
                     </tbody>
                 </table>
