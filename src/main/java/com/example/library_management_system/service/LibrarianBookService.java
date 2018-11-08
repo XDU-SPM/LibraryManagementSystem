@@ -40,9 +40,6 @@ public class LibrarianBookService
     private GlobalUtilService globalUtilService;
 
     @Autowired
-    private UserBookDAO userBookDAO;
-
-    @Autowired
     private UserBkunitDAO userBkunitDAO;
 
     @Autowired
@@ -151,7 +148,7 @@ public class LibrarianBookService
         book.setCategory(tmp.getCategory());
 
         Bkunit bkunit = bkunitDAO.findById(id).get();
-        if (!bkunit.getLocation().getName().equals(tmp.getPosition()))
+        if (bkunit.getLocation() == null || !bkunit.getLocation().getName().equals(tmp.getPosition()))
         {
             Location location = locationDAO.findByName(tmp.getPosition());
             bkunit.setLocation(location);
