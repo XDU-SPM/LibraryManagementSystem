@@ -306,7 +306,7 @@
             p_id=parseInt(p_id);
             var pers=[0.1,0.5,0.9];
             var fmoney =pers[p_id-1]*all_money - per*all_money+overdue_money;
-            $("#fine2").attr("value",fmoney);
+            $("#fine2").attr("value",fmoney.toFixed(1));
         });
     });
 
@@ -380,7 +380,7 @@
                     url: "getReturnMessage",
                     data: {id:id,damage:0},
                     success: function (data) {
-                        $("#fine3").attr("value",data.bkunitPrice+data.overdueMoney);
+                        $("#fine3").attr("value",(data.bkunitPrice+data.overdueMoney).toFixed(1));
                     }
                 }
             );
