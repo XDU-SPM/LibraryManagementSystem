@@ -200,7 +200,7 @@
                                     <script th:inline="javascript">
                                         var locations=[[${locations}]];
                                         for(var i=0;i<locations.length;i++){
-                                            document.write("<option value='"+locations[i]+"'>"+locations[i]+"</option>");
+                                            document.write("<option value='"+locations[i].name+"'>"+locations[i].name+"</option>");
                                         }
                                     </script>
                                 </select>
@@ -228,7 +228,7 @@
                                     <script th:inline="javascript">
                                         var categories=[[${categories}]];
                                         for(var i=0;i<categories.length;i++){
-                                            document.write("<option value='"+categories[i]+"'>"+categories[i]+"</option>");
+                                            document.write("<option value='"+categories[i].name+"'>"+categories[i].name+"</option>");
                                         }
                                     </script>
                                 </select>
