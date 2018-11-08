@@ -10,7 +10,8 @@ public class BkunitUtil
     // status
     public final static int
             BORROWED = 1,
-            NORMAL = 2;
+            NORMAL = 2,
+            RESERVED = 3;
 
     // damageStatus
     public final static int

@@ -148,4 +148,20 @@ public class LibrarianController
         model.addAttribute("set", librarianUserService.getMessages());
         return "librarian/librarian_message";
     }
+
+    @RequestMapping(value = "/librarian/librarian_category", method = RequestMethod.GET)
+    public String librarian_category(Model model)
+    {
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
+        return "librarian/librarian_category";
+    }
+
+    @RequestMapping(value = "/librarian/librarian_position", method = RequestMethod.GET)
+    public String librarian_position(Model model)
+    {
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
+        return "librarian/librarian_position";
+    }
 }
