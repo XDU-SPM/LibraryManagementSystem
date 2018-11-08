@@ -173,7 +173,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each = "location:${set}">
+                        <tr th:each = "location:${locations}">
                             <td th:text = "${location.id}"></td>
                             <td>
                                 <a th:text = "${location.name}"  th:onclick="'javascript:modify(\''+${location.id}+'\',\''+${location.name}+'\')'"></a>
@@ -222,7 +222,7 @@
         <div class = "am-modal am-modal-prompt" tabindex = "-1" id = "my-prompt2">
             <div class = "am-modal-dialog">
                 <div class = "am-modal-hd" th:text="#{modify}">Edit</div>
-                <form class = "am-modal-bd am-form am-form-horizontal" method = "post" action = "modifyLocation"
+                <form class = "am-modal-bd am-form am-form-horizontal" method = "post" action = "updateLocation"
                       enctype = "multipart/form-data">
                     <div class = "am-form-group">
                         <label for = "id2" class = "am-u-sm-3 am-form-label" readonly = "readonly">ID</label>
@@ -339,7 +339,7 @@
         $.ajax(
             {
                 method: 'GET',
-                url: "deleteLocation",
+                url: "removeLocation",
                 data: {id: id},
                 success: function (data) {
                     if (data.status == 1) {

@@ -173,7 +173,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each = "category:${set}">
+                        <tr th:each = "category:${categories}">
                             <td th:text = "${category.id}"></td>
                             <td>
                                 <a th:text = "${category.name}"  th:onclick="'javascript:modify(\''+${category.id}+'\',\''+${category.name}+'\')'"></a>
@@ -222,7 +222,7 @@
         <div class = "am-modal am-modal-prompt" tabindex = "-1" id = "my-prompt2">
             <div class = "am-modal-dialog">
                 <div class = "am-modal-hd" th:text="#{modify}">Edit</div>
-                <form class = "am-modal-bd am-form am-form-horizontal" method = "post" action = "modifyCategory"
+                <form class = "am-modal-bd am-form am-form-horizontal" method = "post" action = "updateCategory"
                       enctype = "multipart/form-data">
                     <div class = "am-form-group">
                         <label for = "id2" class = "am-u-sm-3 am-form-label" readonly = "readonly">ID</label>
@@ -339,7 +339,7 @@
         $.ajax(
             {
                 method: 'GET',
-                url: "deleteCategory",
+                url: "removeCategory",
                 data: {id: id},
                 success: function (data) {
                     if (data.status == 1) {
