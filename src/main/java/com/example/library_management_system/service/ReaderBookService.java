@@ -104,14 +104,14 @@ public class ReaderBookService
         calendar.add(Calendar.MILLISECOND, QueueConfig.QUEUE_EXPIRATION);
         Date overdue = calendar.getTime();
 
-        UserBook userBook = new UserBook(now, overdue, UserBookUtil.RESERVATION, book, reader);
-
-        userBookDAO.save(userBook);
+        Bkunit bkunit = book.getBkunits().iterator().next();
+        UserBkunit userBkunit = new UserBkunit(now, overdue, UserBkunitUtil.RESERVED, bkunit, reader);
+        userBkunitDAO.save(userBkunit);
 
         BkunitOperatingHistory bkunitOperatingHistory = new BkunitOperatingHistory(now, reader.getId(), isbn, UserBookUtil.RESERVATION);
         bkunitOperatingHistoryDAO.save(bkunitOperatingHistory);
 
-        int id = userBook.getId();
+        int id = userBkunit.getId();
         rabbitTemplate.convertAndSend(QueueConfig.DELAY_QUEUE_PER_QUEUE_TTL_NAME, id);
     }
 

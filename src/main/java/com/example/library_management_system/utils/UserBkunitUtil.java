@@ -7,5 +7,6 @@ public class UserBkunitUtil
             OVERDUE = 2,
             RENEW = 3,
             RETURNED = 4,
-            DELETE = 5;
+            DELETE = 5,
+            RESERVED = 6;
 }
