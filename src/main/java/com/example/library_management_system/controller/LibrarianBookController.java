@@ -1,5 +1,6 @@
 package com.example.library_management_system.controller;
 
+import com.example.library_management_system.bean.Bkunit;
 import com.example.library_management_system.bean.Book;
 import com.example.library_management_system.bean.ReturnMessage;
 import com.example.library_management_system.service.*;
@@ -65,9 +66,10 @@ public class LibrarianBookController
     @RequestMapping(path = "/librarian/librarian_book", method = RequestMethod.GET)
     public String bookInfo(String id, Model model)
     {
-        Book book = bookService.bookInfo1(id);
+        Bkunit bkunit = bookService.bkunitInfo(id);
+        Book book = bkunit.getBook();
         model.addAttribute("book", book);
-        model.addAttribute("id", id);
+        model.addAttribute("bkunit", bkunit);
         model.addAttribute("categories", categoryService.categories());
         model.addAttribute("locations", locationService.locations());
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
