@@ -1,8 +1,8 @@
 package com.example.library_management_system.config;
 
-import com.example.library_management_system.bean.UserBook;
-import com.example.library_management_system.dao.UserBookDAO;
-import com.example.library_management_system.utils.UserBookUtil;
+import com.example.library_management_system.bean.UserBkunit;
+import com.example.library_management_system.dao.UserBkunitDAO;
+import com.example.library_management_system.utils.UserBkunitUtil;
 import com.rabbitmq.client.Channel;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.core.ChannelAwareMessageListener;
@@ -18,7 +18,7 @@ import java.util.Date;
 public class ProcessReceiver implements ChannelAwareMessageListener
 {
     @Autowired
-    private UserBookDAO userBookDAO;
+    private UserBkunitDAO userBkunitDAO;
 
     @Override
     public void onMessage(Message message, Channel channel) throws Exception
@@ -29,8 +29,8 @@ public class ProcessReceiver implements ChannelAwareMessageListener
 
         System.out.println("get " + id);
 
-        UserBook userBook = userBookDAO.findById(id).get();
-        if (userBook.getStatus() != UserBookUtil.RESERVATION)
+        UserBkunit userBkunit = userBkunitDAO.findById(id);
+        if (userBkunit.getStatus() != UserBkunitUtil.RESERVED)
         {
             System.out.println("This book is not reservation");
             return;
@@ -43,15 +43,15 @@ public class ProcessReceiver implements ChannelAwareMessageListener
         calendar.add(Calendar.SECOND, 1);
         now = calendar.getTime();
 
-        Date overdue = userBook.getReturnDate();
+        Date overdue = userBkunit.getReturnDate();
         if (now.before(overdue))
         {
             System.out.println("This delay had been canceled");
             return;
         }
 
-        userBook.getBook().addNumber(1);
-        userBook.setStatus(UserBookUtil.RESERVATION_FAIL);
-        userBookDAO.save(userBook);
+        userBkunit.getBkunit().getBook().addNumber(1);
+        userBkunit.setStatus(UserBkunitUtil.RESERVATION_FAIL);
+        userBkunitDAO.save(userBkunit);
     }
 }

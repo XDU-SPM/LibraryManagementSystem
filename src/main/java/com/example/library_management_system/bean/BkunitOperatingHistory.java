@@ -19,7 +19,6 @@ public class BkunitOperatingHistory
     @Transient
     private String username;
 
-    // 预约时，此字段为 book 的 isbn
     private String buid;   // 操作的的哪本书
 
     @Transient

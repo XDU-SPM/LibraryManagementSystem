@@ -62,22 +62,15 @@ public class LibrarianBookService
 
     public Set<String> addBkunit(Book book)
     {
+        // TODO: 2018/11/8 if no isbn
         if (book.getIsbn().equals("") || book.getIsbn() == null)
             book.setIsbn(String.valueOf(System.currentTimeMillis()));
-        book.setIsbn(book.getIsbn().trim());
+        else
+            book.setIsbn(book.getIsbn().trim());
         Book book1 = bookDAO.findByIsbn(book.getIsbn());
         if (book1 == null)
         {
             book1 = book;
-
-            /*Category category = categoryDAO.findByName(categoryName);
-            if (category == null)
-            {
-                category = new Category(categoryName);
-                categoryDAO.save(category);
-            }
-
-            book1.getCategories().add(category);*/
             bookDAO.save(book1);
         }
         else
@@ -138,6 +131,9 @@ public class LibrarianBookService
             case BkunitUtil.NORMAL:
                 bkunit.setStatus1(localeMessageSourceService.getMessage("normalStatus"));
                 break;
+            case BkunitUtil.RESERVED:
+                bkunit.setStatus1(localeMessageSourceService.getMessage("reservedStatus"));
+                break;
         }
     }
 
@@ -191,24 +187,16 @@ public class LibrarianBookService
         if (bkunit.getStatus() == BkunitUtil.BORROWED)
             return -4;
 
-        if (bkunit.getStatus() != BkunitUtil.NORMAL)
+        if (bkunit.getStatus() == BkunitUtil.LOST)
             return -5;
 
+        UserBkunit userBkunit = userBkunitDAO.findByUserAndBkunitAndStatus(reader, bkunit, BkunitUtil.RESERVED);
+        // TODO: 2018/11/8 add this case
+        if (bkunit.getStatus() == BkunitUtil.RESERVED && userBkunit != null)
+            return -6;
+
         Book book = bkunit.getBook();
-        UserBook userBook;
-
-        if ((userBook = userBookDAO.findByUserAndBookAndStatus(reader, book, UserBookUtil.RESERVATION)) != null)
-        {
-            book.addNumber(1);
-            userBook.setStatus(UserBkunitUtil.BORROWED);
-            userBookDAO.save(userBook);
-        }
-
-        book.addNumber(-1);
         book.addFrequency();
-//        bookDAO.save(book);
-
-        UserBkunit userBkunit = userBkunitDAO.findByUserAndBkunit(reader, bkunit);
 
         Date now = new Date();
         Calendar calendar = Calendar.getInstance();
@@ -217,13 +205,18 @@ public class LibrarianBookService
         Date overdue = calendar.getTime();
 
         if (userBkunit == null)
+        {
             userBkunit = new UserBkunit(now, overdue, UserBkunitUtil.BORROWED, bkunit, reader);
+            book.addNumber(-1);
+        }
         else
         {
             userBkunit.setBorrowDate(now);
             userBkunit.setReturnDate(overdue);
             userBkunit.setStatus(UserBkunitUtil.BORROWED);
         }
+
+        bookDAO.save(book);
 
         bkunit.setStatus(BkunitUtil.BORROWED);
         reader.addBookNumber(1);
@@ -248,6 +241,7 @@ public class LibrarianBookService
             return 0;
 
         Bkunit bkunit = optional.get();
+        // TODO: 2018/11/8 fine
         if (bkunit.getStatus() != BkunitUtil.BORROWED)
             return 0;
 
@@ -322,6 +316,7 @@ public class LibrarianBookService
             BkunitOperatingHistory bkunitOperatingHistory = new BkunitOperatingHistory(now, reader.getId(), bkunit.getId(), UserBkunitUtil.RETURNED);
             bkunitOperatingHistoryDAO.save(bkunitOperatingHistory);
 
+            // TODO: 2018/11/8 fine
             Set<Account> accounts = accountDAO.findAllByUidAndBkidAndTypeAndDateBetween(reader.getId(), bkunit.getId(), AccountUtil.OVERDUE, userBkunit.getBorrowDate(), now);
             double overdueMoney = 0;
             for (Account account : accounts)
@@ -357,16 +352,17 @@ public class LibrarianBookService
 
         double damageMoney = bkunit.getBook().getPrice() * (punishmentDAO.findById(damageStatus).get().getRate() - punishmentDAO.findById(bkunit.getDamageStatus()).get().getRate());
 
+        // TODO: 2018/11/8 notify
         if (damageMoney < 0)
             return -4;
 
+        Date now = new Date();
+
         if (damageMoney != 0)
         {
-            Account account = new Account(AccountUtil.DAMAGE, reader.getId(), damageMoney, id, new Date());
+            Account account = new Account(AccountUtil.DAMAGE, reader.getId(), damageMoney, id, now);
             accountDAO.save(account);
         }
-//        reader.addMoney(-damageMoney);
-        Date now = new Date();
         bkunit.setDamageStatus(damageStatus);
         userBkunit.setReturnDate(now);
         userBkunit.setStatus(UserBkunitUtil.RETURNED);
@@ -382,16 +378,21 @@ public class LibrarianBookService
         reader.addMoney(overdueMoney);
         userBkunitDAO.save(userBkunit);
 
-        if (money != damageMoney + overdueMoney)
+        if (!doubleEqual(money, damageMoney + overdueMoney))
             return -4;
 
-        Account account = new Account(AccountUtil.FINE, reader.getId(), damageMoney + overdueMoney, null, new Date());
+        Account account = new Account(AccountUtil.FINE, reader.getId(), money, null, now);
         accountDAO.save(account);
 
         ReturnHistory returnHistory = new ReturnHistory(reader.getId(), userBkunit, damageMoney + overdueMoney);
         returnHistoryDAO.save(returnHistory);
 
         return 0;
+    }
+
+    private boolean doubleEqual(double d1, double d2)
+    {
+        return Math.abs(d1 - d2) < 0.01;
     }
 
     public void addBookCategory(String isbn, String categoryName)
@@ -498,57 +499,49 @@ public class LibrarianBookService
         return dayBorrowReturns;
     }
 
-    public Page<UserBook> getReserves(int start, int size)
+    // TODO: 2018/11/8 need modify
+    public Set<UserBkunit> getReserves()
     {
-        Pageable pageable = PageableUtil.pageable(false, "borrowDate", start, size);
-        return userBookDAO.findAllByStatusBetween(UserBookUtil.RESERVATION, UserBookUtil.RESERVATION_CANCEL, pageable);
-    }
-
-    public Set<UserBook> getReserves()
-    {
-        Set<UserBook> set = userBookDAO.findAllByStatusOrStatusOrStatusOrStatus(UserBkunitUtil.BORROWED, UserBookUtil.RESERVATION, UserBookUtil.RESERVATION_FAIL, UserBookUtil.RESERVATION_CANCEL);
-        for (UserBook userBook : set)
-            setUserBookStatus(userBook);
+        Set<UserBkunit> set = userBkunitDAO.findAllByStatusBetween(UserBkunitUtil.RESERVED, UserBkunitUtil.RESERVATION_CANCEL);
+        for (UserBkunit userBkunit : set)
+            setUserBookStatus(userBkunit);
         return set;
     }
 
-    private void setUserBookStatus(UserBook userBook)
+    private void setUserBookStatus(UserBkunit userBkunit)
     {
-        switch (userBook.getStatus())
+        switch (userBkunit.getStatus())
         {
-            case UserBookUtil.RESERVATION:
-                userBook.setStatus1(localeMessageSourceService.getMessage("reservation"));
+            case UserBkunitUtil.RESERVED:
+                userBkunit.setStatus1(localeMessageSourceService.getMessage("reservation"));
                 break;
-            case UserBookUtil.RESERVATION_FAIL:
-                userBook.setStatus1(localeMessageSourceService.getMessage("reservation_fail"));
+            case UserBkunitUtil.RESERVATION_FAIL:
+                userBkunit.setStatus1(localeMessageSourceService.getMessage("reservation_fail"));
                 break;
-            case UserBookUtil.RESERVATION_CANCEL:
-                userBook.setStatus1(localeMessageSourceService.getMessage("reservation_cancel"));
-                break;
-            case UserBkunitUtil.BORROWED:
-                userBook.setStatus1(localeMessageSourceService.getMessage("reservation_success"));
+            case UserBkunitUtil.RESERVATION_CANCEL:
+                userBkunit.setStatus1(localeMessageSourceService.getMessage("reservation_cancel"));
                 break;
         }
     }
 
-    public Set<BkunitOperatingHistory> getBkunitOperatingHistory(int status, boolean bkunit)
+    public Set<BkunitOperatingHistory> getBkunitOperatingHistory(int status)
     {
         Set<BkunitOperatingHistory> bkunitOperatingHistories = bkunitOperatingHistoryDAO.findAllByStatus(status);
         for (BkunitOperatingHistory bkunitOperatingHistory : bkunitOperatingHistories)
-            updateBkunitOperatingHistory(bkunitOperatingHistory, bkunit);
+            updateBkunitOperatingHistory(bkunitOperatingHistory);
         return bkunitOperatingHistories;
     }
 
-    public Page<BkunitOperatingHistory> getBkunitOperatingHistory(int start, int size, int status, boolean bkunit)
+    public Page<BkunitOperatingHistory> getBkunitOperatingHistory(int start, int size, int status)
     {
         Pageable pageable = PageableUtil.pageable(false, "date", start, size);
         Page<BkunitOperatingHistory> bkunitOperatingHistories = bkunitOperatingHistoryDAO.findAllByStatus(status, pageable);
         for (BkunitOperatingHistory bkunitOperatingHistory : bkunitOperatingHistories)
-            updateBkunitOperatingHistory(bkunitOperatingHistory, bkunit);
+            updateBkunitOperatingHistory(bkunitOperatingHistory);
         return bkunitOperatingHistories;
     }
 
-    private void updateBkunitOperatingHistory(BkunitOperatingHistory bkunitOperatingHistory, boolean bkunit)
+    private void updateBkunitOperatingHistory(BkunitOperatingHistory bkunitOperatingHistory)
     {
         String username;
         User user;
@@ -557,17 +550,13 @@ public class LibrarianBookService
         else
             username = user.getUsername();
         bkunitOperatingHistory.setUsername(username);
-        if (bkunit)
-        {
-            Optional<Bkunit> optional = bkunitDAO.findById(bkunitOperatingHistory.getBuid());
-            String bookName;
-            if (!optional.isPresent())
-                bookName = localeMessageSourceService.getMessage("bedeleted");
-            else
-                bookName = optional.get().getBook().getTitle();
-            bkunitOperatingHistory.setBookName(bookName);
-        }
+
+        Optional<Bkunit> optional = bkunitDAO.findById(bkunitOperatingHistory.getBuid());
+        String bookName;
+        if (!optional.isPresent())
+            bookName = localeMessageSourceService.getMessage("bedeleted");
         else
-            bkunitOperatingHistory.setBookName(bookDAO.findByIsbn(bkunitOperatingHistory.getBuid()).getTitle());
+            bookName = optional.get().getBook().getTitle();
+        bkunitOperatingHistory.setBookName(bookName);
     }
 }

@@ -72,11 +72,12 @@ public class ReaderBookService
         return userBkunitDAO.findAllByUserAndStatusBetween(reader, UserBkunitUtil.BORROWED, UserBkunitUtil.RENEW, pageable);
     }
 
-    public Page<UserBook> queryReservedBooks(int start, int size)
+    // TODO: 2018/11/8 need modify
+    public Page<UserBkunit> queryReservedBooks(int start, int size)
     {
         User reader = userService.getUser();
         Pageable pageable = PageableUtil.pageable(false, "borrowDate", start, size);
-        return userBookDAO.findAllByUserAndStatus(reader, UserBookUtil.RESERVATION, pageable);
+        return userBkunitDAO.findAllByUserAndStatus(reader, UserBkunitUtil.RESERVED, pageable);
     }
 
     public Page<ReturnHistory> queryReturnedBooks(int start, int size)
@@ -92,10 +93,12 @@ public class ReaderBookService
      * @param isbn
      * @return
      */
-    public void reserve(String isbn)
+    public String reserve(String isbn)
     {
         Book book = bookDAO.findByIsbn(isbn);
         book.addNumber(-1);
+        bookDAO.save(book);
+
         User reader = userService.getUser();
 
         Date now = new Date();
@@ -105,29 +108,34 @@ public class ReaderBookService
         Date overdue = calendar.getTime();
 
         Bkunit bkunit = book.getBkunits().iterator().next();
+        bkunit.setStatus(BkunitUtil.RESERVED);
         UserBkunit userBkunit = new UserBkunit(now, overdue, UserBkunitUtil.RESERVED, bkunit, reader);
         userBkunitDAO.save(userBkunit);
 
-        BkunitOperatingHistory bkunitOperatingHistory = new BkunitOperatingHistory(now, reader.getId(), isbn, UserBookUtil.RESERVATION);
+        String bkunitId = bkunit.getId();
+        BkunitOperatingHistory bkunitOperatingHistory = new BkunitOperatingHistory(now, reader.getId(), bkunitId, UserBkunitUtil.RESERVED);
         bkunitOperatingHistoryDAO.save(bkunitOperatingHistory);
 
         int id = userBkunit.getId();
         rabbitTemplate.convertAndSend(QueueConfig.DELAY_QUEUE_PER_QUEUE_TTL_NAME, id);
+
+        return bkunitId;
     }
 
     public int reserveCancel(int id)
     {
-        UserBook userBook = userBookDAO.findById(id).get();
+        UserBkunit userBkunit = userBkunitDAO.findById(id);
 
-        if (userBook.getStatus() != UserBookUtil.RESERVATION)
+        if (userBkunit.getStatus() != UserBkunitUtil.RESERVED)
             return 0;
 
-        userBook.getBook().addNumber(1);
-        userBook.setStatus(UserBookUtil.RESERVATION_CANCEL);
-        userBookDAO.save(userBook);
+        userBkunit.getBkunit().getBook().addNumber(1);
+        userBkunit.setStatus(UserBkunitUtil.RESERVATION_CANCEL);
+        userBkunitDAO.save(userBkunit);
         return 1;
     }
 
+    // TODO: 2018/11/8 What's this???
     public UserBook appointment(int id)
     {
         return userBookDAO.findById(id).get();

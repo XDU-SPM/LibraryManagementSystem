@@ -2,9 +2,7 @@ package com.example.library_management_system.controller;
 
 import com.example.library_management_system.bean.Book;
 import com.example.library_management_system.bean.ReturnMessage;
-import com.example.library_management_system.service.BookService;
-import com.example.library_management_system.service.LibrarianBookService;
-import com.example.library_management_system.service.UserService;
+import com.example.library_management_system.service.*;
 import com.example.library_management_system.utils.Status;
 import com.example.library_management_system.utils.UserBkunitUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +27,12 @@ public class LibrarianBookController
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private CategoryService categoryService;
+
+    @Autowired
+    private LocationService locationService;
+
     @RequestMapping(path = "/librarian/deletebook", method = RequestMethod.GET)
     @ResponseBody
     public Status deleteBkunit(String id)
@@ -51,6 +55,8 @@ public class LibrarianBookController
     public String showBkunit(Model model)
     {
         model.addAttribute("set", librarianBookService.showBkunit());
+        model.addAttribute("categories", categoryService.categories());
+        model.addAttribute("locations", locationService.locations());
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
         return "librarian/librarian_table";
@@ -162,8 +168,8 @@ public class LibrarianBookController
     @RequestMapping(value = "/librarian/librarian_history", method = RequestMethod.GET)
     public String librarian_history(Model model)
     {
-        model.addAttribute("set1", librarianBookService.getBkunitOperatingHistory(UserBkunitUtil.BORROWED, true));
-        model.addAttribute("set2", librarianBookService.getBkunitOperatingHistory(UserBkunitUtil.RETURNED, true));
+        model.addAttribute("set1", librarianBookService.getBkunitOperatingHistory(UserBkunitUtil.BORROWED));
+        model.addAttribute("set2", librarianBookService.getBkunitOperatingHistory(UserBkunitUtil.RETURNED));
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
         return "librarian/librarian_history";
@@ -172,7 +178,7 @@ public class LibrarianBookController
     @RequestMapping(value = "/librarian/librarian_deletebookhistory", method = RequestMethod.GET)
     public String librarian_deletebookhistory(Model model)
     {
-        model.addAttribute("set", librarianBookService.getBkunitOperatingHistory(UserBkunitUtil.DELETE, true));
+        model.addAttribute("set", librarianBookService.getBkunitOperatingHistory(UserBkunitUtil.DELETE));
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
         return "librarian/librarian_deletebookhistory";

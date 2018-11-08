@@ -19,6 +19,9 @@ public class UserBkunit
 
     private int status;
 
+    @Transient
+    private String status1;
+
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "buid")
     private Bkunit bkunit;
@@ -98,5 +101,15 @@ public class UserBkunit
     public void setUser(User user)
     {
         this.user = user;
+    }
+
+    public String getStatus1()
+    {
+        return status1;
+    }
+
+    public void setStatus1(String status1)
+    {
+        this.status1 = status1;
     }
 }
