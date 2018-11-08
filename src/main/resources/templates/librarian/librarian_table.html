@@ -247,7 +247,7 @@
                             <!--<input type = "text" id = "type" placeholder = "Type" name = "category">-->
                             <select data-am-selected="{searchBox: 1,maxHeight: 100,btnWidth: '360px',btnSize: 'sm',}" id="category" name="category" typeof="text">
                                 <script th:inline="javascript">
-                                    var categories=["story","programming"];
+                                    var categories=[[${categories}]];
                                     for(var i=0;i<categories.length;i++){
                                         document.write("<option value='"+categories[i]+"'>"+categories[i]+"</option>");
                                     }
@@ -262,9 +262,9 @@
                             <!--<input type = "text" id = "position" placeholder = "position" name = "position">-->
                             <select data-am-selected="{searchBox: 1,maxHeight: 150,btnWidth: '360px',btnSize: 'sm',btnStyle: 'am-btn am-btn-default'}" id="position" name="position" typeof="text" placeholder="A-302">
                                 <script th:inline="javascript">
-                                    var categories=["A-301","A-302"];
-                                    for(var i=0;i<categories.length;i++){
-                                        document.write("<option value='"+categories[i]+"'>"+categories[i]+"</option>");
+                                    var locations=[[${locations}]]
+                                    for(var i=0;i<locations.length;i++){
+                                        document.write("<option value='"+locations[i]+"'>"+locations[i]+"</option>");
                                     }
                                 </script>
                             </select>

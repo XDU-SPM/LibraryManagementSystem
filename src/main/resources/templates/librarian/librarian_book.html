@@ -198,9 +198,9 @@
                                        <!--th:value = "${book.position}">-->
                                 <select data-am-selected="{searchBox: 1,maxHeight: 100,btnWidth: '563px'}" id="position" name="position" typeof="text">
                                     <script th:inline="javascript">
-                                        var categories=["A-301","A-302"];
-                                        for(var i=0;i<categories.length;i++){
-                                            document.write("<option value='"+categories[i]+"'>"+categories[i]+"</option>");
+                                        var locations=[[${locations}]];
+                                        for(var i=0;i<locations.length;i++){
+                                            document.write("<option value='"+locations[i]+"'>"+locations[i]+"</option>");
                                         }
                                     </script>
                                 </select>
@@ -226,7 +226,7 @@
                                        <!--th:value = "${book.category}">-->
                                 <select data-am-selected="{searchBox: 1,maxHeight: 100,btnWidth: '563px'}" id="category" name="category" typeof="text">
                                     <script th:inline="javascript">
-                                        var categories=["story","programming"];
+                                        var categories=[[${categories}]];
                                         for(var i=0;i<categories.length;i++){
                                             document.write("<option value='"+categories[i]+"'>"+categories[i]+"</option>");
                                         }
