@@ -2,9 +2,7 @@ package com.example.library_management_system.controller;
 
 import com.example.library_management_system.bean.Book;
 import com.example.library_management_system.bean.ReturnMessage;
-import com.example.library_management_system.service.BookService;
-import com.example.library_management_system.service.LibrarianBookService;
-import com.example.library_management_system.service.UserService;
+import com.example.library_management_system.service.*;
 import com.example.library_management_system.utils.Status;
 import com.example.library_management_system.utils.UserBkunitUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +27,12 @@ public class LibrarianBookController
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private CategoryService categoryService;
+
+    @Autowired
+    private LocationService locationService;
+
     @RequestMapping(path = "/librarian/deletebook", method = RequestMethod.GET)
     @ResponseBody
     public Status deleteBkunit(String id)
@@ -51,6 +55,8 @@ public class LibrarianBookController
     public String showBkunit(Model model)
     {
         model.addAttribute("set", librarianBookService.showBkunit());
+        model.addAttribute("categories", categoryService.categories());
+        model.addAttribute("locations", locationService.locations());
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
         return "librarian/librarian_table";

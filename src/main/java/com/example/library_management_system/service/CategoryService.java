@@ -29,4 +29,9 @@ public class CategoryService
         }
         categoryDAO.saveAll(categories);
     }
+
+    public List<Category> categories()
+    {
+        return categoryDAO.findAll();
+    }
 }

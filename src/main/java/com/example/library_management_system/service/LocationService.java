@@ -32,4 +32,9 @@ public class LocationService
 
         locationDAO.saveAll(locations);
     }
+
+    public List<Location> locations()
+    {
+        return locationDAO.findAll();
+    }
 }
