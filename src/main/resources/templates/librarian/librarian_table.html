@@ -180,7 +180,7 @@
                             <th class = "table-author " th:text="#{au44}">作者</th>
                             <th class = "table-publisher" th:text="#{publisher}">出版社</th>
                             <th class = "table-date " th:text="#{state}">出版日期</th>
-                            <th class = "table-positon " th:text="#{bl44}">图书位置</th>
+                            <th class = "table-positon " th:text="#{location}">图书位置</th>
                             <th class = "table-set" th:text="#{Operation}">操作</th>
                         </tr>
                         </thead>
@@ -355,6 +355,7 @@
     $(document).ready(function(){
         $("#booklist").DataTable(
             {
+                "bAutoWidth": false,
                 "order": [a],
                 // "ordering":false,
                 //"ordering":false,
