@@ -2,10 +2,7 @@ package com.example.library_management_system.controller;
 
 import com.example.library_management_system.bean.Announcement;
 import com.example.library_management_system.bean.User;
-import com.example.library_management_system.service.AnnouncementService;
-import com.example.library_management_system.service.LibrarianBookService;
-import com.example.library_management_system.service.LibrarianUserService;
-import com.example.library_management_system.service.UserService;
+import com.example.library_management_system.service.*;
 import com.example.library_management_system.utils.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +25,12 @@ public class LibrarianController
 
     @Autowired
     private AnnouncementService announcementService;
+
+    @Autowired
+    private CategoryService categoryService;
+
+    @Autowired
+    private LocationService locationService;
 
     @RequestMapping(value = "/librarian/librarian_borrow", method = RequestMethod.GET)
     public String librarian_librarian_borrow(Model model)
@@ -152,6 +155,7 @@ public class LibrarianController
     @RequestMapping(value = "/librarian/librarian_category", method = RequestMethod.GET)
     public String librarian_category(Model model)
     {
+        model.addAttribute("categories", categoryService.categories());
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
         return "librarian/librarian_category";
@@ -160,8 +164,46 @@ public class LibrarianController
     @RequestMapping(value = "/librarian/librarian_position", method = RequestMethod.GET)
     public String librarian_position(Model model)
     {
+        model.addAttribute("locations", locationService.locations());
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
         return "librarian/librarian_position";
+    }
+
+    @RequestMapping(value = "/librarian/addLocation", method = RequestMethod.POST)
+    public String addLocation(String name)
+    {
+        locationService.addLocation(name);
+        return "redirect:librarian_position";
+    }
+
+    @RequestMapping(value = "/librarian/removeLocation", method = RequestMethod.GET)
+    @ResponseBody
+    public Status removeLocation(int id)
+    {
+        locationService.removeLocation(id);
+        return new Status(1);
+    }
+
+    @RequestMapping(value = "/librarian/updateLocation", method = RequestMethod.POST)
+    public String updateLocation(int id, String name)
+    {
+        locationService.updateLocation(id, name);
+        return "redirect:librarian_position";
+    }
+
+    @RequestMapping(value = "/librarian/addCategory", method = RequestMethod.POST)
+    public String addCategory(String name)
+    {
+        categoryService.addCategory(name);
+        return "redirect:librarian_category";
+    }
+
+    @RequestMapping(value = "/librarian/removeCategory", method = RequestMethod.GET)
+    @ResponseBody
+    public Status removeCategory(int id)
+    {
+        categoryService.removeCategory(id);
+        return new Status(1);
     }
 }

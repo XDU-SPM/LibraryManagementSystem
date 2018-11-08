@@ -68,6 +68,8 @@ public class LibrarianBookController
         Book book = bookService.bookInfo1(id);
         model.addAttribute("book", book);
         model.addAttribute("id", id);
+        model.addAttribute("categories", categoryService.categories());
+        model.addAttribute("locations", locationService.locations());
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
         return "/librarian/librarian_book";

@@ -34,4 +34,16 @@ public class CategoryService
     {
         return categoryDAO.findAll();
     }
+
+    public void addCategory(String name)
+    {
+        Category category = categoryDAO.findByName(name);
+        if (category == null)
+            categoryDAO.save(new Category(name));
+    }
+
+    public void removeCategory(int id)
+    {
+        categoryDAO.deleteById(id);
+    }
 }
