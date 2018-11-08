@@ -162,7 +162,7 @@
                                             书号
                                         </div>
                                         <div class = "am-u-sm-8 am-u-md-4">
-                                            <input type = "text" class = "am-input-sm" name = "id" id="bid1">
+                                            <input type = "text" class = "am-input-sm" name = "id" id="bid1" required>
                                         </div>
                                         <div class = "am-hide-sm-only am-u-md-6"></div>
                                     </div>
@@ -196,7 +196,7 @@
                                     书号
                                 </div>
                                 <div class = "am-u-sm-8 am-u-md-4">
-                                    <input type = "text" class = "am-input-sm" name = "id" id="bid2">
+                                    <input type = "text" class = "am-input-sm" name = "id" id="bid2" required>
                                 </div>
                                 <div class = "am-hide-sm-only am-u-md-6"></div>
                             </div>
@@ -247,7 +247,7 @@
                                     书号
                                 </div>
                                 <div class = "am-u-sm-8 am-u-md-4 am-u-end">
-                                    <input type = "text" class = "am-input-sm" name = "id" id="bid3">
+                                    <input type = "text" class = "am-input-sm" name = "id" id="bid3" required>
                                 </div>
                             </div>
 
@@ -306,7 +306,7 @@
             p_id=parseInt(p_id);
             var pers=[0.1,0.5,0.9];
             var fmoney =pers[p_id-1]*all_money - per*all_money+overdue_money;
-            $("#fine2").attr("value",fmoney);
+            $("#fine2").attr("value",fmoney.toFixed(1));
         });
     });
 
@@ -380,7 +380,7 @@
                     url: "getReturnMessage",
                     data: {id:id,damage:0},
                     success: function (data) {
-                        $("#fine3").attr("value",data.bkunitPrice+data.overdueMoney);
+                        $("#fine3").attr("value",(data.bkunitPrice+data.overdueMoney).toFixed(1));
                     }
                 }
             );
