@@ -20,8 +20,10 @@ public class Book
     private String publishDate;
     private String publisher;
     private String author;
-    private String position;
     private String coverPath;
+
+    @Transient
+    private String position;
 
     @Lob
     private String brief;

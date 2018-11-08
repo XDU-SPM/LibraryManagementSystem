@@ -162,8 +162,8 @@ public class LibrarianBookController
     @RequestMapping(value = "/librarian/librarian_history", method = RequestMethod.GET)
     public String librarian_history(Model model)
     {
-        model.addAttribute("set1", librarianBookService.getBkunitOperatingHistory(UserBkunitUtil.BORROWED, true));
-        model.addAttribute("set2", librarianBookService.getBkunitOperatingHistory(UserBkunitUtil.RETURNED, true));
+        model.addAttribute("set1", librarianBookService.getBkunitOperatingHistory(UserBkunitUtil.BORROWED));
+        model.addAttribute("set2", librarianBookService.getBkunitOperatingHistory(UserBkunitUtil.RETURNED));
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
         return "librarian/librarian_history";
@@ -172,7 +172,7 @@ public class LibrarianBookController
     @RequestMapping(value = "/librarian/librarian_deletebookhistory", method = RequestMethod.GET)
     public String librarian_deletebookhistory(Model model)
     {
-        model.addAttribute("set", librarianBookService.getBkunitOperatingHistory(UserBkunitUtil.DELETE, true));
+        model.addAttribute("set", librarianBookService.getBkunitOperatingHistory(UserBkunitUtil.DELETE));
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
         return "librarian/librarian_deletebookhistory";

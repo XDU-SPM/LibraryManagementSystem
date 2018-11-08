@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 public interface UserBkunitDAO extends JpaRepository<UserBkunit, Integer>
 {
@@ -17,6 +18,8 @@ public interface UserBkunitDAO extends JpaRepository<UserBkunit, Integer>
     List<UserBkunit> findAllByStatus(int status);
 
     Page<UserBkunit> findAllByStatusBetween(int status1, int status2, Pageable pageable);
+
+    Set<UserBkunit> findAllByStatusBetween(int status1, int status2);
 
     Page<UserBkunit> findAllByUser(User reader, Pageable pageable);
 
@@ -39,4 +42,6 @@ public interface UserBkunitDAO extends JpaRepository<UserBkunit, Integer>
     UserBkunit findByBkunitAndStatusBetween(Bkunit bkunit, int status1, int status2);
 
     UserBkunit findByBkunitAndStatus(Bkunit bkunit, int status);
+
+    UserBkunit findByUserAndBkunitAndStatus(User user, Bkunit bkunit, int status);
 }
