@@ -73,9 +73,9 @@ public class ReaderBookController
 
     @RequestMapping(value = "/reader/reserve", method = RequestMethod.GET)
     @ResponseBody
-    public Status reserveBook(String isbn)
+    public Status reserveBook(String id)
     {
-        readerBookService.reserve(isbn);
+        readerBookService.reserve(id);
         return new Status(1);
     }
 
