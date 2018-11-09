@@ -107,6 +107,7 @@
                 <th class = "table-title">ID</th>
                 <th class = "table-author" th:text = "#{location}">位置</th>
                 <th class = "table-publisher" th:text = "#{state}">状态</th>
+                <th class = "table-set" th:text="#{Operation}">操作</th>
             </tr>
             </thead>
             <tbody id = "bk-table-1">
@@ -115,9 +116,27 @@
                 <td th:text = "${bkunit.id}"></td>
 
                 <td th:text = "${bkunit.location}"></td>
-                <td th:if="${bkunit.status} eq 1" th:text = "#{hbb_yxy}">已被借</td>
-                <td th:if="${bkunit.status} eq 2" th:text = "#{nb_yxy}">未借</td>
-                <td th:if="${bkunit.status} eq 4" th:text = "#{lose_yxy}">丢失</td>
+                <td>
+                    <span th:if="${bkunit.status} eq 1" th:text = "#{hbb_yxy}">已被借</span>
+                    <span th:if="${bkunit.status} eq 2" th:text = "#{nb_yxy}">未借</span>
+                    <span th:if="${bkunit.status} eq 3">已预约</span>
+                    <span th:if="${bkunit.status} eq 4" th:text = "#{lose_yxy}">丢失</span>
+                </td>
+                <td>
+                    <div class = "am-btn-toolbar">
+                        <div class = "am-btn-group am-btn-group-xs">
+                            <button th:text = "#{reserve44}" th:if = "${bkunit.status} ne 2" type = "button"
+                                    class = "am-btn am-btn-primary am-round" disabled>
+                                预约
+                            </button>
+                            <button th:text = "#{reserve44}" th:if = "${bkunit.status} eq 2" type = "button"
+                                    class = "am-btn am-btn-primary am-round"
+                                    th:onclick = "'javascript:book_reserve(\''+${bkunit.id}+'\')'">
+                                预约
+                            </button>
+                        </div>
+                    </div>
+                </td>
             </tr>
             </tbody>
         </table>
@@ -162,6 +181,28 @@
 <script src = "https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
 <script type = "text/javascript" src = "assets/js/test.js"></script>
 <script type = "text/javascript" src = "assets/js/switch_language.js"></script>
+<script th:inline="javascript">
+    function book_reserve(book_isbn) {
+        var res = confirm([[#{con_appoint}]]);
+        if(res == true){
+            $.ajax({
+                type: "get",
+                data: {isbn: book_isbn},
+                url: "reserve",
+                success: function (data) {
+                    if(data!=null)
+                        alert([[#{Successful_appointment}]]);
+                    else
+                        alert([[#{rfptal}]]);
+                    getOnePageBook_2(0);
+                },
+                error: function (data) {
+                    alert([[#{aeoptal}]]);
+                }
+            });
+        }
+    }
+</script>
 <script th:inline = "javascript">
     iteSetOfReview();
     console.log([[${status}]]);
