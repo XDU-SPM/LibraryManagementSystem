@@ -89,16 +89,19 @@ public class ReaderBookService
         return returnHistoryDAO.findAllByUserId(reader.getId(), pageable);
     }
 
-    public void reserve(String id)
+    public String reserve(String id)
     {
+        String isbn;
+
         Optional<Bkunit> optional = bkunitDAO.findById(id);
         if (!optional.isPresent())
-            return;
+            return null;
 
         Bkunit bkunit = optional.get();
         User reader = userService.getUser();
 
         Book book = bkunit.getBook();
+        isbn = book.getIsbn();
         book.addNumber(-1);
         bookDAO.save(book);
 
@@ -116,6 +119,8 @@ public class ReaderBookService
         bkunitOperatingHistoryDAO.save(bkunitOperatingHistory);
 
         rabbitTemplate.convertAndSend(QueueConfig.DELAY_QUEUE_PER_QUEUE_TTL_NAME, userBkunit.getId());
+
+        return isbn;
     }
 
     public int reserveCancel(int id)
