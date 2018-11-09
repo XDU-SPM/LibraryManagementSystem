@@ -176,6 +176,7 @@
                         <table class = "am-table am-table-striped am-table-hover am-table-compact " id = "booklist-1">
                             <thead>
                             <tr>
+                                <th class = "table-title" th:text="#{bid}">条形码</th>
                                 <th class = "table-title" th:text="#{ti44}">标题</th>
                                 <th class = "table-author" th:text="#{author}">作者</th>
                                 <th class = "table-publisher" th:text="#{publisher}">出版社</th>
@@ -186,13 +187,13 @@
                             </thead>
                             <tbody id = "bk-table-1">
                             <tr th:each = "book:${page1}">
+                                <td th:text = "${book.bkunit.id}"></td>
+                                <td><a th:href = "@{book_details(isbn=${book.bkunit.book.isbn})}"
+                                       th:text = "${book.bkunit.book.title}"></a></td>
 
-                                <td><a th:href = "@{book_details(isbn=${book.book.isbn})}"
-                                       th:text = "${book.book.title}"></a></td>
-
-                                <td th:text = "${book.book.author}"></td>
-                                <td th:text = "${book.book.publisher}"></td>
-                                <td class = "am-hide-sm-only" th:text = "${book.book.publishDate}"></td>
+                                <td th:text = "${book.bkunit.book.author}"></td>
+                                <td th:text = "${book.bkunit.book.publisher}"></td>
+                                <td class = "am-hide-sm-only" th:text = "${book.bkunit.book.publishDate}"></td>
                                 <td class = "am-hide-sm-only" th:text = "${book.returnDate}"></td>
                                 <td>
                                     <div class = "am-btn-toolbar">
@@ -201,7 +202,7 @@
                                                     th:onclick = "'javascript:cancel_appointment('+${book.id}+')'">
                                                 <span class = "am-icon-pencil-square-o"></span> <span th:text="#{cancel44}">取消</span>
                                             </button>
-                                            <a th:href = "@{appointment(id=${book.id})}">
+                                            <a th:href = "@{appointment(id=${book.bkunit.id})}">
                                                 <button class = "am-btn am-btn-default am-btn-xs am-text-secondary"><span
                                                         class = "am-icon-pencil-square-o"></span><span th:text="#{view44}">查看</span>
                                                 </button>
@@ -1035,11 +1036,12 @@
                 for (var i = 0; i < data.content.length; i++) {
                     str += "<tr>\n" +
                         "\n" +
-                        "                        <td><a href = \"book_details?isbn="+data.content[i].book.isbn+"\">"+data.content[i].book.title+"</a></td>\n" +
+                        "                    <td>"+data.content[i].bkunit.id+"</td>\n" +
+                        "                        <td><a href = \"book_details?isbn="+data.content[i].bkunit.book.isbn+"\">"+data.content[i].bkunit.book.title+"</a></td>\n" +
                         "\n" +
-                        "                        <td>"+data.content[i].book.author+"</td>\n" +
-                        "                        <td>"+data.content[i].book.publisher+"</td>\n" +
-                        "                        <td class = \"am-hide-sm-only\">"+data.content[i].book.publishDate+"</td>\n" +
+                        "                        <td>"+data.content[i].bkunit.book.author+"</td>\n" +
+                        "                        <td>"+data.content[i].bkunit.book.publisher+"</td>\n" +
+                        "                        <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.publishDate+"</td>\n" +
                         "                        <td class = \"am-hide-sm-only\">"+data.content[i].returnDate+"</td>\n" +
                         "                        <td>\n" +
                         "                            <div class = \"am-btn-toolbar\">\n" +
@@ -1048,7 +1050,7 @@
                         "                                            onclick = \"cancel_appointment("+data.content[i].id+")\">\n" +
                         "                                        <span class = \"am-icon-pencil-square-o\"></span>"+[[#{cancel44}]]+" \n" +
                         "                                    </button>\n" +
-                        "                                    <a href = \"appointment?id="+data.content[i].id+"\">\n" +
+                        "                                    <a href = \"appointment?id="+data.content[i].bkunit.id+"\">\n" +
                         "                                        <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"><span\n" +
                         "                                                class = \"am-icon-pencil-square-o\"></span> "+[[#{view44}]]+"\n" +
                         "                                        </button>\n" +
@@ -1081,11 +1083,12 @@
                     for (var i = 0; i < data.content.length; i++) {
                         str += "<tr>\n" +
                             "\n" +
-                            "                        <td><a href = \"book_details?isbn="+data.content[i].book.isbn+"\">"+data.content[i].book.title+"</a></td>\n" +
+                            "                    <td>"+data.content[i].bkunit.id+"</td>\n" +
+                            "                        <td><a href = \"book_details?isbn="+data.content[i].bkunit.book.isbn+"\">"+data.content[i].bkunit.book.title+"</a></td>\n" +
                             "\n" +
-                            "                        <td>"+data.content[i].book.author+"</td>\n" +
-                            "                        <td>"+data.content[i].book.publisher+"</td>\n" +
-                            "                        <td class = \"am-hide-sm-only\">"+data.content[i].book.publishDate+"</td>\n" +
+                            "                        <td>"+data.content[i].bkunit.book.author+"</td>\n" +
+                            "                        <td>"+data.content[i].bkunit.book.publisher+"</td>\n" +
+                            "                        <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.publishDate+"</td>\n" +
                             "                        <td class = \"am-hide-sm-only\">"+data.content[i].returnDate+"</td>\n" +
                             "                        <td>\n" +
                             "                            <div class = \"am-btn-toolbar\">\n" +
@@ -1094,7 +1097,7 @@
                             "                                            onclick = \"cancel_appointment("+data.content[i].id+")\">\n" +
                             "                                        <span class = \"am-icon-pencil-square-o\"></span>"+[[#{cancel44}]]+" \n" +
                             "                                    </button>\n" +
-                            "                                    <a href = \"appointment?id="+data.content[i].id+"\">\n" +
+                            "                                    <a href = \"appointment?id="+data.content[i].bkunit.id+"\">\n" +
                             "                                        <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"><span\n" +
                             "                                                class = \"am-icon-pencil-square-o\"></span> "+[[#{view44}]]+"\n" +
                             "                                        </button>\n" +
@@ -1121,11 +1124,12 @@
                 for (var i = 0; i < data.content.length; i++) {
                     str += "<tr>\n" +
                         "\n" +
-                        "                        <td><a href = \"book_details?isbn="+data.content[i].book.isbn+"\">"+data.content[i].book.title+"</a></td>\n" +
+                        "                    <td>"+data.content[i].bkunit.id+"</td>\n" +
+                        "                        <td><a href = \"book_details?isbn="+data.content[i].bkunit.book.isbn+"\">"+data.content[i].bkunit.book.title+"</a></td>\n" +
                         "\n" +
-                        "                        <td>"+data.content[i].book.author+"</td>\n" +
-                        "                        <td>"+data.content[i].book.publisher+"</td>\n" +
-                        "                        <td class = \"am-hide-sm-only\">"+data.content[i].book.publishDate+"</td>\n" +
+                        "                        <td>"+data.content[i].bkunit.book.author+"</td>\n" +
+                        "                        <td>"+data.content[i].bkunit.book.publisher+"</td>\n" +
+                        "                        <td class = \"am-hide-sm-only\">"+data.content[i].bkunit.book.publishDate+"</td>\n" +
                         "                        <td class = \"am-hide-sm-only\">"+data.content[i].returnDate+"</td>\n" +
                         "                        <td>\n" +
                         "                            <div class = \"am-btn-toolbar\">\n" +
@@ -1134,7 +1138,7 @@
                         "                                            onclick = \"cancel_appointment("+data.content[i].id+")\">\n" +
                         "                                        <span class = \"am-icon-pencil-square-o\"></span>"+[[#{cancel44}]]+" \n" +
                         "                                    </button>\n" +
-                        "                                    <a href = \"appointment?id="+data.content[i].id+"\">\n" +
+                        "                                    <a href = \"appointment?id="+data.content[i].bkunit.id+"\">\n" +
                         "                                        <button class = \"am-btn am-btn-default am-btn-xs am-text-secondary\"><span\n" +
                         "                                                class = \"am-icon-pencil-square-o\"></span> "+[[#{view44}]]+"\n" +
                         "                                        </button>\n" +
@@ -1142,7 +1146,7 @@
                         "                                </div>\n" +
                         "                            </div>\n" +
                         "                        </td>\n" +
-                        "                    </tr>"
+                        "                    </tr>";
                 }
                 $('#bk-table-1').html(str);
             }
