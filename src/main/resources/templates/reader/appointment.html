@@ -76,7 +76,7 @@
                 <h1 th:text="#{bl44}">图书位置</h1>
                 <p th:text="${userBkunit.bkunit.location}"></p>
                 <h1 th:text="#{brief}">简介</h1>
-                <p th:text="${userBook.book.brief}"></p>
+                <p th:text="${userBkunit.bkunit.book.brief}"></p>
             </div>
         </div>
     </div>
@@ -87,7 +87,7 @@
     <script type="text/javascript" th:inline="javascript">
         window.onload = function(){
             var timer = null;
-            var expire_date = new Date([[${userBook.returnDate}]]);
+            var expire_date = new Date([[${userBkunit.returnDate}]]);
             var current_date = new Date();
             var diff_date = new Date(expire_date-current_date)
             var hours = diff_date.getHours() - 8;

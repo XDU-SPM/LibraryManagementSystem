@@ -119,7 +119,7 @@
                 <td>
                     <span th:if="${bkunit.status} eq 1" th:text = "#{hbb_yxy}">已被借</span>
                     <span th:if="${bkunit.status} eq 2" th:text = "#{nb_yxy}">未借</span>
-                    <span th:if="${bkunit.status} eq 3">已预约</span>
+                    <span th:if="${bkunit.status} eq 3" th:text = "#{reservedStatus}">已预约</span>
                     <span th:if="${bkunit.status} eq 4" th:text = "#{lose_yxy}">丢失</span>
                 </td>
                 <td>
@@ -190,8 +190,10 @@
                 data: {id: bkunit_id},
                 url: "reserve",
                 success: function (data) {
-                    if(data!=null)
+                    if(data!=null) {
                         alert([[#{Successful_appointment}]]);
+                        window.location.reload();
+                    }
                     else
                         alert([[#{rfptal}]]);
                 },
