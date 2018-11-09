@@ -27,9 +27,6 @@ public class ReaderBookController
     @Autowired
     private AnnouncementService announcementService;
 
-    @Autowired
-    private BookService bookService;
-
     @RequestMapping(value = "/reader/reader_condition", method = RequestMethod.GET)
     public String reader_reader_condition(Model model)
     {
@@ -72,11 +69,10 @@ public class ReaderBookController
     }
 
     @RequestMapping(value = "/reader/reserve", method = RequestMethod.GET)
-    @ResponseBody
-    public Status reserveBook(String isbn)
+    public String reserveBook(String id)
     {
-        readerBookService.reserve(isbn);
-        return new Status(1);
+        String isbn = readerBookService.reserve(id);
+        return "redirect:book_details?isbn=" + isbn;
     }
 
     @RequestMapping(value = "/reader/reserveCancel", method = RequestMethod.GET)
