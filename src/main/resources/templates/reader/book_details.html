@@ -182,19 +182,18 @@
 <script type = "text/javascript" src = "assets/js/test.js"></script>
 <script type = "text/javascript" src = "assets/js/switch_language.js"></script>
 <script th:inline="javascript">
-    function book_reserve(book_isbn) {
+    function book_reserve(bkunit_id) {
         var res = confirm([[#{con_appoint}]]);
         if(res == true){
             $.ajax({
                 type: "get",
-                data: {isbn: book_isbn},
+                data: {id: bkunit_id},
                 url: "reserve",
                 success: function (data) {
                     if(data!=null)
                         alert([[#{Successful_appointment}]]);
                     else
                         alert([[#{rfptal}]]);
-                    getOnePageBook_2(0);
                 },
                 error: function (data) {
                     alert([[#{aeoptal}]]);

@@ -146,15 +146,6 @@
                                                 th:text = "${book.number}"></strong><span
                                                 th:text = "'&nbsp'+ #{books44}">本</span></div>
                                     </a>
-                                    <button th:text = "#{reserve44}" th:if = "${book.number} eq 0" type = "button"
-                                            class = "am-btn am-btn-primary am-round" disabled>
-                                        预约
-                                    </button>
-                                    <button th:text = "#{reserve44}" th:if = "${book.number} gt 0" type = "button"
-                                            class = "am-btn am-btn-primary am-round"
-                                            th:onclick = "'javascript:book_reserve(\''+${book.isbn}+'\')'">
-                                        预约
-                                    </button>
                                 </div>
                             </li>
 
@@ -232,28 +223,6 @@
         translate();
     })
 </script>
-<script th:inline="javascript">
-    function book_reserve(book_isbn) {
-        var res = confirm([[#{con_appoint}]]);
-        if(res == true){
-            $.ajax({
-                type: "get",
-                data: {isbn: book_isbn},
-                url: "reserve",
-                success: function (data) {
-                    if(data!=null)
-                        alert([[#{Successful_appointment}]]);
-                    else
-                        alert([[#{rfptal}]]);
-                    getOnePageBook_2(0);
-                },
-                error: function (data) {
-                    alert([[#{aeoptal}]]);
-                }
-            });
-        }
-    }
-</script>
 <script th:inline = "javascript">
 
     var pageNumber = 0;
@@ -275,13 +244,6 @@
                         "                                        <h3 class = \"am-gallery-title\">" + data.content[i].title + "</h3>\n" +
                         "                                        <div class = \"am-gallery-desc\">" + [[#{remain44}]] + "&nbsp;" + "<strong>" + data.content[i].number + "</strong>" + "&nbsp;" + [[#{books44}]] + "</div>\n" +
                         "                                    </a>\n";
-                    if (data.content[i].number == 0)
-                        str += "                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" disabled>\n" +
-                            "                                        " + [[#{reserve44}]] + "\n" +
-                            "                                    </button>\n"
-                    else
-                        str += "                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" onclick=\"book_reserve("+data.content[i].isbn+")\">\n" +
-                            "                                        " + [[#{reserve44}]] + "</button>\n"
                     str += "                                </div>\n" +
                         "                            </li>"
                 }
@@ -312,13 +274,6 @@
                             "                                        <h3 class = \"am-gallery-title\">" + data.content[i].title + "</h3>\n" +
                             "                                        <div class = \"am-gallery-desc\">" + [[#{remain44}]] + "&nbsp;" + "<strong>" + data.content[i].number + "</strong>" + "&nbsp;" + [[#{books44}]] + "</div>\n" +
                             "                                    </a>\n";
-                        if (data.content[i].number == 0)
-                            str += "                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" disabled>\n" +
-                                "                                        " + [[#{reserve44}]] + "\n" +
-                                "                                    </button>\n"
-                        else
-                            str += "                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" onclick=\"book_reserve("+data.content[i].isbn+")\">\n" +
-                                "                                        " + [[#{reserve44}]] + "</button>\n"
                         str += "                                </div>\n" +
                             "                            </li>"
                     }
@@ -344,13 +299,6 @@
                         "                                        <h3 class = \"am-gallery-title\">" + data.content[i].title + "</h3>\n" +
                         "                                        <div class = \"am-gallery-desc\">" + [[#{remain44}]] + "&nbsp;" + "<strong>" + data.content[i].number + "</strong>" + "&nbsp;" + [[#{books44}]] + "</div>\n" +
                         "                                    </a>\n";
-                    if (data.content[i].number == 0)
-                        str += "                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" disabled>\n" +
-                            "                                        " + [[#{reserve44}]] + "\n" +
-                            "                                    </button>\n"
-                    else
-                        str += "                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" onclick=\"book_reserve("+data.content[i].isbn+")\">\n" +
-                            "                                        " + [[#{reserve44}]] + "</button>\n"
                     str += "                                </div>\n" +
                         "                            </li>"
                 }
@@ -385,13 +333,6 @@
                         "                                        <h3 class = \"am-gallery-title\">" + data.content[i].title + "</h3>\n" +
                         "                                        <div class = \"am-gallery-desc\">" + [[#{remain44}]] + "&nbsp;" + "<strong>" + data.content[i].number + "</strong>" + "&nbsp;" + [[#{books44}]] + "</div>\n" +
                         "                                    </a>\n";
-                    if (data.content[i].number == 0)
-                        str += "                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" disabled>\n" +
-                            "                                        " + [[#{reserve44}]] + "\n" +
-                            "                                    </button>\n"
-                    else
-                        str += "                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" onclick=\"book_reserve("+data.content[i].isbn+")\">\n" +
-                            "                                        " + [[#{reserve44}]] + "</button>\n"
                     str += "                                </div>\n" +
                         "                            </li>"
                 }
@@ -439,13 +380,6 @@
                             "                                        <h3 class = \"am-gallery-title\">" + data.content[i].title + "</h3>\n" +
                             "                                        <div class = \"am-gallery-desc\">" + [[#{remain44}]] + "&nbsp;" + "<strong>" + data.content[i].number + "</strong>" + "&nbsp;" + [[#{books44}]] + "</div>\n" +
                             "                                    </a>\n";
-                        if (data.content[i].number == 0)
-                            str += "                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" disabled>\n" +
-                                "                                        " + [[#{reserve44}]] + "\n" +
-                                "                                    </button>\n"
-                        else
-                            str += "                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" onclick=\"book_reserve("+data.content[i].isbn+")\">\n" +
-                                "                                        " + [[#{reserve44}]] + "</button>\n"
                         str += "                                </div>\n" +
                             "                            </li>"
                     }
@@ -487,13 +421,6 @@
                         "                                        <h3 class = \"am-gallery-title\">" + data.content[i].title + "</h3>\n" +
                         "                                        <div class = \"am-gallery-desc\">" + [[#{remain44}]] + "&nbsp;" + "<strong>" + data.content[i].number + "</strong>" + "&nbsp;" + [[#{books44}]] + "</div>\n" +
                         "                                    </a>\n";
-                    if (data.content[i].number == 0)
-                        str += "                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" disabled>\n" +
-                            "                                        " + [[#{reserve44}]] + "\n" +
-                            "                                    </button>\n"
-                    else
-                        str += "                                    <button type = \"button\" class = \"am-btn am-btn-primary am-round\" onclick=\"book_reserve("+data.content[i].isbn+")\">\n" +
-                            "                                        " + [[#{reserve44}]] + "</button>\n"
                     str += "                                </div>\n" +
                         "                            </li>"
                 }
