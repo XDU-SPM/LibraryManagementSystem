@@ -89,7 +89,7 @@ public class ReaderBookController
     @RequestMapping(value = "/reader/appointment", method = RequestMethod.GET)
     public String appointment(int id, Model model)
     {
-        model.addAttribute("userBook", readerBookService.appointment(id));
+        model.addAttribute("userBkunit", readerBookService.appointment(id));
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
         return "reader/appointment";

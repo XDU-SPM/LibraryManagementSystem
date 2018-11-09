@@ -208,6 +208,7 @@ public class LibrarianBookService
         }
         else
         {
+            userBkunit.setReserveStatus(UserBkunitUtil.RESERVATION_SUCCESS);
             userBkunit.setBorrowDate(now);
             userBkunit.setReturnDate(overdue);
             userBkunit.setStatus(UserBkunitUtil.BORROWED);
@@ -464,16 +465,8 @@ public class LibrarianBookService
     {
         long[] statusNum = new long[3];
         statusNum[0] = bkunitDAO.countByStatus(BkunitUtil.BORROWED);
-
-        long normalNum = bkunitDAO.countByStatus(BkunitUtil.NORMAL);
-
-        List<Book> books = bookDAO.findAll();
-        long availableNum = 0;
-        for (Book book : books)
-            availableNum += book.getNumber();
-        statusNum[1] = availableNum;
-
-        statusNum[2] = normalNum - availableNum;
+        statusNum[1] = bkunitDAO.countByStatus(BkunitUtil.NORMAL);
+        statusNum[2] = bkunitDAO.countByStatus(BkunitUtil.RESERVED);
         return statusNum;
     }
 
@@ -499,7 +492,7 @@ public class LibrarianBookService
     // TODO: 2018/11/8 need modify
     public Set<UserBkunit> getReserves()
     {
-        Set<UserBkunit> set = userBkunitDAO.findAllByStatusBetween(UserBkunitUtil.RESERVED, UserBkunitUtil.RESERVATION_CANCEL);
+        Set<UserBkunit> set = userBkunitDAO.findAllByStatusBetweenOrReserveStatus(UserBkunitUtil.RESERVED, UserBkunitUtil.RESERVATION_CANCEL, UserBkunitUtil.RESERVATION_SUCCESS);
         for (UserBkunit userBkunit : set)
             setUserBookStatus(userBkunit);
         return set;
@@ -517,6 +510,9 @@ public class LibrarianBookService
                 break;
             case UserBkunitUtil.RESERVATION_CANCEL:
                 userBkunit.setStatus1(localeMessageSourceService.getMessage("reservation_cancel"));
+                break;
+            default:
+                userBkunit.setStatus1(localeMessageSourceService.getMessage("reservation_success"));
                 break;
         }
     }
