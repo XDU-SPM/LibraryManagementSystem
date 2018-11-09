@@ -48,6 +48,9 @@ public class ReaderBookService
     @Autowired
     private MessageDAO messageDAO;
 
+    @Autowired
+    private BkunitDAO bkunitDAO;
+
     public List<MonthBorrow> monthBorrows()
     {
         User reader = userService.getUser();
@@ -72,7 +75,6 @@ public class ReaderBookService
         return userBkunitDAO.findAllByUserAndStatusBetween(reader, UserBkunitUtil.BORROWED, UserBkunitUtil.RENEW, pageable);
     }
 
-    // TODO: 2018/11/8 need modify
     public Page<UserBkunit> queryReservedBooks(int start, int size)
     {
         User reader = userService.getUser();
@@ -86,20 +88,19 @@ public class ReaderBookService
         Pageable pageable = PageableUtil.pageable(false, "borrowDate", start, size);
         return returnHistoryDAO.findAllByUserId(reader.getId(), pageable);
     }
-
-    /**
-     * 不会出现没有书的情况
-     *
-     * @param isbn
-     * @return
-     */
-    public String reserve(String isbn)
+    
+    public void reserve(String id)
     {
-        Book book = bookDAO.findByIsbn(isbn);
+        Optional<Bkunit> optional = bkunitDAO.findById(id);
+        if (!optional.isPresent())
+            return;
+
+        Bkunit bkunit = optional.get();
+        User reader = userService.getUser();
+
+        Book book = bkunit.getBook();
         book.addNumber(-1);
         bookDAO.save(book);
-
-        User reader = userService.getUser();
 
         Date now = new Date();
         Calendar calendar = Calendar.getInstance();
@@ -107,19 +108,14 @@ public class ReaderBookService
         calendar.add(Calendar.MILLISECOND, QueueConfig.QUEUE_EXPIRATION);
         Date overdue = calendar.getTime();
 
-        Bkunit bkunit = book.getBkunits().iterator().next();
         bkunit.setStatus(BkunitUtil.RESERVED);
         UserBkunit userBkunit = new UserBkunit(now, overdue, UserBkunitUtil.RESERVED, bkunit, reader);
         userBkunitDAO.save(userBkunit);
 
-        String bkunitId = bkunit.getId();
-        BkunitOperatingHistory bkunitOperatingHistory = new BkunitOperatingHistory(now, reader.getId(), bkunitId, UserBkunitUtil.RESERVED);
+        BkunitOperatingHistory bkunitOperatingHistory = new BkunitOperatingHistory(now, reader.getId(), bkunit.getId(), UserBkunitUtil.RESERVED);
         bkunitOperatingHistoryDAO.save(bkunitOperatingHistory);
 
-        int id = userBkunit.getId();
-        rabbitTemplate.convertAndSend(QueueConfig.DELAY_QUEUE_PER_QUEUE_TTL_NAME, id);
-
-        return bkunitId;
+        rabbitTemplate.convertAndSend(QueueConfig.DELAY_QUEUE_PER_QUEUE_TTL_NAME, userBkunit.getId());
     }
 
     public int reserveCancel(int id)
@@ -135,10 +131,9 @@ public class ReaderBookService
         return 1;
     }
 
-    // TODO: 2018/11/8 What's this???
-    public UserBook appointment(int id)
+    public UserBkunit appointment(int id)
     {
-        return userBookDAO.findById(id).get();
+        return userBkunitDAO.findById(id);
     }
 
     public Page<UserFavoriteBook> queryFavoriteBooks(int start, int size)

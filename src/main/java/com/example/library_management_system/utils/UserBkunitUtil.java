@@ -10,5 +10,6 @@ public class UserBkunitUtil
             DELETE = 5,
             RESERVED = 6,
             RESERVATION_FAIL = 7,
-            RESERVATION_CANCEL = 8;
+            RESERVATION_CANCEL = 8,
+            RESERVATION_SUCCESS = 9;
 }

@@ -19,6 +19,8 @@ public class UserBkunit
 
     private int status;
 
+    private int reserveStatus;
+
     @Transient
     private String status1;
 
@@ -111,5 +113,15 @@ public class UserBkunit
     public void setStatus1(String status1)
     {
         this.status1 = status1;
+    }
+
+    public int getReserveStatus()
+    {
+        return reserveStatus;
+    }
+
+    public void setReserveStatus(int reserveStatus)
+    {
+        this.reserveStatus = reserveStatus;
     }
 }

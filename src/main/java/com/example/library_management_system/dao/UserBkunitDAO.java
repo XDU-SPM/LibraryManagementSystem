@@ -21,6 +21,8 @@ public interface UserBkunitDAO extends JpaRepository<UserBkunit, Integer>
 
     Set<UserBkunit> findAllByStatusBetween(int status1, int status2);
 
+    Set<UserBkunit> findAllByStatusBetweenOrReserveStatus(int status1, int status2, int reserveStatus);
+
     Page<UserBkunit> findAllByUser(User reader, Pageable pageable);
 
     Page<UserBkunit> findAllByUserAndStatusBetween(User user, int status1, int status2, Pageable pageable);
