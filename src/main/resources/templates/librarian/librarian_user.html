@@ -195,7 +195,7 @@
                         <div class = "am-form-group">
                             <label for = "name" class = "am-u-sm-3 am-form-label" th:text="#{n_ysw}">姓名</label>
                             <div class = "am-u-sm-9">
-                                    <input type = "text" minlength="5" maxlength="20" id = "name" th:placeholder = "#{Name}" name = "name" th:value="${user.name}">
+                                    <input type = "text" minlength="5" maxlength="20" id = "name" th:placeholder = "#{Name}" name = "name" th:value="${user.name}" required>
                             </div>
                         </div>
 
@@ -203,7 +203,7 @@
                             <label for = "user-email" class = "am-u-sm-3 am-form-label" th:text="#{e_ysw}">电子邮件</label>
                             <div class = "am-u-sm-9">
                                 <input type = "email" id = "user-email" th:placeholder = "#{ie_zj}" name = "email"
-                                       th:value = "${user.email}">
+                                       th:value = "${user.email}" required>
                             </div>
                         </div>
 
