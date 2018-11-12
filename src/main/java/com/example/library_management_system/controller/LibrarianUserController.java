@@ -6,6 +6,7 @@ import com.example.library_management_system.service.GlobalUtilService;
 import com.example.library_management_system.service.LibrarianUserService;
 import com.example.library_management_system.service.UserService;
 import com.example.library_management_system.utils.RoleUtil;
+import com.example.library_management_system.utils.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -116,5 +117,12 @@ public class LibrarianUserController
     public Collection<Income> getWeekIncome()
     {
         return librarianUserService.getWeekIncome();
+    }
+
+    @RequestMapping(value = "/librarian/deleteReader", method = RequestMethod.GET)
+    @ResponseBody
+    public Status deleteReader(int id)
+    {
+        return new Status(userService.deleteUser(id));
     }
 }

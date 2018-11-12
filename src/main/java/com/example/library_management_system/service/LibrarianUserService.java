@@ -64,7 +64,7 @@ public class LibrarianUserService
     public double todayFineIncome()
     {
         OneDayApart oneDayApart = new OneDayApart();
-        Set<Account> accounts = accountDAO.findAllByTypeBetweenAndDateBetween(AccountUtil.FINE, AccountUtil.DEPOSIT, oneDayApart.getBefore(), oneDayApart.getAfter());
+        Set<Account> accounts = accountDAO.findAllByTypeBetweenAndDateBetween(AccountUtil.DELETE_READER, AccountUtil.DEPOSIT, oneDayApart.getBefore(), oneDayApart.getAfter());
         double money = 0;
         for (Account account : accounts)
         {

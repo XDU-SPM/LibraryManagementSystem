@@ -26,6 +26,8 @@ public class User
 
     private int notifyDay;
 
+    private double deposit;
+
     @Transient
     private String role;
 
@@ -264,5 +266,15 @@ public class User
     public void setNotifyDay(int notifyDay)
     {
         this.notifyDay = notifyDay;
+    }
+
+    public double getDeposit()
+    {
+        return deposit;
+    }
+
+    public void setDeposit(double deposit)
+    {
+        this.deposit = deposit;
     }
 }

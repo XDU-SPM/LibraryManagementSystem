@@ -208,7 +208,7 @@
     let status = true;
 
     $(function () {
-        $("#librarian-username").blur(function () {
+        $("#librarian-username").change(function () {
             var username = $(this).val();
             console.log(username);
             $.ajax(

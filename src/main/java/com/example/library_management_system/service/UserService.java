@@ -64,6 +64,7 @@ public class UserService
             user.setPassword(UserUtil.READER_PASSWORD_DEFAULT);
             user.setNumber(String.valueOf(System.currentTimeMillis()));
             user.setNotifyDay(UserUtil.NOTIFY_DAY);
+            user.setDeposit(globalUtilService.getRegisterMoney());
         }
         else if (RoleUtil.ROLE_LIBRARIAN_CHECK.equals(roleName))
             user.setPassword(UserUtil.LIBRARIAN_PASSWORD_DEFAULT);
@@ -184,12 +185,19 @@ public class UserService
         }
         userBookDAO.saveAll(userBooks);
 
+        if (user.getDeposit() > 0)
+        {
+            Account account = new Account(AccountUtil.DELETE_READER, user.getId(), -user.getDeposit(), null, new Date());
+            accountDAO.save(account);
+        }
+
         userDAO.deleteById(id);
 
         userBkunitDAO.deleteAll(userBkunits);
         reviewDAO.deleteAll(reviews);
         userFavoriteBookDAO.deleteAll(userFavoriteBooks);
         userBookDAO.deleteAll(userBooks);
+
         return 0;
     }
 
