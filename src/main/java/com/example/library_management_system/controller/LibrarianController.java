@@ -188,7 +188,6 @@ public class LibrarianController
     @RequestMapping(value = "/librarian/updateLocation", method = RequestMethod.POST)
     public String updateLocation(int id, String name)
     {
-        System.out.println(id + " " + name);
         locationService.updateLocation(id, name);
         return "redirect:librarian_position";
     }

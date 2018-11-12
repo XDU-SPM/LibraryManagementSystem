@@ -56,6 +56,7 @@ public class LibrarianUserService
         user.setUsername(tmp.getUsername());
         user.setName(tmp.getName());
         user.setEmail(tmp.getEmail());
+        user.setPassword(tmp.getPassword());
 
         userDAO.save(user);
     }
