@@ -222,6 +222,11 @@
             url: "searchLibrarian",
             data: {username: libraAccount},
             success: function (data) {
+                if (data == undefined) {
+                    alert([[#{borrow_1}]]);
+                    return;
+                }
+
                 var str = "";
                 str = "<form class = \"am-form am-form-horizontal\" action = \"saveLibrarian\" method = \"post\">\n" +
                     "                        <input type=\"hidden\" value=\"" + data.id + "\" name = \"id\">\n>" +
