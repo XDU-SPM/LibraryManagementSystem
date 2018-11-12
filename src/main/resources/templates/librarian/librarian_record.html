@@ -160,9 +160,9 @@
                         <tbody>
                         <tr th:each = "record:${set}" >
                             <td th:text = "${record.id}"></td>
-                            <td th:text = "${record.book.title}"></td>
+                            <td th:text = "${record.bkunit.book.title}"></td>
                             <!--<a th:text = "${record.book.title}" th:href="@{librarian_book(isbn=${record.book.isbn})}"></a>-->
-                            <td th:text = "${record.book.isbn}"></td>
+                            <td th:text = "${record.bkunit.book.isbn}"></td>
                             <td class = "am-hide-sm-only" th:text = "${record.user.username}"></td>
                             <td class = "am-hide-sm-only" th:text = "${record.borrowDate}"></td>
                             <td class = "am-hide-sm-only" th:text = "${record.status1}"></td>
