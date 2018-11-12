@@ -15,9 +15,9 @@
 >
 > 2. 只写管理员的用户名，不填写Name和Email，也可以添加成功，Name和Email的默认值为空（通过）
 >
-> 3. Username是空值的时候也可以添加成功。（错误）![1542025859196](C:\Users\sjb\AppData\Roaming\Typora\typora-user-images\1542025859196.png)
+> 3. Username是空值的时候也可以添加成功。（错误）![1542025859196](figure/1542025859196.png)
 >
-> 4. 输入一个已经存在的UserName，但是不输入Name和Email的时候，也能够添加成功（错误）![1542026320995](C:\Users\sjb\AppData\Roaming\Typora\typora-user-images\1542026320995.png)
+> 4. 输入一个已经存在的UserName，但是不输入Name和Email的时候，也能够添加成功（错误）![1542026320995](figure/1542026320995.png)
 >
 
 4.Search Librarian with name and edit/delete Librarian 
