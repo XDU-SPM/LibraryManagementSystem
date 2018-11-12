@@ -136,14 +136,14 @@
                         <div class = "am-form-group">
                             <label for = "user-name" class = "am-u-sm-3 am-form-label" th:text="#{Name}">姓名 / Name</label>
                             <div class = "am-u-sm-9">
-                                <input type = "text" id = "user-name" th:value = "${user.name}" name = "name">
+                                <input type = "text" id = "user-name" th:value = "${user.name}" name = "name" required>
                             </div>
                         </div>
 
                         <div class = "am-form-group">
                             <label for = "user-email" class = "am-u-sm-3 am-form-label" th:text="#{email44}">电子邮件 / Email</label>
                             <div class = "am-u-sm-9">
-                                <input type = "email" id = "user-email" th:value = "${user.email}" name = "email">
+                                <input type = "email" id = "user-email" th:placeholder = "#{ie_zj}" name = "email" required>
                             </div>
                         </div>
 
