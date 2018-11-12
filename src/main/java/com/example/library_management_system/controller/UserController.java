@@ -120,13 +120,6 @@ public class UserController
         return "admin_login";
     }
 
-    @RequestMapping(value = "/librarian/deleteReader", method = RequestMethod.GET)
-    @ResponseBody
-    public Status deleteReader(int id)
-    {
-        return new Status(userService.deleteUser(id));
-    }
-
     @RequestMapping(value = {"/changeSessionLanguage", "/admin/changeSessionLanguage", "/reader/changeSessionLanguage", "/librarian/changeSessionLanguage"},
             method = RequestMethod.GET)
     public String changeSessionLanguage(String lang, HttpServletRequest request)

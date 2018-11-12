@@ -255,7 +255,7 @@
     let status = true;
 
     $(function () {
-        $("#reader-username").blur(function () {
+        $("#reader-username").change(function () {
             var username = $(this).val();
             console.log(username);
             $.ajax(
