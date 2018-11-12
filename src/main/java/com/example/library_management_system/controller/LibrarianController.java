@@ -185,7 +185,7 @@ public class LibrarianController
         return new Status(1);
     }
 
-    @RequestMapping(value = "/librarian/c", method = RequestMethod.POST)
+    @RequestMapping(value = "/librarian/updateLocation", method = RequestMethod.POST)
     public String updateLocation(int id, String name)
     {
         System.out.println(id + " " + name);
