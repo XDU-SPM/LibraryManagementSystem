@@ -206,4 +206,11 @@ public class LibrarianController
         categoryService.removeCategory(id);
         return new Status(1);
     }
+
+    @RequestMapping(value = "/librarian/updateCategory", method = RequestMethod.POST)
+    public String updateCategory(int id, String name)
+    {
+        categoryService.updateCategory(id, name);
+        return "redirect:librarian_category";
+    }
 }
