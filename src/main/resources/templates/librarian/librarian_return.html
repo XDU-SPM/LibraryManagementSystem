@@ -336,7 +336,7 @@
     var per;
     var overdue_money;
     $(function () {
-        $("#bid1").blur(function () {
+        $("#bid1").change(function () {
             var id = $(this).val();
             $.ajax(
                 {
@@ -372,7 +372,7 @@
     });
 
     $(function () {
-        $("#bid3").blur(function () {
+        $("#bid3").change(function () {
             var id = $(this).val();
             $.ajax(
                 {

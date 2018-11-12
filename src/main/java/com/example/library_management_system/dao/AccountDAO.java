@@ -20,5 +20,7 @@ public interface AccountDAO extends JpaRepository<Account, Integer>
 
     Set<Account> findAllByTypeOrType(int type1, int type2);
 
+    Set<Account> findAllByTypeBetween(int type1, int type2);
+
     Set<Account> findAllByTypeBetweenAndDateBetween(int type1, int type2, Date before, Date after);
 }

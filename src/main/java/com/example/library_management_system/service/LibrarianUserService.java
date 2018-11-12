@@ -121,7 +121,7 @@ public class LibrarianUserService
     public Collection<Income> getDayIncome()
     {
         Map<Date, Income> map = new TreeMap<>();
-        Set<Account> accounts = accountDAO.findAllByTypeOrType(AccountUtil.FINE, AccountUtil.DEPOSIT);
+        Set<Account> accounts = accountDAO.findAllByTypeBetween(AccountUtil.DELETE_READER, AccountUtil.DEPOSIT);
         for (Account account : accounts)
         {
             Calendar calendar = Calendar.getInstance();
@@ -141,7 +141,7 @@ public class LibrarianUserService
     public Collection<Income> getWeekIncome()
     {
         Map<Date, Income> map = new TreeMap<>();
-        Set<Account> accounts = accountDAO.findAllByTypeOrType(AccountUtil.FINE, AccountUtil.DEPOSIT);
+        Set<Account> accounts = accountDAO.findAllByTypeBetween(AccountUtil.DELETE_READER, AccountUtil.DEPOSIT);
         for (Account account : accounts)
         {
             Calendar calendar = Calendar.getInstance();
@@ -168,7 +168,7 @@ public class LibrarianUserService
         for (int i = 0; i < 12; i++)
         {
             Income income = new Income(oneMonthApart.getBefore());
-            Set<Account> accounts = accountDAO.findAllByTypeBetweenAndDateBetween(AccountUtil.FINE, AccountUtil.DEPOSIT, oneMonthApart.getBefore(), oneMonthApart.getAfter());
+            Set<Account> accounts = accountDAO.findAllByTypeBetweenAndDateBetween(AccountUtil.DELETE_READER, AccountUtil.DEPOSIT, oneMonthApart.getBefore(), oneMonthApart.getAfter());
             for (Account account : accounts)
             {
                 if (account.getType() == AccountUtil.FINE)
