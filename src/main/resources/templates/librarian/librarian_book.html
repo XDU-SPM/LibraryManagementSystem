@@ -157,7 +157,7 @@
                 </div>
 
                 <div class = "am-u-sm-12 am-u-md-8 am-u-md-pull-4">
-                    <form class = "am-form am-form-horizontal" action = "saveBook" method = "post">
+                    <form class = "am-form am-form-horizontal" action = "saveBook" method = "post" id="savebook">
                         <div class = "am-form-group">
                             <label for = "id" class = "am-u-sm-3 am-form-label" th:text = "#{id}">ID</label>
                             <div class = "am-u-sm-9">
@@ -317,9 +317,23 @@
 <script src = "assets/js/jquery.min.js"></script>
 <!--<![endif]-->
 <script src = "assets/js/amazeui.min.js"></script>
+<script src ="assets/js/jquery.validate.min.js."></script>
 <script src="dist/JsBarcode.all.js"></script>
 <script src = "assets/js/app.js"></script>
 <script th:inline="javascript">
+    jQuery.validator.setDefaults({
+        debug: true,
+        success: "valid"
+    });
+
+    $( "#savebook" ).validate({
+        rules: {
+            publish_time: {
+                required: true,
+                dateISO: true
+            }
+        }
+    });
     console.log([[${bkunit.id}]]);
     var id=[[${bkunit.id}]];
     $("#barcode").JsBarcode(id);
