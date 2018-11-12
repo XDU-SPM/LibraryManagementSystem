@@ -209,7 +209,7 @@
                     <div class = "am-form-group">
                         <label for = "title" class = "am-u-sm-3 am-form-label" th:text="#{ti44}"></label>
                         <div class = "am-u-sm-9">
-                            <input type = "text" id = "title" th:placeholder = "#{ti44}" name = "title">
+                            <input type = "text" id = "title" th:placeholder = "#{ti44}" name = "title" required>
                         </div>
                     </div>
 
@@ -218,7 +218,7 @@
                         <label for = "content" class = "am-u-sm-3 am-form-label" th:text="#{c_zj}"></label>
                         <div class = "am-u-sm-9">
                             <!--<input type = "text" id = "content" placeholder = "内容 / Content" name = "brief">-->
-                            <textarea id = "content" th:placeholder = "#{c_zj}" name = "content" cols = "10" rows = "3">
+                            <textarea id = "content" th:placeholder = "#{c_zj}" name = "content" cols = "10" rows = "3" required>
                             </textarea>
                         </div>
                     </div>
