@@ -142,7 +142,7 @@
             </div>
             <hr>
             <div class = "am-cf am-padding am-padding-bottom-0">
-                <a href="#" onclick="javascript:history.back(-1);">Go Back</a>
+                <a href="librarian_table">Go Back</a>
             </div>
             <hr>
 
@@ -207,7 +207,7 @@
                     <div class = "am-form-group">
                         <label for = "location" class = "am-u-sm-3 am-form-label" th:text="#{location}"></label>
                         <div class = "am-u-sm-9">
-                            <input type = "text" id = "location"  name = "name">
+                            <input type = "text" id = "location"  name = "name" required>
                         </div>
                     </div>
 
@@ -230,11 +230,11 @@
                             <input type = "text" id = "id2" placeholder = "id" name = "id" readonly="readonly">
                         </div>
                     </div>
-x`
+
                     <div class = "am-form-group">
                         <label for = "location2" class = "am-u-sm-3 am-form-label" th:text="#{location}"></label>
                         <div class = "am-u-sm-9">
-                            <input type = "text" id = "location2" th:placeholder = "#{location}" name = "name">
+                            <input type = "text" id = "location2" th:placeholder = "#{location}" name = "name" required>
                         </div>
                     </div>
 

@@ -115,7 +115,7 @@
 
                 <td th:text = "${bkunit.id}"></td>
 
-                <td th:text = "${bkunit.location}"></td>
+                <td th:text = "${bkunit.location.name}"></td>
                 <td>
                     <span th:if="${bkunit.status} eq 1" th:text = "#{hbb_yxy}">已被借</span>
                     <span th:if="${bkunit.status} eq 2" th:text = "#{nb_yxy}">未借</span>

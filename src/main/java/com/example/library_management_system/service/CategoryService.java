@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategoryService
@@ -45,5 +46,16 @@ public class CategoryService
     public void removeCategory(int id)
     {
         categoryDAO.deleteById(id);
+    }
+
+    public void updateCategory(int id, String name)
+    {
+        Optional<Category> optional = categoryDAO.findById(id);
+        if (optional.isPresent())
+        {
+            Category category = optional.get();
+            category.setName(name);
+            categoryDAO.save(category);
+        }
     }
 }

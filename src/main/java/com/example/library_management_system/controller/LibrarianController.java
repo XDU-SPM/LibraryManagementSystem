@@ -185,9 +185,10 @@ public class LibrarianController
         return new Status(1);
     }
 
-    @RequestMapping(value = "/librarian/updateLocation", method = RequestMethod.POST)
+    @RequestMapping(value = "/librarian/c", method = RequestMethod.POST)
     public String updateLocation(int id, String name)
     {
+        System.out.println(id + " " + name);
         locationService.updateLocation(id, name);
         return "redirect:librarian_position";
     }
@@ -205,5 +206,12 @@ public class LibrarianController
     {
         categoryService.removeCategory(id);
         return new Status(1);
+    }
+
+    @RequestMapping(value = "/librarian/updateCategory", method = RequestMethod.POST)
+    public String updateCategory(int id, String name)
+    {
+        categoryService.updateCategory(id, name);
+        return "redirect:librarian_category";
     }
 }
