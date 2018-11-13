@@ -1,167 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <link rel = "stylesheet" href = "../../static/assets/css/amazeui.min.css">
-    <script src = "../../static/assets/js/jquery.min.js"></script>
-    <script src = "../../static/assets/js/amazeui.min.js"></script>
-    <title>Title</title>
+    <meta charset="utf-8">
+    <title>Makes "field" required and an ISO date.</title>
+    <link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css">
+
 </head>
 <body>
-<button
-        type="button"
-        class="am-btn am-btn-success"
-        id="doc-prompt-toggle">
-    Prompt
-</button>
-<div class="am-panel-group" id="accordion">
-    <div class="am-panel am-panel-default">
-        <div class="am-panel-hd">
-            <h4 class="am-panel-title" data-am-collapse="{parent: '#accordion', target: '#do-not-say-1'}">
-                ...
-            </h4>
-        </div>
-        <div id="do-not-say-1" class="am-panel-collapse am-collapse am-in">
-            <div class="am-panel-bd">
-                ...
-            </div>
-        </div>
-    </div>
-    <div class="am-panel am-panel-default">
-        <div class="am-panel-hd">
-            <h4 class="am-panel-title" data-am-collapse="{parent: '#accordion', target: '#do-not-say-2'}">
-                ...
-            </h4>
-        </div>
-        <div id="do-not-say-2" class="am-panel-collapse am-collapse">
-            <div class="am-panel-bd">
-                ...
-            </div>
-        </div>
-    </div>
-    <div class="am-panel am-panel-default">
-        <div class="am-panel-hd">
-            <h4 class="am-panel-title" data-am-collapse="{parent: '#accordion', target: '#do-not-say-3'}">...</h4>
-        </div>
-        <div id="do-not-say-3" class="am-panel-collapse am-collapse">
-            <div class="am-panel-bd">
-                ...
-            </div>
-        </div>
-    </div>
-</div>
-<div class="am-modal am-modal-prompt" tabindex="-1" id="my-prompt">
-    <div class = "am-modal-dialog">
-        <div class = "am-modal-hd" th:text="#{Addbook_ysw}">添加图书</div>
-        <form class = "am-modal-bd am-form am-form-horizontal" method = "post" action = "addbook" enctype = "multipart/form-data">
-            <div class = "am-form-group">
-                <label for = "isbn" class = "am-u-sm-3 am-form-label">ISBN</label>
-                <div class = "am-u-sm-9">
-                    <input type = "text" id = "isbn" placeholder = "ISBN" name = "isbn">
-                </div>
-            </div>
-
-
-            <div class = "am-form-group">
-                <label for = "title" class = "am-u-sm-3 am-form-label" th:text="#{btitle}">书名</label>
-                <div class = "am-u-sm-9">
-                    <input type = "text" id = "title" placeholder = "Title" name = "title">
-                </div>
-            </div>
-
-
-            <div class = "am-form-group">
-                <label for = "author" class = "am-u-sm-3 am-form-label" th:text="#{au44}">作者</label>
-                <div class = "am-u-sm-9">
-                    <input type = "text" id = "author" placeholder = "Author" name = "author">
-                </div>
-            </div>
-
-            <div class = "am-form-group">
-                <label for = "type" class = "am-u-sm-3 am-form-label" th:text="#{category}">类别</label>
-                <div class = "am-u-sm-9">
-                    <input type = "text" id = "type" placeholder = "Type" name = "category">
-                </div>
-            </div>
-
-            <div class = "am-form-group">
-                <label for = "position" class = "am-u-sm-3 am-form-label" th:text="#{location}">位置</label>
-                <div class = "am-u-sm-9">
-                    <input type = "text" id = "position" placeholder = "position" name = "position">
-                </div>
-            </div>
-
-            <div class = "am-form-group">
-                <label for = "publisher" class = "am-u-sm-3 am-form-label" th:text="#{publisher}">出版社</label>
-                <div class = "am-u-sm-9">
-                    <input type = "text" id = "publisher" placeholder = "Publisher" name = "publisher">
-                </div>
-            </div>
-
-            <div class = "am-form-group ">
-                <label for = "publish_time" class = "am-u-sm-3 am-form-label" th:text="#{pubdate}">出版时间</label>
-                <div class = "am-u-sm-9">
-                    <input type = "text" id = "publish_time" placeholder = "Publish Time"
-                           name = "publishDate">
-                </div>
-            </div>
-
-
-            <div class = "am-form-group">
-                <label for = "number" class = "am-u-sm-3 am-form-label" th:text="#{num}">数量</label>
-                <div class = "am-u-sm-9">
-                    <select data-am-selected="{maxHeight: 100,btnWidth: '360px',btnSize: 'sm',}" id="number" name="number" typeof="number">
-                        <script>
-                            for(var i=1;i<=100;i++){
-                                document.write("<option value='"+i+"'>"+i+"</option>");
-                            }
-                        </script>
-                    </select>
-                </div>
-            </div>
-
-            <div class = "am-form-group">
-                <label for = "abstract" class = "am-u-sm-3 am-form-label" th:text="#{brief}">简介</label>
-                <div class = "am-u-sm-9">
-                    <input type = "text" id = "abstract" placeholder = "Abstract" name = "brief">
-                </div>
-            </div>
-
-            <div class = "am-form-group ">
-                <label for = "price" class = "am-u-sm-3 am-form-label" th:text="#{price}">价格</label>
-                <div class = "am-u-sm-9">
-                    <input type = "text" id = "price" placeholder = "Price" name = "price">
-                </div>
-            </div>
-
-            <div class = "am-form-group am-hide">
-                <div class = "am-u-sm-9 ">
-                    <input type="text"  id = "cover" class = "am-modal-prompt-input" name = "coverPath">
-                </div>
-            </div>
-
-
-            <div class = "am-modal-footer am-g">
-                <div class = "am-u-sm-7 am-u-sm-push-2 am-u-end">
-                    <input type = "submit" data-am-modal-confirm th:value="#{submit}" class = "am-btn am-btn-primary"></div>
-            </div>
-        </form>
-    </div>
-</div>
-
+<form id="myform">
+    <label for="field">Required, dateISO: </label>
+    <input class="left" id="field" name="field">
+    <br/>
+    <input type="submit" value="Validate!">
+</form>
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
 <script>
-    $(function() {
-        $('#doc-prompt-toggle').on('click', function() {
-            $('#my-prompt').modal({
-                relatedTarget: this,
-                onConfirm: function(e) {
-                    alert('你输入的是：' + e.data || '')
-                },
-                onCancel: function(e) {
-                    alert('不想说!');
-                }
-            });
-        });
+    // just for the demos, avoids form submit
+
+    $( "#myform" ).validate({
+        rules: {
+            field: {
+                required: true,
+                dateISO: true
+            }
+        }
     });
 </script>
 </body>
