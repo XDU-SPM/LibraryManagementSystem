@@ -169,7 +169,8 @@
                         <div class = "am-form-group">
                             <label for = "title" class = "am-u-sm-3 am-form-label" th:text = "#{btitle}">书名</label>
                             <div class = "am-u-sm-9">
-                                <input type = "text" id = "title" name = "title" th:value = "${book.title}" required>
+                                <input type = "text" id = "title" name = "title" required
+                                       th:value = "${book.title}">
                             </div>
                         </div>
 
@@ -212,8 +213,7 @@
                             <label for = "publisher" class = "am-u-sm-3 am-form-label"
                                    th:text = "#{publisher}">出版社</label>
                             <div class = "am-u-sm-9">
-                                <input type = "text" id = "publisher" name = "publisher"
-                                       th:value = "${book.publisher}">
+                                <input type = "text" id = "publisher" name = "publisher" th:value = "${book.publisher}">
                             </div>
                         </div>
 
@@ -252,12 +252,10 @@
                         <!--</div>-->
 
                         <div class = "am-form-group">
-                            <label for = "publish_time" class = "am-u-sm-3 am-form-label"
+                            <label for = "publishDate" class = "am-u-sm-3 am-form-label"
                                    th:text = "#{pubdate}">出版时间</label>
                             <div class = "am-u-sm-9">
-                                <input type = "text" id = "publish_time"
-                                       th:value = "${book.publishDate}"
-                                       name = "publishDate">
+                                <input  id = "publishDate" th:value = "${book.publishDate}" name = "publishDate" type="text">
                             </div>
                         </div>
 
@@ -287,8 +285,7 @@
                         <div class = "am-form-group">
                             <label for = "price" class = "am-u-sm-3 am-form-label" th:text = "#{price}">价格</label>
                             <div class = "am-u-sm-9">
-                                <input type = "number" id = "price" name = "price"
-                                       th:value = "${book.price}" min = "0" step="0.01">
+                                <input type = "number" id = "price" name = "price" th:value = "${book.price}" min = "0" step="0.01" required>
                             </div>
                         </div>
 
@@ -324,9 +321,7 @@
     var id=[[${bkunit.id}]];
     $("#barcode").JsBarcode(id);
 </script>
-<!--<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>-->
-<!--<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>-->
-<!--<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>-->
+
 <script>
     jQuery.validator.addMethod("isDate", function(value, element) {
         var date =/^((?:19|20)\d\d)-([1-9]|1[012])-([1-9]|[12][0-9]|3[01])$/;
