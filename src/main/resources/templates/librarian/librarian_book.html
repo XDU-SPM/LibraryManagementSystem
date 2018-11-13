@@ -263,10 +263,7 @@
                         <div class = "am-form-group">
                             <label for = "number" class = "am-u-sm-3 am-form-label" th:text = "#{num}">数量</label>
                             <div class = "am-u-sm-9">
-                                <input type = "number" id = "number" readonly = "readonly" pattern = "[1-9][0-9]*"
-                                       required
-                                       th:value = "${book.number}"
-                                       name = "number" min = "0">
+                                <input type = "number" id = "number" readonly = "readonly" required th:value = "${book.number}" name = "number" min = "0">
                             </div>
                         </div>
 
