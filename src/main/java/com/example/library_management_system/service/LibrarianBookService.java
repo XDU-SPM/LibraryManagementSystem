@@ -145,7 +145,10 @@ public class LibrarianBookService
         book.setPublishDate(tmp.getPublishDate());
         book.setBrief(tmp.getBrief());
         book.setPrice(tmp.getPrice());
-        book.setCategory(tmp.getCategory());
+
+        Category category = categoryDAO.findByName(tmp.getCategory());
+        book.getCategories().clear();
+        book.getCategories().add(category);
 
         Bkunit bkunit = bkunitDAO.findById(id).get();
         if (bkunit.getLocation() == null || !bkunit.getLocation().getName().equals(tmp.getPosition()))

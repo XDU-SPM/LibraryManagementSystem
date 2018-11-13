@@ -202,6 +202,8 @@
                                         console.log([[${bkunit.location.name}]]);
                                         document.write("<option value='"+[[${bkunit.location.name}]]+"'>"+[[${bkunit.location.name}]]+"</option>");
                                         for(var i=0;i<locations.length;i++){
+                                            if (locations[i].name == [[${bkunit.location.name}]])
+                                                continue;
                                             document.write("<option value='"+locations[i].name+"'>"+locations[i].name+"</option>");
                                         }
                                     </script>
@@ -229,8 +231,10 @@
                                 <select data-am-selected="{searchBox: 1,maxHeight: 100,btnWidth: '466.5px'}" id="category" name="category" typeof="text">
                                     <script th:inline="javascript">
                                         var categories=[[${categories}]];
-
+                                        document.write("<option value='"+[[${bkunit.book.category}]]+"'>"+[[${bkunit.book.category}]]+"</option>");
                                         for(var i=0;i<categories.length;i++){
+                                            if (categories[i].name == [[${bkunit.book.category}]])
+                                                continue;
                                             document.write("<option value='"+categories[i].name+"'>"+categories[i].name+"</option>");
                                         }
                                     </script>

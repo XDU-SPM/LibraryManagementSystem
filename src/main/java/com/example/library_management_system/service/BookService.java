@@ -9,9 +9,7 @@ import com.example.library_management_system.dao.CategoryDAO;
 import com.example.library_management_system.utils.PageableUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -47,7 +45,19 @@ public class BookService
 
     public Bkunit bkunitInfo(String id)
     {
-        return bkunitDAO.findById(id).get();
+        Bkunit bkunit = bkunitDAO.findById(id).get();
+        Book book = bkunit.getBook();
+        try
+        {
+            Category category = book.getCategories().iterator().next();
+            if (category != null)
+                book.setCategory(category.getName());
+        }
+        catch (Exception e)
+        {
+
+        }
+        return bkunit;
     }
 
     public Bkunit searchBkunit(String id)

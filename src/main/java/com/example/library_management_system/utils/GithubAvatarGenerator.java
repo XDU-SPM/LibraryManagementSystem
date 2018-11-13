@@ -52,6 +52,9 @@ public class GithubAvatarGenerator
         String filePath = "" + id + ".png";
         try
         {
+            File file = new File(rootPath);
+            if (!file.exists())
+                file.mkdirs();
             ImageIO.write(img, "png", new File(rootPath + filePath));
         }
         catch (IOException e)
