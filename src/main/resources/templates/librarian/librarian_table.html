@@ -217,7 +217,7 @@
         <div class = "am-modal am-modal-prompt" tabindex = "-1" id = "my-prompt">
             <div class = "am-modal-dialog">
                 <div class = "am-modal-hd" th:text="#{Addbook_ysw}">添加图书</div>
-                <form class = "am-modal-bd am-form am-form-horizontal" method = "post" action = "addbook" enctype = "multipart/form-data">
+                <form id="addbook" class = "am-modal-bd am-form am-form-horizontal" method = "post" action = "addbook" enctype = "multipart/form-data">
                     <div class = "am-form-group">
                         <label for = "isbn" class = "am-u-sm-3 am-form-label">ISBN</label>
                         <div class = "am-u-sm-9">
@@ -443,7 +443,23 @@
     }
 </script>
 <script type = "text/javascript" src = "assets/js/test.js"></script>
-
+<script src ="dist/jquery.validate.min.js"></script>
+<script>
+    jQuery.validator.addMethod("isDate", function(value, element) {
+        var date =/^((?:19|20)\d\d)-([1-9]|1[012])-([1-9]|[12][0-9]|3[01])$/;
+        var date2=/^((?:19|20)\d\d)-([1-9]|1[012])$/
+        return this.optional(element) || (date.test(value) || date2.test(value));
+    }, "False Date");
+    $( "#addbook").validate({
+        rules: {
+            publishDate: {
+                required: true,
+                isDate:true
+                //dateISO: true
+            }
+        }
+    });
+</script>
 
 <script type = "text/javascript">
     $("#change").click(function () {

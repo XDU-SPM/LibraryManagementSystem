@@ -169,8 +169,7 @@
                         <div class = "am-form-group">
                             <label for = "title" class = "am-u-sm-3 am-form-label" th:text = "#{btitle}">书名</label>
                             <div class = "am-u-sm-9">
-                                <input type = "text" id = "title" name = "title"
-                                       th:value = "${book.title}">
+                                <input type = "text" id = "title" name = "title" th:value = "${book.title}" required>
                             </div>
                         </div>
 
@@ -229,7 +228,6 @@
                                 <select data-am-selected="{searchBox: 1,maxHeight: 100,btnWidth: '466.5px'}" id="category" name="category" typeof="text">
                                     <script th:inline="javascript">
                                         var categories=[[${categories}]];
-
                                         for(var i=0;i<categories.length;i++){
                                             document.write("<option value='"+categories[i].name+"'>"+categories[i].name+"</option>");
                                         }
@@ -326,15 +324,21 @@
     var id=[[${bkunit.id}]];
     $("#barcode").JsBarcode(id);
 </script>
-<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
-<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
-<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
+<!--<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>-->
+<!--<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>-->
+<!--<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>-->
 <script>
+    jQuery.validator.addMethod("isDate", function(value, element) {
+        var date =/^((?:19|20)\d\d)-([1-9]|1[012])-([1-9]|[12][0-9]|3[01])$/;
+        var date2=/^((?:19|20)\d\d)-([1-9]|1[012])$/
+        return this.optional(element) || (date.test(value) || date2.test(value));
+    }, "False Date");
     $( "#savebook").validate({
         rules: {
-            publish_time: {
+            publishDate: {
                 required: true,
-                dateISO: true
+                isDate:true
+                //dateISO: true
             }
         }
     });
