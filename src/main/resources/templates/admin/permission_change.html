@@ -262,6 +262,14 @@
     </script>
     <script type = "text/javascript" src = "assets/js/switch_language.js"></script>
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>  <!--导入Js路径-->
+    <script src ="dist/jquery.validate.min.js"></script>
+    <script>
+        $( "form").validate({
+            rules: {
+
+            }
+        });
+    </script>
     <script type = "text/javascript" th:inline = "javascript">
         $("#change").click(function () {
             translate();
