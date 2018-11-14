@@ -222,8 +222,8 @@
             url: "searchLibrarian",
             data: {username: libraAccount},
             success: function (data) {
-                if (data == undefined) {
-                    alert([[#{borrow_1}]]);
+                if (data.username == undefined) {
+                    window.alert([[#{libnotexist}]]);
                     return;
                 }
 
