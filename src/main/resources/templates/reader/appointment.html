@@ -69,6 +69,8 @@
             <div class="am-intro-right am-u-sm-7">
                 <h1 class="am-intro-more am-intro-right "><span th:text="#{tofd_ysw}">倒计时：</span></h1>
                 <p id="count-down">2:00:00</p>
+                <h1>ISBN</h1>
+                <p th:text="${userBkunit.bkunit.book.isbn}"></p>
                 <h1 th:text="#{btitle}">书名</h1>
                 <p th:text="${userBkunit.bkunit.book.title}"></p>
                 <h1 th:text="#{au44}">作者</h1>

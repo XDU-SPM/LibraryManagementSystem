@@ -138,8 +138,8 @@
 
                                             </div>
                                             <div class = "am-u-sm-8 am-u-md-4">
-                                                <input type = "number" class = "am-input-sm" th:placeholder = "#{ibn_zj}" th:value="${maxBorrowNum}"
-                                                       name = "num" required min="0">
+                                                <input type = "number" id="maxborrownum" class = "am-input-sm" th:placeholder = "#{ibn_zj}" th:value="${maxBorrowNum}"
+                                                       name = "num"  min="0" required/>
                                             </div>
                                             <div class = "am-hide-sm-only am-u-md-6"></div>
                                         </div>
@@ -164,7 +164,7 @@
                                             </div>
                                             <div class = "am-u-sm-8 am-u-md-4">
                                                 <input type = "number" class = "am-input-sm" th:placeholder = "#{ibd_zj}" th:value="${maxBorrowDays}"
-                                                       name = "days" required min="0">
+                                                       name = "days" required min="0"/>
                                             </div>
                                             <div class = "am-hide-sm-only am-u-md-6"></div>
                                         </div>
@@ -189,7 +189,7 @@
                                             </div>
                                             <div class = "am-u-sm-8 am-u-md-4">
                                                 <input type = "number" class = "am-input-sm" th:placeholder = "#{ida_zj}" th:value="${registerMoney}"
-                                                       name = "money" required min="0">
+                                                       name = "money" required min="0"/>
                                             </div>
                                             <div class = "am-hide-sm-only am-u-md-6"></div>
                                         </div>
@@ -215,7 +215,7 @@
                                             </div>
                                             <div class = "am-u-sm-8 am-u-md-4">
                                                 <input type = "number" class = "am-input-sm" th:placeholder = "#{iop_zj}" th:value="${overdueMoney}"
-                                                       name = "money" required min="0">
+                                                       name = "money" required min="0"/>
                                             </div>
                                             <div class = "am-hide-sm-only am-u-md-6"></div>
 
@@ -262,10 +262,10 @@
     </script>
     <script type = "text/javascript" src = "assets/js/switch_language.js"></script>
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>  <!--导入Js路径-->
+    <script src ="dist/jquery.validate.min.js"></script>
+
     <script type = "text/javascript" th:inline = "javascript">
-        $("#change").click(function () {
-            translate();
-        });
+
 
         var status = [[${status}]];
 
@@ -279,25 +279,8 @@
                 status = null;
             }
         }
-
         isOk();
     </script>
-    <script type="text/javascript">
-        $(function(){
-            $("#modifyMBN").click(function(){
-                // window.alert([[#{changeMBN}]])
-                window.alert("change max borrow number successfully!")
-            });
-            $("#changeBP").click(function(){
-                window.alert("change the number of return period successfully!")
-            });
-            $("#changeSD").click(function(){
-                window.alert("change security deposit successfully!")
-            });
-            $("#changeOP").click(function(){
-                window.alert("change overdue penalty successfully")
-            });
-        })
-    </script>
+
 </body>
 </html>
