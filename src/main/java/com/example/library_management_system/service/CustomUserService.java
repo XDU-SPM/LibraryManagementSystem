@@ -27,6 +27,8 @@ public class CustomUserService implements UserDetailsService
     {
         String[] strings = s.split(" ");
         String type = "0";
+        if (strings.length > 2)
+            throw new UsernameNotFoundException("233");
         if (strings.length == 2)
             type = strings[1];
         User user = userDAO.findByUsername(strings[0]);
