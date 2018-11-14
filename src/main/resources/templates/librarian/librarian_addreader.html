@@ -222,6 +222,13 @@
 <script src="dist/JsBarcode.all.js"></script>
 <script src ="dist/jquery.validate.min.js"></script>
 <script type = "text/javascript" src = "assets/js/switch_language.js"></script>
+<script>
+    $("form").validate({
+        rules: {
+
+        }
+    });
+</script>
 
 <script th:inline = "javascript">
     var status = [[${status}]];
