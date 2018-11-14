@@ -60,9 +60,7 @@ public class LibrarianBookService
     public Set<String> addBkunit(Book book)
     {
         // TODO: 2018/11/8 if no isbn
-        if (book.getIsbn().equals("") || book.getIsbn() == null)
-            book.setIsbn(String.valueOf(System.currentTimeMillis()));
-        else
+        if (!(book.getIsbn().equals("") || book.getIsbn() == null))
             book.setIsbn(book.getIsbn().trim());
         Book book1 = bookDAO.findByIsbn(book.getIsbn());
         if (book1 == null)
@@ -190,9 +188,9 @@ public class LibrarianBookService
         if (bkunit.getStatus() == BkunitUtil.LOST)
             return -5;
 
-        UserBkunit userBkunit = userBkunitDAO.findByUserAndBkunitAndStatus(reader, bkunit, BkunitUtil.RESERVED);
-        // TODO: 2018/11/8 add this case
-        if (bkunit.getStatus() == BkunitUtil.RESERVED && userBkunit != null)
+        UserBkunit userBkunit = userBkunitDAO.findByUserAndBkunitAndStatus(reader, bkunit, UserBkunitUtil.RESERVED);
+
+        if (bkunit.getStatus() == BkunitUtil.RESERVED && userBkunit == null)
             return -6;
 
         Book book = bkunit.getBook();

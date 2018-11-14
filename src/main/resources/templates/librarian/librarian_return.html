@@ -162,7 +162,7 @@
                 <div class = "am-tabs-bd">
                     <div class = "am-tab-panel am-fade am-in am-active" id = "tab1">
                         <div class = "am-g am-margin-top">
-                            <form action = "return" method = "post">
+                            <form action = "return" method = "post" id="form1">
                                 <div class = "am-form am-form-horizontal">
                                     <div class = "am-g am-margin-top">
                                         <div class = "am-u-sm-4 am-u-md-2 am-text-right" th:text="#{bid}">
@@ -197,7 +197,7 @@
 
 
                     <div class = "am-tab-panel am-fade" id = "tab2">
-                        <form class = "am-form" action = "return" method = "post">
+                        <form class = "am-form" action = "return" method = "post" id="form2">
                             <div class = "am-g am-margin-top">
                                 <div class = "am-u-sm-4 am-u-md-2 am-text-right" th:text="#{bid}" >
                                     书号
@@ -247,7 +247,7 @@
                     </div>
 
                     <div class = "am-tab-panel am-fade" id = "tab3">
-                        <form class = "am-form" action = "return" method = "post">
+                        <form class = "am-form" action = "return" method = "post" id="form3">
                             <input type = "hidden" name = "damage" value = "4">
                             <div class = "am-g am-margin-top-sm">
                                 <div class = "am-u-sm-4 am-u-md-2 am-text-right" th:text="#{bid}">
@@ -305,10 +305,31 @@
 <script src ="dist/jquery.validate.min.js"></script>
 <script type = "text/javascript" src = "assets/js/switch_language.js"></script>
 
-<script>
-    $( "form").validate({
+<script th:inline="javascript">
+    $("#form1").validate({
         rules: {
+            money:{
+                required: true,
+                min: 0
+            }
+        }
+    });
 
+    $("#form2").validate({
+        rules: {
+            money:{
+                required: true,
+                min: 0
+            }
+        }
+    });
+
+    $("#form3").validate({
+        rules: {
+            money:{
+                required: true,
+                min: 0
+            }
         }
     });
 </script>

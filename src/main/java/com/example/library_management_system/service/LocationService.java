@@ -1,6 +1,8 @@
 package com.example.library_management_system.service;
 
+import com.example.library_management_system.bean.Bkunit;
 import com.example.library_management_system.bean.Location;
+import com.example.library_management_system.dao.BkunitDAO;
 import com.example.library_management_system.dao.LocationDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,12 +10,16 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class LocationService
 {
     @Autowired
     private LocationDAO locationDAO;
+
+    @Autowired
+    private BkunitDAO bkunitDAO;
 
     public void init()
     {
@@ -30,6 +36,9 @@ public class LocationService
                 }
             }
         }
+
+        Location location = new Location("No Location");
+        locations.add(location);
 
         locationDAO.saveAll(locations);
     }
@@ -48,6 +57,12 @@ public class LocationService
 
     public void removeLocation(int id)
     {
+        Location location = locationDAO.findById(id).get();
+        Location noLocation = locationDAO.findByName("No Location");
+        Set<Bkunit> bkunits = location.getBkunits();
+        for (Bkunit bkunit : bkunits)
+            bkunit.setLocation(noLocation);
+        bkunitDAO.saveAll(bkunits);
         locationDAO.deleteById(id);
     }
 
