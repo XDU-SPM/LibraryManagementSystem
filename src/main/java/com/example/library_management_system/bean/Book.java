@@ -15,6 +15,9 @@ import java.util.Set;
 public class Book
 {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
     private String isbn;
     private String title;
     private String publishDate;
@@ -312,5 +315,15 @@ public class Book
     public void setLocations(Set<Location> locations)
     {
         this.locations = locations;
+    }
+
+    public int getId()
+    {
+        return id;
+    }
+
+    public void setId(int id)
+    {
+        this.id = id;
     }
 }

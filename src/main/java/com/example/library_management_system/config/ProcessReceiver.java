@@ -1,7 +1,11 @@
 package com.example.library_management_system.config;
 
+import com.example.library_management_system.bean.Bkunit;
+import com.example.library_management_system.bean.Book;
 import com.example.library_management_system.bean.UserBkunit;
+import com.example.library_management_system.dao.BookDAO;
 import com.example.library_management_system.dao.UserBkunitDAO;
+import com.example.library_management_system.utils.BkunitUtil;
 import com.example.library_management_system.utils.UserBkunitUtil;
 import com.rabbitmq.client.Channel;
 import org.springframework.amqp.core.Message;
@@ -19,6 +23,9 @@ public class ProcessReceiver implements ChannelAwareMessageListener
 {
     @Autowired
     private UserBkunitDAO userBkunitDAO;
+
+    @Autowired
+    private BookDAO bookDAO;
 
     @Override
     public void onMessage(Message message, Channel channel) throws Exception
@@ -50,7 +57,16 @@ public class ProcessReceiver implements ChannelAwareMessageListener
             return;
         }
 
-        userBkunit.getBkunit().getBook().addNumber(1);
+        Bkunit bkunit = userBkunit.getBkunit();
+        if (bkunit.getStatus() != BkunitUtil.LOST)
+        {
+            bkunit.setStatus(BkunitUtil.NORMAL);
+
+            Book book = bkunit.getBook();
+            book.addNumber(1);
+            bookDAO.save(book);
+        }
+
         userBkunit.setStatus(UserBkunitUtil.RESERVATION_FAIL);
         userBkunitDAO.save(userBkunit);
     }
