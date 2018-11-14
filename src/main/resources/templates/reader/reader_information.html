@@ -143,7 +143,7 @@
                         <div class = "am-form-group">
                             <label for = "user-email" class = "am-u-sm-3 am-form-label" th:text="#{email44}">电子邮件 / Email</label>
                             <div class = "am-u-sm-9">
-                                <input type = "email" id = "user-email" th:placeholder = "#{ie_zj}" name = "email" required>
+                                <input type = "email" id = "user-email" th:value="${user.email}" th:placeholder = "#{ie_zj}" name = "email" required>
                             </div>
                         </div>
 

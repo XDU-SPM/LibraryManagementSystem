@@ -8,6 +8,7 @@
     <link rel = "apple-touch-icon-precomposed" href = "assets/i/app-icon72x72@2x.png">
     <link rel = "stylesheet" href = "assets/css/amazeui.min.css"/>
     <link rel = "stylesheet" href = "assets/css/admin.css">
+
     <style>
         .am-form-group {
             text-align: left;
@@ -137,15 +138,15 @@
 
                                             </div>
                                             <div class = "am-u-sm-8 am-u-md-4">
-                                                <input type = "text" class = "am-input-sm" th:placeholder = "#{ibn_zj}" th:value="${maxBorrowNum}"
-                                                       name = "num">
+                                                <input type = "number" class = "am-input-sm" th:placeholder = "#{ibn_zj}" th:value="${maxBorrowNum}"
+                                                       name = "num" required min="0">
                                             </div>
                                             <div class = "am-hide-sm-only am-u-md-6"></div>
                                         </div>
 
                                         <div class = "am-g am-margin-top-sm">
                                             <div class = "am-u-sm-10 am-u-sm-push-2">
-                                                <button type = "submit" class = "am-btn am-btn-primary " th:text="#{m_zj}"></button>
+                                                <button type = "submit" id="modifyMBN" class = "am-btn am-btn-primary " th:text="#{m_zj}"></button>
                                             </div>
                                         </div>
                                     </div>
@@ -162,15 +163,15 @@
 
                                             </div>
                                             <div class = "am-u-sm-8 am-u-md-4">
-                                                <input type = "text" class = "am-input-sm" th:placeholder = "#{ibd_zj}" th:value="${maxBorrowDays}"
-                                                       name = "days">
+                                                <input type = "number" class = "am-input-sm" th:placeholder = "#{ibd_zj}" th:value="${maxBorrowDays}"
+                                                       name = "days" required min="0">
                                             </div>
                                             <div class = "am-hide-sm-only am-u-md-6"></div>
                                         </div>
 
                                         <div class = "am-g am-margin-top-sm">
                                             <div class = "am-u-sm-10 am-u-sm-push-2">
-                                                <button type = "submit" class = "am-btn am-btn-primary " th:text="#{m_zj}"></button>
+                                                <button type = "submit" id="changeBP" class = "am-btn am-btn-primary " th:text="#{m_zj}"></button>
                                             </div>
                                         </div>
                                     </div>
@@ -187,15 +188,15 @@
 
                                             </div>
                                             <div class = "am-u-sm-8 am-u-md-4">
-                                                <input type = "text" class = "am-input-sm" th:placeholder = "#{ida_zj}" th:value="${registerMoney}"
-                                                       name = "money">
+                                                <input type = "number" class = "am-input-sm" th:placeholder = "#{ida_zj}" th:value="${registerMoney}"
+                                                       name = "money" required min="0">
                                             </div>
                                             <div class = "am-hide-sm-only am-u-md-6"></div>
                                         </div>
 
                                         <div class = "am-g am-margin-top-sm">
                                             <div class = "am-u-sm-10 am-u-sm-push-2">
-                                                <button type = "submit" class = "am-btn am-btn-primary " th:text="#{m_zj}"></button>
+                                                <button type = "submit" id="changeSD" class = "am-btn am-btn-primary " th:text="#{m_zj}"></button>
                                             </div>
                                         </div>
                                     </div>
@@ -213,8 +214,8 @@
 
                                             </div>
                                             <div class = "am-u-sm-8 am-u-md-4">
-                                                <input type = "text" class = "am-input-sm" th:placeholder = "#{iop_zj}" th:value="${overdueMoney}"
-                                                       name = "money">
+                                                <input type = "number" class = "am-input-sm" th:placeholder = "#{iop_zj}" th:value="${overdueMoney}"
+                                                       name = "money" required min="0">
                                             </div>
                                             <div class = "am-hide-sm-only am-u-md-6"></div>
 
@@ -222,7 +223,7 @@
 
                                         <div class = "am-g am-margin-top-sm">
                                             <div class = "am-u-sm-10 am-u-sm-push-2">
-                                                <button type = "submit" class = "am-btn am-btn-primary " th:text="#{m_zj}"></button>
+                                                <button type = "submit" id="changeOP" class = "am-btn am-btn-primary " th:text="#{m_zj}"></button>
                                             </div>
                                         </div>
                                     </div>
@@ -260,6 +261,7 @@
     <script src = "assets/js/test.js">
     </script>
     <script type = "text/javascript" src = "assets/js/switch_language.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>  <!--导入Js路径-->
     <script type = "text/javascript" th:inline = "javascript">
         $("#change").click(function () {
             translate();
@@ -279,6 +281,23 @@
         }
 
         isOk();
+    </script>
+    <script type="text/javascript">
+        $(function(){
+            $("#modifyMBN").click(function(){
+                // window.alert([[#{changeMBN}]])
+                window.alert("change max borrow number successfully!")
+            });
+            $("#changeBP").click(function(){
+                window.alert("change the number of return period successfully!")
+            });
+            $("#changeSD").click(function(){
+                window.alert("change security deposit successfully!")
+            });
+            $("#changeOP").click(function(){
+                window.alert("change overdue penalty successfully")
+            });
+        })
     </script>
 </body>
 </html>
