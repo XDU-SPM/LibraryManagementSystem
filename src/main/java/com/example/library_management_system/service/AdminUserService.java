@@ -30,6 +30,8 @@ public class AdminUserService
     public String findPassword(String username)
     {
         User user = userDAO.findByUsername(username);
+        if (user == null)
+            return null;
         return user.getPassword();
     }
 }

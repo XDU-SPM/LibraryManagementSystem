@@ -80,7 +80,10 @@ public class AdminUserController
     @RequestMapping(value = "/admin/findPassword", method = RequestMethod.POST)
     public String findPassword(String username, Model model)
     {
-        model.addAttribute("status", adminUserService.findPassword(username));
+        String password = adminUserService.findPassword(username);
+        model.addAttribute("status", password == null ? "" : password);
+        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
+        model.addAttribute("username", userService.getUser().getUsername());
         return "/admin/retrieve_password";
     }
 }
