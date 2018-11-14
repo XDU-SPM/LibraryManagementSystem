@@ -14,6 +14,13 @@
     <link rel = "stylesheet" href = "assets/css/amazeui.min.css"/>
     <link rel = "stylesheet" href = "assets/css/admin.css">
     <style>
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+        input[type="number"]{
+            -moz-appearance: textfield;
+        }
         .am-form-group {
             text-align: left;
         }
@@ -168,14 +175,14 @@
                         <div class = "am-form-group">
                             <label for = "user-id" class = "am-u-sm-3 am-form-label">ID</label>
                             <div class = "am-u-sm-9">
-                                <input type = "text" id = "user-id" th:value = "${user.id}" name = "id" readonly="readonly">
+                                <input type = "number" id = "user-id" th:value = "${user.id}" name = "id" readonly="readonly">
                             </div>
                         </div>
 
                         <div class = "am-form-group">
                             <label for = "user-account" class = "am-u-sm-3 am-form-label" th:text="#{ua_ysw}">用户账号</label>
                             <div class = "am-u-sm-9">
-                                <input type = "tel" id = "user-account" th:value = "${user.username}" name = "username" readonly="readonly">
+                                <input type = "text" id = "user-account" th:value = "${user.username}" name = "username" readonly="readonly">
                             </div>
                         </div>
 
@@ -243,6 +250,7 @@
 <script src = "assets/js/app.js"></script>
 <script src = "https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
 <script type = "text/javascript" src = "assets/js/test.js"></script>
+<script src ="dist/jquery.validate.min.js"></script>
 <script type = "text/javascript" src = "assets/js/switch_language.js"></script>
 
 <script th:inline="javascript">

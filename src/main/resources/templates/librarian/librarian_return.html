@@ -9,6 +9,13 @@
     <link rel = "stylesheet" href = "assets/css/amazeui.min.css"/>
     <link rel = "stylesheet" href = "assets/css/admin.css">
     <style>
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+        input[type="number"]{
+            -moz-appearance: textfield;
+        }
         .am-form-group {
             text-align: left;
         }
@@ -162,7 +169,7 @@
                                             书号
                                         </div>
                                         <div class = "am-u-sm-8 am-u-md-4">
-                                            <input type = "text" class = "am-input-sm" name = "id" id="bid1" required>
+                                            <input type = "number" class = "am-input-sm" name = "id" id="bid1" required>
                                         </div>
                                         <div class = "am-hide-sm-only am-u-md-6"></div>
                                     </div>
@@ -196,7 +203,7 @@
                                     书号
                                 </div>
                                 <div class = "am-u-sm-8 am-u-md-4">
-                                    <input type = "text" class = "am-input-sm" name = "id" id="bid2" required>
+                                    <input type = "number" class = "am-input-sm" name = "id" id="bid2" required>
                                 </div>
                                 <div class = "am-hide-sm-only am-u-md-6"></div>
                             </div>
@@ -247,7 +254,7 @@
                                     书号
                                 </div>
                                 <div class = "am-u-sm-8 am-u-md-4 am-u-end">
-                                    <input type = "text" class = "am-input-sm" name = "id" id="bid3" required>
+                                    <input type = "number" class = "am-input-sm" name = "id" id="bid3" required>
                                 </div>
                             </div>
 
@@ -295,7 +302,16 @@
 <script src = "assets/js/amazeui.min.js"></script>
 <script src = "assets/js/app.js"></script>
 <script type = "text/javascript" src = "assets/js/test.js"></script>
+<script src ="dist/jquery.validate.min.js"></script>
 <script type = "text/javascript" src = "assets/js/switch_language.js"></script>
+
+<script>
+    $( "form").validate({
+        rules: {
+
+        }
+    });
+</script>
 
 <script th:inline="javascript">
     var status=[[${status}]];
