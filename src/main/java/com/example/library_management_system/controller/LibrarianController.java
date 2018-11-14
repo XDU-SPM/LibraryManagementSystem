@@ -74,7 +74,7 @@ public class LibrarianController
         return "librarian/librarian_user";
     }
 
-    @RequestMapping(value = "librarian/saveReader", method = RequestMethod.POST)
+    @RequestMapping(value = "/librarian/saveReader", method = RequestMethod.POST)
     public String saveReader(User user, Model model)
     {
         librarianUserService.saveReader(user);
@@ -135,7 +135,7 @@ public class LibrarianController
         return "librarian/password_change";
     }
 
-    @RequestMapping(value = "librarian/password_change", method = RequestMethod.GET)
+    @RequestMapping(value = "/librarian/password_change", method = RequestMethod.GET)
     public String password_change(Model model)
     {
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());

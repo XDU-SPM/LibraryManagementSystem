@@ -38,7 +38,7 @@ public class LibrarianUserController
         model.addAttribute("registerMoney", globalUtilService.getRegisterMoney());
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
-        return "/librarian/librarian_addreader";
+        return "librarian/librarian_addreader";
     }
 
     @RequestMapping(value = "/librarian/payFine", method = RequestMethod.POST)
@@ -84,7 +84,7 @@ public class LibrarianUserController
         model.addAttribute("user", userService.showUser(id));
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
-        return "/librarian/librarian_readerinfo";
+        return "librarian/librarian_readerinfo";
     }
 
     @RequestMapping(value = "/librarian/librarian_fine", method = RequestMethod.GET)

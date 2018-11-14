@@ -70,7 +70,7 @@ public class ReaderController
         return "reader/reader_comment";
     }
 
-    @RequestMapping(value = "reader/saveUser", method = RequestMethod.POST)
+    @RequestMapping(value = "/reader/saveUser", method = RequestMethod.POST)
     public String saveUser(User user, Model model)
     {
         userService.saveUser(user);
@@ -89,7 +89,7 @@ public class ReaderController
         return "reader/password_change";
     }
 
-    @RequestMapping(value = "reader/password_change", method = RequestMethod.GET)
+    @RequestMapping(value = "/reader/password_change", method = RequestMethod.GET)
     public String password_change(Model model)
     {
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());

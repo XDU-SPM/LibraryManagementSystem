@@ -19,7 +19,7 @@ public class AdminController
     @Autowired
     private GlobalUtilService globalUtilService;
 
-    @RequestMapping(value = "admin/librarian_create", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/librarian_create", method = RequestMethod.GET)
     public String admin_librarian_create(Model model)
     {
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
@@ -27,7 +27,7 @@ public class AdminController
         return "admin/librarian_create";
     }
 
-    @RequestMapping(value = "admin/permission_change", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/permission_change", method = RequestMethod.GET)
     public String admin_permission_change(Model model)
     {
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());

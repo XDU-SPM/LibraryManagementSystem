@@ -74,7 +74,7 @@ public class LibrarianBookController
         model.addAttribute("locations", locationService.locations());
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
-        return "/librarian/librarian_book";
+        return "librarian/librarian_book";
     }
 
     @RequestMapping(value = "/librarian/saveBook", method = RequestMethod.POST)
@@ -157,7 +157,7 @@ public class LibrarianBookController
         model.addAttribute("status", status);
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
-        return "/librarian/librarian_return";
+        return "librarian/librarian_return";
     }
 
     @RequestMapping(value = "/librarian/librarian_record", method = RequestMethod.GET)
