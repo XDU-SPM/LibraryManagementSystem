@@ -6,7 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface BookDAO extends JpaRepository<Book, String>
+public interface BookDAO extends JpaRepository<Book, Integer>
 {
     Book findByIsbn(String isbn);
 
