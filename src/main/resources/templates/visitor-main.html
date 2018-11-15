@@ -97,7 +97,7 @@
 <div class = "am-g am-padding">
     <div class = "am-u-sm-12 am-u-md-6 am-u-md-centered">
         <div class = "am-input-group am-input-group-sm">
-            <input name = "string" id = "string" type = "text" class = "am-form-field am-radius">
+            <input name = "string" id = "string" type = "text" class = "am-form-field am-radius" required>
             <span class = "am-input-group-btn">
                             <button class = "am-btn am-btn-default am-icon-search am-radius am-btn-primary"
                                     onclick = "getOnePageBook4_1()"
@@ -109,50 +109,50 @@
 
 <div class = "am-g">
     <div class = "am-u-sm-12">
-        <div class = "am-cf am-padding" id = "recom-book">
-            <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-lg" th:text = "#{ab44}">所有图书</strong>
+        <div class = "am-cf am-padding" id = "recom-book" style="display: none">
+            <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-xxl" th:text = "#{sr_yxy}"></strong>
             </div>
         </div>
         <form class = "am-form">
             <ul data-am-widget = "gallery" id = "all-books" class = "am-gallery am-avg-sm-2
           am-avg-md-4 am-avg-lg-6 am-gallery-bordered" data-am-gallery = "{  }">
-                <li th:each = "book:${page}">
-                    <div class = "am-gallery-item">
-                        <a th:href = "@{book_details(isbn=${book.isbn})}" class = "">
-                            <img th:src = "${book.coverPath}" height = "326"/>
-                            <h3 th:text = "${book.title}" class = "am-gallery-title"></h3>
-                            <div class = "am-gallery-desc"><span th:text = "#{remain44} + '&nbsp'">剩余：</span><strong
-                                    th:text = "${book.number}"></strong><span th:text = "'&nbsp' + #{books44}">本</span></div>
-                        </a>
-                    </div>
-                </li>
+                <!--<li th:each = "book:${page}">-->
+                    <!--<div class = "am-gallery-item">-->
+                        <!--<a th:href = "@{book_details(isbn=${book.isbn})}" class = "">-->
+                            <!--<img th:src = "${book.coverPath}" height = "326"/>-->
+                            <!--<h3 th:text = "${book.title}" class = "am-gallery-title"></h3>-->
+                            <!--<div class = "am-gallery-desc"><span th:text = "#{remain44} + '&nbsp'">剩余：</span><strong-->
+                                    <!--th:text = "${book.number}"></strong><span th:text = "'&nbsp' + #{books44}">本</span></div>-->
+                        <!--</a>-->
+                    <!--</div>-->
+                <!--</li>-->
 
             </ul>
             <hr>
             <div class = "am-cf" id = "table-paging">
-                <span th:text = "#{total44}">共</span> [[${page.totalElements}]] <span
-                    th:text = "#{records44}">条记录</span>
-                <div class = "am-fr">
-                    <ul class = "am-pagination">
-                        <li>
-                            <button type = "button" class = "am-btn am-btn-primary am-round"
-                                    onclick = "getOnePageBook_1()"><span th:text = "#{f_zj}">首页</span></button>
-                        </li>
-                        <li>
-                            <button type = "button" class = "am-btn am-btn-primary am-round"
-                                    onclick = "getOnePageBook_2(-1)"><span th:text = "#{p_zj}">上一页</span></button>
-                        </li>
-                        <li>
-                            <button type = "button" class = "am-btn am-btn-primary am-round"
-                                    onclick = "getOnePageBook_2(1)"><span th:text = "#{n_zj}">下一页</span></button>
-                        </li>
-                        <li>
-                            <button type = "button" class = "am-btn am-btn-primary am-round"
-                                    th:onclick = "'javascript:getOnePageBook_3('+${page.totalPages}+'-1)'"><span
-                                    th:text = "#{l_zj}">末页</span></button>
-                        </li>
-                    </ul>
-                </div>
+                <!--<span th:text = "#{total44}">共</span> [[${page.totalElements}]] <span-->
+                    <!--th:text = "#{records44}">条记录</span>-->
+                <!--<div class = "am-fr">-->
+                    <!--<ul class = "am-pagination">-->
+                        <!--<li>-->
+                            <!--<button type = "button" class = "am-btn am-btn-primary am-round"-->
+                                    <!--onclick = "getOnePageBook_1()"><span th:text = "#{f_zj}">首页</span></button>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<button type = "button" class = "am-btn am-btn-primary am-round"-->
+                                    <!--onclick = "getOnePageBook_2(-1)"><span th:text = "#{p_zj}">上一页</span></button>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<button type = "button" class = "am-btn am-btn-primary am-round"-->
+                                    <!--onclick = "getOnePageBook_2(1)"><span th:text = "#{n_zj}">下一页</span></button>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<button type = "button" class = "am-btn am-btn-primary am-round"-->
+                                    <!--th:onclick = "'javascript:getOnePageBook_3('+${page.totalPages}+'-1)'"><span-->
+                                    <!--th:text = "#{l_zj}">末页</span></button>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                <!--</div>-->
             </div>
         </form>
     </div>
@@ -196,7 +196,7 @@
         src = "https://www.laomoit.com/wp-content/themes/pc/js/line.js"></script>
 <script>
     function clear() {
-        $('#recom-book').empty();
+//        $('#recom-book').empty();
         $('#table-paging').empty();
     }
 </script>
@@ -320,6 +320,12 @@
         pageNumber4 = 0;
         var inputDoc = document.getElementById("string");
         var string = inputDoc.value;
+        if(string == ""){
+            alert([[#{searchBox}]]);
+            inputDoc.focus();
+            return false;
+        }
+        document.getElementById("recom-book").style.display = 'block';
         $.ajax({
             type: "get",
             url: "searchBook",
@@ -363,7 +369,11 @@
         pageNumber4 += temp;
         var inputDoc = document.getElementById("string");
         var string = inputDoc.value;
-
+        if(string == ""){
+            alert([[#{searchBox}]]);
+            inputDoc.focus();
+            return false;
+        }
         if (pageNumber4 < 0)
             pageNumber4 = 0;
         else if (pageNumber4 >= totalPage4)
@@ -410,6 +420,11 @@
         pageNumber4 = totalPage4 - 1;
         var inputDoc = document.getElementById("string");
         var string = inputDoc.value;
+        if(string == ""){
+            alert([[#{searchBox}]]);
+            inputDoc.focus();
+            return false;
+        }
         $.ajax({
             type: "get",
             url: "searchBook",
