@@ -118,7 +118,8 @@
                         <span><p class = "am-text-secondary am-text-xl"><span
                                 th:text = "#{no_yxy}" >公告</span></p></span>
                                     <h1 class = "blog-h-margin"><a th:href="@{Notice(id=${notice.id})}" th:text="${notice.title}"></a></h1>
-
+                                    <p th:text="${#strings.abbreviate(#strings.trim(notice.content),20)}"></p>
+                                    <span class="blog-bor" th:text="${#dates.format(notice.date, 'yyyy-MM-dd')}"></span>
                                 </div>
                             </div>
                         </li>

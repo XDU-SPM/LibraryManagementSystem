@@ -25,6 +25,15 @@
     <script src = "http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
 
     <style>
+        /*body {*/
+            /*background: #f8f8f8;*/
+            /*!*background: url(assets/img/library.jpg) no-repeat;*!*/
+            /*!*background-size:100%;*!*/
+            /*!*opacity:0.5;*!*/
+            /*font-family: 'PT Sans', Helvetica, Arial, sans-serif;*/
+            /*text-align: center;*/
+            /*color: #3299cc;*/
+        /*}*/
         .am-form-group {
             text-align: left;
         }
@@ -86,6 +95,8 @@
                         <span><p class = "am-text-secondary am-text-xl"><span
                                 th:text = "#{no_yxy}" >公告</span></p></span>
                         <h1 class = "blog-h-margin"><a th:href="@{Notice(id=${notice.id})}" th:text="${notice.title}"></a></h1>
+                        <p th:text="${#strings.abbreviate(#strings.trim(notice.content),20)}"></p>
+                        <span class="blog-bor" th:text="${#dates.format(notice.date, 'yyyy-MM-dd')}"></span>
 
                     </div>
                 </div>
@@ -93,7 +104,7 @@
         </ul>
     </div>
 </div>
-<hr>
+<br>
 <div class = "am-g am-padding">
     <div class = "am-u-sm-12 am-u-md-6 am-u-md-centered">
         <div class = "am-input-group am-input-group-sm">
@@ -107,7 +118,7 @@
     </div>
 </div>
 
-<div class = "am-g">
+<div class = "am-g"style=" height: 200px;">
     <div class = "am-u-sm-12">
         <div class = "am-cf am-padding" id = "recom-book" style="display: none">
             <div class = "am-fl am-cf"><strong class = "am-text-primary am-text-xxl" th:text = "#{sr_yxy}"></strong>
@@ -128,7 +139,7 @@
                 <!--</li>-->
 
             </ul>
-            <hr>
+            <br>
             <div class = "am-cf" id = "table-paging">
                 <!--<span th:text = "#{total44}">共</span> [[${page.totalElements}]] <span-->
                     <!--th:text = "#{records44}">条记录</span>-->
