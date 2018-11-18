@@ -78,12 +78,12 @@ public class LibrarianBookController
     }
 
     @RequestMapping(value = "/librarian/saveBook", method = RequestMethod.POST)
-    public String saveBook(Book book, Model model, String id)
+    public String saveBook(Book book, Model model, String bkid)
     {
-        librarianBookService.saveBook(book, id);
+        librarianBookService.saveBook(book, bkid);
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
-        return "redirect:librarian_book?id=" + id;
+        return "redirect:librarian_book?id=" + bkid;
     }
 
     @RequestMapping(value = "/librarian/searchBook", method = RequestMethod.GET)
