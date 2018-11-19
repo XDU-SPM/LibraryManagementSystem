@@ -285,14 +285,31 @@
             submitHandler:function(){
                 //设置在提交的时候，进行的一些操作
                 window.alert("change successfully!");
+
             }
         })
 
         $(function(){
-            $("#maxborrownumform").validate();
-            $("#returnperiodform").validate();
-            $("#securitydepositform").validate();
-            $("#overduepenaltyform").validate();
+            $("#maxborrownumform").validate({submitHandler:function(form){
+                    //设置在提交的时候，进行的一些操作
+                    window.alert("change successfully!");
+                    form.submit();
+                }});
+            $("#returnperiodform").validate({submitHandler:function(form){
+                    //设置在提交的时候，进行的一些操作
+                    window.alert("change successfully!");
+                    form.submit();
+                }});
+            $("#securitydepositform").validate({submitHandler:function(form){
+                    //设置在提交的时候，进行的一些操作
+                    window.alert("change successfully!");
+                    form.submit();
+                }});
+            $("#overduepenaltyform").validate({submitHandler:function(form){
+                    //设置在提交的时候，进行的一些操作
+                    window.alert("change successfully!");
+                    form.submit();
+                }});
         })
     </script>
 
