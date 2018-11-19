@@ -148,6 +148,23 @@
                 </ul>
                 <div class = "am-tabs-bd">
                     <div class = "am-tab-panel am-fade am-in am-active" id = "tab1">
+
+                        <div class = "am-g">
+                            <div class = "am-u-sm-12 am-u-md-6">
+                                <div class = "am-btn-toolbar">
+                                    <div class = "am-btn-group am-btn-group-xs">
+                                        <button type = "button" class = "am-btn am-btn-default" id = "email" ><span
+                                                class = "am-icon-mail-forward"></span> <span th:text="#{Email}">邮件</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class = "am-u-sm-12 am-u-md-3">
+
+                            </div>
+                        </div>
+
                         <div class = "am-g am-center am-padding" >
                             <table class = "am-table am-table-striped am-table-hover am-table-compact am-table-main " id = "borrowHistory">
                                 <thead>
@@ -158,6 +175,7 @@
                                     <th class = "table-uid" th:text="#{rid}">读者编号</th>
                                     <th class = "table-reader am-hide-sm-only" th:text="#{username}">用户名</th>
                                     <th class = "table-date am-hide-sm-only" th:text="#{date}">借阅日期</th>
+                                    <th class = "table-set" th:text="#{Operation}">操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -168,6 +186,21 @@
                                     <td class = "am-hide-sm-only" th:text = "${record.uid}"></td>
                                     <td class = "am-hide-sm-only" th:text = "${record.username}"></td>
                                     <td class = "am-hide-sm-only" th:text = "${record.date}"></td>
+                                    <td>
+                                        <div class = "am-btn-toolbar">
+                                            <div class = "am-btn-group am-btn-group-xs">
+                                                <button th:text = "#{Email}" th:if = "${record.status} ne 2" type = "button"
+                                                        class = "am-btn am-btn-primary am-round" disabled>
+                                                    邮件
+                                                </button>
+                                                <button class = "am-round am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only delete"
+                                                        th:if = "${record.status} eq 2" type="button"
+                                                        th:onclick = "'javascript:email('+${record.id}+')'">
+                                                    <span class = "am-icon-mail-forward" th:text="#{Email}">邮件提醒</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </td>
                                 </tr>
                             </table>
 
@@ -229,6 +262,27 @@
 <script src = "assets/js/amazeui.min.js"></script>
 <script src = "assets/js/app.js"></script>
 <script type = "text/javascript" src = "assets/js/switch_language.js"></script>
+<script th:inline="">
+    function email(id) {
+        $.ajax(
+            {
+                method: 'GET',
+                url: "deletebook",
+                data: {id: id},
+                success: function (data) {
+                    if (data.status == 0) {
+                        alert([[#{notice_success}]]);
+                    }
+                    else {
+                        alert([[#{fail}]]);
+                    }
+                }
+            }
+        )
+    }
+
+</script>
+
 <script th:inline="javascript">
     $(function () {
         $('#borrowHistory').DataTable(
