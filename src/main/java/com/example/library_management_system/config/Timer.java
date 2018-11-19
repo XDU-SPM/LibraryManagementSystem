@@ -3,6 +3,7 @@ package com.example.library_management_system.config;
 import com.example.library_management_system.bean.*;
 import com.example.library_management_system.dao.*;
 import com.example.library_management_system.service.GlobalUtilService;
+import com.example.library_management_system.service.LibrarianBookService;
 import com.example.library_management_system.utils.AccountUtil;
 import com.example.library_management_system.utils.MailUtil;
 import com.example.library_management_system.utils.UserBkunitUtil;
@@ -38,6 +39,9 @@ public class Timer
     @Autowired
     private GlobalUtilService globalUtilService;
 
+    @Autowired
+    private LibrarianBookService librarianBookService;
+
     /**
      * Execute once every day at 0:00
      */
@@ -69,21 +73,7 @@ public class Timer
                 if (notify.getTime().after(overdue.getTime()))
                 {
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss SSS");
-                    Bkunit bkunit = userBkunit.getBkunit();
-                    String context = user.getUsername() + ", your book " + bkunit.getBook().getTitle() + "(" + bkunit.getId() + ") will expire in " + sdf.format(overdue.getTime()) + ". Please return/renew it in time.";
-                    String subject = "Book Overdue";
-                    try
-                    {
-                        MailUtil.sendmail(user.getEmail(), context, subject);
-                    }
-                    catch (MessagingException e)
-                    {
-                        e.printStackTrace();
-                    }
-                    catch (UnsupportedEncodingException e)
-                    {
-                        e.printStackTrace();
-                    }
+                    MailUtil.overdueSendMail(userBkunit, true, sdf.format(overdue.getTime()));
                 }
             }
         }
@@ -118,26 +108,6 @@ public class Timer
     public void sendMail()
     {
         System.out.println("in sendMail");
-        List<UserBkunit> userBkunits = userBkunitDAO.findAllByStatus(UserBkunitUtil.OVERDUE);
-        for (UserBkunit userBkunit : userBkunits)
-        {
-            System.out.println("in in sendMail");
-            User user = userBkunit.getUser();
-            Bkunit bkunit = userBkunit.getBkunit();
-            String context = user.getUsername() + ", your book " + bkunit.getBook().getTitle() + "(" + bkunit.getId() + ") has expired. Please return it in time.";
-            String subject = "Book Overdue";
-            try
-            {
-                MailUtil.sendmail(user.getEmail(), context, subject);
-            }
-            catch (MessagingException e)
-            {
-                e.printStackTrace();
-            }
-            catch (UnsupportedEncodingException e)
-            {
-                e.printStackTrace();
-            }
-        }
+        librarianBookService.overdueRemindAll();
     }
 }

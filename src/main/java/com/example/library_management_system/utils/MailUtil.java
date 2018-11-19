@@ -1,5 +1,10 @@
 package com.example.library_management_system.utils;
 
+import com.example.library_management_system.bean.Bkunit;
+import com.example.library_management_system.bean.User;
+import com.example.library_management_system.bean.UserBkunit;
+
+import java.text.SimpleDateFormat;
 import java.util.*;
 import javax.mail.*;
 import javax.mail.Message.RecipientType;
@@ -9,7 +14,7 @@ import java.io.*;
 
 public class MailUtil extends Authenticator
 {
-    public static void sendmail(String to, String context, String subject) throws MessagingException, UnsupportedEncodingException
+    public static void sendmail(String to, String context, String subject)
     {
         final String from = "ericfbt@163.com";//发件人的邮箱
         final String password = "admin123";
@@ -36,7 +41,23 @@ public class MailUtil extends Authenticator
         {
             mex.printStackTrace();
         }
+        catch (UnsupportedEncodingException e)
+        {
+            e.printStackTrace();
+        }
+    }
 
+    public static void overdueSendMail(UserBkunit userBkunit, boolean overdue, String time)
+    {
+        User user = userBkunit.getUser();
+        Bkunit bkunit = userBkunit.getBkunit();
+        String context;
+        if (overdue)
+            context = user.getUsername() + ", your book " + bkunit.getBook().getTitle() + "(" + bkunit.getId() + ") has expired. Please return it in time.";
+        else
+            context = user.getUsername() + ", your book " + bkunit.getBook().getTitle() + "(" + bkunit.getId() + ") will expire in " + time + ". Please return/renew it in time.";
+        String subject = "Book Overdue";
+        sendmail(user.getEmail(), context, subject);
     }
 
     private static MimeMessage createMimeMessage(Session session, String sendAccount, String receiveAccount, String subject, String context) throws MessagingException, UnsupportedEncodingException
@@ -53,18 +74,7 @@ public class MailUtil extends Authenticator
 
     public static void main(String[] args)
     {
-        try
-        {
-            MailUtil.sendmail("ericfbt@foxmail.com", "context", "subject");
-        }
-        catch (MessagingException e)
-        {
-            e.printStackTrace();
-        }
-        catch (UnsupportedEncodingException e)
-        {
-            e.printStackTrace();
-        }
+        MailUtil.sendmail("ericfbt@foxmail.com", "context", "subject");
     }
 }
 

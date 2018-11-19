@@ -86,53 +86,6 @@ public class LibrarianBookController
         return "redirect:librarian_book?id=" + bkid;
     }
 
-    @RequestMapping(value = "/librarian/searchBook", method = RequestMethod.GET)
-    public String searchBook(String string, Model model,
-                             @RequestParam(value = "start", defaultValue = "0") int start,
-                             @RequestParam(value = "size", defaultValue = "10") int size)
-    {
-        model.addAttribute("page", bookService.searchBook(string, start, size));
-        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
-        model.addAttribute("username", userService.getUser().getUsername());
-        return "";
-    }
-
-    @RequestMapping(value = "/librarian/addBookCategory", method = RequestMethod.POST)
-    public String addBookCategory(String isbn, String category, Model model)
-    {
-        librarianBookService.addBookCategory(isbn, category);
-        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
-        model.addAttribute("username", userService.getUser().getUsername());
-        return "";
-    }
-
-    @RequestMapping(value = "/librarian/removeBookCategory", method = RequestMethod.POST)
-    public String removeBookCategory(String isbn, String category, Model model)
-    {
-        librarianBookService.removeBookCategory(isbn, category);
-        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
-        model.addAttribute("username", userService.getUser().getUsername());
-        return "";
-    }
-
-    @RequestMapping(value = "/librarian/addBookLocation", method = RequestMethod.POST)
-    public String addBookLocation(String isbn, String location, Model model)
-    {
-        librarianBookService.addBookLocation(isbn, location);
-        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
-        model.addAttribute("username", userService.getUser().getUsername());
-        return "";
-    }
-
-    @RequestMapping(value = "/librarian/removeBookLocation", method = RequestMethod.POST)
-    public String removeBookLocation(String isbn, String location, Model model)
-    {
-        librarianBookService.removeBookLocation(isbn, location);
-        model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
-        model.addAttribute("username", userService.getUser().getUsername());
-        return "";
-    }
-
     @RequestMapping(value = "/librarian/lend", method = RequestMethod.POST)
     public String lend(Model model, String id, String number)
     {
@@ -186,5 +139,20 @@ public class LibrarianBookController
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
         return "librarian/librarian_deletebookhistory";
+    }
+
+    @RequestMapping(value = "/librarian/overdueRemind", method = RequestMethod.GET)
+    @ResponseBody
+    public Status overdueRemind(int id)
+    {
+        return new Status(librarianBookService.overdueRemind(id));
+    }
+
+    @RequestMapping(value = "/librarian/overdueRemindAll", method = RequestMethod.GET)
+    @ResponseBody
+    public Status overdueRemindAll()
+    {
+        librarianBookService.overdueRemindAll();
+        return new Status(0);
     }
 }
