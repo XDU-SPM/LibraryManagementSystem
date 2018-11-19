@@ -264,11 +264,10 @@
 <script type = "text/javascript" src = "assets/js/switch_language.js"></script>
 <script th:inline="javascript">
     function email(id) {
-        alert(id);
         $.ajax(
             {
                 method: 'GET',
-                url: "email",
+                url: "overdueRemind",
                 data: {id: id},
                 success: function (data) {
                     if (data.status == 0) {
@@ -282,8 +281,25 @@
         )
     }
 
+    function email1() {
+        $.ajax(
+            {
+                method: 'GET',
+                url: "overdueRemindAll",
+                success: function (data) {
+                    if (data.status == 0) {
+                        alert([[#{notice_success}]]);
+                    }
+                    else {
+                        alert([[#{fail}]]);
+                    }
+                }
+            }
+        )
+    }
+
     $("#email").click(function () {
-        email(0);
+        email1();
     });
 </script>
 
