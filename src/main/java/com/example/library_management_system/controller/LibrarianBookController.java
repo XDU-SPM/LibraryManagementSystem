@@ -74,16 +74,16 @@ public class LibrarianBookController
         model.addAttribute("locations", locationService.locations());
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
-        return "/librarian/librarian_book";
+        return "librarian/librarian_book";
     }
 
     @RequestMapping(value = "/librarian/saveBook", method = RequestMethod.POST)
-    public String saveBook(Book book, Model model, String id)
+    public String saveBook(Book book, Model model, String bkid)
     {
-        librarianBookService.saveBook(book, id);
+        librarianBookService.saveBook(book, bkid);
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
-        return "redirect:librarian_book?id=" + id;
+        return "redirect:librarian_book?id=" + bkid;
     }
 
     @RequestMapping(value = "/librarian/searchBook", method = RequestMethod.GET)
@@ -157,7 +157,7 @@ public class LibrarianBookController
         model.addAttribute("status", status);
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
-        return "/librarian/librarian_return";
+        return "librarian/librarian_return";
     }
 
     @RequestMapping(value = "/librarian/librarian_record", method = RequestMethod.GET)

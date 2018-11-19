@@ -38,7 +38,7 @@ public class AdminUserController
         return userService.searchUser(username);
     }
 
-    @RequestMapping(value = "admin/delete_users", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/delete_users", method = RequestMethod.GET)
     public String admin_delete_users(Model model, @RequestParam(value = "start", defaultValue = "0") int start,
                                      @RequestParam(value = "size", defaultValue = "10") int size)
     {
@@ -84,6 +84,6 @@ public class AdminUserController
         model.addAttribute("status", password == null ? "" : password);
         model.addAttribute("avatarPath", userService.getUser().getAvatarPath());
         model.addAttribute("username", userService.getUser().getUsername());
-        return "/admin/retrieve_password";
+        return "admin/retrieve_password";
     }
 }
