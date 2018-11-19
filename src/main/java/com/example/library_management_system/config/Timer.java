@@ -73,7 +73,7 @@ public class Timer
                 if (notify.getTime().after(overdue.getTime()))
                 {
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss SSS");
-                    MailUtil.overdueSendMail(userBkunit, true, sdf.format(overdue.getTime()));
+                    MailUtil.overdueSendMail(userBkunit, false, sdf.format(overdue.getTime()));
                 }
             }
         }
