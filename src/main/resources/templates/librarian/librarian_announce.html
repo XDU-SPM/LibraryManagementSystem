@@ -247,7 +247,7 @@
                     <div class = "am-form-group">
                         <label for = "title2" class = "am-u-sm-3 am-form-label" th:text="#{ti44}"></label>
                         <div class = "am-u-sm-9">
-                            <input type = "text" id = "title2" th:placeholder = "#{ti44}" name = "title">
+                            <input type = "text" id = "title2" th:placeholder = "#{ti44}" name = "title" required>
                         </div>
                     </div>
 
@@ -255,8 +255,7 @@
                         <label for = "content2" class = "am-u-sm-3 am-form-label" th:text="#{c_zj}"></label>
                         <div class = "am-u-sm-9">
                             <!--<input type = "text" id = "content" placeholder = "内容 / Content" name = "brief">-->
-                            <textarea id = "content2"  name = "content" cols = "10" rows = "3">
-                            </textarea>
+                            <textarea id = "content2"  name = "content" cols = "10" rows = "3" required></textarea>
                         </div>
                     </div>
 
@@ -306,7 +305,7 @@
 </script>
 <script type = "text/javascript" src = "assets/js/test.js"></script>
 <script th:inline = "javascript" src = "dist/amazeui.datatables.js"></script>
-<script src ="dist/jquery.validate.min.js"></script>
+
 <script th:inline="javascript">
     $(function () {
         $('#announce').DataTable(
@@ -380,6 +379,15 @@
             }
         );
     }
+</script>
+
+<script src ="dist/jquery.validate.min.js"></script>
+<script>
+    $( "form").validate({
+        rules: {
+
+        }
+    });
 </script>
 </body>
 </html>
