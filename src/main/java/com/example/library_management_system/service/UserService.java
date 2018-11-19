@@ -132,7 +132,6 @@ public class UserService
         if (user.getMoney() < 0)
             return -1;
 
-
         Set<UserBkunit> userBkunits = user.getUserBkunits();
 
         for (UserBkunit userBkunit : userBkunits)

@@ -26,6 +26,9 @@ public class BkunitOperatingHistory
 
     private int status;
 
+    @Transient
+    private int status1;
+
     public BkunitOperatingHistory()
     {
     }
@@ -106,5 +109,15 @@ public class BkunitOperatingHistory
     public void setBookName(String bookName)
     {
         this.bookName = bookName;
+    }
+
+    public int getStatus1()
+    {
+        return status1;
+    }
+
+    public void setStatus1(int status1)
+    {
+        this.status1 = status1;
     }
 }

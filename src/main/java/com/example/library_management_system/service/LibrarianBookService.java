@@ -6,8 +6,6 @@ import com.example.library_management_system.dao.*;
 import com.example.library_management_system.utils.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
 import javax.annotation.Resource;
 import java.util.*;
@@ -215,7 +213,7 @@ public class LibrarianBookService
         reader.addBookNumber(1);
         userBkunitDAO.save(userBkunit);
 
-        BkunitOperatingHistory bkunitOperatingHistory = new BkunitOperatingHistory(new Date(), reader.getId(), bkunit.getId(), UserBkunitUtil.BORROWED);
+        BkunitOperatingHistory bkunitOperatingHistory = new BkunitOperatingHistory(now, reader.getId(), bkunit.getId(), UserBkunitUtil.BORROWED);
         bkunitOperatingHistoryDAO.save(bkunitOperatingHistory);
 
         return 0;
@@ -466,11 +464,11 @@ public class LibrarianBookService
     {
         Set<BkunitOperatingHistory> bkunitOperatingHistories = bkunitOperatingHistoryDAO.findAllByStatus(status);
         for (BkunitOperatingHistory bkunitOperatingHistory : bkunitOperatingHistories)
-            updateBkunitOperatingHistory(bkunitOperatingHistory);
+            updateBkunitOperatingHistory(bkunitOperatingHistory, status);
         return bkunitOperatingHistories;
     }
 
-    private void updateBkunitOperatingHistory(BkunitOperatingHistory bkunitOperatingHistory)
+    private void updateBkunitOperatingHistory(BkunitOperatingHistory bkunitOperatingHistory, int status)
     {
         String username;
         User user;
@@ -487,6 +485,13 @@ public class LibrarianBookService
         else
             bookName = optional.get().getBook().getTitle();
         bkunitOperatingHistory.setBookName(bookName);
+
+        if (status == UserBkunitUtil.BORROWED && optional.isPresent())
+        {
+            UserBkunit userBkunit = userBkunitDAO.findByUserAndBkunitAndBorrowDateAndStatus(user, optional.get(), bkunitOperatingHistory.getDate(), UserBkunitUtil.OVERDUE);
+            if (userBkunit != null)
+                bkunitOperatingHistory.setStatus1(1);
+        }
     }
 
     public void overdueRemindAll()
