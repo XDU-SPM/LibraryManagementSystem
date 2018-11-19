@@ -500,16 +500,19 @@ public class LibrarianBookService
         for (UserBkunit userBkunit : userBkunits)
         {
             System.out.println("in in sendMail");
-            MailUtil.overdueSendMail(userBkunit, false, null);
+            MailUtil.overdueSendMail(userBkunit, true, null);
         }
     }
 
     public int overdueRemind(int id)
     {
-        UserBkunit userBkunit = userBkunitDAO.findById(id);
-        if (userBkunit.getStatus() != UserBkunitUtil.OVERDUE)
+        BkunitOperatingHistory bkunitOperatingHistory = bkunitOperatingHistoryDAO.findById(id).get();
+        User user = userDAO.findById(bkunitOperatingHistory.getUid());
+        Bkunit bkunit = bkunitDAO.findById(bkunitOperatingHistory.getBuid()).get();
+        UserBkunit userBkunit = userBkunitDAO.findByUserAndBkunitAndBorrowDateAndStatus(user, bkunit, bkunitOperatingHistory.getDate(), UserBkunitUtil.OVERDUE);
+        if (userBkunit == null)
             return -1;
-        MailUtil.overdueSendMail(userBkunit, false, null);
+        MailUtil.overdueSendMail(userBkunit, true, null);
         return 0;
     }
 }
