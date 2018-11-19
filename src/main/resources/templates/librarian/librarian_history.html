@@ -189,12 +189,12 @@
                                     <td>
                                         <div class = "am-btn-toolbar">
                                             <div class = "am-btn-group am-btn-group-xs">
-                                                <button th:text = "#{Email}" th:if = "${record.status} ne 2" type = "button"
+                                                <button th:text = "#{Email}" th:if = "${record.status} eq 0" type = "button"
                                                         class = "am-btn am-btn-primary am-round" disabled>
                                                     邮件
                                                 </button>
                                                 <button class = "am-round am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only delete"
-                                                        th:if = "${record.status} eq 2" type="button"
+                                                        th:if = "${record.status} eq 1" type="button"
                                                         th:onclick = "'javascript:email('+${record.id}+')'">
                                                     <span class = "am-icon-mail-forward" th:text="#{Email}">邮件提醒</span>
                                                 </button>
@@ -262,12 +262,13 @@
 <script src = "assets/js/amazeui.min.js"></script>
 <script src = "assets/js/app.js"></script>
 <script type = "text/javascript" src = "assets/js/switch_language.js"></script>
-<script th:inline="">
+<script th:inline="javascript">
     function email(id) {
+        alert(id);
         $.ajax(
             {
                 method: 'GET',
-                url: "deletebook",
+                url: "email",
                 data: {id: id},
                 success: function (data) {
                     if (data.status == 0) {
@@ -281,6 +282,9 @@
         )
     }
 
+    $("#email").click(function () {
+        email(0);
+    });
 </script>
 
 <script th:inline="javascript">
