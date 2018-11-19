@@ -189,12 +189,12 @@
                                     <td>
                                         <div class = "am-btn-toolbar">
                                             <div class = "am-btn-group am-btn-group-xs">
-                                                <button th:text = "#{Email}" th:if = "${record.status} eq 0" type = "button"
+                                                <button th:text = "#{Email}" th:if = "${record.status1} eq 0" type = "button"
                                                         class = "am-btn am-btn-primary am-round" disabled>
                                                     邮件
                                                 </button>
                                                 <button class = "am-round am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only delete"
-                                                        th:if = "${record.status} eq 1" type="button"
+                                                        th:if = "${record.status1} eq 1" type="button"
                                                         th:onclick = "'javascript:email('+${record.id}+')'">
                                                     <span class = "am-icon-mail-forward" th:text="#{Email}">邮件提醒</span>
                                                 </button>
