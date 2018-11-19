@@ -152,9 +152,9 @@
                         <div class = "am-g">
                             <div class = "am-u-sm-12 am-u-md-6">
                                 <div class = "am-btn-toolbar">
-                                    <div class = "am-btn-group am-btn-group-xs">
+                                    <div class = "am-btn-group am-btn-group-xs" style="float:right">
                                         <button type = "button" class = "am-btn am-btn-default" id = "email" ><span
-                                                class = "am-icon-mail-forward"></span> <span th:text="#{Email}">邮件</span>
+                                                class = "am-icon-mail-forward"></span> <span th:text="#{send_email}">邮件</span>
                                         </button>
                                     </div>
                                 </div>
@@ -189,9 +189,9 @@
                                     <td>
                                         <div class = "am-btn-toolbar">
                                             <div class = "am-btn-group am-btn-group-xs">
-                                                <button th:text = "#{Email}" th:if = "${record.status1} eq 0" type = "button"
-                                                        class = "am-btn am-btn-primary am-round" disabled>
-                                                    邮件
+                                                <button class = "am-round am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only delete"
+                                                        th:if = "${record.status1} eq 0" type="button" disabled>
+                                                    <span class = "am-icon-mail-forward" th:text="#{send_email}">邮件提醒</span>
                                                 </button>
                                                 <button class = "am-round am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only delete"
                                                         th:if = "${record.status1} eq 1" type="button"
