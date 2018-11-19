@@ -130,7 +130,16 @@ public class ReaderBookService
         if (userBkunit.getStatus() != UserBkunitUtil.RESERVED)
             return 0;
 
-        userBkunit.getBkunit().getBook().addNumber(1);
+        Bkunit bkunit = userBkunit.getBkunit();
+        if (bkunit.getStatus() != BkunitUtil.LOST)
+        {
+            bkunit.setStatus(BkunitUtil.NORMAL);
+
+            Book book = bkunit.getBook();
+            book.addNumber(1);
+            bookDAO.save(book);
+        }
+
         userBkunit.setStatus(UserBkunitUtil.RESERVATION_CANCEL);
         userBkunitDAO.save(userBkunit);
         return 1;

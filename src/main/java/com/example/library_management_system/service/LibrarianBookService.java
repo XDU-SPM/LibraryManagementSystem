@@ -102,12 +102,6 @@ public class LibrarianBookService
         bkunitOperatingHistoryDAO.save(bkunitOperatingHistory);
     }
 
-    public Page<Bkunit> showBkunit(int start, int size)
-    {
-        Pageable pageable = PageableUtil.pageable(false, "id", start, size);
-        return bkunitDAO.findAllByStatusNot(BkunitUtil.LOST, pageable);
-    }
-
     public Set<Bkunit> showBkunit()
     {
         Set<Bkunit> set = bkunitDAO.findAllByStatusNot(BkunitUtil.LOST);
@@ -394,56 +388,6 @@ public class LibrarianBookService
         return Math.abs(d1 - d2) < 0.01;
     }
 
-    public void addBookCategory(String isbn, String categoryName)
-    {
-        Category category = categoryDAO.findByName(categoryName);
-        if (category == null)
-        {
-            category = new Category(categoryName);
-            categoryDAO.save(category);
-        }
-
-        Book book = bookDAO.findByIsbn(isbn);
-        book.getCategories().add(category);
-        bookDAO.save(book);
-    }
-
-    public void removeBookCategory(String isbn, String categoryName)
-    {
-        Category category = categoryDAO.findByName(categoryName);
-        if (category == null)
-            return;
-
-        Book book = bookDAO.findByIsbn(isbn);
-        book.getCategories().remove(category);
-        bookDAO.save(book);
-    }
-
-    public void addBookLocation(String isbn, String locationName)
-    {
-        Location location = locationDAO.findByName(locationName);
-        if (location == null)
-        {
-            location = new Location(locationName);
-            locationDAO.save(location);
-        }
-
-        Book book = bookDAO.findByIsbn(isbn);
-        book.getLocations().add(location);
-        bookDAO.save(book);
-    }
-
-    public void removeBookLocation(String isbn, String locationName)
-    {
-        Location location = locationDAO.findByName(locationName);
-        if (location == null)
-            return;
-
-        Book book = bookDAO.findByIsbn(isbn);
-        book.getLocations().remove(location);
-        bookDAO.save(book);
-    }
-
     public long todayBorrowNumber()
     {
         OneDayApart oneDayApart = new OneDayApart();
@@ -526,15 +470,6 @@ public class LibrarianBookService
         return bkunitOperatingHistories;
     }
 
-    public Page<BkunitOperatingHistory> getBkunitOperatingHistory(int start, int size, int status)
-    {
-        Pageable pageable = PageableUtil.pageable(false, "date", start, size);
-        Page<BkunitOperatingHistory> bkunitOperatingHistories = bkunitOperatingHistoryDAO.findAllByStatus(status, pageable);
-        for (BkunitOperatingHistory bkunitOperatingHistory : bkunitOperatingHistories)
-            updateBkunitOperatingHistory(bkunitOperatingHistory);
-        return bkunitOperatingHistories;
-    }
-
     private void updateBkunitOperatingHistory(BkunitOperatingHistory bkunitOperatingHistory)
     {
         String username;
@@ -552,5 +487,24 @@ public class LibrarianBookService
         else
             bookName = optional.get().getBook().getTitle();
         bkunitOperatingHistory.setBookName(bookName);
+    }
+
+    public void overdueRemindAll()
+    {
+        List<UserBkunit> userBkunits = userBkunitDAO.findAllByStatus(UserBkunitUtil.OVERDUE);
+        for (UserBkunit userBkunit : userBkunits)
+        {
+            System.out.println("in in sendMail");
+            MailUtil.overdueSendMail(userBkunit, false, null);
+        }
+    }
+
+    public int overdueRemind(int id)
+    {
+        UserBkunit userBkunit = userBkunitDAO.findById(id);
+        if (userBkunit.getStatus() != UserBkunitUtil.OVERDUE)
+            return -1;
+        MailUtil.overdueSendMail(userBkunit, false, null);
+        return 0;
     }
 }

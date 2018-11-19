@@ -103,22 +103,9 @@ public class UserService
         if (user == null)
             return -1;
 
-        try
-        {
-            String context =  "We heard that you lost your Bibliosoft password. Sorry about that! <br>  But don’t worry! You can use the following password to login your account: "+ user.getPassword()+" <br><br>Thanks, <br>" +
-                    " Your friends at Bibliosoft";
-            MailUtil.sendmail(user.getEmail(), context, "[Bibliosoft]Retrieve password");
-        }
-        catch (MessagingException e)
-        {
-            e.printStackTrace();
-            return -2;
-        }
-        catch (UnsupportedEncodingException e)
-        {
-            e.printStackTrace();
-            return -2;
-        }
+        String context = "We heard that you lost your Bibliosoft password. Sorry about that! <br>  But don’t worry! You can use the following password to login your account: " + user.getPassword() + " <br><br>Thanks, <br>" +
+                " Your friends at Bibliosoft";
+        MailUtil.sendmail(user.getEmail(), context, "[Bibliosoft]Retrieve password");
         return 0;
     }
 
